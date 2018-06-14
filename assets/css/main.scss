@@ -1,0 +1,37 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+@charset "utf-8";
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
+@import "minimal-mistakes"; // main partials
+
+.page {
+    @media (min-width: 80em) {
+        padding-right: 100px;
+        width: 75%;
+    }
+
+    @media (min-width: 64em) {
+        padding-right: 50px;
+        width: 75%;
+    }
+
+    padding-left: 1em;
+}
+
+div.sidebar {
+  @media (min-width: 64em) {
+    overflow-y: auto;
+    height: calc( 100vh - 2em ) !important;
+  }
+}
+
+div#main {
+  padding-bottom: 2%;
+}
+
+div.MathJax_Display {
+  font-size: .7em;
+}

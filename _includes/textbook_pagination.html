@@ -1,0 +1,14 @@
+{% if page.previouschapter or page.nextchapter %}
+  <nav class="pagination">
+    {% if page.previouschapter %}
+      <a href="{{ page.previouschapter.url | relative_url }}" class="pagination--pager" title="{{ page.previouschapter.title | markdownify | strip_html }}">{{ site.data.ui-text[site.locale].pagination_previous | default: "Previous" }}</a>
+    {% else %}
+      <a href="#" class="pagination--pager disabled">{{ site.data.ui-text[site.locale].pagination_previous | default: "Previous" }}</a>
+    {% endif %}
+    {% if page.nextchapter %}
+      <a href="{{ page.nextchapter.url | relative_url }}" class="pagination--pager" title="{{ page.nextchapter.title | markdownify | strip_html }}">{{ site.data.ui-text[site.locale].pagination_next | default: "Next" }}</a>
+    {% else %}
+      <a href="#" class="pagination--pager disabled">{{ site.data.ui-text[site.locale].pagination_next | default: "Next" }}</a>
+    {% endif %}
+  </nav>
+{% endif %}

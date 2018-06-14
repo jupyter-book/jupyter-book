@@ -1,0 +1,13 @@
+/* Put your custom CSS in here! */
+
+li a.level_2 {
+  padding-left: 1em;
+}
+
+div.sidebar {
+  width: 25%;
+}
+
+section.page__content p {
+    font-size: .9em;
+}
