@@ -14,14 +14,16 @@ help you through the process should you want to do this for your own textbook.
 
 The build process in general goes something like this:
 
-* Fork and clone this repository to your computer.
+* Fork and clone this repository to your computer. [Here's the repo URL on GitHub](https://github.com/choldgraf/textbook-jekyll-template).
 * Put your Jupyter Notebooks in `notebooks/` (they can be in sub-folders)
-* Create a `SUMMARY.md` file in the root of the repository. This is defines the structure
+* Create a `SUMMARY.md` file in the root of the repository. This defines the structure
   of your textbook.
 * Use `generate_textbook.py` to convert your Jupyter Notebooks into jekyll-ready markdown.
 * Push these changes to GitHub.
 * Tell GitHub you want to build a website from your fork of the repository.
 * That's it!
+
+See the rest of this guide for more detailed instructions on this process.
 
 ## Relevant files
 
@@ -53,7 +55,7 @@ of the more important files/folders worth knowing about.
     * [2.2 Snow’s “Grand Experiment”](notebooks/02/2/snow-s-grand-experiment.md)
    ```
 ### Auto-generated folders and files
-* `images/textbook` contains images *generated* during the notebook conversion
+* `images/chapters` contains images *generated* during the notebook conversion
 * `_chapters/` contain notebooks automatically converted to markdown in the build process
 * `_site/` contains the HTML for the built site. It is created by Jekyll, and should only exist if you build the site locally
 
