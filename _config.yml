@@ -13,8 +13,8 @@ teaser                   : # path of fallback teaser image, e.g. "/assets/images
 footer                   : false # Whether to include a footer with the built site
 
 # Textbook settings
-hub_url                  : "http://datahub.berkeley.edu"  # The URL for your JupyterHub. Should be a string.
-hub_name                 : "JupyterHub"  # The name of your JupyterHub
+hub_url                  : "http://datahub.berkeley.edu"  # The URL for your JupyterHub. (if using JupyterHub for interact links)
+hub_name                 : "JupyterHub"  # The name of your JupyterHub (used for the button in the NavBar)
 textbook_repo_base       : "https://github.com/"  # The site on which the textbook repository is hosted
 textbook_repo_org        : "choldgraf"  # The username or organization that owns this repository
 textbook_repo_name       : "textbook-jekyll-template"  # The name of the repository on the web
