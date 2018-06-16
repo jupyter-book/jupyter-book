@@ -24,8 +24,8 @@ This page helps you set each of these up
 2. **Activate the environment** before building your site.
 
        conda activate textbook
-       
-3. (optionally) **Install Ruby and the Jekyll plugin.
+
+3. (optionally) **Install Ruby and the Jekyll plugin.**
 
    [See the Jekyll docs](https://jekyllrb.com/docs/installation/) for information on this.
    As well as the [GitHub gh-pages documentation](https://help.github.com/articles/using-jekyll-as-a-static-site-generator-with-github-pages/)
