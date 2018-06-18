@@ -25,6 +25,7 @@ is a short list of the most relevant fields
 * `hub_url`: The URL of a JupyterHub that runs your notebooks. It is used
   in generating "interact links" for your textbook.
 * `hub_name`: The name of your JupyterHub (used for the button in the navbar).
+* `hub_type`: *['binder', 'jupyterhub']*  Whether to build interact links for a BinderHub or a JupyterHub.
 * `textbook_repo_base`: The site on which the textbook repository is hosted
   interact links.
 * `textbook_repo_org`: The username or organization that owns this repository
@@ -32,11 +33,7 @@ is a short list of the most relevant fields
 * `textbook_repo_branch`: The branch on which your textbook is hosted.
 * `number_chapters`: Whether to add numbers to the title of each chapter.
 * `chapter_titles`: Whether to include the title of each chapter to the top of its page.
-* `masthead`: Whether to include the masthead (or header) in your built website. If you
-  *only* want to serve the textbook and nothing else, this should be `false`. If you'd like
-  to serve a course website *along with* your online textbook, set it to `true`.
-* `interact_type`: *['binder', 'jupyterhub']*  Whether to build interact links for a BinderHub or a JupyterHub.
-* `binder_url`: The URL for the BinderHub to send people to (if using Binder for interact links)
-
+* `textbook_only`: If 'true', the home page will be the first chapter of the textbook,
+  and *only* the sidebar is shown.
 
 Once you've got your site configured how you'd like, it's to build your textbook!

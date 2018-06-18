@@ -1,4 +1,8 @@
-{% assign navigation = site.data.navigation[include.nav] %}
+{% if include.textbook %}
+  {% assign navigation = site.data.textbook['chapters'] %}
+{% else %}
+  {% assign navigation = site.data.navigation[include.nav] %}
+{% endif %}
 
 <nav class="nav__list">
   {% if page.sidebar.title %}<h3 class="nav__title" style="padding-left: 0;">{{ page.sidebar.title }}</h3>{% endif %}

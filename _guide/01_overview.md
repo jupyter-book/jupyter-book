@@ -47,17 +47,19 @@ of the more important files/folders worth knowing about.
 
   ```
   * [1. Data Science](notebooks/01/what-is-data-science.md)
-    * [1.1 Introduction](notebooks/01/1/intro.md)
+    * [1.1 Introduction](notebooks/01/1/intro.ipynb)
       * [1.1.1 Computational Tools](notebooks/01/1/1/computational-tools.md)
     * [1.2 Why Data Science?](notebooks/01/2/why-data-science.md)
-  * [2. Causality and Experiments](notebooks/02/causality-and-experiments.md)
+  * [2. Causality and Experiments](notebooks/02/causality-and-experiments.ipynb)
     * [2.1 John Snow and the Broad Street Pump](notebooks/02/1/observation-and-visualization-john-snow-and-the-broad-street-pump.md)
-    * [2.2 Snow’s “Grand Experiment”](notebooks/02/2/snow-s-grand-experiment.md)
+    * [2.2 Snow’s “Grand Experiment”](notebooks/02/2/snow-s-grand-experiment.ipynb)
    ```
+
 ### Auto-generated folders and files
 * `images/chapters` contains images *generated* during the notebook conversion
 * `_chapters/` contain notebooks automatically converted to markdown in the build process
 * `_site/` contains the HTML for the built site. It is created by Jekyll, and should only exist if you build the site locally
+* `_data/textbook.yml` contains information generated in the textbook build process.
 
 ### Repository configuration and build files
 * `_config.yml` contains all site configuration.

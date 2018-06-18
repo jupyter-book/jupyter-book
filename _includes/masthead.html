@@ -14,9 +14,16 @@
               <a href="{{ domain }}{{ link.url }}" {% if link.description %}title="{{ link.description }}"{% endif %}>{{ link.title }}</a>
             </li>
           {% endfor %}
-          <li class="masthead__menu-item">
-            <a href="{{ site.hub_url }}">{{ site.hub_name }}</a>
-          </li>
+          {% if site.data.textbook %}
+            <li class="masthead__menu-item">
+              <a href="{{ site.data.textbook.first_chapter_url }}">Textbook</a>
+            </li>
+          {% endif %}
+          {% if site.hub_name and site.hub_type == "jupyterhub" %}
+            <li class="masthead__menu-item">
+              <a href="{{ site.hub_url }}">{{ site.hub_name }}</a>
+            </li>
+          {% endif %}
         </ul>
         {% if site.search == true %}
         <button class="search__toggle" type="button">
