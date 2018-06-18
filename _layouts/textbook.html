@@ -38,14 +38,7 @@ layout: default
             </nav>
           </aside>
         {% endif %}
-        <!-- INTERACT LINKS -->
-        {% if page.interact_link %}
-            {% if site.hub_type == "binder" %}
-                <a class="interact-button" href="{{ site.hub_url }}/v2/gh/{{ site.textbook_repo_org }}/{{ site.textbook_repo_name }}/{{ site.textbook_repo_branch }}?filePath={{ page.interact_link }}">Interact</a>
-            {% elsif site.hub_type == "jupyterhub" %}
-                <a class="interact-button" href="{{ site.hub_url }}/hub/user-redirect/git-pull?repo={{ site.textbook_repo_base }}/{{ site.textbook_repo_org }}/{{ site.textbook_repo_name }}&amp;branch={{ site.textbook_repo_branch }}&amp;subPath={{ page.interact_link }}">Interact</a>
-            {% endif %}
-        {% endif %}
+        {% include interact.html %}
         {{ content }}
         {% if page.link %}<div><a href="{{ page.link }}" class="btn btn--primary">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
       </section>

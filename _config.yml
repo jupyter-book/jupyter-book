@@ -24,6 +24,7 @@ textbook_repo_branch     : "master"  # The branch on which your textbook is host
 number_chapters          : false  # Whether to number the chapers in the sidebar for the textbook
 chapter_titles           : false  # Whether to include the title of the chapter at the top of each chapter
 textbook_only            : false  # If 'true', the home page will be the first chapter of the textbook, and *only* the sidebar is shown
+use_jupyterlab           : false  # If 'true', interact links will use JupyterLab as the interface
 
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200

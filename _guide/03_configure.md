@@ -35,5 +35,6 @@ is a short list of the most relevant fields
 * `chapter_titles`: Whether to include the title of each chapter to the top of its page.
 * `textbook_only`: If 'true', the home page will be the first chapter of the textbook,
   and *only* the sidebar is shown.
+* `use_jupyterlab`: If 'true', interact links will initialize with the Jupyter Lab interface
 
 Once you've got your site configured how you'd like, it's to build your textbook!
