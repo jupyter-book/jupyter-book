@@ -232,6 +232,10 @@ if __name__ == '__main__':
     # Update textbook yaml
     with open(SITE_TEXTBOOK, 'w') as ff:
         yaml.dump(textbook_yaml, ff, default_flow_style=False)
+    with open(SITE_TEXTBOOK, 'r') as ff:
+        lines = '### PROGRAMATICALLY GENERATED, DO NOT MODIFY\n' + ff.read()
+    with open(SITE_TEXTBOOK, 'w') as ff:
+        ff.write(lines)
 
     print('Done generating sidebar...')
     print('Done!')

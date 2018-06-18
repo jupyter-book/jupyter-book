@@ -20,3 +20,5 @@ sidebar-guide:
     url: guide/04_build
   - title: Publish your site
     url: guide/05_publish
+  - title: Frequently Asked Questions
+    url: guide/06_faq
