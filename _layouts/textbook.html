@@ -40,9 +40,9 @@ layout: default
         {% endif %}
         <!-- INTERACT LINKS -->
         {% if page.interact_link %}
-            {% if site.interact_type == "binder" %}
-                <a class="interact-button" href="{{ site.binder_url }}/v2/gh/{{ site.textbook_repo_org }}/{{ site.textbook_repo_name }}/{{ site.textbook_repo_branch }}?filePath={{ page.interact_link }}">Interact</a>
-            {% elsif site.interact_type == "jupyterhub" %}
+            {% if site.hub_type == "binder" %}
+                <a class="interact-button" href="{{ site.hub_url }}/v2/gh/{{ site.textbook_repo_org }}/{{ site.textbook_repo_name }}/{{ site.textbook_repo_branch }}?filePath={{ page.interact_link }}">Interact</a>
+            {% elsif site.hub_type == "jupyterhub" %}
                 <a class="interact-button" href="{{ site.hub_url }}/hub/user-redirect/git-pull?repo={{ site.textbook_repo_base }}/{{ site.textbook_repo_org }}/{{ site.textbook_repo_name }}&amp;branch={{ site.textbook_repo_branch }}&amp;subPath={{ page.interact_link }}">Interact</a>
             {% endif %}
         {% endif %}

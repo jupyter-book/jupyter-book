@@ -7,7 +7,7 @@ title_separator          : "-"
 name                     : "Chris Holdgraf"
 description              : ""
 url                      : "https://predictablynoisy.com" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-baseurl                  : "/textbook-jekyll-template" # the subpath of your site, e.g. "/blog"
+baseurl                  : "/textbook-jekyll-template" # the subpath of your site, e.g. "/blog". Defaults to "/"
 repository               : # GitHub username/repo-name for this site
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 footer                   : false # Whether to include a footer with the built site
