@@ -35,6 +35,15 @@ def _markdown_to_files(path_markdown, indent=2):
     return files
 
 
+def _prepare_link(link):
+    """Prep the formatting for a link."""
+    link = _strip_suffixes(link)
+    link = link.lstrip('._').lower().replace('_', '-')
+    link = link.replace(NOTEBOOKS_FOLDER_NAME,
+                        TEXTBOOK_FOLDER_NAME.lstrip('_'))
+    return link
+
+
 def _strip_suffixes(string, suffixes=None):
     """Remove suffixes so we can create links."""
     suffixes = ['.ipynb', '.md'] if suffixes is None else suffixes
@@ -77,8 +86,7 @@ def _generate_sidebar(files):
             if site_yaml.get('number_chapters', False) is True:
                 title = '{}. {}'.format(chapter_ix, title)
             chapter_ix += 1
-        new_link = link.replace(NOTEBOOKS_FOLDER_NAME, TEXTBOOK_FOLDER_NAME.lstrip('_'))
-        new_link = _strip_suffixes(new_link).lstrip('.')
+        new_link = _prepare_link(link)
         new_item = {'title': title, "class": "level_{}".format(int(level)), 'url': new_link}
         if level == 0:
             if ix_file != (len(files) - 1) and level < files[ix_file + 1][-1]:
@@ -127,6 +135,9 @@ if __name__ == '__main__':
     with open(CONFIG_FILE, 'r') as ff:
         site_yaml = yaml.load(ff.read())
     # Load the textbook ymal for this site
+    if not op.exists(SITE_TEXTBOOK):
+        with open(SITE_TEXTBOOK, 'w') as ff:
+            pass
     with open(SITE_TEXTBOOK, 'r') as ff:
         textbook_yaml = yaml.load(ff.read())
     textbook_yaml = {} if textbook_yaml is None else textbook_yaml
@@ -157,14 +168,14 @@ if __name__ == '__main__':
             prev_file_title = ''
         else:
             prev_file_title, prev_page_link, _ = files[ix_file-1]
-            prev_page_link = _strip_suffixes(prev_page_link.replace(NOTEBOOKS_FOLDER_NAME, TEXTBOOK_FOLDER_NAME))
+            prev_page_link = _prepare_link(prev_page_link)
 
         if ix_file == len(files) - 1:
             next_page_link = ''
             next_file_title = ''
         else:
             next_file_title, next_page_link, _ = files[ix_file+1]
-            next_page_link = _strip_suffixes(next_page_link.replace(NOTEBOOKS_FOLDER_NAME, TEXTBOOK_FOLDER_NAME))
+            next_page_link = _prepare_link(next_page_link)
 
         # Convert notebooks or just copy md if no notebook.
         if link.endswith('.ipynb'):
@@ -210,11 +221,12 @@ if __name__ == '__main__':
         if link.endswith('.ipynb'):
             yaml_fm += ['interact_link: {}'.format(link.lstrip('./'))]
         yaml_fm += ["title: '{}'".format(title)]
+        yaml_fm += ["permalink: '{}'".format(_prepare_link(link))]
         yaml_fm += ['previouschapter:']
-        yaml_fm += ['  url: {}'.format(prev_page_link.lstrip('._').replace('"', "'"))]
+        yaml_fm += ['  url: {}'.format(_prepare_link(prev_page_link).replace('"', "'"))]
         yaml_fm += ["  title: '{}'".format(prev_file_title)]
         yaml_fm += ['nextchapter:']
-        yaml_fm += ['  url: {}'.format(next_page_link.lstrip('._').replace('"', "'"))]
+        yaml_fm += ['  url: {}'.format(_prepare_link(prev_page_link).replace('"', "'"))]
         yaml_fm += ["  title: '{}'".format(next_file_title)]
         if ix_file == 0 and site_yaml.get('textbook_only') is True:
             yaml_fm += ['redirect_from: /']
