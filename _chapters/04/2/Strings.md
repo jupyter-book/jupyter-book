@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/04/2/Strings.ipynb
 title: '4.2 Strings'
+permalink: 'chapters/04/2/strings'
 previouschapter:
-  url: chapters/04/1/Numbers
+  url: chapters/04/1/numbers
   title: '4.1 Numbers'
 nextchapter:
-  url: chapters/04/2/1/String_Methods
+  url: chapters/04/2/1/string-methods
   title: '4.2.1 String Methods'
 ---
 

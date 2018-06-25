@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/01/2/why-data-science
   title: '1.2 Why Data Science?'
 nextchapter:
-  url: chapters/01/2/why-data-science
+  url: chapters/01/3/1/literary-characters
   title: '1.3.1 Literary Characters'
 ---
 

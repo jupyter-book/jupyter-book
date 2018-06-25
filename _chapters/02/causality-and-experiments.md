@@ -5,7 +5,7 @@ previouschapter:
   url: chapters/01/3/2/another-kind-of-character
   title: '1.3.2 Another Kind of Character'
 nextchapter:
-  url: chapters/01/3/2/another-kind-of-character
+  url: chapters/02/1/observation-and-visualization-john-snow-and-the-broad-street-pump
   title: '2.1 John Snow and the Broad Street Pump'
 ---
 Causality and Experiments

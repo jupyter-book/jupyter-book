@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/01/3/plotting-the-classics
   title: '1.3 Plotting the Classics'
 nextchapter:
-  url: chapters/01/3/plotting-the-classics
+  url: chapters/01/3/2/another-kind-of-character
   title: '1.3.2 Another Kind of Character'
 ---
 

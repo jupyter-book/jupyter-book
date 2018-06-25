@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/04/1/Numbers.ipynb
 title: '4.1 Numbers'
+permalink: 'chapters/04/1/numbers'
 previouschapter:
-  url: chapters/04/Types
+  url: chapters/04/types
   title: '4. Data Types'
 nextchapter:
-  url: chapters/04/2/Strings
+  url: chapters/04/2/strings
   title: '4.2 Strings'
 ---
 

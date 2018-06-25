@@ -5,7 +5,7 @@ previouschapter:
   url: chapters/01/1/intro
   title: '1.1 Introduction'
 nextchapter:
-  url: chapters/01/1/intro
+  url: chapters/01/1/2/statistical-techniques
   title: '1.1.2 Statistical Techniques'
 ---
 Computational Tools

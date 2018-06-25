@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/01/3/1/literary-characters
   title: '1.3.1 Literary Characters'
 nextchapter:
-  url: chapters/01/3/1/literary-characters
+  url: chapters/02/causality-and-experiments
   title: '2. Causality and Experiments'
 ---
 

@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/03/2/names
   title: '3.2 Names'
 nextchapter:
-  url: chapters/03/2/names
+  url: chapters/03/3/calls
   title: '3.3 Call Expressions'
 ---
 

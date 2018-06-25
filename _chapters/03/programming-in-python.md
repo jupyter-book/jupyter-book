@@ -5,7 +5,7 @@ previouschapter:
   url: chapters/02/5/endnote
   title: '2.5 Endnote'
 nextchapter:
-  url: chapters/02/5/endnote
+  url: chapters/03/1/expressions
   title: '3.1 Expressions'
 ---
 Programming in Python

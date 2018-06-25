@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/03/3/calls
   title: '3.3 Call Expressions'
 nextchapter:
-  url: chapters/03/3/calls
+  url: chapters/04/types
   title: '4. Data Types'
 ---
 

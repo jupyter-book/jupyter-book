@@ -5,7 +5,7 @@ previouschapter:
   url: chapters/intro
   title: '0. Introduction'
 nextchapter:
-  url: chapters/intro
+  url: chapters/01/1/intro
   title: '1.1 Introduction'
 ---
 What is Data Science

@@ -5,7 +5,7 @@ previouschapter:
   url: chapters/02/3/establishing-causality
   title: '2.3 Establishing Causality'
 nextchapter:
-  url: chapters/02/3/establishing-causality
+  url: chapters/02/5/endnote
   title: '2.5 Endnote'
 ---
 Randomization
