@@ -1,10 +1,11 @@
 ---
 title: '2.3 Establishing Causality'
+permalink: 'chapters/02/3/establishing-causality'
 previouschapter:
   url: chapters/02/2/snow-s-grand-experiment
   title: '2.2 Snow’s “Grand Experiment”'
 nextchapter:
-  url: chapters/02/4/randomization
+  url: chapters/02/2/snow-s-grand-experiment
   title: '2.4 Randomization'
 ---
 Establishing Causality

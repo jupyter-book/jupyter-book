@@ -1,10 +1,11 @@
 ---
 title: '1.1.1 Computational Tools'
+permalink: 'chapters/01/1/1/computational-tools'
 previouschapter:
   url: chapters/01/1/intro
   title: '1.1 Introduction'
 nextchapter:
-  url: chapters/01/1/2/statistical-techniques
+  url: chapters/01/1/intro
   title: '1.1.2 Statistical Techniques'
 ---
 Computational Tools

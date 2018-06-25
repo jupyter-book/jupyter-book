@@ -1,10 +1,11 @@
 ---
 title: '2.5 Endnote'
+permalink: 'chapters/02/5/endnote'
 previouschapter:
   url: chapters/02/4/randomization
   title: '2.4 Randomization'
 nextchapter:
-  url: chapters/03/programming-in-python
+  url: chapters/02/4/randomization
   title: '3. Programming in Python'
 ---
 Endnote

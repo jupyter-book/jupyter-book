@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/03/2/Names.ipynb
 title: '3.2 Names'
+permalink: 'chapters/03/2/names'
 previouschapter:
-  url: chapters/03/1/Expressions
+  url: chapters/03/1/expressions
   title: '3.1 Expressions'
 nextchapter:
-  url: chapters/03/2/1/Growth
+  url: chapters/03/1/expressions
   title: '3.2.1 Example: Growth Rates'
 ---
 
