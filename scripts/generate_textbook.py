@@ -230,7 +230,7 @@ if __name__ == '__main__':
         yaml_fm += ['  url: {}'.format(_prepare_link(prev_page_link).replace('"', "'"))]
         yaml_fm += ["  title: '{}'".format(prev_file_title)]
         yaml_fm += ['nextchapter:']
-        yaml_fm += ['  url: {}'.format(_prepare_link(prev_page_link).replace('"', "'"))]
+        yaml_fm += ['  url: {}'.format(_prepare_link(next_page_link).replace('"', "'"))]
         yaml_fm += ["  title: '{}'".format(next_file_title)]
         if ix_file == 0 and site_yaml.get('textbook_only') is True:
             yaml_fm += ['redirect_from: /']
