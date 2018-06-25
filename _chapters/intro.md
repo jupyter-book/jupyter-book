@@ -1,10 +1,11 @@
 ---
 title: '0. Introduction'
+permalink: 'chapters/intro'
 previouschapter:
   url: 
   title: ''
 nextchapter:
-  url: chapters/01/what-is-data-science
+  url: 
   title: '1. Data Science'
 ---
 Computational and Inferential Thinking

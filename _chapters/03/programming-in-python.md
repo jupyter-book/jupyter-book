@@ -1,10 +1,11 @@
 ---
 title: '3. Programming in Python'
+permalink: 'chapters/03/programming-in-python'
 previouschapter:
   url: chapters/02/5/endnote
   title: '2.5 Endnote'
 nextchapter:
-  url: chapters/03/1/Expressions
+  url: chapters/02/5/endnote
   title: '3.1 Expressions'
 ---
 Programming in Python

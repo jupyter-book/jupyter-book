@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/01/3/1/Literary_Characters.ipynb
 title: '1.3.1 Literary Characters'
+permalink: 'chapters/01/3/1/literary-characters'
 previouschapter:
-  url: chapters/01/3/Plotting_the_Classics
+  url: chapters/01/3/plotting-the-classics
   title: '1.3 Plotting the Classics'
 nextchapter:
-  url: chapters/01/3/2/Another_Kind_Of_Character
+  url: chapters/01/3/plotting-the-classics
   title: '1.3.2 Another Kind of Character'
 ---
 
