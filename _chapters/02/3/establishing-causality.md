@@ -5,7 +5,7 @@ previouschapter:
   url: chapters/02/2/snow-s-grand-experiment
   title: '2.2 Snow’s “Grand Experiment”'
 nextchapter:
-  url: chapters/02/2/snow-s-grand-experiment
+  url: chapters/02/4/randomization
   title: '2.4 Randomization'
 ---
 Establishing Causality

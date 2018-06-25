@@ -5,7 +5,7 @@ previouschapter:
   url: chapters/02/1/observation-and-visualization-john-snow-and-the-broad-street-pump
   title: '2.1 John Snow and the Broad Street Pump'
 nextchapter:
-  url: chapters/02/1/observation-and-visualization-john-snow-and-the-broad-street-pump
+  url: chapters/02/3/establishing-causality
   title: '2.3 Establishing Causality'
 ---
 Snow’s “Grand Experiment”

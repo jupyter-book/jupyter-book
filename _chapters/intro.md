@@ -5,7 +5,7 @@ previouschapter:
   url: 
   title: ''
 nextchapter:
-  url: 
+  url: chapters/01/what-is-data-science
   title: '1. Data Science'
 ---
 Computational and Inferential Thinking

@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/03/programming-in-python
   title: '3. Programming in Python'
 nextchapter:
-  url: chapters/03/programming-in-python
+  url: chapters/03/2/names
   title: '3.2 Names'
 ---
 

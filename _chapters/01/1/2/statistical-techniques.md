@@ -5,7 +5,7 @@ previouschapter:
   url: chapters/01/1/1/computational-tools
   title: '1.1.1 Computational Tools'
 nextchapter:
-  url: chapters/01/1/1/computational-tools
+  url: chapters/01/2/why-data-science
   title: '1.2 Why Data Science?'
 ---
 Statistical Techniques

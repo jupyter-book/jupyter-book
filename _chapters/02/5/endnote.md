@@ -5,7 +5,7 @@ previouschapter:
   url: chapters/02/4/randomization
   title: '2.4 Randomization'
 nextchapter:
-  url: chapters/02/4/randomization
+  url: chapters/03/programming-in-python
   title: '3. Programming in Python'
 ---
 Endnote

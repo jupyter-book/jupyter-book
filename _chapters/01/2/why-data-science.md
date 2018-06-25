@@ -5,7 +5,7 @@ previouschapter:
   url: chapters/01/1/2/statistical-techniques
   title: '1.1.2 Statistical Techniques'
 nextchapter:
-  url: chapters/01/1/2/statistical-techniques
+  url: chapters/01/3/plotting-the-classics
   title: '1.3 Plotting the Classics'
 ---
 Why Data Science?

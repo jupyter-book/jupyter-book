@@ -6,7 +6,7 @@ previouschapter:
   url: chapters/03/1/expressions
   title: '3.1 Expressions'
 nextchapter:
-  url: chapters/03/1/expressions
+  url: chapters/03/2/1/growth
   title: '3.2.1 Example: Growth Rates'
 ---
 

@@ -5,7 +5,7 @@ previouschapter:
   url: chapters/02/causality-and-experiments
   title: '2. Causality and Experiments'
 nextchapter:
-  url: chapters/02/causality-and-experiments
+  url: chapters/02/2/snow-s-grand-experiment
   title: '2.2 Snow’s “Grand Experiment”'
 ---
 Observation and Visualization: John Snow and the Broad Street Pump
