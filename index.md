@@ -15,9 +15,10 @@ content with your own, and have a Jupyter-based textbook ready to go shortly!
 
 Here are a few links of interest:
 
-* **[A demo of the hosted textbook](http://predictablynoisy.com/textbook-jekyll-template/ )**
 * **[A short guide to deploying your own textbook](https://predictablynoisy.com/textbook-jekyll-template/guide/01_overview/)**
 * **[The github repository for the guide and demo](https://github.com/choldgraf/textbook-jekyll-template)**
+
+**To see a demo of the textbook, click the "textbook" link above**.
 
 ## To get started
 
