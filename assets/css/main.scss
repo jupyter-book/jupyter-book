@@ -28,10 +28,25 @@ div.sidebar {
   }
 }
 
+section.textbook article {
+  @media (min-width: 64em) {
+    height: calc( 100vh - 2em ) !important;
+    overflow-y: auto;
+  }
+}
+
 div#main {
   padding-bottom: 2%;
 }
 
 div.MathJax_Display {
   font-size: .7em;
+}
+
+.sidebar a:hover {
+  text-decoration: underline;
+}
+
+.sidebar a.current {
+  color: #008cff;
 }

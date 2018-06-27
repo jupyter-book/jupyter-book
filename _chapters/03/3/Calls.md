@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/03/3/Calls.ipynb
 title: '3.3 Call Expressions'
+permalink: 'chapters/03/3/calls'
 previouschapter:
-  url: chapters/03/2/1/Growth
+  url: chapters/03/2/1/growth
   title: '3.2.1 Example: Growth Rates'
 nextchapter:
-  url: chapters/03/4/Introduction_to_Tables
+  url: chapters/03/4/introduction-to-tables
   title: '3.4 Introduction to Tables'
 ---
 

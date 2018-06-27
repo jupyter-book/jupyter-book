@@ -1,5 +1,6 @@
 ---
 title: '2.2 Snow’s “Grand Experiment”'
+permalink: 'chapters/02/2/snow-s-grand-experiment'
 previouschapter:
   url: chapters/02/1/observation-and-visualization-john-snow-and-the-broad-street-pump
   title: '2.1 John Snow and the Broad Street Pump'

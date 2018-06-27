@@ -1,0 +1,28 @@
+<!-- Custom scripts to load after site JS is loaded -->
+
+<script type="text/javascript">
+console.log('Starting...')
+// Add a class to the current page in the sidebar
+function highlightSidebarCurrentPage()
+{
+  var currentpage = location.href;
+  console.log(currentpage)
+  var links = $('.sidebar .nav__items a');
+  var ii = 0;
+  for(ii; ii < links.length; ii++) {
+    var link = links[ii];
+    console.log(link.href == currentpage)
+    if(replaceSlash(link.href) == replaceSlash(currentpage)) {
+      // Add CSS for styling
+      link.classList.add("current");
+      // Scroll to this element
+      $('div.sidebar').scrollTop(link.offsetTop - 80);
+    }
+  }
+}
+
+$(document).ready(function () {
+  // Highlight current page in sidebar
+  highlightSidebarCurrentPage();
+});
+</script>

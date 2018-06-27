@@ -1,8 +1,9 @@
 ---
 interact_link: notebooks/01/3/2/Another_Kind_Of_Character.ipynb
 title: '1.3.2 Another Kind of Character'
+permalink: 'chapters/01/3/2/another-kind-of-character'
 previouschapter:
-  url: chapters/01/3/1/Literary_Characters
+  url: chapters/01/3/1/literary-characters
   title: '1.3.1 Literary Characters'
 nextchapter:
   url: chapters/02/causality-and-experiments

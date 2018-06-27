@@ -1,5 +1,6 @@
 ---
 title: '2.1 John Snow and the Broad Street Pump'
+permalink: 'chapters/02/1/observation-and-visualization-john-snow-and-the-broad-street-pump'
 previouschapter:
   url: chapters/02/causality-and-experiments
   title: '2. Causality and Experiments'

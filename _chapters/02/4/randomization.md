@@ -1,5 +1,6 @@
 ---
 title: '2.4 Randomization'
+permalink: 'chapters/02/4/randomization'
 previouschapter:
   url: chapters/02/3/establishing-causality
   title: '2.3 Establishing Causality'

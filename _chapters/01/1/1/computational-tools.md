@@ -1,5 +1,6 @@
 ---
 title: '1.1.1 Computational Tools'
+permalink: 'chapters/01/1/1/computational-tools'
 previouschapter:
   url: chapters/01/1/intro
   title: '1.1 Introduction'

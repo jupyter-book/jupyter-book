@@ -1,5 +1,6 @@
 ---
 title: '0. Introduction'
+permalink: 'chapters/intro'
 previouschapter:
   url: 
   title: ''

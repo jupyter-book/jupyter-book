@@ -1,11 +1,12 @@
 ---
 interact_link: notebooks/03/4/Introduction_to_Tables.ipynb
 title: '3.4 Introduction to Tables'
+permalink: 'chapters/03/4/introduction-to-tables'
 previouschapter:
-  url: chapters/03/3/Calls
+  url: chapters/03/3/calls
   title: '3.3 Call Expressions'
 nextchapter:
-  url: chapters/04/Types
+  url: chapters/04/types
   title: '4. Data Types'
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: '1. Data Science'
+permalink: 'chapters/01/what-is-data-science'
 previouschapter:
   url: chapters/intro
   title: '0. Introduction'

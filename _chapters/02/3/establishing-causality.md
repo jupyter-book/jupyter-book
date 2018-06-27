@@ -1,5 +1,6 @@
 ---
 title: '2.3 Establishing Causality'
+permalink: 'chapters/02/3/establishing-causality'
 previouschapter:
   url: chapters/02/2/snow-s-grand-experiment
   title: '2.2 Snow’s “Grand Experiment”'
