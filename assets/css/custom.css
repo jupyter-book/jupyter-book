@@ -8,6 +8,10 @@ div.sidebar {
   width: 25%;
 }
 
-section.page__content p, section.page__content pre {
+section.textbook {
   font-size: .8em;
+  @media (min-width: 80em) {
+    max-width: 740px;
+    margin-left: 5%;
+  }
 }
