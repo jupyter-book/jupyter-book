@@ -5,6 +5,26 @@ title: Frequently Asked Questions (FAQ)
 The following are some common issues and questions that have arisen when
 building your textbook with Jekyll.
 
+## How can I update my fork of the repository?
+
+Sometimes this repository will get updates that you want to incorporate into
+a pre-existing course. If you want to pull in new changes, take the following
+steps:
+
+1. Add this repository as a "remote" on your local git repo:
+
+       git remote add upstream https://github.com/choldgraf/textbook-jekyll-template
+
+2. Pull in the latest changes from the remote repository into your local `gh-pages` branch:
+
+       git pull upstream master
+
+3. Resolve any merge conflicts that may arise. Make sure that you don't over-write
+   any important files (e.g. anything in your `notebooks/` directory or in `_config.yml`)
+4. Push changes to your github repository:
+
+       git push
+
 ## Why isn't my math showing up properly?
 
 This site uses MathJax to render all math, with `$` denoting inline math,
@@ -29,5 +49,3 @@ If you *only* want an online build of the textbook, and no course site around
 it (e.g. a navbar), then in your `_config.yml` file, set `textbook_only` to
 "`true`". This will redirect your home page (`/`) to the first page of the
 textbook.
-
- 
