@@ -22,7 +22,15 @@ function getQueryVariable(variable)
        }
        return(false);
 }
+
+// helper to replace trailing slash
+function replaceSlash(string)
+{
+    return string.replace(/\/$/, "");
+}
+
 window.onload = function() {
+    // Update interact links
     window.hubUrl = getQueryVariable("hubUrl");
     if (window.hubUrl !== false) {
         if (window.hubUrl.indexOf('http') < 0) {
@@ -36,6 +44,7 @@ window.onload = function() {
         }
     }
 }
+
 </script>
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
 

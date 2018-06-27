@@ -8,6 +8,6 @@ div.sidebar {
   width: 25%;
 }
 
-section.page__content p {
-    font-size: .9em;
+section.page__content p, section.page__content pre {
+  font-size: .8em;
 }
