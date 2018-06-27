@@ -21,7 +21,22 @@ steps:
 
 3. Resolve any merge conflicts that may arise. Make sure that you don't over-write
    any important files (e.g. anything in your `notebooks/` directory or in `_config.yml`)
-4. Push changes to your github repository:
+4. **If there are lots of merge conflicts** you can try to "cherry pick" only the commit
+   that you want to deploy to your textbook. `git` has a special command for this.
+   First, go to the base repository for the textbook template and look up the "commits"
+   page at the following URL:
+
+   https://github.com/choldgraf/textbook-jekyll-template/commits/master
+
+   Find the commit that you want to implement on *your* copy of the repository. Click the button with
+   its hash (there's one on the right of each row). Finally, copy the long commit hash that's listed
+   on the resulting page. This is a unique hash for this commit.
+
+   Now, use `git cherry-pick` to make these changes to your repo:
+
+       git cherry-pick <COMMIT-HASH>
+
+5. Push changes to your github repository once you're happy with the content:
 
        git push
 
