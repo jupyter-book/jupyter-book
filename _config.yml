@@ -22,7 +22,7 @@ textbook_repo_org        : "choldgraf"  # The username or organization that owns
 textbook_repo_name       : "textbook-jekyll-template"  # The name of the repository on the web
 textbook_repo_branch     : "master"  # The branch on which your textbook is hosted.
 number_chapters          : false  # Whether to number the chapers in the sidebar for the textbook
-chapter_titles           : false  # Whether to include the title of the chapter at the top of each chapter
+chapter_titles           : true  # Whether to include the title of the chapter at the top of each chapter
 textbook_only            : false  # If 'true', the home page will be the first chapter of the textbook, and *only* the sidebar is shown
 use_jupyterlab           : false  # If 'true', interact links will use JupyterLab as the interface
 
@@ -220,6 +220,11 @@ whitelist:
   - jemoji
   - jekyll-redirect-from
 
+# Infer titles from the section headings
+titles_from_headings:
+  enabled:     true
+  strip_title: true
+  collections: true
 
 # Archives
 #  Type
@@ -296,6 +301,10 @@ defaults:
     values:
       layout: textbook
       masthead: false
+      toc: true
+      toc_label: "  On this page"
+      toc_icon: "list-ul"
+
 
   # _guide
   - scope:
