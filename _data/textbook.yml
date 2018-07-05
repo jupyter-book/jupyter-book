@@ -3,9 +3,16 @@ chapters:
 - class: level_0
   title: Home
   url: /
-- class: level_0
-  title: 0. Introduction
-  url: chapters/intro
+- children:
+  - class: level_1
+    title: Adding markdown files
+    url: chapters/introduction/markdown
+  - class: level_1
+    title: Adding notebooks
+    url: chapters/introduction/chapters
+  class: level_0
+  title: Quickstart
+  url: chapters/introduction/intro
 - children:
   - class: level_1
     title: 1.1 Introduction
@@ -85,4 +92,4 @@ chapters:
   class: level_0
   title: 4. Data Types
   url: chapters/04/types
-first_chapter_url: chapters/intro
+first_chapter_url: chapters/introduction/intro

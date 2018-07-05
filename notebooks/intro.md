@@ -1,22 +1,10 @@
-Computational and Inferential Thinking
-======================================
+# The Textbooks with Jupyter and Jekyll demo
 
-The Foundations of Data Science
--------------------------------
+This is a short demonstration textbook to show the general layout / style of textbooks built
+with Jupyter and Jekyll. Remember that the content itself lives in Jupyter Notebooks (in the `notebooks/` folder
+of the repository). The markdown files for *this* page (and others in the textbook) is generated from the notebooks
+with the `scripts/generate_textbook.py` script.
 
-**By [Ani Adhikari](http://statistics.berkeley.edu/people/ani-adhikari) and [John DeNero](http://denero.org)**
-
-Contributions by [David Wagner](https://www.cs.berkeley.edu/~daw/) and Henry Milner
-
-This is the textbook for the [Foundations of Data Science class at UC Berkeley][data8].
-
-[View this textbook online on Gitbooks.][gitbook]
-
-Old versions of this textbook:
-	[Fall 2017](http://inferentialthinking.com/v/fa17)
-
-[data8]: http://data8.org/
-[gitbook]: https://ds8.gitbooks.io/textbook/content/
-
-The contents of this book are licensed for free consumption under the following license:  
-[Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+To begin, click on one of the chapter sections in the sidebar to the left. The first section demonstrates some
+simple functionality of this repository, while the following chapters contain a subset of content from the
+[Data 8 textbook](https://inferentialthinking.com).
