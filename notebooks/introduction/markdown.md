@@ -33,7 +33,7 @@ so long as they point to a file that's inside of the repository.
 
 Here's an image relative to the site root
 
-<img src="../../images/logo.svg" width=200 />
+![](../../images/C-3PO_droid.png)
 
 ### Adding movies
 
