@@ -7,6 +7,16 @@
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
 
+
+// General
+div#main {
+  padding-bottom: 2%;
+}
+
+div.MathJax_Display {
+  font-size: .7em;
+}
+
 .page {
     @media (min-width: 80em) {
         padding-right: 100px;
@@ -21,26 +31,14 @@
     padding-left: 1em;
 }
 
+
+// Sidebar
 div.sidebar {
+  width: 25%;
   @media (min-width: 64em) {
     overflow-y: auto;
     height: calc( 100vh - 2em ) !important;
   }
-}
-
-section.textbook article {
-  @media (min-width: 64em) {
-    height: calc( 100vh - 2em ) !important;
-    overflow-y: auto;
-  }
-}
-
-div#main {
-  padding-bottom: 2%;
-}
-
-div.MathJax_Display {
-  font-size: .7em;
 }
 
 .sidebar a:hover {
@@ -49,4 +47,25 @@ div.MathJax_Display {
 
 .sidebar a.current {
   color: #008cff;
+}
+
+li a.level_2 {
+  padding-left: 1em;
+}
+
+
+// Textbook
+section.textbook article {
+  @media (min-width: 64em) {
+    height: calc( 100vh - 2em ) !important;
+    overflow-y: auto;
+  }
+}
+
+section.textbook {
+  font-size: .8em;
+  @media (min-width: 80em) {
+    max-width: 700px;
+    margin-left: 5%;
+  }
 }

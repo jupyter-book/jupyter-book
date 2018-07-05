@@ -72,4 +72,15 @@
         {% capture my_toc %}{: #{{ include.id }}}
 {{ my_toc | lstrip }}{% endcapture %}
     {% endif %}
-{% endcapture %}{% assign tocWorkspace = '' %}{{ my_toc | markdownify | strip }}
+{% endcapture %}{% assign tocWorkspace = '' %}
+
+<!-- TOC will only show up if it has at least one item -->
+{% assign toc_items = my_toc | split: '#' %}
+{% if toc_items.size > 1 %}
+  <aside class="sidebar__right">
+    <nav class="toc">
+      <header><h4 class="nav__title"><i class="fas fa-{{ page.toc_icon | default: 'file-alt' }}"></i> {{ page.toc_label | default: site.data.ui-text[site.locale].toc_label }}</h4></header>
+      {{ my_toc | markdownify | strip }}
+    </nav>
+  </aside>
+{% endif %}
