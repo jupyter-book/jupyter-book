@@ -1,6 +1,8 @@
 # Summary
 
-* [0. Introduction](notebooks/intro.md)
+* [Quickstart](notebooks/introduction/intro.md)
+  * [Adding markdown files](notebooks/introduction/markdown.md)
+  * [Adding notebooks](notebooks/introduction/notebooks.ipynb)
 * [1. Data Science](notebooks/01/what-is-data-science.md)
   * [1.1 Introduction](notebooks/01/1/intro.md)
     * [1.1.1 Computational Tools](notebooks/01/1/1/computational-tools.md)
