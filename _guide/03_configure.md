@@ -38,3 +38,10 @@ is a short list of the most relevant fields
 * `use_jupyterlab`: If 'true', interact links will initialize with the Jupyter Lab interface
 
 Once you've got your site configured how you'd like, it's to build your textbook!
+
+## Site CSS and Javascript
+
+You can change the site's CSS rules to get the look and feel you desire, as well as add
+any javascript that you wish. To do so, find the relevant folders in the `assets/` folder.
+If you add a *new* CSS/JS file, make sure that you link it properly by modifying the header
+template in `_includes/head/custom.html`.
