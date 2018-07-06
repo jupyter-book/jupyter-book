@@ -2,7 +2,7 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Textbooks with Jupyter Notebooks"
+title                    : "Textbooks with Jupyter"
 title_separator          : "-"
 name                     : "Chris Holdgraf"
 description              : ""
