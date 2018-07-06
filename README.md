@@ -3,6 +3,8 @@
 This repository / website is a template for hosting your own textbook using
 Jupyter Notebooks and Jekyll.
 
+<img src="images/logo/logo.png" width=200 />
+
 Here are some highlights:
 
 * All course content is written in markdown and Jupyter Notebooks, stored in `notebooks/`
