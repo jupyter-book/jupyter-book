@@ -23,12 +23,12 @@ content with your own, and have a Jupyter-based textbook ready to go shortly!
 
 Here are a few links of interest:
 
-* **[A short guide to deploying your own textbook](https://predictablynoisy.com/textbook-jekyll-template/guide/01_overview/)**
-* **[The github repository for the guide and demo](https://github.com/choldgraf/textbook-jekyll-template)**
+* **[A short guide to deploying your own textbook](https://predictablynoisy.com/textbooks-with-jupyter/guide/01_overview/)**
+* **[The github repository for the guide and demo](https://github.com/choldgraf/textbooks-with-jupyter)**
 
 
 ## To get started
 
 * **To see a demo of the textbook, click the "textbook" link above**.
-* **To start building your own Jupyter textbook**, click **[guide](https://predictablynoisy.com/textbook-jekyll-template/guide/01_overview)**
+* **To start building your own Jupyter textbook**, click **[guide](https://predictablynoisy.com/textbooks-with-jupyter/guide/01_overview)**
   in the navbar above.

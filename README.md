@@ -18,6 +18,6 @@ content with your own, and have a Jupyter-based textbook ready to go shortly!
 
 Here are a few links of interest:
 
-* **[A demo of the hosted textbook](http://predictablynoisy.com/textbook-jekyll-template/ )**
-* **[A short guide to deploying your own textbook](https://predictablynoisy.com/textbook-jekyll-template/guide/01_overview/)**
+* **[A demo of the hosted textbook](http://predictablynoisy.com/textbooks-with-jupyter/ )**
+* **[A short guide to deploying your own textbook](https://predictablynoisy.com/textbooks-with-jupyter/guide/01_overview/)**
 * **[The markdown version of the guide in this repo](_guide/)**
