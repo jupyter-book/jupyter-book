@@ -69,3 +69,23 @@ section.textbook {
     margin-left: 5%;
   }
 }
+
+// Copy buttons
+button.copybtn {
+  webkit-transition: opacity .3s ease-in-out;
+  -o-transition: opacity .3s ease-in-out;
+  transition: opacity .3s ease-in-out;
+  opacity: 0;
+  padding: 2px 6px;
+  position: absolute;
+  right: 4px;
+  top: 4px;
+}
+
+div.input_area:hover .copybtn, div.highlighter-rouge:hover .copybtn {
+    opacity: .3;
+}
+
+div.input_area .copybtn:hover, div.highlighter-rouge .copybtn:hover {
+    opacity: 1;
+}
