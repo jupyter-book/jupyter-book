@@ -2,7 +2,7 @@
 title: Setup dependencies
 ---
 
-# Set up your repository and dependencies
+## Set up your repository and dependencies
 
 The textbooks for Jekyll repository primarily depends on three sets of tools:
 
@@ -30,3 +30,17 @@ This page helps you set each of these up
    [See the Jekyll docs](https://jekyllrb.com/docs/installation/) for information on this.
    As well as the [GitHub gh-pages documentation](https://help.github.com/articles/using-jekyll-as-a-static-site-generator-with-github-pages/)
    for more information on how Jekyll and GitHub interact.
+
+## Deploying a JupyterHub
+
+If you wish, you may deploy a JupyterHub alongside your textbook. This way, students can
+access the Jekyll markdown version of your course material, but can click the "interact" links
+at the top of each page and be taken to a live Jupyter Notebook running on a JupyterHub.
+
+The easiest way to set up a JupyterHub is to follow [The Littlest JupyterHub guide](https://the-littlest-jupyterhub.readthedocs.io/en/latest/index.html).
+This is a straightforward deployment of JupyterHub on a single VM, and is suitable for
+courses / workshops of less than 50-60 students.
+
+Once you have your JupyterHub set up, you can use the [nbgitpuller](https://github.com/data-8/nbgitpuller)
+package to send links to course material to your students, or use the interact links that Textbooks for Jupyter
+automatically inserts into your course material. 
