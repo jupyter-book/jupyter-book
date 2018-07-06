@@ -2,7 +2,7 @@
   <div class="sidebar sticky">
   {% if page.author_profile or layout.author_profile %}{% include author-profile.html %}{% endif %}
   {% if page.sidebar or page.layout=='textbook' %}
-
+    {% if page.layout=='textbook' and site.textbook_logo %}<img src="{{ site.baseurl }}/{{ site.textbook_logo }}" class="textbook_logo" />{% endif %}
     {% for s in page.sidebar %}
       {% if s.image %}
         <img src=

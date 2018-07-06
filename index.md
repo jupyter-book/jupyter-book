@@ -4,9 +4,6 @@ permalink: /
 
 # Textbooks with Jupyter and Jekyll
 
-![](images/logo/logo.png)
-{:.logo}
-
 This repository / website is a template for hosting your own textbook using
 Jupyter Notebooks and Jekyll.
 

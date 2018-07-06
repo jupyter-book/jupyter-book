@@ -12,7 +12,7 @@ repository               : # GitHub username/repo-name for this site
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 footer                   : false # Whether to include a footer with the built site
 masthead                 : true  # Whether to include a masthead (header/navbar) with the site.
-
+masthead_logo            : images/logo/logo.png
 # Textbook settings
 hub_url                  : "https://mybinder.org"  # The URL for your JupyterHub/BinderHub.
 hub_name                 : "JupyterHub"  # The name of your JupyterHub (used for the button in the NavBar. If an empty string, no button is shown)
@@ -25,6 +25,7 @@ number_chapters          : false  # Whether to number the chapers in the sidebar
 chapter_titles           : true  # Whether to include the title of the chapter at the top of each chapter
 textbook_only            : false  # If 'true', the home page will be the first chapter of the textbook, and *only* the sidebar is shown
 use_jupyterlab           : false  # If 'true', interact links will use JupyterLab as the interface
+textbook_logo            : images/logo/logo.png  # A logo to be displayed at the top of your textbook sidebar
 
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
