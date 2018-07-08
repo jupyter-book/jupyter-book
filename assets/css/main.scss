@@ -62,7 +62,7 @@ section.textbook article {
   }
 }
 
-section.textbook {
+article.textbook section {
   font-size: .8em;
   @media (min-width: 64em) {
     max-width: 650px;
