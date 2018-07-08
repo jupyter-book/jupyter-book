@@ -20,9 +20,9 @@ To build your site, take the following steps:
    >
    >    python scripts/generate_summary_from_folders.py
 
-2. Build the textbook with the following command:
+2. Build the textbook by navigating to the site root, and running the following command:
 
-       python scripts/generate_textbook.py
+       make textbook
 
 This will:
 

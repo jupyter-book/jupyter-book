@@ -49,7 +49,7 @@ is wrapped in these characters.
 Another tip is to make sure that your math isn't being escaped improperly.
 Jekyll strips escape characters, so you should make sure to add **two**
 escape characters when needed. This is done automatically for many escape
-characters in `generate_textbook.py`, and if you notice something that should
+characters in `generate_textbook.py` (called by `make textbook`), and if you notice something that should
 be included in this script, please open an issue
 [at the textbook template issues page](https://github.com/choldgraf/textbook-jekyll-template/issues)
 

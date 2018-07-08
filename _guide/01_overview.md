@@ -18,7 +18,7 @@ The build process in general goes something like this:
 * Put your Jupyter Notebooks in `notebooks/` (they can be in sub-folders)
 * Create a `SUMMARY.md` file in the root of the repository. This defines the structure
   of your textbook.
-* Use `generate_textbook.py` to convert your Jupyter Notebooks into jekyll-ready markdown.
+* Navigate to the repo root, then run `make textbook` to convert your Jupyter Notebooks into Jekyll-ready markdown.
 * Push these changes to GitHub.
 * Tell GitHub you want to build a website from your fork of the repository.
 * That's it!
@@ -66,12 +66,13 @@ of the more important files/folders worth knowing about.
 * `_data/navigation.yml` contains site navigation as well as auto-generated sidebar yaml
 * `assets/css` contains CSS for the textbook and website
 * `environment.yml` contains the environment needed to build the textbook
+* `_includes/textbook.html` contains Javascript and HTML needed to set up the textbook
 
 ### Helper scripts
 
 * `scripts/` contains scripts to generate the textbook from the Jupyter notebooks
     * `scripts/generate_textbook.py` will generate the markdown and sidebar for your textbook. After you make any changes
-      in `notebook/`, you should run this script so your site stays up-to-date.
+      in `notebook/`, you should run this script via `make textbook` so your site stays up-to-date.
     * `scripts/clean.py` is used to clean out any auto-generated files
     * `scripts/execute_all_notebooks.py` will use nbconvert to execute all notebooks in `notebooks/` in-place.
     * `scripts/generate_summary_from_folders.py` is a helper script to automatically gneerate a `SUMMARY.md` file from

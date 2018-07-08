@@ -22,10 +22,6 @@ that Jekyll can parse it
 
 ## Sidebars with Jekyll
 
-```python
-test = wow
-```
-
 You may notice that there's a sidebar to the right (if your screen is wide enough).
 These are automatically generated from the headers that are present in your page.
 The sidebar will automatically capture all 2nd and 3rd level section headers.

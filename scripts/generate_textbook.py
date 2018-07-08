@@ -79,7 +79,7 @@ def _generate_sidebar(files):
     sidebar_text = []
     sidebar_text.append({'title': 'Home', 'class': 'level_0', 'url': '/'})
     chapter_ix = 1
-    for ix_file, (title, link, level) in tqdm(list(enumerate(files))):
+    for ix_file, (title, link, level) in list(enumerate(files)):
         if level > 0 and len(link) == 0:
             continue
         if level == 0:
@@ -243,10 +243,10 @@ if __name__ == '__main__':
             ff.writelines(lines)
         n_built_files += 1
 
-    print("Done generating {} files, skipped {} files".format(n_built_files, n_skipped_files))
+    print("\n***\nGenerated {} new files\nSkipped {} already-built files".format(n_built_files, n_skipped_files))
     if n_built_files == 0:
-        print("---\nDelete the markdown files in '{}' for any pages that you wish to re-build.\n---\n".format(TEXTBOOK_FOLDER_NAME))
-
+        print("\nDelete the markdown files in '{}' for any pages that you wish to re-build.".format(TEXTBOOK_FOLDER_NAME))
+    print('***\n')
     # Generate sidebar, replacing the old one if it exists
     _generate_sidebar(files)
 

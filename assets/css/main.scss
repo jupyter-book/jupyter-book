@@ -68,6 +68,11 @@ section.textbook {
     max-width: 650px;
     margin-left: 5%;
   }
+
+  @media (min-width: 80em) {
+    max-width: 700px;
+    margin-left: 5%;
+  }
 }
 
 // Copy buttons
