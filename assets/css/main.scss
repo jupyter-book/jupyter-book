@@ -64,8 +64,8 @@ section.textbook article {
 
 section.textbook {
   font-size: .8em;
-  @media (min-width: 80em) {
-    max-width: 700px;
+  @media (min-width: 64em) {
+    max-width: 650px;
     margin-left: 5%;
   }
 }
