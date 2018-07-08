@@ -19,10 +19,14 @@ div.MathJax_Display {
 
 // Sidebar
 div.sidebar {
-  width: 25%;
   @media (min-width: 64em) {
+    width: 25%;
     overflow-y: auto;
     height: calc( 100vh - 2em ) !important;
+  }
+
+  @media (max-width: 64em) {
+    width: 95%;
   }
 }
 
@@ -41,34 +45,71 @@ li a.level_2 {
 
 // Textbook
 
-div#main {
-  padding-right: 0em;
+div#main.textbook {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  max-width: none;
 }
 
-article.page {
-    @media (min-width: 64em) {
-        width: 75%;
-        float: left;
+.page {
+  @media (min-width: 80em) {
+    width: calc(100% - 200px);
+    padding-right: 200px;
+  }
+}
+
+.sidebar + .page {
+  @media (min-width: 64em) {
+    width: 75%;
+  }
+}
+
+div#textbook_wrapper {
+
+  @media (max-width: 64em) {
+    margin-left: 2%;
+    margin-right: 2%;
+    width: auto;
+    padding-top: 10px;
     }
-    padding-left: 2em;
+
+  @media (min-width: 64em) {
+    margin-left: 5%;
+    margin-right: 0;
+    width: 95%;
+  }
+}
+
+article {
+  padding-left: 2em;
+}
+
+div.sidebar.textbook, article.textbook {
+  @media (min-width: 64em) {
+    padding-top: 50px;
+  }
+}
+
+article.textbook div.page__inner-wrap {
+  @media (max-width: 64em) {
+    padding-bottom: 20px;
+  }
 }
 
 article.textbook {
   font-size: .8em;
-
   @media (min-width: 64em) {
-    height: calc( 100vh - 2em ) !important;
+    padding-right: 15%;
+    width: 75%;
+    float: left;
     overflow-y: auto;
-  }
-}
-
-article.textbook section {
-  @media (min-width: 64em) {
-    max-width:650px;
+    height: calc( 100vh - 2em ) !important;
+    max-width:900px;
   }
 
   @media (min-width: 80em) {
-    max-width: 700px;
+    max-width: 1100px;
   }
 }
 
