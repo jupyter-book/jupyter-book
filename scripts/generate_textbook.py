@@ -62,7 +62,7 @@ def _clean_notebook_cells(path_ntbk):
             cell_lines = cell.source.split('\n')
             for ii, line in enumerate(cell_lines):
                 if line.startswith('#'):
-                    cell_lines[ii] = line.rstrip('#')
+                    cell_lines[ii] = line.rstrip('#').rstrip()
             cell.source = '\n'.join(cell_lines)
     nbf.write(ntbk, path_ntbk)
 
