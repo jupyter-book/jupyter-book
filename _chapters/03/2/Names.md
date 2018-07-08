@@ -10,6 +10,7 @@ nextchapter:
   title: '3.2.1 Example: Growth Rates'
 ---
 
+## 3.2 Names 
 Names are given to values in Python using an *assignment* statement. In an assignment, a name is followed by `=`, which is followed by any expression. The value of the expression to the right of `=` is *assigned* to the name. Once a name has a value assigned to it, the value will be substituted for that name in future expressions.
 
 

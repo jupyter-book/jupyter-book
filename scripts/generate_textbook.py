@@ -4,6 +4,7 @@ import os.path as op
 import shutil as sh
 import yaml
 from nbclean import NotebookCleaner
+import nbformat as nbf
 from tqdm import tqdm
 import numpy as np
 import argparse
@@ -50,6 +51,20 @@ def _strip_suffixes(string, suffixes=None):
     for suff in suffixes:
         string = string.replace(suff, '')
     return string
+
+
+def _clean_notebook_cells(path_ntbk):
+    """Clean up cell text of an nbformat NotebookNode."""
+    ntbk = nbf.read(path_ntbk, nbf.NO_CONVERT)
+    # Remove '#' from the end of markdown headers
+    for cell in ntbk.cells:
+        if cell.cell_type == "markdown":
+            cell_lines = cell.source.split('\n')
+            for ii, line in enumerate(cell_lines):
+                if line.startswith('#'):
+                    cell_lines[ii] = line.rstrip('#')
+            cell.source = '\n'.join(cell_lines)
+    nbf.write(ntbk, path_ntbk)
 
 
 def _clean_lines(lines):
@@ -193,6 +208,7 @@ if __name__ == '__main__':
             cleaner.remove_cells(search_text="# HIDDEN")
             cleaner.clear('stderr')
             cleaner.save(tmp_notebook)
+            _clean_notebook_cells(tmp_notebook)
 
             # Run nbconvert moving it to the output folder
             # This is the output directory for `.md` files
