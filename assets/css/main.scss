@@ -70,6 +70,12 @@ article.textbook section {
   }
 }
 
+article.textbook nav.pagination {
+  @media (min-width: 64em) {
+    max-width: 650px;
+  }
+}
+
 // Copy buttons
 button.copybtn {
   webkit-transition: opacity .3s ease-in-out;
