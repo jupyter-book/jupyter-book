@@ -7,6 +7,8 @@ previouschapter:
 nextchapter:
   url: chapters/02/5/endnote
   title: '2.5 Endnote'
+redirect_from:
+  - 'chapters/02/4/randomization'
 ---
 Randomization
 --------------

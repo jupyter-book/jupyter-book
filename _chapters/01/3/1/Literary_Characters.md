@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/01/3/1/Literary_Characters.ipynb
 title: '1.3.1 Literary Characters'
-permalink: 'chapters/01/3/1/literary-characters'
+permalink: 'chapters/01/3/1/Literary_Characters'
 previouschapter:
-  url: chapters/01/3/plotting-the-classics
+  url: chapters/01/3/Plotting_the_Classics
   title: '1.3 Plotting the Classics'
 nextchapter:
-  url: chapters/01/3/2/another-kind-of-character
+  url: chapters/01/3/2/Another_Kind_Of_Character
   title: '1.3.2 Another Kind of Character'
+redirect_from:
+  - 'chapters/01/3/1/literary-characters'
 ---
 
 *The Adventures of Huckleberry Finn* describes a journey that Huck and Jim take along the Mississippi River. Tom Sawyer joins them towards the end as the action heats up. Having loaded the text, we can quickly visualize how many times these characters have each been mentioned at any point in the book.

@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/03/4/Introduction_to_Tables.ipynb
 title: '3.4 Introduction to Tables'
-permalink: 'chapters/03/4/introduction-to-tables'
+permalink: 'chapters/03/4/Introduction_to_Tables'
 previouschapter:
-  url: chapters/03/3/calls
+  url: chapters/03/3/Calls
   title: '3.3 Call Expressions'
 nextchapter:
-  url: chapters/04/types
+  url: chapters/04/Types
   title: '4. Data Types'
+redirect_from:
+  - 'chapters/03/4/introduction-to-tables'
 ---
 
 We can now apply Python to analyze data. We will work with data stored in Table structures.
@@ -100,7 +102,7 @@ cones.show(2)
 
 You can replace 2 by any number of rows. If you ask for more than six, you will only get six, because `cones` only has six rows.
 
-### Choosing Sets of Columns 
+### Choosing Sets of Columns
 The method `select` creates a new table consisting of only the specified columns.
 
 
@@ -320,7 +322,7 @@ no_colors
 
 Like `select`, the `drop` method creates a smaller table and leaves the original table unchanged. In order to explore your data, you can create any number of smaller tables by using choosing or dropping columns. It will do no harm to your original data table.
 
-### Sorting Rows 
+### Sorting Rows
 
 The `sort` method creates a new table by arranging the rows of the original table in ascending order of the values in the specified column. Here the `cones` table has been sorted in ascending order of the price of the cones.
 
@@ -412,7 +414,7 @@ cones.sort('Price', descending=True)
 
 Like `select` and `drop`, the `sort` method leaves the original table unchanged.
 
-### Selecting Rows that Satisfy a Condition 
+### Selecting Rows that Satisfy a Condition
 The `where` method creates a new table consisting only of the rows that satisfy a given condition. In this section we will work with a very simple condition, which is that the value in a specified column must be equal to a value that we also specify. Thus the `where` method has two arguments.
 
 The code in the cell below creates a table consisting only of the rows corresponding to chocolate cones.
@@ -478,7 +480,7 @@ cones.where('Flavor', 'Chocolate')
 
 Like all the other table methods in this section, `where` leaves the original table unchanged.
 
-### Example: Salaries in the NBA 
+### Example: Salaries in the NBA
 
 "The NBA is the highest paying professional sports league in the world," [reported CNN](http://edition.cnn.com/2015/12/04/sport/gallery/highest-paid-nba-players/) in March 2016. The table `nba` contains the [salaries of all National Basketball Association players](https://www.statcrunch.com/app/index.php?dataid=1843341) in 2015-2016.
 

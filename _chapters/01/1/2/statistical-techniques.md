@@ -7,6 +7,8 @@ previouschapter:
 nextchapter:
   url: chapters/01/2/why-data-science
   title: '1.2 Why Data Science?'
+redirect_from:
+  - 'chapters/01/1/2/statistical-techniques'
 ---
 Statistical Techniques
 ----------------------

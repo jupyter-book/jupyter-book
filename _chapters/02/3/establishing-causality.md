@@ -7,6 +7,8 @@ previouschapter:
 nextchapter:
   url: chapters/02/4/randomization
   title: '2.4 Randomization'
+redirect_from:
+  - 'chapters/02/3/establishing-causality'
 ---
 Establishing Causality
 ----------------------

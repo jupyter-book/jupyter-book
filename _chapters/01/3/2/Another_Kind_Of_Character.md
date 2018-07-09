@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/01/3/2/Another_Kind_Of_Character.ipynb
 title: '1.3.2 Another Kind of Character'
-permalink: 'chapters/01/3/2/another-kind-of-character'
+permalink: 'chapters/01/3/2/Another_Kind_Of_Character'
 previouschapter:
-  url: chapters/01/3/1/literary-characters
+  url: chapters/01/3/1/Literary_Characters
   title: '1.3.1 Literary Characters'
 nextchapter:
   url: chapters/02/causality-and-experiments
   title: '2. Causality and Experiments'
+redirect_from:
+  - 'chapters/01/3/2/another-kind-of-character'
 ---
 
 In some situations, the relationships between quantities allow us to make predictions. This text will explore how to make accurate predictions based on incomplete information and develop methods for combining multiple sources of uncertain information to make decisions.

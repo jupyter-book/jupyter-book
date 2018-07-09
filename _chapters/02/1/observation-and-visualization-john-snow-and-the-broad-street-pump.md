@@ -7,6 +7,8 @@ previouschapter:
 nextchapter:
   url: chapters/02/2/snow-s-grand-experiment
   title: '2.2 Snow’s “Grand Experiment”'
+redirect_from:
+  - 'chapters/02/1/observation-and-visualization-john-snow-and-the-broad-street-pump'
 ---
 Observation and Visualization: John Snow and the Broad Street Pump
 ------------------------------------------------------------------
@@ -47,7 +49,7 @@ map*. On a street map of the district, he recorded the location of each death.
 Here is Snow’s original map. Each black bar represents one death. The black
 discs mark the locations of water pumps. The map displays a striking
 revelation–the deaths are roughly clustered around the Broad Street pump.
-![Snow’s Cholera Map]({{ site.baseurl }}/images/snow_map.jpg)
+![Snow’s Cholera Map](../../../images/snow_map.jpg)
 
 Snow studied his map carefully and investigated the apparent anomalies. All of
 them implicated the Broad Street pump. For example:

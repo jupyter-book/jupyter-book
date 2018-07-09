@@ -7,6 +7,8 @@ previouschapter:
 nextchapter:
   url: chapters/01/1/1/computational-tools
   title: '1.1.1 Computational Tools'
+redirect_from:
+  - 'chapters/01/1/intro'
 ---
 Chapter 1: Introduction
 =======================

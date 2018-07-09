@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/04/2/1/String_Methods.ipynb
 title: '4.2.1 String Methods'
-permalink: 'chapters/04/2/1/string-methods'
+permalink: 'chapters/04/2/1/String_Methods'
 previouschapter:
-  url: chapters/04/2/strings
+  url: chapters/04/2/Strings
   title: '4.2 Strings'
 nextchapter:
-  url: chapters/04/3/comparison
+  url: chapters/04/3/Comparison
   title: '4.3 Comparisons'
+redirect_from:
+  - 'chapters/04/2/1/string-methods'
 ---
 
 From an existing string, related strings can be constructed using string methods, which are functions that operate on strings. These methods are called by placing a dot after the string, then calling the function.

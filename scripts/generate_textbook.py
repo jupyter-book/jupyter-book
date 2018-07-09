@@ -7,6 +7,7 @@ from nbclean import NotebookCleaner
 import nbformat as nbf
 from tqdm import tqdm
 import numpy as np
+from glob import glob
 import argparse
 DESCRIPTION = ("Convert a collection of Jupyter Notebooks into Jekyll "
                "markdown suitable for a course textbook.")
@@ -39,9 +40,9 @@ def _markdown_to_files(path_markdown, indent=2):
 def _prepare_link(link):
     """Prep the formatting for a link."""
     link = _strip_suffixes(link)
-    link = link.lstrip('._').lower().replace('_', '-')
-    link = link.replace(NOTEBOOKS_FOLDER_NAME,
-                        TEXTBOOK_FOLDER_NAME.lstrip('_'))
+    link = link.lstrip('._')
+    link = link.replace(NOTEBOOKS_FOLDER_NAME + os.sep,
+                        TEXTBOOK_FOLDER_NAME.lstrip('_') + os.sep)
     return link
 
 
@@ -69,14 +70,11 @@ def _clean_notebook_cells(path_ntbk):
 
 def _clean_lines(lines):
     """Replace images with jekyll image root and add escape chars as needed."""
-    IMAGES_FOLDER_NAME = IMAGES_FOLDER.split(os.sep)[-1]
-    IMG_STRINGS = [op.join(*(['..']*ii + [IMAGES_FOLDER_NAME])) for ii in np.arange(1, 5)[::-1]]  # To replace relative filepaths in markdown
-    IMG_STRINGS.append(IMAGES_FOLDER)  # This is the nbconvert-generated name
     inline_replace_chars = ['#']
     for ii, line in enumerate(lines):
-        # Images: replace relative image paths to baseurl paths
-        for IMG_STRING in IMG_STRINGS:
-            line = line.replace(IMG_STRING, '{{ site.baseurl }}/images')
+        # Images: replace absolute nbconvert image paths to baseurl paths
+        line = line.replace(IMAGES_FOLDER, '{{ site.baseurl }}/images')
+
         # Adding escape slashes since Jekyll removes them
         # Make sure we have at least two dollar signs and they
         # Aren't right next to each other
@@ -115,6 +113,25 @@ def _generate_sidebar(files):
             textbook_yaml['first_chapter_url'] = new_link
 
     textbook_yaml['chapters'] = sidebar_text
+
+
+def _copy_non_content_files():
+    """Copy non-markdown/notebook files in the notebooks/ folder into Chapters so relative links work."""
+    all_files = glob(op.join(NOTEBOOKS_FOLDER, '**', '*'), recursive=True)
+    non_content_files = [ii for ii in all_files if not any(ii.endswith(ext) for ext in ['.ipynb', '.md'])]
+    for ifile in non_content_files:
+        if op.isdir(ifile):
+            continue
+        # Convert the old link to the new path, note this may change folder name structure
+        old_link = ifile.split(NOTEBOOKS_FOLDER)[-1]
+        new_link = _prepare_link(old_link)
+
+        # The folder name may change if the permalink sanitizing changes it.
+        # this ensures that a new folder exists if needed
+        new_path = ifile.replace(NOTEBOOKS_FOLDER, TEXTBOOK_FOLDER).replace(old_link, new_link)
+        if not op.isdir(op.dirname(new_path)):
+            os.makedirs(op.dirname(new_path))
+        sh.copy2(ifile, new_path)
 
 
 def _between_symbols(string, c1, c2):
@@ -238,6 +255,7 @@ if __name__ == '__main__':
         # Front-matter YAML
         yaml_fm = []
         yaml_fm += ['---']
+
         if link.endswith('.ipynb'):
             yaml_fm += ['interact_link: {}'.format(link.lstrip('./'))]
         yaml_fm += ["title: '{}'".format(title)]
@@ -248,8 +266,10 @@ if __name__ == '__main__':
         yaml_fm += ['nextchapter:']
         yaml_fm += ['  url: {}'.format(_prepare_link(next_page_link).replace('"', "'"))]
         yaml_fm += ["  title: '{}'".format(next_file_title)]
+        yaml_fm += ["redirect_from:"]
+        yaml_fm += ["  - '{}'".format(_prepare_link(link).lower().replace('_', '-'))]  # In case pre-existing links are sanitized
         if ix_file == 0 and site_yaml.get('textbook_only') is True:
-            yaml_fm += ['redirect_from: /']
+            yaml_fm += ["  - '/'"]
         yaml_fm += ['---']
         yaml_fm = [ii + '\n' for ii in yaml_fm]
         lines = yaml_fm + lines
@@ -266,7 +286,12 @@ if __name__ == '__main__':
     # Generate sidebar, replacing the old one if it exists
     _generate_sidebar(files)
 
+    # Copy non-markdown files in notebooks/ in case they're referenced in the notebooks
+    print('Copying non-content files inside `notebooks/`...')
+    _copy_non_content_files()
+
     # Update textbook yaml
+    print('Generating sidebar data...')
     with open(SITE_TEXTBOOK, 'w') as ff:
         yaml.dump(textbook_yaml, ff, default_flow_style=False)
     with open(SITE_TEXTBOOK, 'r') as ff:
@@ -274,5 +299,4 @@ if __name__ == '__main__':
     with open(SITE_TEXTBOOK, 'w') as ff:
         ff.write(lines)
 
-    print('Done generating sidebar...')
     print('Done!')

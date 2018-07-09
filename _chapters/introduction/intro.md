@@ -7,6 +7,8 @@ previouschapter:
 nextchapter:
   url: chapters/introduction/markdown
   title: 'Adding markdown files'
+redirect_from:
+  - 'chapters/introduction/intro'
 ---
 # The Textbooks with Jupyter and Jekyll demo
 

@@ -2,11 +2,13 @@
 title: '1. Data Science'
 permalink: 'chapters/01/what-is-data-science'
 previouschapter:
-  url: chapters/intro
-  title: '0. Introduction'
+  url: chapters/introduction/notebooks
+  title: 'Adding notebooks'
 nextchapter:
   url: chapters/01/1/intro
   title: '1.1 Introduction'
+redirect_from:
+  - 'chapters/01/what-is-data-science'
 ---
 What is Data Science
 ====================

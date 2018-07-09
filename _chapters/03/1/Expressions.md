@@ -1,16 +1,18 @@
 ---
 interact_link: notebooks/03/1/Expressions.ipynb
 title: '3.1 Expressions'
-permalink: 'chapters/03/1/expressions'
+permalink: 'chapters/03/1/Expressions'
 previouschapter:
   url: chapters/03/programming-in-python
   title: '3. Programming in Python'
 nextchapter:
-  url: chapters/03/2/names
+  url: chapters/03/2/Names
   title: '3.2 Names'
+redirect_from:
+  - 'chapters/03/1/expressions'
 ---
 
-# 3.1 Expressions 
+# 3.1 Expressions
 Programming languages are much simpler than human languages. Nonetheless, there are some rules of grammar to learn in any language, and that is where we will begin. In this text, we will use the [Python](https://www.python.org/) programming language. Learning the grammar rules is essential, and the same rules used in the most basic programs are also central to more sophisticated programs.
 
 Programs are made up of *expressions*, which describe to the computer how to combine pieces of data. For example, a multiplication expression consists of a `*` symbol between two numerical expressions. Expressions, such as `3 * 4`, are *evaluated* by the computer. The value (the result of *evaluation*) of the last expression in each cell, `12` in this case, is displayed below the cell.

@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/introduction/notebooks.ipynb
 title: 'Adding notebooks'
-permalink: 'chapters/introduction/chapters'
+permalink: 'chapters/introduction/notebooks'
 previouschapter:
   url: chapters/introduction/markdown
   title: 'Adding markdown files'
 nextchapter:
   url: chapters/01/what-is-data-science
   title: '1. Data Science'
+redirect_from:
+  - 'chapters/introduction/notebooks'
 ---
 
 # Content with notebooks
@@ -15,6 +17,10 @@ nextchapter:
 You can also create content with Jupyter Notebooks. The content for the current page is contained
 in a Jupyter Notebook in the `notebooks/` folder of the repository. This means that we can include
 code blocks and their outputs, and export them to Jekyll markdown.
+
+As it is markdown, you can embed images, HTML, etc into your posts!
+
+![](cool.jpg)
 
 ## Code blocks and image outputs
 

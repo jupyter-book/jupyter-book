@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/04/1/Numbers.ipynb
 title: '4.1 Numbers'
-permalink: 'chapters/04/1/numbers'
+permalink: 'chapters/04/1/Numbers'
 previouschapter:
-  url: chapters/04/types
+  url: chapters/04/Types
   title: '4. Data Types'
 nextchapter:
-  url: chapters/04/2/strings
+  url: chapters/04/2/Strings
   title: '4.2 Strings'
+redirect_from:
+  - 'chapters/04/1/numbers'
 ---
 
 Computers are designed to perform numerical calculations, but there are some important details about working with numbers that every programmer working with quantitative data should know. Python (and most other programming languages) distinguishes between two different types of numbers:

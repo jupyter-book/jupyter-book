@@ -7,6 +7,8 @@ previouschapter:
 nextchapter:
   url: chapters/03/programming-in-python
   title: '3. Programming in Python'
+redirect_from:
+  - 'chapters/02/5/endnote'
 ---
 Endnote
 -------

@@ -5,8 +5,10 @@ previouschapter:
   url: chapters/02/5/endnote
   title: '2.5 Endnote'
 nextchapter:
-  url: chapters/03/1/expressions
+  url: chapters/03/1/Expressions
   title: '3.1 Expressions'
+redirect_from:
+  - 'chapters/03/programming-in-python'
 ---
 Programming in Python
 =====================

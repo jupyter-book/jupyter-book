@@ -5,8 +5,10 @@ previouschapter:
   url: chapters/introduction/intro
   title: 'Quickstart'
 nextchapter:
-  url: chapters/introduction/chapters
+  url: chapters/introduction/notebooks
   title: 'Adding notebooks'
+redirect_from:
+  - 'chapters/introduction/markdown'
 ---
 # Creating course content
 
@@ -43,7 +45,7 @@ so long as they point to a file that's inside of the repository.
 
 Here's an image relative to the site root
 
-![]({{ site.baseurl }}/images/C-3PO_droid.png)
+![](../../images/C-3PO_droid.png)
 
 ### Adding movies
 

@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/01/3/Plotting_the_Classics.ipynb
 title: '1.3 Plotting the Classics'
-permalink: 'chapters/01/3/plotting-the-classics'
+permalink: 'chapters/01/3/Plotting_the_Classics'
 previouschapter:
   url: chapters/01/2/why-data-science
   title: '1.2 Why Data Science?'
 nextchapter:
-  url: chapters/01/3/1/literary-characters
+  url: chapters/01/3/1/Literary_Characters
   title: '1.3.1 Literary Characters'
+redirect_from:
+  - 'chapters/01/3/plotting-the-classics'
 ---
 
 In this example, we will explore statistics for two classic novels: *The Adventures of Huckleberry Finn* by Mark Twain, and *Little Women* by Louisa May Alcott. The text of any book can be read by a computer at great speed. Books published before 1923 are currently in the *public domain*, meaning that everyone has the right to copy or use the text in any way. [Project Gutenberg](http://www.gutenberg.org/) is a website that publishes public domain books online. Using Python, we can load the text of these books directly from the web.

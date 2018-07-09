@@ -7,6 +7,8 @@ previouschapter:
 nextchapter:
   url: chapters/01/1/2/statistical-techniques
   title: '1.1.2 Statistical Techniques'
+redirect_from:
+  - 'chapters/01/1/1/computational-tools'
 ---
 Computational Tools
 -------------------

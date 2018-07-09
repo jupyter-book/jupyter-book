@@ -1,13 +1,15 @@
 ---
 interact_link: notebooks/03/3/Calls.ipynb
 title: '3.3 Call Expressions'
-permalink: 'chapters/03/3/calls'
+permalink: 'chapters/03/3/Calls'
 previouschapter:
-  url: chapters/03/2/1/growth
+  url: chapters/03/2/1/Growth
   title: '3.2.1 Example: Growth Rates'
 nextchapter:
-  url: chapters/03/4/introduction-to-tables
+  url: chapters/03/4/Introduction_to_Tables
   title: '3.4 Introduction to Tables'
+redirect_from:
+  - 'chapters/03/3/calls'
 ---
 
 *Call expressions* invoke functions, which are named operations. The name of the function appears first, followed by expressions in parentheses. 
