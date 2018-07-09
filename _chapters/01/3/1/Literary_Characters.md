@@ -34,7 +34,7 @@ plots.title('Cumulative Number of Times Each Name Appears', y=1.08);
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/01/3/1/Literary_Characters_1_0.png)
+![png](../../../../images/chapters/01/3/1/Literary_Characters_1_0.png)
 
 
 In the plot above, the horizontal axis shows chapter numbers and the vertical axis shows how many times each character has been mentioned up to and including that chapter. 
@@ -123,7 +123,7 @@ plots.title('Cumulative Number of Times Each Name Appears', y=1.08);
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/01/3/1/Literary_Characters_6_0.png)
+![png](../../../../images/chapters/01/3/1/Literary_Characters_6_0.png)
 
 
 Laurie is a young man who marries one of the girls in the end. See if you can use the plots to guess which one.

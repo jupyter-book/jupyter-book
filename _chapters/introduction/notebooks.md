@@ -66,7 +66,7 @@ ax.legend(custom_lines, ['Cold', 'Medium', 'Hot'])
 
 
 
-![png]({{ site.baseurl }}/images/chapters/introduction/notebooks_1_1.png)
+![png](../../images/chapters/introduction/notebooks_1_1.png)
 
 
 Note that the image above is captured and displayed by Jekyll.

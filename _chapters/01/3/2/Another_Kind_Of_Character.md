@@ -164,7 +164,7 @@ plots.ylabel('Number of characters in chapter');
 ```
 
 
-![png]({{ site.baseurl }}/images/chapters/01/3/2/Another_Kind_Of_Character_7_0.png)
+![png](../../../../images/chapters/01/3/2/Another_Kind_Of_Character_7_0.png)
 
 
 The plot shows us that many but not all of the chapters of *Little Women* are longer than those of *Huckleberry Finn*, as we had observed by just looking at the numbers. But it also shows us something more. Notice how the blue points are roughly clustered around a straight line, as are the yellow points. Moreover, it looks as though both colors of points might be clustered around the *same* straight line.

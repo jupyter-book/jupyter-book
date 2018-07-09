@@ -68,12 +68,13 @@ def _clean_notebook_cells(path_ntbk):
     nbf.write(ntbk, path_ntbk)
 
 
-def _clean_lines(lines):
+def _clean_lines(lines, filepath):
     """Replace images with jekyll image root and add escape chars as needed."""
     inline_replace_chars = ['#']
     for ii, line in enumerate(lines):
         # Images: replace absolute nbconvert image paths to baseurl paths
-        line = line.replace(IMAGES_FOLDER, '{{ site.baseurl }}/images')
+        path_rel_root = op.relpath(SITE_ROOT, op.dirname(filepath))
+        line = line.replace(IMAGES_FOLDER, op.join(path_rel_root, 'images'))
 
         # Adding escape slashes since Jekyll removes them
         # Make sure we have at least two dollar signs and they
@@ -250,7 +251,7 @@ if __name__ == '__main__':
         # Extra slash to the inline math before `#` since Jekyll strips it
         with open(new_file_path, 'r') as ff:
             lines = ff.readlines()
-        lines = _clean_lines(lines)
+        lines = _clean_lines(lines, new_file_path)
 
         # Front-matter YAML
         yaml_fm = []
