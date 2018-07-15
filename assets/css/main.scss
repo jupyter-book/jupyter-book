@@ -34,11 +34,15 @@ div.MathJax_Display {
 
 // Sidebar
 div.sidebar {
-  width: 25%;
+  width: calc(25% - 2em);
   @media (min-width: 64em) {
     overflow-y: auto;
     height: calc( 100vh - 2em ) !important;
   }
+}
+
+div.textbook div.sidebar {
+  position: fixed;
 }
 
 .sidebar a:hover {
@@ -60,6 +64,10 @@ section.textbook article {
     height: calc( 100vh - 2em ) !important;
     overflow-y: auto;
   }
+}
+
+article.textbook section.page__content {
+  min-height: calc( 100vh - 2em );
 }
 
 article.textbook section {
