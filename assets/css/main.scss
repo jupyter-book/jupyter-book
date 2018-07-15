@@ -34,7 +34,6 @@ div.MathJax_Display {
 
 // Sidebar
 div.sidebar {
-  width: calc(25% - 2em);
   @media (min-width: 64em) {
     overflow-y: auto;
     height: calc( 100vh - 2em ) !important;
@@ -42,7 +41,9 @@ div.sidebar {
 }
 
 div.textbook div.sidebar {
-  position: fixed;
+  @media (min-width: 64em) {
+    position: fixed;
+  }
 }
 
 .sidebar a:hover {
