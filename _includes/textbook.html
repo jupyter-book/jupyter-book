@@ -45,13 +45,25 @@ function binder2Jupyterhub(url) {
   return jQuery.param(newUrl);
 }
 
-// Update interact links
+// Filter out potentially unsafe characters to prevent xss
+function safeUrl(url)
+{
+   return String(encodeURIComponent(url))
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+}
+
+  // Update interact links
 function updateInteractLink() {
     // hack to make this work since it expects a ? in the URL
     rest = getJsonFromUrl("?" + location.search.substr(1));
-    hubUrl = rest['hubUrl'];
+    hubUrl = rest['hub'];
     if (hubUrl !== undefined) {
-        // Add HTTP text if omitted
+      hubUrl = safeUrl(hubUrl);
+      // Add HTTP text if omitted
         if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
         link = $("a.interact-button")[0];
         if (link !== undefined) {
