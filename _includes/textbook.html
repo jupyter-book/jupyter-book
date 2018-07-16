@@ -10,18 +10,66 @@
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full,Safe" type="text/javascript"></script>
 
-<!-- To auto-embed hub URLs in interact links if given in a RESTful fashion -->
 <script type="text/javascript">
-function getQueryVariable(variable)
-{
-       var query = window.location.search.substring(1);
-       var vars = query.split("&");
-       for (var i=0;i<vars.length;i++) {
-               var pair = vars[i].split("=");
-               if(pair[0] == variable){return pair[1];}
-       }
-       return(false);
+// --- To auto-embed hub URLs in interact links if given in a RESTful fashion ---
+function getJsonFromUrl(url) {
+  var query = url.split('?');
+  if (query.length < 2) {
+    // No queries so just return false
+    return false;
+  }
+  query = query[1];
+  // Collect REST params into a dictionary
+  var result = {};
+  query.split("&").forEach(function(part) {
+    var item = part.split("=");
+    result[item[0]] = decodeURIComponent(item[1]);
+  });
+  return result;
 }
+
+// Parse a Binder URL, converting it to the string needed for JupyterHub
+function binder2Jupyterhub(url) {
+  newUrl = {};
+  parts = url.split('v2/gh/')[1];
+  // Grab the base repo information
+  repoinfo = parts.split('?')[0];
+  var [org, repo, ref] = repoinfo.split('/');
+  newUrl['repo'] = ['https://github.com', org, repo].join('/');
+  newUrl['branch'] = ref
+  // Grab extra parameters passed
+  params = getJsonFromUrl(url);
+  if (params['filepath'] !== undefined) {
+    newUrl['subPath'] = params['filepath']
+  }
+  return jQuery.param(newUrl);
+}
+
+// Update interact links
+function updateInteractLink() {
+    // hack to make this work since it expects a ? in the URL
+    rest = getJsonFromUrl("?" + location.search.substr(1));
+    hubUrl = rest['hubUrl'];
+    if (hubUrl !== undefined) {
+        // Add HTTP text if omitted
+        if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
+        link = $("a.interact-button")[0];
+        if (link !== undefined) {
+            var href = link.getAttribute('href');
+            if ('{{ site.hub_type }}' == 'binder') {
+              // If binder links exist, we need to re-work them for jupyterhub
+              first = [hubUrl, 'hub', 'user-redirect', 'git-sync'].join('/')
+              href = first + '?' + binder2Jupyterhub(href);
+            } else {
+              // If JupyterHub links, we only need to replace the hub url
+              href = href.replace("{{ site.hub_url }}", hubUrl);
+            }
+            link.setAttribute('href', href);
+        }
+    }
+}
+
+// --- Highlight the part of sidebar for current page ---
 
 // helper to replace trailing slash
 function replaceSlash(string)
@@ -29,23 +77,6 @@ function replaceSlash(string)
     return string.replace(/\/$/, "");
 }
 
-// Update interact links
-function updateInteractLink() {
-    window.hubUrl = getQueryVariable("hubUrl");
-    if (window.hubUrl !== false) {
-        if (window.hubUrl.indexOf('http') < 0) {
-            window.hubUrl = 'http://' + window.hubUrl;
-        }
-        link = $("a.interact-button")[0];
-        if (link !== undefined) {
-            var href = link.getAttribute('href');
-            href = href.replace("{{ site.hub_url }}", window.hubUrl);
-            link.setAttribute('href', href);
-        }
-    }
-}
-
-// Highlight the part of sidebar for current page
 // Add a class to the current page in the sidebar
 function highlightSidebarCurrentPage()
 {
@@ -65,7 +96,7 @@ function highlightSidebarCurrentPage()
   }
 }
 
-// Set up copy/paste for code blocks
+// --- Set up copy/paste for code blocks ---
 function addCopyButtonToCode(){
   // get all <code> elements
   var allCodeBlocksElements = $( "div.input_area code, div.highlighter-rouge code" );
