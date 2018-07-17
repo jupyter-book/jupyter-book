@@ -17,6 +17,12 @@ article.page .interact-button:hover,article.page .interact-button:focus,article.
   text-decoration:none;
 }
 
+div.interact-context {
+  display: inline;
+  padding-left: 1em;
+  font-weight: 600;
+}
+
 article.page .next_page {
   float: right;
 }

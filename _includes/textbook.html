@@ -56,28 +56,59 @@ function safeUrl(url)
             .replace(/>/g, '&gt;');
 }
 
+function addParamToInternalLinks(hub) {
+  var links = $("a").each(function() {
+    var href = this.href;
+    // If the link is an internal link...
+    if (href.search("{{ site.url }}") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
+      // Assume we're an internal link, add the hub param to it
+      var params = getJsonFromUrl(href);
+      if (params !== false) {
+        // We have REST params, so append a new one
+        params['hub'] = hub;
+      } else {
+        // Create the REST params
+        params = {'hub': hub};
+      }
+      // Update the link
+      var newHref = href.split('?')[0] + '?' + jQuery.param(params);
+      this.setAttribute('href', decodeURIComponent(newHref));
+    }
+  });
+  return false;
+}
+
   // Update interact links
 function updateInteractLink() {
     // hack to make this work since it expects a ? in the URL
     rest = getJsonFromUrl("?" + location.search.substr(1));
     hubUrl = rest['hub'];
     if (hubUrl !== undefined) {
+      // Sanitize the hubUrl
       hubUrl = safeUrl(hubUrl);
       // Add HTTP text if omitted
-        if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
-        link = $("a.interact-button")[0];
-        if (link !== undefined) {
-            var href = link.getAttribute('href');
-            if ('{{ site.hub_type }}' == 'binder') {
-              // If binder links exist, we need to re-work them for jupyterhub
-              first = [hubUrl, 'hub', 'user-redirect', 'git-sync'].join('/')
-              href = first + '?' + binder2Jupyterhub(href);
-            } else {
-              // If JupyterHub links, we only need to replace the hub url
-              href = href.replace("{{ site.hub_url }}", hubUrl);
-            }
-            link.setAttribute('href', href);
-        }
+      if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
+      link = $("a.interact-button")[0];
+      if (link !== undefined) {
+          // Update the interact link URL
+          var href = link.getAttribute('href');
+          if ('{{ site.hub_type }}' == 'binder') {
+            // If binder links exist, we need to re-work them for jupyterhub
+            first = [hubUrl, 'hub', 'user-redirect', 'git-sync'].join('/')
+            href = first + '?' + binder2Jupyterhub(href);
+          } else {
+            // If JupyterHub links, we only need to replace the hub url
+            href = href.replace("{{ site.hub_url }}", hubUrl);
+          }
+          link.setAttribute('href', decodeURIComponent(href));
+
+          // Add text after interact link saying where we're launching
+          hubUrlNoHttp = decodeURIComponent(hubUrl).replace('http://', '').replace('https://', '');
+          $("a.interact-button").after($('<div class="interact-context">on ' + hubUrlNoHttp + '</div>'));
+
+      }
+      // Update internal links so we retain the hub url
+      addParamToInternalLinks(hubUrl);
     }
 }
 
@@ -93,12 +124,10 @@ function replaceSlash(string)
 function highlightSidebarCurrentPage()
 {
   var currentpage = location.href;
-  console.log(currentpage)
   var links = $('.sidebar .nav__items a');
   var ii = 0;
   for(ii; ii < links.length; ii++) {
     var link = links[ii];
-    console.log(link.href == currentpage)
     if(replaceSlash(link.href) == replaceSlash(currentpage)) {
       // Add CSS for styling
       link.classList.add("current");
