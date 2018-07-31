@@ -22,3 +22,5 @@ sidebar-guide:
     url: guide/05_publish
   - title: Frequently Asked Questions
     url: guide/06_faq
+  - title: Advanced topics and information
+    url: guide/07_advanced
