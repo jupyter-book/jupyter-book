@@ -14,7 +14,7 @@ times.
 
 To do this, take the following steps:
 
-* Go to [https://github.com/new/import](https://github.com/new/import).
+* Go to <a href="https://github.com/new/import" target="_blank">https://github.com/new/import</a>
 * Enter the URL of the `textbooks-with-jupyter` repository in the
   "old repository's clone URL" field:
 
