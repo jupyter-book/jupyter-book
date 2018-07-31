@@ -2,6 +2,9 @@
 title: Setup dependencies
 ---
 
+This page should get you set up with the software and code needed to build
+your textbook! Follow the steps below...
+
 ## Get your own copy of this repository
 
 The easiest way to get a copy of this repository is to use **GitHub's Import Feature**.
@@ -11,22 +14,27 @@ times.
 
 To do this, take the following steps:
 
-* Go to https://github.com/new/import.
+* Go to [https://github.com/new/import](https://github.com/new/import).
 * Enter the URL of the `textbooks-with-jupyter` repository in the
   "old repository's clone URL" field:
 
-  `https://github.com/choldgraf/textbooks-with-jupyter`
+  ```
+  https://github.com/choldgraf/textbooks-with-jupyter`
+  ```
 * Choose a new name for your repository, and whether you want it to be public.
 
   For example:
 
-  `my-course-spring-2018`
+  ```
+  my-course-spring-2018
+  ```
 
 * Wait while GitHub creates a version of this repository for your account. You
   can watch the progress of this process by looking at this URL:
 
-  `https://github.com/<YOUR-USERNAME>/<YOUR-NEW-REPO-NAME>/import`
-
+  ```
+  https://github.com/<YOUR-USERNAME>/<YOUR-NEW-REPO-NAME>/import
+  ```
 * Clone your repository to your computer and make edits as you wish. You may
   want to still add the URL of the original repository as a "remote" in case
   you want to pull in new changes to the template / build system.
