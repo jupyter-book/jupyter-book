@@ -71,7 +71,7 @@ changed = 2814
 
 
 
-In 10 years, the number of employees of the US Federal Government has increased by only 1.74%. In that time, the total expenditures of the US Federal Government increased from \\$2.37 trillion to \\$3.38 trillion in 2012.
+In 10 years, the number of employees of the US Federal Government has increased by only 1.74%. In that time, the total expenditures of the US Federal Government increased from \$2.37 trillion to \$3.38 trillion in 2012.
 
 
 {:.input_area}

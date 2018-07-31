@@ -82,7 +82,7 @@ def _clean_lines(lines, filepath):
         dollars = np.where(['$' == char for char in line])[0]
         if len(dollars) > 2 and all(ii > 1 for ii in (dollars[1:] - dollars[:1])):
             for char in inline_replace_chars:
-                line = line.replace('\\#', '\\\\#')
+                line = line.replace('\\{}'.format(char), '\\\\{}'.format(char))
         line = line.replace(' \\$', ' \\\\$')
         lines[ii] = line
     return lines
@@ -223,7 +223,10 @@ if __name__ == '__main__':
             # Clean up the file before converting
             cleaner = NotebookCleaner(tmp_notebook)
             cleaner.remove_cells(empty=True)
-            cleaner.remove_cells(search_text="# HIDDEN")
+            if site_yaml.get('hide_cell_text', False):
+                cleaner.remove_cells(search_text=site_yaml.get('hide_cell_text'))
+            if site_yaml.get('hide_code_text', False):
+                cleaner.clear(kind="content", search_text=site_yaml.get('hide_code_text'))
             cleaner.clear('stderr')
             cleaner.save(tmp_notebook)
             _clean_notebook_cells(tmp_notebook)

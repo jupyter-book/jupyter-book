@@ -1,15 +1,5 @@
 <!-- Custom HTML used for the textbooks -->
-<!-- Configure, then load MathJax -->
-<script type="text/javascript">
-  window.MathJax = {
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true,
-      processEnvironments: true
-    }
-  };
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full,Safe" type="text/javascript"></script>
+{% include mathjax.html %}
 
 <script type="text/javascript">
 // --- To auto-embed hub URLs in interact links if given in a RESTful fashion ---

@@ -2,6 +2,37 @@
 title: Setup dependencies
 ---
 
+## Get your own copy of this repository
+
+The easiest way to get a copy of this repository is to use **GitHub's Import Feature**.
+This gives you a new copy of the contents of this repository, without creating
+a "fork". This should make it easier for you to re-use the repository multiple
+times.
+
+To do this, take the following steps:
+
+* Go to https://github.com/new/import.
+* Enter the URL of the `textbooks-with-jupyter` repository in the
+  "old repository's clone URL" field:
+
+  `https://github.com/choldgraf/textbooks-with-jupyter`
+* Choose a new name for your repository, and whether you want it to be public.
+
+  For example:
+
+  `my-course-spring-2018`
+
+* Wait while GitHub creates a version of this repository for your account. You
+  can watch the progress of this process by looking at this URL:
+
+  `https://github.com/<YOUR-USERNAME>/<YOUR-NEW-REPO-NAME>/import`
+
+* Clone your repository to your computer and make edits as you wish. You may
+  want to still add the URL of the original repository as a "remote" in case
+  you want to pull in new changes to the template / build system.
+
+That's it!
+
 ## Set up your repository and dependencies
 
 The textbooks for Jekyll repository primarily depends on three sets of tools:
@@ -43,4 +74,4 @@ courses / workshops of less than 50-60 students.
 
 Once you have your JupyterHub set up, you can use the [nbgitpuller](https://github.com/data-8/nbgitpuller)
 package to send links to course material to your students, or use the interact links that Textbooks for Jupyter
-automatically inserts into your course material. 
+automatically inserts into your course material.

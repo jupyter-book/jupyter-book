@@ -14,7 +14,7 @@ help you through the process should you want to do this for your own textbook.
 
 The build process in general goes something like this:
 
-* Fork and clone this repository to your computer. [Here's the repo URL on GitHub](https://github.com/choldgraf/textbook-jekyll-template).
+* Get yourself a copy of this repository. [Here's the repo URL on GitHub](https://github.com/choldgraf/textbook-jekyll-template).
 * Put your Jupyter Notebooks in `notebooks/` (they can be in sub-folders)
 * Create a `SUMMARY.md` file in the root of the repository. This defines the structure
   of your textbook.

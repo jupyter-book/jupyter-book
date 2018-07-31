@@ -2,6 +2,7 @@
 
 <!-- Add class for input area -->
 {% block input %}
+{% if cell.source != '' %}
 {:.input_area}
 ```
 {%- if 'magics_language' in cell.metadata  -%}
@@ -9,8 +10,9 @@
 {%- elif 'name' in nb.metadata.get('language_info', {}) -%}
     {{ nb.metadata.language_info.name }}
 {%- endif %}
-{{ cell.source}}
+{{ cell.source }}
 ```
+{% endif %}
 {% endblock input %}
 
 <!-- Remove indentations for output text  -->

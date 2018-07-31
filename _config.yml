@@ -26,6 +26,8 @@ chapter_titles           : true  # Whether to include the title of the chapter a
 textbook_only            : false  # If 'true', the home page will be the first chapter of the textbook, and *only* the sidebar is shown
 use_jupyterlab           : false  # If 'true', interact links will use JupyterLab as the interface
 textbook_logo            : images/logo/logo.png  # A logo to be displayed at the top of your textbook sidebar
+hide_cell_text           : "# HIDDEN"  # When building the textbook, any cells with this text inside will be hidden in the output markdown
+hide_code_text           : "# NO CODE"  # When building the textbook, any cells with this text inside will have *only* their output shown (no code)
 
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
