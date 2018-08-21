@@ -5,7 +5,7 @@ DESCRIPTION = ("Automatically generate a SUMMARY.md file from a collection"
                " The alpha-numeric name of folders/files will be used to choose the order of chapters.")
 
 parser = argparse.ArgumentParser(description=DESCRIPTION)
-parser.add_argument("textbook_folder", default=None, help="Path to the folder where the textbook is stored.")
+parser.add_argument("--textbook_folder", default=None, help="Path to the folder where the textbook is stored. Default is ./notebooks.")
 parser.add_argument("--out_path", default=None, help="Path to the folder where the output SUMMARY.md file will be written.")
 parser.add_argument("--filename_split_char", default='_', help="The character used to split words in the file name. Used to generate titles from file names. Defaults to '_'")
 parser.add_argument("--overwrite", action='store_true', help="Overwrite SUMMARY.md if it already exists.")
@@ -61,8 +61,8 @@ if __name__ == '__main__':
     files = notebooks_folder_to_files(args.textbook_folder)
     print('Found {} chapters'.format(len(files)))
     md = files_to_markdown(files)
-    
-    
+
+
     out_path_file = os.path.join(args.out_path, 'SUMMARY.md')
     if os.path.exists(out_path_file) and bool(args.overwrite) is False:
         raise ValueError('SUMMARY.md file exists, delete the file or set `overwrite=True`')
