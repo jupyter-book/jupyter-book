@@ -1,0 +1,7 @@
+# Pip requirements
+bs4
+tqdm
+numpy
+pyyaml
+nbformat
+nbclean
