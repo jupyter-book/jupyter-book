@@ -59,28 +59,6 @@ div.highlight code {
   color: #000000 !important;
 }
 
-/* Code coloring */
-
-.ansicyan,pre .kn
-{
-  color:#0080FF !important;
-}
-
-.ansigreen,pre .n,pre .nb
-{
-  color:#690 !important;
-}
-
-.ansired
-{
-  color:red !important;
-}
-
-pre .nn
-{
-  color:#FFC0CB !important;
-}
-
 .output_png img,p img
 {
   width:100% !important;
@@ -88,22 +66,6 @@ pre .nn
   display: block;
   margin-left: auto;
   margin-right: auto;
-}
-
-pre .o,pre .k
-{
-  color:purple !important;
-}
-
-pre .p,pre .c
-{
-  color:#999 !important;
-}
-
-/* Black font text */
-pre .c1,pre .s1, pre .s,pre .s2,pre .mi, pre .mf, pre .p, pre .c, pre .m
-{
-  color: rgb(51, 51, 51) !important;
 }
 
 .hl-ipython3 pre::before,.output_subarea pre::before,.output_html::before,.output_png::before

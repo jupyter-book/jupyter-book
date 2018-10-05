@@ -7,19 +7,19 @@ your textbook! Follow the steps below...
 
 ## Get your own copy of this repository
 
-The easiest way to get a copy of this repository is to use **GitHub's Import Feature**.
-This gives you a new copy of the contents of this repository, without creating
+The easiest way to get a copy of the template repository is to use **GitHub's Import Feature**.
+This gives you a new copy of the contents of the template, without creating
 a "fork". This should make it easier for you to re-use the repository multiple
-times.
+times. **If you'd like to contribute improvements to the template itself, then please do fork it!**
 
-To do this, take the following steps:
+To import the template repository to your GitHub account, take the following steps:
 
 * Go to <a href="https://github.com/new/import" target="_blank">https://github.com/new/import</a>
-* Enter the URL of the `textbooks-with-jupyter` repository in the
+* Enter the URL of the `jupyter-book` template repository in the
   "old repository's clone URL" field:
 
   ```
-  https://github.com/choldgraf/textbooks-with-jupyter`
+  https://github.com/choldgraf/jupyter-book`
   ```
 * Choose a new name for your repository, and whether you want it to be public.
 
@@ -43,7 +43,7 @@ That's it!
 
 ## Set up your repository and dependencies
 
-The textbooks for Jekyll repository primarily depends on three sets of tools:
+The Jupyter Book template repository primarily depends on three sets of tools:
 
 * Python and Jupyter for converting Jupyter Notebooks into Jekyll-ready markdown
 * GitHub (specifically, GitHub-pages) for hosting your textbook online with Jekyll

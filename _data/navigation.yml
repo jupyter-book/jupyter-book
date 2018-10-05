@@ -1,14 +1,14 @@
 # main links
 main:
-  - title: "About"
-    url: /about/
-  - title: "Syllabus"
-    url: /syllabus/
   - title: "Guide"
     url: /guide/01_overview/
+  - title: "Textbook Demo"
+    url: https://predictablynoisy.com/jupyter-book
+  - title: "Textbook Template Repo"
+    url: https://github.com/choldgraf/jupyter-book
 
 
-# --- Guide sidebar --- delete if you remove the guide
+# --- Guide sidebar ---
 sidebar-guide:
   - title: Overview and Intro
     url: guide/01_overview

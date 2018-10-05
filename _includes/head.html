@@ -16,21 +16,6 @@
 <!-- For all browsers -->
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 
-<!--[if lte IE 9]>
-  <style>
-    /* old IE unsupported flexbox fixes */
-    .greedy-nav .site-title {
-      padding-right: 3em;
-    }
-    .greedy-nav button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-    }
-  </style>
-<![endif]-->
-
 {% if site.head_scripts %}
   {% for script in site.head_scripts %}
     {% if script contains "://" %}
@@ -41,3 +26,16 @@
     <script src="{{ script_path }}"></script>
   {% endfor %}
 {% endif %}
+
+
+<!-- External JS libraries -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js"></script>
+
+{% include mathjax.html %}
+
+
+<!-- Load custom website scripts -->
+<script src="{{ /assets/js/scripts.js | relative_url }}"></script>
+<script src="{{ /assets/js/textbook.js | relative_url }}"></script>

@@ -6,7 +6,7 @@ Once you've generated the markdown for your notebooks, your site is ready to be
 pushed and served by GitHub. To do this, take the following steps:
 
 0. Confirm that your site files are built. You should see a
-   collection of markdown files/folders in the `_chapters` folder.
+   collection of markdown files/folders in the `_ch` folder.
 1. Commit and push your changes to your fork of the repository. 
 2. Confirm that `gh-pages` site-building is enabled.
 
@@ -21,7 +21,7 @@ To do this, take the following steps:
 
 1. Ensure that Jekyll and Ruby are installed. 
 2. Ensure that your notebooks have been converted to markdown, there should be a
-   collection of them in `_chapters`
+   collection of them in `_ch`
 3. Run the Jekyll site preview command:
 
        bundle exec jekyll serve

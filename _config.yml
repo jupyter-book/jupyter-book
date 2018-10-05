@@ -2,32 +2,17 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Textbooks with Jupyter"
+title                    : "The Jupyter Books Guide"
 title_separator          : "-"
 name                     : "Chris Holdgraf"
 description              : ""
 url                      : "https://predictablynoisy.com" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-baseurl                  : "/textbooks-with-jupyter" # the subpath of your site, e.g. "/blog". Defaults to "/"
+baseurl                  : "/jupyter-book-guide" # the subpath of your site, e.g. "/blog". Defaults to "/"
 repository               : # GitHub username/repo-name for this site
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 footer                   : false # Whether to include a footer with the built site
 masthead                 : true  # Whether to include a masthead (header/navbar) with the site.
 masthead_logo            : images/logo/logo.png
-# Textbook settings
-hub_url                  : "https://mybinder.org"  # The URL for your JupyterHub/BinderHub.
-hub_name                 : "JupyterHub"  # The name of your JupyterHub (used for the button in the NavBar. If an empty string, no button is shown)
-hub_type                 : "binder"  # ['binder', 'jupyterhub']  Whether to build interact links for a BinderHub or a JupyterHub
-textbook_repo_base       : "https://github.com/"  # The site on which the textbook repository is hosted
-textbook_repo_org        : "choldgraf"  # The username or organization that owns this repository
-textbook_repo_name       : "textbooks-with-jupyter"  # The name of the repository on the web
-textbook_repo_branch     : "master"  # The branch on which your textbook is hosted.
-number_chapters          : false  # Whether to number the chapers in the sidebar for the textbook
-chapter_titles           : true  # Whether to include the title of the chapter at the top of each chapter
-textbook_only            : false  # If 'true', the home page will be the first chapter of the textbook, and *only* the sidebar is shown
-use_jupyterlab           : false  # If 'true', interact links will use JupyterLab as the interface
-textbook_logo            : images/logo/logo.png  # A logo to be displayed at the top of your textbook sidebar
-hide_cell_text           : "# HIDDEN"  # When building the textbook, any cells with this text inside will be hidden in the output markdown
-hide_code_text           : "# NO CODE"  # When building the textbook, any cells with this text inside will have *only* their output shown (no code)
 
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
@@ -174,7 +159,6 @@ markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
 # Conversion
 markdown: kramdown
-highlighter: rouge
 lsi: false
 excerpt_separator: "\n\n"
 incremental: false
@@ -183,13 +167,14 @@ incremental: false
 # Markdown Processing
 kramdown:
   input: GFM
+  syntax_highlighter: rouge
   hard_wrap: false
   auto_ids: true
   footnote_nr: 1
   entity_output: as_char
   toc_levels: 1..6
   smart_quotes: lsquo,rsquo,ldquo,rdquo
-  enable_coderay: false
+  enable_coderay: falseroug
 
 
 # Sass/SCSS
