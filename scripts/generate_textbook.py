@@ -84,6 +84,9 @@ def _clean_lines(lines, filepath):
             for char in inline_replace_chars:
                 line = line.replace('\\{}'.format(char), '\\\\{}'.format(char))
         line = line.replace(' \\$', ' \\\\$')
+        # Escaped dollar could be at beginning of line
+        if line.startswith('\\$'):
+            line = '\\' + line
         lines[ii] = line
     return lines
 
