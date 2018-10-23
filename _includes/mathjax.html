@@ -1,16 +1,17 @@
-  <!-- Allow inline math using $ and automatically break long math lines -->
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
+<!-- Allow inline math using $ and automatically break long math lines -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
         displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-        processEscapes: true
-      },
-      CommonHTML: {
+        processEscapes: true,
+        processEnvironments: true
+    },
+    CommonHTML: {
         linebreaks: {
-          automatic: true,
+            automatic: true,
         },
-      },
-    });
-  </script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML' async></script>
+    },
+});
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML' async></script>

@@ -1,0 +1,62 @@
+.sidebar__right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 250px;
+    margin-right: -250px;
+    padding-left: 1em;
+    z-index: 10;
+}
+
+nav.onthispage {
+    font-family: -apple-system,BlinkMacSystemFont,"Roboto","Segoe UI","Helvetica Neue","Lucida Grande",Arial,sans-serif;
+    color: #7a8288;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: #fff;
+    border: 1px solid #f2f3f3;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.125);
+}
+
+h4.nav__title {
+    color: #fff;
+    font-size: .75em;
+    background: #7a8288;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    margin: 0;
+    padding: 0.5rem 1rem;
+    font-family: -apple-system,BlinkMacSystemFont,"Roboto","Segoe UI","Helvetica Neue","Lucida Grande",Arial,sans-serif;
+    font-size: .8em;
+    font-weight: bold;
+}
+
+ul.toc__menu {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    list-style: none;
+    font-size: 0.8rem;
+}
+
+ul.toc__menu a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #898c8f;
+    font-size: .8em;
+    font-weight: bold;
+    line-height: 1.5;
+    border-bottom: 1px solid #f2f3f3;
+}
+
+.toc__menu li ul {
+    
+    li {
+        list-style-type: none;
+    }
+
+    a {
+        font-weight: normal;
+    }
+}

@@ -1,3 +1,7 @@
+"""A helper script to execute all of the notebooks
+in your /notebooks folder. This is helpful if you wish
+to ensure that all of your notebooks run, and that the output
+contained in the notebook files is up-to-date."""
 from glob import glob
 from subprocess import check_call
 from tqdm import tqdm

@@ -1,0 +1,119 @@
+<script>
+/**
+  * To auto-embed hub URLs in interact links if given in a RESTful fashion
+ */
+
+function getJsonFromUrl(url) {
+  var query = url.split('?');
+  if (query.length < 2) {
+    // No queries so just return false
+    return false;
+  }
+  query = query[1];
+  // Collect REST params into a dictionary
+  var result = {};
+  query.split("&").forEach(function(part) {
+    var item = part.split("=");
+    result[item[0]] = decodeURIComponent(item[1]);
+  });
+  return result;
+}
+
+// Parse a Binder URL, converting it to the string needed for JupyterHub
+function binder2Jupyterhub(url) {
+  newUrl = {};
+  console.log(url)
+  parts = url.split('v2/gh/')[1];
+  // Grab the base repo information
+  repoinfo = parts.split('?')[0];
+  var [org, repo, ref] = repoinfo.split('/');
+  newUrl['repo'] = ['https://github.com', org, repo].join('/');
+  newUrl['branch'] = ref
+  // Grab extra parameters passed
+  params = getJsonFromUrl(url);
+  if (params['filepath'] !== undefined) {
+    newUrl['subPath'] = params['filepath']
+  }
+  return jQuery.param(newUrl);
+}
+
+// Filter out potentially unsafe characters to prevent xss
+function safeUrl(url)
+{
+   return String(encodeURIComponent(url))
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+}
+
+function addParamToInternalLinks(hub) {
+  var links = $("a").each(function() {
+    var href = this.href;
+    // If the link is an internal link...
+    if (href.search("{{ site.url }}") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
+      // Assume we're an internal link, add the hub param to it
+      var params = getJsonFromUrl(href);
+      if (params !== false) {
+        // We have REST params, so append a new one
+        params['hub'] = hub;
+      } else {
+        // Create the REST params
+        params = {'hub': hub};
+      }
+      // Update the link
+      var newHref = href.split('?')[0] + '?' + jQuery.param(params);
+      this.setAttribute('href', decodeURIComponent(newHref));
+    }
+  });
+  return false;
+}
+
+// Update interact links
+function updateInteractLink() {
+    // hack to make this work since it expects a ? in the URL
+    rest = getJsonFromUrl("?" + location.search.substr(1));
+    hubUrl = rest['hub'];
+    if (hubUrl !== undefined) {
+      // Sanitize the hubUrl
+      hubUrl = safeUrl(hubUrl);
+      // Add HTTP text if omitted
+      if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
+      link = $("a.interact-button")[0];
+      if (link !== undefined) {
+          // Update the interact link URL
+          var href = link.getAttribute('href');
+          var hub_type = '{{ site.hub_type }}';
+          if (hub_type === 'binder') {
+            // If binder links exist, we need to re-work them for jupyterhub
+            if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
+              // If localhost, assume we're working from a local Jupyter server and remove `/hub`
+              first = [hubUrl, 'git-sync'].join('/')
+            } else {
+              first = [hubUrl, 'hub', 'user-redirect', 'git-sync'].join('/')
+            }
+            href = first + '?' + binder2Jupyterhub(href);
+          } else {
+            // If JupyterHub links, we only need to replace the hub url
+            href = href.replace("{{ site.hub_url }}", hubUrl);
+            if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
+              // Assume we're working from a local Jupyter server and remove `/hub`
+              href = href.replace("/hub/user-redirect", "");
+            }
+          }
+          link.setAttribute('href', decodeURIComponent(href));
+
+          // Add text after interact link saying where we're launching
+          hubUrlNoHttp = decodeURIComponent(hubUrl).replace('http://', '').replace('https://', '');
+          $("a.interact-button").after($('<div class="interact-context">on ' + hubUrlNoHttp + '</div>'));
+
+      }
+      // Update internal links so we retain the hub url
+      addParamToInternalLinks(hubUrl);
+    }
+}
+
+runWhenDOMLoaded(updateInteractLink)
+document.addEventListener('turbolinks:load', updateInteractLink)
+</script>
