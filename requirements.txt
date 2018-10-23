@@ -1,0 +1,13 @@
+# Textbook
+bs4
+tqdm
+numpy
+pyyaml
+nbformat
+nbclean
+
+# Requirements for the demo notebooks
+pandas
+numpy
+datascience
+folium

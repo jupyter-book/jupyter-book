@@ -1,0 +1,18 @@
+<!-- INTERACT LINKS -->
+{% if page.interact_link %}
+    {% if site.use_jupyterlab %}
+      {% assign binder_interact_prefix="urlpath=lab/tree/" %}
+      {% assign hub_app="lab" %}
+    {% else %}
+      {% assign binder_interact_prefix="filepath=" %}
+      {% assign hub_app="notebook" %}
+    {% endif %}
+    {% if site.hub_type == "binder" %}
+      {% capture interact_url %}v2/gh/{{ site.textbook_repo_org }}/{{ site.textbook_repo_name }}/{{ site.textbook_repo_branch }}?{{ binder_interact_prefix }}{{ page.interact_link | url_encode }}{% endcapture %}
+    {% elsif site.hub_type == "jupyterhub" %}
+      {% capture interact_url %}hub/user-redirect/git-pull?repo={{ site.textbook_repo_base }}/{{ site.textbook_repo_org }}/{{ site.textbook_repo_name }}&amp;branch={{ site.textbook_repo_branch }}&amp;subPath={{ page.interact_link | url_encode }}&amp;app={{ hub_app }}{% endcapture %}
+    {% endif %}
+    <div class="buttons">
+        <a class="interact-button" href="{{ site.hub_url }}/{{ interact_url }}">{{ site.interact_text }}</a>
+    </div>
+{% endif %}
