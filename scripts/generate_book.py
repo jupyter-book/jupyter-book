@@ -276,7 +276,8 @@ if __name__ == '__main__':
             yaml_fm += ['redirect_from:']
             yaml_fm += ['  - "/"']
         if path_url_page.endswith('.ipynb'):
-            yaml_fm += ['interact_link: {}'.format(path_url_page.lstrip('./').replace(BUILD_FOLDER_NAME+'/', CONTENT_FOLDER_NAME))]
+            interact_path = 'content/' + path_url_page.split('content/')[-1]
+            yaml_fm += ['interact_link: {}'.format(interact_path)]
         yaml_fm += ["title: '{}'".format(title)]
         yaml_fm += ['prev_page:']
         yaml_fm += ['  url: {}'.format(_prepare_url(url_prev_page).replace('"', "'"))]
