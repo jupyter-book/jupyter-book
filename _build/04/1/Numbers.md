@@ -1,5 +1,5 @@
 ---
-interact_link: mnt/c/Users/chold/github/forks/python/teaching/dsep/jupyter-book/content/04/1/Numbers.ipynb
+interact_link: content/04/1/Numbers.ipynb
 title: 'Numbers'
 prev_page:
   url: /04/Types

@@ -1,5 +1,5 @@
 ---
-interact_link: mnt/c/Users/chold/github/forks/python/teaching/dsep/jupyter-book/content/04/3/Comparison.ipynb
+interact_link: content/04/3/Comparison.ipynb
 title: 'Comparisons'
 prev_page:
   url: /04/2/Strings

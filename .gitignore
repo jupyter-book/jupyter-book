@@ -105,3 +105,4 @@ venv.bak/
 
 # Jekyll
 _site/
+.sass-cache

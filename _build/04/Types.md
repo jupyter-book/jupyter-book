@@ -1,5 +1,5 @@
 ---
-interact_link: mnt/c/Users/chold/github/forks/python/teaching/dsep/jupyter-book/content/04/Types.ipynb
+interact_link: content/04/Types.ipynb
 title: 'Data Types'
 prev_page:
   url: /03/4/Introduction_to_Tables

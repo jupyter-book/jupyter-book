@@ -1,5 +1,5 @@
 ---
-interact_link: mnt/c/Users/chold/github/forks/python/teaching/dsep/jupyter-book/content/03/3/Calls.ipynb
+interact_link: content/03/3/Calls.ipynb
 title: 'Call Expressions'
 prev_page:
   url: /03/2/Names

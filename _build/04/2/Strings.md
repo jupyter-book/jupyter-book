@@ -1,5 +1,5 @@
 ---
-interact_link: mnt/c/Users/chold/github/forks/python/teaching/dsep/jupyter-book/content/04/2/Strings.ipynb
+interact_link: content/04/2/Strings.ipynb
 title: 'Strings'
 prev_page:
   url: /04/1/Numbers

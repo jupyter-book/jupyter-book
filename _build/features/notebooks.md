@@ -1,5 +1,5 @@
 ---
-interact_link: mnt/c/Users/chold/github/forks/python/teaching/dsep/jupyter-book/content/features/notebooks.ipynb
+interact_link: content/features/notebooks.ipynb
 title: 'Jupyter notebooks'
 prev_page:
   url: /features/markdown
