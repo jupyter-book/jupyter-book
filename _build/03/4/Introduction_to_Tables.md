@@ -1,5 +1,5 @@
 ---
-interact_link: mnt/c/Users/chold/github/forks/python/teaching/dsep/jupyter-book/content/03/4/Introduction_to_Tables.ipynb
+interact_link: content/03/4/Introduction_to_Tables.ipynb
 title: 'Introduction to Tables'
 prev_page:
   url: /03/3/Calls

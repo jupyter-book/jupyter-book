@@ -1,5 +1,5 @@
 ---
-interact_link: mnt/c/Users/chold/github/forks/python/teaching/dsep/jupyter-book/content/01/3/Plotting_the_Classics.ipynb
+interact_link: content/01/3/Plotting_the_Classics.ipynb
 title: 'Plotting the Classics'
 prev_page:
   url: /01/2/why-data-science

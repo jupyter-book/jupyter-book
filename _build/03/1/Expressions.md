@@ -1,5 +1,5 @@
 ---
-interact_link: mnt/c/Users/chold/github/forks/python/teaching/dsep/jupyter-book/content/03/1/Expressions.ipynb
+interact_link: content/03/1/Expressions.ipynb
 title: 'Expressions'
 prev_page:
   url: /03/programming-in-python
