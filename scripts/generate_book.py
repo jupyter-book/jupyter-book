@@ -83,9 +83,11 @@ def _clean_lines(lines, filepath):
     for ii, line in enumerate(lines):
         # Handle relative paths because we remove `content/` from the URL
         # If there's a path that goes back to the root, remove a level`
+        # This is for images referenced directly in the markdown
         if path_rel_root in line:
             line = line.replace(path_rel_root, path_rel_root_one_up)
-        line = line.replace(PATH_IMAGES_FOLDER, op.join(path_rel_root_one_up, 'images'))
+        # For programmatically-generated images from notebooks, replace the abspath with relpath
+        line = line.replace(PATH_IMAGES_FOLDER, op.relpath(PATH_IMAGES_FOLDER, op.dirname(filepath)))
 
         # Adding escape slashes since Jekyll removes them when it serves the page
         # Make sure we have at least two dollar signs and they
@@ -134,7 +136,7 @@ if __name__ == '__main__':
     PATH_TOC_YAML = op.join(PATH_SITE_ROOT, '_data', 'toc.yml')
     CONFIG_FILE = op.join(PATH_SITE_ROOT, '_config.yml')
     PATH_TEMPLATE = op.join(PATH_SITE_ROOT, 'assets', 'templates', 'jekyllmd.tpl')
-    PATH_IMAGES_FOLDER = op.join(PATH_SITE_ROOT, 'images')
+    PATH_IMAGES_FOLDER = op.join(PATH_SITE_ROOT, '_build', 'images')
     BUILD_FOLDER = op.join(PATH_SITE_ROOT, BUILD_FOLDER_NAME)
 
     ###############################################################################
@@ -243,9 +245,10 @@ if __name__ == '__main__':
             # Run nbconvert moving it to the output folder
             # This is the output directory for `.md` files
             build_call = '--FilesWriter.build_directory={}'.format(path_new_folder)
-            # This is where images go - remove the _ so Jekyll will copy them over
-            images_call = '--NbConvertApp.output_files_dir={}'.format(
-                op.join(PATH_IMAGES_FOLDER, path_new_folder.replace(PATH_SITE_ROOT, '').lstrip('/_')))
+            # Copy notebook output images to the build directory using the base folder name
+            path_after_build_folder = path_new_folder.split(os.sep + BUILD_FOLDER_NAME + os.sep)[-1]
+            nb_output_folder = op.join(PATH_IMAGES_FOLDER, path_after_build_folder)
+            images_call = '--NbConvertApp.output_files_dir={}'.format(nb_output_folder)
             call = ['jupyter', 'nbconvert', '--log-level="CRITICAL"',
                     '--to', 'markdown', '--template', PATH_TEMPLATE,
                     images_call, build_call, tmp_notebook]
