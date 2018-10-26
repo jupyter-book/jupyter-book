@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/01/2/why-data-science"
 title: 'Why Data Science?'
 prev_page:
   url: /01/1/intro

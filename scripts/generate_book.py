@@ -9,6 +9,7 @@ from tqdm import tqdm
 import numpy as np
 from glob import glob
 import argparse
+import string
 DESCRIPTION = ("Convert a collection of Jupyter Notebooks into Jekyll "
                "markdown suitable for a course textbook.")
 
@@ -21,7 +22,19 @@ parser.set_defaults(overwrite=False, execute=False)
 # Defaults
 BUILD_FOLDER_NAME = "_build"
 SUPPORTED_FILE_SUFFIXES = ['.ipynb', '.md']
+ALLOWED_CHARACTERS = string.ascii_letters + '-_/.' + string.digits
 
+def _check_url_page(url_page):
+    """Check that the page URL matches certain conditions."""
+    if not all(ii in ALLOWED_CHARACTERS for ii in url_page):
+        raise ValueError("Found unsupported character in filename: {}".format(url_page))
+    if '.' in os.path.splitext(url_page)[-1]:
+        raise _error("A toc.yml entry links to a file directly. You should strip the file suffix.\n"
+                        "Please change {} to {}".format(url_page, os.path.splitext(url_page)[0]))
+    if any(url_page.startswith(ii) for ii in [CONTENT_FOLDER_NAME, os.sep+CONTENT_FOLDER_NAME]):
+        raise ValueError("It looks like you have a page URL that starts with your content folder's name."
+                            "page URLs should be *relative* to the content folder. Here is the page URL: {}".format(url_page))
+    
 def _prepare_toc(toc):
     """Prepare the TOC for processing."""
     # Drop toc items w/o links
@@ -46,17 +59,11 @@ def _prepare_toc(toc):
 def _prepare_url(url):
     """Prep the formatting for a url."""
     # Strip suffixes and prefixes of the URL
-    for suff in SUPPORTED_FILE_SUFFIXES:
-        url = url.replace(suff, '')
-    url = url.lstrip('._')
     if not url.startswith('/'):
         url = '/' + url
-    url = url.replace('/' + CONTENT_FOLDER_NAME, '')
-    if not url.startswith('/'):
-        # In case the URL is in the root of the content folder add the slash back in
-        url = '/' + url
-    # Remove the CONTENT_FOLDER_NAME from any url
-    url = url.replace(CONTENT_FOLDER_NAME+'/', '')
+
+    # Standardize the quotes character
+    url = url.replace('"', "'")
     return url
 
 
@@ -167,9 +174,8 @@ if __name__ == '__main__':
         url_page = page.get('url', None)
         title = page.get('title', None)
 
-        if '.' in os.path.splitext(url_page)[-1]:
-            raise _error("A toc.yml entry links to a file directly. You should strip the file suffix.\n"
-                         "Please change {} to {}".format(url_page, os.path.splitext(url_page)[0]))
+        # Make sure URLs (file paths) have correct structure
+        _check_url_page(url_page)
 
         ###############################################################################
         # Create path to old/new file and create directory
@@ -275,18 +281,19 @@ if __name__ == '__main__':
         # Front-matter YAML
         yaml_fm = []
         yaml_fm += ['---']
+        yaml_fm += ['redirect_from:']
+        yaml_fm += ['  - "{}"'.format(_prepare_url(url_page).replace('_', '-').lower())]
         if ix_file == 0:
-            yaml_fm += ['redirect_from:']
             yaml_fm += ['  - "/"']
         if path_url_page.endswith('.ipynb'):
             interact_path = 'content/' + path_url_page.split('content/')[-1]
             yaml_fm += ['interact_link: {}'.format(interact_path)]
         yaml_fm += ["title: '{}'".format(title)]
         yaml_fm += ['prev_page:']
-        yaml_fm += ['  url: {}'.format(_prepare_url(url_prev_page).replace('"', "'"))]
+        yaml_fm += ['  url: {}'.format(url_prev_page)]
         yaml_fm += ["  title: '{}'".format(prev_file_title)]
         yaml_fm += ['next_page:']
-        yaml_fm += ['  url: {}'.format(_prepare_url(url_next_page).replace('"', "'"))]
+        yaml_fm += ['  url: {}'.format(url_next_page)]
         yaml_fm += ["  title: '{}'".format(next_file_title)]
         yaml_fm += ['comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /{}***"'.format(CONTENT_FOLDER_NAME)]
         yaml_fm += ['---']

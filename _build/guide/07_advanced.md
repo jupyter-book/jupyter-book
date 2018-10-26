@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/guide/07-advanced"
 title: 'Advanced'
 prev_page:
   url: /guide/06_faq

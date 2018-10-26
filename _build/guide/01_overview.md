@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/guide/01-overview"
 title: 'Overview'
 prev_page:
   url: /guide/00_intro

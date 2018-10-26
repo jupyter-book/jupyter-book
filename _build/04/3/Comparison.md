@@ -5,7 +5,7 @@ prev_page:
   url: /04/2/Strings
   title: 'Strings'
 next_page:
-  url: /
+  url: 
   title: ''
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---

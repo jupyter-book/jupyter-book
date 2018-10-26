@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/guide/02-setup"
 title: 'Setup and Install'
 prev_page:
   url: /guide/01_overview

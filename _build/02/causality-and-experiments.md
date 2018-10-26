@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/02/causality-and-experiments"
 title: 'Causality and Experiments'
 prev_page:
   url: /01/3/subsection/subsectiontwo
