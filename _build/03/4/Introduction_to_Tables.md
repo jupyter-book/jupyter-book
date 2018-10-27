@@ -1,5 +1,6 @@
 ---
 interact_link: content/03/4/Introduction_to_Tables.ipynb
+download_link: /jupyter-book/assets/downloads/Introduction_to_Tables.ipynb.zip
 title: 'Introduction to Tables'
 prev_page:
   url: /03/3/Calls

@@ -1,5 +1,6 @@
 ---
 interact_link: content/03/2/Names.ipynb
+download_link: /jupyter-book/assets/downloads/Names.ipynb.zip
 title: 'Names'
 prev_page:
   url: /03/1/Expressions

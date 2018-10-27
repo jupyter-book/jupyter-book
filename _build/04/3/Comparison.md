@@ -1,5 +1,6 @@
 ---
 interact_link: content/04/3/Comparison.ipynb
+download_link: /jupyter-book/assets/downloads/Comparison.ipynb.zip
 title: 'Comparisons'
 prev_page:
   url: /04/2/Strings

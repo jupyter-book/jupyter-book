@@ -1,5 +1,6 @@
 ---
 interact_link: content/03/1/Expressions.ipynb
+download_link: /jupyter-book/assets/downloads/Expressions.ipynb.zip
 title: 'Expressions'
 prev_page:
   url: /03/programming-in-python

@@ -1,5 +1,6 @@
 ---
 interact_link: content/04/2/Strings.ipynb
+download_link: /jupyter-book/assets/downloads/Strings.ipynb.zip
 title: 'Strings'
 prev_page:
   url: /04/1/Numbers

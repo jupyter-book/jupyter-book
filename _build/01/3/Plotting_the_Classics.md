@@ -1,5 +1,6 @@
 ---
 interact_link: content/01/3/Plotting_the_Classics.ipynb
+download_link: /jupyter-book/assets/downloads/Plotting_the_Classics.ipynb.zip
 title: 'Plotting the Classics'
 prev_page:
   url: /01/2/why-data-science

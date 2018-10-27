@@ -1,5 +1,6 @@
 ---
 interact_link: content/04/1/Numbers.ipynb
+download_link: /jupyter-book/assets/downloads/Numbers.ipynb.zip
 title: 'Numbers'
 prev_page:
   url: /04/Types
