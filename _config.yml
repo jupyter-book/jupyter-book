@@ -37,6 +37,10 @@ css_url                   : "/assets/css" # Path to static CSS files
 js_url                    : "/assets/js" # Path to JS files
 collapse_inactive_chapters: true  # Whether to collapse the inactive chapters in the sidebar
 
+# Button settings
+add_interact_button      : true  # Whether to add a button link to an interactive version of the notebook
+add_download_button      : true  # Whether to add a button link to download a copy of the notebook
+
 # Interact link settings
 hub_url                  : "https://mybinder.org"  # The URL for your JupyterHub/BinderHub.
 hub_name                 : "JupyterHub"  # The name of your JupyterHub (used for the button in the NavBar. If an empty string, no button is shown)

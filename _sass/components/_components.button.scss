@@ -2,18 +2,18 @@
  * Stylings for Interact and Show Widget buttons.
  *
  * [1]: We abuse CSS selector specificity here since the buttons at the top of
- *   the notebook might have both .interact-button and .js=nbinteract-widget.
+ *   the notebook might have both .button and .js=nbinteract-widget.
  * [2]: We want the top buttons to be large.
  * [3]: However, a .js=nbinteract-widget appearing alone midway through the
  *   notebook should be small.
  *
  */
 
-$color-interact-button: #477dca !default;
+$color-button: #477dca !default;
 
-%interact-button {
+%button {
   @include inuit-font-size(16px);
-  background-color: $color-interact-button;
+  background-color: $color-button;
   border-radius: 3px;
   border: none;
   color: white;
@@ -34,13 +34,13 @@ $color-interact-button: #477dca !default;
   margin-bottom: $spacing-unit;
 
   /* [1] */
-  .interact-button {
-    @extend %interact-button;
+  .button {
+    @extend %button;
   }
 }
 
 .js-nbinteract-widget {
-  @extend %interact-button;
+  @extend %button;
 
   /* [3] */
   padding: $spacing-unit-tiny $spacing-unit;
