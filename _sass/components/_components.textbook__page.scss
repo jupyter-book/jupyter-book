@@ -48,6 +48,14 @@
   position: relative;
 }
 
+// have the buttons line up in the same row
+.button-wrapper {
+    display: flex;
+    .button {
+        margin-right: 20px;
+    }
+}
+
 /**
  * Jupyter notebook styling
  */
