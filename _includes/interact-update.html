@@ -106,7 +106,7 @@ function updateInteractLink() {
 
           // Add text after interact link saying where we're launching
           hubUrlNoHttp = decodeURIComponent(hubUrl).replace('http://', '').replace('https://', '');
-          $("a.button").after($('<div class="interact-context">on ' + hubUrlNoHttp + '</div>'));
+          $("a.interact").after($('<div class="interact-context">on ' + hubUrlNoHttp + '</div>'));
 
       }
       // Update internal links so we retain the hub url
