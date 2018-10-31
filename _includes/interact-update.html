@@ -80,7 +80,7 @@ function updateInteractLink() {
       hubUrl = safeUrl(hubUrl);
       // Add HTTP text if omitted
       if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
-      link = $("a.button")[0];
+      link = $("a.interact")[0];
       if (link !== undefined) {
           // Update the interact link URL
           var href = link.getAttribute('href');
