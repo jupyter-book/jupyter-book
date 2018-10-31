@@ -2,7 +2,7 @@
  * Stylings for Interact and Show Widget buttons.
  *
  * [1]: We abuse CSS selector specificity here since the buttons at the top of
- *   the notebook might have both .button and .js=nbinteract-widget.
+ *   the notebook might have both .interact and .js=nbinteract-widget.
  * [2]: We want the top buttons to be large.
  * [3]: However, a .js=nbinteract-widget appearing alone midway through the
  *   notebook should be small.
