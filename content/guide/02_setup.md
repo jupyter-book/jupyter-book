@@ -49,19 +49,18 @@ The Jupyter Book repository primarily depends on three sets of tools:
 This section helps you set each of these up
 
 
-0. **Install the Anaconda distribution of Python**. This is needed to install
-   the dependencies in `environment.yml`. It's not *strictly* necessary, so
+0. **Install the Anaconda distribution of Python**. This is useful to install
+   the dependencies in `requirements.txt`. It's not *strictly* necessary, so
    if you know what you're doing feel free to skip this step.
-1. **Install the proper dependencies**. You can do this by installing the
-   Anaconda environment specified in `environment.yml`:
+1. **Install the proper dependencies**. You can do this by using `pip` to install the
+   packages needed to build the book:
 
-       conda env create -f environment.yml
+       pip install build-requirements.txt
 
-2. **Activate the environment** before building your site.
+   You should use the file `requirements.txt` to specify the environment needed to
+   run the notebooks in the book.
 
-       conda activate textbook
-
-3. (optionally) **Install Ruby and the Jekyll plugin.**
+2. (optionally) **Install Ruby and the Jekyll plugin.**
 
    If you want to build and preview the site locally, you'll need Ruby and Jekyll.
    [See the Jekyll docs](https://jekyllrb.com/docs/installation/) for information on this.
