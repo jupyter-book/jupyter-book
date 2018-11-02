@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/features/notebooks"
 interact_link: content/features/notebooks.ipynb
 title: 'Jupyter notebooks'
 prev_page:

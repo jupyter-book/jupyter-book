@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/03/2/names"
 interact_link: content/03/2/Names.ipynb
 title: 'Names'
 prev_page:

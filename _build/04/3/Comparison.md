@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/04/3/comparison"
 interact_link: content/04/3/Comparison.ipynb
 title: 'Comparisons'
 prev_page:

@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/01/3/plotting-the-classics"
 interact_link: content/01/3/Plotting_the_Classics.ipynb
 title: 'Plotting the Classics'
 prev_page:

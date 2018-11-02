@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/04/2/strings"
 interact_link: content/04/2/Strings.ipynb
 title: 'Strings'
 prev_page:

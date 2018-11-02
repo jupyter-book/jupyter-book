@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/04/types"
 interact_link: content/04/Types.ipynb
 title: 'Data Types'
 prev_page:

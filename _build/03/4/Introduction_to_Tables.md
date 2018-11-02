@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/03/4/introduction-to-tables"
 interact_link: content/03/4/Introduction_to_Tables.ipynb
 title: 'Introduction to Tables'
 prev_page:

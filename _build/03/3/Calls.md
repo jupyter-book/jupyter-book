@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/03/3/calls"
 interact_link: content/03/3/Calls.ipynb
 title: 'Call Expressions'
 prev_page:

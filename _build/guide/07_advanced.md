@@ -33,7 +33,8 @@ of the more important files/folders worth knowing about.
 * `_config.yml` contains all site configuration.
 * `_data/toc.yml` contains the table of contents for the book (AKA, the sidebar)
 * `assets/` contains CSS and Javascript for the book and website
-* `environment.yml` contains the environment needed to build the jupyter book
+* `requirements.txt` contains the packages needed to run the notebooks in the Jupyter book
+* `build-requirements.txt` contains the packages needed to build the Jupyter book
 
 ### Helper scripts
 
