@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/01/3/subsection/subsections"
 title: 'Subsection Demo 1'
 prev_page:
   url: /01/3/Plotting_the_Classics

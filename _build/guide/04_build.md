@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/guide/04-build"
 title: 'Build your book'
 prev_page:
   url: /guide/03_configure

@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/01/what-is-data-science"
 title: 'Data Science'
 prev_page:
   url: /guide/07_advanced

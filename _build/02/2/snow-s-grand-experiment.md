@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/02/2/snow-s-grand-experiment"
 title: 'Snow’s “Grand Experiment”'
 prev_page:
   url: /02/1/observation-and-visualization-john-snow-and-the-broad-street-pump

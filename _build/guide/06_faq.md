@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/guide/06-faq"
 title: 'FAQ'
 prev_page:
   url: /guide/05_publish

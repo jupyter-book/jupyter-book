@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/features/markdown"
 title: 'Markdown files'
 prev_page:
   url: /features/features

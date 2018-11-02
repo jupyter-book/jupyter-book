@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/guide/00-intro"
 title: 'Guide'
 prev_page:
   url: /features/notebooks

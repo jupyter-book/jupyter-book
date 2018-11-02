@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/02/1/observation-and-visualization-john-snow-and-the-broad-street-pump"
 title: 'John Snow and the Broad Street Pump'
 prev_page:
   url: /02/causality-and-experiments

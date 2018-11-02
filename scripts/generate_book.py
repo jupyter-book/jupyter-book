@@ -9,6 +9,7 @@ from tqdm import tqdm
 import numpy as np
 from glob import glob
 import argparse
+import string
 DESCRIPTION = ("Convert a collection of Jupyter Notebooks into Jekyll "
                "markdown suitable for a course textbook.")
 
@@ -21,7 +22,19 @@ parser.set_defaults(overwrite=False, execute=False)
 # Defaults
 BUILD_FOLDER_NAME = "_build"
 SUPPORTED_FILE_SUFFIXES = ['.ipynb', '.md']
+ALLOWED_CHARACTERS = string.ascii_letters + '-_/.' + string.digits
 
+def _check_url_page(url_page):
+    """Check that the page URL matches certain conditions."""
+    if not all(ii in ALLOWED_CHARACTERS for ii in url_page):
+        raise ValueError("Found unsupported character in filename: {}".format(url_page))
+    if '.' in os.path.splitext(url_page)[-1]:
+        raise _error("A toc.yml entry links to a file directly. You should strip the file suffix.\n"
+                        "Please change {} to {}".format(url_page, os.path.splitext(url_page)[0]))
+    if any(url_page.startswith(ii) for ii in [CONTENT_FOLDER_NAME, os.sep+CONTENT_FOLDER_NAME]):
+        raise ValueError("It looks like you have a page URL that starts with your content folder's name."
+                            "page URLs should be *relative* to the content folder. Here is the page URL: {}".format(url_page))
+    
 def _prepare_toc(toc):
     """Prepare the TOC for processing."""
     # Drop toc items w/o links
@@ -46,17 +59,11 @@ def _prepare_toc(toc):
 def _prepare_url(url):
     """Prep the formatting for a url."""
     # Strip suffixes and prefixes of the URL
-    for suff in SUPPORTED_FILE_SUFFIXES:
-        url = url.replace(suff, '')
-    url = url.lstrip('._')
     if not url.startswith('/'):
         url = '/' + url
-    url = url.replace('/' + CONTENT_FOLDER_NAME, '')
-    if not url.startswith('/'):
-        # In case the URL is in the root of the content folder add the slash back in
-        url = '/' + url
-    # Remove the CONTENT_FOLDER_NAME from any url
-    url = url.replace(CONTENT_FOLDER_NAME+'/', '')
+
+    # Standardize the quotes character
+    url = url.replace('"', "'")
     return url
 
 
@@ -83,9 +90,11 @@ def _clean_lines(lines, filepath):
     for ii, line in enumerate(lines):
         # Handle relative paths because we remove `content/` from the URL
         # If there's a path that goes back to the root, remove a level`
+        # This is for images referenced directly in the markdown
         if path_rel_root in line:
             line = line.replace(path_rel_root, path_rel_root_one_up)
-        line = line.replace(PATH_IMAGES_FOLDER, op.join(path_rel_root_one_up, 'images'))
+        # For programmatically-generated images from notebooks, replace the abspath with relpath
+        line = line.replace(PATH_IMAGES_FOLDER, op.relpath(PATH_IMAGES_FOLDER, op.dirname(filepath)))
 
         # Adding escape slashes since Jekyll removes them when it serves the page
         # Make sure we have at least two dollar signs and they
@@ -134,7 +143,7 @@ if __name__ == '__main__':
     PATH_TOC_YAML = op.join(PATH_SITE_ROOT, '_data', 'toc.yml')
     CONFIG_FILE = op.join(PATH_SITE_ROOT, '_config.yml')
     PATH_TEMPLATE = op.join(PATH_SITE_ROOT, 'assets', 'templates', 'jekyllmd.tpl')
-    PATH_IMAGES_FOLDER = op.join(PATH_SITE_ROOT, 'images')
+    PATH_IMAGES_FOLDER = op.join(PATH_SITE_ROOT, '_build', 'images')
     BUILD_FOLDER = op.join(PATH_SITE_ROOT, BUILD_FOLDER_NAME)
 
     ###############################################################################
@@ -165,9 +174,8 @@ if __name__ == '__main__':
         url_page = page.get('url', None)
         title = page.get('title', None)
 
-        if '.' in os.path.splitext(url_page)[-1]:
-            raise _error("A toc.yml entry links to a file directly. You should strip the file suffix.\n"
-                         "Please change {} to {}".format(url_page, os.path.splitext(url_page)[0]))
+        # Make sure URLs (file paths) have correct structure
+        _check_url_page(url_page)
 
         ###############################################################################
         # Create path to old/new file and create directory
@@ -243,9 +251,10 @@ if __name__ == '__main__':
             # Run nbconvert moving it to the output folder
             # This is the output directory for `.md` files
             build_call = '--FilesWriter.build_directory={}'.format(path_new_folder)
-            # This is where images go - remove the _ so Jekyll will copy them over
-            images_call = '--NbConvertApp.output_files_dir={}'.format(
-                op.join(PATH_IMAGES_FOLDER, path_new_folder.replace(PATH_SITE_ROOT, '').lstrip('/_')))
+            # Copy notebook output images to the build directory using the base folder name
+            path_after_build_folder = path_new_folder.split(os.sep + BUILD_FOLDER_NAME + os.sep)[-1]
+            nb_output_folder = op.join(PATH_IMAGES_FOLDER, path_after_build_folder)
+            images_call = '--NbConvertApp.output_files_dir={}'.format(nb_output_folder)
             call = ['jupyter', 'nbconvert', '--log-level="CRITICAL"',
                     '--to', 'markdown', '--template', PATH_TEMPLATE,
                     images_call, build_call, tmp_notebook]
@@ -272,18 +281,19 @@ if __name__ == '__main__':
         # Front-matter YAML
         yaml_fm = []
         yaml_fm += ['---']
+        yaml_fm += ['redirect_from:']
+        yaml_fm += ['  - "{}"'.format(_prepare_url(url_page).replace('_', '-').lower())]
         if ix_file == 0:
-            yaml_fm += ['redirect_from:']
             yaml_fm += ['  - "/"']
         if path_url_page.endswith('.ipynb'):
             interact_path = 'content/' + path_url_page.split('content/')[-1]
             yaml_fm += ['interact_link: {}'.format(interact_path)]
         yaml_fm += ["title: '{}'".format(title)]
         yaml_fm += ['prev_page:']
-        yaml_fm += ['  url: {}'.format(_prepare_url(url_prev_page).replace('"', "'"))]
+        yaml_fm += ['  url: {}'.format(url_prev_page)]
         yaml_fm += ["  title: '{}'".format(prev_file_title)]
         yaml_fm += ['next_page:']
-        yaml_fm += ['  url: {}'.format(_prepare_url(url_next_page).replace('"', "'"))]
+        yaml_fm += ['  url: {}'.format(url_next_page)]
         yaml_fm += ["  title: '{}'".format(next_file_title)]
         yaml_fm += ['comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /{}***"'.format(CONTENT_FOLDER_NAME)]
         yaml_fm += ['---']

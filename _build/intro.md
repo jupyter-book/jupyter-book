@@ -1,9 +1,10 @@
 ---
 redirect_from:
+  - "/intro"
   - "/"
 title: 'Home'
 prev_page:
-  url: /
+  url: 
   title: ''
 next_page:
   url: /features/features

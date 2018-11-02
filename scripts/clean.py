@@ -5,8 +5,7 @@ import os.path as op
 
 path_root = op.join(op.dirname(op.abspath(__file__)), '..')
 
-paths = [op.join(path_root, 'images', 'build'),
-         op.join(path_root, '_site'),
+paths = [op.join(path_root, '_site'),
          op.join(path_root, '_build')]
 for path in paths:
     print('Removing {}...'.format(path))
