@@ -15,6 +15,9 @@ DESCRIPTION = ("Convert a collection of Jupyter Notebooks into Jekyll "
 
 parser = argparse.ArgumentParser(description=DESCRIPTION)
 parser.add_argument("--site_root", default=None, help="Path to the root of the textbook repository.")
+parser.add_argument("--path-template", default=None, help="Path to the template nbconvert uses to build markdown files")
+parser.add_argument("--path-config", default=None, help="Path to the Jekyll configuration file")
+parser.add_argument("--path-toc", default=None, help="Path to the Table of Contents YAML file")
 parser.add_argument("--overwrite", action='store_true', help="Overwrite md files if they already exist.")
 parser.add_argument("--execute", action='store_true', help="Execute notebooks before converting to MD.")
 parser.set_defaults(overwrite=False, execute=False)
@@ -104,6 +107,8 @@ def _clean_lines(lines, filepath):
             for char in inline_replace_chars:
                 line = line.replace('\\{}'.format(char), '\\\\{}'.format(char))
         line = line.replace(' \\$', ' \\\\$')
+        if line.startswith('\\'):
+            line = line.replace('\\', '\\\\', 1)
         lines[ii] = line
     return lines
 
@@ -140,10 +145,11 @@ if __name__ == '__main__':
 
     # Paths for our notebooks
     PATH_SITE_ROOT = op.abspath(args.site_root)
-    PATH_TOC_YAML = op.join(PATH_SITE_ROOT, '_data', 'toc.yml')
-    CONFIG_FILE = op.join(PATH_SITE_ROOT, '_config.yml')
-    PATH_TEMPLATE = op.join(PATH_SITE_ROOT, 'assets', 'templates', 'jekyllmd.tpl')
-    PATH_IMAGES_FOLDER = op.join(PATH_SITE_ROOT, '_build', 'images')
+
+    PATH_TOC_YAML = args.path_toc if args.path_toc is not None else op.join(PATH_SITE_ROOT, '_data', 'toc.yml')
+    CONFIG_FILE = args.path_config if args.path_config is not None else op.join(PATH_SITE_ROOT, '_config.yml')
+    PATH_TEMPLATE = args.path_template if args.path_template is not None else op.join(PATH_SITE_ROOT, 'assets', 'templates', 'jekyllmd.tpl')
+    PATH_IMAGES_FOLDER = op.join(PATH_SITE_ROOT, 'images')
     BUILD_FOLDER = op.join(PATH_SITE_ROOT, BUILD_FOLDER_NAME)
 
     ###############################################################################
