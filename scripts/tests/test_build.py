@@ -38,10 +38,10 @@ def test_notebook():
         lines = ff.readlines()
 
     # Escaping characters get doubled
-    assert is_in(lines, "\\\\$Escape \\\\$your \\\\$dollar signs")
+    assert is_in(lines, "\\\\$Escape \\\\$your \\\\$dollar signs!")
 
     # Notebook-converted images work
-    assert is_in(lines, "../images/build/tests/notebooks_2_0.png")
+    assert is_in(lines, "../images/tests/notebooks_2_0.png")
 
     # Jekyll markdown classes are there
     assert is_in(lines, "{:.input_area}")

@@ -1,9 +1,10 @@
 ---
 redirect_from:
+  - "/root-test"
   - "/"
 title: 'Home'
 prev_page:
-  url: /
+  url: 
   title: ''
 next_page:
   url: /tests/features

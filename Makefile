@@ -18,3 +18,6 @@ clean:
 
 serve:
 	bundle exec guard
+
+test:
+	pytest scripts/teststest_build.py

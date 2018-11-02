@@ -107,8 +107,6 @@ def _clean_lines(lines, filepath):
             for char in inline_replace_chars:
                 line = line.replace('\\{}'.format(char), '\\\\{}'.format(char))
         line = line.replace(' \\$', ' \\\\$')
-        if line.startswith('\\'):
-            line = line.replace('\\', '\\\\', 1)
         lines[ii] = line
     return lines
 
@@ -148,8 +146,8 @@ if __name__ == '__main__':
 
     PATH_TOC_YAML = args.path_toc if args.path_toc is not None else op.join(PATH_SITE_ROOT, '_data', 'toc.yml')
     CONFIG_FILE = args.path_config if args.path_config is not None else op.join(PATH_SITE_ROOT, '_config.yml')
-    PATH_TEMPLATE = args.path_template if args.path_template is not None else op.join(PATH_SITE_ROOT, 'assets', 'templates', 'jekyllmd.tpl')
-    PATH_IMAGES_FOLDER = op.join(PATH_SITE_ROOT, 'images')
+    PATH_TEMPLATE = args.path_template if args.path_template is not None else op.join(PATH_SITE_ROOT, 'scripts', 'templates', 'jekyllmd.tpl')
+    PATH_IMAGES_FOLDER = op.join(PATH_SITE_ROOT, '_build', 'images')
     BUILD_FOLDER = op.join(PATH_SITE_ROOT, BUILD_FOLDER_NAME)
 
     ###############################################################################

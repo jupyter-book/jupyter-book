@@ -1,11 +1,13 @@
 ---
+redirect_from:
+  - "/tests/notebooks"
 interact_link: content/tests/notebooks.ipynb
 title: 'Jupyter notebooks'
 prev_page:
   url: /tests/markdown
   title: 'Markdown files'
 next_page:
-  url: /
+  url: 
   title: ''
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
@@ -16,7 +18,7 @@ This page tests that notebooks image linking etc works well. See sections below:
 
 ## Markdown
 
-
+### Images
 
 Images should be embedded
 
@@ -33,13 +35,13 @@ $$
 or
 
 $$
-\\begin{align*}
-\\mbox{mean} la_{tex} \\ \\
+\begin{align*}
+\mbox{mean} la_{tex} \\ \\
 math blocks
-\\end{align*}
+\end{align*}
 $$
 
-\\$Escape \\$your \\$dollar signs \\$should work!
+You should \\$Escape \\$your \\$dollar signs!
 
 ### Code blocks and image outputs
 
@@ -83,7 +85,7 @@ ax.legend(custom_lines, ['Cold', 'Medium', 'Hot']);
 
 
 
-![png](../images/build/tests/notebooks_2_0.png)
+![png](../images/tests/notebooks_2_0.png)
 
 
 Note that the image above is captured and displayed by Jekyll.
@@ -103,7 +105,7 @@ which you can [see in the original notebook](https://github.com/choldgraf/textbo
 
 
 
-![png](../images/build/tests/notebooks_6_0.png)
+![png](../images/tests/notebooks_6_0.png)
 
 
 And here we'll *only* display a Pandas DataFrame. Again, this was generated with Python code

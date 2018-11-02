@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/tests/features"
 title: 'Tests'
 prev_page:
   url: /root_test
