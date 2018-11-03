@@ -21,12 +21,10 @@ of the more important files/folders worth knowing about.
 
 ### Course materials
 
-* `contents/` contains all course content in Jupyter notebook or markdown form
-* `images/` contains images referenced in the book
+* `content/` contains all course content in Jupyter notebook or markdown form
 
 ### Auto-generated folders and files
-* `images/build` contains images *generated* during the notebook conversion
-* `_build/` contain notebooks automatically converted to markdown in the build process
+* `_build/` contain markdown and assets created when you run `make book`. This is what Jekyll uses to serve your site.
 * `_site/` contains the HTML for the built site. It is created by Jekyll, and should only exist if you build the site locally
 
 ### Repository configuration and build files
@@ -37,7 +35,6 @@ of the more important files/folders worth knowing about.
 * `build-requirements.txt` contains the packages needed to build the Jupyter book
 
 ### Helper scripts
-
 * `scripts/` contains scripts to generate the textbook from the Jupyter notebooks. These helper scripts are
   all run with the `Makefile` included with this repository.
     * `scripts/generate_book.py` will generate the markdown for your book.
@@ -45,3 +42,4 @@ of the more important files/folders worth knowing about.
        `make book` so your site stays up-to-date.
     * `scripts/clean.py` is used to clean out any auto-generated files
     * `scripts/execute_all_notebooks.py` will use nbconvert to execute all notebooks in `contents/` in-place.
+

@@ -9,11 +9,11 @@ steps:
 
 1. Add this repository as a "remote" on your local git repo:
 
-       git remote add upstream https://github.com/choldgraf/jupyter-book
+       git remote add template https://github.com/choldgraf/jupyter-book
 
 2. Pull in the latest changes from the remote repository into your local `gh-pages` branch:
 
-       git pull upstream master
+       git pull template master
 
 3. Resolve any merge conflicts that may arise. Make sure that you don't over-write
    any important files (e.g. anything in your `content/` directory or in `_config.yml`)
@@ -32,9 +32,59 @@ steps:
 
        git cherry-pick <COMMIT-HASH>
 
-5. Push changes to your github repository once you're happy with the content:
+6. **If you'd like to update a specific file with the latest version from `jupyter-book`:
+
+       git checkout template/master <path-to-file>
+
+7. Push changes to your github repository once you're happy with the content:
 
        git push
+
+## Which files do I need to update?
+
+These sections help give you an idea for which files you should manually upgrade, vs. which you can automatically update
+with the latest version from `jupyter-book`
+
+These sections assume that the `jupyter-book` repository is added as a "remote" repository called `template` to your local copy.
+
+### Files that you shouldn't need to change to upgrade
+
+These are files you shouldn't need to update unless there is a major change to `jupyter-book`.
+
+* `contents/` - these are files unique to your book, so you shouldn't need to change them.
+* `_data/toc.yml` - the Table of Contents structure will not change unless there is a major version change in `jupyter-book`.
+* `README.md` - is unique for your site.
+* Any other folders/files that are unique to your book.
+
+### Files that you might want to check
+
+You can check the `diff` with the latest `jupyter-book` file with:
+
+```
+git diff master...template/master
+```
+
+* `_config.yml` - occasionally, there are new fields added to `jupyter-book`'s configuration file. You should
+  check that the newer version of `jupyter-book` hasn't added or removed something.
+
+### Files that you should force-update
+
+You can grab the latest version of these files with:
+
+```
+git checkout template/master <path-to-file>
+```
+
+* `scripts/` - these are scripts for building and cleaning the book. You should just pull in the latest contents
+  of this folder (unless you know what you're doing and have modified these scripts yourself).
+* `Makefile` - the Makefile is tuned to whatever is inside `scripts/`. You should update it to the latest version
+  as well.
+* `assets` - these are assets used by jupyter-book. You should update to grab the newest ones, unless you have
+  modified or added your own assets.
+* `_sass` - the SASS defines the styling of the site. You should also just grab the latest version unless you know
+  what you're doing.
+* `_includes` and `_layouts`. These are template files, and should be auto-updated.
+
 
 ## Why isn't my math showing up properly?
 

@@ -28,12 +28,9 @@
     not_numbered: true
 
 - title: Guide
-  url: /guide/00_intro
+  url: /guide/01_overview
   not_numbered: true
   sections:
-  - title: Overview
-    url: /guide/01_overview
-    not_numbered: true
   - title: Setup and Install
     url: /guide/02_setup
     not_numbered: true

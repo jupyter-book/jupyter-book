@@ -1,10 +1,10 @@
 ---
 redirect_from:
   - "/guide/01-overview"
-title: 'Overview'
+title: 'Guide'
 prev_page:
-  url: /guide/00_intro
-  title: 'Guide'
+  url: /features/notebooks
+  title: 'Jupyter notebooks'
 next_page:
   url: /guide/02_setup
   title: 'Setup and Install'
@@ -26,7 +26,7 @@ are essentially these two things:
 1. [**A collection of notebooks and markdown files**](https://github.com/choldgraf/jupyter-book/tree/master/content). These are in `content/`. When you run `scripts/generate_book.py`,
    they'll be converted to `.md` files (or just copied if they're already `.md` files) and placed in `/_build`.
 2. [**A Table of Contents file**](https://github.com/choldgraf/jupyter-book/tree/master/_data/toc.yml) (`_data/toc.yml`). This is
-   the Table of Contents, which will be used to create the sidebar for your site. Links in this file are **relative to the `/_contents/` folder.**
+   the Table of Contents, which will be used to create the sidebar for your site. Links in this file are **relative to the `/content/` folder.**
    See [the TOC for this book](https://github.com/choldgraf/jupyter-book/tree/master/_data/toc.yml) for a couple of examples.
 3. [**A Jekyll configuration file**](https://github.com/choldgraf/jupyter-book/tree/master/config.yml) that defines information about your book,
    such as its title or the URL of a JupyterHub you want interact links to point to. This is also how you turn on / off many features
@@ -40,7 +40,7 @@ step in more detail in this guide):
 * Get yourself a copy of the jupyter-book repository. [Here's the repo URL on GitHub](https://github.com/choldgraf/jupyter-book).
 * Put your Jupyter Notebooks / markdown files in `/content/`
 * Edit the `_data/toc.yml` file for your Table of Contents. This defines the structure
-  of your book. The location of URLs should be **relative to the `/_contents/` folder.**
+  of your book. The location of URLs should be **relative to the `/content/` folder.**
 * Navigate to the repo root, then run `make book` to convert your Jupyter Notebooks into Jekyll-ready markdown. It will be placed in `/_build`.
 * Push these changes to a GitHub repo you control and tell GitHub you want to build a website from your repository.
 * That's it!
