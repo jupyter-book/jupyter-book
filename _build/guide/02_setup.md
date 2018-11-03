@@ -27,7 +27,7 @@ To import the template repository to your GitHub account, take the following ste
   "old repository's clone URL" field:
 
   ```
-  https://github.com/choldgraf/jupyter-book`
+  https://github.com/choldgraf/jupyter-book
   ```
 
 * Choose a new name for your repository, and whether you want it to be public.

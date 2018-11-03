@@ -44,7 +44,7 @@ steps:
 
        git cherry-pick <COMMIT-HASH>
 
-6. **If you'd like to update a specific file with the latest version from `jupyter-book`:
+6. **If you'd like to update a specific file with the latest version from `jupyter-book`**:
 
        git checkout template/master <path-to-file>
 
