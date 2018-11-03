@@ -17,8 +17,8 @@ To build your site, take the following steps.:
        make clean
 
 1. Ensure that your Table of Contents file (`_data/toc.yml`) is up to date. The links in
-   that file should be **relative to the `/_contents/` folder and with no extension.** For example,
-   the file that's located in `mysite/contents/mychapter/mypage.ipynb` should have an entry like this:
+   that file should be **relative to the `/content/` folder and with no extension.** For example,
+   the file that's located in `mysite/content/mychapter/mypage.ipynb` should have an entry like this:
 
        - title: My page title
          url: /mychapter/mypage

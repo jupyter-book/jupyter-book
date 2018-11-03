@@ -19,7 +19,7 @@ content with your own, and have a Jupyter-based textbook ready to go shortly!
 Here are a few links of interest:
 
 * **[A demo of the hosted textbook](http://predictablynoisy.com/jupyter-book/ )**
-* **[A short guide to deploying your own textbook](https://predictablynoisy.com/jupyter-book/ch/guide/00_intro)**
+* **[A short guide to deploying your own textbook](https://predictablynoisy.com/jupyter-book/guide/00_intro)**
 * **[The markdown version of the guide in this repo](notebooks/guide/)**
 
 See the [live demo of the template here](https://predictablynoisy.com/jupyter-book).
