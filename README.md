@@ -22,8 +22,6 @@ Here are a few links of interest:
 * **[A short guide to deploying your own textbook](https://predictablynoisy.com/jupyter-book/guide/01_overview)**
 * **[The markdown version of the guide in this repo](content/guide/)**
 
-See the [live demo of the template here](https://predictablynoisy.com/jupyter-book).
-
 ## Explore this book
 
 This website is an example of a Jupyter Book. You can explore the chapters of the book
