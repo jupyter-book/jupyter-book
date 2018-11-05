@@ -14,7 +14,7 @@ DESCRIPTION = ("Convert a collection of Jupyter Notebooks into Jekyll "
                "markdown suitable for a course textbook.")
 
 parser = argparse.ArgumentParser(description=DESCRIPTION)
-parser.add_argument("--site_root", default=None, help="Path to the root of the textbook repository.")
+parser.add_argument("--site-root", default=None, help="Path to the root of the textbook repository.")
 parser.add_argument("--path-template", default=None, help="Path to the template nbconvert uses to build markdown files")
 parser.add_argument("--path-config", default=None, help="Path to the Jekyll configuration file")
 parser.add_argument("--path-toc", default=None, help="Path to the Table of Contents YAML file")
