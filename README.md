@@ -1,6 +1,5 @@
-# Jupyter Books
+# Jupyter Books <img src="content/images/logo/logo.png" width=40 />
 
-<img src="images/logo/logo.png" width=200 />
 
 This is a guide and template for hosting your own book using
 Jupyter Notebooks and Jekyll.

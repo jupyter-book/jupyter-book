@@ -18,11 +18,17 @@ function getJsonFromUrl(url) {
   });
   return result;
 }
+    
+function dict2param(dict) {
+    params = Object.keys(dict).map(function(k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(dict[k])
+    });
+    return params.join('&')
+}
 
 // Parse a Binder URL, converting it to the string needed for JupyterHub
 function binder2Jupyterhub(url) {
   newUrl = {};
-  console.log(url)
   parts = url.split('v2/gh/')[1];
   // Grab the base repo information
   repoinfo = parts.split('?')[0];
@@ -34,7 +40,7 @@ function binder2Jupyterhub(url) {
   if (params['filepath'] !== undefined) {
     newUrl['subPath'] = params['filepath']
   }
-  return jQuery.param(newUrl);
+  return dict2param(newUrl);
 }
 
 // Filter out potentially unsafe characters to prevent xss
@@ -49,8 +55,8 @@ function safeUrl(url)
 }
 
 function addParamToInternalLinks(hub) {
-  var links = $("a").each(function() {
-    var href = this.href;
+  var links = document.querySelectorAll("a").forEach(function(link) {
+    var href = link.href;
     // If the link is an internal link...
     if (href.search("{{ site.url }}") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
       // Assume we're an internal link, add the hub param to it
@@ -63,8 +69,8 @@ function addParamToInternalLinks(hub) {
         params = {'hub': hub};
       }
       // Update the link
-      var newHref = href.split('?')[0] + '?' + jQuery.param(params);
-      this.setAttribute('href', decodeURIComponent(newHref));
+      var newHref = href.split('?')[0] + '?' + dict2param(params);
+      link.setAttribute('href', decodeURIComponent(newHref));
     }
   });
   return false;
@@ -80,7 +86,7 @@ function updateInteractLink() {
       hubUrl = safeUrl(hubUrl);
       // Add HTTP text if omitted
       if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
-      link = $("a.interact-button")[0];
+      link = document.querySelectorAll("a.interact-button")[0];
       if (link !== undefined) {
           // Update the interact link URL
           var href = link.getAttribute('href');
@@ -106,8 +112,7 @@ function updateInteractLink() {
 
           // Add text after interact link saying where we're launching
           hubUrlNoHttp = decodeURIComponent(hubUrl).replace('http://', '').replace('https://', '');
-          $("a.interact-button").after($('<div class="interact-context">on ' + hubUrlNoHttp + '</div>'));
-
+          document.querySelectorAll("a.interact-button")[0].insertAdjacentHTML('afterend', '<div class="interact-context">on ' + hubUrlNoHttp + '</div>');
       }
       // Update internal links so we retain the hub url
       addParamToInternalLinks(hubUrl);
