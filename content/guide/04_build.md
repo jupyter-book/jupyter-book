@@ -4,21 +4,14 @@ To build your site, take the following steps.:
 
        make clean
 
-1. Ensure that your Table of Contents file (`_data/toc.yml`) is up to date. The links in
-   that file should be **relative to the `/content/` folder and with no extension.** For example,
-   the file that's located in `mysite/content/mychapter/mypage.ipynb` should have an entry like this:
-
-       - title: My page title
-         url: /mychapter/mypage
-
-   See [the template `toc.yml`](https://github.com/choldgraf/jupyter-book/tree/master/_data/toc.yml) for examples.
-
-2. Build the textbook by navigating to the site root, and running the following command:
+1. Build the textbook by navigating to the site root, and running the following command:
 
        make book
 
 This will:
 
+* Use the links specified in the `_data/toc.yml` file (pointing to files in `/content/`) and
+  do the following: 
 * Run `nbconvert` to turn the `.ipynb` files into markdown
 * Replace relative image file paths so that they work on your new built site
 * Clean up formatting issues for things like MathJax to display properly
