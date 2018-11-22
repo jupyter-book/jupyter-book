@@ -27,7 +27,7 @@ if op.isdir(op.join(curdir, 'site', '_build')):
     sh.rmtree(op.join(curdir, 'site', '_build'))
 
 cmd = ["python", op.join(curdir, "..", "generate_book.py"),
-       "--site_root", op.join(curdir, "site"), "--path-template", op.join(curdir, "..", "templates", "jekyllmd.tpl")]
+       "--site-root", op.join(curdir, "site"), "--path-template", op.join(curdir, "..", "templates", "jekyllmd.tpl")]
 out = subprocess.call(cmd)
 
 ####################################################
