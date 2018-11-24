@@ -8,6 +8,7 @@ help:
 	@echo "  serve       to serve the repository locally with Jekyll"
 
 book:
+	python scripts/license.py --path ./content
 	python scripts/generate_book.py
 
 runall:

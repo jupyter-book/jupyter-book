@@ -34,8 +34,8 @@
   - title: Setup and Install
     url: /guide/02_setup
     not_numbered: true
-  - title: Configuration
-    url: /guide/03_configure
+  - title: Prepare your book
+    url: /guide/03_prepare
     not_numbered: true
   - title: Build your book
     url: /guide/04_build

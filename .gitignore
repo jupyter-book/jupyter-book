@@ -109,3 +109,4 @@ _site/
 
 # Test builds
 scripts/tests/site/_build
+scripts/tests/site/content/LICENSE.md
