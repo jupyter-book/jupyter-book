@@ -2,9 +2,14 @@
 
 import os
 import os.path as op
+import sys
 import subprocess
 import shutil as sh
 import pytest
+
+this_folder = op.dirname(op.abspath(__file__))
+sys.path.append(op.join(this_folder, '..'))
+from jupyterbook.utils import _split_yaml
 
 def is_in(lines, check):
     is_in = False
@@ -52,3 +57,26 @@ def test_notebook():
 
     # Static files are copied over
     assert op.exists(op.join(curdir, 'site', '_build', 'tests', 'cool.jpg'))
+
+
+def test_split_yaml():
+    with open(op.join(curdir, 'site', '_build', 'tests', 'features.md'), 'r') as ff:
+        lines = ff.readlines()
+
+    # Make sure the yaml remains in the file
+    assert is_in(lines, "yaml_frontmatter: true")
+
+    # Edgecases etc on the splitter function
+    assert _split_yaml([]) == ([], [])
+    assert _split_yaml(['foo\n', 'bar\n']) == ([], ['foo\n', 'bar\n'])
+    assert _split_yaml(['---\n', 'foo\n', 'bar\n']) == ([], ['---\n', 'foo\n', 'bar\n'])
+    exp = ['---\n', 'foo\n', '---\n']
+    assert _split_yaml(exp) == (['foo\n'], [])
+    assert (_split_yaml(['---\n', 'foo\n', '---\n', 'baz\n', 'barf\n']) ==
+            (['foo\n'], ['baz\n', 'barf\n']))
+    assert (_split_yaml(['---\n', 'foo\n', 'bar\n', '---\n', 'baz\n', 'barf\n']) ==
+            (['foo\n', 'bar\n'], ['baz\n', 'barf\n']))
+    assert (_split_yaml(['\n', '\n', '---\n', 'foo\n', '---\n', 'baz\n', 'barf\n']) ==
+            (['foo\n'], ['baz\n', 'barf\n']))
+    assert (_split_yaml(['   \n', ' \n', '---\n', 'foo\n', '---\n', 'baz\n', 'barf\n']) ==
+            (['foo\n'], ['baz\n', 'barf\n']))
