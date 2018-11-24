@@ -1,6 +1,16 @@
 This page contains more advanced and complete information about the
 [`jupyter-book` repository](https://github.com/choldgraf/jupyter-book). See the sections below.
 
+## Retain custom YAML front-matter in your files
+
+Jupyter book will check your files for YAML front-matter and will **append**
+any newly-generated YAML to the built files for the page. This means you
+can provide your own custom YAML to files (which may be useful if you'd like
+to modify this site's HTML).
+
+Be careful not to add YAML with the same key names as the auto-generated YAML, as
+this will create duplicated keys in your page's front-matter.
+
 ## Relevant files
 
 There are a few moving parts associated with Jupyter Books, and this

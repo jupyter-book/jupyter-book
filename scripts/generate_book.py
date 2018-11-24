@@ -1,17 +1,23 @@
 from subprocess import check_call
 import os
 import os.path as op
+import sys
 import shutil as sh
 import yaml
 from nbclean import NotebookCleaner
-import nbformat as nbf
 from tqdm import tqdm
 import numpy as np
 from glob import glob
 import argparse
-import string
+
 DESCRIPTION = ("Convert a collection of Jupyter Notebooks into Jekyll "
                "markdown suitable for a course textbook.")
+
+# Add path to our utility functions
+this_folder = op.dirname(op.abspath(__file__))
+sys.path.append(op.join(this_folder, 'scripts'))
+from jupyterbook.utils import (_split_yaml, _check_url_page, _prepare_toc,
+                               _prepare_url, _clean_notebook_cells, _error)
 
 parser = argparse.ArgumentParser(description=DESCRIPTION)
 parser.add_argument("--site-root", default=None, help="Path to the root of the textbook repository.")
@@ -25,64 +31,6 @@ parser.set_defaults(overwrite=False, execute=False)
 # Defaults
 BUILD_FOLDER_NAME = "_build"
 SUPPORTED_FILE_SUFFIXES = ['.ipynb', '.md']
-ALLOWED_CHARACTERS = string.ascii_letters + '-_/.' + string.digits
-
-def _check_url_page(url_page):
-    """Check that the page URL matches certain conditions."""
-    if not all(ii in ALLOWED_CHARACTERS for ii in url_page):
-        raise ValueError("Found unsupported character in filename: {}".format(url_page))
-    if '.' in os.path.splitext(url_page)[-1]:
-        raise _error("A toc.yml entry links to a file directly. You should strip the file suffix.\n"
-                        "Please change {} to {}".format(url_page, os.path.splitext(url_page)[0]))
-    if any(url_page.startswith(ii) for ii in [CONTENT_FOLDER_NAME, os.sep+CONTENT_FOLDER_NAME]):
-        raise ValueError("It looks like you have a page URL that starts with your content folder's name."
-                            "page URLs should be *relative* to the content folder. Here is the page URL: {}".format(url_page))
-    
-def _prepare_toc(toc):
-    """Prepare the TOC for processing."""
-    # Drop toc items w/o links
-    toc = [ii for ii in toc if ii.get('url', None) is not None]
-    # Un-nest the TOC so it's a flat list
-    new_toc = []
-    for ii in toc:
-        sections = ii.pop('sections', None)
-        new_toc.append(ii)
-        if sections is None:
-            continue
-        for jj in sections:
-            subsections = jj.pop('subsections', None)
-            new_toc.append(jj)
-            if subsections is None:
-                continue
-            for kk in subsections:
-                new_toc.append(kk)
-    return new_toc
-
-
-def _prepare_url(url):
-    """Prep the formatting for a url."""
-    # Strip suffixes and prefixes of the URL
-    if not url.startswith('/'):
-        url = '/' + url
-
-    # Standardize the quotes character
-    url = url.replace('"', "'")
-    return url
-
-
-def _clean_notebook_cells(path_ntbk):
-    """Clean up cell text of an nbformat NotebookNode."""
-    ntbk = nbf.read(path_ntbk, nbf.NO_CONVERT)
-    # Remove '#' from the end of markdown headers
-    for cell in ntbk.cells:
-        if cell.cell_type == "markdown":
-            cell_lines = cell.source.split('\n')
-            for ii, line in enumerate(cell_lines):
-                if line.startswith('#'):
-                    cell_lines[ii] = line.rstrip('#').rstrip()
-            cell.source = '\n'.join(cell_lines)
-    nbf.write(ntbk, path_ntbk)
-
 
 def _clean_lines(lines, filepath):
     """Replace images with jekyll image root and add escape chars as needed."""
@@ -126,9 +74,6 @@ def _copy_non_content_files():
             os.makedirs(op.dirname(new_path))
         sh.copy2(ifile, new_path)
 
-def _error(msg):
-    msg = '\n\n==========\n{}\n==========\n'.format(msg)
-    raise ValueError(msg)
 
 
 if __name__ == '__main__':
@@ -179,7 +124,7 @@ if __name__ == '__main__':
         title = page.get('title', None)
 
         # Make sure URLs (file paths) have correct structure
-        _check_url_page(url_page)
+        _check_url_page(url_page, CONTENT_FOLDER_NAME)
 
         ###############################################################################
         # Create path to old/new file and create directory
@@ -282,6 +227,9 @@ if __name__ == '__main__':
             lines = ff.readlines()
         lines = _clean_lines(lines, path_new_file)
 
+        # Split off original yaml
+        yaml_orig, lines = _split_yaml(lines)
+
         # Front-matter YAML
         yaml_fm = []
         yaml_fm += ['---']
@@ -299,6 +247,9 @@ if __name__ == '__main__':
         yaml_fm += ['next_page:']
         yaml_fm += ['  url: {}'.format(url_next_page)]
         yaml_fm += ["  title: '{}'".format(next_file_title)]
+
+        # Add back any original YaML, and end markers
+        yaml_fm += yaml_orig
         yaml_fm += ['comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /{}***"'.format(CONTENT_FOLDER_NAME)]
         yaml_fm += ['---']
         yaml_fm = [ii + '\n' for ii in yaml_fm]
