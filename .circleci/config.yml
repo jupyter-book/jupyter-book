@@ -1,5 +1,34 @@
 version: 2
 jobs:
+  site:
+    docker:
+      - image: circleci/ruby:2.4.2-jessie-node
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - rails-demo-bundle-v2-
+
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+
+      # Store bundle cache
+      - save_cache:
+          key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - run:
+          name: Build the website
+          command: bundle exec jekyll build --baseurl /0/html/
+
+      # Tell Circle to store the documentation output in a folder that we can access later
+      - store_artifacts:
+          path: _site/
+          destination: html
+
   run_tests:
     # This is the base environment that Circle will use
     docker:
@@ -28,6 +57,7 @@ jobs:
           name: Tests
           command: |
             pytest scripts/tests/test_build.py
+            
 
 # Tell CircleCI to use this workflow when it builds the site
 workflows:
@@ -35,3 +65,4 @@ workflows:
   default:
     jobs:
       - run_tests
+      - site
