@@ -1,10 +1,13 @@
 .sidebar__right {
     position: fixed;
     top: 8%;
-    right: 10%;
+    left: 1030px;
     width: 250px;
     padding-left: 1em;
     z-index: 10;
+    @media (min-width: $site-margin-min-width) {
+        margin-left: $left-site-margin;
+      }
 }
 
 nav.onthispage {
