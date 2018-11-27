@@ -7,27 +7,24 @@
  * [1]: Don't add horizontal padding since the content lies within a .o-wrapper
  * [2]: Since we use JS to focus the page on load, hide the outline to avoid
  *   visual cruft.
+ * [3]: Use flexbox to display the page nav. When there is enough horizontal
+ *   space, put page nav into its own sidebar.
  *
  * Notebook styling:
  *
- * [3]: Add a border around cell input to distinguish it from the output.
- * [4]: Some tables are too wide for the page on smaller screens so we let the
+ * [4]: Add a border around cell input to distinguish it from the output.
+ * [5]: Some tables are too wide for the page on smaller screens so we let the
  *   user scroll horizontally.
- * [5]: Inline code snippets (usually variable names) should have a gray bg.
+ * [6]: Inline code snippets (usually variable names) should have a gray bg.
  */
 
 .c-textbook__page {
   /* [1] */
   padding: $spacing-unit-small 0;
   overflow-x: auto;
-  @include mq($from: tablet, $until: desktop) {
+  @include mq($from: tablet) {
     padding-left: $spacing-unit;
     padding-right: $spacing-unit;
-  }
-
-  @include mq($from: desktop) {
-    padding-left: $spacing-unit-large;
-    padding-right: $spacing-unit-large;
   }
 
   &:focus {
@@ -41,11 +38,14 @@
   }
 }
 
-// To ensure enough room for the sidebar
-.o-wrapper {
-  margin-left: 0%;
-  max-width: 700px;
-  position: relative;
+.c-textbook__wrapper {
+  /* [3] */
+  display: flex;
+  flex-direction: column;
+
+  @include mq($from: desktop) {
+    flex-direction: row;
+  }
 }
 
 /**
@@ -62,16 +62,16 @@
 }
 
 .input_area pre {
-  /* [3] */
+  /* [4] */
   border: 1px solid $color-dark-gray;
 }
 
 .output_html {
-  /* [4] */
+  /* [5] */
   overflow-x: auto;
 }
 
-/* [5] */
+/* [6] */
 code {
   padding: 4px;
 
@@ -89,7 +89,9 @@ blockquote {
 }
 
 /* Outputs */
-.output_stream, .output_data_text, .output_traceback_line {
+.output_stream,
+.output_data_text,
+.output_traceback_line {
   margin-left: 2% !important;
   border: none !important;
   border-radius: 4px !important;
@@ -97,34 +99,38 @@ blockquote {
   box-shadow: none !important;
 }
 
-.output_stream:before, .output_data_text:before, .output_traceback_line:before{
+.output_stream:before,
+.output_data_text:before,
+.output_traceback_line:before {
   content: none !important;
 }
 
 .output_text pre {
-  background-color: #F8F8FB !important;
+  background-color: #f8f8fb !important;
 }
 
-.output_html,.output_png::before
-{
-  padding:1em 1.5em !important;
+.output_html,
+.output_png::before {
+  padding: 1em 1.5em !important;
 }
 
-.output_png img,p img
-{
-  width:100% !important;
+.output_png img,
+p img {
+  width: 100% !important;
   max-width: 500px;
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
-.hl-ipython3 pre::before,.output_subarea pre::before,.output_html::before,.output_png::before
-{
-  color:#ccc !important;
-  float:left !important;
-  margin-bottom:.25em !important;
-  width:100% !important;
+.hl-ipython3 pre::before,
+.output_subarea pre::before,
+.output_html::before,
+.output_png::before {
+  color: #ccc !important;
+  float: left !important;
+  margin-bottom: 0.25em !important;
+  width: 100% !important;
 }
 
 /**
