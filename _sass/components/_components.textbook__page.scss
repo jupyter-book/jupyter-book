@@ -7,15 +7,13 @@
  * [1]: Don't add horizontal padding since the content lies within a .o-wrapper
  * [2]: Since we use JS to focus the page on load, hide the outline to avoid
  *   visual cruft.
- * [3]: Use flexbox to display the page nav. When there is enough horizontal
- *   space, put page nav into its own sidebar.
  *
  * Notebook styling:
  *
- * [4]: Add a border around cell input to distinguish it from the output.
- * [5]: Some tables are too wide for the page on smaller screens so we let the
+ * [3]: Add a border around cell input to distinguish it from the output.
+ * [4]: Some tables are too wide for the page on smaller screens so we let the
  *   user scroll horizontally.
- * [6]: Inline code snippets (usually variable names) should have a gray bg.
+ * [5]: Inline code snippets (usually variable names) should have a gray bg.
  */
 
 .c-textbook__page {
@@ -27,24 +25,13 @@
     padding-right: $spacing-unit;
   }
 
+  @include mq($from: desktop) {
+    padding-right: $right-sidebar-width;
+  }
+
   &:focus {
     /* [2] */
     outline: none;
-  }
-
-  // Left margin if site is big enough
-  @media (min-width: $site-margin-min-width) {
-    margin-left: $left-site-margin;
-  }
-}
-
-.c-textbook__wrapper {
-  /* [3] */
-  display: flex;
-  flex-direction: column;
-
-  @include mq($from: desktop) {
-    flex-direction: row;
   }
 }
 
@@ -62,16 +49,16 @@
 }
 
 .input_area pre {
-  /* [4] */
+  /* [3] */
   border: 1px solid $color-dark-gray;
 }
 
 .output_html {
-  /* [5] */
+  /* [4] */
   overflow-x: auto;
 }
 
-/* [6] */
+/* [5] */
 code {
   padding: 4px;
 

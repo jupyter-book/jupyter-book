@@ -23,13 +23,14 @@
  *   simultaneously, so make sure that the page doesn't overflow.
  */
 
-$sidebar-width: 300px;
-
 .c-textbook {
   /* [1] */
   position: relative;
   height: 100vh;
   overflow: hidden;
+
+  max-width: $page-max-width;
+  margin: 0 auto;
 }
 
 .c-textbook__sidebar,
