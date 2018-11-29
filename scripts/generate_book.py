@@ -91,6 +91,8 @@ def _case_sensitive_fs(path):
             with open(fname, 'wt') as fobj:
                 fobj.write('text')
         written = glob(root + '*')
+    except Exception:
+        written = []
     finally:
         for fname in written:
             os.unlink(fname)
