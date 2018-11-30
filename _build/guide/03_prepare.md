@@ -55,13 +55,15 @@ any javascript that you wish. To do so, find the relevant folders in the `assets
 This site uses SCSS to make it easier to create modular and beautiful CSS rules. If you create
 a new CSS file, make sure that you include it in `_sass/main.scss`.
 
-## (optional) choose a different license
+## Add a license for your book
 
-By default, all content in the `content/` folder is licensed under the
-[Creative Commons Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) (CC BY-SA 4.0) license. This is specified in the LICENSE.md file.
+When you share content online, it's a good idea to add a license so that others know
+what rights you retain to the work. This can make your book more sharable and (re)usable
+(or not, if that's what you with). When you build your book, `jupyter-book` will check
+whether a `LICENSE.md` file exists in the `content/` folder. If it does not exist,
+you'll be given the option to add a [Creative Commons Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) (CC BY-SA 4.0)
+license to your book. CC BY-SA requires attribution of your work, and also requires that any derivations someone creates are released under a license *at least as permissive* as CC BY-SA.
 
-CC BY-SA requires attribution of your work, and also requires that any derivations
-someone creates are released under a license *at least as permissive* as CC BY-SA.
-
-If you'd like to choose a different license, you can modify the text in LICENSE.md to
-whatever you'd like.
+If you'd like to choose a different license, you can add whatever text you like to the file
+in `/content/LICENSE.md`. We commend checking out the [Creative Commons licenses page](https://creativecommons.org/licenses)
+for several options for licenses that may suit your needs. 
