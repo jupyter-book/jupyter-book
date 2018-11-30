@@ -83,7 +83,11 @@ def _case_sensitive_fs(path):
 
     Checks this by attempting to write two files, one w/ upper case, one
     with lower. If after this only one file exists, the system is case-insensitive.
+
+    Makes directory `path` if it does not exist.
     """
+    if not op.exists(path):
+        os.makedirs(path)
     root = op.join(path, uuid4().hex)
     fnames = [root + suffix for suffix in 'aA']
     try:
@@ -91,8 +95,6 @@ def _case_sensitive_fs(path):
             with open(fname, 'wt') as fobj:
                 fobj.write('text')
         written = glob(root + '*')
-    except Exception:
-        written = []
     finally:
         for fname in written:
             os.unlink(fname)
