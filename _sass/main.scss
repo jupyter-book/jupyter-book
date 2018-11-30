@@ -99,14 +99,16 @@ $hamburger-types: (arrowalt);
 @import 'objects/objects.copy-button';
 
 // COMPONENTS
-
+$page-max-width: map-get($mq-breakpoints, wide);
+$sidebar-width: 300px;
+$right-sidebar-width: 200px;
 @import 'components/components.textbook';
 @import 'components/components.textbook__sidebar';
 @import 'components/components.textbook__page';
+@import 'components/components.textbook__sidebar-right';
 @import 'components/components.page__nav';
 @import 'components/components.sidebar-toggle';
 @import 'components/components.interact-button';
-@import 'components/components.textbook__sidebar-right';
 
 // UTILITIES
 @import 'inuitcss/utilities/utilities.clearfix';

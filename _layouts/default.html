@@ -2,18 +2,21 @@
 <html lang="en">
   {% include head.html %}
   <body>
-    <!-- Show sidebar by default -->
+    <!-- .js-show-sidebar shows sidebar by default -->
     <div id="js-textbook" class="c-textbook js-show-sidebar">
       {% include sidebar.html %}
+      {% include onthispage.html sanitize=true html=content h_min=2 h_max=3 class="toc__menu" %}
 
       <main class="c-textbook__page" tabindex="-1">
-        {% include sidebar-toggle.html %}
-        <div class="o-wrapper">
-          {% include interact.html %}
-          {% include onthispage.html sanitize=true html=content h_min=2 h_max=3 class="toc__menu" %}
-          {{ content }}
+          <div class="o-wrapper">
+            {% include sidebar-toggle.html %}
+            {% include interact.html %}
 
-          {% include page-nav.html %}
+            <div class="c-textbook__content">
+              {{ content }}
+              {% include page-nav.html %}
+            </div>
+          </div>
         </div>
       </main>
     </div>
