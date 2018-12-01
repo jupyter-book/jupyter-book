@@ -143,7 +143,7 @@ if __name__ == '__main__':
 
     n_skipped_files = 0
     n_built_files = 0
-    cased_fs = _case_sensitive_fs(BUILD_FOLDER)
+    case_check = _case_sensitive_fs(BUILD_FOLDER) and args.local_build
     print("Convert and copy notebook/md files...")
     for ix_file, page in enumerate(tqdm(list(toc))):
         url_page = page.get('url', None)
@@ -261,17 +261,17 @@ if __name__ == '__main__':
         yaml_fm += ['---']
         # In case pre-existing links are sanitized
         sanitized = url_page.lower().replace('_', '-')
-        if not args.local_build and cased_fs and url_page.lower() == sanitized:
-            raise RuntimeError('Redirect {} clashes with page {} '
-                               'for local build on case-insensitive FS\n'
-                               .format(sanitized, url_page) +
-                               'Consider renaming source page to lower case '
-                               'or building on a case sensitive FS, for example '
-                               'a case-sensitive disk image on Mac')
-        yaml_fm += ['redirect_from:']
-        yaml_fm += ['  - "{}"'.format(sanitized)]
-        if ix_file == 0:
-            yaml_fm += ['  - "/"']
+        if sanitized != url_page:
+            if case_check and url_page.lower() == sanitized:
+                raise RuntimeError(
+                    'Redirect {} clashes with page {} for local build on '
+                    'case-insensitive FS\n'.format(sanitized, url_page) +
+                    'Rename source page to lower case or build on a case '
+                    'sensitive FS, e.g. case-sensitive disk image on Mac')
+            yaml_fm += ['redirect_from:']
+            yaml_fm += ['  - "{}"'.format(sanitized)]
+            if ix_file == 0:
+                yaml_fm += ['  - "/"']
         if path_url_page.endswith('.ipynb'):
             interact_path = 'content/' + path_url_page.split('content/')[-1]
             yaml_fm += ['interact_link: {}'.format(interact_path)]
