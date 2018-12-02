@@ -6,6 +6,7 @@
  * [3] Sidebar scroll preserving
  * [4] Keyboard navigation
  * [5] Copy buttons for code blocks
+ * [6] Right sidebar scroll highlighting
  */
 
 const togglerId = 'js-sidebar-toggle'
@@ -17,6 +18,11 @@ const mathRenderedClass = 'js-mathjax-rendered'
 
 const getToggler = () => document.getElementById(togglerId)
 const getTextbook = () => document.getElementById(textbookId)
+
+initFunction = function(myfunc) {
+  runWhenDOMLoaded(myfunc);
+  document.addEventListener('turbolinks:load', myfunc);
+};
 
 // [1] Run MathJax when Turbolinks navigates to a page.
 // When Turbolinks caches a page, it also saves the MathJax rendering. We mark
@@ -74,8 +80,7 @@ const sidebarButtonHandler = () => {
   if (window.innerWidth < autoCloseSidebarBreakpoint) toggleSidebar()
 }
 
-runWhenDOMLoaded(sidebarButtonHandler)
-document.addEventListener('turbolinks:load', sidebarButtonHandler)
+initFunction(sidebarButtonHandler);
 
 /**
  * [3] Preserve sidebar scroll when navigating between pages
@@ -97,8 +102,8 @@ document.addEventListener('turbolinks:load', () => {
 const focusPage = () => {
   document.querySelector('.c-textbook__page').focus()
 }
-runWhenDOMLoaded(focusPage)
-document.addEventListener('turbolinks:load', focusPage)
+
+initFunction(focusPage);
 
 /**
  * [4] Use left and right arrow keys to navigate forward and backwards.
@@ -175,5 +180,27 @@ const addCopyButtonToCodeCells = () => {
   )
 }
 
-runWhenDOMLoaded(addCopyButtonToCodeCells)
-document.addEventListener('turbolinks:load', addCopyButtonToCodeCells)
+initFunction(addCopyButtonToCodeCells);
+
+/**
+ * [6] Right sidebar scroll highlighting
+ */
+
+highlightRightSidebar = function() {
+  var position = document.querySelector('.c-textbook__page').scrollTop;
+  position = position + (window.innerHeight / 3);  // + Manual offset
+
+  // Highlight the "active" menu item
+  document.querySelectorAll('.c-textbook__content h2, .c-textbook__content h3').forEach((header, index) => {
+      var target = header.offsetTop;
+      var id = header.id;
+      if (position >= target) {
+        var query = 'ul.toc__menu a[href="#' + id + '"]';
+        document.querySelectorAll('ul.toc__menu li').forEach((item) => {item.classList.remove('active')});
+        document.querySelectorAll(query).forEach((item) => {item.parentElement.classList.add('active')});
+    }
+  });
+  document.querySelector('.c-textbook__page').addEventListener('scroll', highlightRightSidebar);
+};
+
+initFunction(highlightRightSidebar);

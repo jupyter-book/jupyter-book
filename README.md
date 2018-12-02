@@ -1,4 +1,4 @@
-# <img src="content/images/logo/logo.png" width=40 /> Jupyter Books
+# <img src="content/images/logo/logo.png" width=40 /> Jupyter Book
 
 
 This is a guide and template for hosting your own book using
