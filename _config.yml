@@ -16,7 +16,7 @@
 
 #######################################################################################
 # Jekyll site settings
-title: Jupyter Books
+title: Jupyter Book
 author: Samuel Lau and Deborah Nolan and Chris Holdgraf
 email: samlau95@berkeley.edu
 description: >- # this means to ignore newlines until "baseurl:"
