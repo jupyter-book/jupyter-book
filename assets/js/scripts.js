@@ -16,6 +16,7 @@ const togglerActiveClass = 'is-active'
 const textbookActiveClass = 'js-show-sidebar'
 
 const mathRenderedClass = 'js-mathjax-rendered'
+const icon_path = document.location.origin + `${site_basename}assets`;
 
 const getToggler = () => document.getElementById(togglerId)
 const getTextbook = () => document.getElementById(textbookId)
@@ -131,7 +132,7 @@ const codeCellId = index => `codecell${index}`
 
 const clipboardButton = id =>
   `<a class="btn copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#${id}">
-    <img src="https://predictablynoisy.com/jupyter-book/assets/copy-button.svg" alt="Copy to clipboard">
+    <img src="${icon_path}/copy-button.svg" alt="Copy to clipboard">
   </a>`
 
 // Clears selected text since ClipboardJS will select the text when copying
@@ -209,21 +210,29 @@ initFunction(highlightRightSidebar);
 
 /**
  * [7] Add buttons to hide code cells
- */
-const hideCodeButton = id => `<a class="hidebtn o-tooltip--left" data-id="${id}" data-tooltip="hide code cell">[-]</a>`
-
+*/
 var toggleCodeCell = function (element) {
-    var id = element.getAttribute('data-id');
+    // Figure out if we're a link or an image (fist pageload will be link, clicks will be image)
+    if (element.tagName == "A") {
+        var link = element;
+        var img = element.nextElementSibling;
+    } else {
+        var link = element.parentElement;
+        var img = element;
+    };
+
+    // Update the image and class for hidden
+    var id = link.getAttribute('data-id');
     var codeCell = document.querySelector(`#${id}`);
     if (codeCell.classList.contains("hidden")) {
         codeCell.classList.remove('hidden');
-        element.textContent = "[-]"
-        element.setAttribute('data-tooltip', "hide code cell");
+        img.src = `${icon_path}/minus-circle.svg`;
+        link.setAttribute('data-tooltip', "hide code cell");
         
     } else {
         codeCell.classList.add('hidden');
-        element.textContent = "[+]"
-        element.setAttribute('data-tooltip', "show code cell");
+        img.src = `${icon_path}/plus-circle.svg`;
+        link.setAttribute('data-tooltip', "show code cell");
     }
 }
 
@@ -231,6 +240,8 @@ toggleCodeCellHandler = function (event) {
     toggleCodeCell(event.target)
 }
 
+
+// Initialize the hide buttos
 var initCodeCellHandler = function (id) {
     hideLink = document.querySelector(`#${id}`).nextElementSibling;
     hideLink.addEventListener('click', toggleCodeCellHandler)
@@ -241,6 +252,7 @@ initHiddenCells = function () {
         toggleCodeCell(item.nextElementSibling);
     })
 }
+const hideCodeButton = id => `<a class="hidebtn o-tooltip--left" data-id="${id}" data-tooltip="hide code cell"><img class="btn o-tooltip--left" src="${icon_path}/minus-circle.svg" alt="Toggle code" /></a>`
 
 addHideButton = function () {
     document.querySelectorAll('pre').forEach(function (item, index) {

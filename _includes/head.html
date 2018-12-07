@@ -40,6 +40,11 @@
   <!-- DOM updating function -->
   {% include dom-update.html %}
 
+  <!-- Define some javascript variables that will be useful in other javascript -->
+  <script>
+    const site_basename = '{{ site.baseurl | strip / }}';
+  </script>
+
   <!-- Include Turbolinks to make page loads fast -->
   <!-- https://github.com/turbolinks/turbolinks -->
   <script src="{{ site.js_url | relative_url }}/turbolinks.js" async></script>
