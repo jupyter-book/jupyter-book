@@ -1,0 +1,14 @@
+a.hidebtn {
+    position: absolute;
+    top: 2px;
+    right: -25px;
+    width: 1em;
+    height: 1em;
+    padding: .3em;
+    font-size: 1.5em;
+}
+
+.hidden {
+    visibility: hidden;
+    height: 20px;
+}
