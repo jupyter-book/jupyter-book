@@ -50,7 +50,7 @@ For example, here's some sample Matplotlib code:
 
 
 
-{:.input_area}
+{:.input_area }
 ```python
 from matplotlib import rcParams, cycler
 import matplotlib.pyplot as plt
@@ -61,7 +61,7 @@ plt.ion()
 
 
 
-{:.input_area}
+{:.input_area .hidecode}
 ```python
 # Fixing random state for reproducibility
 np.random.seed(19680801)
@@ -175,7 +175,7 @@ depend on an underlying Python kernel to work.
 
 
 
-{:.input_area}
+{:.input_area }
 ```python
 import folium
 ```
@@ -183,7 +183,7 @@ import folium
 
 
 
-{:.input_area}
+{:.input_area }
 ```python
 m = folium.Map(
     location=[45.372, -121.6972],

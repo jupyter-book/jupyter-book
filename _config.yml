@@ -47,6 +47,7 @@ textbook_repo_name       : "jupyter-book"  # The name of the repository on the w
 textbook_repo_branch     : "master"  # The branch on which your textbook is hosted.
 use_jupyterlab           : false  # If 'true', interact links will use JupyterLab as the interface
 interact_text            : "Interact"  # The text that interact buttons will contain.
+show_sidebar             : true  # Show the sidebar. Only set to false if your only wish to host a single page.
 
 #######################################################################################
 # Jekyll build settings

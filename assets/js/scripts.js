@@ -7,6 +7,7 @@
  * [4] Keyboard navigation
  * [5] Copy buttons for code blocks
  * [6] Right sidebar scroll highlighting
+ * [7] Add buttons to hide code cells
  */
 
 const togglerId = 'js-sidebar-toggle'
@@ -204,3 +205,52 @@ highlightRightSidebar = function() {
 };
 
 initFunction(highlightRightSidebar);
+
+
+/**
+ * [7] Add buttons to hide code cells
+ */
+const hideCodeButton = id => `<a class="hidebtn o-tooltip--left" data-id="${id}" data-tooltip="hide code cell">[-]</a>`
+
+var toggleCodeCell = function (element) {
+    var id = element.getAttribute('data-id');
+    var codeCell = document.querySelector(`#${id}`);
+    if (codeCell.classList.contains("hidden")) {
+        codeCell.classList.remove('hidden');
+        element.textContent = "[-]"
+        element.setAttribute('data-tooltip', "hide code cell");
+        
+    } else {
+        codeCell.classList.add('hidden');
+        element.textContent = "[+]"
+        element.setAttribute('data-tooltip', "show code cell");
+    }
+}
+
+toggleCodeCellHandler = function (event) {
+    toggleCodeCell(event.target)
+}
+
+var initCodeCellHandler = function (id) {
+    hideLink = document.querySelector(`#${id}`).nextElementSibling;
+    hideLink.addEventListener('click', toggleCodeCellHandler)
+}
+
+initHiddenCells = function () {
+    document.querySelectorAll('div.hidecode pre').forEach(function (item) {
+        toggleCodeCell(item.nextElementSibling);
+    })
+}
+
+addHideButton = function () {
+    document.querySelectorAll('pre').forEach(function (item, index) {
+        const id = codeCellId(index)
+        item.setAttribute('id', id);
+        item.insertAdjacentHTML('afterend', hideCodeButton(id))
+        initCodeCellHandler(id);
+    });
+
+}
+
+initFunction(addHideButton);
+initFunction(initHiddenCells);

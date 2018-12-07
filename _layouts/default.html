@@ -4,7 +4,7 @@
   <body>
     <!-- .js-show-sidebar shows sidebar by default -->
     <div id="js-textbook" class="c-textbook js-show-sidebar">
-      {% include sidebar.html %}
+      {% if site.show_sidebar == true %}{% include sidebar.html %}{% endif %}
       {% include onthispage.html sanitize=true html=content h_min=2 h_max=3 class="toc__menu" %}
 
       <main class="c-textbook__page" tabindex="-1">
