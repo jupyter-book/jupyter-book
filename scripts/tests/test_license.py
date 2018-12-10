@@ -10,6 +10,9 @@ curdir = op.dirname(op.abspath(__file__))
 
 def test_license():
     # Not yes/no answers should error
+    if op.exists(op.join(curdir, "site", "content", "LICENSE.md")):
+        os.remove(op.join(curdir, "site", "content", "LICENSE.md"))
+
     cmd_error = ["python", op.join(curdir, "..", "license.py"),
                 "--path", op.join(curdir, "site", "content"), "--use-license", "blah"]
 
