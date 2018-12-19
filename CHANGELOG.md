@@ -12,13 +12,15 @@ Below is a rough list of new features, broken down by Jupyter Book version.
 - Added ability to customize look and feel of the site with your own CSS/JS
 - API CHANGE: there is now a separate configuration section for each button
   (jupyterhub, binderhub, etc).
+- Added the ability to hide code cells and make them collapsible (#59](https://github.com/choldgraf/jupyter-book/pull/59))
+- Added option to hide sidebar (#59](https://github.com/choldgraf/jupyter-book/pull/59))
 
 ### Minor fixes
 
 - Minor improvements to page layout
 - Redirections for sanitized URLs now check whether the filesystem is case-sensitive
   and raise an error if unexpected behavior would occur without changes. [@matthew-brett](https://github.com/matthew-brett)
-  
+
 ## v0.2.1 - Beta 2.1
 
 - Tests added to the Jupyter Book
