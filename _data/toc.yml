@@ -26,6 +26,9 @@
   - title: Jupyter notebooks
     url: /features/notebooks
     not_numbered: true
+  - title: Citations and bibliographies
+    url: /features/citations
+    not_numbered: true
 
 - title: Guide
   url: /guide/01_overview

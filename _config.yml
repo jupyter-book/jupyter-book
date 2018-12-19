@@ -48,6 +48,10 @@ textbook_repo_branch     : "master"  # The branch on which your textbook is host
 use_jupyterlab           : false  # If 'true', interact links will use JupyterLab as the interface
 interact_text            : "Interact"  # The text that interact buttons will contain.
 
+# Bibliography and citation settings. See https://github.com/inukshuk/jekyll-scholar#configuration for options
+scholar:
+  style: apa
+
 #######################################################################################
 # Jekyll build settings
 
@@ -95,3 +99,4 @@ exclude:
 
 plugins:
   - jekyll-redirect-from
+  - jekyll-scholar
