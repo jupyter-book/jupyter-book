@@ -3,8 +3,8 @@ redirect_from:
   - "/guide/01-overview"
 title: 'Guide'
 prev_page:
-  url: /features/notebooks
-  title: 'Jupyter notebooks'
+  url: /features/citations
+  title: 'Citations and bibliographies'
 next_page:
   url: /guide/02_setup
   title: 'Setup and Install'
@@ -42,7 +42,13 @@ step in more detail in this guide):
 * Edit the `_data/toc.yml` file for your Table of Contents. This defines the structure
   of your book. The location of URLs should be **relative to the `/content/` folder.**
 * Navigate to the repo root, then run `make book` to convert your Jupyter Notebooks into Jekyll-ready markdown. It will be placed in `/_build`.
-* Push these changes to your GitHub repo and tell GitHub you want to build a website from your repository.
+* From here, you have **two options**
+    * **Option 1**: Use GitHub pages to auto-generate your site from the markdown. Once you build your book, push the
+      changes to your GitHub repo and that's it!
+    * **Option 2**: Build the site HTML locally with `make build` and then host it wherever you like. You can still use
+      GitHub pages to host the HTML by putting it in the root of the repository, or in the `docs/` folder (which is what
+      this site does)
+* Tell GitHub to build a website out of your repository.
 * That's it!
 
 See the rest of this guide in the links to the left for detailed
