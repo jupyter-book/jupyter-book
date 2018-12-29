@@ -13,16 +13,10 @@ const togglerId = 'js-sidebar-toggle'
 const textbookId = 'js-textbook'
 const togglerActiveClass = 'is-active'
 const textbookActiveClass = 'js-show-sidebar'
-
 const mathRenderedClass = 'js-mathjax-rendered'
 
 const getToggler = () => document.getElementById(togglerId)
 const getTextbook = () => document.getElementById(textbookId)
-
-initFunction = function(myfunc) {
-  runWhenDOMLoaded(myfunc);
-  document.addEventListener('turbolinks:load', myfunc);
-};
 
 // [1] Run MathJax when Turbolinks navigates to a page.
 // When Turbolinks caches a page, it also saves the MathJax rendering. We mark

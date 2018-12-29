@@ -36,17 +36,23 @@ hide_code_text            : "# NO CODE"  # When building the textbook, any cells
 css_url                   : "/assets/css" # Path to static CSS files
 js_url                    : "/assets/js" # Path to JS files
 collapse_inactive_chapters: true  # Whether to collapse the inactive chapters in the sidebar
+use_interact_button       : true  # If 'true', display a button that will direct users to a JupyterHub (that you provide)
 
 # Interact link settings
-hub_url                  : "https://mybinder.org"  # The URL for your JupyterHub/BinderHub.
-hub_name                 : "JupyterHub"  # The name of your JupyterHub (used for the button in the NavBar. If an empty string, no button is shown)
-hub_type                 : "binder"  # ['binder', 'jupyterhub']  Whether to build interact links for a BinderHub or a JupyterHub
-textbook_repo_base       : "https://github.com/"  # The site on which the textbook repository is hosted
-textbook_repo_org        : "choldgraf"  # The username or organization that owns this repository
-textbook_repo_name       : "jupyter-book"  # The name of the repository on the web
-textbook_repo_branch     : "master"  # The branch on which your textbook is hosted.
-use_jupyterlab           : false  # If 'true', interact links will use JupyterLab as the interface
-interact_text            : "Interact"  # The text that interact buttons will contain.
+hub_url                   : "https://mybinder.org"  # The URL for your JupyterHub/BinderHub.
+hub_type                  : "binder"  # ['binder', 'jupyterhub']  Whether to build interact links for a BinderHub or a JupyterHub
+interact_text             : "Interact"  # The text that interact buttons will contain.
+
+# Binder link settings
+textbook_repo_base        : "https://github.com/"  # The site on which the textbook repository is hosted
+textbook_repo_org         : "choldgraf"  # The username or organization that owns this repository
+textbook_repo_name        : "jupyter-book"  # The name of the repository on the web
+textbook_repo_branch      : "master"  # The branch on which your textbook is hosted.
+use_jupyterlab            : false  # If 'true', interact links will use JupyterLab as the interface
+
+# Thebelab settings
+use_thebelab_button       : true  # If 'true', display a button to allow in-page running code cells with Thebelab
+thebelab_button_text      : "Thebelab"  # The text to display inside the Thebelab initialization button
 
 # Bibliography and citation settings. See https://github.com/inukshuk/jekyll-scholar#configuration for options
 scholar:

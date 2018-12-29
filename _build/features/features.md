@@ -1,6 +1,4 @@
 ---
-redirect_from:
-  - "/features/features"
 title: 'Features'
 prev_page:
   url: /intro

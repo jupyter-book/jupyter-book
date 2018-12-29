@@ -23,6 +23,45 @@ to modify this site's HTML).
 Be careful not to add YAML with the same key names as the auto-generated YAML, as
 this will create duplicated keys in your page's front-matter.
 
+## Add buttons to direct users to a JupyterHub or BinderHub
+
+It is often helpful to let readers quickly interact with their own version of a
+page in order to run the code, experiment, etc. Since many of the pages in a Jupyter
+book are powered by notebooks, it is possible to set up a JupyterHub/BinderHub
+with an environment that is needed to run your book's content.
+
+You can place a button at the top of each page that will direct users to a JupyterHub
+that you specify and load the content from that page. To enable this, use the following
+configuration:
+
+```yaml
+use_interact_button: true
+```
+
+You can configure this button according to the location of the JupyterHub/BinderHub
+that you have set up. For example, 
+
+```yaml
+hub_url : "https://<url-to-your-hub>"  # The URL for your JupyterHub/BinderHub.
+
+# ['binder', 'jupyterhub']  Whether to build interact links for a BinderHub or a JupyterHub
+hub_type : "binder"
+```
+
+Alternatively, you can use `https://mybinder.org` for your `hub_url` in order to
+use the free mybinder.org service.
+
+## Make your static pages interactive with Thebelab
+
+[Thebelab](https://github.com/minrk/thebelab) is a project to automatically turn
+static code cells into interactive cells powered by a Binder kernel. This is triggered
+with a `Thebelab` button at the top of each page that has been generated from a notebook.
+To make this button appear, use the following configuration in your `_config.yaml` file:
+
+```yaml
+use_thebelab_button : true
+```
+
 ## Relevant files
 
 There are a few moving parts associated with Jupyter Books, and this

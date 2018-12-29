@@ -25,7 +25,7 @@ Boolean values most often arise from comparison operators. Python includes a var
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 True
 ```
@@ -56,7 +56,7 @@ An expression can contain multiple comparisons, and they all must hold in order 
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 True
 ```
@@ -78,7 +78,7 @@ min(x, y) <= (x+y)/2 <= max(x, y)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 True
 ```
@@ -98,7 +98,7 @@ Strings can also be compared, and their order is alphabetical. A shorter string 
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 True
 ```

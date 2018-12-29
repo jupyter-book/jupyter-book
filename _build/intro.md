@@ -1,7 +1,4 @@
 ---
-redirect_from:
-  - "/intro"
-  - "/"
 title: 'Home'
 prev_page:
   url: 
@@ -12,6 +9,8 @@ next_page:
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 # Books with Jupyter and Jekyll
+
+<img src="https://circleci.com/gh/choldgraf/jupyter-book.svg?style=svg" class="left">
 
 Jupyter Books lets you build an online book using a collection of Jupyter Notebooks
 and Markdown files.

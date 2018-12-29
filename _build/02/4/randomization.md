@@ -1,6 +1,4 @@
 ---
-redirect_from:
-  - "/02/4/randomization"
 title: 'Randomization'
 prev_page:
   url: /02/3/establishing-causality

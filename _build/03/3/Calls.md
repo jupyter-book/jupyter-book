@@ -25,7 +25,7 @@ abs(-12)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 12
 ```
@@ -43,7 +43,7 @@ round(5 - 1.3)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 4
 ```
@@ -61,7 +61,7 @@ max(2, 2 + 3, 4)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 5
 ```
@@ -85,7 +85,7 @@ math.sqrt(operator.add(4, 5))
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 3.0
 ```
@@ -105,7 +105,7 @@ An equivalent expression could be expressed using the `+` and `**` operators ins
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 3.0
 ```
@@ -127,7 +127,7 @@ iowa = 16.25
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 142.6462836056932
 ```
@@ -162,7 +162,7 @@ math.log(16, 2)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 4.0
 ```
@@ -180,7 +180,7 @@ math.log(16)/math.log(2)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 4.0
 ```
