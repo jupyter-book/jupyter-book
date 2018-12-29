@@ -4,3 +4,4 @@ pandas
 numpy
 datascience
 folium
+matplotlib
