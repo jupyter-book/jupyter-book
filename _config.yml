@@ -52,6 +52,11 @@ interact_text            : "Interact"  # The text that interact buttons will con
 scholar:
   style: apa
 
+# Disqus comment box settings
+# For information on these, see https://help.disqus.com/developer/javascript-configuration-variables
+use_disqus: true  # Whether or not to use Disqus for comments on pages
+disqus_site_shortname: "predictablynoisy"  # A short name for your site, find this on your Disqus page settings
+
 #######################################################################################
 # Jekyll build settings
 
@@ -64,6 +69,7 @@ defaults:
       toc: true
       toc_label: "  On this page"
       toc_icon: "list-ul"
+      comments: true
 
 favicon_path: "images/logo/favicon.ico"
 
