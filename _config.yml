@@ -22,23 +22,23 @@ email: samlau95@berkeley.edu
 description: >- # this means to ignore newlines until "baseurl:"
   This is an example book built with Jupyter Books.
 
-baseurl: "/jupyter-book" # the subpath of your site, e.g. /blog
+baseurl: "/jupyter-book" # the subpath of your site, e.g. /blog. If there is no subpath for your site, use an empty string ""
 url: "https://predictablynoisy.com" # the base hostname & protocol for your site, e.g. http://example.com
+
 
 #######################################################################################
 # Jupyter Book settings
 
-# Textbook settings
-content_folder_name       : "content"  # The folder where your raw content (notebooks/markdown files) are located
-textbook_logo             : images/logo/logo.png  # A logo to be displayed at the top of your textbook sidebar
+# Notebook content settings
 hide_cell_text            : "# HIDDEN"  # When building the textbook, any cells with this text inside will be hidden in the output markdown
 hide_code_text            : "# NO CODE"  # When building the textbook, any cells with this text inside will have *only* their output shown (no code)
-css_url                   : "/assets/css" # Path to static CSS files
-js_url                    : "/assets/js" # Path to JS files
+
+# Sidebar settings
 collapse_inactive_chapters: true  # Whether to collapse the inactive chapters in the sidebar
-use_interact_button       : true  # If 'true', display a button that will direct users to a JupyterHub (that you provide)
+textbook_logo             : images/logo/logo.png  # A logo to be displayed at the top of your textbook sidebar
 
 # Interact link settings
+use_interact_button       : true  # If 'true', display a button that will direct users to a JupyterHub (that you provide)
 hub_url                   : "https://mybinder.org"  # The URL for your JupyterHub/BinderHub.
 hub_type                  : "binder"  # ['binder', 'jupyterhub']  Whether to build interact links for a BinderHub or a JupyterHub
 interact_text             : "Interact"  # The text that interact buttons will contain.
@@ -54,9 +54,22 @@ use_jupyterlab            : false  # If 'true', interact links will use JupyterL
 use_thebelab_button       : true  # If 'true', display a button to allow in-page running code cells with Thebelab
 thebelab_button_text      : "Thebelab"  # The text to display inside the Thebelab initialization button
 
+
+#######################################################################################
+# Jupyter book extensions and additional features
+
 # Bibliography and citation settings. See https://github.com/inukshuk/jekyll-scholar#configuration for options
 scholar:
   style: apa
+
+#######################################################################################
+# Jupyter book settings you probably don't need to change
+
+content_folder_name       : "content"  # The folder where your raw content (notebooks/markdown files) are located
+css_url                   : "/assets/css" # Path to static CSS files
+js_url                    : "/assets/js" # Path to JS files
+custom_static_url         : "/assets/custom" # Path to user's custom CSS/JS files
+
 
 #######################################################################################
 # Jekyll build settings

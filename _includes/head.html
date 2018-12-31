@@ -61,8 +61,8 @@
   <script src="{{ site.js_url | relative_url }}/scripts.js" async></script>
 
   <!-- Load custom user CSS and JS  -->
-  <script src="{{ site.js_url | relative_url }}/custom.js" async></script>
-  <link rel="stylesheet" href="{{ site.css_url | relative_url }}/custom.css">
+  <script src="{{ site.custom_static_url | relative_url }}/custom.js" async></script>
+  <link rel="stylesheet" href="{{ site.custom_static_url | relative_url }}/custom.css">
 
   <!-- Update interact links w/ REST param, is defined in includes so we can use templates -->
   {% include interact-update.html %}

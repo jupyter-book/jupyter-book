@@ -1,15 +1,17 @@
 This page contains more advanced and complete information about the
 [`jupyter-book` repository](https://github.com/choldgraf/jupyter-book). See the sections below.
 
-## Add your own custom CSS or Javascript
+## Customize your book with your own custom CSS or Javascript
 
 To add your own CSS or Javascript files, you should add your own code
 to the following files:
 
-* `assets/css/custom.css`
-* `assets/js/custom.js`
+* `assets/custom/custom.css`
+* `assets/custom/custom.js`
 
 These are empty by default, but are loaded into your HTML's header.
+They can be used to style your book however you'd like. For example,
+you may want to apply some of the [distill.pub stylesheets](https://github.com/distillpub/template/tree/master/src/styles).
 
 ## Retain custom YAML front-matter in your files
 
