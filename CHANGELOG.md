@@ -16,7 +16,9 @@ Below is a rough list of new features, broken down by Jupyter Book version.
 ### Minor fixes
 
 - Minor improvements to page layout
-
+- Redirections for sanitized URLs now check whether the filesystem is case-sensitive
+  and raise an error if unexpected behavior would occur without changes. [@matthew-brett](https://github.com/matthew-brett)
+  
 ## v0.2.1 - Beta 2.1
 
 - Tests added to the Jupyter Book

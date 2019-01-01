@@ -1,7 +1,7 @@
 ---
 redirect_from:
   - "/guide/07-advanced"
-title: 'Advanced'
+title: 'How-to and advanced topics'
 prev_page:
   url: /guide/06_faq
   title: 'FAQ'
@@ -12,6 +12,49 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 This page contains more advanced and complete information about the
 [`jupyter-book` repository](https://github.com/choldgraf/jupyter-book). See the sections below.
+
+## Customize your book with your own custom CSS or Javascript
+
+To add your own CSS or Javascript files, you should add your own code
+to the following files:
+
+* `assets/custom/custom.css`
+* `assets/custom/custom.js`
+
+These are empty by default, but are loaded into your HTML's header.
+They can be used to style your book however you'd like. For example,
+you may want to apply some of the [distill.pub stylesheets](https://github.com/distillpub/template/tree/master/src/styles).
+
+## Hide cells or cell outputs in the built site
+
+Sometimes you want to use code to generate visualizations or prepare data,
+but you don't want users to see it in your built book. To prevent code cells
+from showing up in your built site, you can use the following two configuration
+options in your `_config.yml` file.
+
+**To remove entire code cells from your book*, use the following configuration:
+
+```yaml
+hide_cell_text : "YOUR TEXT"
+```
+
+Any code cell with the value of `hide_cell_text` (above it is `YOUR TEXT`)
+will not show up in your built book.
+
+**To remove only the code, but retain the outputs or a cell*, use the following
+configuration:
+
+```yaml
+hide_code_text: "YOUR TEXT"
+```
+
+Any code cell with the value of `hide_code_text` (above it is `YOUR TEXT`)
+will show the output (e.g. images, HTML, etc) but not the input code that
+generated this output.
+
+In both cases, the cells *will* remain in the notebooks themselves, they
+simply won't show up in the site's HTML, so links that point to a JupyterHub/
+Binder/etc will still work as expected.
 
 ## Retain custom YAML front-matter in your files
 
@@ -62,7 +105,7 @@ To make this button appear, use the following configuration in your `_config.yam
 use_thebelab_button : true
 ```
 
-## Relevant files
+## List of relevant files
 
 There are a few moving parts associated with Jupyter Books, and this
 section tries to cover most of the relevant pieces. The following list contains some

@@ -1,0 +1,7 @@
+name: jupyter-book
+channels:
+  - conda-forge
+dependencies:
+  - ruby
+  - pip:
+    - -r build-requirements.txt

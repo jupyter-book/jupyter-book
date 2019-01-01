@@ -40,7 +40,7 @@
 {% endblock traceback_line  %}
 
 {% block data_html %}
-<div markdown="0">
+<div markdown="0" class="output output_html">
 {{ output.data['text/html'] }}
 </div>
 {% endblock data_html %}
