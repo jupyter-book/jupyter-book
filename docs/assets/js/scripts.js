@@ -128,11 +128,6 @@ document.addEventListener('keydown', event => {
  */
 const codeCellId = index => `codecell${index}`
 
-const clipboardButton = id =>
-  `<a class="btn copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#${id}">
-    <img src="https://predictablynoisy.com/jupyter-book/assets/copy-button.svg" alt="Copy to clipboard">
-  </a>`
-
 // Clears selected text since ClipboardJS will select the text when copying
 const clearSelection = () => {
   if (window.getSelection) {

@@ -36,9 +36,9 @@
   <link rel="shortcut icon" type="image/x-icon" href="{{ site.favicon_path | relative_url }}">
 
   <!-- MathJax Config -->
-  {% include mathjax.html %}
+  {% include js/mathjax.html %}
   <!-- DOM updating function -->
-  {% include dom-update.html %}
+  {% include js/dom-update.html %}
 
   <!-- Include Turbolinks to make page loads fast -->
   <!-- https://github.com/turbolinks/turbolinks -->
@@ -49,7 +49,7 @@
   <script src="https://unpkg.com/nbinteract-core" async></script>
 
   <!-- Load Thebelab for interactive widgets -->
-  {% include thebe.html %}
+  {% include js/thebe.html %}
 
   <!-- Google analytics -->
   <script src="{{ site.js_url | relative_url }}/ga.js" async></script>
@@ -60,10 +60,13 @@
   <!-- Load custom website scripts -->
   <script src="{{ site.js_url | relative_url }}/scripts.js" async></script>
 
+  <!-- Load JS that depends on site variables -->
+  {% include js/copy-button.html %}
+
   <!-- Load custom user CSS and JS  -->
   <script src="{{ site.custom_static_url | relative_url }}/custom.js" async></script>
   <link rel="stylesheet" href="{{ site.custom_static_url | relative_url }}/custom.css">
 
   <!-- Update interact links w/ REST param, is defined in includes so we can use templates -->
-  {% include interact-update.html %}
+  {% include js/interact-update.html %}
 </head>

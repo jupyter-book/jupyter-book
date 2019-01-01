@@ -9,7 +9,7 @@
  *
  */
 
-$color-interact-button: #477dca !default;
+$color-interact-button: #5a5a5a !default;
 
 %interact-button {
   @include inuit-font-size(16px);
@@ -28,6 +28,12 @@ $color-interact-button: #477dca !default;
   &:focus {
     text-decoration: none;
   }
+}
+
+.interact-button-logo {
+  height: 1.35em;
+  padding-right: 10px;
+  margin-left: -5px;
 }
 
 .buttons {

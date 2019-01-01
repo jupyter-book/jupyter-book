@@ -37,22 +37,29 @@ hide_code_text            : "# NO CODE"  # When building the textbook, any cells
 collapse_inactive_chapters: true  # Whether to collapse the inactive chapters in the sidebar
 textbook_logo             : images/logo/logo.png  # A logo to be displayed at the top of your textbook sidebar
 
+#######################################################################################
 # Interact link settings
-use_interact_button       : true  # If 'true', display a button that will direct users to a JupyterHub (that you provide)
-hub_url                   : "https://mybinder.org"  # The URL for your JupyterHub/BinderHub.
-hub_type                  : "binder"  # ['binder', 'jupyterhub']  Whether to build interact links for a BinderHub or a JupyterHub
-interact_text             : "Interact"  # The text that interact buttons will contain.
+
+# General interact settings
+use_jupyterlab                   : false  # If 'true', interact links will use JupyterLab as the interface
+
+# Jupyterhub link settings
+use_jupyterhub_button            : false  # If 'true', display a button that will direct users to a JupyterHub (that you provide)
+jupyterhub_url                   : ""  # The URL for your JupyterHub.
+jupyterhub_interact_text         : "Interact"  # The text that interact buttons will contain.
 
 # Binder link settings
-textbook_repo_base        : "https://github.com/"  # The site on which the textbook repository is hosted
-textbook_repo_org         : "choldgraf"  # The username or organization that owns this repository
-textbook_repo_name        : "jupyter-book"  # The name of the repository on the web
-textbook_repo_branch      : "master"  # The branch on which your textbook is hosted.
-use_jupyterlab            : false  # If 'true', interact links will use JupyterLab as the interface
+use_binder_button                : true  # If 'true', add a binder button for interactive links
+binderhub_url                    : "https://mybinder.org"  # The URL for your BinderHub.
+binder_repo_base                 : "https://github.com/"  # The site on which the textbook repository is hosted
+binder_repo_org                  : "choldgraf"  # The username or organization that owns this repository
+binder_repo_name                 : "jupyter-book"  # The name of the repository on the web
+binder_repo_branch               : "master"  # The branch on which your textbook is hosted.
+binderhub_interact_text          : "Interact"  # The text that interact buttons will contain.
 
 # Thebelab settings
-use_thebelab_button       : true  # If 'true', display a button to allow in-page running code cells with Thebelab
-thebelab_button_text      : "Thebelab"  # The text to display inside the Thebelab initialization button
+use_thebelab_button              : true  # If 'true', display a button to allow in-page running code cells with Thebelab
+thebelab_button_text             : "Thebelab"  # The text to display inside the Thebelab initialization button
 
 
 #######################################################################################
@@ -62,19 +69,21 @@ thebelab_button_text      : "Thebelab"  # The text to display inside the Thebela
 scholar:
   style: apa
 
+
 #######################################################################################
 # Jupyter book settings you probably don't need to change
 
 content_folder_name       : "content"  # The folder where your raw content (notebooks/markdown files) are located
+images_url                : "/assets/images" # Path to static image files
 css_url                   : "/assets/css" # Path to static CSS files
 js_url                    : "/assets/js" # Path to JS files
 custom_static_url         : "/assets/custom" # Path to user's custom CSS/JS files
 
 
 #######################################################################################
-# Jekyll build settings
+# Jekyll build settings (only modify if you know what you're doing)
 
-# Site settings (only modify if you know what you're doing)
+# Site settings
 defaults:
   - scope:
       path: ""
