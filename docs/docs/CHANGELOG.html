@@ -27,9 +27,9 @@
   "headline":
     "The Jupyter Book Changelog",
   "datePublished":
-    "2018-12-19T11:50:05-08:00",
+    "2019-01-01T16:57:00+01:00",
   "dateModified":
-    "2018-12-19T11:50:05-08:00",
+    "2019-01-01T16:57:00+01:00",
   "description":
     "This is an example book built with Jupyter Books.",
   "author": {
@@ -109,6 +109,11 @@ const runWhenDOMLoaded = cb => {
   }
 }
 
+// Helper function to init things quickly
+initFunction = function(myfunc) {
+  runWhenDOMLoaded(myfunc);
+  document.addEventListener('turbolinks:load', myfunc);
+};
 </script>
 
   <!-- Include Turbolinks to make page loads fast -->
@@ -119,6 +124,76 @@ const runWhenDOMLoaded = cb => {
   <!-- Load nbinteract for widgets -->
   <script src="https://unpkg.com/nbinteract-core" async></script>
 
+  <!-- Load Thebelab for interactive widgets -->
+  <!-- Include Thebelab for interactive code if it's enabled -->
+
+<script type="text/x-thebe-config">
+    {
+      requestKernel: true,
+      binderOptions: {
+        repo: 'choldgraf/jupyter-book',
+        ref: 'master',
+      }
+    }
+</script>
+<script src="https://unpkg.com/thebelab@0.3.3/lib/index.js"></script>
+<script>
+    /**
+     * Add attributes to Thebelab blocks
+     */
+    
+    const initThebelab = () => {
+        const addThebelabToCodeCells = () => {
+            console.log("Adding thebelab to code cells...");
+            // If Thebelab hasn't loaded, wait a bit and try again. This
+            // happens because we load ClipboardJS asynchronously.
+            if (window.thebelab === undefined) {
+                setTimeout(addThebelabToCodeCells, 250)
+            return
+            }
+    
+            // If we already detect a Thebelab cell, don't re-run
+            if (document.querySelectorAll('div.thebelab-cell').length > 0) {
+                return;
+            }
+            
+            // Find all code cells, replace with Thebelab interactive code cells
+            const codeCells = document.querySelectorAll('.input_area pre')
+            codeCells.forEach((codeCell, index) => {
+                const id = codeCellId(index)
+                codeCell.setAttribute('data-executable', '')
+            });
+    
+            // Init thebelab
+            thebelab.bootstrap();
+    
+            // Remove copy buttons since they won't work anymore
+            const copyButtons = document.querySelectorAll('.copybtn')
+            copyButtons.forEach((copyButton, index) => {
+                copyButton.remove();
+            });
+
+            // Remove outputs since they'll be stale
+            const outputs = document.querySelectorAll('.output *, .output')
+            outputs.forEach((output, index) => {
+                output.remove();
+            });
+        }
+    
+        // Add event listener for the function to modify code cells
+        const thebelabButton = document.getElementById('interact-button-thebelab');
+        if (thebelabButton === null) {
+            setTimeout(initThebelab, 250)
+        return
+        };
+        thebelabButton.addEventListener('click', addThebelabToCodeCells);
+    }
+    
+    // Initialize Thebelab
+    initFunction(initThebelab);
+</script>
+
+
   <!-- Google analytics -->
   <script src="/jupyter-book/assets/js/ga.js" async></script>
 
@@ -127,6 +202,72 @@ const runWhenDOMLoaded = cb => {
 
   <!-- Load custom website scripts -->
   <script src="/jupyter-book/assets/js/scripts.js" async></script>
+
+  <!-- Load JS that depends on site variables -->
+  <script>
+/**
+ * Set up copy/paste for code blocks
+ */
+const codeCellId = index => `codecell${index}`
+
+const clipboardButton = id =>
+  `<a class="btn copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#${id}">
+    <img src="/jupyter-book/assets/images/copy-button.svg" alt="Copy to clipboard">
+  </a>`
+
+// Clears selected text since ClipboardJS will select the text when copying
+const clearSelection = () => {
+  if (window.getSelection) {
+    window.getSelection().removeAllRanges()
+  } else if (document.selection) {
+    document.selection.empty()
+  }
+}
+
+// Changes tooltip text for two seconds, then changes it back
+const temporarilyChangeTooltip = (el, newText) => {
+  const oldText = el.getAttribute('data-tooltip')
+  el.setAttribute('data-tooltip', newText)
+  setTimeout(() => el.setAttribute('data-tooltip', oldText), 2000)
+}
+
+const addCopyButtonToCodeCells = () => {
+  // If ClipboardJS hasn't loaded, wait a bit and try again. This
+  // happens because we load ClipboardJS asynchronously.
+  if (window.ClipboardJS === undefined) {
+    setTimeout(addCopyButtonToCodeCells, 250)
+    return
+  }
+
+  const codeCells = document.querySelectorAll('.input_area pre')
+  codeCells.forEach((codeCell, index) => {
+    const id = codeCellId(index)
+    codeCell.setAttribute('id', id)
+    codeCell.insertAdjacentHTML('afterend', clipboardButton(id))
+  })
+
+  const clipboard = new ClipboardJS('.copybtn')
+  clipboard.on('success', event => {
+    clearSelection()
+    temporarilyChangeTooltip(event.trigger, 'Copied!')
+  })
+
+  clipboard.on('error', event => {
+    temporarilyChangeTooltip(event.trigger, 'Failed to copy')
+  })
+
+  // Get rid of clipboard before the next page visit to avoid memory leak
+  document.addEventListener('turbolinks:before-visit', () =>
+    clipboard.destroy()
+  )
+}
+
+initFunction(addCopyButtonToCodeCells);
+</script>
+
+  <!-- Load custom user CSS and JS  -->
+  <script src="/jupyter-book/assets/custom/custom.js" async></script>
+  <link rel="stylesheet" href="/jupyter-book/assets/custom/custom.css">
 
   <!-- Update interact links w/ REST param, is defined in includes so we can use templates -->
   <script>
@@ -221,7 +362,7 @@ function updateInteractLink() {
       if (link !== undefined) {
           // Update the interact link URL
           var href = link.getAttribute('href');
-          var hub_type = 'binder';
+          var hub_type = '';
           if (hub_type === 'binder') {
             // If binder links exist, we need to re-work them for jupyterhub
             if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
@@ -233,7 +374,7 @@ function updateInteractLink() {
             href = first + '?' + binder2Jupyterhub(href);
           } else {
             // If JupyterHub links, we only need to replace the hub url
-            href = href.replace("https://mybinder.org", hubUrl);
+            href = href.replace("", hubUrl);
             if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
               // Assume we're working from a local Jupyter server and remove `/hub`
               href = href.replace("/hub/user-redirect", "");
@@ -486,7 +627,7 @@ document.addEventListener('turbolinks:load', updateInteractLink)
                   href="/jupyter-book/guide/07_advanced"
                 >
                   
-                  Advanced
+                  How-to and advanced topics
                 </a>
 
                 
@@ -967,6 +1108,12 @@ document.addEventListener('turbolinks:load', updateInteractLink)
     <nav class="onthispage">
       <header><h4 class="nav__title"><i class="fa fa-list"></i>   On this page</h4></header>
       <ul class="toc__menu">
+  <li><a href="#v03dev">v0.3dev</a>
+    <ul>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#minor-fixes">Minor fixes</a></li>
+    </ul>
+  </li>
   <li><a href="#v021---beta-21">v0.2.1 - Beta 2.1</a></li>
   <li><a href="#v02---beta-2">v0.2 - Beta 2</a></li>
   <li><a href="#v01---beta-1">v0.1 - Beta 1</a></li>
@@ -991,14 +1138,33 @@ document.addEventListener('turbolinks:load', updateInteractLink)
   </button>
 </div>
 
-            <!-- INTERACT LINKS -->
-
-
+            
 
             <div class="c-textbook__content">
               <h1 id="the-jupyter-book-changelog">The Jupyter Book Changelog</h1>
 
 <p>Below is a rough list of new features, broken down by Jupyter Book version.</p>
+
+<h2 id="v03dev">v0.3dev</h2>
+
+<h3 id="features">Features</h3>
+
+<ul>
+  <li>Added support for <a href="https://minrk.github.io/thebelab/">Thebelab</a> to auto-generate
+interactive cells within the static page.</li>
+  <li>Added support for Bibliographies via <a href="https://github.com/inukshuk/jekyll-scholar">jekyll-scholar</a></li>
+  <li>Added ability to customize look and feel of the site with your own CSS/JS</li>
+  <li>API CHANGE: there is now a separate configuration section for each button
+(jupyterhub, binderhub, etc).</li>
+</ul>
+
+<h3 id="minor-fixes">Minor fixes</h3>
+
+<ul>
+  <li>Minor improvements to page layout</li>
+  <li>Redirections for sanitized URLs now check whether the filesystem is case-sensitive
+and raise an error if unexpected behavior would occur without changes. <a href="https://github.com/matthew-brett">@matthew-brett</a></li>
+</ul>
 
 <h2 id="v021---beta-21">v0.2.1 - Beta 2.1</h2>
 

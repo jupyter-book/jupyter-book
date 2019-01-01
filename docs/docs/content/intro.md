@@ -1,7 +1,10 @@
 # Books with Jupyter and Jekyll
 
+<img src="https://circleci.com/gh/choldgraf/jupyter-book.svg?style=svg" class="left">
+
 Jupyter Books lets you build an online book using a collection of Jupyter Notebooks
-and Markdown files.
+and Markdown files. Its output is similar to the excellent [Bookdown](https://bookdown.org/yihui/bookdown/) tool,
+and adds extra functionality for people running a Jupyter stack.
 
 For an example of a book built with Jupyter Books, see the [textbook for Data 100](https://www.textbook.ds100.org/) at UC Berkeley.
 

@@ -27,9 +27,9 @@
   "headline":
     "Call Expressions",
   "datePublished":
-    "2018-12-19T11:50:05-08:00",
+    "2019-01-01T16:57:00+01:00",
   "dateModified":
-    "2018-12-19T11:50:05-08:00",
+    "2019-01-01T16:57:00+01:00",
   "description":
     "Call expressions invoke functions, which are named operations. The name of the function appears first, followed by expressions in parentheses.",
   "author": {
@@ -109,6 +109,11 @@ const runWhenDOMLoaded = cb => {
   }
 }
 
+// Helper function to init things quickly
+initFunction = function(myfunc) {
+  runWhenDOMLoaded(myfunc);
+  document.addEventListener('turbolinks:load', myfunc);
+};
 </script>
 
   <!-- Include Turbolinks to make page loads fast -->
@@ -119,6 +124,76 @@ const runWhenDOMLoaded = cb => {
   <!-- Load nbinteract for widgets -->
   <script src="https://unpkg.com/nbinteract-core" async></script>
 
+  <!-- Load Thebelab for interactive widgets -->
+  <!-- Include Thebelab for interactive code if it's enabled -->
+
+<script type="text/x-thebe-config">
+    {
+      requestKernel: true,
+      binderOptions: {
+        repo: 'choldgraf/jupyter-book',
+        ref: 'master',
+      }
+    }
+</script>
+<script src="https://unpkg.com/thebelab@0.3.3/lib/index.js"></script>
+<script>
+    /**
+     * Add attributes to Thebelab blocks
+     */
+    
+    const initThebelab = () => {
+        const addThebelabToCodeCells = () => {
+            console.log("Adding thebelab to code cells...");
+            // If Thebelab hasn't loaded, wait a bit and try again. This
+            // happens because we load ClipboardJS asynchronously.
+            if (window.thebelab === undefined) {
+                setTimeout(addThebelabToCodeCells, 250)
+            return
+            }
+    
+            // If we already detect a Thebelab cell, don't re-run
+            if (document.querySelectorAll('div.thebelab-cell').length > 0) {
+                return;
+            }
+            
+            // Find all code cells, replace with Thebelab interactive code cells
+            const codeCells = document.querySelectorAll('.input_area pre')
+            codeCells.forEach((codeCell, index) => {
+                const id = codeCellId(index)
+                codeCell.setAttribute('data-executable', '')
+            });
+    
+            // Init thebelab
+            thebelab.bootstrap();
+    
+            // Remove copy buttons since they won't work anymore
+            const copyButtons = document.querySelectorAll('.copybtn')
+            copyButtons.forEach((copyButton, index) => {
+                copyButton.remove();
+            });
+
+            // Remove outputs since they'll be stale
+            const outputs = document.querySelectorAll('.output *, .output')
+            outputs.forEach((output, index) => {
+                output.remove();
+            });
+        }
+    
+        // Add event listener for the function to modify code cells
+        const thebelabButton = document.getElementById('interact-button-thebelab');
+        if (thebelabButton === null) {
+            setTimeout(initThebelab, 250)
+        return
+        };
+        thebelabButton.addEventListener('click', addThebelabToCodeCells);
+    }
+    
+    // Initialize Thebelab
+    initFunction(initThebelab);
+</script>
+
+
   <!-- Google analytics -->
   <script src="/jupyter-book/assets/js/ga.js" async></script>
 
@@ -127,6 +202,72 @@ const runWhenDOMLoaded = cb => {
 
   <!-- Load custom website scripts -->
   <script src="/jupyter-book/assets/js/scripts.js" async></script>
+
+  <!-- Load JS that depends on site variables -->
+  <script>
+/**
+ * Set up copy/paste for code blocks
+ */
+const codeCellId = index => `codecell${index}`
+
+const clipboardButton = id =>
+  `<a class="btn copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#${id}">
+    <img src="/jupyter-book/assets/images/copy-button.svg" alt="Copy to clipboard">
+  </a>`
+
+// Clears selected text since ClipboardJS will select the text when copying
+const clearSelection = () => {
+  if (window.getSelection) {
+    window.getSelection().removeAllRanges()
+  } else if (document.selection) {
+    document.selection.empty()
+  }
+}
+
+// Changes tooltip text for two seconds, then changes it back
+const temporarilyChangeTooltip = (el, newText) => {
+  const oldText = el.getAttribute('data-tooltip')
+  el.setAttribute('data-tooltip', newText)
+  setTimeout(() => el.setAttribute('data-tooltip', oldText), 2000)
+}
+
+const addCopyButtonToCodeCells = () => {
+  // If ClipboardJS hasn't loaded, wait a bit and try again. This
+  // happens because we load ClipboardJS asynchronously.
+  if (window.ClipboardJS === undefined) {
+    setTimeout(addCopyButtonToCodeCells, 250)
+    return
+  }
+
+  const codeCells = document.querySelectorAll('.input_area pre')
+  codeCells.forEach((codeCell, index) => {
+    const id = codeCellId(index)
+    codeCell.setAttribute('id', id)
+    codeCell.insertAdjacentHTML('afterend', clipboardButton(id))
+  })
+
+  const clipboard = new ClipboardJS('.copybtn')
+  clipboard.on('success', event => {
+    clearSelection()
+    temporarilyChangeTooltip(event.trigger, 'Copied!')
+  })
+
+  clipboard.on('error', event => {
+    temporarilyChangeTooltip(event.trigger, 'Failed to copy')
+  })
+
+  // Get rid of clipboard before the next page visit to avoid memory leak
+  document.addEventListener('turbolinks:before-visit', () =>
+    clipboard.destroy()
+  )
+}
+
+initFunction(addCopyButtonToCodeCells);
+</script>
+
+  <!-- Load custom user CSS and JS  -->
+  <script src="/jupyter-book/assets/custom/custom.js" async></script>
+  <link rel="stylesheet" href="/jupyter-book/assets/custom/custom.css">
 
   <!-- Update interact links w/ REST param, is defined in includes so we can use templates -->
   <script>
@@ -221,7 +362,7 @@ function updateInteractLink() {
       if (link !== undefined) {
           // Update the interact link URL
           var href = link.getAttribute('href');
-          var hub_type = 'binder';
+          var hub_type = '';
           if (hub_type === 'binder') {
             // If binder links exist, we need to re-work them for jupyterhub
             if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
@@ -233,7 +374,7 @@ function updateInteractLink() {
             href = first + '?' + binder2Jupyterhub(href);
           } else {
             // If JupyterHub links, we only need to replace the hub url
-            href = href.replace("https://mybinder.org", hubUrl);
+            href = href.replace("", hubUrl);
             if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
               // Assume we're working from a local Jupyter server and remove `/hub`
               href = href.replace("/hub/user-redirect", "");
@@ -486,7 +627,7 @@ document.addEventListener('turbolinks:load', updateInteractLink)
                   href="/jupyter-book/guide/07_advanced"
                 >
                   
-                  Advanced
+                  How-to and advanced topics
                 </a>
 
                 
@@ -980,14 +1121,21 @@ document.addEventListener('turbolinks:load', updateInteractLink)
   </button>
 </div>
 
-            <!-- INTERACT LINKS -->
+            
+<div class="buttons">
 
-    
-    
-    <div class="buttons">
-        <a class="interact-button" href="https://mybinder.org/v2/gh/choldgraf/jupyter-book/master?filepath=content%2F03%2F3%2FCalls.ipynb">Interact</a>
-    </div>
 
+
+
+
+
+
+<a href="https://mybinder.org/v2/gh/choldgraf/jupyter-book/master?filepath=content%2F03%2F3%2FCalls.ipynb"><button class="interact-button" id="interact-button-hub"><img class="interact-button-logo" src="/jupyter-book/assets/images/logo_binder.svg" alt="Interact" />Interact</button></a>
+
+
+<button id="interact-button-thebelab" class="interact-button">Thebelab</button>
+
+</div>
 
 
             <div class="c-textbook__content">
@@ -996,19 +1144,19 @@ document.addEventListener('turbolinks:load', updateInteractLink)
 <div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">abs</span><span class="p">(</span><span class="o">-</span><span class="mi">12</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>12
+<div class="output output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>12
 </code></pre></div></div>
 
 <div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">round</span><span class="p">(</span><span class="mi">5</span> <span class="o">-</span> <span class="mf">1.3</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>4
+<div class="output output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>4
 </code></pre></div></div>
 
 <div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">max</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>5
+<div class="output output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>5
 </code></pre></div></div>
 
 <p>In this last example, the <code class="highlighter-rouge">max</code> function is <em>called</em> on three <em>arguments</em>: 2, 5, and 4. The value of each expression within parentheses is passed to the function, and the function <em>returns</em> the final value of the full call expression. The <code class="highlighter-rouge">max</code> function can take any number of arguments and returns the maximum.</p>
@@ -1020,7 +1168,7 @@ document.addEventListener('turbolinks:load', updateInteractLink)
 <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>3.0
+<div class="output output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>3.0
 </code></pre></div></div>
 
 <p>An equivalent expression could be expressed using the <code class="highlighter-rouge">+</code> and <code class="highlighter-rouge">**</code> operators instead.</p>
@@ -1028,7 +1176,7 @@ document.addEventListener('turbolinks:load', updateInteractLink)
 <div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>3.0
+<div class="output output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>3.0
 </code></pre></div></div>
 
 <p>Operators and call expressions can be used together in an expression. The <em>percent difference</em> between two values is used to compare values for which neither one is obviously <code class="highlighter-rouge">initial</code> or <code class="highlighter-rouge">changed</code>. For example, in 2014 Florida farms produced 2.72 billion eggs while Iowa farms produced 16.25 billion eggs (http://quickstats.nass.usda.gov/). The percent difference is 100 times the absolute value of the difference between the values, divided by their average. In this case, the difference is larger than the average, and so the percent difference is greater than 100.</p>
@@ -1038,7 +1186,7 @@ document.addEventListener('turbolinks:load', updateInteractLink)
 <span class="mi">100</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">florida</span><span class="o">-</span><span class="n">iowa</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="n">florida</span><span class="o">+</span><span class="n">iowa</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>142.6462836056932
+<div class="output output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>142.6462836056932
 </code></pre></div></div>
 
 <p>Learning how different functions behave is an important part of learning a programming language. A Jupyter notebook can assist in remembering the names and effects of different functions. When editing a code cell, press the <em>tab</em> key after typing the beginning of a name to bring up a list of ways to complete that name. For example, press <em>tab</em> after <code class="highlighter-rouge">math.</code> to see all of the functions available in the <code class="highlighter-rouge">math</code> module. Typing will narrow down the list of options. To learn more about a function, place a <code class="highlighter-rouge">?</code> after its name. For example, typing <code class="highlighter-rouge">math.log?</code> will bring up a description of the <code class="highlighter-rouge">log</code> function in the <code class="highlighter-rouge">math</code> module.</p>
@@ -1057,13 +1205,13 @@ If the base not specified, returns the natural logarithm (base e) of x.
 <div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>4.0
+<div class="output output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>4.0
 </code></pre></div></div>
 
 <div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>4.0
+<div class="output output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>4.0
 </code></pre></div></div>
 
 <p>The list of <a href="https://docs.python.org/3/library/functions.html">Python’s built-in functions</a> is quite long and includes many functions that are never needed in data science applications. The list of <a href="https://docs.python.org/3/library/math.html">mathematical functions in the <code class="highlighter-rouge">math</code> module</a> is similarly long. This text will introduce the most important functions in context, rather than expecting the reader to memorize or understand these lists.</p>
