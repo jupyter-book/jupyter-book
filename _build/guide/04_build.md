@@ -30,16 +30,24 @@ To build your site, take the following steps.:
    * Place all these generated files in the `/_build/` directory.
 
 2. From here, you have **two options**
-    * **Option 1**: Remove the `.nojekyll` file in the root of the repository. This will tell
-      GitHub pages to auto-generate your site from the markdown you just built once you upload it
-      to GitHub. Push the changes to your GitHub repo and that's it!
-    * **Option 2**: Build the site HTML locally by running the following command:
-    
-          make build
-      
-      This will put the HTML for the site in a folder called `docs/`, which you can use to host online with
-      GitHub pages (or elsewhere if you wish).
-      
+    * **Option 1: Jekyll builds the site for you**: By default, pushing a repository
+      cloned from Jupyter Book will tell GitHub to use Jekyll to build the repository
+      when you push changes (your repository is configured properly on GitHub).
+      Simply tell GitHub to build a site from your repo, then push the changes to
+      your GitHub repo and that's it!
+    * **Option 2: Build your site's HTML locally**:
+
+      When you build the site locally, all of the HTML needed to run the site is
+      generated in your `_site/` folder. This can be copy/pasted into whatever site
+      management setup you would like. GitHub can also host the raw HTML of a site
+      if you add a `.nojekyll` file to the root of the repository that hosts your site.
+
+      To summarize, you can take the following steps:
+
+      * `make build` will build the site locally and place the HTML in the `_site/` folder.
+      * `touch .nojekyll` will create an empty `.nojekyll` file that will prevent GitHub from
+        trying to use Jekyll to build your site.
+
 * Push your site to GitHub and configure it to build a website out of your repository.
 You can the push the changes to GitHub, which will automatically build a Jekyll site with
 your newly-created Markdown files. We'll cover this next.

@@ -1,5 +1,0 @@
-tqdm
-numpy
-pyyaml
-nbformat
-nbclean
