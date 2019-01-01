@@ -21,7 +21,7 @@
   padding: $spacing-unit-small 0;
   overflow-x: auto;
   @include mq($from: tablet) {
-    padding-left: $spacing-unit;
+    padding-left: $spacing-unit-small;
     padding-right: $spacing-unit;
   }
 
@@ -103,11 +103,14 @@ blockquote {
 
 .output_png img,
 p img {
-  width: 100% !important;
   max-width: 500px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.output_png img {
+  width: 100% !important;
 }
 
 .hl-ipython3 pre::before,

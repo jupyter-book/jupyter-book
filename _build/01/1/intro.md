@@ -1,6 +1,4 @@
 ---
-redirect_from:
-  - "/01/1/intro"
 title: 'Introduction'
 prev_page:
   url: /01/what-is-data-science

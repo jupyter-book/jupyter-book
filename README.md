@@ -1,5 +1,6 @@
 # <img src="content/images/logo/logo.png" width=40 /> Jupyter Book
 
+[![CircleCI](https://circleci.com/gh/choldgraf/jupyter-book.svg?style=svg)](https://circleci.com/gh/choldgraf/jupyter-book)
 
 This is a guide and template for hosting your own book using
 Jupyter Notebooks and Jekyll.

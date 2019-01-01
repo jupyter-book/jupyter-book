@@ -7,7 +7,7 @@ prev_page:
   title: 'Publish your book'
 next_page:
   url: /guide/07_advanced
-  title: 'Advanced'
+  title: 'How-to and advanced topics'
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 The following are some common issues and questions that have arisen when

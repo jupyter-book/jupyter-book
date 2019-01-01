@@ -1,6 +1,4 @@
 ---
-redirect_from:
-  - "/03/programming-in-python"
 title: 'Programming in Python'
 prev_page:
   url: /02/5/endnote

@@ -1,6 +1,4 @@
 ---
-redirect_from:
-  - "/01/3/subsection/subsectiontwo"
 title: 'Subsection Demo 2'
 prev_page:
   url: /01/3/subsection/subsections

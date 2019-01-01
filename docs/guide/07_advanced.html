@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,minimum-scale=1">
 
-  <title>Advanced</title>
+  <title>How-to and advanced topics</title>
   <meta name="description" content="This page contains more advanced and complete information about thejupyter-book repository. See the sections below.">
 
   <link rel="canonical" href="https://predictablynoisy.com/jupyter-book/guide/07_advanced.html">
@@ -13,7 +13,7 @@
 
   <meta property="og:url"         content="https://predictablynoisy.com/jupyter-book/guide/07_advanced.html" />
 <meta property="og:type"        content="article" />
-<meta property="og:title"       content="Advanced" />
+<meta property="og:title"       content="How-to and advanced topics" />
 <meta property="og:description" content="This page contains more advanced and complete information about thejupyter-book repository. See the sections below." />
 <meta property="og:image"       content="" />
 
@@ -25,11 +25,11 @@
   "mainEntityOfPage":
     "https://predictablynoisy.com/jupyter-book/guide/07_advanced.html",
   "headline":
-    "Advanced",
+    "How-to and advanced topics",
   "datePublished":
-    "2018-12-19T11:50:05-08:00",
+    "2019-01-01T16:57:00+01:00",
   "dateModified":
-    "2018-12-19T11:50:05-08:00",
+    "2019-01-01T16:57:00+01:00",
   "description":
     "This page contains more advanced and complete information about thejupyter-book repository. See the sections below.",
   "author": {
@@ -109,6 +109,11 @@ const runWhenDOMLoaded = cb => {
   }
 }
 
+// Helper function to init things quickly
+initFunction = function(myfunc) {
+  runWhenDOMLoaded(myfunc);
+  document.addEventListener('turbolinks:load', myfunc);
+};
 </script>
 
   <!-- Include Turbolinks to make page loads fast -->
@@ -119,6 +124,76 @@ const runWhenDOMLoaded = cb => {
   <!-- Load nbinteract for widgets -->
   <script src="https://unpkg.com/nbinteract-core" async></script>
 
+  <!-- Load Thebelab for interactive widgets -->
+  <!-- Include Thebelab for interactive code if it's enabled -->
+
+<script type="text/x-thebe-config">
+    {
+      requestKernel: true,
+      binderOptions: {
+        repo: 'choldgraf/jupyter-book',
+        ref: 'master',
+      }
+    }
+</script>
+<script src="https://unpkg.com/thebelab@0.3.3/lib/index.js"></script>
+<script>
+    /**
+     * Add attributes to Thebelab blocks
+     */
+    
+    const initThebelab = () => {
+        const addThebelabToCodeCells = () => {
+            console.log("Adding thebelab to code cells...");
+            // If Thebelab hasn't loaded, wait a bit and try again. This
+            // happens because we load ClipboardJS asynchronously.
+            if (window.thebelab === undefined) {
+                setTimeout(addThebelabToCodeCells, 250)
+            return
+            }
+    
+            // If we already detect a Thebelab cell, don't re-run
+            if (document.querySelectorAll('div.thebelab-cell').length > 0) {
+                return;
+            }
+            
+            // Find all code cells, replace with Thebelab interactive code cells
+            const codeCells = document.querySelectorAll('.input_area pre')
+            codeCells.forEach((codeCell, index) => {
+                const id = codeCellId(index)
+                codeCell.setAttribute('data-executable', '')
+            });
+    
+            // Init thebelab
+            thebelab.bootstrap();
+    
+            // Remove copy buttons since they won't work anymore
+            const copyButtons = document.querySelectorAll('.copybtn')
+            copyButtons.forEach((copyButton, index) => {
+                copyButton.remove();
+            });
+
+            // Remove outputs since they'll be stale
+            const outputs = document.querySelectorAll('.output *, .output')
+            outputs.forEach((output, index) => {
+                output.remove();
+            });
+        }
+    
+        // Add event listener for the function to modify code cells
+        const thebelabButton = document.getElementById('interact-button-thebelab');
+        if (thebelabButton === null) {
+            setTimeout(initThebelab, 250)
+        return
+        };
+        thebelabButton.addEventListener('click', addThebelabToCodeCells);
+    }
+    
+    // Initialize Thebelab
+    initFunction(initThebelab);
+</script>
+
+
   <!-- Google analytics -->
   <script src="/jupyter-book/assets/js/ga.js" async></script>
 
@@ -127,6 +202,72 @@ const runWhenDOMLoaded = cb => {
 
   <!-- Load custom website scripts -->
   <script src="/jupyter-book/assets/js/scripts.js" async></script>
+
+  <!-- Load JS that depends on site variables -->
+  <script>
+/**
+ * Set up copy/paste for code blocks
+ */
+const codeCellId = index => `codecell${index}`
+
+const clipboardButton = id =>
+  `<a class="btn copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#${id}">
+    <img src="/jupyter-book/assets/images/copy-button.svg" alt="Copy to clipboard">
+  </a>`
+
+// Clears selected text since ClipboardJS will select the text when copying
+const clearSelection = () => {
+  if (window.getSelection) {
+    window.getSelection().removeAllRanges()
+  } else if (document.selection) {
+    document.selection.empty()
+  }
+}
+
+// Changes tooltip text for two seconds, then changes it back
+const temporarilyChangeTooltip = (el, newText) => {
+  const oldText = el.getAttribute('data-tooltip')
+  el.setAttribute('data-tooltip', newText)
+  setTimeout(() => el.setAttribute('data-tooltip', oldText), 2000)
+}
+
+const addCopyButtonToCodeCells = () => {
+  // If ClipboardJS hasn't loaded, wait a bit and try again. This
+  // happens because we load ClipboardJS asynchronously.
+  if (window.ClipboardJS === undefined) {
+    setTimeout(addCopyButtonToCodeCells, 250)
+    return
+  }
+
+  const codeCells = document.querySelectorAll('.input_area pre')
+  codeCells.forEach((codeCell, index) => {
+    const id = codeCellId(index)
+    codeCell.setAttribute('id', id)
+    codeCell.insertAdjacentHTML('afterend', clipboardButton(id))
+  })
+
+  const clipboard = new ClipboardJS('.copybtn')
+  clipboard.on('success', event => {
+    clearSelection()
+    temporarilyChangeTooltip(event.trigger, 'Copied!')
+  })
+
+  clipboard.on('error', event => {
+    temporarilyChangeTooltip(event.trigger, 'Failed to copy')
+  })
+
+  // Get rid of clipboard before the next page visit to avoid memory leak
+  document.addEventListener('turbolinks:before-visit', () =>
+    clipboard.destroy()
+  )
+}
+
+initFunction(addCopyButtonToCodeCells);
+</script>
+
+  <!-- Load custom user CSS and JS  -->
+  <script src="/jupyter-book/assets/custom/custom.js" async></script>
+  <link rel="stylesheet" href="/jupyter-book/assets/custom/custom.css">
 
   <!-- Update interact links w/ REST param, is defined in includes so we can use templates -->
   <script>
@@ -221,7 +362,7 @@ function updateInteractLink() {
       if (link !== undefined) {
           // Update the interact link URL
           var href = link.getAttribute('href');
-          var hub_type = 'binder';
+          var hub_type = '';
           if (hub_type === 'binder') {
             // If binder links exist, we need to re-work them for jupyterhub
             if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
@@ -233,7 +374,7 @@ function updateInteractLink() {
             href = first + '?' + binder2Jupyterhub(href);
           } else {
             // If JupyterHub links, we only need to replace the hub url
-            href = href.replace("https://mybinder.org", hubUrl);
+            href = href.replace("", hubUrl);
             if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
               // Assume we're working from a local Jupyter server and remove `/hub`
               href = href.replace("/hub/user-redirect", "");
@@ -486,7 +627,7 @@ document.addEventListener('turbolinks:load', updateInteractLink)
                   href="/jupyter-book/guide/07_advanced"
                 >
                   
-                  Advanced
+                  How-to and advanced topics
                 </a>
 
                 
@@ -967,8 +1108,12 @@ document.addEventListener('turbolinks:load', updateInteractLink)
     <nav class="onthispage">
       <header><h4 class="nav__title"><i class="fa fa-list"></i>   On this page</h4></header>
       <ul class="toc__menu">
+  <li><a href="#customize-your-book-with-your-own-custom-css-or-javascript">Customize your book with your own custom CSS or Javascript</a></li>
+  <li><a href="#hide-cells-or-cell-outputs-in-the-built-site">Hide cells or cell outputs in the built site</a></li>
   <li><a href="#retain-custom-yaml-front-matter-in-your-files">Retain custom YAML front-matter in your files</a></li>
-  <li><a href="#relevant-files">Relevant files</a>
+  <li><a href="#add-buttons-to-direct-users-to-a-jupyterhub-or-binderhub">Add buttons to direct users to a JupyterHub or BinderHub</a></li>
+  <li><a href="#make-your-static-pages-interactive-with-thebelab">Make your static pages interactive with Thebelab</a></li>
+  <li><a href="#list-of-relevant-files">List of relevant files</a>
     <ul>
       <li><a href="#course-materials">Course materials</a></li>
       <li><a href="#auto-generated-folders-and-files">Auto-generated folders and files</a></li>
@@ -997,13 +1142,54 @@ document.addEventListener('turbolinks:load', updateInteractLink)
   </button>
 </div>
 
-            <!-- INTERACT LINKS -->
-
-
+            
 
             <div class="c-textbook__content">
               <p>This page contains more advanced and complete information about the
 <a href="https://github.com/choldgraf/jupyter-book"><code class="highlighter-rouge">jupyter-book</code> repository</a>. See the sections below.</p>
+
+<h2 id="customize-your-book-with-your-own-custom-css-or-javascript">Customize your book with your own custom CSS or Javascript</h2>
+
+<p>To add your own CSS or Javascript files, you should add your own code
+to the following files:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">assets/custom/custom.css</code></li>
+  <li><code class="highlighter-rouge">assets/custom/custom.js</code></li>
+</ul>
+
+<p>These are empty by default, but are loaded into your HTML’s header.
+They can be used to style your book however you’d like. For example,
+you may want to apply some of the <a href="https://github.com/distillpub/template/tree/master/src/styles">distill.pub stylesheets</a>.</p>
+
+<h2 id="hide-cells-or-cell-outputs-in-the-built-site">Hide cells or cell outputs in the built site</h2>
+
+<p>Sometimes you want to use code to generate visualizations or prepare data,
+but you don’t want users to see it in your built book. To prevent code cells
+from showing up in your built site, you can use the following two configuration
+options in your <code class="highlighter-rouge">_config.yml</code> file.</p>
+
+<p><em>*To remove entire code cells from your book</em>, use the following configuration:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">hide_cell_text </span><span class="pi">:</span> <span class="s2">"</span><span class="s">YOUR</span><span class="nv"> </span><span class="s">TEXT"</span>
+</code></pre></div></div>
+
+<p>Any code cell with the value of <code class="highlighter-rouge">hide_cell_text</code> (above it is <code class="highlighter-rouge">YOUR TEXT</code>)
+will not show up in your built book.</p>
+
+<p><em>*To remove only the code, but retain the outputs or a cell</em>, use the following
+configuration:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">hide_code_text</span><span class="pi">:</span> <span class="s2">"</span><span class="s">YOUR</span><span class="nv"> </span><span class="s">TEXT"</span>
+</code></pre></div></div>
+
+<p>Any code cell with the value of <code class="highlighter-rouge">hide_code_text</code> (above it is <code class="highlighter-rouge">YOUR TEXT</code>)
+will show the output (e.g. images, HTML, etc) but not the input code that
+generated this output.</p>
+
+<p>In both cases, the cells <em>will</em> remain in the notebooks themselves, they
+simply won’t show up in the site’s HTML, so links that point to a JupyterHub/
+Binder/etc will still work as expected.</p>
 
 <h2 id="retain-custom-yaml-front-matter-in-your-files">Retain custom YAML front-matter in your files</h2>
 
@@ -1015,7 +1201,43 @@ to modify this site’s HTML).</p>
 <p>Be careful not to add YAML with the same key names as the auto-generated YAML, as
 this will create duplicated keys in your page’s front-matter.</p>
 
-<h2 id="relevant-files">Relevant files</h2>
+<h2 id="add-buttons-to-direct-users-to-a-jupyterhub-or-binderhub">Add buttons to direct users to a JupyterHub or BinderHub</h2>
+
+<p>It is often helpful to let readers quickly interact with their own version of a
+page in order to run the code, experiment, etc. Since many of the pages in a Jupyter
+book are powered by notebooks, it is possible to set up a JupyterHub/BinderHub
+with an environment that is needed to run your book’s content.</p>
+
+<p>You can place a button at the top of each page that will direct users to a JupyterHub
+that you specify and load the content from that page. To enable this, use the following
+configuration:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">use_interact_button</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<p>You can configure this button according to the location of the JupyterHub/BinderHub
+that you have set up. For example,</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">hub_url </span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://&lt;url-to-your-hub&gt;"</span>  <span class="c1"># The URL for your JupyterHub/BinderHub.</span>
+
+<span class="c1"># ['binder', 'jupyterhub']  Whether to build interact links for a BinderHub or a JupyterHub</span>
+<span class="na">hub_type </span><span class="pi">:</span> <span class="s2">"</span><span class="s">binder"</span>
+</code></pre></div></div>
+
+<p>Alternatively, you can use <code class="highlighter-rouge">https://mybinder.org</code> for your <code class="highlighter-rouge">hub_url</code> in order to
+use the free mybinder.org service.</p>
+
+<h2 id="make-your-static-pages-interactive-with-thebelab">Make your static pages interactive with Thebelab</h2>
+
+<p><a href="https://github.com/minrk/thebelab">Thebelab</a> is a project to automatically turn
+static code cells into interactive cells powered by a Binder kernel. This is triggered
+with a <code class="highlighter-rouge">Thebelab</code> button at the top of each page that has been generated from a notebook.
+To make this button appear, use the following configuration in your <code class="highlighter-rouge">_config.yaml</code> file:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">use_thebelab_button </span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<h2 id="list-of-relevant-files">List of relevant files</h2>
 
 <p>There are a few moving parts associated with Jupyter Books, and this
 section tries to cover most of the relevant pieces. The following list contains some

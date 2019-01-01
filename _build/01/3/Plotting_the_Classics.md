@@ -49,7 +49,7 @@ Table().with_column('Chapters', huck_finn_chapters)
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>

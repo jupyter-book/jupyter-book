@@ -27,7 +27,7 @@ type(abs)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 builtin_function_or_method
 ```
