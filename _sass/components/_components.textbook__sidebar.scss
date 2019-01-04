@@ -8,6 +8,7 @@
  * [4]: The current section needs a higher specificity to override the :hover
  *   selectors used previously.
  * [5]: The logo displayed above the sidebar
+ * [6]: The footer at the bottom of the sidebar
  */
 $color-sidebar-bg: rgba(255, 255, 255, 0) !default;
 $color-sidebar-entry: #364149 !default;
@@ -84,4 +85,11 @@ img.textbook_logo {
   max-height: 100px;
   margin: 0px auto 20px auto;
   display: block;
+}
+
+/* [6] */
+p.sidebar_footer {
+  text-align: center;
+  padding: 10px 20px 0px 0px;
+  font-size: .9em;
 }

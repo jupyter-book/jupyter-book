@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/"
 title: 'Home'
 prev_page:
   url: 

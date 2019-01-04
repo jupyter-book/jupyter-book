@@ -15,14 +15,13 @@ pushed and served by GitHub. To do this, take the following steps:
 
 0. Confirm that your site files are built. You should see a
    collection of markdown files/folders in the `_build` folder,
-   or a collection of HTML in your `docs/` folder.
+   or a collection of HTML in your `_site/` folder.
 1. Commit and push the changes to your repository. 
 2. Enable GitHub site building for your repository.
 
    From your GitHub repository, click `Settings` then scroll down to the
    `GitHub Pages` section. You should see the message `Your site is published at <YOUR-URL>`.
-   Ensure that you're building from the correct folder (e.g. `docs/` if you're building
-   with the raw HTML, the root if you're building from markdown).
+   Ensure that you're building from the correct folder.
    
 3. Go to the URL listed at `<YOUR-URL>` and you should see your live site.
 

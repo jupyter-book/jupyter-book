@@ -1,36 +1,65 @@
-version: 2
+version: 2.1
 jobs:
+  # Build the site to store artifacts
   site:
     docker:
-      - image: circleci/ruby:2.4.2-jessie-node
+      - image: circleci/ruby:2.6
     steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
-            - rails-demo-bundle-v2-
-
-      - run:
-          name: Bundle Install
-          command: bundle check || bundle install
-
-      # Store bundle cache
-      - save_cache:
-          key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
-
-      - run:
-          name: Build the website
-          command: bundle exec jekyll build --baseurl /0/html/
+      # Build the site's HTML w/ the base_url for CircleCI artifacts
+      - build_site:
+          build_args: --baseurl /0/html/
 
       # Tell Circle to store the documentation output in a folder that we can access later
       - store_artifacts:
           path: _site/
           destination: html
 
+  # Deploy the built site to jupyter-book.github.io
+  deploy:
+    docker:
+      - image: circleci/ruby:2.6
+    steps:
+      - checkout
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: /tmp/workspace
+
+      # Add deployment key fingerprint for CircleCI to use for a push
+      - add_ssh_keys:
+          fingerprints:
+            - "19:34:f0:15:b8:3a:e4:44:27:a8:e9:8b:b5:e4:48:a9"
+
+      # Grab the the built markdown from the last step
+      - run:
+          name: Copy over built site files
+          command: rm -rf _build && cp -r /tmp/workspace/_build ./
+
+      # Build the site so we have local files
+      - build_site:
+          build_args: ""
+
+      # Copying over built website to the live site
+      - run:
+          name: Copy built site to a folder to store
+          command: cp -r ./_site ../_site
+      - run:
+          name: Change to gh-pages branch and replace w/ new site
+          command: |
+            git checkout gh-pages
+            rm -rf ./*
+            cp -r ../_site/* ./
+            touch ./.nojekyll
+
+      - run:
+          name: Commit results and push to gh-pages
+          command: |
+            git config --global user.email "choldgraf@berkeley.edu"
+            git config --global user.name "Chris Holdgraf"
+            git add ./.nojekyll
+            git add ./* && git commit -m "jekyll book web deploy"
+            git push -f origin gh-pages:gh-pages      
+
   run_tests:
-    # This is the base environment that Circle will use
     docker:
       - image: circleci/python:3.6-stretch
     steps:
@@ -56,8 +85,20 @@ jobs:
       - run:
           name: Tests
           command: |
-            pytest scripts/tests/test_build.py
-            
+            pytest scripts/tests/test_build.py  
+
+      # If tests pass, build the site itself
+      - run:
+          name: Build site markdown
+          command: python scripts/generate_book.py
+
+      # Persist the specified paths (see https://circleci.com/docs/2.0/workflows/#using-workspaces-to-share-data-among-jobs)
+      - persist_to_workspace:
+          root: .
+          paths:
+            - _build/
+
+      
 
 # Tell CircleCI to use this workflow when it builds the site
 workflows:
@@ -66,3 +107,38 @@ workflows:
     jobs:
       - run_tests
       - site
+      - deploy:
+          requires:
+            - run_tests
+          filters:
+              branches:
+                only:
+                  - master
+
+commands:
+  build_site:
+    description: "Build the site with Jekyll"
+    parameters:
+      build_args:
+        type: string
+        default: ""
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - rails-demo-bundle-v2-
+      
+      - run: gem install bundler
+      - run: bundle install
+
+      # Store bundle cache
+      - save_cache:
+          key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - run:
+          name: Build the website
+          command: bundle exec jekyll build << parameters.build_args >>
+      

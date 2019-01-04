@@ -17,8 +17,8 @@
 #######################################################################################
 # Jekyll site settings
 title: Jupyter Book
-author: Samuel Lau and Deborah Nolan and Chris Holdgraf
-email: samlau95@berkeley.edu
+author: The Jupyter Book Community
+email: choldgraf@berkeley.edu
 description: >- # this means to ignore newlines until "baseurl:"
   This is an example book built with Jupyter Books.
 
@@ -36,6 +36,7 @@ hide_code_text            : "# NO CODE"  # When building the textbook, any cells
 # Sidebar settings
 collapse_inactive_chapters: true  # Whether to collapse the inactive chapters in the sidebar
 textbook_logo             : images/logo/logo.png  # A logo to be displayed at the top of your textbook sidebar
+sidebar_footer_text       : 'Powered by <a href="https://github.com/choldgraf/jupyter-book">Jupyter Book</a>'
 
 #######################################################################################
 # Interact link settings

@@ -46,8 +46,7 @@ step in more detail in this guide):
     * **Option 1**: Use GitHub pages to auto-generate your site from the markdown. Once you build your book, push the
       changes to your GitHub repo and that's it!
     * **Option 2**: Build the site HTML locally with `make build` and then host it wherever you like. You can still use
-      GitHub pages to host the HTML by putting it in the root of the repository, or in the `docs/` folder (which is what
-      this site does)
+      GitHub pages to host the HTML by putting it in the root of the repository, or in the `docs/` folder, if you add a `.nojekyll` file.
 * Tell GitHub to build a website out of your repository.
 * That's it!
 
