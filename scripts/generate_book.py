@@ -172,7 +172,8 @@ if __name__ == '__main__':
         path_new_folder = path_url_folder.replace(os.sep + CONTENT_FOLDER_NAME, os.sep + BUILD_FOLDER_NAME)
         path_new_file = op.join(path_new_folder, op.basename(path_url_page).replace('.ipynb', '.md'))
 
-        if overwrite is False and op.exists(path_new_file):
+        if overwrite is False and op.exists(path_new_file) \
+           and os.stat(path_new_file).st_mtime > os.stat(path_url_page).st_mtime:
             n_skipped_files += 1
             continue
 
@@ -308,7 +309,7 @@ if __name__ == '__main__':
     print("\n===========")
     print("Generated {} new files\nSkipped {} already-built files".format(n_built_files, n_skipped_files))
     if n_built_files == 0:
-        print("Delete the markdown files in '{}' for any pages that you wish to re-build.".format(BUILD_FOLDER_NAME))
+        print("Delete the markdown files in '{}' for any pages that you wish to re-build, or use --overwrite option to re-build all.".format(BUILD_FOLDER_NAME))
     print("\nYour Jupyter Book is now in `{}/`.".format(BUILD_FOLDER_NAME))
     print("\nDemo your Jupyter book with `make serve` or push to GitHub!")
 
