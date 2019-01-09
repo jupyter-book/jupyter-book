@@ -131,7 +131,7 @@ If an interact button is present on a page, append the following to a page's URL
 to update where the link points:
 
 ```
-mybook.com/mypage?hub=myhuburl.com
+mybook.com/mypage?jupyterhub=myhuburl.com
 ```
 
 You should see a message displayed next to the interact link that lets the user know
