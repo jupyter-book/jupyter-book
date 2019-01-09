@@ -58,7 +58,7 @@ a 1-level nesting; we will label 1.2, but not 1.2.1.
           {% endcomment %}
           {% assign any_section_active = 0 %}
           {% for section in chapter.sections %}
-            {% if page.url contains section.url %}
+            {% if page.url contains section.url or chapter.expand_sections %}
 
               {% assign any_section_active = 1 %}
             {% elsif section.subsections %}

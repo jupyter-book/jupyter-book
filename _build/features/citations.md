@@ -2,11 +2,11 @@
 interact_link: content/features/citations.ipynb
 title: 'Citations and bibliographies'
 prev_page:
-  url: /features/notebooks
-  title: 'Jupyter notebooks'
+  url: /features/interact
+  title: 'Connecting content with JupyterHub and Binder'
 next_page:
-  url: /guide/01_overview
-  title: 'Guide'
+  url: /01/what-is-data-science
+  title: 'Data Science'
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 

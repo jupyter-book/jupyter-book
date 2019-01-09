@@ -6,8 +6,8 @@ prev_page:
   url: /guide/06_faq
   title: 'FAQ'
 next_page:
-  url: /01/what-is-data-science
-  title: 'Data Science'
+  url: /features/features
+  title: 'Features and customization'
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 This page contains more advanced and complete information about the

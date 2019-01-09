@@ -5,13 +5,9 @@
  * [2] Sidebar toggling
  * [3] Sidebar scroll preserving
  * [4] Keyboard navigation
-<<<<<<< 774e3b684e529d0788d07cedcc88df407179db17
  * [5] Right sidebar scroll highlighting
-=======
- * [5] Copy buttons for code blocks
  * [6] Right sidebar scroll highlighting
  * [7] Add buttons to hide code cells
->>>>>>> adding collapsible code blocks
  */
 
 const togglerId = 'js-sidebar-toggle'
@@ -146,62 +142,3 @@ highlightRightSidebar = function() {
 
 initFunction(highlightRightSidebar);
 
-
-/**
- * [6] Add buttons to hide code cells
-*/
-var toggleCodeCell = function (element) {
-    // Figure out if we're a link or an image (fist pageload will be link, clicks will be image)
-    if (element.tagName == "A") {
-        var link = element;
-        var img = element.nextElementSibling;
-    } else {
-        var link = element.parentElement;
-        var img = element;
-    };
-
-    // Update the image and class for hidden
-    var id = link.getAttribute('data-id');
-    var codeCell = document.querySelector(`#${id}`);
-    if (codeCell.classList.contains("hidden")) {
-        codeCell.classList.remove('hidden');
-        img.src = `${icon_path}/minus-circle.svg`;
-        link.setAttribute('data-tooltip', "hide code cell");
-        
-    } else {
-        codeCell.classList.add('hidden');
-        img.src = `${icon_path}/plus-circle.svg`;
-        link.setAttribute('data-tooltip', "show code cell");
-    }
-}
-
-toggleCodeCellHandler = function (event) {
-    toggleCodeCell(event.target)
-}
-
-
-// Initialize the hide buttos
-var initCodeCellHandler = function (id) {
-    hideLink = document.querySelector(`#${id}`).nextElementSibling;
-    hideLink.addEventListener('click', toggleCodeCellHandler)
-}
-
-initHiddenCells = function () {
-    document.querySelectorAll('div.hidecode pre').forEach(function (item) {
-        toggleCodeCell(item.nextElementSibling);
-    })
-}
-const hideCodeButton = id => `<a class="hidebtn o-tooltip--left" data-id="${id}" data-tooltip="hide code cell"><img class="btn o-tooltip--left" src="${icon_path}/minus-circle.svg" alt="Toggle code" /></a>`
-
-addHideButton = function () {
-    document.querySelectorAll('pre').forEach(function (item, index) {
-        const id = codeCellId(index)
-        item.setAttribute('id', id);
-        item.insertAdjacentHTML('afterend', hideCodeButton(id))
-        initCodeCellHandler(id);
-    });
-
-}
-
-initFunction(addHideButton);
-initFunction(initHiddenCells);

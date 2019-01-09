@@ -5,8 +5,8 @@ prev_page:
   url: /features/markdown
   title: 'Markdown files'
 next_page:
-  url: /features/citations
-  title: 'Citations and bibliographies'
+  url: /features/hiding
+  title: 'Hiding code blocks or entire cells'
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
@@ -48,7 +48,7 @@ For example, here's some sample Matplotlib code:
 
 
 
-{:.input_area }
+{:.input_area}
 ```python
 from matplotlib import rcParams, cycler
 import matplotlib.pyplot as plt
@@ -59,7 +59,7 @@ plt.ion()
 
 
 
-{:.input_area .hidecode}
+{:.input_area}
 ```python
 # Fixing random state for reproducibility
 np.random.seed(19680801)
@@ -177,7 +177,7 @@ depend on an underlying Python kernel to work.
 
 
 
-{:.input_area }
+{:.input_area}
 ```python
 import folium
 ```
@@ -185,7 +185,7 @@ import folium
 
 
 
-{:.input_area }
+{:.input_area}
 ```python
 m = folium.Map(
     location=[45.372, -121.6972],
@@ -225,8 +225,3 @@ m
 </div>
 
 
-
-## Next steps
-
-The remaining chapters in this textbook are the first few chapters in the textbook used in Data 8, which
-also uses TwJJ for its course. Take a look at the content for inspiration and ideas!

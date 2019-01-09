@@ -39,6 +39,11 @@
  * Jupyter notebook styling
  */
 
+div.input_area {
+  // Ensures that items within this div can be positioned absolutely
+  position: relative;
+}
+
 .input_area pre,
 .output_text pre {
   background-color: $color-light-gray;
@@ -61,8 +66,11 @@
 /* [5] */
 code {
   padding: 4px;
-
   @include inuit-font-size(14px);
+}
+
+pre.highlight code {
+  display: block;
 }
 
 blockquote {

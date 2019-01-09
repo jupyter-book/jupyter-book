@@ -29,6 +29,9 @@ To build your site, take the following steps.:
    * Clean up formatting issues for things like MathJax to display properly
    * Place all these generated files in the `/_build/` directory.
 
+   Note that if `make book` will automatically update and files in `_build/` that are older
+   than the timestamp of the corresponding file in your `content/` folder.
+   
 2. From here, you have **two options**
     * **Option 1: Jekyll builds the site for you**: By default, pushing a repository
       cloned from Jupyter Book will tell GitHub to use Jekyll to build the repository

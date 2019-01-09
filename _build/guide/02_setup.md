@@ -4,7 +4,7 @@ redirect_from:
 title: 'Setup and Install'
 prev_page:
   url: /guide/01_overview
-  title: 'Guide'
+  title: 'Getting started'
 next_page:
   url: /guide/03_prepare
   title: 'Prepare your book'

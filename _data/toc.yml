@@ -9,6 +9,8 @@
 # sections: Contains chapter's sections
 # not_numbered: true if the section shouldn't have a number in the sidebar
 #   (e.g. Introduction or appendices)
+# expand_sections: true if you'd like the sections of this chapter to always
+#   be expanded in the sidebar.
 # divider: true if this entry should just be rendered as a horizontal divider
 #   in the sidebar. All other values are ignored.
 
@@ -16,23 +18,10 @@
   url: /intro
   not_numbered: true
 
-- title: Features
-  url: /features/features
-  not_numbered: true
-  sections:
-  - title: Markdown files
-    url: /features/markdown
-    not_numbered: true
-  - title: Jupyter notebooks
-    url: /features/notebooks
-    not_numbered: true
-  - title: Citations and bibliographies
-    url: /features/citations
-    not_numbered: true
-
-- title: Guide
+- title: Getting started
   url: /guide/01_overview
   not_numbered: true
+  expand_sections: true
   sections:
   - title: Setup and Install
     url: /guide/02_setup
@@ -51,6 +40,27 @@
     not_numbered: true
   - title: How-to and advanced topics
     url: /guide/07_advanced
+
+- title: Features and customization
+  url: /features/features
+  not_numbered: true
+  expand_sections: true
+  sections:
+  - title: Markdown files
+    url: /features/markdown
+    not_numbered: true
+  - title: Jupyter notebooks
+    url: /features/notebooks
+    not_numbered: true
+  - title: Hiding code blocks or entire cells
+    url: /features/hiding
+    not_numbered: true
+  - title: Connecting content with JupyterHub and Binder
+    url: /features/interact
+    not_numbered: true
+  - title: Citations and bibliographies
+    url: /features/citations
+    not_numbered: true
 
 - divider: true
 - header: Demo textbook
