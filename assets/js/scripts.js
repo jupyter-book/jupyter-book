@@ -6,6 +6,8 @@
  * [3] Sidebar scroll preserving
  * [4] Keyboard navigation
  * [5] Right sidebar scroll highlighting
+ * [6] Right sidebar scroll highlighting
+ * [7] Add buttons to hide code cells
  */
 
 const togglerId = 'js-sidebar-toggle'
@@ -13,6 +15,7 @@ const textbookId = 'js-textbook'
 const togglerActiveClass = 'is-active'
 const textbookActiveClass = 'js-show-sidebar'
 const mathRenderedClass = 'js-mathjax-rendered'
+const icon_path = document.location.origin + `${site_basename}assets`;
 
 const getToggler = () => document.getElementById(togglerId)
 const getTextbook = () => document.getElementById(textbookId)
@@ -138,3 +141,4 @@ highlightRightSidebar = function() {
 };
 
 initFunction(highlightRightSidebar);
+

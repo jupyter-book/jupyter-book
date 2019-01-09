@@ -37,7 +37,9 @@ const addCopyButtonToCodeCells = () => {
   codeCells.forEach((codeCell, index) => {
     const id = codeCellId(index)
     codeCell.setAttribute('id', id)
-    codeCell.insertAdjacentHTML('afterend', clipboardButton(id))
+    if (document.querySelector(`pre#${id} + a`) == null) {
+      codeCell.insertAdjacentHTML('afterend', clipboardButton(id));
+    }
   })
 
   const clipboard = new ClipboardJS('.copybtn')

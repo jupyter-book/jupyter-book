@@ -1,8 +1,8 @@
 ---
-title: 'Features'
+title: 'Features and customization'
 prev_page:
-  url: /intro
-  title: 'Home'
+  url: /guide/07_advanced
+  title: 'How-to and advanced topics'
 next_page:
   url: /features/markdown
   title: 'Markdown files'

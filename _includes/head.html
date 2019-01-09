@@ -40,6 +40,11 @@
   <!-- DOM updating function -->
   {% include js/dom-update.html %}
 
+  <!-- Define some javascript variables that will be useful in other javascript -->
+  <script>
+    const site_basename = '{{ site.baseurl | strip / }}';
+  </script>
+
   <!-- Include Turbolinks to make page loads fast -->
   <!-- https://github.com/turbolinks/turbolinks -->
   <script src="{{ site.js_url | relative_url }}/turbolinks.js" async></script>
@@ -57,11 +62,14 @@
   <!-- Clipboard copy button -->
   <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" async></script>
 
-  <!-- Load custom website scripts -->
-  <script src="{{ site.js_url | relative_url }}/scripts.js" async></script>
-
   <!-- Load JS that depends on site variables -->
   {% include js/copy-button.html %}
+  
+  <!-- Hide cell code -->
+  {% include js/hide-cell.html %}
+
+  <!-- Load custom website scripts -->
+  <script src="{{ site.js_url | relative_url }}/scripts.js" async></script>
 
   <!-- Load custom user CSS and JS  -->
   <script src="{{ site.custom_static_url | relative_url }}/custom.js" async></script>

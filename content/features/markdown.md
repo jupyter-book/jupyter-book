@@ -1,4 +1,4 @@
-# Creating course content
+# Creating book content
 
 The two kinds of files that contain course content are:
 

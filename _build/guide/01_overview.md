@@ -1,10 +1,10 @@
 ---
 redirect_from:
   - "/guide/01-overview"
-title: 'Guide'
+title: 'Getting started'
 prev_page:
-  url: /features/citations
-  title: 'Citations and bibliographies'
+  url: /intro
+  title: 'Home'
 next_page:
   url: /guide/02_setup
   title: 'Setup and Install'

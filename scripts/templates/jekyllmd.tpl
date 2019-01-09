@@ -3,7 +3,7 @@
 <!-- Add class for input area -->
 {% block input %}
 {% if cell.source != '' %}
-{:.input_area}
+{:.input_area{% if 'hidecode' in cell.metadata.tags %} .hidecode{% endif %}}
 ```
 {%- if 'magics_language' in cell.metadata  -%}
     {{ cell.metadata.magics_language}}
