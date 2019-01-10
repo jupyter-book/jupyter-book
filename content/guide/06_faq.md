@@ -84,6 +84,7 @@ git checkout template/master <path-to-file>
 * `_sass` - the SASS defines the styling of the site. You should also just grab the latest version unless you know
   what you're doing.
 * `_includes` and `_layouts`. These are template files, and should be auto-updated.
+* `Gemfile` which lists the Ruby dependencies for the site.
 
 
 ## Why isn't my math showing up properly?

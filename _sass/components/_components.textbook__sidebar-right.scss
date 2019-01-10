@@ -32,7 +32,7 @@ $right-sidebar-center-offset: ($page-max-width - $sidebar-width) / 2 -
 
     @include mq($from: wide) {
         /* [2] */
-        left: 49%;
+        left: 50%;
         transform: translateX($right-sidebar-center-offset);
     }
 }
