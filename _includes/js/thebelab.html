@@ -49,8 +49,11 @@
                 }
                 codeCell.setAttribute('data-language', dataLanguage)
 
-                // If the code cell is hidden, remove it
-                codeCell.parentElement.classList.remove('hidden');
+                // If the code cell is hidden, show it
+                var inputCheckbox = document.querySelector(`input#hidebtn${codeCell.id}`);
+                if (inputCheckbox !== null) {
+                    setCodeCellVisibility(inputCheckbox, 'visible');
+                }
             });
 
             // Init thebelab
