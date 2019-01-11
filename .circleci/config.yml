@@ -105,8 +105,16 @@ workflows:
   version: 2
   default:
     jobs:
-      - run_tests
-      - site
+      - run_tests:
+          filters:
+            branches:
+              ignore:
+                - gh-pages
+      - site:
+          filters:
+            branches:
+              ignore:
+                - gh-pages
       - deploy:
           requires:
             - run_tests
@@ -114,6 +122,8 @@ workflows:
               branches:
                 only:
                   - master
+                ignore:
+                  - gh-pages
 
 commands:
   build_site:
