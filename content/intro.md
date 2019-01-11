@@ -1,6 +1,6 @@
 # Books with Jupyter and Jekyll
 
-<img src="https://circleci.com/gh/choldgraf/jupyter-book.svg?style=svg" class="left">
+<img src="https://circleci.com/gh/jupyter/jupyter-book.svg?style=svg" class="left">
 
 Jupyter Books lets you build an online book using a collection of Jupyter Notebooks
 and Markdown files. Its output is similar to the excellent [Bookdown](https://bookdown.org/yihui/bookdown/) tool,
@@ -27,7 +27,7 @@ Here are a few links of interest:
 * **[The Jupyter Book Guide](guide/01_overview)**
   will step you through the process of configuring and building your own Jupyter Book.
 
-* **[The Jupyter Book template repo](https://github.com/choldgraf/jupyter-book)** is the template
+* **[The Jupyter Book template repo](https://github.com/jupyter/jupyter-book)** is the template
   repository you'll use as a start for your Jupyter Book.
 
 * **A demo of the Jupyter Book** can be browsed via the sidebar to the left.

@@ -16,7 +16,7 @@ You can also create content with Jupyter Notebooks. The content for the current 
 in a Jupyter Notebook in the `notebooks/` folder of the repository. This means that we can include
 code blocks and their outputs, and export them to Jekyll markdown.
 
-**You can find the original notebook for this page [at this address](https://github.com/choldgraf/textbooks-with-jupyter/blob/master/notebooks/introduction/notebooks.ipynb)**
+**You can find the original notebook for this page [at this address](https://github.com/jupyter/textbooks-with-jupyter/blob/master/notebooks/introduction/notebooks.ipynb)**
 
 ## Markdown + notebooks
 
@@ -93,13 +93,13 @@ Note that the image above is captured and displayed by Jekyll.
 ## Removing content before publishing
 
 You can also remove some content before publishing your book to the web. For example,
-in [the original notebook](https://github.com/choldgraf/textbooks-with-jupyter/blob/master/notebooks/introduction/notebooks.ipynb) there
+in [the original notebook](https://github.com/jupyter/jupyter-book/blob/master/notebooks/introduction/notebooks.ipynb) there
 used to be a cell below...
 
 You can also **remove only the code** so that images and other output still show up.
 
 Below we'll *only* display an image. It was generated with Python code in a cell,
-which you can [see in the original notebook](https://github.com/choldgraf/textbooks-with-jupyter/blob/master/notebooks/introduction/notebooks.ipynb)
+which you can [see in the original notebook](https://github.com/jupyter/jupyter-book/blob/master/notebooks/introduction/notebooks.ipynb)
 
 
 
@@ -111,7 +111,7 @@ which you can [see in the original notebook](https://github.com/choldgraf/textbo
 
 
 And here we'll *only* display a Pandas DataFrame. Again, this was generated with Python code
-from [this original notebook](https://github.com/choldgraf/textbooks-with-jupyter/blob/master/notebooks/introduction/notebooks.ipynb).
+from [this original notebook](https://github.com/jupyter/textbooks-with-jupyter/blob/master/notebooks/introduction/notebooks.ipynb).
 
 
 

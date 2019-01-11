@@ -24,7 +24,7 @@ Here are a few links of interest:
 * **[The Jupyter Book Guide](ch/guide/00_intro)**
   will step you through the process of configuring and building your own Jupyter Book.
 
-* **[The Jupyter Book template repo](https://github.com/choldgraf/jupyter-book)** is the template
+* **[The Jupyter Book template repo](https://github.com/jupyter/jupyter-book)** is the template
   repository you'll use as a start for your Jupyter Book.
 
 * **A demo of the Jupyter Book** can be browsed via the sidebar to the left.

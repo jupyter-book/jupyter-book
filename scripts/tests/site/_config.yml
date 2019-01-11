@@ -23,7 +23,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   This is an example book built with Jupyter Books.
 
 baseurl: "/jupyter-book" # the subpath of your site, e.g. /blog
-url: "https://predictablynoisy.com" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://jupyter.org" # the base hostname & protocol for your site, e.g. http://example.com
 
 #######################################################################################
 # Jupyter Book settings
@@ -42,7 +42,7 @@ hub_url                  : "https://mybinder.org"  # The URL for your JupyterHub
 hub_name                 : "JupyterHub"  # The name of your JupyterHub (used for the button in the NavBar. If an empty string, no button is shown)
 hub_type                 : "binder"  # ['binder', 'jupyterhub']  Whether to build interact links for a BinderHub or a JupyterHub
 binder_repo_base       : "https://github.com/"  # The site on which the textbook repository is hosted
-binder_repo_org        : "choldgraf"  # The username or organization that owns this repository
+binder_repo_org        : "jupyter"  # The username or organization that owns this repository
 binder_repo_name       : "jupyter-book"  # The name of the repository on the web
 binder_repo_branch     : "master"  # The branch on which your textbook is hosted.
 use_jupyterlab           : false  # If 'true', interact links will use JupyterLab as the interface
