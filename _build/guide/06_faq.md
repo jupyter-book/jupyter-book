@@ -21,7 +21,7 @@ steps:
 
 1. Add this repository as a "remote" on your local git repo:
 
-       git remote add template https://github.com/choldgraf/jupyter-book
+       git remote add template https://github.com/jupyter/jupyter-book
 
 2. Pull in the latest changes from the remote repository into your local `gh-pages` branch:
 
@@ -34,7 +34,7 @@ steps:
    First, go to the base repository for the textbook template and look up the "commits"
    page at the following URL:
 
-   https://github.com/choldgraf/jupyter-book/commits/master
+   https://github.com/jupyter/jupyter-book/commits/master
 
    Find the commit that you want to implement on *your* copy of the repository. Click the button with
    its hash (there's one on the right of each row). Finally, copy the long commit hash that's listed
@@ -96,6 +96,7 @@ git checkout template/master <path-to-file>
 * `_sass` - the SASS defines the styling of the site. You should also just grab the latest version unless you know
   what you're doing.
 * `_includes` and `_layouts`. These are template files, and should be auto-updated.
+* `Gemfile` which lists the Ruby dependencies for the site.
 
 
 ## Why isn't my math showing up properly?
@@ -109,9 +110,9 @@ Jekyll strips escape characters, so you should make sure to add **two**
 escape characters when needed. This is done automatically for many escape
 characters in `generate_book.py`, and if you notice something that should
 be included in this script, please open an issue
-[at the textbook template issues page](https://github.com/choldgraf/jupyter-book/issues)
+[at the textbook template issues page](https://github.com/jupyter/jupyter-book/issues)
 
 ## What if I have an issue or question?
 
 If you've got questions, concerns, or suggestions, please open an issue at
-[at the jupyter book issues page](https://github.com/choldgraf/jupyter-book/issues)
+[at the jupyter book issues page](https://github.com/jupyter/jupyter-book/issues)

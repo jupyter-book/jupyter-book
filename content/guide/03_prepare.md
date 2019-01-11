@@ -23,14 +23,14 @@ the file that's located in `mysite/content/mychapter/mypage.ipynb` should have a
     - title: My page title
         url: /mychapter/mypage
 
-See [the template `toc.yml`](https://github.com/choldgraf/jupyter-book/tree/master/_data/toc.yml) for examples.
+See [the template `toc.yml`](https://github.com/jupyter/jupyter-book/tree/master/_data/toc.yml) for examples.
 
 ## Configure your book
 
 You can configure several aspects of your site. This is primarily done
-by changing [the values in `_config.yml`](https://github.com/choldgraf/jupyter-book/blob/master/_config.yml). Values that are unique to the
+by changing [the values in `_config.yml`](https://github.com/jupyter/jupyter-book/blob/master/_config.yml). Values that are unique to the
 textbook can be found under the `# Jupyter Books settings` section. See the
-[comments in that file](https://github.com/choldgraf/jupyter-book/blob/master/_config.yml) for information about what each field does.
+[comments in that file](https://github.com/jupyter/jupyter-book/blob/master/_config.yml) for information about what each field does.
 
 You can modify things like where your interact links point (if you've set up your
 own JupyterHub or BinderHub) or whether these links should use JupyterLab by default.

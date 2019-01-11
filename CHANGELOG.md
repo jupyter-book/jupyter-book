@@ -12,8 +12,8 @@ Below is a rough list of new features, broken down by Jupyter Book version.
 - Added ability to customize look and feel of the site with your own CSS/JS
 - API CHANGE: there is now a separate configuration section for each button
   (jupyterhub, binderhub, etc).
-- Added the ability to hide code cells and make them collapsible (#59](https://github.com/choldgraf/jupyter-book/pull/59))
-- Added option to hide sidebar (#59](https://github.com/choldgraf/jupyter-book/pull/59))
+- Added the ability to hide code cells and make them collapsible (#59](https://github.com/jupyter/jupyter-book/pull/59))
+- Added option to hide sidebar (#59](https://github.com/jupyter/jupyter-book/pull/59))
 
 ### Minor fixes
 
@@ -26,8 +26,8 @@ Below is a rough list of new features, broken down by Jupyter Book version.
 - Tests added to the Jupyter Book
 - Utility scripts are now a mini python module
 - Rearranging the location of the build folder and derivative files in this folder
-- Default license picker ([#48](https://github.com/choldgraf/jupyter-book/pull/48))
-- YAML front-matter is now retained by default ([#53](https://github.com/choldgraf/jupyter-book/pull/53))
+- Default license picker ([#48](https://github.com/jupyter/jupyter-book/pull/48))
+- YAML front-matter is now retained by default ([#53](https://github.com/jupyter/jupyter-book/pull/53))
 
 ## v0.2 - Beta 2
 

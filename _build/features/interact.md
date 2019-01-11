@@ -41,7 +41,7 @@ an example configuration with some explanation of each field.
 ```yaml
 binderhub_url                    : "https://mybinder.org"  # The URL for your BinderHub.
 binder_repo_base                 : "https://github.com/"  # The site on which the textbook repository is hosted
-binder_repo_org                  : "choldgraf"  # The username or organization that owns this repository
+binder_repo_org                  : "jupyter"  # The username or organization that owns this repository
 binder_repo_name                 : "jupyter-book"  # The name of the repository on the web
 binder_repo_branch               : "master"  # The branch on which your textbook is hosted.
 binderhub_interact_text          : "Interact"  # The text that interact buttons will contain.

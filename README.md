@@ -1,6 +1,6 @@
 # <img src="content/images/logo/logo.png" width=40 /> Jupyter Book
 
-[![CircleCI](https://circleci.com/gh/choldgraf/jupyter-book.svg?style=svg)](https://circleci.com/gh/choldgraf/jupyter-book)
+[![CircleCI](https://circleci.com/gh/jupyter/jupyter-book.svg?style=svg)](https://circleci.com/gh/jupyter/jupyter-book)
 
 This is a guide and template for hosting your own book using
 Jupyter Notebooks and Jekyll.
@@ -18,8 +18,8 @@ content with your own, and have a Jupyter-based textbook ready to go shortly!
 
 Here are a few links of interest:
 
-* **[A demo of the hosted textbook](http://predictablynoisy.com/jupyter-book/ )**
-* **[A short guide to deploying your own textbook](https://predictablynoisy.com/jupyter-book/guide/01_overview)**
+* **[A demo of the hosted textbook](http://jupyter.org/jupyter-book/ )**
+* **[A short guide to deploying your own textbook](https://jupyter.org/jupyter-book/guide/01_overview)**
 * **[The markdown version of the guide in this repo](content/guide/)**
 
 ## Explore this book
@@ -28,11 +28,17 @@ This website is an example of a Jupyter Book. You can explore the chapters of th
 by clicking on links in the sidebar to the left. Or, you can move linearly forward and
 backwards by clicking the left/right arrow on your computer.
 
+## Governance of this project
+
+Jupyter Book is still developing relatively rapidly, so please be patient if things change
+or features iterate and change quickly. Once Jupyter Book hits 1.0, it will slow down
+considerably!
+
 ## Contribute or improve the book
 
 Notice some inefficient CSS? A typo in the text? Want to add a cool feature so that others
 can enjoy the improvements to Jupyter Books? Don't hesitate to [open an issue or a PR on the
-Jupyter Book template repo](https://github.com/choldgraf/jupyter-book). We'd love your
+Jupyter Book template repo](https://github.com/jupyter/jupyter-book). We'd love your
 help!
 
 ## Acknowledgements
