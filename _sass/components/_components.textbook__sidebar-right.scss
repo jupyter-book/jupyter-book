@@ -84,6 +84,12 @@ ul.toc__menu a {
     }
 }
 
+// Active sidebar entries
 nav.onthispage li.active a {
     color: #0077d8;
+}
+
+li.active {
+    border-left: 1px solid #0077d8;
+    margin-left: -1px;
 }
