@@ -68,6 +68,7 @@ binderhub_interact_text          : "Interact"  # The text that interact buttons 
 # Thebelab settings
 use_thebelab_button              : true  # If 'true', display a button to allow in-page running code cells with Thebelab
 thebelab_button_text             : "Thebelab"  # The text to display inside the Thebelab initialization button
+codemirror_theme                 : "abcdef"  # Theme for codemirror cells, for options see https://codemirror.net/doc/manual.html#config
 
 # Download settings
 use_download_button              : true  # If 'true', display a button to download a zip file for the notebook
@@ -79,7 +80,7 @@ download_button_text             : "Download" # The text that download buttons w
 # Bibliography and citation settings. See https://github.com/inukshuk/jekyll-scholar#configuration for options
 scholar:
   style: apa
-  
+
 #######################################################################################
 # Option to add a Goggle analytics tracking code
 
