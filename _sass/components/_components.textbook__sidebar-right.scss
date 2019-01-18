@@ -73,9 +73,14 @@ ul.toc__menu a {
     line-height: 1.5;
 }
 
+.toc__menu ul {
+    margin-left: 0px;
+}
+
 .toc__menu li ul {
     li {
         list-style-type: none;
+        padding-left: 18px;
     }
 
     a {
