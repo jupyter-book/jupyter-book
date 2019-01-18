@@ -26,6 +26,9 @@ a 1-level nesting; we will label 1.2, but not 1.2.1.
       {% if chapter.divider %}
         <li class="c-sidebar__divider"></li>
         {% continue %}
+      {% elsif chapter.search %}
+        <li class="c-sidebar__chapter"><a class="c-sidebar__entry" href="{{ '/search.html' | relative_url }}">{{ chapter.title }}</a></li>
+        {% continue %}
       {% elsif chapter.header %}
         <li><h2 class="c-sidebar__title">{{ chapter.header }}</li>
         {% continue %}
@@ -42,7 +45,7 @@ a 1-level nesting; we will label 1.2, but not 1.2.1.
 
       <li class="c-sidebar__chapter">
         <a class="c-sidebar__entry {{ active_class }}"
-          href="{{ chapter.url  | relative_url }}"
+          href="{{ chapter.url  | relative_url | append: '.html'}}"
         >
           {% unless chapter.not_numbered %}
             {{ chapter_num }}.
@@ -66,7 +69,7 @@ a 1-level nesting; we will label 1.2, but not 1.2.1.
                 {% if page.url contains subsection.url %}
                   {% assign any_section_active = 1 %}
                 {% endif %}
-              {% endfor %}  
+              {% endfor %}
             {% elsif page.url contains chapter.url %}
               {% assign any_section_active = 1 %}
             {% endif %}
@@ -93,7 +96,7 @@ a 1-level nesting; we will label 1.2, but not 1.2.1.
 
               <li class="c-sidebar__section">
                 <a class="c-sidebar__entry {{ active_class }}"
-                  href="{{ section.url  | relative_url }}"
+                  href="{{ section.url  | relative_url | append: '.html'}}"
                 >
                   {% unless chapter.not_numbered or section.not_numbered %}
                     {{ chapter_num }}.{{ section_num }}
@@ -111,10 +114,10 @@ a 1-level nesting; we will label 1.2, but not 1.2.1.
                   {% else %}
                     {% assign active_class = "" %}
                   {% endif %}
-    
+
                   <li class="c-sidebar__subsection">
                     <a class="c-sidebar__entry {{ active_class }}"
-                      href="{{ subsection.url | relative_url }}"
+                      href="{{ subsection.url | relative_url | append: '.html'}}"
                     >
                       {% unless chapter.not_numbered or section.not_numbered or subsection.not_numbered %}
                         {{ chapter_num }}.{{ section_num }}.{{ subsection_num }}

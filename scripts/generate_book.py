@@ -148,6 +148,9 @@ if __name__ == '__main__':
     for ix_file, page in enumerate(tqdm(list(toc))):
         url_page = page.get('url', None)
         title = page.get('title', None)
+        if page.get('external', None):
+            # If its an external link, just pass
+            continue
 
         # Make sure URLs (file paths) have correct structure
         _check_url_page(url_page, CONTENT_FOLDER_NAME)
@@ -314,4 +317,3 @@ if __name__ == '__main__':
     print("\nDemo your Jupyter book with `make serve` or push to GitHub!")
 
     print('===========\n')
-

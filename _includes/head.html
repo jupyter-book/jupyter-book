@@ -64,7 +64,7 @@
 
   <!-- Load JS that depends on site variables -->
   {% include js/copy-button.html %}
-  
+
   <!-- Hide cell code -->
   {% include js/hide-cell.html %}
 
@@ -77,4 +77,8 @@
 
   <!-- Update interact links w/ REST param, is defined in includes so we can use templates -->
   {% include js/interact-update.html %}
+
+  <!-- Lunr search code - will only be executed on the /search page -->
+  <script src="{{ '/assets/js/lunr/lunr.min.js' | relative_url }}" type="text/javascript"></script>
+  <script>{% include search/lunr/lunr-en.js %}</script>
 </head>
