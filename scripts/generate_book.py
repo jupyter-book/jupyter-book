@@ -274,10 +274,6 @@ if __name__ == '__main__':
                     'sensitive FS, e.g. case-sensitive disk image on Mac')
             yaml_fm += ['redirect_from:']
             yaml_fm += ['  - "{}"'.format(sanitized)]
-        if ix_file == 0:
-            if not sanitized != url_page:
-                yaml_fm += ['redirect_from:']
-            yaml_fm += ['  - "/"']
         if path_url_page.endswith('.ipynb'):
             interact_path = 'content/' + path_url_page.split('content/')[-1]
             yaml_fm += ['interact_link: {}'.format(interact_path)]
