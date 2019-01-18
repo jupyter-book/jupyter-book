@@ -41,6 +41,9 @@ textbook_logo             : images/logo/logo.png  # A logo to be displayed at th
 textbook_logo_link        : https://jupyter.org/jupyter-book/intro.html  # A link for the logo.
 sidebar_footer_text       : 'Powered by <a href="https://github.com/jupyter/jupyter-book">Jupyter Book</a>'
 
+# Search settings
+search_max_words_in_content : 100  # In the search function, use at most this many words (too many words will make search slow)
+
 #######################################################################################
 # Interact link settings
 
