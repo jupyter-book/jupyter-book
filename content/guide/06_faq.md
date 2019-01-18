@@ -78,6 +78,7 @@ git remote add template https://github.com/jupyter/jupyter-book
 and to check out the latest version of the above files:
 
 ```bash
+git fetch template master
 git checkout template/master scripts/ Makefile assets/ _sass/ _includes/ _layouts/ Gemfile _config.yml
 ```
 
