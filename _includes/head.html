@@ -45,6 +45,10 @@
     const site_basename = '{{ site.baseurl | strip / }}';
   </script>
 
+  <!-- Add AnchorJS to let headers be linked -->
+  <script src="{{ '/assets/js/anchor.min.js' | relative_url }}"  type="text/javascript"></script>
+  {% include js/anchors.html %}
+
   <!-- Include Turbolinks to make page loads fast -->
   <!-- https://github.com/turbolinks/turbolinks -->
   <script src="{{ site.js_url | relative_url }}/turbolinks.js" async></script>

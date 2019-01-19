@@ -5,7 +5,13 @@ layout: none
 ---
 
 <!-- The index page should simply re-direct to the first chapter -->
-{% assign redirectURL=site.data.toc[0].url | relative_url %}
+{% for chapter in site.data.toc %}
+{% unless chapter.external %}
+  {% comment %}This ensures that the first link we re-direct to isn't an external site {% endcomment %}
+  {% assign redirectURL = chapter.url | relative_url %}
+  {% break %}
+{% endunless %}
+{% endfor %}
 <!DOCTYPE html>
 <html lang="en-US">
   <meta charset="utf-8">
