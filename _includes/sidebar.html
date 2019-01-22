@@ -102,7 +102,7 @@ a 1-level nesting; we will label 1.2, but not 1.2.1.
                 <a class="c-sidebar__entry {{ active_class }}"
                   href="{{ section.url  | relative_url | append: '.html'}}"
                 >
-                  {% unless chapter.not_numbered or section.not_numbered or site.number_toc_chapters != true %} %}
+                  {% unless chapter.not_numbered or section.not_numbered or site.number_toc_chapters != true %}
                     {{ chapter_num }}.{{ section_num }}
                   {% endunless %}
                   {{ section.title }}
