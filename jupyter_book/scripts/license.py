@@ -27,7 +27,7 @@ if __name__ == '__main__':
     if op.exists(path_license):
         print("It looks like you've already specified a license for this book, good job!")
         sys.exit()
-    
+
     print("\n\nWe noticed you don't have a license for this book. Licenses help \n"
           "others (re)use your work, and make it clear which rights you wish to \n"
           "retain for your work. We recommend the CC-BY-SA license, a permissive \n"
@@ -51,7 +51,3 @@ if __name__ == '__main__':
             pass
     else:
         raise ValueError("Please choose 'yes' or 'no', you chose: '{}'".format(use_license))
-
-
-
-

@@ -13,11 +13,12 @@ help:
 install:
 	gem install bundler
 	bundle install
-	
+
 book:
-	python scripts/license.py --path ./content
 	python scripts/generate_book.py
 
+toc:
+	python scripts/generate_toc.py content/
 runall:
 	python scripts/execute_all_notebooks.py
 
