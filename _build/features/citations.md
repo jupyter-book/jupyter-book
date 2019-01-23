@@ -5,8 +5,8 @@ prev_page:
   url: /features/interact
   title: 'Connecting content with JupyterHub and Binder'
 next_page:
-  url: /01/what-is-data-science
-  title: 'Data Science'
+  url: /features/search
+  title: 'Searching your book'
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 

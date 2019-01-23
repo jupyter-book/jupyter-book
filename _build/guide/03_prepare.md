@@ -37,6 +37,17 @@ the file that's located in `mysite/content/mychapter/mypage.ipynb` should have a
 
 See [the template `toc.yml`](https://github.com/jupyter/jupyter-book/tree/master/_data/toc.yml) for examples.
 
+Jupyter Book has a helper script to quickly generate part of your `toc.yml` file by alphabetically
+parsing the directories of your content folder. You can run this script with the following command:
+
+```
+python scripts/generate_toc_from_folders.py content/ --out_path _data/toc_tmp.yml
+```
+
+This won't create a fully-functioning TOC file,
+but it should help you get started with the bulk of the file. You should inspect the resulting
+contents, and when you are happy with them, rename it to `_data/toc.yml`.
+
 ## Configure your book
 
 You can configure several aspects of your site. This is primarily done

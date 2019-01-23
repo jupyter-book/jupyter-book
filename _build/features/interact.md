@@ -21,7 +21,7 @@ This page describes a few ways to accomplish this.
 
 BinderHub can be used to build the environment needed to run a repository, and provides
 a link that lets others interact with that repository. If your Jupyter Book is hosted online
-on GitHub, you can automatically insert buttons that link to the Jupyter Notebook running in a BinderHu.
+on GitHub, you can automatically insert buttons that link to the Jupyter Notebook running in a BinderHub.
 When a user clicks the button, they'll be taken to a live version of the page. If your code
 doesn't require a significant amount of CPU or RAM, you can use the free, public BinderHub running
 at https://mybinder.org.
