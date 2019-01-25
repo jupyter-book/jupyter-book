@@ -22,26 +22,15 @@ sys.path.append(op.join(this_folder, 'scripts'))
 from jupyter_book.utils import (_split_yaml, _check_url_page, _prepare_toc,
                                 _prepare_url, _clean_notebook_cells, _error)
 
-parser = argparse.ArgumentParser(description=DESCRIPTION)
-parser.add_argument("--site-root", default=None, help="Path to the root of the textbook repository.")
-parser.add_argument("--path-template", default=None, help="Path to the template nbconvert uses to build markdown files")
-parser.add_argument("--path-config", default=None, help="Path to the Jekyll configuration file")
-parser.add_argument("--path-toc", default=None, help="Path to the Table of Contents YAML file")
-parser.add_argument("--overwrite", action='store_true', help="Overwrite md files if they already exist.")
-parser.add_argument("--execute", action='store_true', help="Execute notebooks before converting to MD.")
-parser.add_argument("--local-build", action='store_true',
-                    help="Specify you are building site locally for later upload.")
-parser.set_defaults(overwrite=False, execute=False)
-
 # Defaults
 BUILD_FOLDER_NAME = "_build"
 SUPPORTED_FILE_SUFFIXES = ['.ipynb', '.md']
 
-def _clean_lines(lines, filepath):
+def _clean_lines(lines, filepath, PATH_BOOK, path_images_folder):
     """Replace images with jekyll image root and add escape chars as needed."""
     inline_replace_chars = ['#']
     # Images: replace absolute nbconvert image paths to baseurl paths
-    path_rel_root = op.relpath(PATH_SITE_ROOT, op.dirname(filepath))
+    path_rel_root = op.relpath(PATH_BOOK, op.dirname(filepath))
     path_rel_root_one_up = path_rel_root.replace('../', '', 1)
     for ii, line in enumerate(lines):
         # Handle relative paths because we remove `content/` from the URL
@@ -50,7 +39,7 @@ def _clean_lines(lines, filepath):
         if path_rel_root in line:
             line = line.replace(path_rel_root, path_rel_root_one_up)
         # For programmatically-generated images from notebooks, replace the abspath with relpath
-        line = line.replace(PATH_IMAGES_FOLDER, op.relpath(PATH_IMAGES_FOLDER, op.dirname(filepath)))
+        line = line.replace(path_images_folder, op.relpath(path_images_folder, op.dirname(filepath)))
 
         # Adding escape slashes since Jekyll removes them when it serves the page
         # Make sure we have at least two dollar signs and they
@@ -64,9 +53,9 @@ def _clean_lines(lines, filepath):
     return lines
 
 
-def _copy_non_content_files():
+def _copy_non_content_files(path_content_folder, content_folder_name, build_folder_name):
     """Copy non-markdown/notebook files in the content folder into build folder so relative links work."""
-    all_files = glob(op.join(PATH_CONTENT_FOLDER, '**', '*'), recursive=True)
+    all_files = glob(op.join(path_content_folder, '**', '*'), recursive=True)
     non_content_files = [ii for ii in all_files if not any(ii.endswith(ext) for ext in SUPPORTED_FILE_SUFFIXES)]
     for ifile in non_content_files:
         if op.isdir(ifile):
@@ -74,7 +63,7 @@ def _copy_non_content_files():
 
         # The folder name may change if the permalink sanitizing changes it.
         # this ensures that a new folder exists if needed
-        new_path = ifile.replace(os.sep + CONTENT_FOLDER_NAME, os.sep + BUILD_FOLDER_NAME)
+        new_path = ifile.replace(os.sep + content_folder_name, os.sep + build_folder_name)
         if not op.isdir(op.dirname(new_path)):
             os.makedirs(op.dirname(new_path))
         sh.copy2(ifile, new_path)
@@ -103,24 +92,36 @@ def _case_sensitive_fs(path):
     return len(written) == 2
 
 
-if __name__ == '__main__':
+def build_book():
+    """Build the markdown for a book using its TOC and a content folder."""
+    parser = argparse.ArgumentParser(description=DESCRIPTION)
+    parser.add_argument("--path-book", default=None, help="Path to the root of the textbook repository.")
+    parser.add_argument("--path-template", default=None, help="Path to the template nbconvert uses to build markdown files")
+    parser.add_argument("--path-config", default=None, help="Path to the Jekyll configuration file")
+    parser.add_argument("--path-toc", default=None, help="Path to the Table of Contents YAML file")
+    parser.add_argument("--overwrite", action='store_true', help="Overwrite md files if they already exist.")
+    parser.add_argument("--execute", action='store_true', help="Execute notebooks before converting to MD.")
+    parser.add_argument("--local-build", action='store_true',
+                        help="Specify you are building site locally for later upload.")
+    parser.set_defaults(overwrite=False, execute=False)
+
     ###############################################################################
     # Default values and arguments
 
-    args = parser.parse_args()
+    args = parser.parse_args(sys.argv[2:])
     overwrite = bool(args.overwrite)
     execute = bool(args.execute)
-    if args.site_root is None:
-        args.site_root = op.join(op.dirname(op.abspath(__file__)), '..')
+    if args.path_book is None:
+        args.path_book = '.'
 
     # Paths for our notebooks
-    PATH_SITE_ROOT = op.abspath(args.site_root)
+    PATH_BOOK = op.abspath(args.path_book)
 
-    PATH_TOC_YAML = args.path_toc if args.path_toc is not None else op.join(PATH_SITE_ROOT, '_data', 'toc.yml')
-    CONFIG_FILE = args.path_config if args.path_config is not None else op.join(PATH_SITE_ROOT, '_config.yml')
-    PATH_TEMPLATE = args.path_template if args.path_template is not None else op.join(PATH_SITE_ROOT, 'scripts', 'templates', 'jekyllmd.tpl')
-    PATH_IMAGES_FOLDER = op.join(PATH_SITE_ROOT, '_build', 'images')
-    BUILD_FOLDER = op.join(PATH_SITE_ROOT, BUILD_FOLDER_NAME)
+    PATH_TOC_YAML = args.path_toc if args.path_toc is not None else op.join(PATH_BOOK, '_data', 'toc.yml')
+    CONFIG_FILE = args.path_config if args.path_config is not None else op.join(PATH_BOOK, '_config.yml')
+    PATH_TEMPLATE = args.path_template if args.path_template is not None else op.join(PATH_BOOK, 'scripts', 'templates', 'jekyllmd.tpl')
+    PATH_IMAGES_FOLDER = op.join(PATH_BOOK, '_build', 'images')
+    BUILD_FOLDER = op.join(PATH_BOOK, BUILD_FOLDER_NAME)
 
     ###############################################################################
     # Read in textbook configuration
@@ -129,7 +130,7 @@ if __name__ == '__main__':
     with open(CONFIG_FILE, 'r') as ff:
         site_yaml = yaml.load(ff.read())
     CONTENT_FOLDER_NAME = site_yaml.get('content_folder_name').strip('/')
-    PATH_CONTENT_FOLDER = op.join(PATH_SITE_ROOT, CONTENT_FOLDER_NAME)
+    PATH_CONTENT_FOLDER = op.join(PATH_BOOK, CONTENT_FOLDER_NAME)
 
     # Load the textbook yaml for this site
     if not op.exists(PATH_TOC_YAML):
@@ -265,7 +266,7 @@ if __name__ == '__main__':
         # Clean markdown for Jekyll quirks (e.g. extra escape characters)
         with open(path_new_file, 'r') as ff:
             lines = ff.readlines()
-        lines = _clean_lines(lines, path_new_file)
+        lines = _clean_lines(lines, path_new_file, PATH_BOOK, PATH_IMAGES_FOLDER)
 
         # Split off original yaml
         yaml_orig, lines = _split_yaml(lines)
@@ -313,7 +314,7 @@ if __name__ == '__main__':
 
     # Copy non-markdown files in notebooks/ in case they're referenced in the notebooks
     print('Copying non-content files inside `{}/`...'.format(CONTENT_FOLDER_NAME))
-    _copy_non_content_files()
+    _copy_non_content_files(PATH_CONTENT_FOLDER, CONTENT_FOLDER_NAME, BUILD_FOLDER_NAME)
 
     # Message at the end
     msg = ["Generated {} new files\nSkipped {} already-built files".format(n_built_files, n_skipped_files)]

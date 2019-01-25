@@ -32,7 +32,7 @@ jobs:
       # Grab the the built markdown from the last step
       - run:
           name: Copy over built site files
-          command: cd book_template && rm -rf _build && cp -r /tmp/workspace/_build ./
+          command: rm -rf book_template/_build && cp -r /tmp/workspace/_build ./book_template
 
       # Build the site so we have local files
       - build_site:
@@ -77,6 +77,8 @@ jobs:
       # This will depend on your particular package!
       - run: pip install --user -r requirements.txt
       - run: pip install --user pytest
+      - run: pip install --user -e ./  # Install Jupyter Book CLI
+
       # Cache some files for a speedup in subsequent builds
       - save_cache:
           key: cache-pip
@@ -91,7 +93,7 @@ jobs:
       # If tests pass, build the site itself
       - run:
           name: Build site markdown
-          command: cd book_template && python scripts/generate_book.py
+          command: jupyter-book build --path-book book_template/
 
       # Persist the specified paths (see https://circleci.com/docs/2.0/workflows/#using-workspaces-to-share-data-among-jobs)
       - persist_to_workspace:
@@ -135,21 +137,20 @@ commands:
         default: ""
     steps:
       - checkout
-      - working_directory: book_template
       - restore_cache:
           keys:
-            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - rails-demo-bundle-v2-{{ checksum "book_template/Gemfile.lock" }}
             - rails-demo-bundle-v2-
 
       - run: gem install bundler
-      - run: bundle install
+      - run: cd book_template && bundle install
 
       # Store bundle cache
       - save_cache:
-          key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+          key: rails-demo-bundle-v2-{{ checksum "book_template/Gemfile.lock" }}
           paths:
             - vendor/bundle
 
       - run:
           name: Build the website
-          command: bundle exec jekyll build << parameters.build_args >>
+          command: cd book_template && bundle exec jekyll build << parameters.build_args >>

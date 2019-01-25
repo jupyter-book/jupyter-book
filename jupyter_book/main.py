@@ -7,13 +7,15 @@ from glob import glob
 import argparse
 import string
 from jupyter_book.create import new_book
+from jupyter_book.build import build_book
 
 DESCRIPTION = ("Jupyter Book: Generate an HTML book from your Jupyter Notebooks using Jekyll.")
+commands = {'create': new_book,
+            'build': build_book}
 parser = argparse.ArgumentParser(description=DESCRIPTION)
-parser.add_argument("command", help="The command you'd like to run. Currently, this must be 'create'")
+parser.add_argument("command", help="The command you'd like to run. Allowed commands: {}".format(list(commands.keys())))
 
 def main():
-    commands = {'create': new_book}
     args = parser.parse_args(sys.argv[1:2])
     if args.command not in commands:
         parser.print_help()

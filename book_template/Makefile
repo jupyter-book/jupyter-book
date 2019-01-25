@@ -15,7 +15,7 @@ install:
 	bundle install
 
 book:
-	python scripts/generate_book.py
+	jupyter-book build ./
 
 toc:
 	python scripts/generate_toc.py content/

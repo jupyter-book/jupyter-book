@@ -1,6 +1,5 @@
 from setuptools import setup, find_packages
 import sys
-import versioneer
 
 version = 'v0.1'
 setup(
@@ -25,7 +24,6 @@ setup(
     license='BSD',
     packages=find_packages(),
     include_package_data=True,
-    cmdclass=versioneer.get_cmdclass(),
     entry_points={
         'console_scripts': [
             'jupyter-book = jupyter_book.main:main',
