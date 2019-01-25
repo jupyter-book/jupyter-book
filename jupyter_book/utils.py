@@ -1,10 +1,35 @@
-"""Utility functions for Jupyter Book.
-
-This is a mini-module to make testing easier."""
+"""Utility functions for Jupyter Book."""
 
 import string
 import nbformat as nbf
 import os
+
+####################################################################################
+# CLI utilities
+
+def print_color(msg, style):
+    endc = '\033[0m'
+    bcolors = dict(blue='\033[94m',
+                   green='\033[92m',
+                   orange='\033[93m',
+                   red='\033[91m',
+                   bold = '\033[1m',
+                   underline = '\033[4m')
+    print(bcolors[style] + msg + endc)
+
+def print_message_box(msg):
+    border = '================================================================================'
+    print_color('\n\n' + border, 'green')
+    print(msg)
+    print_color(border, 'green')
+
+
+def _error(msg):
+    msg = '\n\n\033[91m==========\033[0m\n{}\n\033[91m==========\033[0m\n'.format(msg)
+    return ValueError(msg)
+
+####################################################################################
+# Book conversion formatting
 
 ALLOWED_CHARACTERS = string.ascii_letters + '-_/.' + string.digits
 
@@ -33,7 +58,7 @@ def _check_url_page(url_page, content_folder_name):
     if any(url_page.startswith(ii) for ii in [content_folder_name, os.sep+content_folder_name]):
         raise ValueError("It looks like you have a page URL that starts with your content folder's name."
                             "page URLs should be *relative* to the content folder. Here is the page URL: {}".format(url_page))
-    
+
 def _prepare_toc(toc):
     """Prepare the TOC for processing."""
     # Drop toc items w/o links
@@ -78,9 +103,3 @@ def _clean_notebook_cells(path_ntbk):
                     cell_lines[ii] = line.rstrip('#').rstrip()
             cell.source = '\n'.join(cell_lines)
     nbf.write(ntbk, path_ntbk)
-
-
-def _error(msg):
-    msg = '\n\n==========\n{}\n==========\n'.format(msg)
-    raise ValueError(msg)
-

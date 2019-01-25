@@ -11,6 +11,7 @@ import numpy as np
 from glob import glob
 from uuid import uuid4
 import argparse
+from jupyter_book.utils import print_message_box
 
 DESCRIPTION = ("Convert a collection of Jupyter Notebooks into Jekyll "
                "markdown suitable for a course textbook.")
@@ -18,8 +19,8 @@ DESCRIPTION = ("Convert a collection of Jupyter Notebooks into Jekyll "
 # Add path to our utility functions
 this_folder = op.dirname(op.abspath(__file__))
 sys.path.append(op.join(this_folder, 'scripts'))
-from jupyterbook.utils import (_split_yaml, _check_url_page, _prepare_toc,
-                               _prepare_url, _clean_notebook_cells, _error)
+from jupyter_book.utils import (_split_yaml, _check_url_page, _prepare_toc,
+                                _prepare_url, _clean_notebook_cells, _error)
 
 parser = argparse.ArgumentParser(description=DESCRIPTION)
 parser.add_argument("--site-root", default=None, help="Path to the root of the textbook repository.")
@@ -132,7 +133,7 @@ if __name__ == '__main__':
 
     # Load the textbook yaml for this site
     if not op.exists(PATH_TOC_YAML):
-        _error("No toc.yml file found, please create one")
+        raise _error("No toc.yml file found, please create one at `{}`".format(PATH_TOC_YAML))
     with open(PATH_TOC_YAML, 'r') as ff:
         toc = yaml.load(ff.read())
 
@@ -315,11 +316,9 @@ if __name__ == '__main__':
     _copy_non_content_files()
 
     # Message at the end
-    print("\n===========")
-    print("Generated {} new files\nSkipped {} already-built files".format(n_built_files, n_skipped_files))
+    msg = ["Generated {} new files\nSkipped {} already-built files".format(n_built_files, n_skipped_files)]
     if n_built_files == 0:
-        print("Delete the markdown files in '{}' for any pages that you wish to re-build, or use --overwrite option to re-build all.".format(BUILD_FOLDER_NAME))
-    print("\nYour Jupyter Book is now in `{}/`.".format(BUILD_FOLDER_NAME))
-    print("\nDemo your Jupyter book with `make serve` or push to GitHub!")
-
-    print('===========\n')
+        msg += ["Delete the markdown files in '{}' for any pages that you wish to re-build, or use --overwrite option to re-build all.".format(BUILD_FOLDER_NAME)]
+    msg += ["Your Jupyter Book is now in `{}/`.".format(BUILD_FOLDER_NAME)]
+    msg += ["Demo your Jupyter book with `make serve` or push to GitHub!"]
+    print_message_box('\n'.join(msg))
