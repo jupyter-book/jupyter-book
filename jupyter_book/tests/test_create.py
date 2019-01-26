@@ -24,7 +24,7 @@ path_content = op.join(path_test_book, 'content')
 path_license = op.join(path_test_book, 'test_license.md')
 
 def test_round_trip(tmpdir):
-    path_config = op.join(this_folder, '..', '..', 'book_template', '_config.yml')
+    path_config = op.join(this_folder, '..', 'book_template', '_config.yml')
     path_out = op.join(tmpdir.dirpath(), 'tmp_test')
     new_name = "test"
     cmd = ["jupyter-book", "create", new_name, "--config", path_config,

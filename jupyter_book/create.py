@@ -7,7 +7,7 @@ from glob import glob
 import argparse
 import string
 from .utils import print_color, print_message_box
-TEMPLATE_PATH = op.join(op.dirname(__file__), '..', 'book_template')
+TEMPLATE_PATH = op.join(op.dirname(__file__), 'book_template')
 
 
 def _final_message(path_out):

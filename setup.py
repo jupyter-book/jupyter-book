@@ -1,5 +1,13 @@
 from setuptools import setup, find_packages
 import sys
+import os
+import os.path as op
+from glob import glob
+
+# Location of the template files we use for cloning
+template_files = glob(op.join('jupyter_book', 'book_template', '**', '*'), recursive=True)
+template_files = [ii.replace('jupyter_book' + os.sep, '', 1) for ii in template_files]
+PACKAGE_DATA = {"jupyter_book": template_files}
 
 version = 'v0.1'
 setup(
@@ -23,7 +31,8 @@ setup(
     description = "Jupyter Books: Create an online book with Jupyter Notebooks and Jekyll",
     license='BSD',
     packages=find_packages(),
-    include_package_data=True,
+    use_package_data=True,
+    package_data=PACKAGE_DATA,
     entry_points={
         'console_scripts': [
             'jupyter-book = jupyter_book.main:main',
