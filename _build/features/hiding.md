@@ -1,5 +1,6 @@
 ---
 interact_link: content/features/hiding.ipynb
+download_link: downloads/hiding.ipynb.zip
 title: 'Hiding code blocks or entire cells'
 prev_page:
   url: /features/notebooks

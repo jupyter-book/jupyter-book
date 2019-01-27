@@ -2,7 +2,7 @@
 redirect_from:
   - "/04/types"
 interact_link: content/04/Types.ipynb
-download_link: /jupyter-book/assets/downloads/Types.ipynb.zip
+download_link: downloads/Types.ipynb.zip
 title: 'Data Types'
 prev_page:
   url: /03/4/Introduction_to_Tables

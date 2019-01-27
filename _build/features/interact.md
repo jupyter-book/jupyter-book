@@ -1,5 +1,6 @@
 ---
 interact_link: content/features/interact.ipynb
+download_link: downloads/interact.ipynb.zip
 title: 'Connecting content with JupyterHub and Binder'
 prev_page:
   url: /features/hiding

@@ -1,6 +1,6 @@
 ---
 interact_link: content/features/notebooks.ipynb
-download_link: /jupyter-book/assets/downloads/notebooks.ipynb.zip
+download_link: downloads/notebooks.ipynb.zip
 title: 'Jupyter notebooks'
 prev_page:
   url: /features/markdown

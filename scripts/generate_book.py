@@ -119,11 +119,11 @@ if __name__ == '__main__':
     PATH_TEMPLATE = args.path_template if args.path_template is not None else op.join(PATH_SITE_ROOT, 'scripts', 'templates', 'jekyllmd.tpl')
     PATH_IMAGES_FOLDER = op.join(PATH_SITE_ROOT, '_build', 'images')
     BUILD_FOLDER = op.join(PATH_SITE_ROOT, BUILD_FOLDER_NAME)
-    DOWNLOADS_FOLDER = op.join(PATH_SITE_ROOT, 'assets', 'downloads')
+    DOWNLOADS_FOLDER = op.join(PATH_SITE_ROOT, '_build', 'downloads')
 
     # Path checking
     if not op.exists(DOWNLOADS_FOLDER):
-        os.mkdir(DOWNLOADS_FOLDER)
+        os.makedirs(DOWNLOADS_FOLDER)
 
     ###############################################################################
     # Read in textbook configuration
@@ -250,7 +250,7 @@ if __name__ == '__main__':
 
             ###############################################################################
             # Copy download version of notebook, if requested
-            if site_yaml.get('add_download_button', True):
+            if site_yaml.get('use_download_button', True):
                 nb_name = op.basename(path_url_page)
                 ZipFile(op.join(DOWNLOADS_FOLDER, nb_name + '.zip'), mode='w').write(path_url_page, nb_name)
 
@@ -287,13 +287,13 @@ if __name__ == '__main__':
             yaml_fm += ['redirect_from:']
             yaml_fm += ['  - "{}"'.format(sanitized)]
         if path_url_page.endswith('.ipynb'):
-            if site_yaml.get('add_interact_button', True):
-                interact_path = CONTENT_FOLDER_NAME + '/' + path_url_page.split(CONTENT_FOLDER_NAME+'/')[-1]
-                yaml_fm += ['interact_link: {}'.format(interact_path)]
-            if site_yaml.get('add_download_button', True):
-                baseurl = site_yaml.get('baseurl') if site_yaml.get('baseurl') else ''
-                dl_link = op.join(baseurl, 'assets/downloads/' + op.basename(url_page) + '.ipynb.zip')
-                yaml_fm += ['download_link: {}'.format(dl_link)]
+            interact_path = CONTENT_FOLDER_NAME + '/' + path_url_page.split(CONTENT_FOLDER_NAME+'/')[-1]
+            yaml_fm += ['interact_link: {}'.format(interact_path)]
+
+            if site_yaml.get('use_download_button', True):
+                download_path = 'downloads/' + path_url_page.split('/')[-1] + '.zip'
+                yaml_fm += ['download_link: {}'.format(download_path)]
+
         yaml_fm += ["title: '{}'".format(title)]
         yaml_fm += ['prev_page:']
         yaml_fm += ['  url: {}'.format(url_prev_page)]

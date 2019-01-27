@@ -1,5 +1,6 @@
 ---
 interact_link: content/features/search.ipynb
+download_link: downloads/search.ipynb.zip
 title: 'Searching your book'
 prev_page:
   url: /features/citations
