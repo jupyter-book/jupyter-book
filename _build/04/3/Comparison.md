@@ -2,7 +2,7 @@
 redirect_from:
   - "/04/3/comparison"
 interact_link: content/04/3/Comparison.ipynb
-download_link: downloads/Comparison.ipynb.zip
+download_link: downloads/Comparison.zip
 title: 'Comparisons'
 prev_page:
   url: /04/2/Strings

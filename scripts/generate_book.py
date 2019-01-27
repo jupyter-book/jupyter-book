@@ -252,7 +252,7 @@ if __name__ == '__main__':
             # Copy download version of notebook, if requested
             if site_yaml.get('use_download_button', True):
                 nb_name = op.basename(path_url_page)
-                ZipFile(op.join(DOWNLOADS_FOLDER, nb_name + '.zip'), mode='w').write(path_url_page, nb_name)
+                ZipFile(op.join(DOWNLOADS_FOLDER, nb_name.split('.')[0] + '.zip'), mode='w').write(path_url_page, nb_name)
 
         elif path_url_page.endswith('.md'):
             # If a non-notebook file, just copy it over.
@@ -291,7 +291,7 @@ if __name__ == '__main__':
             yaml_fm += ['interact_link: {}'.format(interact_path)]
 
             if site_yaml.get('use_download_button', True):
-                download_path = 'downloads/' + path_url_page.split('/')[-1] + '.zip'
+                download_path = 'downloads/' + path_url_page.split('/')[-1].split('.')[0] + '.zip'
                 yaml_fm += ['download_link: {}'.format(download_path)]
 
         yaml_fm += ["title: '{}'".format(title)]

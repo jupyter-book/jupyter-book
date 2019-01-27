@@ -2,7 +2,7 @@
 redirect_from:
   - "/04/2/strings"
 interact_link: content/04/2/Strings.ipynb
-download_link: downloads/Strings.ipynb.zip
+download_link: downloads/Strings.zip
 title: 'Strings'
 prev_page:
   url: /04/1/Numbers

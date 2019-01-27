@@ -1,6 +1,6 @@
 ---
 interact_link: content/features/citations.ipynb
-download_link: downloads/citations.ipynb.zip
+download_link: downloads/citations.zip
 title: 'Citations and bibliographies'
 prev_page:
   url: /features/interact

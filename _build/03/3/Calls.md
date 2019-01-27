@@ -2,7 +2,7 @@
 redirect_from:
   - "/03/3/calls"
 interact_link: content/03/3/Calls.ipynb
-download_link: downloads/Calls.ipynb.zip
+download_link: downloads/Calls.zip
 title: 'Call Expressions'
 prev_page:
   url: /03/2/Names
