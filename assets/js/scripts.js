@@ -5,15 +5,17 @@
  * [2] Sidebar toggling
  * [3] Sidebar scroll preserving
  * [4] Keyboard navigation
- * [5] Copy buttons for code blocks
+ * [5] Right sidebar scroll highlighting
+ * [6] Right sidebar scroll highlighting
+ * [7] Add buttons to hide code cells
  */
 
 const togglerId = 'js-sidebar-toggle'
 const textbookId = 'js-textbook'
 const togglerActiveClass = 'is-active'
 const textbookActiveClass = 'js-show-sidebar'
-
 const mathRenderedClass = 'js-mathjax-rendered'
+const icon_path = document.location.origin + `${site_basename}assets`;
 
 const getToggler = () => document.getElementById(togglerId)
 const getTextbook = () => document.getElementById(textbookId)
@@ -74,8 +76,7 @@ const sidebarButtonHandler = () => {
   if (window.innerWidth < autoCloseSidebarBreakpoint) toggleSidebar()
 }
 
-runWhenDOMLoaded(sidebarButtonHandler)
-document.addEventListener('turbolinks:load', sidebarButtonHandler)
+initFunction(sidebarButtonHandler);
 
 /**
  * [3] Preserve sidebar scroll when navigating between pages
@@ -97,8 +98,8 @@ document.addEventListener('turbolinks:load', () => {
 const focusPage = () => {
   document.querySelector('.c-textbook__page').focus()
 }
-runWhenDOMLoaded(focusPage)
-document.addEventListener('turbolinks:load', focusPage)
+
+initFunction(focusPage);
 
 /**
  * [4] Use left and right arrow keys to navigate forward and backwards.
@@ -119,61 +120,25 @@ document.addEventListener('keydown', event => {
 })
 
 /**
- * [5] Set up copy/paste for code blocks
+ * [5] Right sidebar scroll highlighting
  */
-const codeCellId = index => `codecell${index}`
 
-const clipboardButton = id =>
-  `<a class="btn copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#${id}">
-    <img src="https://predictablynoisy.com/jupyter-book/assets/copy-button.svg" alt="Copy to clipboard">
-  </a>`
+highlightRightSidebar = function() {
+  var position = document.querySelector('.c-textbook__page').scrollTop;
+  position = position + (window.innerHeight / 3);  // + Manual offset
 
-// Clears selected text since ClipboardJS will select the text when copying
-const clearSelection = () => {
-  if (window.getSelection) {
-    window.getSelection().removeAllRanges()
-  } else if (document.selection) {
-    document.selection.empty()
-  }
-}
+  // Highlight the "active" menu item
+  document.querySelectorAll('.c-textbook__content h2, .c-textbook__content h3').forEach((header, index) => {
+      var target = header.offsetTop;
+      var id = header.id;
+      if (position >= target) {
+        var query = 'ul.toc__menu a[href="#' + id + '"]';
+        document.querySelectorAll('ul.toc__menu li').forEach((item) => {item.classList.remove('active')});
+        document.querySelectorAll(query).forEach((item) => {item.parentElement.classList.add('active')});
+    }
+  });
+  document.querySelector('.c-textbook__page').addEventListener('scroll', highlightRightSidebar);
+};
 
-// Changes tooltip text for two seconds, then changes it back
-const temporarilyChangeTooltip = (el, newText) => {
-  const oldText = el.getAttribute('data-tooltip')
-  el.setAttribute('data-tooltip', newText)
-  setTimeout(() => el.setAttribute('data-tooltip', oldText), 2000)
-}
+initFunction(highlightRightSidebar);
 
-const addCopyButtonToCodeCells = () => {
-  // If ClipboardJS hasn't loaded, wait a bit and try again. This
-  // happens because we load ClipboardJS asynchronously.
-  if (window.ClipboardJS === undefined) {
-    setTimeout(addCopyButtonToCodeCells, 250)
-    return
-  }
-
-  const codeCells = document.querySelectorAll('.input_area pre')
-  codeCells.forEach((codeCell, index) => {
-    const id = codeCellId(index)
-    codeCell.setAttribute('id', id)
-    codeCell.insertAdjacentHTML('afterend', clipboardButton(id))
-  })
-
-  const clipboard = new ClipboardJS('.copybtn')
-  clipboard.on('success', event => {
-    clearSelection()
-    temporarilyChangeTooltip(event.trigger, 'Copied!')
-  })
-
-  clipboard.on('error', event => {
-    temporarilyChangeTooltip(event.trigger, 'Failed to copy')
-  })
-
-  // Get rid of clipboard before the next page visit to avoid memory leak
-  document.addEventListener('turbolinks:before-visit', () =>
-    clipboard.destroy()
-  )
-}
-
-runWhenDOMLoaded(addCopyButtonToCodeCells)
-document.addEventListener('turbolinks:load', addCopyButtonToCodeCells)

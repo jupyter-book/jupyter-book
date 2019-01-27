@@ -1,13 +1,7 @@
-# Textbook
-bs4
-tqdm
-numpy
-pyyaml
-nbformat
-nbclean
-
 # Requirements for the demo notebooks
+# Useful for MyBinder configuration
 pandas
 numpy
 datascience
 folium
+matplotlib

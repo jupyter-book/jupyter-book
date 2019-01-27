@@ -1,7 +1,10 @@
 # Books with Jupyter and Jekyll
 
+<img src="https://circleci.com/gh/jupyter/jupyter-book.svg?style=svg" class="left">
+
 Jupyter Books lets you build an online book using a collection of Jupyter Notebooks
-and Markdown files.
+and Markdown files. Its output is similar to the excellent [Bookdown](https://bookdown.org/yihui/bookdown/) tool,
+and adds extra functionality for people running a Jupyter stack.
 
 For an example of a book built with Jupyter Books, see the [textbook for Data 100](https://www.textbook.ds100.org/) at UC Berkeley.
 
@@ -19,12 +22,12 @@ Here are a few features of Jupyter Books
 To get started, you may be interested in the following links.
 Here are a few links of interest:
 
-* **[Quickstart](ch/introduction/intro)** is a quick demo and overview of Jupyter Books.
+* **[Quickstart](features/features)** is a quick demo and overview of Jupyter Books.
 
-* **[The Jupyter Book Guide](ch/guide/00_intro)**
+* **[The Jupyter Book Guide](guide/01_overview)**
   will step you through the process of configuring and building your own Jupyter Book.
 
-* **[The Jupyter Book template repo](https://github.com/choldgraf/jupyter-book)** is the template
+* **[The Jupyter Book template repo](https://github.com/jupyter/jupyter-book)** is the template
   repository you'll use as a start for your Jupyter Book.
 
 * **A demo of the Jupyter Book** can be browsed via the sidebar to the left.
@@ -32,10 +35,10 @@ Here are a few links of interest:
 ## Installation
 
 Here's a brief rundown of how to create your own Jupyter Book using this site. For a more
-complete guide, see [the Jupyter Book guide](ch/guide/00_intro).
+complete guide, see [the Jupyter Book guide](guide/01_overview).
 
 * Fork the Jupyter Book template repo
-* Replace the demo notebooks in `notebooks/` with your own notebooks and markdown files.
+* Replace the demo notebooks in `content/` with your own notebooks and markdown files.
 * Create a Table of Contents yaml file by editing `_data/toc.yaml`.
 * Generate the Jekyll markdown for your notebooks by running `scripts/generate_book.py`
 * Push your changes to GitHub (or wherever you host your site)!

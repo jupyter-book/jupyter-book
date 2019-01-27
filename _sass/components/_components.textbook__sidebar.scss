@@ -8,6 +8,7 @@
  * [4]: The current section needs a higher specificity to override the :hover
  *   selectors used previously.
  * [5]: The logo displayed above the sidebar
+ * [6]: The footer at the bottom of the sidebar
  */
 $color-sidebar-bg: rgba(255, 255, 255, 0) !default;
 $color-sidebar-entry: #364149 !default;
@@ -19,16 +20,11 @@ $color-sidebar-divider: #bbb !default;
   padding: $spacing-unit-small;
   @include inuit-font-size(14px);
   border-right: 1px solid rgba(0, 0, 0, 0.07);
-  opacity: .6;
+  opacity: 0.6;
   -webkit-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
   &:hover {
     opacity: 1;
-  }
-  
-  // Left margin if site is big enough
-  @media (min-width: $site-margin-min-width) {
-    margin-left: $left-site-margin;
   }
 }
 
@@ -89,4 +85,11 @@ img.textbook_logo {
   max-height: 100px;
   margin: 0px auto 20px auto;
   display: block;
+}
+
+/* [6] */
+p.sidebar_footer {
+  text-align: center;
+  padding: 10px 20px 0px 0px;
+  font-size: .9em;
 }

@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/04/2/strings"
 interact_link: content/04/2/Strings.ipynb
 download_link: /jupyter-book/assets/downloads/Strings.ipynb.zip
 title: 'Strings'
@@ -26,7 +28,7 @@ The meaning of an expression depends both upon its structure and the types of va
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 'datascience'
 ```
@@ -46,7 +48,7 @@ Addition is completely literal; it combines these two strings together without r
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 'data science'
 ```
@@ -66,7 +68,7 @@ Single and double quotes can both be used to create strings: `'hi'` and `"hi"` a
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 "This won't work with a single-quoted string!"
 ```
@@ -88,7 +90,7 @@ The `str` function returns a string representation of any value. Using this func
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 "That's 2 True"
 ```

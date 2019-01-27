@@ -36,9 +36,18 @@
   <link rel="shortcut icon" type="image/x-icon" href="{{ site.favicon_path | relative_url }}">
 
   <!-- MathJax Config -->
-  {% include mathjax.html %}
+  {% include js/mathjax.html %}
   <!-- DOM updating function -->
-  {% include dom-update.html %}
+  {% include js/dom-update.html %}
+
+  <!-- Define some javascript variables that will be useful in other javascript -->
+  <script>
+    const site_basename = '{{ site.baseurl | strip / }}';
+  </script>
+
+  <!-- Add AnchorJS to let headers be linked -->
+  <script src="{{ '/assets/js/anchor.min.js' | relative_url }}"  type="text/javascript"></script>
+  {% include js/anchors.html %}
 
   <!-- Include Turbolinks to make page loads fast -->
   <!-- https://github.com/turbolinks/turbolinks -->
@@ -48,15 +57,32 @@
   <!-- Load nbinteract for widgets -->
   <script src="https://unpkg.com/nbinteract-core" async></script>
 
+  <!-- Load Thebelab for interactive widgets -->
+  {% include js/thebelab.html %}
+
   <!-- Google analytics -->
   <script src="{{ site.js_url | relative_url }}/ga.js" async></script>
 
   <!-- Clipboard copy button -->
   <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" async></script>
 
+  <!-- Load JS that depends on site variables -->
+  {% include js/copy-button.html %}
+
+  <!-- Hide cell code -->
+  {% include js/hide-cell.html %}
+
   <!-- Load custom website scripts -->
   <script src="{{ site.js_url | relative_url }}/scripts.js" async></script>
 
+  <!-- Load custom user CSS and JS  -->
+  <script src="{{ site.custom_static_url | relative_url }}/custom.js" async></script>
+  <link rel="stylesheet" href="{{ site.custom_static_url | relative_url }}/custom.css">
+
   <!-- Update interact links w/ REST param, is defined in includes so we can use templates -->
-  {% include interact-update.html %}
+  {% include js/interact-update.html %}
+
+  <!-- Lunr search code - will only be executed on the /search page -->
+  <script src="{{ '/assets/js/lunr/lunr.min.js' | relative_url }}" type="text/javascript"></script>
+  <script>{% include search/lunr/lunr-en.js %}</script>
 </head>

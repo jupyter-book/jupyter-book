@@ -63,9 +63,6 @@ instance/
 # Scrapy stuff:
 .scrapy
 
-# Sphinx documentation
-docs/_build/
-
 # PyBuilder
 target/
 
@@ -106,3 +103,7 @@ venv.bak/
 # Jekyll
 _site/
 .sass-cache
+
+# Test builds
+scripts/tests/site/_build
+scripts/tests/site/content/LICENSE.md

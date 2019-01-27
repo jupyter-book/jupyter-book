@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/03/1/expressions"
 interact_link: content/03/1/Expressions.ipynb
 download_link: /jupyter-book/assets/downloads/Expressions.ipynb.zip
 title: 'Expressions'
@@ -27,7 +29,7 @@ Programs are made up of *expressions*, which describe to the computer how to com
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 12
 ```
@@ -45,7 +47,7 @@ The grammar rules of a programming language are rigid. In Python, the `*` symbol
 
 
 
-{:.output_traceback_line}
+{:.output .output_traceback_line}
 ```
   File "<ipython-input-4-d90564f70db7>", line 1
     3 * * 4
@@ -68,7 +70,7 @@ Small changes to an expression can change its meaning entirely. Below, the space
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 81
 ```
@@ -99,7 +101,7 @@ Python expressions obey the same familiar rules of *precedence* as in algebra: m
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 17.555555555555557
 ```
@@ -117,7 +119,7 @@ Python expressions obey the same familiar rules of *precedence* as in algebra: m
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 2017.0
 ```

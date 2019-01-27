@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/04/types"
 interact_link: content/04/Types.ipynb
 download_link: /jupyter-book/assets/downloads/Types.ipynb.zip
 title: 'Data Types'
@@ -26,7 +28,7 @@ type(abs)
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 builtin_function_or_method
 ```

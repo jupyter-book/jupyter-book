@@ -1,0 +1,28 @@
+# This file contains the order and numbering for all sections in the book.
+# _includes/sidebar.html renders this as a sidebar.
+#
+# Each entry has the following schema:
+#
+# title: Title of chapter or section
+# url: URL of section. Use absolute URLs to link between pages
+# class: (optional) a CSS class to add to this link
+# sections: Contains chapter's sections
+# not_numbered: true if the section shouldn't have a number in the sidebar
+#   (e.g. Introduction or appendices)
+# divider: true if this entry should just be rendered as a horizontal divider
+#   in the sidebar. All other values are ignored.
+
+- title: Home
+  url: /root_test
+  not_numbered: true
+
+- title: Tests
+  url: /tests/features
+  not_numbered: true
+  sections:
+  - title: Markdown files
+    url: /tests/markdown
+    not_numbered: true
+  - title: Jupyter notebooks
+    url: /tests/notebooks
+    not_numbered: true

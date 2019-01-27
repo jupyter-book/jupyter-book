@@ -9,11 +9,11 @@
  *
  */
 
-$color-button: #477dca !default;
+$color-interact-button: #5a5a5a !default;
 
-%button {
+%interact-button {
   @include inuit-font-size(16px);
-  background-color: $color-button;
+  background-color: $color-interact-button;
   border-radius: 3px;
   border: none;
   color: white;
@@ -30,17 +30,23 @@ $color-button: #477dca !default;
   }
 }
 
+.interact-button-logo {
+  height: 1.35em;
+  padding-right: 10px;
+  margin-left: -5px;
+}
+
 .buttons {
   margin-bottom: $spacing-unit;
 
   /* [1] */
-  .button {
-    @extend %button;
+  .interact-button {
+    @extend %interact-button;
   }
 }
 
 .js-nbinteract-widget {
-  @extend %button;
+  @extend %interact-button;
 
   /* [3] */
   padding: $spacing-unit-tiny $spacing-unit;

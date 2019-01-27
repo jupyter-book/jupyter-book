@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/03/2/names"
 interact_link: content/03/2/Names.ipynb
 download_link: /jupyter-book/assets/downloads/Names.ipynb.zip
 title: 'Names'
@@ -27,7 +29,7 @@ a + b
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 30
 ```
@@ -49,7 +51,7 @@ half
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.5
 ```
@@ -70,7 +72,7 @@ half
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.5
 ```
@@ -96,7 +98,7 @@ sales_tax
 
 
 
-{:.output_data_text}
+{:.output .output_data_text}
 ```
 0.475
 ```

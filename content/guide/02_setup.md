@@ -15,7 +15,7 @@ To import the template repository to your GitHub account, take the following ste
   "old repository's clone URL" field:
 
   ```
-  https://github.com/choldgraf/jupyter-book`
+  https://github.com/jupyter/jupyter-book
   ```
 
 * Choose a new name for your repository, and whether you want it to be public.
@@ -49,26 +49,28 @@ The Jupyter Book repository primarily depends on three sets of tools:
 This section helps you set each of these up
 
 
-0. **Install the Anaconda distribution of Python**. This is needed to install
-   the dependencies in `environment.yml`. It's not *strictly* necessary, so
-   if you know what you're doing feel free to skip this step.
-1. **Install the proper dependencies**. You can do this by installing the
-   Anaconda environment specified in `environment.yml`:
+0. **Install the Anaconda distribution of Python**. This is useful to install
+   the dependencies in `build-environment.yml`. It's only *strictly* necessary if
+   you wish to preview your book locally before pushing to GitHub. Next, you have
+   two install options depending on whether you wish to only build the markdown
+   for your Jupyter Book, or if you wish to preview your site locally.
+1. **Option 1: Install the dependencies to build your book markdown only**.
+     
+   To build the markdown for your book, you need the dependencies
+   specified in `build-requirements.txt`. You can install these with `pip install -r build-requirements.txt`.
+   In this case, you *don't* need Ruby or Jekyll since you'll use GitHub to do all of the site creation.
+2. **Option 2: Install the dependencies to build your book AND preview it locally**.
 
-       conda env create -f environment.yml
-
-2. **Activate the environment** before building your site.
-
-       conda activate textbook
-
-3. (optionally) **Install Ruby and the Jekyll plugin.**
-
-   If you want to build and preview the site locally, you'll need Ruby and Jekyll.
-   [See the Jekyll docs](https://jekyllrb.com/docs/installation/) for information on this.
-   As well as the [GitHub gh-pages documentation](https://help.github.com/articles/using-jekyll-as-a-static-site-generator-with-github-pages/)
-   for more information on how Jekyll and GitHub interact.
-
-   Make sure you run `bundle install` from the jupyter-book root so that you install its required dependencies!
+   To preview your book locally, you'll need Ruby and a set of Jekyll dependencies
+   to build your site. You can install these with the following steps:
+   
+   * Install Ruby with conda forge (`conda install -c conda-forge ruby`) and install the requirements
+     above with `pip install -r build-requirements.txt`)
+   * *Alternatively*, install Ruby *and* the dependencies above in one step with
+     `conda env create -f build-environment.yml`. This will create a fresh conda environment for you to
+     build the book. Run `conda activate jupyter-book` to activate this environment once it's installed.
+   * Once you have Ruby installed, run `make install`, which will install Bundler (a Ruby depency management tool) and then
+     install the plugins needed to build the site.
 
 ## Deploying a JupyterHub
 

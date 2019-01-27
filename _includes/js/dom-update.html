@@ -11,4 +11,9 @@ const runWhenDOMLoaded = cb => {
   }
 }
 
+// Helper function to init things quickly
+initFunction = function(myfunc) {
+  runWhenDOMLoaded(myfunc);
+  document.addEventListener('turbolinks:load', myfunc);
+};
 </script>

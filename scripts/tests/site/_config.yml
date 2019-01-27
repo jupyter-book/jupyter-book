@@ -1,0 +1,97 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+
+#######################################################################################
+# Jekyll site settings
+title: Jupyter Books
+author: Samuel Lau and Deborah Nolan and Chris Holdgraf
+email: samlau95@berkeley.edu
+description: >- # this means to ignore newlines until "baseurl:"
+  This is an example book built with Jupyter Books.
+
+baseurl: "/jupyter-book" # the subpath of your site, e.g. /blog
+url: "https://jupyter.org" # the base hostname & protocol for your site, e.g. http://example.com
+
+#######################################################################################
+# Jupyter Book settings
+
+# Textbook settings
+content_folder_name       : "content"  # The folder where your raw content (notebooks/markdown files) are located
+textbook_logo             : images/logo/logo.png  # A logo to be displayed at the top of your textbook sidebar
+hide_cell_text            : "# HIDDEN"  # When building the textbook, any cells with this text inside will be hidden in the output markdown
+hide_code_text            : "# NO CODE"  # When building the textbook, any cells with this text inside will have *only* their output shown (no code)
+css_url                   : "/assets/css" # Path to static CSS files
+js_url                    : "/assets/js" # Path to JS files
+collapse_inactive_chapters: true  # Whether to collapse the inactive chapters in the sidebar
+
+# Interact link settings
+hub_url                  : "https://mybinder.org"  # The URL for your JupyterHub/BinderHub.
+hub_name                 : "JupyterHub"  # The name of your JupyterHub (used for the button in the NavBar. If an empty string, no button is shown)
+hub_type                 : "binder"  # ['binder', 'jupyterhub']  Whether to build interact links for a BinderHub or a JupyterHub
+binder_repo_base       : "https://github.com/"  # The site on which the textbook repository is hosted
+binder_repo_org        : "jupyter"  # The username or organization that owns this repository
+binder_repo_name       : "jupyter-book"  # The name of the repository on the web
+binder_repo_branch     : "master"  # The branch on which your textbook is hosted.
+use_jupyterlab           : false  # If 'true', interact links will use JupyterLab as the interface
+interact_text            : "Interact"  # The text that interact buttons will contain.
+
+#######################################################################################
+# Jekyll build settings
+
+# Site settings (only modify if you know what you're doing)
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+      toc: true
+      toc_label: "  On this page"
+      toc_icon: "list-ul"
+
+favicon_path: "images/logo/favicon.ico"
+
+# Markdown Processing
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+sass:
+  style: compressed
+
+collections:
+  build:
+    output: true
+    permalink: /:path.html
+
+# Exclude from processing.
+# The following items will not be processed, by default. Create a custom list
+# to override the default setting.
+exclude:
+  - notebooks/
+  - add_section_numbers_to_book.py
+  - convert_notebooks_to_html_partial.py
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - scripts/
+
+plugins:
+  - jekyll-redirect-from

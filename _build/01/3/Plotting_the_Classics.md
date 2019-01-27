@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - "/01/3/plotting-the-classics"
 interact_link: content/01/3/Plotting_the_Classics.ipynb
 download_link: /jupyter-book/assets/downloads/Plotting_the_Classics.ipynb.zip
 title: 'Plotting the Classics'
@@ -48,7 +50,7 @@ Table().with_column('Chapters', huck_finn_chapters)
 
 
 
-<div markdown="0">
+<div markdown="0" class="output output_html">
 <table border="1" class="dataframe">
     <thead>
         <tr>

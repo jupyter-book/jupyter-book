@@ -2,20 +2,20 @@
 title: 'Markdown files'
 prev_page:
   url: /features/features
-  title: 'Features'
+  title: 'Features and customization'
 next_page:
   url: /features/notebooks
   title: 'Jupyter notebooks'
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
-# Creating course content
+# Creating book content
 
 The two kinds of files that contain course content are:
 
 * Jupyter Notebooks
 * Markdown files
 
-Each are contained in the `notebooks/` folder and referenced from `SUMMARY.md`.
+Each are contained in the `content/` folder and referenced from `_data/toc.yml`.
 
 If the file is markdown, it will be copied over with front-matter YAML added so
 that Jekyll can parse it
