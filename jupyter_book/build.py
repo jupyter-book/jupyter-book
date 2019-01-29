@@ -95,7 +95,7 @@ def _case_sensitive_fs(path):
 def build_book():
     """Build the markdown for a book using its TOC and a content folder."""
     parser = argparse.ArgumentParser(description=DESCRIPTION)
-    parser.add_argument("--path-book", default=None, help="Path to the root of the textbook repository.")
+    parser.add_argument("path_book", help="Path to the root of the textbook repository.")
     parser.add_argument("--path-template", default=None, help="Path to the template nbconvert uses to build markdown files")
     parser.add_argument("--path-config", default=None, help="Path to the Jekyll configuration file")
     parser.add_argument("--path-toc", default=None, help="Path to the Table of Contents YAML file")
@@ -111,8 +111,6 @@ def build_book():
     args = parser.parse_args(sys.argv[2:])
     overwrite = bool(args.overwrite)
     execute = bool(args.execute)
-    if args.path_book is None:
-        args.path_book = '.'
 
     # Paths for our notebooks
     PATH_BOOK = op.abspath(args.path_book)

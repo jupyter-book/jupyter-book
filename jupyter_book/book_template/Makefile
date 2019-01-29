@@ -17,10 +17,8 @@ install:
 book:
 	jupyter-book build ./
 
-toc:
-	python scripts/generate_toc.py content/
 runall:
-	python scripts/execute_all_notebooks.py
+	jupyter-book run ./content
 
 clean:
 	python scripts/clean.py
@@ -30,6 +28,3 @@ serve:
 
 build:
 	bundle exec jekyll build
-
-test:
-	pytest scripts/tests/test_build.py

@@ -93,7 +93,7 @@ jobs:
       # If tests pass, build the site itself
       - run:
           name: Build site markdown
-          command: jupyter-book build --path-book jupyter_book/book_template/
+          command: jupyter-book build jupyter_book/book_template/
 
       # Persist the specified paths (see https://circleci.com/docs/2.0/workflows/#using-workspaces-to-share-data-among-jobs)
       - persist_to_workspace:
