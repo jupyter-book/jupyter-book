@@ -201,3 +201,17 @@ def test_notebook_update(tmpdir):
     replace_in_file(target_text, source_text, source_file)
     out = run(cmd, check=True)
     assert is_not_in(open(target_file).readlines(), target_text)
+
+def test_upgrade(tmpdir):
+    path_build_test = op.join(tmpdir.dirpath(), 'tmp_test', 'test')
+
+    # Change the contents of a file in test to see if it is updated
+    with open(op.join(path_build_test, 'assets', 'css', 'styles.scss'), 'w') as ff:
+        ff.write("RANDOMTEXT")
+    cmd = ["jupyter-book", 'upgrade', path_build_test]
+    run(cmd, check=True)
+
+    # Make sure the test contents are the same
+    with open(op.join(path_build_test, 'assets', 'css', 'styles.scss'), 'r') as ff:
+        text = ff.read()
+        assert "RANDOMTEXT" not in text

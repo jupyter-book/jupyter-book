@@ -120,15 +120,26 @@ def new_book():
         print("Copying over your TOC file...\n")
         sh.copy2(args.toc, op.join(path_out, '_data', 'toc.yml'))
 
+    # Configuration file
+    if args.config is not None:
+        update_config(op.join(path_out, '_config.yml'), args.config)
+    print("Your configuration file is at {}\nYour should check its contents to make sure they look correct to you!\n".format(op.join(path_out, '_config.yaml')))
+
+    # Custom CSS and JS
+    if args.custom_css is not None:
+        if not os.path.exists(args.custom_css):
+            raise ValueError("Could not find custom CSS file: {}".format(args.custom_css))
+        sh.copy2(args.custom_css, op.join(path_out, 'assets', 'custom', 'custom.css'))
+    if args.custom_js is not None:
+        if not os.path.exists(args.custom_js):
+            raise ValueError("Could not find custom CSS file: {}".format(args.custom_js))
+        sh.copy2(args.custom_js, op.join(path_out, 'assets', 'custom', 'custom.js'))
+
     # Ask user to add a license if they wish
     if args.license is not None:
         if not os.path.exists(args.license):
             raise ValueError("Could not find license file: {}".format(args.license))
         sh.copy2(args.license, op.join(path_out, 'content', 'LICENSE.md'))
-
-    if args.config is not None:
-        update_config(op.join(path_out, '_config.yml'), args.config)
-    print("Your configuration file is at {}\nYour should check its contents to make sure they look correct to you!\n".format(op.join(path_out, '_config.yaml')))
 
     # Now run the license check
     license_script = op.join(op.dirname(__file__), 'scripts', 'license.py')
@@ -136,3 +147,42 @@ def new_book():
 
     # Cleanup messages
     print_message_box(_final_message(path_out))
+
+
+def upgrade_book():
+    """Upgrade a book to the latest Jupyter Book version."""
+    parser = argparse.ArgumentParser(description="Upgrade a book to the latest Jupyter Book version.")
+    parser.add_argument("path_book", help="Path to the root of the book repository you'd like to upgrade.")
+    args = parser.parse_args(sys.argv[2:])
+    path_book = args.path_book.rstrip('/')
+    path_book_new = path_book + '_UPGRADED'
+    if not op.exists(op.join(path_book, '_config.yml')):
+        raise ValueError("This does not appear to be a valid Jupyter Book. Searched in location: {}".format(path_book))
+
+    # Now create a new book from the old one
+    run(['jupyter-book', 'create', path_book_new,
+        '--toc', op.join(path_book, '_data', 'toc.yml'),
+        '--content-folder', op.join(path_book, 'content'),
+        '--config', op.join(path_book, '_config.yml'),
+        '--license', op.join(path_book, 'content', 'LICENSE.md'),
+        '--custom-css', op.join(path_book, 'assets', 'custom', 'custom.css'),
+        '--custom-js', op.join(path_book, 'assets', 'custom', 'custom.js'),
+        '--overwrite'],
+        check=True)
+
+    # Now overwrite the original book files with the upgraded ones
+    print("Copying over upgraded files")
+    for path, _, ifiles in os.walk(path_book_new):
+        new_path = path.replace(path_book_new, path_book)
+        for ifile in ifiles:
+            if not op.isdir(new_path):
+                os.makedirs(new_path)
+            sh.copy(op.join(path, ifile), op.join(new_path, ifile))
+
+
+    # Cleanup and Success message
+    print("Removing the upgraded book")
+    sh.rmtree(path_book_new)
+    print_message_box(("Finished creating an upgraded your book.\n\n"
+                       "The upgraded book can be found at {}.\n\n"
+                       "Make sure to review and commit the changes to git!".format(path_book_new, path_book_new, path_book)))
