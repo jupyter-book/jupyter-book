@@ -160,6 +160,9 @@ def test_notebook(tmpdir):
     # Static files are copied over
     assert op.exists(op.join(path_build_test, '_build', 'tests', 'cool.jpg'))
 
+    # Kernel name is added from the notebook file
+    assert is_in(lines, "kernel_name: python3")
+
 
 def test_split_yaml(tmpdir):
     path_build_test = op.join(tmpdir.dirpath(), 'tmp_test', 'test')
