@@ -4,6 +4,7 @@ import os.path as op
 import sys
 import shutil as sh
 import yaml
+import json
 from nbclean import NotebookCleaner
 from tqdm import tqdm
 import numpy as np
@@ -202,6 +203,15 @@ if __name__ == '__main__':
             url_next_page = _prepare_url(url_next_page)
 
         ###############################################################################
+        # Get kernel name from notebooks metadata
+        
+        kernel_name = ''
+        if path_url_page.endswith('.ipynb'):                  
+            with open(path_url_page, "r") as ipynb_file:
+                data = json.load(ipynb_file)
+                kernel_name = data['metadata']['kernelspec']['name']
+        
+        ###############################################################################
         # Content conversion
 
         # Convert notebooks or just copy md if no notebook.
@@ -277,6 +287,7 @@ if __name__ == '__main__':
         if path_url_page.endswith('.ipynb'):
             interact_path = CONTENT_FOLDER_NAME + '/' + path_url_page.split(CONTENT_FOLDER_NAME+'/')[-1]
             yaml_fm += ['interact_link: {}'.format(interact_path)]
+            yaml_fm += ["kernel_name: {}".format(kernel_name)]
         yaml_fm += ["title: '{}'".format(title)]
         yaml_fm += ['prev_page:']
         yaml_fm += ['  url: {}'.format(url_prev_page)]
