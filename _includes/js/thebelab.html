@@ -6,7 +6,10 @@
       binderOptions: {
         repo: '{{ site.binder_repo_org }}/{{ site.binder_repo_name }}',
         ref: '{{ site.binder_repo_branch }}',
-      }
+      },
+      kernelOptions: {
+        name: '{% if page.kernel_name %}{{ page.kernel_name }}{% else %}python3{% endif %}',
+      },
     }
 </script>
 <script src="https://unpkg.com/thebelab@0.3.3/lib/index.js"></script>
