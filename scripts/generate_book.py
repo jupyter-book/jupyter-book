@@ -4,7 +4,7 @@ import os.path as op
 import sys
 import shutil as sh
 import yaml
-import json
+import nbformat as nbf
 from nbclean import NotebookCleaner
 from tqdm import tqdm
 import numpy as np
@@ -204,13 +204,12 @@ if __name__ == '__main__':
 
         ###############################################################################
         # Get kernel name from notebooks metadata
-        
+
         kernel_name = ''
-        if path_url_page.endswith('.ipynb'):                  
-            with open(path_url_page, "r") as ipynb_file:
-                data = json.load(ipynb_file)
-                kernel_name = data['metadata']['kernelspec']['name']
-        
+        if path_url_page.endswith('.ipynb'):
+            data = nbf.read(path_url_page, nbf.NO_CONVERT)
+            kernel_name = data['metadata']['kernelspec']['name']
+
         ###############################################################################
         # Content conversion
 
