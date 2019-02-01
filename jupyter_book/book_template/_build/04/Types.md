@@ -2,6 +2,7 @@
 redirect_from:
   - "/04/types"
 interact_link: content/04/Types.ipynb
+kernel_name: Python [Root]
 title: 'Data Types'
 prev_page:
   url: /03/4/Introduction_to_Tables

@@ -1,5 +1,6 @@
 ---
 interact_link: content/features/search.ipynb
+kernel_name: python3
 title: 'Searching your book'
 prev_page:
   url: /features/citations

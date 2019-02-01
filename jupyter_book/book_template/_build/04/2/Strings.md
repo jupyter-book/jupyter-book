@@ -2,6 +2,7 @@
 redirect_from:
   - "/04/2/strings"
 interact_link: content/04/2/Strings.ipynb
+kernel_name: python3
 title: 'Strings'
 prev_page:
   url: /04/1/Numbers

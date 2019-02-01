@@ -1,5 +1,6 @@
 ---
 interact_link: content/features/hiding.ipynb
+kernel_name: python3
 title: 'Hiding code blocks or entire cells'
 prev_page:
   url: /features/notebooks

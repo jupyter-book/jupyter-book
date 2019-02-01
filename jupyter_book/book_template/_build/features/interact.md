@@ -1,5 +1,6 @@
 ---
 interact_link: content/features/interact.ipynb
+kernel_name: python3
 title: 'Connecting content with JupyterHub and Binder'
 prev_page:
   url: /features/hiding

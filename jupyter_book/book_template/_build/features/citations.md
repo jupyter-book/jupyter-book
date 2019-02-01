@@ -1,5 +1,6 @@
 ---
 interact_link: content/features/citations.ipynb
+kernel_name: python3
 title: 'Citations and bibliographies'
 prev_page:
   url: /features/interact

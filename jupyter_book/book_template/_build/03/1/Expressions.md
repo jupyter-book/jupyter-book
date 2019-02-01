@@ -2,6 +2,7 @@
 redirect_from:
   - "/03/1/expressions"
 interact_link: content/03/1/Expressions.ipynb
+kernel_name: python3
 title: 'Expressions'
 prev_page:
   url: /03/programming-in-python

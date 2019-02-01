@@ -25,23 +25,14 @@
   not_numbered: true
   expand_sections: true
   sections:
-  - title: Setup and Install
-    url: /guide/02_setup
-    not_numbered: true
-  - title: Prepare your book
-    url: /guide/03_prepare
-    not_numbered: true
-  - title: Build your book
-    url: /guide/04_build
-    not_numbered: true
-  - title: Publish your book
-    url: /guide/05_publish
-    not_numbered: true
+  - title: Create your book
+    url: /guide/02_create
+  - title: Build and publish your book
+    url: /guide/03_build
   - title: FAQ
-    url: /guide/06_faq
-    not_numbered: true
+    url: /guide/04_faq
   - title: How-to and advanced topics
-    url: /guide/07_advanced
+    url: /guide/05_advanced
 
 - title: Features and customization
   url: /features/features

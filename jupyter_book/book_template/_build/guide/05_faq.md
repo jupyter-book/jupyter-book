@@ -1,12 +1,12 @@
 ---
 redirect_from:
-  - "/guide/06-faq"
+  - "/guide/05-faq"
 title: 'FAQ'
 prev_page:
-  url: /guide/05_publish
+  url: /guide/04_publish
   title: 'Publish your book'
 next_page:
-  url: /guide/07_advanced
+  url: /guide/06_advanced
   title: 'How-to and advanced topics'
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---

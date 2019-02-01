@@ -26,5 +26,6 @@ clean:
 serve:
 	bundle exec guard
 
-build:
+site:
 	bundle exec jekyll build
+	touch _site/.nojekyll

@@ -1,3 +1,7 @@
 pytest
 ruamel.yaml
--r jupyter_book/book_template/build-requirements.txt
+tqdm
+numpy
+pyyaml
+nbformat
+nbclean

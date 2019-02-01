@@ -2,6 +2,7 @@
 redirect_from:
   - "/03/3/calls"
 interact_link: content/03/3/Calls.ipynb
+kernel_name: Python [Root]
 title: 'Call Expressions'
 prev_page:
   url: /03/2/Names

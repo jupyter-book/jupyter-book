@@ -2,6 +2,7 @@
 redirect_from:
   - "/04/1/numbers"
 interact_link: content/04/1/Numbers.ipynb
+kernel_name: Python [Root]
 title: 'Numbers'
 prev_page:
   url: /04/Types

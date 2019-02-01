@@ -1,5 +1,6 @@
 ---
 interact_link: content/features/notebooks.ipynb
+kernel_name: python3
 title: 'Jupyter notebooks'
 prev_page:
   url: /features/markdown
