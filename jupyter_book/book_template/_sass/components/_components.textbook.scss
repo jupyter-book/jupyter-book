@@ -63,3 +63,17 @@
     }
   }
 }
+
+// Scrollbar width
+::-webkit-scrollbar {
+  width: 5px;
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+}
+
+main, nav {
+  scrollbar-width: thin;
+}
