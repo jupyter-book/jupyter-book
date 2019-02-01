@@ -57,10 +57,10 @@ def new_book():
     parser.add_argument("--config", default=None, help="A path to a configuration YAML file that contains configuration for your Jupyter Book. This will overwrite parts of the book template's default _config.yml configuration")
     parser.add_argument("--custom-css", default=None, help="A path to a CSS file that defines some custom CSS rules for your book")
     parser.add_argument("--custom-js", default=None, help="A path to a JS file that defines some custom CSS rules for your book")
+    parser.add_argument("--extra-files", default=None, nargs="+", help="A list of extra files / folders to copy into your book's directory")
     parser.add_argument("--overwrite", default=False, action="store_true", help="Whether to overwrite a pre-existing book if it exists")
     parser.add_argument("--demo", default=False, action="store_true", help="Whether to build the book with demo content instead of your own content")
     args = parser.parse_args(sys.argv[2:])
-
 
     path_out = op.join(args.out_folder, args.name)
 
@@ -144,6 +144,28 @@ def new_book():
     # Now run the license check
     license_script = op.join(op.dirname(__file__), 'scripts', 'license.py')
     run(['python', license_script, '--path', op.join(path_out, 'content')], check=True)
+
+    # Copy over extra files / folders to the root of the content folder
+    if isinstance(args.extra_files, (list, str)):
+        if isinstance(args.extra_files, str):
+            args.extra_files = [args.extra_files]
+        print('Copying over extra files: {}'.format(args.extra_files))
+        for ipath in args.extra_files:
+            if op.isdir(ipath):
+                # Walk the directory and copy individual files respecting directory structure
+                for ifolder, _, ifiles in os.walk(ipath):
+                    last_folder = ipath.rsplit(os.sep)[-1]
+                    rel_to_last_folder = op.join(last_folder, ifolder.split(last_folder, 1)[-1].strip(os.sep))
+                    rel_to_out_path = op.join(path_out, rel_to_last_folder)
+                    if not op.isdir(rel_to_out_path):
+                        os.makedirs(rel_to_out_path)
+                    for ifile in ifiles:
+                        new_path = op.join(rel_to_out_path, ifile)
+                        sh.copy2(op.join(ifolder, ifile), new_path)
+                        print(new_path)
+            else:
+                # Copy the file to the root of the out path directly
+                sh.copy2(ipath, op.join(path_out, op.basename(ipath)))
 
     # Cleanup messages
     print_message_box(_final_message(path_out))

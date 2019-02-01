@@ -26,10 +26,17 @@ path_license = op.join(path_test_book, 'test_license.md')
 def test_round_trip(tmpdir):
     path_config = op.join(this_folder, '..', 'book_template', '_config.yml')
     path_out = op.join(tmpdir.dirpath(), 'tmp_test')
+
+    # Custom CSS and JS code
+    path_js = op.join(path_test_book, "my_js.js")
+    path_css = op.join(path_test_book, "my_css.css")
+    # Run the create command
     new_name = "test"
     cmd = ["jupyter-book", "create", new_name, "--config", path_config,
         "--toc", path_toc, "--content-folder", path_content, "--license", path_license,
-        "--out-folder", path_out]
+        "--custom-js", path_js , "--custom-css", path_css,
+        "--out-folder", path_out,
+        "--extra-files", op.join(path_test_book, 'foo', 'baz.txt'), op.join(path_test_book, 'foo', 'you')]
     run(cmd, check=True)
 
     # Table of contents
@@ -62,6 +69,14 @@ def test_round_trip(tmpdir):
             old_content = read(op.join(ifolder, ifile))
             new_content = read(op.join(path_out, 'test', 'content', ifolder, basename))
             assert old_content == new_content
+
+    # CSS and JS
+    assert file_contents_equal(path_js, op.join(path_out, "test", "assets", "custom", "custom.js"))
+    assert file_contents_equal(path_css, op.join(path_out, "test", "assets", "custom", "custom.css"))
+
+    # Extra files
+    assert op.exists(op.join(path_out, "test", "baz.txt"))
+    assert op.exists(op.join(path_out, "test", "you", "bar.txt"))
 
     # This should raise an error because the folder exists now
     with pytest.raises(CalledProcessError):
@@ -96,6 +111,22 @@ def test_config_update(tmpdir):
     # If we succeed, remove the tmpdir
     tmpdir.remove()
 
+
+
+def test_upgrade(tmpdir):
+    path_build_test = op.join(tmpdir.dirpath(), 'tmp_test', 'test')
+
+    # Change the contents of a file in test to see if it is updated
+    with open(op.join(path_build_test, 'assets', 'css', 'styles.scss'), 'w') as ff:
+        ff.write("RANDOMTEXT")
+    cmd = ["jupyter-book", 'upgrade', path_build_test]
+    run(cmd, check=True)
+
+    # Make sure the test contents are the same
+    with open(op.join(path_build_test, 'assets', 'css', 'styles.scss'), 'r') as ff:
+        text = ff.read()
+        assert "RANDOMTEXT" not in text
+
 ########################################################################################################
 # Building the book after the book is created
 ########################################################################################################
@@ -123,6 +154,13 @@ def replace_in_file(from_text, to_text, filename):
     with open(filename, "w") as sources:
         for line in lines:
             sources.write(line.replace(from_text, to_text))
+
+def file_contents_equal(file1, file2):
+    with open(file1, 'r') as ff:
+        file1txt = ff.read()
+    with open(file2, 'r') as ff:
+        file2txt = ff.read()
+    return file1txt == file2txt
 
 ####################################################
 # Delete old build and create a new one
@@ -204,17 +242,3 @@ def test_notebook_update(tmpdir):
     replace_in_file(target_text, source_text, source_file)
     out = run(cmd, check=True)
     assert is_not_in(open(target_file).readlines(), target_text)
-
-def test_upgrade(tmpdir):
-    path_build_test = op.join(tmpdir.dirpath(), 'tmp_test', 'test')
-
-    # Change the contents of a file in test to see if it is updated
-    with open(op.join(path_build_test, 'assets', 'css', 'styles.scss'), 'w') as ff:
-        ff.write("RANDOMTEXT")
-    cmd = ["jupyter-book", 'upgrade', path_build_test]
-    run(cmd, check=True)
-
-    # Make sure the test contents are the same
-    with open(op.join(path_build_test, 'assets', 'css', 'styles.scss'), 'r') as ff:
-        text = ff.read()
-        assert "RANDOMTEXT" not in text
