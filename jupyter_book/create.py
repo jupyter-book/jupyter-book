@@ -8,15 +8,21 @@ import argparse
 import string
 from .utils import print_color, print_message_box
 TEMPLATE_PATH = op.join(op.dirname(__file__), 'book_template')
+MINIMAL_PATH  = op.join(op.dirname(__file__), 'minimal')
 
+def _final_message(path_out, notes):
+    msg = ["",
+           "Finished creating a new book at `{}`".format(path_out),
+           ""
+           "- Your content is in `{}` ".format(op.join(path_out, 'content')),
+           "- A Table of Contents file is at `{}`.".format(op.join(path_out, '_data', 'toc.yml')),
+           "  You should check its contents, make sure it references your content correctly, and ensure it has the correct order.",
+           "- Your configuration file is at `{}`.".format(op.join(path_out, '_config.yml')),
+           "  You should check its contents and double-check that the values are correct for your site.",
+           ""]
+    if len(notes) > 0:
+        msg += ["", "Notes", "====="] + notes
 
-def _final_message(path_out):
-    msg = ["Finished creating a new book at `{}`".format(path_out),
-           "  * Your content is in `{}` ".format(op.join(path_out, 'content')),
-           "  * A Table of Contents file is at `{}`.".format(op.join(path_out, '_data', 'toc.yml')),
-           "    You should check its contents, make sure it references your content correctly, and ensure it has the correct order.",
-           "  * Your configuration file is at `{}`.".format(op.join(path_out, '_config.yml')),
-           "    You should check its contents and double-check that the values are correct for your site."]
     return '\n'.join(msg)
 
 def _check_file_exists(path):
@@ -63,6 +69,7 @@ def new_book():
     args = parser.parse_args(sys.argv[2:])
 
     path_out = op.join(args.out_folder, args.name)
+    notes = []
 
     # Check folder exists and overwrite if necessary
     if op.isdir(path_out):
@@ -80,12 +87,13 @@ def new_book():
     if args.demo is True:
         print("Copying over demo repository content")
         sh.copytree(op.join(TEMPLATE_PATH, 'content'), op.join(path_out, 'content'))
-        message = ["You've chosen to copy over the demo Jupyter Book. This contains",
-                   "the content shown at https://jupyter.org/jupyter-book.\n"
-                   "Use it to get acquainted with the Jupyter-Book structure and build ",
-                   "system. When you're ready, try re-running `jupyter-book create` using ",
-                   "your own content!"]
-        print_message_box('\n'.join(message) + '\n\n' + _final_message(path_out))
+        message = ["- You've chosen to copy over the demo Jupyter Book. This contains",
+                   "  the content shown at https://jupyter.org/jupyter-book.\n"
+                   "  Use it to get acquainted with the Jupyter-Book structure and build ",
+                   "  system. When you're ready, try re-running `jupyter-book create` using ",
+                   "  your own content!"]
+        notes += message
+        _final_message(path_out, notes)
         sys.exit()
 
     # Create empty folders for build files if they don't exist
@@ -94,9 +102,11 @@ def new_book():
 
     # Copy over content
     if args.content_folder is None:
-        args.content_folder = input("Enter a path to a folder where you've got content [./content]: ")
-        if args.content_folder == '':
-            args.content_folder = './content'
+        args.content_folder = op.join(MINIMAL_PATH, 'content')
+        args.toc = op.join(MINIMAL_PATH, '_data', 'toc.yml')
+        sh.rmtree(op.join(path_out, '_build'))
+        notes.append("- You haven't provided any content (`--content`) so we've added a couple files to get you started.")
+
     _check_file_exists(args.content_folder)
     print("Copying over your content folder...")
     sh.copytree(args.content_folder, op.join(path_out, 'content'))
@@ -110,9 +120,12 @@ def new_book():
         if toc_preference == "yes":
             toc_script = op.join(op.dirname(__file__), 'scripts', 'generate_toc.py')
             run(['python', toc_script, op.join(path_out, 'content'), '--out_path', op.join(path_out, '_data', 'toc.yml'), '--overwrite'], check=True)
-            print("Finished auto-generating TOC file using folder names. You should check its contents and clean it up so that it has the structure you want!\n")
+            notes.append(("- We auto-generated a TOC file using folder names. You should check its\n"
+                          "  contents and clean it up so that it has the structure you want!\n"))
         elif toc_preference == "no":
-            print_color("Skipping TOC generation: your content files don't have a table of contents, you must create one before you can build your book!\nAn example toc.yml file is there to help guide you.", 'red')
+            notes.append(("- You chose to skip TOC generation. Your content files don't have a table of contents\n"
+                          "  you must create one before you can build your book!\n"
+                          "  An example toc.yml file is there to help guide you."))
         else:
             raise ValueError("You must respond yes or no, got response: {}".format(toc_preference))
     else:
@@ -121,9 +134,10 @@ def new_book():
         sh.copy2(args.toc, op.join(path_out, '_data', 'toc.yml'))
 
     # Configuration file
-    if args.config is not None:
+    if args.config is None:
+        update_config(op.join(path_out, '_config.yml'), op.join(MINIMAL_PATH, '_config.yml'))
+    else:
         update_config(op.join(path_out, '_config.yml'), args.config)
-    print("Your configuration file is at {}\nYour should check its contents to make sure they look correct to you!\n".format(op.join(path_out, '_config.yaml')))
 
     # Custom CSS and JS
     if args.custom_css is not None:
@@ -132,7 +146,7 @@ def new_book():
         sh.copy2(args.custom_css, op.join(path_out, 'assets', 'custom', 'custom.css'))
     if args.custom_js is not None:
         if not os.path.exists(args.custom_js):
-            raise ValueError("Could not find custom CSS file: {}".format(args.custom_js))
+            raise ValueError("Could not find custom JS file: {}".format(args.custom_js))
         sh.copy2(args.custom_js, op.join(path_out, 'assets', 'custom', 'custom.js'))
 
     # Ask user to add a license if they wish
@@ -140,10 +154,11 @@ def new_book():
         if not os.path.exists(args.license):
             raise ValueError("Could not find license file: {}".format(args.license))
         sh.copy2(args.license, op.join(path_out, 'content', 'LICENSE.md'))
-
-    # Now run the license check
-    license_script = op.join(op.dirname(__file__), 'scripts', 'license.py')
-    run(['python', license_script, '--path', op.join(path_out, 'content')], check=True)
+    else:
+        notes.append(("- We've added a CC-BY-SA license for you in {}\n"
+                      "  This is a reasonable license for most book content, though feel free\n"
+                      "  to change it if you like!".format(op.join(path_out, 'content', 'LICENSE.md'))))
+        sh.copy2(op.join(MINIMAL_PATH, 'LICENSE.md'), op.join(path_out, 'content', 'LICENSE.md'))
 
     # Copy over extra files / folders to the root of the content folder
     if isinstance(args.extra_files, (list, str)):
@@ -168,7 +183,7 @@ def new_book():
                 sh.copy2(ipath, op.join(path_out, op.basename(ipath)))
 
     # Cleanup messages
-    print_message_box(_final_message(path_out))
+    print_message_box(_final_message(path_out, notes))
 
 
 def upgrade_book():

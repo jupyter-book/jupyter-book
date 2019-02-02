@@ -37,6 +37,8 @@ if __name__ == '__main__':
     # Generate YAML from the directory structure
     toc = []
     for ifolder, _, ifiles in os.walk(args.content_folder):
+        if ".ipynb_checkpoints" in ifolder:
+            continue
         path_rel_to_content = ifolder.replace(args.content_folder, '')
         if any(any(ifile.endswith(ii) for ii in [".ipynb", ".md"]) for ifile in ifiles):
             toc.append("==================================================")
@@ -49,20 +51,22 @@ if __name__ == '__main__':
 
     # Write the TOC to YAML or print it
     yaml = YAML()
-    top = ("# This file contains the order and numbering for all sections in the book."
-            "# _includes/sidebar.html renders this as a sidebar.\n"
-            "#\n"
-            "# Each entry has the following schema:\n"
-            "#\n"
-            "# title: Title of chapter or section\n"
-            "# url: URL of section. Use absolute URLs to link between pages\n"
-            "# sections: Contains chapter's sections\n"
-            "# not_numbered: true if the section shouldn't have a number in the sidebar\n"
-            "#   (e.g. Introduction or appendices)\n"
-            "# expand_sections: true if you'd like the sections of this chapter to always\n"
-            "#   be expanded in the sidebar.\n"
-            "# divider: true if this entry should just be rendered as a horizontal divider\n"
-            "#   in the sidebar. All other values are ignored.\n")
+    top = ("# Each entry has the following schema:\n"
+           "#\n"
+           "# - title: mytitle   # Title of chapter or section\n"
+           "#   url: /myurl  # URL of section relative to the /content/ folder.\n"
+           "#   sections:  # Contains a list of more entries that make up the chapter's sections\n"
+           "#   not_numbered: true  # if the section shouldn't have a number in the sidebar\n"
+           "#     (e.g. Introduction or appendices)\n"
+           "#   expand_sections: true  # if you'd like the sections of this chapter to always\n"
+           "#     be expanded in the sidebar.\n"
+           "#   external: true  # Whether the URL is an external link or points to content in the book\n"
+           "#\n"
+           "# Below are some special values that trigger specific behavior:\n"
+           "# - search: true  # Will provide a link to a search page\n"
+           "# - divider: true  # Will insert a divider in the sidebar\n"
+           "# - header: My Header  # Will insert a header with no link in the sidebar\n")
+
     warn = ("#\n"
             "# ==============================\n"
             "# AUTOMATICALLY GENERATED TOC FILE.\n"
@@ -72,7 +76,7 @@ if __name__ == '__main__':
             "# \n"
             "# See the demo `toc.yml` for the right structure to follow. You can \n"
             "# generate a demo book by running `jupyter-book create mybook --demo`\n"
-            "# ==============================\n")
+            "# ==============================\n\n\n")
     if args.out_path is None:
         print(top + warn)
         yaml.dump(toc, sys.stdout)
