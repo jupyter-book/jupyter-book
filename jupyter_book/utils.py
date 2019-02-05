@@ -2,6 +2,7 @@
 
 import string
 import nbformat as nbf
+import argparse
 import os
 
 ####################################################################################
@@ -19,14 +20,23 @@ def print_color(msg, style):
 
 def print_message_box(msg):
     border = '================================================================================'
-    print_color('\n\n' + border, 'green')
+    print_color('\n\n' + border + '\n\n', 'green')
     print(msg)
-    print_color(border, 'green')
+    print_color('\n\n' + border + '\n\n', 'green')
 
 
 def _error(msg):
     msg = '\n\n\033[91m==========\033[0m\n{}\n\033[91m==========\033[0m\n'.format(msg)
     return ValueError(msg)
+
+
+def str2bool(msg):
+    if msg.lower() in ('yes', 'true', 't', 'y', '1'):
+        return True
+    elif msg.lower() in ('no', 'false', 'f', 'n', '0'):
+        return False
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected. Got: {}'.format(msg))
 
 ####################################################################################
 # Book conversion formatting

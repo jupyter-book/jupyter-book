@@ -51,7 +51,8 @@ def test_round_trip(tmpdir):
         new_config = yaml.load(ff)
 
     for ii in old_config.keys():
-        assert old_config[ii] == new_config[ii]
+        if ii not in ["jupyter_book_version"]:
+            assert old_config[ii] == new_config[ii]
 
     # License
     old_license = read(path_license)
@@ -106,7 +107,8 @@ def test_config_update(tmpdir):
         new_config = yaml.load(ff)
 
     for ii in old_config.keys():
-        assert old_config[ii] == new_config[ii]
+        if ii not in ["jupyter_book_version"]:
+            assert old_config[ii] == new_config[ii]
 
     # If we succeed, remove the tmpdir
     tmpdir.remove()
