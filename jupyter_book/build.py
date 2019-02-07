@@ -96,9 +96,9 @@ def build_book():
     """Build the markdown for a book using its TOC and a content folder."""
     parser = argparse.ArgumentParser(description=DESCRIPTION)
     parser.add_argument("path_book", help="Path to the root of the book repository.")
-    parser.add_argument("--path-template", default=None, help="Path to the template nbconvert uses to build markdown files")
-    parser.add_argument("--path-config", default=None, help="Path to the Jekyll configuration file")
-    parser.add_argument("--path-toc", default=None, help="Path to the Table of Contents YAML file")
+    parser.add_argument("--template", default=None, help="Path to the template nbconvert uses to build markdown files")
+    parser.add_argument("--config", default=None, help="Path to the Jekyll configuration file")
+    parser.add_argument("--toc", default=None, help="Path to the Table of Contents YAML file")
     parser.add_argument("--overwrite", action='store_true', help="Overwrite md files if they already exist.")
     parser.add_argument("--execute", action='store_true', help="Execute notebooks before converting to MD.")
     parser.add_argument("--local-build", action='store_true',
@@ -115,9 +115,9 @@ def build_book():
     # Paths for our notebooks
     PATH_BOOK = op.abspath(args.path_book)
 
-    PATH_TOC_YAML = args.path_toc if args.path_toc is not None else op.join(PATH_BOOK, '_data', 'toc.yml')
-    CONFIG_FILE = args.path_config if args.path_config is not None else op.join(PATH_BOOK, '_config.yml')
-    PATH_TEMPLATE = args.path_template if args.path_template is not None else op.join(PATH_BOOK, 'scripts', 'templates', 'jekyllmd.tpl')
+    PATH_TOC_YAML = args.toc if args.toc is not None else op.join(PATH_BOOK, '_data', 'toc.yml')
+    CONFIG_FILE = args.config if args.config is not None else op.join(PATH_BOOK, '_config.yml')
+    PATH_TEMPLATE = args.template if args.template is not None else op.join(PATH_BOOK, 'scripts', 'templates', 'jekyllmd.tpl')
     PATH_IMAGES_FOLDER = op.join(PATH_BOOK, '_build', 'images')
     BUILD_FOLDER = op.join(PATH_BOOK, BUILD_FOLDER_NAME)
 
