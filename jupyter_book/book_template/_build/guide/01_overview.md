@@ -49,8 +49,6 @@ mybookname/
 │   └── custom
 │       ├── custom.css
 │       └── custom.js
-├── _bibliography
-│   └── references.bib
 ├── _config.yml
 ├── content
 │   ├── features
@@ -160,7 +158,7 @@ mybookname/
     └── LICENSE.md
 ```
 
-When you create a new book, `jupyter-book` will ask if you'd like to
+When you create a new book, if you don't specify a license, then `jupyter-book` will by default
 add a [Creative Commons Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/)
 (CC BY-SA 4.0) license to your book. CC BY-SA requires attribution of
 your work, and also requires that any derivations someone creates are released

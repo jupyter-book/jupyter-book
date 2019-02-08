@@ -121,9 +121,8 @@ collections:
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
 exclude:
-  - notebooks/
-  - add_section_numbers_to_book.py
-  - convert_notebooks_to_html_partial.py
+  - content/
+  - scripts/
   - Gemfile
   - Gemfile.lock
   - node_modules
@@ -131,7 +130,6 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
-  - scripts/
 
 plugins:
   - jekyll-redirect-from

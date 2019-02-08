@@ -8,7 +8,7 @@ but you don't want users to see it in your built book. To prevent code cells
 from showing up in your built site, you can use the following two configuration
 options in your `_config.yml` file.
 
-**To remove entire code cells from your book*, use the following configuration:
+**To remove entire code cells from your book**, use the following configuration:
 
 ```yaml
 hide_cell_text : "YOUR TEXT"
@@ -17,7 +17,7 @@ hide_cell_text : "YOUR TEXT"
 Any code cell with the value of `hide_cell_text` (above it is `YOUR TEXT`)
 will not show up in your built book.
 
-**To remove only the code, but retain the outputs or a cell*, use the following
+**To remove only the code, but retain the outputs or a cell**, use the following
 configuration:
 
 ```yaml

@@ -18,6 +18,13 @@ This will create a new book using your content in `mybookname/`. You'll then nee
 2. Modify `mybookname/_data/toc.yml` to match your content
 3. Modify `mybookname/_config.yml` to the configuration you'd like
 
+Note that if you choose to create the book template and later add content
+to it, you can quickly **generate a basic Table of Contents** by running
+the following command:
+
+```
+jupyter-book toc mybookname/
+```
 
 ## by modifying the Demo Book
 

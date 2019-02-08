@@ -20,10 +20,12 @@ def _final_message(path_out, notes):
            "- Your content is in `{}` ".format(op.join(path_out, 'content')),
            "",
            "- A Table of Contents file is at `{}`.".format(op.join(path_out, '_data', 'toc.yml')),
-           "  You should check its contents, make sure it references your content correctly, and ensure it has the correct order.",
+           "  You should check its contents, make sure it references your",
+           "  content correctly, and ensure it has the correct order.",
            "",
            "- Your configuration file is at `{}`.".format(op.join(path_out, '_config.yml')),
-           "  You should check its contents and double-check that the values are correct for your site.",
+           "  You should check its contents and double-check that the values"
+           "  are correct for your site.",
            ""]
     if len(notes) > 0:
         msg += ["", "Notes", "====="] + notes
@@ -111,7 +113,8 @@ def new_book():
         args.content_folder = op.join(MINIMAL_PATH, 'content')
         args.toc = op.join(MINIMAL_PATH, '_data', 'toc.yml')
         sh.rmtree(op.join(path_out, '_build'))
-        notes.append("- Add your own content to your book. You haven't provided any content (`--content-folder`) so we've added a couple files to get you started.")
+        notes.append(("- Add your own content to your book. You haven't provided any content (`--content-folder`)\n"
+                      "  so we've added a couple files to get you started."))
 
     _check_file_exists(args.content_folder)
     print("Copying over your content folder...")
@@ -119,8 +122,7 @@ def new_book():
 
     # Copy over TOC file
     if args.toc is None:
-        toc_script = op.join(op.dirname(__file__), 'scripts', 'generate_toc.py')
-        run(['python', toc_script, op.join(path_out, 'content'), '--out_path', op.join(path_out, '_data', 'toc.yml'), '--overwrite'], check=True)
+        run(['jupyter-book', 'toc', path_out, '--quiet'], check=True)
         notes.append(("- Check your Table of Contents file (`_data/toc.yml`). Because you specified a content foler\n"
                       "  but no Table of Conents (`--toc`), we auto-generated a TOC file file using folder and file\n"
                       "  names. You should check its contents and clean it up so that it has the structure you want!\n"))

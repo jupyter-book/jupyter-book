@@ -31,7 +31,7 @@ of a line.
 ### Here's a third-level header
 
 This section is here purely to demonstrate the third-level header of the
-rendered page!
+rendered page in the sidebar!
 
 ## Embedding media
 

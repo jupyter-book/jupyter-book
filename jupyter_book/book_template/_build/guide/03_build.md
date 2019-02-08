@@ -1,13 +1,13 @@
 ---
 redirect_from:
   - "/guide/03-build"
-title: 'Build your book'
+title: 'Build and publish your book'
 prev_page:
   url: /guide/02_create
   title: 'Create your book'
 next_page:
-  url: /guide/04_publish
-  title: 'Publish your book'
+  url: /guide/04_faq
+  title: 'FAQ'
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 # Building and publishing your book
@@ -115,6 +115,45 @@ In particular, if you wish to use any **extra Jekyll plugins**, such as the `jek
 enables you to add citations and bibliographies, then you need to build your site
 locally as HTML. GitHub-pages doesn't let you enable any extra plugins if it auto-builds your site.
 
+## Create an *online* repository for your book
+
+You've created your book on your own computer, but you haven't yet added it
+online. This section covers the steps to create your own GitHub repository,
+and to add your book's content to it.
+
+1. First, log-in to GitHub, then go to the "create a new repository" page:
+
+https://github.com/new
+
+2. Next, add a name and description for your book. You can choose whatever
+   initialization you'd like.
+
+3. Now, clone the empty repository to your computer:
+
+   ```bash
+   git clone https://github.com/<my-org>/<my-book-name>
+   ```
+
+4. Copy all of your book files and folders (what was created when you ran `jupyter-book create mybook`)
+   into the new repository. For example, if you created your book locally with `jupyter-book create mylocalbook`
+   and your online repository is called `myonlinebook`, the command would be:
+
+   ```bash
+   cp -r mylocalbook/* myonlinebook/
+   ```
+
+   This will copy over the local book files into the online book folder.
+
+5. Commit the new files to the repository in `myonlinebook/`:
+
+   ```bash
+   cd myonlinebook
+   git add ./*
+   git commit -m "adding my first book!"
+   git push
+   ```
+
+That's it!
 
 ## Publish your book online with GitHub Pages
 

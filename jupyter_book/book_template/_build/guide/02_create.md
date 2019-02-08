@@ -7,7 +7,7 @@ prev_page:
   title: 'Getting started'
 next_page:
   url: /guide/03_build
-  title: 'Build your book'
+  title: 'Build and publish your book'
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 # Create your Jupyter Book
@@ -15,9 +15,34 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 This page covers how to create a Jupyter Book with your own content.
 You've got three primary ways to create your Jupyter Book.
 
+## by starting with a minimal book
+
+Running the following command will create a new Jupyter Book with a few
+content pages and a Table of Contents to get you started:
+
+```
+jupyter-book create mybookname
+```
+
+This will create a new book using your content in `mybookname/`. You'll then need to
+
+1. Add your content to `mybookname/content/`
+2. Modify `mybookname/_data/toc.yml` to match your content
+3. Modify `mybookname/_config.yml` to the configuration you'd like
+
+Note that if you choose to create the book template and later add content
+to it, you can quickly **generate a basic Table of Contents** by running
+the following command:
+
+```
+jupyter-book toc mybookname/
+```
+
 ## by modifying the Demo Book
 
-If you'd like, you can simply modify the files created by running
+If you'd like to see a more fully-functioning demo book for inspiration, you can
+create the book that lives at the [jupyter-book website](https://jupyter.org/jupyter-book)
+by adding the `--demo` flag:
 
 ```
 jupyter-book create mybookname --demo
@@ -26,21 +51,6 @@ jupyter-book create mybookname --demo
 See the previous section for a description of all of the relevant files you
 should modify for your book.
 
-## by answering questions at the command line
-
-If you'd like to create a book from your own content using the CLI, run the
-following command:
-
-```
-jupyter-book create mybookname
-```
-
-This will give you several prompts that will help fill in information about your book.
-You'll need to specify the **location of your book's content**, and optionally you
-can **generate a Table of Contents from your book's content**.
-
-This will create a new book using your content in `mybookname/`. You'll then need to go in
-and ensure that `mybookname/_data/toc.yml` as well as `mybookname/_config.yml` look correct.
 
 ## by using a pre-existing book configuration
 
@@ -59,6 +69,8 @@ myoldbook/
 ├── images
 │   └── tests
 ├── mylicense.md
+├── myextrafolder
+│   └── myextrafile.txt
 └── config.yml
 ```
 
@@ -67,9 +79,10 @@ You can generate a Jupyter Book from it with the following command:
 
 ```
 jupyter-book create mybookname --content-folder myoldbook/content \
-                              --toc myoldbook/_data/toc.yml \
-                              --config myoldbook/_config.yml \
-                              --license myoldbook/mylicense.md
+                               --toc myoldbook/_data/toc.yml \
+                               --config myoldbook/_config.yml \
+                               --license myoldbook/mylicense.md \
+                               --extra-files myoldbook/myextrafolder
 ```
 
 This will create a new Jupyter Book using these files. In this case, you need to ensure
