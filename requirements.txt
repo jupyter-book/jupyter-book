@@ -1,7 +1,7 @@
-# Requirements for the demo notebooks
-# Useful for MyBinder configuration
-pandas
+pytest
+ruamel.yaml
+tqdm
 numpy
-datascience
-folium
-matplotlib
+pyyaml
+nbformat
+nbclean

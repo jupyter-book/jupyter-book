@@ -1,0 +1,2 @@
+# Requirements for your book to run
+numpy

@@ -11,7 +11,7 @@ jobs:
 
       # Tell Circle to store the documentation output in a folder that we can access later
       - store_artifacts:
-          path: _site/
+          path: jupyter_book/book_template/_site/
           destination: html
 
   # Deploy the built site to jupyter-book.github.io
@@ -32,7 +32,7 @@ jobs:
       # Grab the the built markdown from the last step
       - run:
           name: Copy over built site files
-          command: rm -rf _build && cp -r /tmp/workspace/_build ./
+          command: rm -rf jupyter_book/book_template/_build && cp -r /tmp/workspace/_build ./jupyter_book/book_template
 
       # Build the site so we have local files
       - build_site:
@@ -41,7 +41,8 @@ jobs:
       # Copying over built website to the live site
       - run:
           name: Copy built site to a folder to store
-          command: cp -r ./_site ../_site
+          command: cp -r ./jupyter_book/book_template/_site ../_site
+
       - run:
           name: Change to gh-pages branch and replace w/ new site
           command: |
@@ -57,7 +58,7 @@ jobs:
             git config --global user.name "Chris Holdgraf"
             git add ./.nojekyll
             git add ./* && git commit -m "jekyll book web deploy"
-            git push -f origin gh-pages:gh-pages      
+            git push -f origin gh-pages:gh-pages
 
   run_tests:
     docker:
@@ -74,8 +75,10 @@ jobs:
             - cache-pip
       # Install the packages needed to build our documentation
       # This will depend on your particular package!
-      - run: pip install --user -r build-requirements.txt
+      - run: pip install --user -r requirements.txt
       - run: pip install --user pytest
+      - run: pip install --user -e ./  # Install Jupyter Book CLI
+
       # Cache some files for a speedup in subsequent builds
       - save_cache:
           key: cache-pip
@@ -85,20 +88,20 @@ jobs:
       - run:
           name: Tests
           command: |
-            pytest scripts/tests/test_build.py  
+            pytest
 
       # If tests pass, build the site itself
       - run:
           name: Build site markdown
-          command: python scripts/generate_book.py
+          command: jupyter-book build jupyter_book/book_template/
 
       # Persist the specified paths (see https://circleci.com/docs/2.0/workflows/#using-workspaces-to-share-data-among-jobs)
       - persist_to_workspace:
           root: .
           paths:
-            - _build/
+            - jupyter_book/book_template/_build/
 
-      
+
 
 # Tell CircleCI to use this workflow when it builds the site
 workflows:
@@ -136,19 +139,18 @@ commands:
       - checkout
       - restore_cache:
           keys:
-            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - rails-demo-bundle-v2-{{ checksum "jupyter_book/book_template/Gemfile.lock" }}
             - rails-demo-bundle-v2-
-      
+
       - run: gem install bundler
-      - run: bundle install
+      - run: cd jupyter_book/book_template && bundle install
 
       # Store bundle cache
       - save_cache:
-          key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+          key: rails-demo-bundle-v2-{{ checksum "jupyter_book/book_template/Gemfile.lock" }}
           paths:
             - vendor/bundle
 
       - run:
           name: Build the website
-          command: bundle exec jekyll build << parameters.build_args >>
-      
+          command: cd jupyter_book/book_template && bundle exec jekyll build << parameters.build_args >>
