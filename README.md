@@ -1,4 +1,4 @@
-# <img src="content/images/logo/logo.png" width=40 /> Jupyter Book
+# <img src="jupyter_book/book_template/content/images/logo/logo.png" width=40 /> Jupyter Book
 
 [![CircleCI](https://circleci.com/gh/jupyter/jupyter-book.svg?style=svg)](https://circleci.com/gh/jupyter/jupyter-book)
 
