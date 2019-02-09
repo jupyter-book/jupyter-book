@@ -21,3 +21,13 @@
     </a>
   {% endif %}
 </nav>
+
+{% if site.keyboard_navigation %}
+  <script>
+  var keyboard_navigation = true;
+  </script>
+{% else %}
+  <script>
+  var keyboard_navigation = false;
+  </script>
+{% endif %}

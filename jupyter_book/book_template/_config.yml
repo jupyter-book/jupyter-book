@@ -45,6 +45,9 @@ number_toc_chapters       : true  # Whether to add numbers to chapterse in your 
 # Search settings
 search_max_words_in_content : 100  # In the search function, use at most this many words (too many words will make search slow)
 
+# Toggle keyboard navigation
+keyboard_navigation       : false
+
 #######################################################################################
 # Interact link settings
 

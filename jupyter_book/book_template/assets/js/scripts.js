@@ -104,20 +104,22 @@ initFunction(focusPage);
 /**
  * [4] Use left and right arrow keys to navigate forward and backwards.
  */
-const LEFT_ARROW_KEYCODE = 37
-const RIGHT_ARROW_KEYCODE = 39
+if (keyboard_navigation === true) {
+  const LEFT_ARROW_KEYCODE = 37
+  const RIGHT_ARROW_KEYCODE = 39
 
-const getPrevUrl = () => document.getElementById('js-page__nav__prev').href
-const getNextUrl = () => document.getElementById('js-page__nav__next').href
-document.addEventListener('keydown', event => {
-  const keycode = event.which
+  const getPrevUrl = () => document.getElementById('js-page__nav__prev').href
+  const getNextUrl = () => document.getElementById('js-page__nav__next').href
+  document.addEventListener('keydown', event => {
+    const keycode = event.which
 
-  if (keycode === LEFT_ARROW_KEYCODE) {
-    Turbolinks.visit(getPrevUrl())
-  } else if (keycode === RIGHT_ARROW_KEYCODE) {
-    Turbolinks.visit(getNextUrl())
-  }
-})
+    if (keycode === LEFT_ARROW_KEYCODE) {
+      Turbolinks.visit(getPrevUrl())
+    } else if (keycode === RIGHT_ARROW_KEYCODE) {
+      Turbolinks.visit(getNextUrl())
+    }
+  })
+}
 
 /**
  * [5] Right sidebar scroll highlighting
