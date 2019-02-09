@@ -78,7 +78,6 @@ jobs:
       # Install the packages needed to build our documentation
       # This will depend on your particular package!
       - run: pip install --user -r requirements.txt
-      - run: pip install --user pytest
       - run: pip install --user -e ./  # Install Jupyter Book CLI
 
       # Cache some files for a speedup in subsequent builds
