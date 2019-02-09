@@ -1,1 +1,2 @@
-__version__ = "0.3-dev"
+"""Build an online book using Jupyter Notebooks and Jekyll."""
+__version__ = "0.3"
