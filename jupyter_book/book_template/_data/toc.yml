@@ -1,0 +1,121 @@
+# This file contains the order and numbering for all sections in the book.
+#
+# Each entry has the following schema:
+#
+# - title: mytitle   # Title of chapter or section
+#   url: /myurl  # URL of section relative to the /content/ folder.
+#   sections:  # Contains a list of more entries that make up the chapter's sections
+#   not_numbered: true  # if the section shouldn't have a number in the sidebar
+#     (e.g. Introduction or appendices)
+#   expand_sections: true  # if you'd like the sections of this chapter to always
+#     be expanded in the sidebar.
+#   external: true  # Whether the URL is an external link or points to content in the book
+#
+# Below are some special values that trigger specific behavior:
+# - search: true  # Will provide a link to a search page
+# - divider: true  # Will insert a divider in the sidebar
+# - header: My Header  # Will insert a header with no link in the sidebar
+
+
+- title: Home
+  url: /intro
+  not_numbered: true
+- title: Search
+  search: true
+
+- title: Getting started
+  url: /guide/01_overview
+  not_numbered: true
+  expand_sections: true
+  sections:
+  - title: Create your book
+    url: /guide/02_create
+  - title: Build and publish your book
+    url: /guide/03_build
+  - title: FAQ
+    url: /guide/04_faq
+  - title: How-to and advanced topics
+    url: /guide/05_advanced
+
+- title: Features and customization
+  url: /features/features
+  not_numbered: true
+  expand_sections: true
+  sections:
+  - title: Markdown files
+    url: /features/markdown
+    not_numbered: true
+  - title: Jupyter notebooks
+    url: /features/notebooks
+    not_numbered: true
+  - title: Hiding code blocks or entire cells
+    url: /features/hiding
+    not_numbered: true
+  - title: Connecting content with JupyterHub and Binder
+    url: /features/interact
+    not_numbered: true
+  - title: Citations and bibliographies
+    url: /features/citations
+    not_numbered: true
+  - title: Searching your book
+    url: /features/search
+    not_numbered: true
+
+- title: GitHub repository
+  url: https://github.com/jupyter/jupyter-book
+  external: true
+  not_numbered: true
+
+- divider: true
+- header: Demo textbook
+
+- title: Data Science
+  url: /01/what-is-data-science
+  sections:
+  - title: Introduction
+    url: /01/1/intro
+  - title: Why Data Science?
+    url: /01/2/why-data-science
+  - title: Plotting the Classics
+    url: /01/3/Plotting_the_Classics
+    subsections:
+    - title: Subsection Demo 1
+      url: /01/3/subsection/subsections
+    - title: Subsection Demo 2
+      url: /01/3/subsection/subsectiontwo
+
+- title: Causality and Experiments
+  url: /02/causality-and-experiments
+  sections:
+  - title: John Snow and the Broad Street Pump
+    url: /02/1/observation-and-visualization-john-snow-and-the-broad-street-pump
+  - title: "Snow\u2019s \u201CGrand Experiment\u201D"
+    url: /02/2/snow-s-grand-experiment
+  - title: Establishing Causality
+    url: /02/3/establishing-causality
+  - title: Randomization
+    url: /02/4/randomization
+  - title: Endnote
+    url: /02/5/endnote
+
+- title: Programming in Python
+  url: /03/programming-in-python
+  sections:
+  - title: Expressions
+    url: /03/1/Expressions
+  - title: Names
+    url: /03/2/Names
+  - title: Call Expressions
+    url: /03/3/Calls
+  - title: Introduction to Tables
+    url: /03/4/Introduction_to_Tables
+
+- title: Data Types
+  url: /04/Types
+  sections:
+  - title: Numbers
+    url: /04/1/Numbers
+  - title: Strings
+    url: /04/2/Strings
+  - title: Comparisons
+    url: /04/3/Comparison
