@@ -1,0 +1,10 @@
+[build-system]
+requires = ["flit"]
+build-backend = "flit.buildapi"
+
+[tool.flit.metadata]
+module = "jupyter_book"
+author = "Project Jupyter"
+author-email = "jupyter@googlegroups.com"
+home-page = "https://github.com/jupyter/jupyter-book"
+license = "LICENSE"
