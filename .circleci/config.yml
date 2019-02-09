@@ -32,7 +32,9 @@ jobs:
       # Grab the the built markdown from the last step
       - run:
           name: Copy over built site files
-          command: rm -rf jupyter_book/book_template/_build && cp -r /tmp/workspace/_build ./jupyter_book/book_template
+          command: |
+            rm -rf jupyter_book/book_template/_build
+            cp -r /tmp/workspace/jupyter_book/book_template/_build ./jupyter_book/book_template
 
       # Build the site so we have local files
       - build_site:
