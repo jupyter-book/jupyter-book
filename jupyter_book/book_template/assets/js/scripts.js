@@ -119,8 +119,14 @@ const initPageNav = (event) => {
   }
 };
 
-document.addEventListener('keydown', initPageNav)
-
+var keyboardListener = false;
+const initListener = () => {
+  if (keyboardListener === false) {
+    document.addEventListener('keydown', initPageNav)
+    keyboardListener = true;
+  }
+}
+initFunction(initListener);
 
 /**
  * [5] Right sidebar scroll highlighting

@@ -62,6 +62,7 @@
             // Remove the event listener from the page so keyboard press doesn't
             // Change page
             document.removeEventListener('keydown', initPageNav)
+            keyboardListener = false;
 
             // Init thebelab
             thebelab.bootstrap();
