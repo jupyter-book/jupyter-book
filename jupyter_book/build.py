@@ -9,7 +9,6 @@ from nbclean import NotebookCleaner
 from tqdm import tqdm
 import numpy as np
 from glob import glob
-from zipfile import ZipFile
 from uuid import uuid4
 import argparse
 from jupyter_book.utils import print_message_box
