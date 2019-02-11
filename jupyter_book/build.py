@@ -251,6 +251,7 @@ def build_book():
 
             check_call(call)
             os.remove(tmp_notebook)
+
         elif path_url_page.endswith('.md'):
             # If a non-notebook file, just copy it over.
             # If markdown we'll add frontmatter later
@@ -287,6 +288,8 @@ def build_book():
             interact_path = CONTENT_FOLDER_NAME + '/' + path_url_page.split(CONTENT_FOLDER_NAME+'/')[-1]
             yaml_fm += ['interact_link: {}'.format(interact_path)]
             yaml_fm += ["kernel_name: {}".format(kernel_name)]
+
+        # Page metadata
         yaml_fm += ["title: '{}'".format(title)]
         yaml_fm += ['prev_page:']
         yaml_fm += ['  url: {}'.format(url_prev_page)]

@@ -30,6 +30,14 @@ jupyter-book create -h
 You should check out the content in your upgraded book to make sure it looks correct, then
 commit the changes to your repository.
 
+## Does the book behave differently depending on the browser?
+
+Maybe - Jupyter Book does use some features that might have different behaviors in
+some browsers. For example, Safari [tends to treat downloadable objects](https://github.com/jupyter/jupyter-book/pull/104#issuecomment-462461188)
+differently for some reason.
+
+The two browsers on which Jupyter Book should always behave as expected are
+**Firefox** and **Chrome**.
 
 ## Why isn't my math showing up properly?
 
@@ -46,7 +54,7 @@ be included in this script, please open an issue
 
 ## How can I include interactive Plotly figures?
 
-To display interactive [Plotly](https://plot.ly/python/) figures, they must 
+To display interactive [Plotly](https://plot.ly/python/) figures, they must
 first be generated in a Jupyter notebook using the [offline mode](https://plot.ly/python/offline/).
 You must then plot the figure with `plotly.offline.plot()`, which generates an HTML file (`plotly.offline.iplot()` does not),
 and then load the HTML into the notebook with `display(HTML('file.html'))` prior to saving your *.ipynb file.
