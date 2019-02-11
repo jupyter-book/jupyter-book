@@ -10,12 +10,15 @@ template_files = glob(op.join('jupyter_book', 'book_template', '**', '*'), recur
 template_files = [ii.replace('jupyter_book' + os.sep, '', 1) for ii in template_files]
 PACKAGE_DATA = {"jupyter_book": template_files}
 
+# Source dependencies from requirements.txt file.
+with open('requirements.txt', 'r') as f:
+    lines = f.readlines()
+    install_packages = [line.strip() for line in lines]
+
 setup(
     name='jupyter-book',
     version=__version__,
-    install_requires=[
-        'ruamel.yaml',
-    ],
+    install_requires=install_packages,
     python_requires='>=3.4',
     author='Project Jupyter Contributors',
     author_email='jupyter@googlegroups.com',
