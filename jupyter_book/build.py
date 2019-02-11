@@ -121,11 +121,6 @@ def build_book():
     PATH_TEMPLATE = args.template if args.template is not None else op.join(PATH_BOOK, 'scripts', 'templates', 'jekyllmd.tpl')
     PATH_IMAGES_FOLDER = op.join(PATH_BOOK, '_build', 'images')
     BUILD_FOLDER = op.join(PATH_BOOK, BUILD_FOLDER_NAME)
-    DOWNLOADS_FOLDER = op.join(PATH_BOOK, '_build', 'downloads')
-
-    # Make sure our downloads folder exists
-    if not op.exists(DOWNLOADS_FOLDER):
-        os.makedirs(DOWNLOADS_FOLDER)
 
     ###############################################################################
     # Read in textbook configuration
@@ -258,13 +253,6 @@ def build_book():
             check_call(call)
             os.remove(tmp_notebook)
 
-            ###############################################################################
-            # Copy downloadable version of notebook, if requested
-            if site_yaml.get('use_download_button', True):
-                nb_name = op.basename(path_url_page)
-                path_zipfile = op.join(DOWNLOADS_FOLDER, nb_name.split('.')[0] + '.zip')
-                ZipFile(path_zipfile, mode='w').write(path_url_page, nb_name)
-
         elif path_url_page.endswith('.md'):
             # If a non-notebook file, just copy it over.
             # If markdown we'll add frontmatter later
@@ -301,10 +289,6 @@ def build_book():
             interact_path = CONTENT_FOLDER_NAME + '/' + path_url_page.split(CONTENT_FOLDER_NAME+'/')[-1]
             yaml_fm += ['interact_link: {}'.format(interact_path)]
             yaml_fm += ["kernel_name: {}".format(kernel_name)]
-            if site_yaml.get('use_download_button', True):
-                # Add download metadata if we need it
-                download_path = 'downloads/' + path_url_page.split('/')[-1].split('.')[0] + '.zip'
-                yaml_fm += ['download_link: {}'.format(download_path)]
 
         # Page metadata
         yaml_fm += ["title: '{}'".format(title)]
