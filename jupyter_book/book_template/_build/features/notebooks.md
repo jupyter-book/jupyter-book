@@ -227,7 +227,10 @@ m
 
 
 
-## Text output from notebook cells
+## Rich outputs from notebook cells
+
+Because notebooks have rich text outputs, you can store these in
+your Jupyter Book as well!
 
 
 
@@ -282,5 +285,29 @@ optional arguments:
   --demo                Whether to build the book with demo content instead of
                         your own content
   --verbose VERBOSE     Whether to display output information. [yes/no]
+
+```
+
+
+
+{:.input_area}
+```python
+this_will_error
+```
+
+
+{:.output .output_traceback_line}
+```
+
+    ---------------------------------------------------------------------------
+
+    NameError                                 Traceback (most recent call last)
+
+    <ipython-input-1-09f61459889d> in <module>()
+    ----> 1 this_will_error
+    
+
+    NameError: name 'this_will_error' is not defined
+
 
 ```
