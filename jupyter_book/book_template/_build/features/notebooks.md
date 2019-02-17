@@ -226,3 +226,61 @@ m
 </div>
 
 
+
+## Text output from notebook cells
+
+
+
+{:.input_area}
+```python
+!jupyter-book create -h
+```
+
+
+{:.output .output_stream}
+```
+usage: jupyter-book [-h] [--out-folder OUT_FOLDER] [--license LICENSE]
+                    [--content-folder CONTENT_FOLDER] [--toc TOC]
+                    [--config CONFIG] [--custom-css CUSTOM_CSS]
+                    [--custom-js CUSTOM_JS]
+                    [--extra-files EXTRA_FILES [EXTRA_FILES ...]]
+                    [--overwrite] [--demo] [--verbose VERBOSE]
+                    name
+
+Create a new Jupyter Book
+
+positional arguments:
+  name                  The name of your Jupyter Book (your book template will
+                        be placed in a folder of this name)
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --out-folder OUT_FOLDER
+                        The location where your book will be placed
+  --license LICENSE     A path to a LICENSE.md file if you have already
+                        created one
+  --content-folder CONTENT_FOLDER
+                        A path to a folder that holds your book content
+  --toc TOC             A path to a yaml file that contains a Table of
+                        Contents for your Jupyter Book. This will overwrite
+                        parts of the book template's default toc.yml
+                        configuration
+  --config CONFIG       A path to a configuration YAML file that contains
+                        configuration for your Jupyter Book. This will
+                        overwrite parts of the book template's default
+                        _config.yml configuration
+  --custom-css CUSTOM_CSS
+                        A path to a CSS file that defines some custom CSS
+                        rules for your book
+  --custom-js CUSTOM_JS
+                        A path to a JS file that defines some custom CSS rules
+                        for your book
+  --extra-files EXTRA_FILES [EXTRA_FILES ...]
+                        A list of extra files / folders to copy into your
+                        book's directory
+  --overwrite           Whether to overwrite a pre-existing book if it exists
+  --demo                Whether to build the book with demo content instead of
+                        your own content
+  --verbose VERBOSE     Whether to display output information. [yes/no]
+
+```

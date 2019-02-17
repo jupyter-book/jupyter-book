@@ -53,8 +53,8 @@ div.highlight pre.highlight {
 }
 
 div.output pre {
-  border: 1px solid $color-light-gray;
-  background-color: #fcfcfc;
+  border: 1px solid $color-light-gray !important;
+  background-color: #fcfcfc !important;
 }
 
 .output_html {
