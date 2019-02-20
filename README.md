@@ -41,6 +41,9 @@ can enjoy the improvements to Jupyter Books? Don't hesitate to [open an issue or
 Jupyter Book template repo](https://github.com/jupyter/jupyter-book). We'd love your
 help!
 
+We ask that all contributions to Jupyter Book respect the
+[Jupyter code of conduct](https://github.com/jupyter/governance/blob/master/conduct/code_of_conduct.md).
+
 ## Acknowledgements
 
 Jupyter Books was originally created by [Sam Lau][sam] and [Chris Holdgraf][chris]

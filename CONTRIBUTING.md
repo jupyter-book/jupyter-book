@@ -22,6 +22,8 @@ Already know what you're looking for in this guide? Jump to the following sectio
 `jupyter-book` is a young project maintained by a growing group of enthusiastic developers&mdash; and we're excited to have you join!
 Most of our discussions will take place on open [issues][link_issues].
 
+As a reminder, we expect all contributors to `jupyter-book` to adhere to the [Jupyter Code of Conduct][link_coc] in these conversations.
+
 ## Contributing through GitHub
 
 [git][link_git] is a really useful tool for version control.
@@ -39,9 +41,9 @@ GitHub has a helpful page on
 
 ## Understanding issues, milestones and project boards
 
-Every project on GitHub uses [issues][link_issues] slightly different.
+Every project on GitHub uses [issues][link_issues] slightly differently.
 
-The following outlines how the `jupyter-book` developers think about these different tools.
+The following outlines how the `jupyter-book` developers think about these tools.
 
 **Issues** are individual pieces of work that need to be completed to move the project forwards.
 A general guideline: if you find yourself tempted to write a great big issue that
@@ -58,6 +60,10 @@ The current list of labels are [here][link_labels] and include:
 * [![Help Wanted](https://img.shields.io/badge/-help%20wanted-159818.svg)][link_helpwanted] *These issues contain a task that a member of the team has determined we need additional help with.*
 
     If you feel that you can contribute to one of these issues, we especially encourage you to do so!
+
+    * [![Good First Issue](https://img.shields.io/badge/-good%20first%20issue-blueviolet.svg)][link_helpwanted] *These issues contain a task that a member of the team thinks could be a good entry point to the project.*
+
+        If you're new to the `jupyter-book` project, we think that this is a great place for your first contribution!
 
 * [![Bugs](https://img.shields.io/badge/-bugs-fc2929.svg)][link_bugs] *These issues point to problems in the project.*
 
@@ -109,17 +115,19 @@ When opening a pull request, please use at least one of the following prefixes:
 * **[REF]** for refactoring existing code
 * **[STY]** for stylistic changes
 * **[TST]** for new or updated tests, and
-* **[WIP]** for changes which are not yet ready to be merged
-
-Pull requests should be submitted early and often!
-If your pull request is not yet ready to be merged, please also include the **[WIP]** prefix.
-This tells the development team that your pull request is a "work-in-progress",
-and that you plan to continue working on it.[link_kanban]: https://en.wikipedia.org/wiki/Kanban_board
-
 
 You can also combine the tags above, for example if you are updating both a test and
 the documentation: **[TST, DOC]**.
-If you're still working on the pull request that prefix would be **[WIP, TST, DOC]**.
+
+Pull requests should be submitted early and often!
+
+If your pull request is not yet ready to be merged, please open your pull request as a draft.
+More information about doing this is [available in GitHub's documentation][link_drafts].
+This tells the development team that your pull request is a "work-in-progress",
+and that you plan to continue working on it.
+
+When your pull request is Ready for Review, you can select this option on the PR's page,
+and a project maintainer will review your proposed changes.
 
 
 ## Recognizing contributors
@@ -136,7 +144,7 @@ You're awesome. :wave::smiley:
 *&mdash; Based on contributing guidelines from the [STEMMRoleModels][link_stemmrolemodels] project.*
 
 [link_git]: https://git-scm.com
-[link_github]: https://github.com/
+[link_github]: https://github.com/https://github.com/jupyter/governance/blob/master/conduct/code_of_conduct.md
 [link_jupyter-book]: https://github.com/jupyter/jupyter-book
 [link_signupinstructions]: https://help.github.com/articles/signing-up-for-a-new-github-account
 
@@ -148,6 +156,7 @@ You're awesome. :wave::smiley:
 [readthedocs]: https://docs.readthedocs.io/en/latest/index.html
 
 [link_issues]: https://github.com/jupyter/jupyter-book/issues
+[link_coc]: https://github.com/jupyter/governance/blob/master/conduct/code_of_conduct.md
 
 [link_labels]: https://github.com/jupyter/jupyter-book/labels
 [link_bugs]: https://github.com/jupyter/jupyter-book/labels/bug
@@ -160,8 +169,7 @@ You're awesome. :wave::smiley:
 [link_updateupstreamwiki]: https://help.github.com/articles/syncing-a-fork/
 [link_branches]: https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/
 
-[link_numpydoc]: https://numpydoc.readthedocs.io/en/latest/format.html
-[link_pep8]: https://www.python.org/dev/peps/pep-0008/
+[link_drafts]: https://help.github.com/articles/about-pull-requests/#draft-pull-requests
 
 [link_contributors]: https://github.com/jupyter/jupyter-book/graphs/contributors
 [link_stemmrolemodels]: https://github.com/KirstieJane/STEMMRoleModels
