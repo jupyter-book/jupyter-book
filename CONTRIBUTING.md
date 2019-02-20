@@ -75,6 +75,11 @@ The current list of labels are [here][link_labels] and include:
     Please try to make sure that your enhancement is distinct from any others that have already been requested or implemented.
     If you find one that's similar but there are subtle differences please reference the other request in your issue.
 
+* [![Question](https://img.shields.io/badge/-question-DE8BE7.svg)][link_question] *These are questions that users and contributors have asked.*
+
+    Please check the issues (especially closed ones) to see if your question has been asked and answered before. 
+    If you find one that's similar but there are subtle differences please reference the other request in your issue.
+
 ## Making a change
 
 We appreciate all contributions to `jupyter-book`, but those accepted fastest will follow a workflow similar to the following:
@@ -162,6 +167,7 @@ You're awesome. :wave::smiley:
 [link_bugs]: https://github.com/jupyter/jupyter-book/labels/bug
 [link_helpwanted]: https://github.com/jupyter/jupyter-book/labels/help%20wanted
 [link_enhancement]: https://github.com/jupyter/jupyter-book/labels/enhancement
+[link_question]: https://github.com/jupyter/jupyter-book/labels/question
 
 [link_pullrequest]: https://help.github.com/articles/creating-a-pull-request/
 [link_fork]: https://help.github.com/articles/fork-a-repo/
