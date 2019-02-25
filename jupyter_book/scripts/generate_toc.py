@@ -15,6 +15,8 @@ parser.add_argument("--out_path", default=None, help="Path to the folder where t
 parser.add_argument("--filename_split_char", default='_', help="The character used to split words in the file name. Used to generate titles from file names. Defaults to '_'")
 parser.add_argument("--overwrite", action='store_true', help="Overwrite SUMMARY.md if it already exists.")
 
+toc_spacer = "# ===== NEW SECTION ========================================"
+
 def _filename_to_title(filename, split_char='_'):
     filename = os.path.splitext(filename)[0]
     filename_parts = filename.split(split_char)
@@ -41,12 +43,13 @@ if __name__ == '__main__':
             continue
         path_rel_to_content = ifolder.replace(args.content_folder, '')
         if any(any(ifile.endswith(ii) for ii in [".ipynb", ".md"]) for ifile in ifiles):
-            toc.append("==================================================")
+            toc.append(toc_spacer)
         for ifile in ifiles:
-            if not any(ifile.endswith(ii) for ii in [".ipynb", ".md"]):
+            suff = os.path.splitext(ifile)[-1]
+            if not any(ii == suff for ii in [".ipynb", ".md"]):
                 continue
             i_title = _filename_to_title(ifile, args.filename_split_char)
-            i_url = os.path.join(path_rel_to_content, i_title)
+            i_url = os.path.join(path_rel_to_content, os.path.basename(ifile)).replace(suff, '')
             toc.append({'title': i_title, 'url': i_url})
 
     # Write the TOC to YAML or print it
@@ -90,7 +93,11 @@ if __name__ == '__main__':
 
         # Read back in so we can add a comment
         with open(args.out_path, 'r') as ff:
-            contents = ff.read()
+            content = ff.read()
+            # Ensure that the section spacers are comments since they'll be YAML list items by default
+            content = content.replace("- '{}'".format(toc_spacer), '\n'+toc_spacer)
+
         with open(args.out_path, 'w') as ff:
-            ff.write(top + warn + contents)
+
+            ff.write(top + warn + content)
         print('TOC written to: {}'.format(args.out_path))
