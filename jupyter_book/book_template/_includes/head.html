@@ -14,7 +14,12 @@
   <script type="application/ld+json">
   {% include metadata.json %}
   </script>
-  <link rel="stylesheet" href="{{ site.css_url | relative_url }}/styles.css">
+
+  {% if site.show_sidebar %}
+    <link rel="stylesheet" href="{{ site.css_url | relative_url }}/styles.css">
+  {% else %}
+    <style>{% include_relative ../assets/css/styles.css %}</style>
+  {% endif %}
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css ">
   <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
