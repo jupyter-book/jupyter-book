@@ -79,7 +79,13 @@ download_button_text             : "Download" # The text that download buttons w
 # Bibliography and citation settings. See https://github.com/inukshuk/jekyll-scholar#configuration for options
 scholar:
   style: apa
+  
+#######################################################################################
+# Option to add a Goggle analytics tracking code
 
+# Navigate to https://analytics.google.com, add a new property for your jupyter book and copy the tracking id here.
+google_analytics:
+  mytrackingcode:
 
 #######################################################################################
 # Jupyter book settings you probably don't need to change
