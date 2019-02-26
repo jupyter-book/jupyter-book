@@ -79,6 +79,12 @@ download_button_text             : "Download" # The text that download buttons w
 # Bibliography and citation settings. See https://github.com/inukshuk/jekyll-scholar#configuration for options
 scholar:
   style: apa
+  
+#######################################################################################
+# Option to add a Goggle analytics tracking code
+
+google_analytics:
+  mytrackingcode:
 
 
 #######################################################################################
