@@ -57,7 +57,10 @@ const autoCloseSidebarBreakpoint = 740
 
 // Set up event listener for sidebar toggle button
 const sidebarButtonHandler = () => {
-  getToggler().addEventListener('click', toggleSidebar)
+  var toggler = getToggler();
+  if (toggler) {
+    toggler.addEventListener('click', toggleSidebar)
+  }
 
   /**
    * Auto-close sidebar on smaller screens after page load.

@@ -240,7 +240,7 @@ def build_book():
             # This is the output directory for `.md` files
             build_call = '--FilesWriter.build_directory={}'.format(path_new_folder)
             # Copy notebook output images to the build directory using the base folder name
-            path_after_build_folder = path_new_folder.split(os.sep + BUILD_FOLDER_NAME + os.sep)[-1]
+            path_after_build_folder = path_new_folder.split(os.sep + BUILD_FOLDER_NAME)[-1].lstrip('/')
             nb_output_folder = op.join(PATH_IMAGES_FOLDER, path_after_build_folder)
             images_call = '--NbConvertApp.output_files_dir={}'.format(nb_output_folder)
             call = ['jupyter', 'nbconvert', '--log-level="CRITICAL"',
