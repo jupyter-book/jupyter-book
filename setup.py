@@ -7,6 +7,7 @@ from jupyter_book import __version__
 
 # Location of the template files we use for cloning
 template_files = glob(op.join('jupyter_book', 'book_template', '**', '*'), recursive=True)
+template_files += glob(op.join('jupyter_book', 'minimal', '**', '*'), recursive=True)
 template_files = [ii.replace('jupyter_book' + os.sep, '', 1) for ii in template_files]
 PACKAGE_DATA = {"jupyter_book": template_files}
 
