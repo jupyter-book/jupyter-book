@@ -70,6 +70,10 @@ use_thebelab_button              : true  # If 'true', display a button to allow 
 thebelab_button_text             : "Thebelab"  # The text to display inside the Thebelab initialization button
 codemirror_theme                 : "abcdef"  # Theme for codemirror cells, for options see https://codemirror.net/doc/manual.html#config
 
+# nbinteract settings
+use_nbinteract_button              : true  # If 'true', display a button to allow in-page running code cells with nbinteract
+nbinteract_button_text             : "nbinteract"  # The text to display inside the nbinteract initialization button
+
 # Download settings
 use_download_button              : true  # If 'true', display a button to download a zip file for the notebook
 download_button_text             : "Download" # The text that download buttons will contain

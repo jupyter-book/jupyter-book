@@ -5,3 +5,4 @@ numpy
 datascience
 folium
 matplotlib
+nbinteract
