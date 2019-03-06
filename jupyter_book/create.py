@@ -65,10 +65,11 @@ def new_book():
     parser.add_argument("--out-folder", default='.', help="The location where your book will be placed")
     parser.add_argument("--license", default=None, help="A path to a LICENSE.md file if you have already created one")
     parser.add_argument("--content-folder", default=None, help="A path to a folder that holds your book content")
+    parser.add_argument("--notebook", default=None, help="A path to a single Jupyter Notebook. In this case, a single-page report will be generated with no sidebar.")
     parser.add_argument("--toc", default=None, help="A path to a yaml file that contains a Table of Contents for your Jupyter Book. This will overwrite parts of the book template's default toc.yml configuration")
     parser.add_argument("--config", default=None, help="A path to a configuration YAML file that contains configuration for your Jupyter Book. This will overwrite parts of the book template's default _config.yml configuration")
-    parser.add_argument("--custom-css", default=None, help="A path to a CSS file that defines some custom CSS rules for your book")
-    parser.add_argument("--custom-js", default=None, help="A path to a JS file that defines some custom CSS rules for your book")
+    parser.add_argument("--css", default=None, help="A path to a CSS file that defines some custom CSS rules for your book")
+    parser.add_argument("--js", default=None, help="A path to a JS file that defines some custom CSS rules for your book")
     parser.add_argument("--extra-files", default=None, nargs="+", help="A list of extra files / folders to copy into your book's directory")
     parser.add_argument("--overwrite", default=False, action="store_true", help="Whether to overwrite a pre-existing book if it exists")
     parser.add_argument("--demo", default=False, action="store_true", help="Whether to build the book with demo content instead of your own content")
@@ -85,6 +86,13 @@ def new_book():
             sh.rmtree(path_out)
     if op.isdir(path_out):
         raise ValueError("A book already exists with this name / output directory. Delete it, or use `--overwrite` if you'd like to replace it")
+
+    # Check if we've specified a single notebook (and in this case will use the report script)
+    if args.notebook is not None:
+        if not op.exists(args.notebook):
+            raise ValueError(f"Could not find the notebook specified at {args.notebook}")
+        run(f'jupyter-book report {args.notebook} --path-output {path_out}'.split(), check=True)
+        sys.exit()
 
     # Copy the book structure to the new folder
     print("Copying new book to: {}".format(path_out))
@@ -149,14 +157,14 @@ def new_book():
         yaml.dump(data, ff)
 
     # Custom CSS and JS
-    if args.custom_css is not None:
-        if not os.path.exists(args.custom_css):
-            raise ValueError("Could not find custom CSS file: {}".format(args.custom_css))
-        sh.copy2(args.custom_css, op.join(path_out, 'assets', 'custom', 'custom.css'))
-    if args.custom_js is not None:
-        if not os.path.exists(args.custom_js):
-            raise ValueError("Could not find custom JS file: {}".format(args.custom_js))
-        sh.copy2(args.custom_js, op.join(path_out, 'assets', 'custom', 'custom.js'))
+    if args.css is not None:
+        if not os.path.exists(args.css):
+            raise ValueError("Could not find custom CSS file: {}".format(args.css))
+        sh.copy2(args.css, op.join(path_out, 'assets', 'custom', 'custom.css'))
+    if args.js is not None:
+        if not os.path.exists(args.js):
+            raise ValueError("Could not find custom JS file: {}".format(args.js))
+        sh.copy2(args.js, op.join(path_out, 'assets', 'custom', 'custom.js'))
 
     # Ask user to add a license if they wish
     if args.license is not None:
@@ -215,8 +223,8 @@ def upgrade_book():
             '--content-folder', op.join(path_book, 'content'),
             '--config', op.join(path_book, '_config.yml'),
             '--license', op.join(path_book, 'content', 'LICENSE.md'),
-            '--custom-css', op.join(path_book, 'assets', 'custom', 'custom.css'),
-            '--custom-js', op.join(path_book, 'assets', 'custom', 'custom.js'),
+            '--css', op.join(path_book, 'assets', 'custom', 'custom.css'),
+            '--js', op.join(path_book, 'assets', 'custom', 'custom.js'),
             '--overwrite', "--verbose", "false"],
             check=True)
 

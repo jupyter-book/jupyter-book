@@ -11,13 +11,16 @@ from .build import build_book
 from .run import run_book
 from .utils import print_message_box
 from .toc import build_toc
+from .report import create_report
 
 DESCRIPTION = ("Jupyter Book: Generate an HTML book from your Jupyter Notebooks using Jekyll. Type `jupyter-book <command> -h` for help.")
 commands = {'create': new_book,
             'build': build_book,
             'upgrade': upgrade_book,
             'run': run_book,
-            'toc': build_toc}
+            'toc': build_toc,
+            'report': create_report}
+
 parser = argparse.ArgumentParser(description=DESCRIPTION)
 parser.add_argument("command", help="The command you'd like to run. Allowed commands: {}".format(list(commands.keys())))
 

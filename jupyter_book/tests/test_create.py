@@ -113,8 +113,6 @@ def test_config_update(tmpdir):
     # If we succeed, remove the tmpdir
     tmpdir.remove()
 
-
-
 def test_upgrade(tmpdir):
     path_build_test = op.join(tmpdir.dirpath(), 'tmp_test', 'test')
 
@@ -128,6 +126,26 @@ def test_upgrade(tmpdir):
     with open(op.join(path_build_test, 'assets', 'css', 'styles.scss'), 'r') as ff:
         text = ff.read()
         assert "RANDOMTEXT" not in text
+
+def test_report(tmpdir):
+    path_ntbk = op.join(this_folder, 'site', 'content', 'tests', 'report.ipynb')
+    path_out = op.join(tmpdir.dirpath(), 'tmp_report')
+
+    # Custom CSS and JS code
+    # TODO: COMMENTED OUT FOR NOW
+    # path_js = op.join(path_test_book, "my_js.js")
+    # path_css = op.join(path_test_book, "my_css.css")
+
+    # Run the create command
+    new_name = "testreport"
+    cmd = ["jupyter-book", "create", new_name,
+           "--notebook", path_ntbk,
+           "--out-folder", path_out]
+        # "--custom-js", path_js , "--custom-css", path_css,
+    run(cmd, check=True)
+
+    # Make sure the proper report files are there
+    assert op.exists(op.join(path_out, new_name, 'index.html'))
 
 ########################################################################################################
 # Building the book after the book is created

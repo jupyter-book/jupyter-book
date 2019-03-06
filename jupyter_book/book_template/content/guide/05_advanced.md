@@ -56,3 +56,17 @@ courses / workshops of less than 50-60 students.
 Once you have your JupyterHub set up, you can use the [nbgitpuller](https://github.com/data-8/nbgitpuller)
 package to send links to course material to your students, or use the interact links that Textbooks for Jupyter
 automatically inserts into your course material.
+
+## Generate reports from a single notebook
+
+**Warning**: Report generation is experimental and subject to change!
+
+Sometimes you don't need an entire book, but instead would like a single document
+generated from a Jupyter Notebook. For example, if you're creating a report from
+one notebook that shows off your analysis.
+
+To generate a report for a notebook, use the `--notebook` flag to point to an `.ipynb` file, like so:
+
+```
+jupyter-book create myreport --notebook path/to/myfile.ipynb
+```
