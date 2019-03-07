@@ -69,6 +69,26 @@ make install
 which will install Bundler (a Ruby depency management tool) and then install the plugins
 needed to build the site for your book.
 
+#### If `make install` fails
+
+If running `make install` fails with this error
+
+```console
+`find_spec_for_exe': can't find gem bundler (>= 0.a) with executable bundle (Gem::GemNotFoundException)
+```
+
+it is because of a [version mismatch between `gem` and `bundler`](https://bundler.io/blog/2019/01/04/an-update-on-the-bundler-2-release.html). You can fix the problem by [updating gem](https://stackoverflow.com/a/54118329)
+
+```bash
+gem update --system
+```
+
+and then re-running
+
+```bash
+make install
+```
+
 ### Build the site HTML for your book
 
 Once you've generated the markdown for your notebooks and installed the
