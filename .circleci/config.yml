@@ -89,6 +89,7 @@ jobs:
       - run:
           name: Tests
           command: |
+            flake8 --count jupyter_book
             pytest
 
       # If tests pass, build the site itself

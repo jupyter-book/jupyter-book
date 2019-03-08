@@ -6,6 +6,7 @@ import shutil as sh
 
 this_folder = op.dirname(__file__)
 
+
 def test_run(tmpdir):
     path_content = op.join(this_folder, 'site', 'content')
     path_new_content = op.join(tmpdir.dirpath(), 'tmp_run')
