@@ -45,13 +45,38 @@ From here, you have **two options**
    GitHub Pages to build your book. However, it also requires you to install Ruby.
    If you'd like to build your site locally then jump to the next section.
 
-## Build the book's site HTML locally (optional)
+## Build the book's site HTML locally
 
-If you'd like to build your book's site HTML locally, you'll need to first
-install the necessary dependencies and then build the HTML. Follow these
-steps to do so.
+If you'd like to build your book's site HTML locally, you can do so either with a
+"bare metal" installation (i.e., where you install all of the necessary dependencies yourself),
+or by using our provided [docker]() image.
 
-### Install the dependencies to preview your book locally
+We recommend using the docker image, as we've found that this will significantly ease installation.
+To learn more about docker, please see the
+[Docker for scientists guide](https://neurohackweek.github.io/docker-for-scientists/)
+
+### Building your site with Docker
+
+If you already have docker installed, you can build the image locally with
+
+```bash
+docker build -t jupyter-book /PATH/TO/YOUR/CONTENT
+```
+
+You can then access this image with
+
+```bash
+docker run --rm --security-opt label:disable  \
+   -v /PATH/TO/YOUR/CONTENT:/srv/jekyll \
+   -p 4000:4000 \
+   -it -u 1000:1000 \
+   jupyter-book bundle exec jekyll serve --host 0.0.0.0
+```
+
+And that's it! If you navigate to `http://0.0.0.0:4000/jupyter-book/` in your browser,
+you should see a preview copy of your book.
+
+### Bare-metal installattion
 
 You'll need Ruby, an open-source programming language, to build your site's
 HTML with Jekyll. The easiest way to install Ruby on *nix systems is to use
