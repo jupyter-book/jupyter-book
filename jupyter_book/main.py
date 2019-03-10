@@ -2,7 +2,7 @@ import sys
 import argparse
 
 from .create import new_book, upgrade_book
-from .build import build_book
+from .commands.build import build
 from .run import run_book
 from .toc import build_toc
 
@@ -10,7 +10,7 @@ DESCRIPTION = (
     "Jupyter Book: Generate an HTML book from your Jupyter Notebooks using"
     " Jekyll. Type `jupyter-book <command> -h` for help.")
 commands = {'create': new_book,
-            'build': build_book,
+            'build': build,
             'upgrade': upgrade_book,
             'run': run_book,
             'toc': build_toc}

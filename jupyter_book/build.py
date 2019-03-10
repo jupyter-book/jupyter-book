@@ -10,14 +10,10 @@ from tqdm import tqdm
 import numpy as np
 from glob import glob
 from uuid import uuid4
-import argparse
 
 from jupyter_book.utils import print_message_box
 from jupyter_book.utils import (_split_yaml, _check_url_page, _prepare_toc,
                                 _prepare_url, _clean_notebook_cells, _error)
-
-DESCRIPTION = ("Convert a collection of Jupyter Notebooks into Jekyll "
-               "markdown suitable for a course textbook.")
 
 # Add path to our utility functions
 this_folder = op.dirname(op.abspath(__file__))
@@ -78,7 +74,8 @@ def _case_sensitive_fs(path):
     """True when filesystem at `path` is case sensitive, False otherwise.
 
     Checks this by attempting to write two files, one w/ upper case, one
-    with lower. If after this only one file exists, the system is case-insensitive.
+    with lower. If after this only one file exists, the system is
+    case-insensitive.
 
     Makes directory `path` if it does not exist.
     """
@@ -97,58 +94,28 @@ def _case_sensitive_fs(path):
     return len(written) == 2
 
 
-def build_book():
+def build_book(path_book, path_toc_yaml=None, config_file=None,
+               path_template=None, local_build=False, execute=False,
+               overwrite=False):
     """Build the markdown for a book using its TOC and a content folder."""
-    parser = argparse.ArgumentParser(description=DESCRIPTION)
-    parser.add_argument(
-        "path_book", help="Path to the root of the book repository.")
-    parser.add_argument("--template", default=None,
-                        help="Path to the template nbconvert uses to build markdown files")
-    parser.add_argument("--config", default=None,
-                        help="Path to the Jekyll configuration file")
-    parser.add_argument("--toc", default=None,
-                        help="Path to the Table of Contents YAML file")
-    parser.add_argument("--overwrite", action='store_true',
-                        help="Overwrite md files if they already exist.")
-    parser.add_argument("--execute", action='store_true',
-                        help="Execute notebooks before converting to MD.")
-    parser.add_argument("--local-build", action='store_true',
-                        help="Specify you are building site locally for later upload.")
-    parser.set_defaults(overwrite=False, execute=False)
 
-    ###############################################################################
-    # Default values and arguments
-
-    args = parser.parse_args(sys.argv[2:])
-    overwrite = bool(args.overwrite)
-    execute = bool(args.execute)
-
-    # Paths for our notebooks
-    PATH_BOOK = op.abspath(args.path_book)
-
-    PATH_TOC_YAML = args.toc if args.toc is not None else op.join(
-        PATH_BOOK, '_data', 'toc.yml')
-    CONFIG_FILE = args.config if args.config is not None else op.join(
-        PATH_BOOK, '_config.yml')
-    PATH_TEMPLATE = args.template if args.template is not None else op.join(
-        PATH_BOOK, 'scripts', 'templates', 'jekyllmd.tpl')
-    PATH_IMAGES_FOLDER = op.join(PATH_BOOK, '_build', 'images')
-    BUILD_FOLDER = op.join(PATH_BOOK, BUILD_FOLDER_NAME)
+    PATH_IMAGES_FOLDER = op.join(path_book, '_build', 'images')
+    BUILD_FOLDER = op.join(path_book, BUILD_FOLDER_NAME)
 
     ###############################################################################
     # Read in textbook configuration
 
     # Load the yaml for this site
-    with open(CONFIG_FILE, 'r') as ff:
+    with open(config_file, 'r') as ff:
         site_yaml = yaml.load(ff.read())
     CONTENT_FOLDER_NAME = site_yaml.get('content_folder_name').strip('/')
-    PATH_CONTENT_FOLDER = op.join(PATH_BOOK, CONTENT_FOLDER_NAME)
+    PATH_CONTENT_FOLDER = op.join(path_book, CONTENT_FOLDER_NAME)
 
     # Load the textbook yaml for this site
-    if not op.exists(PATH_TOC_YAML):
+    if not op.exists(path_toc_yaml):
         raise _error(
-            "No toc.yml file found, please create one at `{}`".format(PATH_TOC_YAML))
-    with open(PATH_TOC_YAML, 'r') as ff:
+            "No toc.yml file found, please create one at `{}`".format(path_toc_yaml))
+    with open(path_toc_yaml, 'r') as ff:
         toc = yaml.load(ff.read())
 
     # Drop divider items and non-linked pages in the sidebar, un-nest sections
@@ -159,7 +126,7 @@ def build_book():
 
     n_skipped_files = 0
     n_built_files = 0
-    case_check = _case_sensitive_fs(BUILD_FOLDER) and args.local_build
+    case_check = _case_sensitive_fs(BUILD_FOLDER) and local_build
     print("Convert and copy notebook/md files...")
     for ix_file, page in enumerate(tqdm(list(toc))):
         url_page = page.get('url', None)
@@ -268,7 +235,7 @@ def build_book():
             images_call = '--NbConvertApp.output_files_dir={}'.format(
                 nb_output_folder)
             call = ['jupyter', 'nbconvert', '--log-level="CRITICAL"',
-                    '--to', 'markdown', '--template', PATH_TEMPLATE,
+                    '--to', 'markdown', '--template', path_template,
                     images_call, build_call, tmp_notebook]
             if execute is True:
                 call.insert(-1, '--execute')
@@ -291,7 +258,7 @@ def build_book():
         with open(path_new_file, 'r') as ff:
             lines = ff.readlines()
         lines = _clean_lines(lines, path_new_file,
-                             PATH_BOOK, PATH_IMAGES_FOLDER)
+                             path_book, PATH_IMAGES_FOLDER)
 
         # Split off original yaml
         yaml_orig, lines = _split_yaml(lines)
