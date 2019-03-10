@@ -3,5 +3,3 @@ COPY Gemfile .
 RUN apk --update add make gcc g++ libc-dev
 RUN gem install bundler
 RUN bundle install
-EXPOSE 35729
-EXPOSE 4000

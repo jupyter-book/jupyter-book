@@ -30,7 +30,7 @@ than the timestamp of the corresponding file in your `content/` folder.
 
 From here, you have **two options**
 
-1. **Option 1: Jekyll builds the site for you**:
+1. **Option 1: GitHub builds the site for you**:
 
    By default, pushing a repository
    cloned from Jupyter Book will tell GitHub to use Jekyll to build the repository
@@ -42,28 +42,39 @@ From here, you have **two options**
 
    Building your book's site locally lets you preview your book locally before you
    push it online. It also gives you a bit more functionality than using
-   GitHub Pages to build your book. However, it also requires you to install Ruby.
+   GitHub Pages to build your book. However, it also requires you to install
+   Docker (a containerization platform) _or_ Ruby (an open source programming language).
    If you'd like to build your site locally then jump to the next section.
 
 ## Build the book's site HTML locally
 
-If you'd like to build your book's site HTML locally, you can do so either with a
-"bare metal" installation (i.e., where you install all of the necessary dependencies yourself),
-or by using our provided [docker]() image.
+Once you've generated the markdown for your notebooks and installed the
+necessary dependencies. You are ready to build your site HTML.
 
-We recommend using the docker image, as we've found that this will significantly ease installation.
-To learn more about docker, please see the
+Ensure that your notebooks have been converted to markdown, there should be a
+collection of them in `_build/`.
+
+In order to locally build your site's HTML with Jekyll, you'll need to either install
+Docker or Ruby.
+
+In our experience, we've found that Docker provides an easier installation for most systems.
+We therefore generally recommend that you use the provided Docker image.
+To learn more about Docker using Docker, please see the
 [Docker for scientists guide](https://neurohackweek.github.io/docker-for-scientists/)
 
-### Building your site with Docker
+### Building your site locally with Docker
 
-If you already have docker installed, you can build the image locally with
+First, you'll need to make sure you have Docker installed.
+There are [installation instructions for each operating system](https://hub.docker.com/search/?type=edition&offering=community)
+to guide you through this process.
+
+Once Docker is available on your system, you can build the image locally with:
 
 ```bash
 docker build -t jupyter-book /PATH/TO/YOUR/CONTENT
 ```
 
-You can then access this image with
+You can then access this image with:
 
 ```bash
 docker run --rm --security-opt label:disable  \
@@ -76,7 +87,7 @@ docker run --rm --security-opt label:disable  \
 And that's it! If you navigate to `http://0.0.0.0:4000/jupyter-book/` in your browser,
 you should see a preview copy of your book.
 
-### Bare-metal installattion
+### Building your site locally with Ruby
 
 You'll need Ruby, an open-source programming language, to build your site's
 HTML with Jekyll. The easiest way to install Ruby on *nix systems is to use
@@ -91,19 +102,10 @@ Once you have Ruby installed, run
 make install
 ```
 
-which will install Bundler (a Ruby depency management tool) and then install the plugins
+which will install Bundler (a Ruby dependency management tool) and then install the plugins
 needed to build the site for your book.
 
-### Build the site HTML for your book
-
-Once you've generated the markdown for your notebooks and installed the
-necessary dependencies. You are ready to build your site HTML.
-
-Ensure that your notebooks have been converted to markdown, there should be a
-collection of them in `_build/`.
-
-Once you've confirmed this, run this command to generate your book's HTML using
-Jekyll:
+You can then build the site locally by running:
 
 ```
 make site
