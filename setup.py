@@ -1,14 +1,16 @@
 from setuptools import setup, find_packages
-import sys
 import os
 import os.path as op
 from glob import glob
 from jupyter_book import __version__
 
 # Location of the template files we use for cloning
-template_files = glob(op.join('jupyter_book', 'book_template', '**', '*'), recursive=True)
-template_files += glob(op.join('jupyter_book', 'minimal', '**', '*'), recursive=True)
-template_files = [ii.replace('jupyter_book' + os.sep, '', 1) for ii in template_files]
+template_files = glob(
+    op.join('jupyter_book', 'book_template', '**', '*'), recursive=True)
+template_files += glob(op.join('jupyter_book', 'minimal',
+                               '**', '*'), recursive=True)
+template_files = [ii.replace('jupyter_book' + os.sep, '', 1)
+                  for ii in template_files]
 PACKAGE_DATA = {"jupyter_book": template_files}
 
 # Source dependencies from requirements.txt file.
@@ -24,7 +26,7 @@ setup(
     author='Project Jupyter Contributors',
     author_email='jupyter@googlegroups.com',
     url='https://jupyter.org/jupyter-book/',
-    project_urls = {
+    project_urls={
         'Documentation': 'https://jupyter.org/jupyter-book',
         'Funding': 'https://jupyter.org/about',
         'Source': 'https://github.com/jupyter/jupyter-book/',
@@ -32,7 +34,8 @@ setup(
     },
     # this should be a whitespace separated string of keywords, not a list
     keywords="reproducible science environments scholarship notebook",
-    description = "Jupyter Books: Create an online book with Jupyter Notebooks and Jekyll",
+    description="Jupyter Books: Create an online book with Jupyter Notebooks"
+                " and Jekyll",
     license='BSD',
     packages=find_packages(),
     use_package_data=True,

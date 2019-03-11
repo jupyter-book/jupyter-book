@@ -10,12 +10,15 @@ DESCRIPTION = ("Automatically generate a toc.yaml file from a collection"
                " valid Jupyter Book. Use it as a time-saver, not a total solution for making a TOC.")
 
 parser = argparse.ArgumentParser(description=DESCRIPTION)
-parser.add_argument("content_folder", default=None, help="Path to the folder where the textbook is stored.")
-parser.add_argument("--out_path", default=None, help="Path to the folder where the output toc.yml file will be written.")
+parser.add_argument("content_folder", default=None,
+                    help="Path to the folder where the textbook is stored.")
+parser.add_argument("--out_path", default=None,
+                    help="Path to the folder where the output toc.yml file will be written.")
 parser.add_argument("--filename_split_char", default='_', help="The character used to split words in the file name. Used to generate titles from file names. Defaults to '_'")
 parser.add_argument("--overwrite", action='store_true', help="Overwrite SUMMARY.md if it already exists.")
 
 toc_spacer = "# ===== NEW SECTION ========================================"
+
 
 def _filename_to_title(filename, split_char='_'):
     filename = os.path.splitext(filename)[0]
@@ -95,7 +98,7 @@ if __name__ == '__main__':
         with open(args.out_path, 'r') as ff:
             content = ff.read()
             # Ensure that the section spacers are comments since they'll be YAML list items by default
-            content = content.replace("- '{}'".format(toc_spacer), '\n'+toc_spacer)
+            content = content.replace("- '{}'".format(toc_spacer), '\n' + toc_spacer)
 
         with open(args.out_path, 'w') as ff:
 

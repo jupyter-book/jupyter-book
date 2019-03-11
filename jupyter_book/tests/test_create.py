@@ -6,10 +6,12 @@ from ruamel.yaml import YAML
 import pytest
 from jupyter_book.utils import _split_yaml
 
+
 def read(path):
     with open(path, 'r') as ff:
         text = ff.read()
     return text
+
 
 yaml = YAML()
 this_folder = op.dirname(__file__)
@@ -23,6 +25,7 @@ path_toc = op.join(path_test_book, '_data', 'toc.yml')
 path_content = op.join(path_test_book, 'content')
 path_license = op.join(path_test_book, 'test_license.md')
 
+
 def test_round_trip(tmpdir):
     path_config = op.join(this_folder, '..', 'book_template', '_config.yml')
     path_out = op.join(tmpdir.dirpath(), 'tmp_test')
@@ -33,10 +36,10 @@ def test_round_trip(tmpdir):
     # Run the create command
     new_name = "test"
     cmd = ["jupyter-book", "create", new_name, "--config", path_config,
-        "--toc", path_toc, "--content-folder", path_content, "--license", path_license,
-        "--custom-js", path_js , "--custom-css", path_css,
-        "--out-folder", path_out,
-        "--extra-files", op.join(path_test_book, 'foo', 'baz.txt'), op.join(path_test_book, 'foo', 'you')]
+           "--toc", path_toc, "--content-folder", path_content, "--license", path_license,
+           "--custom-js", path_js, "--custom-css", path_css,
+           "--out-folder", path_out,
+           "--extra-files", op.join(path_test_book, 'foo', 'baz.txt'), op.join(path_test_book, 'foo', 'you')]
     run(cmd, check=True)
 
     # Table of contents
@@ -68,12 +71,15 @@ def test_round_trip(tmpdir):
                 continue
 
             old_content = read(op.join(ifolder, ifile))
-            new_content = read(op.join(path_out, 'test', 'content', ifolder, basename))
+            new_content = read(
+                op.join(path_out, 'test', 'content', ifolder, basename))
             assert old_content == new_content
 
     # CSS and JS
-    assert file_contents_equal(path_js, op.join(path_out, "test", "assets", "custom", "custom.js"))
-    assert file_contents_equal(path_css, op.join(path_out, "test", "assets", "custom", "custom.css"))
+    assert file_contents_equal(path_js, op.join(
+        path_out, "test", "assets", "custom", "custom.js"))
+    assert file_contents_equal(path_css, op.join(
+        path_out, "test", "assets", "custom", "custom.css"))
 
     # Extra files
     assert op.exists(op.join(path_out, "test", "baz.txt"))
@@ -82,12 +88,13 @@ def test_round_trip(tmpdir):
     # This should raise an error because the folder exists now
     with pytest.raises(CalledProcessError):
         cmd = ["jupyter-book", "create", new_name, "--config", path_config,
-            "--toc", path_toc, "--content-folder", path_content, "--license", path_license,
-            "--out-folder", path_out]
+               "--toc", path_toc, "--content-folder", path_content, "--license", path_license,
+               "--out-folder", path_out]
         run(cmd, check=True)
 
     # If we succeed, remove the tmpdir
     tmpdir.remove()
+
 
 def test_config_update(tmpdir):
     path_out = op.join(tmpdir.dirpath(), 'tmp_test')
@@ -95,13 +102,13 @@ def test_config_update(tmpdir):
     new_name = "test2"
 
     cmd = ["jupyter-book", "create", new_name, "--config", path_config,
-        "--toc", path_toc, "--content-folder", path_content, "--license", path_license,
-        "--out-folder", path_out]
+           "--toc", path_toc, "--content-folder", path_content, "--license", path_license,
+           "--out-folder", path_out]
     run(cmd, check=True)
 
     # Config files
     with open(path_config, 'r') as ff:
-            old_config = yaml.load(ff)
+        old_config = yaml.load(ff)
 
     with open(op.join(path_out, new_name, '_config.yml'), 'r') as ff:
         new_config = yaml.load(ff)
@@ -112,7 +119,6 @@ def test_config_update(tmpdir):
 
     # If we succeed, remove the tmpdir
     tmpdir.remove()
-
 
 
 def test_upgrade(tmpdir):
@@ -136,12 +142,14 @@ def test_upgrade(tmpdir):
 ####################################################
 # Helper funcs
 
+
 def is_in(lines, check):
     is_in = False
     for line in lines:
         if check in line:
             is_in = True
     return is_in
+
 
 def is_not_in(lines, check):
     is_in = True
@@ -150,12 +158,14 @@ def is_not_in(lines, check):
             is_in = False
     return is_in
 
+
 def replace_in_file(from_text, to_text, filename):
     with open(filename, "r") as sources:
         lines = sources.readlines()
     with open(filename, "w") as sources:
         for line in lines:
             sources.write(line.replace(from_text, to_text))
+
 
 def file_contents_equal(file1, file2):
     with open(file1, 'r') as ff:
@@ -176,7 +186,7 @@ def test_build(tmpdir):
 
     # Copy over the config.yml file from the template so that this builds
     cmd = ["jupyter-book", 'build', path_build_test]
-    out = run(cmd, check=True)
+    run(cmd, check=True)
 
 
 def test_notebook(tmpdir):
@@ -194,7 +204,8 @@ def test_notebook(tmpdir):
     assert is_in(lines, "{:.input_area}")
 
     # Cell hiding etc works
-    assert is_not_in(lines, 'thisvariable = "none of this should show up in the textbook"')
+    assert is_not_in(
+        lines, 'thisvariable = "none of this should show up in the textbook"')
     assert is_not_in(lines, '"this plot *will* show up in the textbook."')
 
     # Static files are copied over
@@ -215,7 +226,8 @@ def test_split_yaml(tmpdir):
     # Edgecases etc on the splitter function
     assert _split_yaml([]) == ([], [])
     assert _split_yaml(['foo\n', 'bar\n']) == ([], ['foo\n', 'bar\n'])
-    assert _split_yaml(['---\n', 'foo\n', 'bar\n']) == ([], ['---\n', 'foo\n', 'bar\n'])
+    assert _split_yaml(['---\n', 'foo\n', 'bar\n']) == ([],
+                                                        ['---\n', 'foo\n', 'bar\n'])
     exp = ['---\n', 'foo\n', '---\n']
     assert _split_yaml(exp) == (['foo\n'], [])
     assert (_split_yaml(['---\n', 'foo\n', '---\n', 'baz\n', 'barf\n']) ==
@@ -226,6 +238,7 @@ def test_split_yaml(tmpdir):
             (['foo\n'], ['baz\n', 'barf\n']))
     assert (_split_yaml(['   \n', ' \n', '---\n', 'foo\n', '---\n', 'baz\n', 'barf\n']) ==
             (['foo\n'], ['baz\n', 'barf\n']))
+
 
 def test_notebook_update(tmpdir):
     path_build_test = op.join(tmpdir.dirpath(), 'tmp_test', 'test')
@@ -239,8 +252,8 @@ def test_notebook_update(tmpdir):
     # replace source_text with target_text in source_file
     assert is_not_in(open(target_file).readlines(), target_text)
     replace_in_file(source_text, target_text, source_file)
-    out = run(cmd, check=True)
+    run(cmd, check=True)
     assert is_in(open(target_file).readlines(), target_text)
     replace_in_file(target_text, source_text, source_file)
-    out = run(cmd, check=True)
+    run(cmd, check=True)
     assert is_not_in(open(target_file).readlines(), target_text)

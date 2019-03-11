@@ -75,6 +75,7 @@ jobs:
       - restore_cache:
           keys:
             - cache-pip
+      - run: pip install --user flake8
       # Install the packages needed to build our documentation
       # This will depend on your particular package!
       - run: pip install --user -r requirements.txt
@@ -89,6 +90,7 @@ jobs:
       - run:
           name: Tests
           command: |
+            flake8 --count jupyter_book
             pytest
 
       # If tests pass, build the site itself

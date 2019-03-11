@@ -5,8 +5,9 @@ import nbformat as nbf
 import argparse
 import os
 
-####################################################################################
+##############################################################################
 # CLI utilities
+
 
 def print_color(msg, style):
     endc = '\033[0m'
@@ -14,9 +15,10 @@ def print_color(msg, style):
                    green='\033[92m',
                    orange='\033[93m',
                    red='\033[91m',
-                   bold = '\033[1m',
-                   underline = '\033[4m')
+                   bold='\033[1m',
+                   underline='\033[4m')
     print(bcolors[style] + msg + endc)
+
 
 def print_message_box(msg):
     border = '================================================================================'
@@ -26,7 +28,8 @@ def print_message_box(msg):
 
 
 def _error(msg):
-    msg = '\n\n\033[91m==========\033[0m\n{}\n\033[91m==========\033[0m\n'.format(msg)
+    msg = '\n\n\033[91m==========\033[0m\n{}\n\033[91m==========\033[0m\n'.format(
+        msg)
     return ValueError(msg)
 
 
@@ -36,10 +39,12 @@ def str2bool(msg):
     elif msg.lower() in ('no', 'false', 'f', 'n', '0'):
         return False
     else:
-        raise argparse.ArgumentTypeError('Boolean value expected. Got: {}'.format(msg))
+        raise argparse.ArgumentTypeError(
+            'Boolean value expected. Got: {}'.format(msg))
 
-####################################################################################
+##############################################################################
 # Book conversion formatting
+
 
 ALLOWED_CHARACTERS = string.ascii_letters + '-_/.' + string.digits
 
@@ -61,13 +66,15 @@ def _split_yaml(lines):
 def _check_url_page(url_page, content_folder_name):
     """Check that the page URL matches certain conditions."""
     if not all(ii in ALLOWED_CHARACTERS for ii in url_page):
-        raise ValueError("Found unsupported character in filename: {}".format(url_page))
+        raise ValueError(
+            "Found unsupported character in filename: {}".format(url_page))
     if '.' in os.path.splitext(url_page)[-1]:
         raise _error("A toc.yml entry links to a file directly. You should strip the file suffix.\n"
-                        "Please change {} to {}".format(url_page, os.path.splitext(url_page)[0]))
-    if any(url_page.startswith(ii) for ii in [content_folder_name, os.sep+content_folder_name]):
+                     "Please change {} to {}".format(url_page, os.path.splitext(url_page)[0]))
+    if any(url_page.startswith(ii) for ii in [content_folder_name, os.sep + content_folder_name]):
         raise ValueError("It looks like you have a page URL that starts with your content folder's name."
-                            "page URLs should be *relative* to the content folder. Here is the page URL: {}".format(url_page))
+                         "page URLs should be *relative* to the content folder. Here is the page URL: {}".format(url_page))
+
 
 def _prepare_toc(toc):
     """Prepare the TOC for processing."""
