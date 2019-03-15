@@ -58,13 +58,15 @@ collection of them in `_build/`.
 In order to locally build your site's HTML with Jekyll, you'll need to either install
 a container software (Docker or Singularity) or Ruby.
 
-In our experience, we've found that containers provide an easier installation for most systems.
+In our experience, we've found that [containers](https://www.docker.com/resources/what-container)
+provide an easier installation for most systems.
 If you are developing on a system where you have administrator privileges
-(i.e., you have `root` permissions), we recommend you use Docker.
-We also provide instructions for using Singularity, an alternate containerization software
-for systems where you do not have administrator privileges.
+(i.e., you have `root` permissions), we recommend you use [Docker](https://docs.docker.com/get-started/).
+
+We also provide instructions for using [Singularity](https://www.sylabs.io/guides/2.6/user-guide/quick_start.html),
+an alternate containerization software for systems where you do not have administrator privileges.
 To learn more about using containers, please see the
-[Docker for scientists guide](https://neurohackweek.github.io/docker-for-scientists/)
+[Docker for scientists guide](https://neurohackweek.github.io/docker-for-scientists/).
 
 ### Building your site locally with Containers: Docker
 
@@ -82,14 +84,17 @@ You can then access this image with:
 
 ```bash
 docker run --rm --security-opt label:disable  \
-   -v /FULL/PATH/TO/YOUR/CONTENT:/srv/jekyll \
+   -v /full/path/to/your/book:/srv/jekyll \
    -p 4000:4000 \
    -it -u 1000:1000 \
    emdupre/jupyter-book bundle exec jekyll serve --host 0.0.0.0
 ```
 
-And that's it! If you navigate to `http://0.0.0.0:4000/jupyter-book/` in your browser,
+If you navigate to `http://0.0.0.0:4000/jupyter-book/` in your browser,
 you should see a preview copy of your book.
+If you instead see an error, please try to update your local book;
+see [the Jupyter Book FAQ section](https://jupyter.org/jupyter-book/guide/04_faq.html#how-can-i-update-my-book)
+for more details on how to do so.
 
 ### Building your site locally with Containers: Singularity
 
@@ -105,20 +110,21 @@ You can then create a Jupyter Book Singularity image using:
 singularity build jupyter-book.simg docker://emdupre/jupyter-book
 ```
 
-Then, you can access this image with:
+Next, you can access this image with:
 
 ```bash
-singularity run -B /FULL/PATH/TO/YOUR/CONTENT:/srv/jekyll \
+singularity run -B /full/path/to/your/book:/srv/jekyll \
     --pwd /srv/jekyll \
     jupyter-book.simg bundle exec jekyll serve
 ```
 
-If you navigate to `http://127.0.0.1:4000/jupyter-book/` in your browser,
-you should see a preview copy of your book!
+And that's it! If you navigate to `http://127.0.0.1:4000/jupyter-book/` in your browser,
+you should see a preview copy of your book.
 
 ### Building your site locally with Ruby
 
-You'll need Ruby, an open-source programming language, to build your site's
+You can also choose to build your site locally without a container.
+In this case, you'll need Ruby, an open-source programming language, to build your site's
 HTML with Jekyll. The easiest way to install Ruby on *nix systems is to use
 the *`conda`* package manager:
 
