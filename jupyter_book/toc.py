@@ -1,7 +1,6 @@
 """Execute all of the notebooks in a folder. This is helpful if you wish
 to ensure that all of your notebooks run, and that the output
 contained in the notebook files is up-to-date."""
-from glob import glob
 from subprocess import run
 import argparse
 import os.path as op
@@ -11,7 +10,9 @@ from .utils import print_message_box
 DESCRIPTION = ("Execute all of the notebooks in a specified folder.")
 parser = argparse.ArgumentParser(description=DESCRIPTION)
 parser.add_argument("path_book", help="The path to a Jupyter Book.")
-parser.add_argument("--quiet", default=False, action="store_true", help="Whether to suppress the final message box.")
+parser.add_argument("--quiet", default=False, action="store_true",
+                    help="Whether to suppress the final message box.")
+
 
 def build_toc():
     args = parser.parse_args(sys.argv[2:])
@@ -21,7 +22,8 @@ def build_toc():
 
     # Build the TOC
     toc_script = op.join(op.dirname(__file__), 'scripts', 'generate_toc.py')
-    run(['python', toc_script, path_content, '--out_path', path_toc, '--overwrite'], check=True)
+    run(['python', toc_script, path_content, '--out_path',
+         path_toc, '--overwrite'], check=True)
 
     # Optional end message
     msg = ["Finished generating your table of contents file at: {}".format(path_toc),
