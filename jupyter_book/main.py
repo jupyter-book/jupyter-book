@@ -1,17 +1,16 @@
 import sys
 import argparse
 
-from .create import new_book, upgrade_book
-from .commands.build import build
+from .commands import build, create, upgrade
 from .run import run_book
 from .toc import build_toc
 
 DESCRIPTION = (
     "Jupyter Book: Generate an HTML book from your Jupyter Notebooks using"
     " Jekyll. Type `jupyter-book <command> -h` for help.")
-commands = {'create': new_book,
+commands = {'create': create,
             'build': build,
-            'upgrade': upgrade_book,
+            'upgrade': upgrade,
             'run': run_book,
             'toc': build_toc}
 parser = argparse.ArgumentParser(description=DESCRIPTION)

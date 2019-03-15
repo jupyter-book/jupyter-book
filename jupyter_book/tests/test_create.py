@@ -4,7 +4,9 @@ from subprocess import run, CalledProcessError
 import shutil as sh
 from ruamel.yaml import YAML
 import pytest
+
 from jupyter_book.utils import _split_yaml
+from jupyter_book.create import new_book
 
 
 def read(path):
@@ -16,9 +18,9 @@ def read(path):
 yaml = YAML()
 this_folder = op.dirname(__file__)
 
-########################################################################################################
+######################################################
 # Creating a new book with the CLI
-########################################################################################################
+######################################################
 
 path_test_book = op.join(this_folder, 'site')
 path_toc = op.join(path_test_book, '_data', 'toc.yml')
@@ -35,12 +37,12 @@ def test_round_trip(tmpdir):
     path_css = op.join(path_test_book, "my_css.css")
     # Run the create command
     new_name = "test"
-    cmd = ["jupyter-book", "create", new_name, "--config", path_config,
-           "--toc", path_toc, "--content-folder", path_content, "--license", path_license,
-           "--custom-js", path_js, "--custom-css", path_css,
-           "--out-folder", path_out,
-           "--extra-files", op.join(path_test_book, 'foo', 'baz.txt'), op.join(path_test_book, 'foo', 'you')]
-    run(cmd, check=True)
+    new_book(path_out=op.join(path_out, new_name),
+             config=path_config, toc=path_toc, content_folder=path_content,
+             custom_js=path_js, custom_css=path_css,
+             extra_files=[op.join(path_test_book, 'foo', 'baz.txt'),
+                          op.join(path_test_book, 'foo', 'you')],
+             license=path_license)
 
     # Table of contents
     old_toc = read(path_toc)
@@ -101,10 +103,9 @@ def test_config_update(tmpdir):
     path_config = op.join(this_folder, 'configs', 'config_simple.yml')
     new_name = "test2"
 
-    cmd = ["jupyter-book", "create", new_name, "--config", path_config,
-           "--toc", path_toc, "--content-folder", path_content, "--license", path_license,
-           "--out-folder", path_out]
-    run(cmd, check=True)
+    new_book(op.join(path_out, new_name), config=path_config,
+             toc=path_toc, content_folder=path_content,
+             license=path_license)
 
     # Config files
     with open(path_config, 'r') as ff:
