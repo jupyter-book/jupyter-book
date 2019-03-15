@@ -1,0 +1,12 @@
+
+{{if .Page.prev_page}}
+<a id="js-page__nav__prev" class="c-page__nav__prev" href="{{ .Page.prev_page.url | relURL }}">
+    {{ truncate 37 .Page.prev_page.title }} <span class="u-margin-left-tiny"></span> 〉
+</a>
+{{end}}
+
+{{if .Page.next_page}}
+    <a id="js-page__nav__next" class="c-page__nav__next" href="{{ .Page.next_page.url | relURL }}">
+        {{ truncate 37 .Page.next_page.title }} <span class="u-margin-right-tiny"></span> 〉
+    </a>
+{{end}}

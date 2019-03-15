@@ -1,0 +1,7 @@
+{{- template "hrefhack" . -}}
+{{ with .Site.GetPage .Site.Params.BookMenuBundle }}
+  {{- .Content -}}
+{{ end }}
+{{ if .Site.Params.BookEnableJS }}
+  {{- template "jsmenu" . -}}
+{{ end }}

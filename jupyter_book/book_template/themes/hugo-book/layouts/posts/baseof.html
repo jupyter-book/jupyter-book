@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{{- partial "docs/shared" -}}
+<html>
+
+<head>
+  {{ partial "docs/html-head" . }}
+  {{ partial "docs/inject/head" . }}
+</head>
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  <main class="flex container">
+    <aside class="book-menu fixed">
+      {{ partial "docs/menu" . }}
+    </aside>
+
+    <div class="book-posts mr-auto">
+      {{ partial "docs/mobile-header" . }}
+      {{ template "main" . }}
+    </div>
+  </main>
+  
+
+  {{ partial "docs/inject/body" . }}
+  {{ template "_internal/google_analytics_async.html" . }}
+</body>
+
+</html>

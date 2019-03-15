@@ -3,7 +3,7 @@
 <!-- Add class for input area -->
 {% block input %}
 {% if cell.source != '' %}
-{:.input_area{% if 'hidecode' in cell.metadata.tags %} .hidecode{% endif %}}
+<div class="input_area{% if 'hidecode' in cell.metadata.tags %} hidecode{% endif %}">
 ```
 {%- if 'magics_language' in cell.metadata  -%}
     {{ cell.metadata.magics_language}}
@@ -12,31 +12,35 @@
 {%- endif %}
 {{ cell.source }}
 ```
+</div>
 {% endif %}
 {% endblock input %}
 
 <!-- Remove indentations for output text  -->
 {% block stream %}
-{:.output .output_stream}
+<div class="output output_stream">
 ```
 {{ output.text }}
 ```
+</div>
 {% endblock stream %}
 
 
 {% block data_text %}
-{:.output .output_data_text}
+<div class="output output_data_text">
 ```
 {{ output.data['text/plain'] }}
 ```
+</div>
 {% endblock data_text %}
 
 
 {% block error  %}
-{:.output .output_traceback_line}
+<div class="output output_traceback_line>
 ```
 {{- super() }}
 ```
+</div>
 {% endblock error  %}
 
 {% block data_html %}
@@ -46,6 +50,7 @@
 {% endblock data_html %}
 
 {% block data_png %}
-{:.output .output_png}
+<div markdown="0" class="output output_png">
 {{- super() }}
+</div>
 {% endblock data_png %}
