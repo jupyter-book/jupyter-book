@@ -94,7 +94,7 @@ def new_book(path_out, content_folder, toc,
                     op.join(path_out, 'content'))
         message = [
             "- You've chosen to copy over the demo Jupyter Book. This"
-            " contains",
+            "  contains",
             "  the content shown at https://jupyter.org/jupyter-book.\n"
             "  Use it to get acquainted with the Jupyter-Book structure"
             " and build ",
