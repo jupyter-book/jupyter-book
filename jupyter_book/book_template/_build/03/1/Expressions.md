@@ -46,16 +46,17 @@ The grammar rules of a programming language are rigid. In Python, the `*` symbol
 ```
 
 
-
 {:.output .output_traceback_line}
 ```
-  File "<ipython-input-4-d90564f70db7>", line 1
-    3 * * 4
-        ^
-SyntaxError: invalid syntax
+
+      File "<ipython-input-4-d90564f70db7>", line 1
+        3 * * 4
+            ^
+    SyntaxError: invalid syntax
+
+
 
 ```
-
 
 Small changes to an expression can change its meaning entirely. Below, the space between the `*`'s has been removed. Because `**` appears between two numerical expressions, the expression is a well-formed *exponentiation* expression (the first number raised to the power of the second: 3 times 3 times 3 times 3). The symbols `*` and `**` are called *operators*, and the values they combine are called *operands*.
 
