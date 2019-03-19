@@ -18,7 +18,7 @@
 {%- elif 'name' in nb.metadata.get('language_info', {}) -%}
     {{ nb.metadata.language_info.name }}
 {% endif %}
-{{ cell.source }}
+{{- cell.source }}
 ```
 </div>
 {%- endif %}
@@ -34,12 +34,12 @@
 {%- endblock output %}
 
 <!-- Remove indentations for output text  -->
-{%- block stream -%}
+{%- block stream %}
 {:.output_stream}
 ```
 {{ output.text }}
 ```
-{%- endblock stream %}
+{% endblock stream %}
 
 
 {% block data_text -%}
@@ -47,23 +47,23 @@
 ```
 {{ output.data['text/plain'] }}
 ```
-{%- endblock data_text %}
+{% endblock data_text %}
 
 
-{%- block error -%}
+{%- block error %}
 {:.output_traceback_line}
 ```
 {{- super() }}
 ```
-{%- endblock error %}
+{% endblock error %}
 
-{%- block data_html -%}
+{%- block data_html %}
 <div markdown="0" class="output output_html">
 {{ output.data['text/html'] }}
 </div>
-{%- endblock data_html %}
+{% endblock data_html %}
 
-{%- block data_png -%}
+{%- block data_png %}
 {:.output_png}
 {{- super() }}
-{%- endblock data_png %}
+{% endblock data_png %}
