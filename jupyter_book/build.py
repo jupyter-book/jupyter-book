@@ -52,7 +52,8 @@ def _clean_lines(lines, filepath, PATH_BOOK, path_images_folder):
     return lines
 
 
-def _copy_non_content_files(path_content_folder, content_folder_name, build_folder_name):
+def _copy_non_content_files(path_content_folder, content_folder_name,
+                            build_folder_name):
     """Copy non-markdown/notebook files in the content folder into build folder so relative links work."""
     all_files = glob(op.join(path_content_folder, '**', '*'), recursive=True)
     non_content_files = [ii for ii in all_files if not any(
@@ -97,12 +98,31 @@ def _case_sensitive_fs(path):
 def build_book(path_book, path_toc_yaml=None, config_file=None,
                path_template=None, local_build=False, execute=False,
                overwrite=False):
-    """Build the markdown for a book using its TOC and a content folder."""
+    """Build the markdown for a book using its TOC and a content folder.
+
+    Parameters
+    ----------
+    path_book : str
+        Path to the root of the book repository
+    path_toc_yaml : str | None
+        Path to the Table of Contents YAML file
+    config_file : str | None
+        Path to the Jekyll configuration file
+    path_template : str | None
+        Path to the template nbconvert uses to build markdown
+        files
+    local_build : bool
+        Specify you are building site locally for later upload
+    execute : bool
+        Whether to execute notebooks before converting to markdown
+    overwrite : bool
+        Whether to overwrite existing markdown files
+    """
 
     PATH_IMAGES_FOLDER = op.join(path_book, '_build', 'images')
     BUILD_FOLDER = op.join(path_book, BUILD_FOLDER_NAME)
 
-    ###############################################################################
+    ###############################################
     # Read in textbook configuration
 
     # Load the yaml for this site
@@ -121,7 +141,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
     # Drop divider items and non-linked pages in the sidebar, un-nest sections
     toc = _prepare_toc(toc)
 
-    ###############################################################################
+    ################################################
     # Generating the Jekyll files for all content
 
     n_skipped_files = 0
@@ -138,14 +158,15 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
         # Make sure URLs (file paths) have correct structure
         _check_url_page(url_page, CONTENT_FOLDER_NAME)
 
-        ###############################################################################
+        ##############################################
         # Create path to old/new file and create directory
 
         # URL will be relative to the CONTENT_FOLDER
         path_url_page = os.path.join(PATH_CONTENT_FOLDER, url_page.lstrip('/'))
         path_url_folder = os.path.dirname(path_url_page)
 
-        # URLs shouldn't have the suffix in there already so now we find which one to add
+        # URLs shouldn't have the suffix in there already so
+        # now we find which one to add
         for suf in SUPPORTED_FILE_SUFFIXES:
             if op.exists(path_url_page + suf):
                 path_url_page = path_url_page + suf
@@ -169,7 +190,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
         if not op.isdir(path_new_folder):
             os.makedirs(path_new_folder)
 
-        ###############################################################################
+        ################################################
         # Generate previous/next page URLs
         if ix_file == 0:
             url_prev_page = ''
@@ -187,7 +208,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
             url_next_page = toc[ix_file + 1].get('url')
             url_next_page = _prepare_url(url_next_page)
 
-        ###############################################################################
+        ############################################
         # Get kernel name from notebooks metadata
 
         kernel_name = ''
@@ -195,7 +216,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
             data = nbf.read(path_url_page, nbf.NO_CONVERT)
             kernel_name = data['metadata']['kernelspec']['name']
 
-        ###############################################################################
+        ############################################
         # Content conversion
 
         # Convert notebooks or just copy md if no notebook.
@@ -204,7 +225,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
             tmp_notebook = path_url_page + '_TMP'
             sh.copy2(path_url_page, tmp_notebook)
 
-            ###############################################################################
+            ########################################
             # Notebook cleaning
 
             # Clean up the file before converting
@@ -220,7 +241,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
             cleaner.save(tmp_notebook)
             _clean_notebook_cells(tmp_notebook)
 
-            ###############################################################################
+            #############################################
             # Conversion to Jekyll Markdown
 
             # Run nbconvert moving it to the output folder
@@ -305,7 +326,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
             ff.writelines(lines)
         n_built_files += 1
 
-    ###############################################################################
+    #######################################################
     # Finishing up...
 
     # Copy non-markdown files in notebooks/ in case they're referenced in the notebooks

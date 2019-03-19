@@ -4,7 +4,6 @@ import os.path as op
 import argparse
 
 from jupyter_book.create import new_book
-from jupyter_book.utils import str2bool
 
 
 def create():
@@ -46,17 +45,13 @@ def create():
            " own content")
     parser.add_argument("--demo", default=False, action="store_true",
                         help=msg)
-    parser.add_argument("--verbose", default='yes',
+    parser.add_argument("--verbose", default=True, action="store_true",
                         help="Whether to display output information. [yes/no]")
     args = parser.parse_args(sys.argv[2:])
 
     ###############################################
     # Default values and arguments
-
-    args = parser.parse_args(sys.argv[2:])
-
     path_out = op.join(args.out_folder, args.name)
-    verbose = str2bool(args.verbose)
     content_folder = args.content_folder
     toc = args.toc
     config = args.toc

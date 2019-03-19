@@ -67,7 +67,40 @@ def new_book(path_out, content_folder, toc,
              license, custom_css=None, custom_js=None, config=None,
              extra_files=None, demo=False, verbose=True,
              overwrite=None):
-    """Create a new Jupyter Book."""
+    """Create a new Jupyter Book.
+
+    Parameters
+    ----------
+    path_out : str
+        The location where your book will be placed
+    content_folder : str
+        A path to a folder that holds your book content
+    toc : str
+        A path to a yaml file that contains a Table of Contents
+        for your Jupyter Book. This will overwrite parts of the book
+        template's default toc.yml configuration
+    license : str
+        A path to a LICENSE.md file if you have created one
+    custom_css : str
+        A path to a CSS file that defines some custom CSS rules for
+        your book
+    custom_js : str
+        A path to a JS file that defines some custom CSS rules for
+        your book
+    config : str
+        A path to a configuration YAML file that contains
+        configuration for your Jupyter Book. This will overwrite
+        parts of the book template's default _config.yml configuration
+    extra_files : str
+        A list of extra files / folders to copy into your book's directory
+    demo : bool
+        Whether to build the book with demo content instead of your own
+        content
+    verbose : bool
+        Whether to display output information. [yes/no]
+    overwrite : bool | None
+        Whether to overwrite a pre-existing book if it exists
+    """
 
     notes = []
 
@@ -208,7 +241,13 @@ def new_book(path_out, content_folder, toc,
 
 
 def upgrade_book(path_book):
-    """Upgrade a book to the latest Jupyter Book version."""
+    """Upgrade a book to the latest Jupyter Book version.
+
+    Parameters
+    ----------
+    path_book : str
+        Path to the root of the book repository you'd like to upgrade.
+    """
 
     path_book_new = path_book + '_UPGRADED'
     if not op.exists(op.join(path_book, '_config.yml')):
