@@ -263,6 +263,10 @@ def build_book():
             # Copy notebook output images to the build directory using the base folder name
             path_after_build_folder = path_new_folder.split(
                 os.sep + BUILD_FOLDER_NAME + os.sep)[-1]
+            #if notebook is directly in content directory above split equals path_new_folder and
+            #thus needs to be set to empty
+            if path_after_build_folder == path_new_folder:
+                path_after_build_folder = ""
             nb_output_folder = op.join(
                 PATH_IMAGES_FOLDER, path_after_build_folder)
             images_call = '--NbConvertApp.output_files_dir={}'.format(
