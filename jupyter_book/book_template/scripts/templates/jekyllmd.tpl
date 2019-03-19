@@ -11,7 +11,7 @@
 <!-- Add class for input area -->
 {% block input %}
 {%- if cell.source != '' -%}
-<div class="input input_area{%- if 'hidecode' in cell.metadata.tags -%} hidecode{% endif %}" markdown="1">
+<div class="input_area{% if 'hidecode' in cell.metadata.tags %} hidecode{% endif %}" markdown="1">
 ```
 {%- if 'magics_language' in cell.metadata  -%}
     {{ cell.metadata.magics_language}}

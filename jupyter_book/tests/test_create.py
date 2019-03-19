@@ -202,7 +202,7 @@ def test_notebook(tmpdir):
     assert is_in(lines, "../images/tests/notebooks_2_0.png")
 
     # Jekyll markdown classes are there
-    assert is_in(lines, "{:.input_area}")
+    assert is_in(lines, 'class="input_area')
 
     # Cell hiding etc works
     assert is_not_in(
