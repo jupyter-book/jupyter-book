@@ -1,6 +1,7 @@
 ---
 interact_link: content/features/interact.ipynb
 kernel_name: python3
+has_widgets: true
 title: 'Connecting content with JupyterHub and Binder'
 prev_page:
   url: /features/hiding
@@ -92,10 +93,10 @@ buttons described above.
 
 For an example, click the **Thebelab** button above on this page, and run the code below.
 
-
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input input_area" markdown="1">
 ```python
+
 import numpy as np
 import matplotlib.pyplot as plt
 plt.ion()
@@ -106,45 +107,45 @@ y = np.random.randn(500)
 fig, ax = plt.subplots()
 ax.scatter(x, y, c=y, s=x)
 ```
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea" markdown="1">
 
 
-
-
-
-{:.output .output_data_text}
+{:.output_data_text}
 ```
-<matplotlib.collections.PathCollection at 0x7f4bbe728198>
+<matplotlib.collections.PathCollection at 0x7f84f6813f60>
 ```
 
+</div>
+</div>
+</div>
 
-
-
-{:.output .output_png}
-![png](../images/features/interact_1_1.png)
-
-
-
-## Creating interactive widgets with `nbinteract`
+## Creating interactive widgets
 
 [**nbinteract**](https://www.nbinteract.com) is a tool for displaying interactive widgets in your
 static HTML page. It uses a Binder kernel to power the widgets, and displays output that your
 readers can interact with. For example, below we will show a simple matplotlib plot that can be made
-interactive with **nbinteract** and **ipywidgets**
+interactive with **ipywidgets**
 
-To add an **nbinteract** button to your Jupyter Book pages, use the following configuration:
+To add a **Show Widgets** button to your Jupyter Book pages, use the following configuration:
 
 ```yaml
-use_nbinteract_button              : true  # If 'true', display a button to allow in-page running code cells with nbinteract
+use_show_widgets_button         : true  # If 'true', display a button to show widgets backed by a Binder kernel
 ```
 
-In addition, you can configure the Binder settings that are used to provide a kernel for
-nbinteract to run the code. These use the same configuration fields as the BinderHub interact
-buttons described above.
+Then, tell Jupyter Book that you want a cell to display a widget by **adding a tag** to the cell's
+metadata called `interactive_output`. When a reader clicks on the "show widgets" button, any cells
+with this tag will be run on Binder, and have their output widgets displayed underneath the cell.
 
+You can configure the Binder settings that are used to provide a kernel to run the code.
+These use the same configuration fields as the BinderHub interact buttons described above.
 
-
-{:.input_area}
+<div markdown="1" class="cell code_cell">
+<div class="input input_area" markdown="1">
 ```python
+
 from ipywidgets import interact, FloatSlider
 import numpy as np
 import matplotlib.pyplot as plt
@@ -163,14 +164,17 @@ def update_plot_size(s, cmap):
 
 interact(update_plot_size, s=FloatSlider(value=1, min=.1, max=2, step=.1), cmap=['viridis', 'magma', 'jet']);
 ```
+</div>
 
-
-
-{:.output .output_data_text}
+<div class="output_wrapper" markdown="1">
+<div class="output_subarea output_widget_view" markdown="1">
+{:.output_data_text}
 ```
 interactive(children=(FloatSlider(value=1.0, description='s', max=2.0, min=0.1), Dropdown(description='cmap', …
 ```
-
+</div>
+</div>
+</div>
 
 ## Letting users define their own JupyterHub location
 
