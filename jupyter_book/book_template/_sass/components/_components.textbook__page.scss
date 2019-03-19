@@ -43,7 +43,7 @@ div.highlighter-rouge {
   position: relative;
 }
 
-div.highlight pre.highlight {
+div.input_area div.highlight > pre, div.output_subarea pre {
   background-color: $color-light-gray;
   font-size: 0.9em;
   margin-bottom: $spacing-unit-small;
@@ -52,7 +52,7 @@ div.highlight pre.highlight {
   border: 1px solid $color-dark-gray;
 }
 
-div.output pre {
+div.output pre, div.output_area pre {
   border: 1px solid $color-light-gray !important;
   background-color: #fcfcfc !important;
 }
@@ -68,7 +68,7 @@ code {
   @include inuit-font-size(14px);
 }
 
-pre.highlight code {
+div.highlight pre code {
   display: block;
 }
 

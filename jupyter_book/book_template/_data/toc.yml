@@ -22,7 +22,6 @@
   not_numbered: true
 - title: Search
   search: true
-
 - title: Getting started
   url: /guide/01_overview
   not_numbered: true
@@ -53,9 +52,6 @@
     not_numbered: true
   - title: Connecting content with JupyterHub and Binder
     url: /features/interact
-    not_numbered: true
-  - title: Citations and bibliographies
-    url: /features/citations
     not_numbered: true
   - title: Searching your book
     url: /features/search

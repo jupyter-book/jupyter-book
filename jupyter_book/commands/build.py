@@ -16,7 +16,9 @@ def build():
     parser.add_argument("--template", default=None,
                         help="Path to the template nbconvert uses"
                              " to build markdown files")
-    parser.add_argument("--config", default=None,
+    parser.add_argument("--jekyll-config", default=None,
+                        help="Path to the Jekyll configuration file")
+    parser.add_argument("--nbconvert-config", default=None,
                         help="Path to the Jekyll configuration file")
     parser.add_argument("--toc", default=None,
                         help="Path to the Table of Contents YAML file")
@@ -41,12 +43,19 @@ def build():
 
     PATH_TOC_YAML = args.toc if args.toc is not None else op.join(
         PATH_BOOK, '_data', 'toc.yml')
-    CONFIG_FILE = args.config if args.config is not None else op.join(
-        PATH_BOOK, '_config.yml')
+    JEKYLL_CONFIG = args.jekyll_config
+    if args.jekyll_config is None:
+        JEKYLL_CONFIG = op.join(PATH_BOOK, '_config.yml')
+
+    NBCONVERT_CONFIG = args.nbconvert_config
+    if args.nbconvert_config is None:
+        NBCONVERT_CONFIG = op.join(
+            PATH_BOOK, 'scripts', 'templates', 'jupyter_nbconvert_config.py')
+
     PATH_TEMPLATE = args.template if args.template is not None else op.join(
         PATH_BOOK, 'scripts', 'templates', 'jekyllmd.tpl')
 
     local_build = args.local_build
 
-    build_book(PATH_BOOK, PATH_TOC_YAML, CONFIG_FILE,
+    build_book(PATH_BOOK, PATH_TOC_YAML, JEKYLL_CONFIG, NBCONVERT_CONFIG,
                PATH_TEMPLATE, local_build, execute, overwrite)

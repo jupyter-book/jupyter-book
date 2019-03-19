@@ -39,16 +39,6 @@ def _clean_lines(lines, filepath, PATH_BOOK, path_images_folder):
         # For programmatically-generated images from notebooks, replace the abspath with relpath
         line = line.replace(path_images_folder, op.relpath(
             path_images_folder, op.dirname(filepath)))
-
-        # Adding escape slashes since Jekyll removes them when it serves the page
-        # Make sure we have at least two dollar signs and they
-        # Aren't right next to each other
-        dollars = np.where(['$' == char for char in line])[0]
-        if len(dollars) > 2 and all(ii > 1 for ii in (dollars[1:] - dollars[:1])):
-            for char in inline_replace_chars:
-                line = line.replace('\\{}'.format(char), '\\\\{}'.format(char))
-        line = line.replace(' \\$', ' \\\\$')
-        lines[ii] = line
     return lines
 
 
@@ -96,7 +86,8 @@ def _case_sensitive_fs(path):
 
 
 def build_book(path_book, path_toc_yaml=None, config_file=None,
-               path_template=None, local_build=False, execute=False,
+               path_template=None, path_nbconvert_config=None,
+               local_build=False, execute=False,
                overwrite=False):
     """Build the markdown for a book using its TOC and a content folder.
 
@@ -109,14 +100,17 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
     config_file : str | None
         Path to the Jekyll configuration file
     path_template : str | None
-        Path to the template nbconvert uses to build markdown
+        Path to the template nbconvert uses to build html
         files
+    path_nbconvert_config : str | None
+        Path to the configuration of nbconvert when converting to
+        HTML.
     local_build : bool
         Specify you are building site locally for later upload
     execute : bool
         Whether to execute notebooks before converting to markdown
     overwrite : bool
-        Whether to overwrite existing markdown files
+        Whether to overwrite existing html files
     """
 
     PATH_IMAGES_FOLDER = op.join(path_book, '_build', 'images')
@@ -180,7 +174,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
         path_new_folder = path_url_folder.replace(
             os.sep + CONTENT_FOLDER_NAME, os.sep + BUILD_FOLDER_NAME)
         path_new_file = op.join(path_new_folder, op.basename(
-            path_url_page).replace('.ipynb', '.md'))
+            path_url_page).replace('.ipynb', '.html'))
 
         if overwrite is False and op.exists(path_new_file) \
            and os.stat(path_new_file).st_mtime > os.stat(path_url_page).st_mtime:
@@ -256,7 +250,8 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
             images_call = '--NbConvertApp.output_files_dir={}'.format(
                 nb_output_folder)
             call = ['jupyter', 'nbconvert', '--log-level="CRITICAL"',
-                    '--to', 'markdown', '--template', path_template,
+                    '--to', 'html', '--template', path_template,
+                    '--config', path_nbconvert_config,
                     images_call, build_call, tmp_notebook]
             if execute is True:
                 call.insert(-1, '--execute')
