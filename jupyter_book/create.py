@@ -3,10 +3,9 @@ import sys
 import os
 import os.path as op
 import shutil as sh
-import argparse
 from ruamel.yaml import YAML
 
-from .utils import print_message_box, str2bool
+from .utils import print_message_box
 from . import __version__
 
 TEMPLATE_PATH = op.join(op.dirname(__file__), 'book_template')
@@ -64,46 +63,56 @@ def update_config(path_to_config, new_config):
         yaml.dump(data, ff)
 
 
-def new_book():
-    """Create a new Jupyter Book."""
-    parser = argparse.ArgumentParser(description="Create a new Jupyter Book")
-    parser.add_argument(
-        "name", help="The name of your Jupyter Book (your book template will be placed in a folder of this name)")
-    parser.add_argument("--out-folder", default='.',
-                        help="The location where your book will be placed")
-    parser.add_argument("--license", default=None,
-                        help="A path to a LICENSE.md file if you have already created one")
-    parser.add_argument("--content-folder", default=None,
-                        help="A path to a folder that holds your book content")
-    parser.add_argument("--toc", default=None,
-                        help="A path to a yaml file that contains a Table of Contents for your Jupyter Book. This will overwrite parts of the book template's default toc.yml configuration")
-    parser.add_argument("--config", default=None,
-                        help="A path to a configuration YAML file that contains configuration for your Jupyter Book. This will overwrite parts of the book template's default _config.yml configuration")
-    parser.add_argument("--custom-css", default=None,
-                        help="A path to a CSS file that defines some custom CSS rules for your book")
-    parser.add_argument("--custom-js", default=None,
-                        help="A path to a JS file that defines some custom CSS rules for your book")
-    parser.add_argument("--extra-files", default=None, nargs="+",
-                        help="A list of extra files / folders to copy into your book's directory")
-    parser.add_argument("--overwrite", default=False, action="store_true",
-                        help="Whether to overwrite a pre-existing book if it exists")
-    parser.add_argument("--demo", default=False, action="store_true",
-                        help="Whether to build the book with demo content instead of your own content")
-    parser.add_argument("--verbose", default='yes',
-                        help="Whether to display output information. [yes/no]")
-    args = parser.parse_args(sys.argv[2:])
+def new_book(path_out, content_folder, toc,
+             license, custom_css=None, custom_js=None, config=None,
+             extra_files=None, demo=False, verbose=True,
+             overwrite=None):
+    """Create a new Jupyter Book.
 
-    path_out = op.join(args.out_folder, args.name)
-    verbose = str2bool(args.verbose)
+    Parameters
+    ----------
+    path_out : str
+        The location where your book will be placed
+    content_folder : str
+        A path to a folder that holds your book content
+    toc : str
+        A path to a yaml file that contains a Table of Contents
+        for your Jupyter Book. This will overwrite parts of the book
+        template's default toc.yml configuration
+    license : str
+        A path to a LICENSE.md file if you have created one
+    custom_css : str
+        A path to a CSS file that defines some custom CSS rules for
+        your book
+    custom_js : str
+        A path to a JS file that defines some custom CSS rules for
+        your book
+    config : str
+        A path to a configuration YAML file that contains
+        configuration for your Jupyter Book. This will overwrite
+        parts of the book template's default _config.yml configuration
+    extra_files : str
+        A list of extra files / folders to copy into your book's directory
+    demo : bool
+        Whether to build the book with demo content instead of your own
+        content
+    verbose : bool
+        Whether to display output information. [yes/no]
+    overwrite : bool | None
+        Whether to overwrite a pre-existing book if it exists
+    """
+
     notes = []
 
     # Check folder exists and overwrite if necessary
     if op.isdir(path_out):
-        if args.overwrite:
+        if overwrite:
             sh.rmtree(path_out)
     if op.isdir(path_out):
         raise ValueError(
-            "A book already exists with this name / output directory. Delete it, or use `--overwrite` if you'd like to replace it")
+            "A book already exists with this name / output"
+            " directory. Delete it, or use `--overwrite` if"
+            " you'd like to replace it")
 
     # Copy the book structure to the new folder
     print("Copying new book to: {}".format(path_out))
@@ -112,15 +121,19 @@ def new_book():
                 ignore=sh.ignore_patterns('.git', *ignore_folders))
 
     # If the Demo argument is provided, copy over a couple demo files and stop
-    if args.demo is True:
+    if demo is True:
         print("Copying over demo repository content")
         sh.copytree(op.join(TEMPLATE_PATH, 'content'),
                     op.join(path_out, 'content'))
-        message = ["- You've chosen to copy over the demo Jupyter Book. This contains",
-                   "  the content shown at https://jupyter.org/jupyter-book.\n"
-                   "  Use it to get acquainted with the Jupyter-Book structure and build ",
-                   "  system. When you're ready, try re-running `jupyter-book create` using ",
-                   "  your own content!"]
+        message = [
+            "- You've chosen to copy over the demo Jupyter Book. This"
+            "  contains",
+            "  the content shown at https://jupyter.org/jupyter-book.\n"
+            "  Use it to get acquainted with the Jupyter-Book structure"
+            " and build ",
+            "  system. When you're ready, try re-running"
+            " `jupyter-book create` using ",
+            "  your own content!"]
         notes += message
         _final_message(path_out, [])
         sys.exit()
@@ -130,35 +143,36 @@ def new_book():
         os.makedirs(op.join(path_out, '_build'))
 
     # Copy over content
-    if args.content_folder is None:
-        args.content_folder = op.join(MINIMAL_PATH, 'content')
-        args.toc = op.join(MINIMAL_PATH, '_data', 'toc.yml')
+    if content_folder is None:
+        content_folder = op.join(MINIMAL_PATH, 'content')
+        toc = op.join(MINIMAL_PATH, '_data', 'toc.yml')
         sh.rmtree(op.join(path_out, '_build'))
         notes.append(("- Add your own content to your book. You haven't provided any content (`--content-folder`)\n"
                       "  so we've added a couple files to get you started."))
 
-    _check_file_exists(args.content_folder)
+    _check_file_exists(content_folder)
     print("Copying over your content folder...")
-    sh.copytree(args.content_folder, op.join(path_out, 'content'))
+    sh.copytree(content_folder, op.join(path_out, 'content'))
 
     # Copy over TOC file
-    if args.toc is None:
+    if toc is None:
         run(['jupyter-book', 'toc', path_out, '--quiet'], check=True)
         notes.append(("- Check your Table of Contents file (`_data/toc.yml`). Because you specified a content foler\n"
                       "  but no Table of Conents (`--toc`), we auto-generated a TOC file file using folder and file\n"
                       "  names. You should check its contents and clean it up so that it has the structure you want!\n"))
     else:
-        _check_file_exists(args.toc)
+        _check_file_exists(toc)
         print("Copying over your TOC file...\n")
-        sh.copy2(args.toc, op.join(path_out, '_data', 'toc.yml'))
+        sh.copy2(toc, op.join(path_out, '_data', 'toc.yml'))
 
     # Configuration file
-    if args.config is None:
+    if config is None:
         update_config(op.join(path_out, '_config.yml'),
                       op.join(MINIMAL_PATH, '_config.yml'))
     else:
-        # Use the minimal configuration, which has some placeholders for users to change
-        update_config(op.join(path_out, '_config.yml'), args.config)
+        # Use the minimal configuration, which has some
+        # placeholders for users to change
+        update_config(op.join(path_out, '_config.yml'), config)
 
     # Add the Jupyter Book version fo the config
     yaml = YAML()
@@ -171,25 +185,25 @@ def new_book():
         yaml.dump(data, ff)
 
     # Custom CSS and JS
-    if args.custom_css is not None:
-        if not os.path.exists(args.custom_css):
+    if custom_css is not None:
+        if not os.path.exists(custom_css):
             raise ValueError(
-                "Could not find custom CSS file: {}".format(args.custom_css))
-        sh.copy2(args.custom_css, op.join(
+                "Could not find custom CSS file: {}".format(custom_css))
+        sh.copy2(custom_css, op.join(
             path_out, 'assets', 'custom', 'custom.css'))
-    if args.custom_js is not None:
-        if not os.path.exists(args.custom_js):
+    if custom_js is not None:
+        if not os.path.exists(custom_js):
             raise ValueError(
-                "Could not find custom JS file: {}".format(args.custom_js))
-        sh.copy2(args.custom_js, op.join(
+                "Could not find custom JS file: {}".format(custom_js))
+        sh.copy2(custom_js, op.join(
             path_out, 'assets', 'custom', 'custom.js'))
 
     # Ask user to add a license if they wish
-    if args.license is not None:
-        if not os.path.exists(args.license):
+    if license is not None:
+        if not os.path.exists(license):
             raise ValueError(
-                "Could not find license file: {}".format(args.license))
-        sh.copy2(args.license, op.join(path_out, 'content', 'LICENSE.md'))
+                "Could not find license file: {}".format(license))
+        sh.copy2(license, op.join(path_out, 'content', 'LICENSE.md'))
     else:
         notes.append(("- We've added a CC-BY-SA license for you in {}\n"
                       "  This is a reasonable license for most book content, though feel free\n"
@@ -198,13 +212,14 @@ def new_book():
                  op.join(path_out, 'content', 'LICENSE.md'))
 
     # Copy over extra files / folders to the root of the content folder
-    if isinstance(args.extra_files, (list, str)):
-        if isinstance(args.extra_files, str):
-            args.extra_files = [args.extra_files]
-        print('Copying over extra files: {}'.format(args.extra_files))
-        for ipath in args.extra_files:
+    if isinstance(extra_files, (list, str)):
+        if isinstance(extra_files, str):
+            extra_files = [extra_files]
+        print('Copying over extra files: {}'.format(extra_files))
+        for ipath in extra_files:
             if op.isdir(ipath):
-                # Walk the directory and copy individual files respecting directory structure
+                # Walk the directory and copy individual
+                # files respecting directory structure
                 for ifolder, _, ifiles in os.walk(ipath):
                     last_folder = ipath.rsplit(os.sep)[-1]
                     rel_to_last_folder = op.join(
@@ -225,14 +240,15 @@ def new_book():
         print_message_box(_final_message(path_out, notes))
 
 
-def upgrade_book():
-    """Upgrade a book to the latest Jupyter Book version."""
-    parser = argparse.ArgumentParser(
-        description="Upgrade a book to the latest Jupyter Book version.")
-    parser.add_argument(
-        "path_book", help="Path to the root of the book repository you'd like to upgrade.")
-    args = parser.parse_args(sys.argv[2:])
-    path_book = args.path_book.rstrip('/')
+def upgrade_book(path_book):
+    """Upgrade a book to the latest Jupyter Book version.
+
+    Parameters
+    ----------
+    path_book : str
+        Path to the root of the book repository you'd like to upgrade.
+    """
+
     path_book_new = path_book + '_UPGRADED'
     if not op.exists(op.join(path_book, '_config.yml')):
         raise ValueError(
@@ -242,17 +258,15 @@ def upgrade_book():
     try:
         print("Creating new book from your original one...")
 
-        run(['jupyter-book', 'create', path_book_new,
-             '--toc', op.join(path_book, '_data', 'toc.yml'),
-             '--content-folder', op.join(path_book, 'content'),
-             '--config', op.join(path_book, '_config.yml'),
-             '--license', op.join(path_book, 'content', 'LICENSE.md'),
-             '--custom-css', op.join(path_book, 'assets',
-                                     'custom', 'custom.css'),
-             '--custom-js', op.join(path_book, 'assets',
-                                    'custom', 'custom.js'),
-             '--overwrite', "--verbose", "false"],
-            check=True)
+        new_book(path_book_new, toc=op.join(path_book, '_data', 'toc.yml'),
+                 content_folder=op.join(path_book, 'content'),
+                 license=op.join(path_book, 'content', 'LICENSE.md'),
+                 config=op.join(path_book, '_config.yml'),
+                 custom_css=op.join(path_book, 'assets',
+                                    'custom', 'custom.css'),
+                 custom_js=op.join(path_book, 'assets',
+                                   'custom', 'custom.js'),
+                 overwrite=True, verbose=False)
 
         # Now overwrite the original book files with the upgraded ones
         print("Copying over upgraded files into original folder...")

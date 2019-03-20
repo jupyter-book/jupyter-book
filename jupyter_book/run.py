@@ -4,24 +4,11 @@ contained in the notebook files is up-to-date."""
 from glob import glob
 from subprocess import run
 from tqdm import tqdm
-import argparse
+
 import os.path as op
-import sys
-
-DESCRIPTION = ("Execute all of the notebooks in a specified folder.")
-parser = argparse.ArgumentParser(description=DESCRIPTION)
-parser.add_argument("path_content",
-                    help="The path to a folder with Jupyter Notebooks inside"
-                         " that you'd like to run.")
-parser.add_argument("--kernel-name", default="python3",
-                    help="The name of the kernel used to run the notebook"
-                         " code.")
 
 
-def run_book():
-    args = parser.parse_args(sys.argv[2:])
-    path = args.path_content
-    kernel_name = args.kernel_name
+def run_book(path, kernel_name='python3'):
 
     print("Running all notebooks underneath {}".format(path))
     ipynb_files = glob(op.join(path, '**', '*.ipynb'), recursive=True)
