@@ -29,7 +29,7 @@ def build():
                              " for later upload.")
     parser.set_defaults(overwrite=False, execute=False)
 
-    ###############################################################################
+    ###############################################
     # Default values and arguments
 
     args = parser.parse_args(sys.argv[2:])
@@ -49,5 +49,4 @@ def build():
     local_build = args.local_build
 
     build_book(PATH_BOOK, PATH_TOC_YAML, CONFIG_FILE,
-               PATH_TEMPLATE, local_build, execute,
-               overwrite)
+               PATH_TEMPLATE, local_build, execute, overwrite)

@@ -54,9 +54,9 @@ def create():
     path_out = op.join(args.out_folder, args.name)
     content_folder = args.content_folder
     toc = args.toc
-    config = args.toc
-    demo = args.toc
-    license = args.toc
+    config = args.config
+    demo = args.demo
+    license = args.license
     custom_css, custom_js = args.custom_css, args.custom_js
     extra_files = args.extra_files
     verbose = args.verbose
