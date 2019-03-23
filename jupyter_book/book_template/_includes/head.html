@@ -35,8 +35,6 @@
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/x-icon" href="{{ site.favicon_path | relative_url }}">
 
-  <!-- MathJax Config -->
-  {% include js/mathjax.html %}
   <!-- DOM updating function -->
   {% include js/dom-update.html %}
 
@@ -54,17 +52,8 @@
   <script src="{{ site.js_url | relative_url }}/turbolinks.js" async></script>
   <meta name="turbolinks-cache-control" content="no-cache">
 
-  <!-- Load nbinteract for widgets -->
-  <script src="https://unpkg.com/nbinteract-core" async></script>
-
-  <!-- Load Thebelab for interactive widgets -->
-  {% include js/thebelab.html %}
-
   <!-- Google analytics -->
   <script src="{{ site.js_url | relative_url }}/ga.js" async></script>
-
-  <!-- Clipboard copy button -->
-  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" async></script>
 
   <!-- Load JS that depends on site variables -->
   {% include js/copy-button.html %}
@@ -85,4 +74,14 @@
   <!-- Lunr search code - will only be executed on the /search page -->
   <script src="{{ '/assets/js/lunr/lunr.min.js' | relative_url }}" type="text/javascript"></script>
   <script>{% include search/lunr/lunr-en.js %}</script>
+
+  <!-- External loads -->
+  <!-- Clipboard copy button -->
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" async></script>
+
+  <!-- Load Thebelab for interactive widgets -->
+  {% include js/thebelab.html %}
+
+  <!-- MathJax Config -->
+  {% include js/mathjax.html %}
 </head>

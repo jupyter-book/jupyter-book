@@ -33,7 +33,7 @@ def _clean_lines(lines, filepath, PATH_BOOK, path_images_folder):
     for ii, line in enumerate(lines):
         # Handle relative paths because we remove `content/` from the URL
         # If there's a path that goes back to the root, remove a level`
-        # This is for images referenced directly in the markdown
+        # This is for images referenced directly in the notebook
         if path_rel_root in line:
             line = line.replace(path_rel_root, path_rel_root_one_up)
         # For programmatically-generated images from notebooks, replace the abspath with relpath
@@ -85,11 +85,11 @@ def _case_sensitive_fs(path):
     return len(written) == 2
 
 
-def build_book(path_book, path_toc_yaml=None, config_file=None,
+def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
                path_template=None, path_nbconvert_config=None,
                local_build=False, execute=False,
                overwrite=False):
-    """Build the markdown for a book using its TOC and a content folder.
+    """Build the HTML for a book using its TOC and a content folder.
 
     Parameters
     ----------
@@ -97,7 +97,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
         Path to the root of the book repository
     path_toc_yaml : str | None
         Path to the Table of Contents YAML file
-    config_file : str | None
+    path_ssg_config : str | None
         Path to the Jekyll configuration file
     path_template : str | None
         Path to the template nbconvert uses to build html
@@ -108,7 +108,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
     local_build : bool
         Specify you are building site locally for later upload
     execute : bool
-        Whether to execute notebooks before converting to markdown
+        Whether to execute notebooks before converting to HTML
     overwrite : bool
         Whether to overwrite existing html files
     """
@@ -120,7 +120,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
     # Read in textbook configuration
 
     # Load the yaml for this site
-    with open(config_file, 'r') as ff:
+    with open(path_ssg_config, 'r') as ff:
         site_yaml = yaml.load(ff.read())
     CONTENT_FOLDER_NAME = site_yaml.get('content_folder_name').strip('/')
     PATH_CONTENT_FOLDER = op.join(path_book, CONTENT_FOLDER_NAME)
@@ -236,7 +236,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
             _clean_notebook_cells(tmp_notebook)
 
             #############################################
-            # Conversion to Jekyll Markdown
+            # Conversion to HTML
 
             # Run nbconvert moving it to the output folder
             # This is the output directory for `.md` files
@@ -253,6 +253,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
                     '--to', 'html', '--template', path_template,
                     '--config', path_nbconvert_config,
                     images_call, build_call, tmp_notebook]
+
             if execute is True:
                 call.insert(-1, '--execute')
 
@@ -268,7 +269,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
                 "Files must end in ipynb or md. Found file {}".format(path_url_page))
 
         ###############################################################################
-        # Modify the generated Markdown to work with Jekyll
+        # Modify the generated HTML to work with Jekyll
 
         # Clean markdown for Jekyll quirks (e.g. extra escape characters)
         with open(path_new_file, 'r') as ff:
@@ -333,7 +334,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
     msg = ["Generated {} new files\nSkipped {} already-built files".format(
         n_built_files, n_skipped_files)]
     if n_built_files == 0:
-        msg += ["Delete the markdown files in '{}' for any pages that you wish to re-build, or use --overwrite option to re-build all.".format(
+        msg += ["Delete the HTML files in '{}' for any pages that you wish to re-build, or use --overwrite option to re-build all.".format(
             BUILD_FOLDER_NAME)]
     msg += ["Your Jupyter Book is now in `{}/`.".format(BUILD_FOLDER_NAME)]
     msg += ["Demo your Jupyter book with `make serve` or push to GitHub!"]

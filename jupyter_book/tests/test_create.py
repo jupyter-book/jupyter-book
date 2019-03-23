@@ -192,17 +192,11 @@ def test_build(tmpdir):
 
 def test_notebook(tmpdir):
     path_build_test = op.join(tmpdir.dirpath(), 'tmp_test', 'test')
-    with open(op.join(path_build_test, '_build', 'tests', 'notebooks.md'), 'r') as ff:
+    with open(op.join(path_build_test, '_build', 'tests', 'notebooks.html'), 'r') as ff:
         lines = ff.readlines()
 
     # Escaping characters get doubled
-    assert is_in(lines, "\\\\$Escape \\\\$your \\\\$dollar signs!")
-
-    # Notebook-converted images work
-    assert is_in(lines, "../images/tests/notebooks_2_0.png")
-
-    # Jekyll markdown classes are there
-    assert is_in(lines, "{:.input_area}")
+    assert is_in(lines, "\\$Escape \\$your \\$dollar signs!")
 
     # Cell hiding etc works
     assert is_not_in(
