@@ -23,6 +23,10 @@ jobs:
           path: jupyter_book/book_template/_site/
           destination: html
 
+      - store_artifacts:
+          path: jupyter_book/book_template/_build/
+          destination: _build
+
   # Deploy the built site to jupyter-book.github.io
   deploy:
     docker:
