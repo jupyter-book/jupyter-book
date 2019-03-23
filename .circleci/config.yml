@@ -67,8 +67,8 @@ jobs:
           command: |
             git config --global user.email "choldgraf@berkeley.edu"
             git config --global user.name "Chris Holdgraf"
-            git add ./.nojekyll
-            git add ./* && git commit -m "jekyll book web deploy"
+            git add -A
+            git commit -m "jekyll book web deploy"
             git push -f origin gh-pages:gh-pages
 
   run_tests:
