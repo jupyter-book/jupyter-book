@@ -219,12 +219,14 @@ def test_notebook(tmpdir):
     # No interactive outputs
     assert is_in(lines, "has_widgets: false")
 
-    ##### Testing interactive features #################################
-    
+    ###########################################
+    # Testing interactive features
+
     with open(op.join(path_build_test, '_build', 'tests', 'interactive.md'), 'r') as ff:
         lines = ff.readlines()
-    
+
     assert is_in(lines, "has_widgets: true")
+
 
 def test_split_yaml(tmpdir):
     path_build_test = op.join(tmpdir.dirpath(), 'tmp_test', 'test')
