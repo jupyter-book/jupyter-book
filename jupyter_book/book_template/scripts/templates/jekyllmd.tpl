@@ -27,7 +27,7 @@
 <!-- All output areas -->
 {% block output %}
 <div class="output_wrapper" markdown="1">
-<div class="output_subarea{% if 'interactive_output' in cell.metadata.tags %} output_widget_view{% endif %}" markdown="1">
+<div class="output_subarea{% if 'interactive' in cell.metadata.tags %} output_widget_view{% endif %}" markdown="1">
 {{- super() -}}
 </div>
 </div>

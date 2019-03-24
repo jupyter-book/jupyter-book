@@ -29,12 +29,13 @@ path_license = op.join(path_test_book, 'test_license.md')
 
 
 def test_round_trip(tmpdir):
-    path_config = op.join(this_folder, '..', 'book_template', '_config.yml')
+    path_config = op.join(this_folder, 'configs', 'config_simple.yml')
     path_out = op.join(tmpdir.dirpath(), 'tmp_test')
 
     # Custom CSS and JS code
     path_js = op.join(path_test_book, "my_js.js")
     path_css = op.join(path_test_book, "my_css.css")
+
     # Run the create command
     new_name = "test"
     new_book(path_out=op.join(path_out, new_name),
@@ -100,7 +101,7 @@ def test_round_trip(tmpdir):
 
 def test_config_update(tmpdir):
     path_out = op.join(tmpdir.dirpath(), 'tmp_test')
-    path_config = op.join(this_folder, 'configs', 'config_simple.yml')
+    path_config = op.join(this_folder, 'configs', 'config_update.yml')
     new_name = "test2"
 
     new_book(op.join(path_out, new_name), config=path_config,
@@ -215,6 +216,15 @@ def test_notebook(tmpdir):
     # Kernel name is added from the notebook file
     assert is_in(lines, "kernel_name: python3")
 
+    # No interactive outputs
+    assert is_in(lines, "has_widgets: false")
+
+    ##### Testing interactive features #################################
+    
+    with open(op.join(path_build_test, '_build', 'tests', 'interactive.md'), 'r') as ff:
+        lines = ff.readlines()
+    
+    assert is_in(lines, "has_widgets: true")
 
 def test_split_yaml(tmpdir):
     path_build_test = op.join(tmpdir.dirpath(), 'tmp_test', 'test')
