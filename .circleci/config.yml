@@ -103,7 +103,9 @@ jobs:
             pytest
 
       # Run code coverage
-      bash <(curl -s https://codecov.io/bash)
+      - run:
+          name: codecov deploy
+          command: bash <(curl -s https://codecov.io/bash)
 
       # If tests pass, build the site itself
       - run:
