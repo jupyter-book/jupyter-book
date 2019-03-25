@@ -102,6 +102,11 @@ jobs:
             flake8 --count jupyter_book
             pytest
 
+      # Run code coverage
+      - run:
+          name: codecov deploy
+          command: bash <(curl -s https://codecov.io/bash)
+
       # If tests pass, build the site itself
       - run:
           name: Build site markdown
