@@ -26,3 +26,6 @@
   - title: Jupyter notebooks
     url: /tests/notebooks
     not_numbered: true
+  - title: Interactive test
+    url: /tests/interactive
+    not_numbered: true

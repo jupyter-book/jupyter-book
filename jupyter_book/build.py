@@ -208,13 +208,14 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
             url_next_page = toc[ix_file + 1].get('url')
             url_next_page = _prepare_url(url_next_page)
 
-        ############################################
-        # Get kernel name from notebooks metadata
+        ###############################################################################
+        # Get kernel name and presence of widgets from notebooks metadata
 
         kernel_name = ''
         if path_url_page.endswith('.ipynb'):
             data = nbf.read(path_url_page, nbf.NO_CONVERT)
             kernel_name = data['metadata']['kernelspec']['name']
+            has_widgets = "true" if any("interactive" in cell['metadata'].get('tags', []) for cell in data['cells']) else "false"
 
         ############################################
         # Content conversion
@@ -303,6 +304,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
                 path_url_page.split(CONTENT_FOLDER_NAME + '/')[-1]
             yaml_fm += ['interact_link: {}'.format(interact_path)]
             yaml_fm += ["kernel_name: {}".format(kernel_name)]
+            yaml_fm += ["has_widgets: {}".format(has_widgets)]
 
         # Page metadata
         yaml_fm += ["title: '{}'".format(title)]

@@ -1,0 +1,5 @@
+title: One
+author: Two Three
+email: Four@Five.com
+description: >- # this means to ignore newlines until "baseurl:"
+  Six Seven Eight Nine.
