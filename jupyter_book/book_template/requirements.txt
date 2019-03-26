@@ -6,3 +6,4 @@ datascience
 folium
 matplotlib
 nbinteract
+scipy
