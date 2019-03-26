@@ -97,6 +97,7 @@ $hamburger-types: (arrowalt);
 
 @import 'objects/objects.tooltip';
 @import 'objects/objects.copy-button';
+@import 'objects/objects.thebelab-in-cell-button';
 
 // COMPONENTS
 $page-max-width: map-get($mq-breakpoints, wide);
