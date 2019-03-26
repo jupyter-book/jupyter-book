@@ -3,7 +3,7 @@
 
 <!-- All code cells -->
 {%- block codecell %}
-<div markdown="1" class="cell code_cell">
+<div markdown="1" class="cell code_cell{% if 'removecell' in cell.metadata.tags %} removed{% endif %}">
 {{- super() }}
 </div>
 {% endblock codecell %}
