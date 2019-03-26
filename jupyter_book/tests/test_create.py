@@ -206,9 +206,8 @@ def test_notebook(tmpdir):
     assert is_in(lines, 'class="input_area')
 
     # Cell hiding etc works
-    assert is_not_in(
-        lines, 'thisvariable = "none of this should show up in the textbook"')
-    assert is_not_in(lines, '"this plot *will* show up in the textbook."')
+    assert is_in(lines, 'hidecode')
+    assert is_in(lines, 'removed')
 
     # Static files are copied over
     assert op.exists(op.join(path_build_test, '_build', 'tests', 'cool.jpg'))
