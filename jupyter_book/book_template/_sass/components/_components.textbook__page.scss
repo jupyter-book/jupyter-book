@@ -43,7 +43,7 @@ div.highlighter-rouge {
   position: relative;
 }
 
-div.highlight pre.highlight {
+div.highlight pre, div.output pre {
   background-color: $color-light-gray;
   font-size: 0.9em;
   margin-bottom: $spacing-unit-small;
