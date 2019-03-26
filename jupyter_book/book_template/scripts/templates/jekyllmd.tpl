@@ -37,7 +37,7 @@
 {%- block stream %}
 {:.output_stream}
 ```
-{{ output.text }}
+{{ output.text -}}
 ```
 {% endblock stream %}
 
@@ -65,5 +65,5 @@
 
 {%- block data_png %}
 {:.output_png}
-{{- super() }}
+{{- super() -}}
 {% endblock data_png %}
