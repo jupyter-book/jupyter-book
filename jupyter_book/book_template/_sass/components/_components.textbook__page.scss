@@ -43,7 +43,7 @@ div.highlighter-rouge {
   position: relative;
 }
 
-div.highlight pre, div.output_wrapper pre {
+div.c-textbook__content > div.highlighter-rouge > div.highlight pre, div.input_area > div.highlighter-rouge > div.highlight > pre, div.output_wrapper pre {
   background-color: $color-light-gray;
   font-size: 0.9em;
   margin-bottom: $spacing-unit-small;

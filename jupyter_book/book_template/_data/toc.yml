@@ -54,6 +54,9 @@
   - title: Connecting content with JupyterHub and Binder
     url: /features/interact
     not_numbered: true
+  - title: Adding interactivity to your book pages
+    url: /features/interactive_cells
+    not_numbered: true
   - title: Citations and bibliographies
     url: /features/citations
     not_numbered: true
