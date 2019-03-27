@@ -232,12 +232,6 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
             # Clean up the file before converting
             cleaner = NotebookCleaner(tmp_notebook)
             cleaner.remove_cells(empty=True)
-            if site_yaml.get('hide_cell_text', False):
-                cleaner.remove_cells(
-                    search_text=site_yaml.get('hide_cell_text'))
-            if site_yaml.get('hide_code_text', False):
-                cleaner.clear(kind="content",
-                              search_text=site_yaml.get('hide_code_text'))
             cleaner.clear('stderr')
             cleaner.save(tmp_notebook)
             _clean_notebook_cells(tmp_notebook)
