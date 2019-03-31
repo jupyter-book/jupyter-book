@@ -23,13 +23,15 @@ $right-sidebar-center-offset: ($page-max-width - $sidebar-width) / 2 -
 .sidebar__right {
     display: none;
     overflow-x: hidden;
+    background-color: white;
     @include mq($from: desktop) {
         display: block;
         width: $right-sidebar-width;
 
         position: fixed;
-        top: 3 * $spacing-unit;
+        top: 0px;
         right: 0; /* [1] */
+        padding-top: $spacing-unit;
         padding-right: $spacing-unit;
         overflow-y: auto;
         max-height: 90%; // Required for scrolling to work properly
