@@ -78,3 +78,20 @@ Note that, if viewing the file on a Jupyter Notebook session, the figure will no
 
 If you've got questions, concerns, or suggestions, please open an issue at
 [at the jupyter book issues page](https://github.com/jupyter/jupyter-book/issues)
+
+## How should I add cell tags to my notebooks?
+
+You can control the behavior of Jupyter Book by putting custom tags
+in the metadata of your cells. But how do you actually do this?
+
+**Use the JupyterLab Cell Tags plugin**. JupyterLab is an IDE-like Jupyter
+environment that runs in your browser. It has a rich extension ecosystem.
+A particularly useful extension [is the "cell tags" plugin](https://github.com/jupyterlab/jupyterlab-celltags),
+which exposes a user interface that lets you quickly insert cell tags.
+
+You can install the cell tags plugin with the following command (after installing
+JupyterLab).
+
+```
+jupyter labextension install @jupyterlab/celltags
+```
