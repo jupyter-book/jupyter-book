@@ -84,6 +84,14 @@ If you've got questions, concerns, or suggestions, please open an issue at
 You can control the behavior of Jupyter Book by putting custom tags
 in the metadata of your cells. But how do you actually do this?
 
+**Use the Jupyter Notebook cell tag editor**. The Jupyter Notebook ships with a
+cell tag editor by default. This lets you add cell tags to each cell quickly.
+
+To enable the cell tag editor, go click `View -> Cell Toolbar -> Tags`. This
+will enable the tags UI. Here's what the menu looks like.
+
+<img src="../images/tags_notebook.png" width=200 />
+
 **Use the JupyterLab Cell Tags plugin**. JupyterLab is an IDE-like Jupyter
 environment that runs in your browser. It has a rich extension ecosystem.
 A particularly useful extension [is the "cell tags" plugin](https://github.com/jupyterlab/jupyterlab-celltags),
@@ -95,3 +103,8 @@ JupyterLab).
 ```
 jupyter labextension install @jupyterlab/celltags
 ```
+
+Then, you'll find tags under the "wrench" menu section.
+Here's what the tags UI in JupyterLab looks like.
+
+<img src="../images/tags_jupyterlab.png" width=200 />
