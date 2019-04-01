@@ -172,21 +172,3 @@ div.output_subarea {
 .jp-OutputPrompt {
   display: none;
 }
-
-// Popouts to the right
-
-.popout {
-  position: absolute;
-  right: 0px;
-  width: 220px;
-  font-size: .8em;
-  padding-right: 20px;
-  padding-left: 5px;
-  border-top: 1px solid #c3c3c3;
-}
-
-.popout {
-  h1, h2, h3, h4, h5, h6 {
-    margin: .5em 0px 0px 0px;
-  }
-}

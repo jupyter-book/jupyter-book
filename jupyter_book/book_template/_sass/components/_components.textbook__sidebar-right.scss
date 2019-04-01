@@ -108,3 +108,28 @@ li.active {
     border-left: 1px solid #0077d8;
     margin-left: -1px;
 }
+
+// Popouts to the right
+.popout {
+    border-top: 1px solid #c3c3c3;
+    margin-left: $spacing-unit;
+
+    @include mq($from: desktop) {
+        width: $right-sidebar-width;
+        font-size: .8em;
+        position: absolute;
+        right: 0px;
+        padding-right: 20px;
+        padding-left: $spacing-unit / 2;
+        margin-left: none;
+
+        h1, h2, h3, h4, h5, h6 {
+            margin: .5em 0px 0px 0px;
+        }
+    }
+
+    @include mq($from: wide) {
+        // Add a few extra pixels because of the extra width
+        padding-left: $spacing-unit + 5;
+    }
+}
