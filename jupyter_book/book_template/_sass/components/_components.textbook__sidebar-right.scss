@@ -26,6 +26,7 @@ $right-sidebar-center-offset: ($page-max-width - $sidebar-width) / 2 -
         top: 3 * $spacing-unit;
         right: 0; /* [1] */
         padding-right: $spacing-unit;
+        overflow-y: scroll;
 
         z-index: 1; // Keep sidebar on top of page content
     }
