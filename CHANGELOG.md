@@ -2,7 +2,7 @@
 
 Below is a rough list of new features, broken down by Jupyter Book version.
 
-## v0.3dev
+## v0.3dev0
 
 ### Features
 

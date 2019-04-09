@@ -1,6 +1,7 @@
 # <img src="jupyter_book/book_template/content/images/logo/logo.png" width=40 /> Jupyter Book
 
 [![CircleCI](https://circleci.com/gh/jupyter/jupyter-book.svg?style=svg)](https://circleci.com/gh/jupyter/jupyter-book)
+[![codecov](https://codecov.io/gh/jupyter/jupyter-book/branch/master/graph/badge.svg)](https://codecov.io/gh/jupyter/jupyter-book)
 
 This is a guide and template for hosting your own book using
 Jupyter Notebooks and Jekyll.
@@ -20,7 +21,7 @@ Here are a few links of interest:
 
 * **[A demo of the hosted textbook](http://jupyter.org/jupyter-book/ )**
 * **[A short guide to deploying your own textbook](https://jupyter.org/jupyter-book/guide/01_overview)**
-* **[The markdown version of the guide in this repo](content/guide/)**
+* **[The markdown version of the guide in this repo](jupyter_book/book_template/content/guide/)**
 
 ## Explore this book
 

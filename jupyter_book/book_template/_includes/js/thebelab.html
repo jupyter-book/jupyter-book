@@ -1,5 +1,9 @@
 <!-- Include Thebelab for interactive code if it's enabled -->
 {% if site.use_thebelab_button %}
+
+<!-- Display Thebelab button in each code cell -->
+{% include js/thebelab-cell-button.html %}
+
 <script type="text/x-thebe-config">
     {
       requestKernel: true,
@@ -7,12 +11,15 @@
         repo: '{{ site.binder_repo_org }}/{{ site.binder_repo_name }}',
         ref: '{{ site.binder_repo_branch }}',
       },
+      codeMirrorConfig: {
+        theme: "{{ site.codemirror_theme }}"
+      },
       kernelOptions: {
         name: '{% if page.kernel_name %}{{ page.kernel_name }}{% else %}python3{% endif %}',
       }
     }
 </script>
-<script src="https://unpkg.com/thebelab@0.3.3/lib/index.js"></script>
+<script src="https://unpkg.com/thebelab@0.4.0/lib/index.js"></script>
 <script>
     /**
      * Add attributes to Thebelab blocks
@@ -68,9 +75,9 @@
             thebelab.bootstrap();
 
             // Remove copy buttons since they won't work anymore
-            const copyButtons = document.querySelectorAll('.copybtn')
-            copyButtons.forEach((copyButton, index) => {
-                copyButton.remove();
+            const copyAndThebeButtons = document.querySelectorAll('.copybtn, .thebebtn')
+            copyAndThebeButtons.forEach((button, index) => {
+                button.remove();
             });
 
             // Remove outputs since they'll be stale
@@ -81,12 +88,14 @@
         }
 
         // Add event listener for the function to modify code cells
-        const thebelabButton = document.getElementById('interact-button-thebelab');
-        if (thebelabButton === null) {
-            setTimeout(initThebelab, 250)
-        return
-        };
-        thebelabButton.addEventListener('click', addThebelabToCodeCells);
+        const thebelabButtons = document.querySelectorAll('[id^=thebelab], [id$=thebelab]')
+        thebelabButtons.forEach((thebelabButton,index) => {
+            if (thebelabButton === null) {
+                setTimeout(initThebelab, 250)
+                return
+            };
+            thebelabButton.addEventListener('click', addThebelabToCodeCells);
+        });
     }
 
     // Initialize Thebelab

@@ -26,6 +26,11 @@ $plusminus-anim-length: .25s;
     padding: 0px !important;
 }
 
+// Removed entire cells
+.removed {
+    display: none;
+}
+
 // Plusminus buttons
 // Adapted from https://codepen.io/FluidOfInsanity/pen/EyQGgw
 
@@ -47,7 +52,7 @@ input[type="checkbox"] {
     @include transition(0.25s);
 }
 
-.plusminus:hover {
+div.cell:hover .plusminus {
     background: rgb(122, 130, 136);
     @include transition(0.25s);
 }
@@ -73,4 +78,3 @@ input[type="checkbox"] {
 input:checked ~ .plusminus span.pm_v {
     @include transform(rotate(-90deg));
 }
-  

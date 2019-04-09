@@ -1,10 +1,12 @@
 import nbformat as nbf
-from subprocess import run
 import os
 import os.path as op
 import shutil as sh
 
+from jupyter_book.run import run_book
+
 this_folder = op.dirname(__file__)
+
 
 def test_run(tmpdir):
     path_content = op.join(this_folder, 'site', 'content')
@@ -14,7 +16,7 @@ def test_run(tmpdir):
     os.remove(op.join(path_new_content, 'tests', 'notebooks.ipynb'))
 
     # Run the notebooks in the new content folder
-    run(["jupyter-book", "run", path_new_content], check=True)
+    run_book(path_new_content, 'python3')
 
     # Check that the outputs are there
     path_new_ntbk = op.join(path_new_content, 'tests', 'run.ipynb')

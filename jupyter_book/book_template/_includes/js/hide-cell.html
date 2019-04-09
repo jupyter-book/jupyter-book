@@ -8,7 +8,7 @@ Add buttons to hide code cells
 var setCodeCellVisibility = function(inputField, kind) {
     // Update the image and class for hidden
     var id = inputField.getAttribute('data-id');
-    var codeCell = document.querySelector(`#${id}`);
+    var codeCell = document.querySelector(`#${id} div.highlight`);
 
     if (kind === "visible") {
         codeCell.classList.remove('hidden');
@@ -46,18 +46,19 @@ var addHideButton = function () {
   }
 
   // Find the input cells and add a hide button
-  document.querySelectorAll('div.input_area div.highlight').forEach(function (item, index) {
-    if (!item.parentElement.classList.contains("hidecode")) {
+  document.querySelectorAll('div.input_area').forEach(function (item, index) {
+    if (!item.classList.contains("hidecode")) {
         // Skip the cell if it doesn't have a hidecode class
         return;
     }
 
     const id = codeCellId(index)
     item.setAttribute('id', id);
-    item.insertAdjacentHTML('afterend', hideCodeButton(id))
+    // Insert the button just inside the end of the next div
+    item.querySelector('div').insertAdjacentHTML('beforeend', hideCodeButton(id))
 
     // Set up the visibility toggle
-    hideLink = document.querySelector(`#${id} + input + label`);
+    hideLink = document.querySelector(`#${id} div.highlight + input + label`);
     hideLink.addEventListener('click', toggleCodeCellVisibility)
   });
 }

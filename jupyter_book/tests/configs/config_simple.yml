@@ -1,5 +1,3 @@
-title: One
-author: Two Three
-email: Four@Five.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Six Seven Eight Nine.
+use_show_widgets_button: true
+use_thebelab_button: true
+use_download_button: true
