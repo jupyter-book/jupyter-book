@@ -5,7 +5,6 @@ import argparse
 
 from jupyter_book.create import new_book
 
-
 def create():
     parser = argparse.ArgumentParser(description="Create a new Jupyter Book")
     parser.add_argument(

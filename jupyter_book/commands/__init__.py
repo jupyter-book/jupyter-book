@@ -3,3 +3,4 @@ from .build import build
 from .create import create
 from .upgrade import upgrade
 from .run import run
+from .report import report

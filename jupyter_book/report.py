@@ -8,33 +8,22 @@ from subprocess import run, PIPE
 from .utils import print_message_box
 from distutils.dir_util import copy_tree
 from glob import glob
-import argparse
 
-def create_report():
-    parser = argparse.ArgumentParser(description="Generate a report from a jupyter notebook")
-    parser.add_argument('path_notebook', help="The path to a Jupyter Notebook")
-    parser.add_argument('--path-output', help="The path to the output report")
-    parser.add_argument('--css', help="A path to custom CSS to include with the report")
-    parser.add_argument('--js', help="A path to custom JavaScript to include with the report")
-    parser.add_argument("--overwrite", default=False, action="store_true", help="Whether to overwrite a pre-existing report if it exists")
-
-    # Parse inputs
-    args = parser.parse_args(sys.argv[2:])
-    path_notebook = args.path_notebook
-    path_output_report = op.basename(path_notebook).replace('.ipynb', '') if args.path_output is None else args.path_output
+def new_report(path_notebook, path_output, css, js, overwrite=False):
+    """Create a new report from a single notebook."""
 
     name_notebook = op.basename(path_notebook)
 
     # Remove an old report if we want
-    if op.isdir(path_output_report):
-        if args.overwrite is True:
-            sh.rmtree(path_output_report)
+    if op.isdir(path_output):
+        if overwrite is True:
+            sh.rmtree(path_output)
         else:
-            raise ValueError(f"Found a pre-existing report at {path_output_report}. Please delete it or use `--overwrite`.")
+            raise ValueError(f"Found a pre-existing report at {path_output}. Please delete it or use `--overwrite`.")
 
     # Copy the notebook to a temporary folder
     print("Creating temporary folder...")
-    path_temp = op.join(path_output_report, 'TMP')
+    path_temp = op.join(path_output, 'TMP')
     raw_folder = op.join(path_temp, 'raw')
 
     # Content we'll use to build the report
@@ -102,8 +91,8 @@ def create_report():
         ff.write(text)
 
     # Copy into the output directory, overwriting it
-    copy_tree(path_html, path_output_report)
+    copy_tree(path_html, path_output)
     sh.rmtree(path_temp)
-    path_output_index = op.join(path_output_report, 'index.html')
+    path_output_index = op.join(path_output, 'index.html')
     msg = f"Done generating report!\n\nYour report is here: {path_output_index}"
     print_message_box(msg)
