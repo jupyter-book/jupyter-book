@@ -8,8 +8,6 @@ from ruamel.yaml import YAML
 from .utils import print_message_box
 from . import __version__
 
-from .report import new_report
-
 TEMPLATE_PATH = op.join(op.dirname(__file__), 'book_template')
 MINIMAL_PATH = op.join(op.dirname(__file__), 'minimal')
 
@@ -83,9 +81,6 @@ def new_book(path_out, content_folder, toc,
         template's default toc.yml configuration
     license : str
         A path to a LICENSE.md file if you have created one
-    notebook : str
-        A path to a single Jupyter Notebook. In this case, a
-        single-page report will be generated with no sidebar.
     custom_css : str
         A path to a CSS file that defines some custom CSS rules for
         your book
@@ -118,15 +113,6 @@ def new_book(path_out, content_folder, toc,
             "A book already exists with this name / output"
             " directory. Delete it, or use `--overwrite` if"
             " you'd like to replace it")
-
-    # Check if we've specified a single notebook (and in this case will use the report script)
-    if notebook is not None:
-        if not op.exists(notebook):
-            raise ValueError(f"Could not find the notebook specified at {notebook}")
-        if not notebook.endswith('.ipynb'):
-            raise ValueError(f"Specified notebook file does not end in .ipynb, found {op.splitext(notebook)[-1]}")
-        new_report(notebook, path_out, custom_css, custom_js, overwrite)
-        sys.exit()
 
     # Copy the book structure to the new folder
     print("Copying new book to: {}".format(path_out))

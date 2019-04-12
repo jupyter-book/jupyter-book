@@ -18,4 +18,5 @@ def report():
     path_notebook = args.path_notebook
     path_output_report = op.basename(path_notebook).replace('.ipynb', '') if args.path_output is None else args.path_output
 
+
     new_report(path_notebook, path_output_report, args.css, args.js, args.overwrite)

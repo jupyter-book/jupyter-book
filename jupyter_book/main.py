@@ -4,7 +4,6 @@ import argparse
 from .commands import build, create, upgrade, report
 from .run import run_book
 from .toc import build_toc
-from .report import create_report
 
 DESCRIPTION = (
     "Jupyter Book: Generate an HTML book from your Jupyter Notebooks using"

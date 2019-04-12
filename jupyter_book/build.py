@@ -1,4 +1,4 @@
-from subprocess import check_call
+from subprocess import run
 import os
 import os.path as op
 import sys
@@ -128,7 +128,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
     # Load the yaml for this site
     with open(config_file, 'r') as ff:
         site_yaml = yaml.load(ff.read())
-    CONTENT_FOLDER_NAME = site_yaml.get('content_folder_name').strip('/')
+    CONTENT_FOLDER_NAME = site_yaml.get('content_folder_name', 'content').strip('/')
     PATH_CONTENT_FOLDER = op.join(path_book, CONTENT_FOLDER_NAME)
 
     # Load the textbook yaml for this site
@@ -245,15 +245,16 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
                 path_new_folder)
             # Copy notebook output images to the build directory using the base folder name
             path_after_build_folder = path_new_folder.split(os.sep + BUILD_FOLDER_NAME)[-1].lstrip('/')
-            nb_output_folder = op.join(PATH_IMAGES_FOLDER, path_after_build_folder)
+            nb_output_folder = op.join('images', path_after_build_folder)
             images_call = '--NbConvertApp.output_files_dir={}'.format(nb_output_folder)
             call = ['jupyter', 'nbconvert', '--log-level="CRITICAL"',
                     '--to', 'markdown', '--template', path_template,
                     images_call, build_call, tmp_notebook]
+
             if execute is True:
                 call.insert(-1, '--execute')
 
-            check_call(call)
+            run(call, check=True)
             os.remove(tmp_notebook)
 
         elif path_url_page.endswith('.md'):

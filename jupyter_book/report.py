@@ -6,6 +6,8 @@ from ruamel.yaml import YAML
 import nbformat as nbf
 from subprocess import run, PIPE
 from .utils import print_message_box
+from .create import new_book
+from .build import build_book
 from distutils.dir_util import copy_tree
 from glob import glob
 
@@ -13,6 +15,13 @@ def new_report(path_notebook, path_output, css, js, overwrite=False):
     """Create a new report from a single notebook."""
 
     name_notebook = op.basename(path_notebook)
+
+    # Check if we've specified a single notebook (and in this case will use the report script)
+    if not op.exists(path_notebook):
+        raise ValueError(f"Could not find the notebook specified at {path_notebook}")
+    if not path_notebook.endswith('.ipynb'):
+        raise ValueError(f"Specified path_notebook file does not end in .ipynb, found {op.splitext(path_notebook)[-1]}")
+
 
     # Remove an old report if we want
     if op.isdir(path_output):
@@ -61,13 +70,13 @@ def new_report(path_notebook, path_output, css, js, overwrite=False):
 
     # Create the new book
     print("Creating new book...")
-    cmd = f"jupyter-book create {path_book} --content-folder {path_content} --config {path_config} --overwrite"
-    out = run(cmd.split(), check=True)
+    new_book(path_book, path_content, None, None, config=path_config, overwrite=overwrite)
 
     # Build the markdown for it
     print("Building book markdown...")
-    cmd = f"jupyter-book build {path_book}"
-    out = run(cmd.split(), check=True)
+    path_toc = op.join(path_book, '_data', 'toc.yml')
+    path_template = op.join(path_book, 'scripts', 'templates', 'jekyllmd.tpl')
+    build_book(path_book, path_toc_yaml=path_toc, path_template=path_template, config_file=path_config)
 
     # Build the HTML in the temp folder
     print("Building report HTML...")
