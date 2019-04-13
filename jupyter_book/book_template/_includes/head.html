@@ -60,6 +60,10 @@
   <!-- Load Thebelab for interactive widgets -->
   {% include js/thebelab.html %}
 
+  <!-- Load the auto-generating TOC -->
+  <script src="{{ '/assets/js/tocbot.min.js' | relative_url }}"  type="text/javascript"></script>
+  {% include js/tocbot.html %}
+
   <!-- Google analytics -->
   <script src="{{ site.js_url | relative_url }}/ga.js" async></script>
 
