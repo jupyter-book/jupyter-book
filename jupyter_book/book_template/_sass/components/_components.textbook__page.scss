@@ -65,6 +65,7 @@ div.output_wrapper pre {
 /* [5] */
 code {
   padding: 4px;
+  white-space: pre-wrap;
   @include inuit-font-size(14px);
 }
 
