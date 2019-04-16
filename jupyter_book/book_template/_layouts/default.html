@@ -20,7 +20,7 @@
             {% include buttons.html %}
             <div class="c-textbook__content">
               {{ content }}
-              {% include page-nav.html %}
+              {%- if site.page_nav %}{% include page-nav.html %}{% endif %}
             </div>
           </div>
         </div>

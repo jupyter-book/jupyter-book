@@ -97,7 +97,7 @@ images_url                : "/assets/images" # Path to static image files
 css_url                   : "/assets/css" # Path to static CSS files
 js_url                    : "/assets/js" # Path to JS files
 custom_static_url         : "/assets/custom" # Path to user's custom CSS/JS files
-
+page_nav                  : true # Whether to show page navigation on each page
 
 #######################################################################################
 # Jekyll build settings (only modify if you know what you're doing)

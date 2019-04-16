@@ -6,3 +6,4 @@ pyyaml
 nbformat
 nbclean
 setuptools
+libsass
