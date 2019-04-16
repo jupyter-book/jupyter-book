@@ -32,7 +32,7 @@ $right-sidebar-center-offset: ($page-max-width - $sidebar-width) / 2 -
         padding-right: $spacing-unit;
         overflow-y: scroll;
         max-height: 90%; // Required for scrolling to work properly
-        scrollbar-width: 'thin';
+        scrollbar-width: thin;
         direction: rtl;
 
         z-index: 1; // Keep sidebar on top of page content
