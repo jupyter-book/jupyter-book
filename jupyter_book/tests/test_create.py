@@ -226,6 +226,12 @@ def test_notebook(tmpdir):
 
     assert is_in(lines, "has_widgets: true")
 
+    ###########################################
+    # Testing notebook image paths etc
+    with open(op.join(path_build_test, '_build', 'simple_notebook.md'), 'r') as ff:
+        lines = ff.readlines()
+    assert is_in(lines, "![png](images/simple_notebook_2_0.png)")
+
 
 def test_split_yaml(tmpdir):
     path_build_test = op.join(tmpdir.dirpath(), 'tmp_test', 'test')
