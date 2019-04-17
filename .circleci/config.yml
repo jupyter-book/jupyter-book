@@ -1,10 +1,19 @@
 version: 2.1
 jobs:
   # Build the site to store artifacts
-  site:
+  demo_site:
     docker:
       - image: circleci/ruby:2.6
     steps:
+      # Attach the built markdown files
+      - checkout
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: /tmp/workspace
+
+      # Copy over the built markdown files
+      - copy_built_files
+
       # Build the site's HTML w/ the base_url for CircleCI artifacts
       - build_site:
           build_args: --baseurl /0/html/
@@ -13,6 +22,10 @@ jobs:
       - store_artifacts:
           path: jupyter_book/book_template/_site/
           destination: html
+
+      - store_artifacts:
+          path: jupyter_book/book_template/_build/
+          destination: _build
 
   # Deploy the built site to jupyter-book.github.io
   deploy:
@@ -29,12 +42,8 @@ jobs:
           fingerprints:
             - "19:34:f0:15:b8:3a:e4:44:27:a8:e9:8b:b5:e4:48:a9"
 
-      # Grab the the built markdown from the last step
-      - run:
-          name: Copy over built site files
-          command: |
-            rm -rf jupyter_book/book_template/_build
-            cp -r /tmp/workspace/jupyter_book/book_template/_build ./jupyter_book/book_template
+      # Copy over the built markdown files
+      - copy_built_files
 
       # Build the site so we have local files
       - build_site:
@@ -58,8 +67,8 @@ jobs:
           command: |
             git config --global user.email "choldgraf@berkeley.edu"
             git config --global user.name "Chris Holdgraf"
-            git add ./.nojekyll
-            git add ./* && git commit -m "jekyll book web deploy"
+            git add -A
+            git commit -m "jekyll book web deploy"
             git push -f origin gh-pages:gh-pages
 
   run_tests:
@@ -75,7 +84,7 @@ jobs:
       - restore_cache:
           keys:
             - cache-pip
-      - run: pip install --user flake8
+      - run: pip install --user flake8 pytest-cov
       # Install the packages needed to build our documentation
       # This will depend on your particular package!
       - run: pip install --user -r requirements.txt
@@ -91,7 +100,12 @@ jobs:
           name: Tests
           command: |
             flake8 --count jupyter_book
-            pytest
+            pytest --cov=./
+
+      # Run code coverage
+      - run:
+          name: codecov deploy
+          command: bash <(curl -s https://codecov.io/bash)
 
       # If tests pass, build the site itself
       - run:
@@ -116,7 +130,9 @@ workflows:
             branches:
               ignore:
                 - gh-pages
-      - site:
+      - demo_site:
+          requires:
+            - run_tests
           filters:
             branches:
               ignore:
@@ -132,6 +148,16 @@ workflows:
                   - gh-pages
 
 commands:
+  copy_built_files:
+    description: "Copy the build site files so we can build the HTML"
+    steps:
+      # Grab the the built markdown from the last step
+      - run:
+          name: Copy over built site files
+          command: |
+            rm -rf jupyter_book/book_template/_build
+            cp -r /tmp/workspace/jupyter_book/book_template/_build ./jupyter_book/book_template
+
   build_site:
     description: "Build the site with Jekyll"
     parameters:

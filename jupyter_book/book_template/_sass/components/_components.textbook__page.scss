@@ -52,7 +52,7 @@ div.input_area div.highlight > pre, div.output_subarea pre {
   border: 1px solid $color-dark-gray;
 }
 
-div.output pre, div.output_area pre {
+div.output_wrapper pre {
   border: 1px solid $color-light-gray !important;
   background-color: #fcfcfc !important;
 }
@@ -65,6 +65,7 @@ div.output pre, div.output_area pre {
 /* [5] */
 code {
   padding: 4px;
+  white-space: pre-wrap;
   @include inuit-font-size(14px);
 }
 

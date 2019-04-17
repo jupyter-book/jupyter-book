@@ -7,7 +7,12 @@
     <div id="js-textbook" class="c-textbook {% if site.show_sidebar %}js-show-sidebar{% endif %}">
       {% if site.show_sidebar == true %}{% include sidebar.html %}{% endif %}
       {% if page.search_page != true %}
-      {% include onthispage.html sanitize=true html=content h_min=2 h_max=3 class="toc__menu" %}
+      <!-- Empty sidebar placeholder that we'll auto-fill with javascript -->
+      <aside class="sidebar__right">
+          <header><h4 class="nav__title"><i class="fa fa-list"></i> {{ page.toc_label | default: site.data.ui-text[site.locale].toc_label }}</h4></header>
+          <nav class="onthispage">
+          </nav>
+      </aside>
       {% endif %}
       <main class="c-textbook__page" tabindex="-1">
           <div class="o-wrapper">

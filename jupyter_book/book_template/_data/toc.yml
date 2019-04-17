@@ -53,9 +53,16 @@
   - title: Connecting content with JupyterHub and Binder
     url: /features/interact
     not_numbered: true
+  - title: Adding interactivity to your book pages
+    url: /features/interactive_cells
+    not_numbered: true
   - title: Searching your book
     url: /features/search
     not_numbered: true
+  - title: Feature Limits
+    url: /features/limits
+    not_numbered: true
+
 
 - title: GitHub repository
   url: https://github.com/jupyter/jupyter-book

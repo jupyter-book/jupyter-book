@@ -4,7 +4,7 @@
 const codeCellId = index => `codecell${index}`
 
 const clipboardButton = id =>
-  `<a class="btn copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#${id}">
+  `<a id="copy-button-${id}" class="btn copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#${id}">
     <img src="{{ site.images_url | relative_url }}/copy-button.svg" alt="Copy to clipboard">
   </a>`
 
@@ -32,11 +32,15 @@ const addCopyButtonToCodeCells = () => {
     return
   }
 
+<<<<<<< HEAD:jupyter_book/book_template/assets/js/page/copy-button.js
   const codeCells = document.querySelectorAll('div.input_area div.highlight > pre')
+=======
+  const codeCells = document.querySelectorAll('div.c-textbook__content > div.highlighter-rouge > div.highlight > pre, div.input_area pre')
+>>>>>>> master:jupyter_book/book_template/_includes/js/copy-button.html
   codeCells.forEach((codeCell, index) => {
     const id = codeCellId(index)
     codeCell.setAttribute('id', id)
-    if (document.querySelector(`pre#${id} + a`) == null) {
+    if (document.getElementById("copy-button" + id) == null) {
       codeCell.insertAdjacentHTML('afterend', clipboardButton(id));
     }
   })
@@ -57,4 +61,9 @@ const addCopyButtonToCodeCells = () => {
   )
 }
 
+<<<<<<< HEAD:jupyter_book/book_template/assets/js/page/copy-button.js
 initFunction(addCopyButtonToCodeCells);
+=======
+initFunction(addCopyButtonToCodeCells);
+</script>
+>>>>>>> master:jupyter_book/book_template/_includes/js/copy-button.html
