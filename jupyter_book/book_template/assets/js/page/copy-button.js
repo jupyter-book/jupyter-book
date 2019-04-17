@@ -32,11 +32,7 @@ const addCopyButtonToCodeCells = () => {
     return
   }
 
-<<<<<<< HEAD:jupyter_book/book_template/assets/js/page/copy-button.js
-  const codeCells = document.querySelectorAll('div.input_area div.highlight > pre')
-=======
   const codeCells = document.querySelectorAll('div.c-textbook__content > div.highlighter-rouge > div.highlight > pre, div.input_area pre')
->>>>>>> master:jupyter_book/book_template/_includes/js/copy-button.html
   codeCells.forEach((codeCell, index) => {
     const id = codeCellId(index)
     codeCell.setAttribute('id', id)
@@ -61,9 +57,4 @@ const addCopyButtonToCodeCells = () => {
   )
 }
 
-<<<<<<< HEAD:jupyter_book/book_template/assets/js/page/copy-button.js
 initFunction(addCopyButtonToCodeCells);
-=======
-initFunction(addCopyButtonToCodeCells);
-</script>
->>>>>>> master:jupyter_book/book_template/_includes/js/copy-button.html
