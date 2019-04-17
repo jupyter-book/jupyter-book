@@ -1,4 +1,3 @@
-<script>
 /**
  * Set up copy/paste for code blocks
  */
@@ -59,4 +58,3 @@ const addCopyButtonToCodeCells = () => {
 }
 
 initFunction(addCopyButtonToCodeCells);
-</script>

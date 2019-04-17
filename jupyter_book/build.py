@@ -30,15 +30,17 @@ def _clean_lines(lines, filepath, PATH_BOOK, path_images_folder):
     # Images: replace absolute nbconvert image paths to baseurl paths
     path_rel_root = op.relpath(PATH_BOOK, op.dirname(filepath))
     path_rel_root_one_up = path_rel_root.replace('../', '', 1)
+
     for ii, line in enumerate(lines):
         # Handle relative paths because we remove `content/` from the URL
         # If there's a path that goes back to the root, remove a level`
         # This is for images referenced directly in the notebook
         if path_rel_root in line:
             line = line.replace(path_rel_root, path_rel_root_one_up)
+
         # For programmatically-generated images from notebooks, replace the abspath with relpath
-        line = line.replace(path_images_folder, op.relpath(
-            path_images_folder, op.dirname(filepath)))
+        line = line.replace(path_images_folder, op.join(path_rel_root_one_up, 'images'))
+        lines[ii] = line
     return lines
 
 
@@ -251,6 +253,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
                 nb_output_folder)
             call = ['jupyter', 'nbconvert', '--log-level="CRITICAL"',
                     '--to', 'html', '--template', path_template,
+                    '--no-prompt',
                     '--config', path_nbconvert_config,
                     images_call, build_call, tmp_notebook]
 

@@ -36,7 +36,7 @@
   <link rel="shortcut icon" type="image/x-icon" href="{{ site.favicon_path | relative_url }}">
 
   <!-- DOM updating function -->
-  {% include js/dom-update.html %}
+  <script src="{{ '/assets/js/dom-update.js' | relative_url }}"  type="text/javascript"></script>
 
   <!-- Define some javascript variables that will be useful in other javascript -->
   <script>
@@ -45,7 +45,7 @@
 
   <!-- Add AnchorJS to let headers be linked -->
   <script src="{{ '/assets/js/anchor.min.js' | relative_url }}"  type="text/javascript"></script>
-  {% include js/anchors.html %}
+  <script src="{{ '/assets/js/page/anchors.js' | relative_url }}"  type="text/javascript"></script>
 
   <!-- Include Turbolinks to make page loads fast -->
   <!-- https://github.com/turbolinks/turbolinks -->
@@ -55,11 +55,9 @@
   <!-- Google analytics -->
   <script src="{{ site.js_url | relative_url }}/ga.js" async></script>
 
-  <!-- Load JS that depends on site variables -->
-  {% include js/copy-button.html %}
 
   <!-- Hide cell code -->
-  {% include js/hide-cell.html %}
+  <script src="{{ '/assets/js/page/hide-cell.js' | relative_url }}"  type="text/javascript"></script>
 
   <!-- Load custom website scripts -->
   <script src="{{ site.js_url | relative_url }}/scripts.js" async></script>
@@ -69,7 +67,9 @@
   <link rel="stylesheet" href="{{ site.custom_static_url | relative_url }}/custom.css">
 
   <!-- Update interact links w/ REST param, is defined in includes so we can use templates -->
-  {% include js/interact-update.html %}
+  {% if site.use_jupyterhub_button or site.use_binder_button %}
+  <script src="{{ '/assets/js/interact-update.js' | relative_url }}"  type="text/javascript"></script>
+  {% endif %}
 
   <!-- Lunr search code - will only be executed on the /search page -->
   <script src="{{ '/assets/js/lunr/lunr.min.js' | relative_url }}" type="text/javascript"></script>
@@ -78,10 +78,26 @@
   <!-- External loads -->
   <!-- Clipboard copy button -->
   <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" async></script>
+  <script src="{{ '/assets/js/page/copy-button.js' | relative_url }}"  type="text/javascript"></script>
 
   <!-- Load Thebelab for interactive widgets -->
   {% include js/thebelab.html %}
 
-  <!-- MathJax Config -->
-  {% include js/mathjax.html %}
-</head>
+  <!-- Allow inline math using $ and automatically break long math lines -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        CommonHTML: {
+            linebreaks: {
+                automatic: true,
+            },
+        },
+    });
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML' async></script>
+  </head>

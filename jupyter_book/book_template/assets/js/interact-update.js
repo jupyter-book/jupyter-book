@@ -1,5 +1,3 @@
-{% if site.use_jupyterhub_button or site.use_binder_button %}
-<script>
 /**
   * To auto-embed hub URLs in interact links if given in a RESTful fashion
  */
@@ -19,7 +17,7 @@ function getJsonFromUrl(url) {
   });
   return result;
 }
-    
+
 function dict2param(dict) {
     params = Object.keys(dict).map(function(k) {
         return encodeURIComponent(k) + '=' + encodeURIComponent(dict[k])
@@ -138,5 +136,3 @@ function updateInteractLink() {
 
 runWhenDOMLoaded(updateInteractLink)
 document.addEventListener('turbolinks:load', updateInteractLink)
-</script>
-{% endif %}
