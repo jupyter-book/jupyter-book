@@ -1,4 +1,3 @@
-<script>
 var initToc = function () {
   tocbot.init({
     tocSelector: 'nav.onthispage',
@@ -13,4 +12,3 @@ var initToc = function () {
   tocbot.refresh();
 }
 initFunction(initToc);
-</script>

@@ -5,7 +5,7 @@ const codeCellId = index => `codecell${index}`
 
 const clipboardButton = id =>
   `<a id="copy-button-${id}" class="btn copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#${id}">
-    <img src="{{ site.images_url | relative_url }}/copy-button.svg" alt="Copy to clipboard">
+    <img src="${clipboardButtonPath}" alt="Copy to clipboard">
   </a>`
 
 // Clears selected text since ClipboardJS will select the text when copying

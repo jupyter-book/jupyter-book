@@ -1,5 +1,3 @@
-{% if site.use_hide_code_button %}
-<script>
 /**
 Add buttons to hide code cells
 */
@@ -77,6 +75,3 @@ var initHiddenCells = function () {
 }
 
 initFunction(initHiddenCells);
-
-</script>
-{% endif %}
