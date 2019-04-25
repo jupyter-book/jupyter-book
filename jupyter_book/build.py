@@ -178,7 +178,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
 
         # Create and check new folder / file paths
         path_new_folder = path_url_folder.replace(
-            os.sep + CONTENT_FOLDER_NAME, os.sep + BUILD_FOLDER_NAME)
+            os.sep + CONTENT_FOLDER_NAME, os.sep + BUILD_FOLDER_NAME) + os.sep
         path_new_file = op.join(path_new_folder, op.basename(
             path_url_page).replace('.ipynb', '.md'))
 
