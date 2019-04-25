@@ -1,7 +1,7 @@
 var initToc = function () {
   tocbot.init({
     tocSelector: 'nav.onthispage',
-    contentSelector: '.c-textbook__content',
+    contentSelector: 'div.inner_cell',
     headingSelector: 'h2, h3',
     orderedList: false,
     collapseDepth: 6,
