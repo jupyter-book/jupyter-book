@@ -271,7 +271,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
         # Modify the generated Markdown to work with Jekyll
 
         # Clean markdown for Jekyll quirks (e.g. extra escape characters)
-        with open(path_new_file, 'r') as ff:
+        with open(path_new_file, 'r', encoding='utf8') as ff:
             lines = ff.readlines()
         lines = _clean_lines(lines, path_new_file,
                              path_book, PATH_IMAGES_FOLDER)
