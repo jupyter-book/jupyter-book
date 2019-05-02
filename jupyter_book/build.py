@@ -198,7 +198,9 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
         else:
             prev_file_title = toc[ix_file - 1].get('title')
             url_prev_page = toc[ix_file - 1].get('url')
-            url_prev_page = _prepare_url(url_prev_page)
+            pre_external = toc[ix_file - 1].get('external', False)
+            if pre_external is False:
+                url_prev_page = _prepare_url(url_prev_page)
 
         if ix_file == len(toc) - 1:
             url_next_page = ''
@@ -206,7 +208,9 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
         else:
             next_file_title = toc[ix_file + 1].get('title')
             url_next_page = toc[ix_file + 1].get('url')
-            url_next_page = _prepare_url(url_next_page)
+            next_external = toc[ix_file + 1].get('external', False)
+            if next_external is False:
+                url_next_page = _prepare_url(url_next_page)
 
         ###############################################################################
         # Get kernel name and presence of widgets from notebooks metadata

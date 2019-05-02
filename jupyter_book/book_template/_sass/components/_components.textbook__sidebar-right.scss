@@ -22,6 +22,7 @@ $right-sidebar-center-offset: ($page-max-width - $sidebar-width) / 2 -
 
 .sidebar__right {
     display: none;
+    overflow-x: hidden;
     @include mq($from: desktop) {
         display: block;
         width: $right-sidebar-width;
@@ -34,7 +35,6 @@ $right-sidebar-center-offset: ($page-max-width - $sidebar-width) / 2 -
         max-height: 90%; // Required for scrolling to work properly
         scrollbar-width: thin;
         direction: rtl;
-
         z-index: 1; // Keep sidebar on top of page content
     }
 

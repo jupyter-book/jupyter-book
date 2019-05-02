@@ -43,13 +43,20 @@ div.highlighter-rouge {
   position: relative;
 }
 
-div.c-textbook__content > div.highlighter-rouge > div.highlight pre, div.input_area > div.highlighter-rouge > div.highlight > pre, div.output_wrapper pre {
+div.c-textbook__content > div.highlighter-rouge > div.highlight pre,
+div.input_area > div.highlighter-rouge > div.highlight > pre,
+div.output_wrapper pre {
   background-color: $color-light-gray;
   font-size: 0.9em;
   margin-bottom: $spacing-unit-small;
   padding: $spacing-unit-small;
   overflow-x: auto;
   border: 1px solid $color-dark-gray;
+}
+
+// If we've got intentionally non-highlighted markup, make sure that the lines wrap
+pre code.language-no-highlight {
+  white-space: pre-wrap;
 }
 
 div.output_wrapper pre {
@@ -65,7 +72,7 @@ div.output_wrapper pre {
 /* [5] */
 code {
   padding: 4px;
-  white-space: pre-wrap;
+  overflow-x: auto;
   @include inuit-font-size(14px);
 }
 

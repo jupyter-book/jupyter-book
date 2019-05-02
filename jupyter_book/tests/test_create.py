@@ -218,6 +218,9 @@ def test_notebook(tmpdir):
     # No interactive outputs
     assert is_in(lines, "has_widgets: false")
 
+    # Testing external link
+    assert is_in(lines, "url: https://github.com")
+
     ###########################################
     # Testing interactive features
 
