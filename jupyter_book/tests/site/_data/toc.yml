@@ -28,6 +28,9 @@
   - title: Jupyter notebooks
     url: /tests/notebooks
     not_numbered: true
+  - title: Test external
+    url: https://github.com
+    external: true
   - title: Interactive test
     url: /tests/interactive
     not_numbered: true

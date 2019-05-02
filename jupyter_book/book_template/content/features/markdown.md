@@ -8,7 +8,15 @@ The two kinds of files that contain course content are:
 Each are contained in the `content/` folder and referenced from `_data/toc.yml`.
 
 If the file is markdown, it will be copied over with front-matter YAML added so
-that Jekyll can parse it
+that Jekyll can parse it.
+
+```python
+print("Python (and any language-specific) code still works as expected")
+```
+
+```
+As does non-language code.
+```
 
 ## Sidebars with Jekyll
 
