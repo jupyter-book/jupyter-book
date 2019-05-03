@@ -16,6 +16,7 @@
       },
       kernelOptions: {
         name: '{% if page.kernel_name %}{{ page.kernel_name }}{% else %}python3{% endif %}',
+        path: "{{ page.kernel_path }}"
       }
     }
 </script>

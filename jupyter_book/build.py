@@ -300,8 +300,10 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
         if path_url_page.endswith('.ipynb'):
             interact_path = CONTENT_FOLDER_NAME + '/' + \
                 path_url_page.split(CONTENT_FOLDER_NAME + '/')[-1]
+            kernel_path = '/'.join(interact_path.split('/')[:-1])
             yaml_fm += ['interact_link: {}'.format(interact_path)]
             yaml_fm += ["kernel_name: {}".format(kernel_name)]
+            yaml_fm += ['kernel_path: {}'.format(kernel_path)]
             yaml_fm += ["has_widgets: {}".format(has_widgets)]
 
         # Page metadata
