@@ -60,34 +60,42 @@ the *`conda`* package manager:
 ```bash
 conda install -c conda-forge ruby
 ```
-Once you have Ruby installed, run
+
+Once you have Ruby installed, the conda-built clang compiler for your system need to be installed. Details depend on your OS.
+
+#### On OSX
+
+Two steps are needed on OSX. First, install the *`conda`'s* clang compiler:
+
+```bash
+conda install -c conda-forge clangxx_osx-64
+```
+
+If you are running OSX 10.14 (Mojave) you also need to install system libraries in
+the default *nix locations by running
+
+```bash
+open /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg
+```
+
+#### On Linux
+
+Install *`conda`'s* clang compiler:
+
+```bash
+gxx_linux-64
+```
+
+#### Install Ruby plugins
+
+Finally, run
 
 ```bash
 make install
 ```
 
-which will install Bundler (a Ruby depency management tool) and then install the plugins
+which will install Bundler (a Ruby dependency management tool) and then install the plugins
 needed to build the site for your book.
-
-#### If `make install` fails
-
-If running `make install` fails with this error
-
-```console
-`find_spec_for_exe': can't find gem bundler (>= 0.a) with executable bundle (Gem::GemNotFoundException)
-```
-
-it is because of a [version mismatch between `gem` and `bundler`](https://bundler.io/blog/2019/01/04/an-update-on-the-bundler-2-release.html). You can fix the problem by [updating gem](https://stackoverflow.com/a/54118329)
-
-```bash
-gem update --system
-```
-
-and then re-running
-
-```bash
-make install
-```
 
 ### Build the site HTML for your book
 
