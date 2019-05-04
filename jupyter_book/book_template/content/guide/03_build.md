@@ -131,7 +131,35 @@ the *`conda`* package manager:
 ```bash
 conda install -c conda-forge ruby
 ```
-Once you have Ruby installed, run
+
+Once you have Ruby installed, the conda-built clang compiler for your system need to be installed. Details depend on your OS.
+
+#### On OSX
+
+Two steps are needed on OSX. First, install the *`conda`'s* clang compiler:
+
+```bash
+conda install -c conda-forge clangxx_osx-64
+```
+
+If you are running OSX 10.14 (Mojave) you also need to install system libraries in
+the default *nix locations by running
+
+```bash
+open /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg
+```
+
+#### On Linux
+
+Install *`conda`'s* clang compiler:
+
+```bash
+gxx_linux-64
+```
+
+#### Install Ruby plugins
+
+Finally, run
 
 ```bash
 make install
