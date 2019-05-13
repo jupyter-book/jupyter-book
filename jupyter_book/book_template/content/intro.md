@@ -37,7 +37,7 @@ Here are a few links of interest:
 To install the Jupyter Book command-line interface (CLI), use `pip`!
 
 ```
-pip install jupyter_book
+pip install jupyter-book
 ```
 
 ### Create a new book
