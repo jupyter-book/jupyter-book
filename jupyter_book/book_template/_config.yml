@@ -110,6 +110,7 @@ defaults:
       layout: "default"
       toc: true
       toc_label: "  On this page"
+      toc_search: true
       toc_icon: "list-ul"
 
 favicon_path: "images/logo/favicon.ico"

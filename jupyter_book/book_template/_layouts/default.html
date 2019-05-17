@@ -12,6 +12,12 @@
           <header><h4 class="nav__title"><i class="fa fa-list"></i> {{ page.toc_label | default: site.data.ui-text[site.locale].toc_label }}</h4></header>
           <nav class="onthispage">
           </nav>
+      {% if page.toc_search %}
+      <br/>
+      <p data-target="#exampleModal" data-toggle="modal" style="padding-left:20px">
+      <a href="#" style="text-transform:lowercase"><i class="fa fa-search"></i> search...</a>
+      </p>
+      {% endif %}
       </aside>
       {% endif %}
       <main class="c-textbook__page" tabindex="-1">
@@ -26,6 +32,23 @@
         </div>
       </main>
     </div>
-
+{% if site.show_sidebar == true and page.toc_search %}
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Search {{ site.title }} </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {% include search/search_content.html %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
   </body>
 </html>

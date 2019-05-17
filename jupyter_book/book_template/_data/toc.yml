@@ -20,8 +20,6 @@
 - title: Home
   url: /intro
   not_numbered: true
-- title: Search
-  search: true
 
 - title: Getting started
   url: /guide/01_overview
