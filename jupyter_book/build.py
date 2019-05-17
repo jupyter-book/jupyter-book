@@ -218,7 +218,8 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
         kernel_name = ''
         if path_url_page.endswith('.ipynb'):
             data = nbf.read(path_url_page, nbf.NO_CONVERT)
-            kernel_name = data['metadata']['kernelspec']['name']
+            if 'metadata' in data and 'kernelspec' in data['metadata']:
+                kernel_name = data['metadata']['kernelspec']['name']
             has_widgets = "true" if any("interactive" in cell['metadata'].get('tags', []) for cell in data['cells']) else "false"
 
         ############################################
