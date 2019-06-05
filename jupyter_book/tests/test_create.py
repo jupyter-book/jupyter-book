@@ -207,7 +207,7 @@ def test_notebook(tmpdir):
 
     # Cell hiding etc works
     assert is_in(lines, 'hidecode')
-    assert is_in(lines, 'removed')
+    assert not is_in(lines, 'none of this should show up in the textbook')
 
     # Static files are copied over
     assert op.exists(op.join(path_build_test, '_build', 'tests', 'cool.jpg'))

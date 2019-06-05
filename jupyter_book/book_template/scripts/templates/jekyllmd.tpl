@@ -1,17 +1,19 @@
 {%- extends 'markdown.tpl' -%}
 
-
 <!-- All code cells -->
 {%- block codecell %}
-<div markdown="1" class="cell code_cell{% if 'removecell' in cell.metadata.tags %} removed{% endif %}">
+{% if 'remove_cell' not in cell.metadata.tags and 'removecell' not in cell.metadata.tags %}
+<div markdown="1" class="cell code_cell">
 {{- super() }}
 </div>
+{% endif %}
 {% endblock codecell %}
 
 <!-- Add class for input area -->
 {% block input %}
+{%- if 'remove_input' not in cell.metadata.tags %}
 {%- if cell.source != '' -%}
-<div class="input_area{% if 'hidecode' in cell.metadata.tags %} hidecode{% endif %}" markdown="1">
+<div class="input_area{% if 'hide_input' in cell.metadata.tags or 'hidecode' in cell.metadata.tags %} hidecode{% endif %}" markdown="1">
 ```
 {%- if 'magics_language' in cell.metadata  -%}
     {{ cell.metadata.magics_language}}
@@ -19,6 +21,7 @@
     {{ nb.metadata.language_info.name }}
 {% endif %}
 {{- cell.source }}
+{% endif %}
 ```
 </div>
 {%- endif %}
@@ -67,3 +70,10 @@
 {:.output_png}
 {{- super() -}}
 {% endblock data_png %}
+
+<!-- Markdown cells -->
+{% block markdowncell %}
+{% if 'remove_cell' not in cell.metadata.tags and 'removecell' not in cell.metadata.tags %}
+{{- super() }}
+{% endif %}
+{%- endblock markdowncell %}
