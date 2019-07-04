@@ -322,8 +322,8 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
         yaml_fm = [ii + '\n' for ii in yaml_fm]
         lines = yaml_fm + lines
 
-        # Write the result
-        with open(path_new_file, 'w') as ff:
+        # Write the result as UTF-8.
+        with open(path_new_file, 'w', encoding='utf8') as ff:
             ff.writelines(lines)
         n_built_files += 1
 
