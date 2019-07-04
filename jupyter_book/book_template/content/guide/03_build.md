@@ -80,7 +80,8 @@ Once Docker is available on your system, you can build the image locally with:
 docker pull emdupre/jupyter-book
 ```
 
-You can then access this image with:
+You can then access this image with the following command.
+Make sure to specify the full path to your Jupyter Book, rather than the relative path!
 
 ```bash
 docker run --rm --security-opt label:disable  \
@@ -110,7 +111,8 @@ You can then create a Jupyter Book Singularity image using:
 singularity build jupyter-book.simg docker://emdupre/jupyter-book
 ```
 
-Next, you can access this image with:
+Next, you can access this image with the following command.
+Make sure to specify the full path to your Jupyter Book, rather than the relative path!
 
 ```bash
 singularity run -B /full/path/to/your/book:/srv/jekyll \
