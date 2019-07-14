@@ -108,9 +108,8 @@ def _prepare_url(url):
     return url
 
 
-def _clean_notebook_cells(path_ntbk):
+def _clean_notebook_cells(ntbk):
     """Clean up cell text of an nbformat NotebookNode."""
-    ntbk = nbf.read(path_ntbk, nbf.NO_CONVERT)
     # Remove '#' from the end of markdown headers
     for cell in ntbk.cells:
         if cell.cell_type == "markdown":
@@ -119,4 +118,4 @@ def _clean_notebook_cells(path_ntbk):
                 if line.startswith('#'):
                     cell_lines[ii] = line.rstrip('#').rstrip()
             cell.source = '\n'.join(cell_lines)
-    nbf.write(ntbk, path_ntbk)
+    return ntbk

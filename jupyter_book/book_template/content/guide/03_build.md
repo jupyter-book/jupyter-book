@@ -156,7 +156,7 @@ open /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10
 Install *`conda`'s* clang compiler:
 
 ```bash
-gxx_linux-64
+conda install -c conda-forge gxx_linux-64
 ```
 
 #### Install Ruby plugins
