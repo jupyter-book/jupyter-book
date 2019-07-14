@@ -1,4 +1,3 @@
-from subprocess import check_call
 import os
 import os.path as op
 import sys
@@ -231,7 +230,6 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
 
         # Convert notebooks or just copy md if no notebook.
         if path_url_page.endswith('.ipynb'):
-            path_notebook = path_url_page
             notebook_name = op.splitext(op.basename(path_url_page))[0]
             ntbk = nbf.read(path_url_page, nbf.NO_CONVERT)
 
@@ -254,7 +252,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
             if execute is True:
                 # Excution of the notebook if we wish
                 ep = ExecutePreprocessor(timeout=600, kernel_name=kernel_name)
-                ep.preprocess(nb, {'metadata': {'path': op.dirname(path_url_folder)}})
+                ep.preprocess(ntbk, {'metadata': {'path': op.dirname(path_url_folder)}})
 
             # Define the path to images and then the relative path to where they'll originally be placed
             path_after_build_folder = path_build_new_folder.split(
@@ -270,7 +268,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
 
             # Now write the markdown and resources
             writer = FilesWriter(config=c)
-            path_out_ntbk = writer.write(markdown, resources, notebook_name=notebook_name)
+            writer.write(markdown, resources, notebook_name=notebook_name)
 
         elif path_url_page.endswith('.md'):
             # If a non-notebook file, just copy it over.

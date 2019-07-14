@@ -1,7 +1,6 @@
 """Utility functions for Jupyter Book."""
 
 import string
-import nbformat as nbf
 import argparse
 import os
 
