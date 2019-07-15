@@ -1,4 +1,3 @@
-from subprocess import check_call
 import os
 import os.path as op
 import sys
@@ -6,6 +5,10 @@ import shutil as sh
 import yaml
 import nbformat as nbf
 from nbclean import NotebookCleaner
+from nbconvert.preprocessors import ExecutePreprocessor
+from traitlets.config import Config
+from nbconvert.exporters import MarkdownExporter
+from nbconvert.writers import FilesWriter
 from tqdm import tqdm
 import numpy as np
 from glob import glob
@@ -127,7 +130,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
 
     # Load the yaml for this site
     with open(config_file, 'r') as ff:
-        site_yaml = yaml.load(ff.read())
+        site_yaml = yaml.safe_load(ff.read())
     CONTENT_FOLDER_NAME = site_yaml.get('content_folder_name').strip('/')
     PATH_CONTENT_FOLDER = op.join(path_book, CONTENT_FOLDER_NAME)
 
@@ -136,7 +139,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
         raise _error(
             "No toc.yml file found, please create one at `{}`".format(path_toc_yaml))
     with open(path_toc_yaml, 'r') as ff:
-        toc = yaml.load(ff.read())
+        toc = yaml.safe_load(ff.read())
 
     # Drop divider items and non-linked pages in the sidebar, un-nest sections
     toc = _prepare_toc(toc)
@@ -177,18 +180,18 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
                 path_url_page, SUPPORTED_FILE_SUFFIXES))
 
         # Create and check new folder / file paths
-        path_new_folder = path_url_folder.replace(
+        path_build_new_folder = path_url_folder.replace(
             os.sep + CONTENT_FOLDER_NAME, os.sep + BUILD_FOLDER_NAME) + os.sep
-        path_new_file = op.join(path_new_folder, op.basename(
+        path_build_new_file = op.join(path_build_new_folder, op.basename(
             path_url_page).replace('.ipynb', '.md'))
 
-        if overwrite is False and op.exists(path_new_file) \
-           and os.stat(path_new_file).st_mtime > os.stat(path_url_page).st_mtime:
+        if overwrite is False and op.exists(path_build_new_file) \
+           and os.stat(path_build_new_file).st_mtime > os.stat(path_url_page).st_mtime:
             n_skipped_files += 1
             continue
 
-        if not op.isdir(path_new_folder):
-            os.makedirs(path_new_folder)
+        if not op.isdir(path_build_new_folder):
+            os.makedirs(path_build_new_folder)
 
         ################################################
         # Generate previous/next page URLs
@@ -227,58 +230,60 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
 
         # Convert notebooks or just copy md if no notebook.
         if path_url_page.endswith('.ipynb'):
-            # Create a temporary version of the notebook we can modify
-            tmp_notebook = path_url_page + '_TMP'
-            sh.copy2(path_url_page, tmp_notebook)
+            notebook_name = op.splitext(op.basename(path_url_page))[0]
+            ntbk = nbf.read(path_url_page, nbf.NO_CONVERT)
 
             ########################################
             # Notebook cleaning
 
             # Clean up the file before converting
-            cleaner = NotebookCleaner(tmp_notebook)
+            cleaner = NotebookCleaner(ntbk)
             cleaner.remove_cells(empty=True)
             cleaner.clear('stderr')
-            cleaner.save(tmp_notebook)
-            _clean_notebook_cells(tmp_notebook)
+            ntbk = cleaner.ntbk
+            _clean_notebook_cells(ntbk)
 
             #############################################
             # Conversion to Jekyll Markdown
+            # create a configuration object that changes the preprocessors
+            c = Config()
+            c.FilesWriter.build_directory = path_build_new_folder
 
-            # Run nbconvert moving it to the output folder
-            # This is the output directory for `.md` files
-            build_call = '--FilesWriter.build_directory={}'.format(
-                path_new_folder)
-            # Copy notebook output images to the build directory using the base folder name
-            path_after_build_folder = path_new_folder.split(
-                os.sep + BUILD_FOLDER_NAME + os.sep)[-1]
-            nb_output_folder = op.join(
-                PATH_IMAGES_FOLDER, path_after_build_folder)
-            images_call = '--NbConvertApp.output_files_dir={}'.format(
-                nb_output_folder)
-            call = ['jupyter', 'nbconvert', '--log-level="CRITICAL"',
-                    '--to', 'markdown', '--template', path_template,
-                    images_call, build_call, tmp_notebook]
             if execute is True:
-                call.insert(-1, '--execute')
+                # Excution of the notebook if we wish
+                ep = ExecutePreprocessor(timeout=600, kernel_name=kernel_name)
+                ep.preprocess(ntbk, {'metadata': {'path': op.dirname(path_url_folder)}})
 
-            check_call(call)
-            os.remove(tmp_notebook)
+            # Define the path to images and then the relative path to where they'll originally be placed
+            path_after_build_folder = path_build_new_folder.split(
+                os.sep + BUILD_FOLDER_NAME + os.sep)[-1]
+            path_images_new_folder = op.join(
+                PATH_IMAGES_FOLDER, path_after_build_folder)
+            path_images_rel = op.relpath(path_images_new_folder, path_build_new_folder)
+
+            # Generate Markdown from our notebook using the template
+            output_resources = {'output_files_dir': path_images_rel, 'unique_key': notebook_name}
+            exp = MarkdownExporter(template_file=path_template, config=c)
+            markdown, resources = exp.from_notebook_node(ntbk, resources=output_resources)
+
+            # Now write the markdown and resources
+            writer = FilesWriter(config=c)
+            writer.write(markdown, resources, notebook_name=notebook_name)
 
         elif path_url_page.endswith('.md'):
             # If a non-notebook file, just copy it over.
             # If markdown we'll add frontmatter later
-            sh.copy2(path_url_page, path_new_file)
+            sh.copy2(path_url_page, path_build_new_file)
         else:
             raise _error(
                 "Files must end in ipynb or md. Found file {}".format(path_url_page))
 
         ###############################################################################
         # Modify the generated Markdown to work with Jekyll
-
         # Clean markdown for Jekyll quirks (e.g. extra escape characters)
-        with open(path_new_file, 'r', encoding='utf8') as ff:
+        with open(path_build_new_file, 'r', encoding='utf8') as ff:
             lines = ff.readlines()
-        lines = _clean_lines(lines, path_new_file,
+        lines = _clean_lines(lines, path_build_new_file,
                              path_book, PATH_IMAGES_FOLDER)
 
         # Split off original yaml
@@ -323,7 +328,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
         lines = yaml_fm + lines
 
         # Write the result as UTF-8.
-        with open(path_new_file, 'w', encoding='utf8') as ff:
+        with open(path_build_new_file, 'w', encoding='utf8') as ff:
             ff.writelines(lines)
         n_built_files += 1
 
