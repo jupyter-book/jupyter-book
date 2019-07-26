@@ -12,7 +12,7 @@ const thebelabCellButton = id =>
 
 const addThebelabButtonToCodeCells =  () => {
 
-  const codeCells = document.querySelectorAll('div.input_area > div.highlighter-rouge:not(.output) pre')
+  const codeCells = document.querySelectorAll('div.input_area > div.highlight:not(.output) pre')
   codeCells.forEach((codeCell, index) => {
     const id = codeCellId(index)
     codeCell.setAttribute('id', id)
