@@ -6,3 +6,4 @@ pyyaml
 nbformat
 nbclean
 setuptools
+jupyter_contrib_nbextensions
