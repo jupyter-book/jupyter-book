@@ -104,6 +104,10 @@ def _prepare_url(url):
 
     # Standardize the quotes character
     url = url.replace('"', "'")
+
+    # Make sure it ends in "HTML"
+    if not url.endswith('.html'):
+        url = op.splitext(url)[0] + '.html'
     return url
 
 

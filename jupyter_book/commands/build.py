@@ -23,7 +23,7 @@ def build():
     parser.add_argument("--overwrite", action='store_true',
                         help="Overwrite md files if they already exist.")
     parser.add_argument("--execute", action='store_true',
-                        help="Execute notebooks before converting to MD.")
+                        help="Execute notebooks before converting them.")
     parser.add_argument("--local-build", action='store_true',
                         help="Specify you are building site locally"
                              " for later upload.")

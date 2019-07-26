@@ -2,6 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/jupyter/jupyter-book.svg?style=svg)](https://circleci.com/gh/jupyter/jupyter-book)
 [![codecov](https://codecov.io/gh/jupyter/jupyter-book/branch/master/graph/badge.svg)](https://codecov.io/gh/jupyter/jupyter-book)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2799972.svg)](https://doi.org/10.5281/zenodo.2799972)
 
 This is a guide and template for hosting your own book using
 Jupyter Notebooks and Jekyll.

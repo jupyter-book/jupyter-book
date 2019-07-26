@@ -137,6 +137,11 @@ def test_upgrade(tmpdir):
         text = ff.read()
         assert "RANDOMTEXT" not in text
 
+    # Make sure the requirements file was copied over properly
+    with open(op.join(path_build_test, 'requirements.txt'), 'r') as ff:
+        text = ff.read()
+        assert "mytestrequirement" in text
+
 ########################################################################################################
 # Building the book after the book is created
 ########################################################################################################
