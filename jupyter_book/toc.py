@@ -1,13 +1,11 @@
-"""Execute all of the notebooks in a folder. This is helpful if you wish
-to ensure that all of your notebooks run, and that the output
-contained in the notebook files is up-to-date."""
+"""Generate a Table of Contents YAML file for a collection of files/folders."""
 from subprocess import run
 import argparse
 import os.path as op
 import sys
 from .utils import print_message_box
 
-DESCRIPTION = ("Execute all of the notebooks in a specified folder.")
+DESCRIPTION = ("Generate a Table of Contents YAML file for a collection of files/folders.")
 parser = argparse.ArgumentParser(description=DESCRIPTION)
 parser.add_argument("path_book", help="The path to a Jupyter Book.")
 parser.add_argument("--quiet", default=False, action="store_true",

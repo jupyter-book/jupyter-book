@@ -24,29 +24,26 @@ def create():
                              " Table of Contents for your Jupyter Book."
                              " This will overwrite parts of the book "
                              "template's default toc.yml configuration")
-    msg = ("A path to a configuration YAML file that contains "
-           "configuration for your Jupyter Book. This will overwrite"
-           " parts of the book template's default _config.yml configuration")
     parser.add_argument("--config", default=None,
-                        help=msg)
-    msg = ("A path to a CSS file that defines some custom CSS rules for"
-           " your book")
-    parser.add_argument("--custom-css", default=None, help=msg)
+                        help="A path to a configuration YAML file that contains "
+                             "configuration for your Jupyter Book. This will overwrite "
+                             "parts of the book template's default _config.yml configuration")
+    parser.add_argument("--custom-css", default=None,
+                        help="A path to a CSS file that defines some "
+                             "custom CSS rules for your book")
     parser.add_argument("--custom-js", default=None,
                         help="A path to a JS file that defines some "
-                             "custom CSS rules for your book")
+                             "custom Javascript for your book")
     parser.add_argument("--extra-files", default=None, nargs="+",
                         help="A list of extra files / folders to copy"
                              " into your book's directory")
     parser.add_argument("--overwrite", default=False, action="store_true",
-                        help="Whether to overwrite a pre-existing book"
-                             " if it exists")
-    msg = ("Whether to build the book with demo content instead of your"
-           " own content")
+                        help="Overwrite a pre-existing book if it exists")
     parser.add_argument("--demo", default=False, action="store_true",
-                        help=msg)
+                        help="Build the book with demo content instead of your "
+                             "own content")
     parser.add_argument("--verbose", default=True, action="store_true",
-                        help="Whether to display output information. [yes/no]")
+                        help="Display output information. [yes/no]")
     args = parser.parse_args(sys.argv[2:])
 
     ###############################################

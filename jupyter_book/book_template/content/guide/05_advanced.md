@@ -1,37 +1,6 @@
 This page contains more advanced and complete information about the
 [`jupyter-book` repository](https://github.com/jupyter/jupyter-book). See the sections below.
 
-## Hide cells or cell outputs in the built site
-
-Sometimes you want to use code to generate visualizations or prepare data,
-but you don't want users to see it in your built book. To prevent code cells
-from showing up in your built site, you can use the following two configuration
-options in your `_config.yml` file.
-
-**To remove entire code cells from your book**, use the following configuration:
-
-```yaml
-hide_cell_text : "YOUR TEXT"
-```
-
-Any code cell with the value of `hide_cell_text` (above it is `YOUR TEXT`)
-will not show up in your built book.
-
-**To remove only the code, but retain the outputs or a cell**, use the following
-configuration:
-
-```yaml
-hide_code_text: "YOUR TEXT"
-```
-
-Any code cell with the value of `hide_code_text` (above it is `YOUR TEXT`)
-will show the output (e.g. images, HTML, etc) but not the input code that
-generated this output.
-
-In both cases, the cells *will* remain in the notebooks themselves, they
-simply won't show up in the site's HTML, so links that point to a JupyterHub/
-Binder/etc will still work as expected.
-
 ## Enable Google Analytics
 
 If you have a Google Account, you can use Google Analytics to collect some 

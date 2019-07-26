@@ -258,6 +258,16 @@ def upgrade_book(path_book):
     try:
         print("Creating new book from your original one...")
 
+        # Double check for pre-existing environment files as special cases
+        extra_files_to_check = ['requirements.txt', 'environment.yml']
+        extra_files = []
+        for ifile in extra_files_to_check:
+            path_extra = op.join(path_book, ifile)
+            if op.exists(path_extra):
+                extra_files.append(path_extra)
+        if len(extra_files) == 0:
+            extra_files = None
+
         new_book(path_book_new, toc=op.join(path_book, '_data', 'toc.yml'),
                  content_folder=op.join(path_book, 'content'),
                  license=op.join(path_book, 'content', 'LICENSE.md'),
@@ -266,6 +276,7 @@ def upgrade_book(path_book):
                                     'custom', 'custom.css'),
                  custom_js=op.join(path_book, 'assets',
                                    'custom', 'custom.js'),
+                 extra_files=extra_files,
                  overwrite=True, verbose=False)
 
         # Now overwrite the original book files with the upgraded ones

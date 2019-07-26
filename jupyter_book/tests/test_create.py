@@ -42,7 +42,8 @@ def test_round_trip(tmpdir):
              config=path_config, toc=path_toc, content_folder=path_content,
              custom_js=path_js, custom_css=path_css,
              extra_files=[op.join(path_test_book, 'foo', 'baz.txt'),
-                          op.join(path_test_book, 'foo', 'you')],
+                          op.join(path_test_book, 'foo', 'you'),
+                          op.join(path_test_book, "requirements.txt")],
              license=path_license)
 
     # Table of contents
@@ -125,7 +126,6 @@ def test_config_update(tmpdir):
 
 def test_upgrade(tmpdir):
     path_build_test = op.join(tmpdir.dirpath(), 'tmp_test', 'test')
-
     # Change the contents of a file in test to see if it is updated
     with open(op.join(path_build_test, 'assets', 'css', 'styles.scss'), 'w') as ff:
         ff.write("RANDOMTEXT")
@@ -136,6 +136,11 @@ def test_upgrade(tmpdir):
     with open(op.join(path_build_test, 'assets', 'css', 'styles.scss'), 'r') as ff:
         text = ff.read()
         assert "RANDOMTEXT" not in text
+
+    # Make sure the requirements file was copied over properly
+    with open(op.join(path_build_test, 'requirements.txt'), 'r') as ff:
+        text = ff.read()
+        assert "mytestrequirement" in text
 
 ########################################################################################################
 # Building the book after the book is created
