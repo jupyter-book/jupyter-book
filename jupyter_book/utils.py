@@ -3,6 +3,7 @@
 import string
 import argparse
 import os
+import os.path as op
 
 ##############################################################################
 # CLI utilities

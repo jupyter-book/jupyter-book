@@ -28,7 +28,7 @@ def create():
                         help="A path to a configuration YAML file that contains "
                              "configuration for your Jupyter Book. This will overwrite "
                              "parts of the book template's default _config.yml configuration")
-    parser.add_argument("--custom-css", default=None, help=
+    parser.add_argument("--custom-css", default=None,
                         help="A path to a CSS file that defines some "
                              "custom CSS rules for your book")
     parser.add_argument("--custom-js", default=None,

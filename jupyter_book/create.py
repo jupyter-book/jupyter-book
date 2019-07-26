@@ -261,7 +261,7 @@ def upgrade_book(path_book):
         # Double check for pre-existing environment files as special cases
         extra_files_to_check = ['requirements.txt', 'environment.yml']
         extra_files = []
-        for ifile in extra_files:
+        for ifile in extra_files_to_check:
             path_extra = op.join(path_book, ifile)
             if op.exists(path_extra):
                 extra_files.append(path_extra)
