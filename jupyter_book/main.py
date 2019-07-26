@@ -1,7 +1,7 @@
 import sys
 import argparse
 
-from .commands import build, create, upgrade
+from .commands import build, create, upgrade, version
 from .run import run_book
 from .toc import build_toc
 
@@ -12,7 +12,8 @@ commands = {'create': create,
             'build': build,
             'upgrade': upgrade,
             'run': run_book,
-            'toc': build_toc}
+            'toc': build_toc,
+            'version': version}
 parser = argparse.ArgumentParser(description=DESCRIPTION)
 parser.add_argument("command", help="The command you'd like to run. Allowed commands: {}".format(
     list(commands.keys())))
