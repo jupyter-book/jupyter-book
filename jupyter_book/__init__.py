@@ -1,2 +1,2 @@
 """Build an online book using Jupyter Notebooks and Jekyll."""
-__version__ = "0.5.2"
+__version__ = "0.5.3dev0"
