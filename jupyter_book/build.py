@@ -10,7 +10,6 @@ from traitlets.config import Config
 from nbconvert.exporters import HTMLExporter
 from nbconvert.writers import FilesWriter
 from tqdm import tqdm
-import numpy as np
 from glob import glob
 from uuid import uuid4
 
@@ -29,7 +28,7 @@ SUPPORTED_FILE_SUFFIXES = ['.ipynb', '.md']
 
 def _clean_lines(lines, filepath, PATH_BOOK, path_images_folder):
     """Replace images with jekyll image root and add escape chars as needed."""
-    inline_replace_chars = ['#']
+
     # Images: replace absolute nbconvert image paths to baseurl paths
     path_rel_root = op.relpath(PATH_BOOK, op.dirname(filepath))
     path_rel_root_one_up = path_rel_root.replace('../', '', 1)
@@ -244,7 +243,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
             c.HTMLExporter.anchor_link_text = " "
             # Excluding input/output prompts
             c.HTMLExporter.exclude_input_prompt = True
-            c.HTMLExporter.exclude_output_prompt = True 
+            c.HTMLExporter.exclude_output_prompt = True
 
             if execute is True:
                 # Excution of the notebook if we wish
@@ -259,7 +258,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
             path_images_rel = op.relpath(path_images_new_folder, path_build_new_folder)
 
             # Generate HTML from our notebook using the template
-            
+
             output_resources = {'output_files_dir': path_images_rel, 'unique_key': notebook_name}
             exp = HTMLExporter(template_file=path_template, config=c)
             markdown, resources = exp.from_notebook_node(ntbk, resources=output_resources)
