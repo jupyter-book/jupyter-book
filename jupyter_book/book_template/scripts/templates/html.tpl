@@ -16,7 +16,7 @@
 {% block input_group %}
 {%- if 'remove_input' not in cell.metadata.tags %}
 {%- if cell.source != '' %}
-<div class="input{% if 'hide_input' in cell.metadata.tags or 'hidecode' in cell.metadata.tags %} hidecode{% endif %}" >
+<div class="jb_input{% if 'hide_input' in cell.metadata.tags or 'hidecode' in cell.metadata.tags %} hidecode{% endif %}" >
 {{ super() }}
 </div>
 {% endif %}
@@ -25,7 +25,7 @@
 
 
 {% block output %}
-<div class="output_wrapper{% if 'interactive' in cell.metadata.tags %} output_widget_view{% endif %}">
+<div class="jb_output_wrapper{% if 'interactive' in cell.metadata.tags %} output_widget_view{% endif %}">
 {{- super() -}}
 </div>
 {%- endblock output %}
