@@ -127,7 +127,20 @@ you should see a preview copy of your book.
 
 You can also choose to build your site locally without a container.
 In this case, you'll need Ruby, an open-source programming language, to build your site's
-HTML with Jekyll. The easiest way to install Ruby on *nix systems is to use
+HTML with Jekyll.
+
+> **NOTE:** If these instructions don't work, you can also try installing Jekyll at the
+> following URLs.
+>
+> * [MacOS Instructions](https://jekyllrb.com/docs/installation/macos/)
+> * [Ubuntu Instructions](https://jekyllrb.com/docs/installation/ubuntu/)
+> * [Linux (non-Ubuntu) Instructions](https://jekyllrb.com/docs/installation/other-linux)
+> * [Windows Instructions](https://jekyllrb.com/docs/installation/windows/)
+>
+> Once you've finished those steps, head to [install ruby plugins](#install-ruby-plugins)
+> and follow the directions.
+
+The easiest way to install Ruby on *nix systems is to use
 the *`conda`* package manager:
 
 ```bash
