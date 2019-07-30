@@ -3,11 +3,12 @@ import os.path as op
 
 import argparse
 
-from jupyter_book.build import build_book
+from jupyter_book.build import build_book, build_page
 
-DESCRIPTION = ("Convert a collection of Jupyter Notebooks into Jekyll "
-               "markdown suitable for a course textbook.")
+DESCRIPTION = ("Convert a collection of Jupyter Notebooks into HTML "
+               "suitable for a course textbook.")
 
+DESCRIPTION_PAGE = ("Convert a single Jupyter Notebook into HTML.")
 
 def build():
     parser = argparse.ArgumentParser(description=DESCRIPTION)
@@ -50,3 +51,32 @@ def build():
 
     build_book(PATH_BOOK, PATH_TOC_YAML, CONFIG_FILE,
                PATH_TEMPLATE, local_build, execute, overwrite)
+
+def page():
+    parser = argparse.ArgumentParser(description=DESCRIPTION_PAGE)
+    parser.add_argument(
+        "path_ntbk", help="Path to the notebook you'll convert.")
+    parser.add_argument(
+        "path_html_output", help="Path to the folder where HTML will be placed.")
+    parser.add_argument("template", help="Path to a template to render the HTML")
+    parser.add_argument("--path_media_output", default=None,
+                        help="The path to where images should be extracted")
+    parser.add_argument("--execute", action='store_true', help="Execute the notebook before converting")
+    parser.set_defaults(execute=False)
+
+    ###############################################
+    # Default values and arguments
+
+    args = parser.parse_args(sys.argv[2:])
+    execute = bool(args.execute)
+
+    # Paths for our notebooks
+    PATH_PAGE = op.abspath(args.path_ntbk)
+    PATH_HTML_OUTPUT = op.abspath(args.path_html_output)
+    PATH_MEDIA_OUTPUT = args.path_media_output if args.path_media_output is not None else PATH_HTML_OUTPUT
+    
+    # Choose the template we'll use
+    path_template = op.abspath(args.template)
+
+    build_page(PATH_PAGE, PATH_HTML_OUTPUT, PATH_MEDIA_OUTPUT,
+               execute, path_template)
