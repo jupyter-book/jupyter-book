@@ -219,53 +219,15 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
 
         # Convert notebooks or just copy md if no notebook.
         if path_url_page.endswith('.ipynb'):
-            notebook_name = op.splitext(op.basename(path_url_page))[0]
-            ntbk = nbf.read(path_url_page, nbf.NO_CONVERT)
-
-            ########################################
-            # Notebook cleaning
-
-            # Clean up the file before converting
-            cleaner = NotebookCleaner(ntbk)
-            cleaner.remove_cells(empty=True)
-            cleaner.clear('stderr')
-            ntbk = cleaner.ntbk
-            _clean_notebook_cells(ntbk)
-
-            #############################################
-            # Conversion to HTML
-            # create a configuration object that changes the preprocessors
-            c = Config()
-            c.FilesWriter.build_directory = path_build_new_folder
-            # So the images are written to disk
-            c.HTMLExporter.preprocessors = ['nbconvert.preprocessors.ExtractOutputPreprocessor']
-            # The text used as the text for anchor links. Set to empty since we'll use anchor.js for the links
-            c.HTMLExporter.anchor_link_text = " "
-            # Excluding input/output prompts
-            c.HTMLExporter.exclude_input_prompt = True
-            c.HTMLExporter.exclude_output_prompt = True
-
-            if execute is True:
-                # Excution of the notebook if we wish
-                ep = ExecutePreprocessor(timeout=600, kernel_name=kernel_name)
-                ep.preprocess(ntbk, {'metadata': {'path': op.dirname(path_url_folder)}})
-
-            # Define the path to images and then the relative path to where they'll originally be placed
+            # Decide the path where the images will be placed, relative to the HTML location
             path_after_build_folder = path_build_new_folder.split(
                 os.sep + BUILD_FOLDER_NAME + os.sep)[-1]
             path_images_new_folder = op.join(
                 PATH_IMAGES_FOLDER, path_after_build_folder)
-            path_images_rel = op.relpath(path_images_new_folder, path_build_new_folder)
 
-            # Generate HTML from our notebook using the template
-
-            output_resources = {'output_files_dir': path_images_rel, 'unique_key': notebook_name}
-            exp = HTMLExporter(template_file=path_template, config=c)
-            markdown, resources = exp.from_notebook_node(ntbk, resources=output_resources)
-
-            # Now write the markdown and resources
-            writer = FilesWriter(config=c)
-            writer.write(markdown, resources, notebook_name=notebook_name)
+            # Build the HTML for this book
+            build_page(path_url_page, path_build_new_folder, path_images_new_folder,
+                       path_template=path_template, kernel_name=kernel_name)
 
         elif path_url_page.endswith('.md'):
             # If a non-notebook file, just copy it over.
@@ -345,3 +307,78 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
     msg += ["Your Jupyter Book is now in `{}/`.".format(BUILD_FOLDER_NAME)]
     msg += ["Demo your Jupyter book with `make serve` or push to GitHub!"]
     print_message_box('\n'.join(msg))
+
+
+def build_page(path_ntbk, path_html_output, path_media_output=None, execute=False,
+               path_template=None, verbose=False, kernel_name=None):
+    """Build the HTML for a single notebook page.
+
+    Inputs
+    ======
+
+    path_ntbk : string
+        The path to a notebook we want to convert.
+    path_html_output : string
+        The path to the folder where the HTML will be output.
+    path_media_output : string | None
+        If a string, the path to where images should be extracted. If None,
+        images will be embedded in the HTML.
+    execute : bool
+        Whether to execute the notebook before converting
+    path_template : string
+        A path to the template used in conversion.
+    kernel_name : string
+        The name of the kernel to use if we execute notebooks.
+    """
+    ntbk = nbf.read(path_ntbk, nbf.NO_CONVERT)
+    notebook_name = op.splitext(op.basename(path_ntbk))[0]
+
+    ########################################
+    # Notebook cleaning
+
+    # Clean up the file before converting
+    cleaner = NotebookCleaner(ntbk)
+    cleaner.remove_cells(empty=True)
+    cleaner.clear('stderr')
+    ntbk = cleaner.ntbk
+    _clean_notebook_cells(ntbk)
+
+    #############################################
+    # Conversion to HTML
+    # create a configuration object that changes the preprocessors
+    c = Config()
+
+    c.FilesWriter.build_directory = path_html_output
+    # So the images are written to disk
+    c.HTMLExporter.preprocessors = ['nbconvert.preprocessors.ExtractOutputPreprocessor']
+
+    # The text used as the text for anchor links. Set to empty since we'll use anchor.js for the links
+    c.HTMLExporter.anchor_link_text = " "
+
+    # Excluding input/output prompts
+    c.HTMLExporter.exclude_input_prompt = True
+    c.HTMLExporter.exclude_output_prompt = True
+
+    if execute is True:
+        if kernel_name is None:
+            kernel_name = ntbk['metadata']['kernelspec']['name']
+
+        # Excution of the notebook if we wish
+        ep = ExecutePreprocessor(timeout=600, kernel_name=kernel_name)
+        ep.preprocess(ntbk, {'metadata': {'path': op.dirname(path_ntbk)}})
+
+    # Define the path to images and then the relative path to where they'll originally be placed
+    if isinstance(path_media_output, str):
+        path_media_output_rel = op.relpath(path_media_output, path_html_output)
+
+    # Generate HTML from our notebook using the template
+
+    output_resources = {'output_files_dir': path_media_output_rel, 'unique_key': notebook_name}
+    exp = HTMLExporter(template_file=path_template, config=c)
+    html, resources = exp.from_notebook_node(ntbk, resources=output_resources)
+
+    # Now write the markdown and resources
+    writer = FilesWriter(config=c)
+    writer.write(html, resources, notebook_name=notebook_name)
+    if verbose:
+        print("Finished writing notebook to {}".format(path_html_output))

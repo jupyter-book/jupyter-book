@@ -1,7 +1,7 @@
 import sys
 import argparse
 
-from .commands import build, create, upgrade, version
+from .commands import build, create, upgrade, version, page
 from .run import run_book
 from .toc import build_toc
 
@@ -10,6 +10,7 @@ DESCRIPTION = (
     " Jekyll. Type `jupyter-book <command> -h` for help.")
 commands = {'create': create,
             'build': build,
+            'page': page,
             'upgrade': upgrade,
             'run': run_book,
             'toc': build_toc,
