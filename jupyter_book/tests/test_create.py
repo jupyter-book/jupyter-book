@@ -204,7 +204,7 @@ def test_notebook(tmpdir):
     # Notebook-converted images work
     assert is_in(lines, "../images/tests/notebooks_2_0.png")
 
-    # Jekyll markdown classes are there
+    # Input area classes are there
     assert is_in(lines, 'class="input_area')
 
     # Cell hiding etc works
