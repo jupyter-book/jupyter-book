@@ -223,10 +223,11 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
             path_after_build_folder = path_build_new_folder.split(
                 os.sep + BUILD_FOLDER_NAME + os.sep)[-1]
             path_images_new_folder = op.join(
-            PATH_IMAGES_FOLDER, path_after_build_folder)
+                PATH_IMAGES_FOLDER, path_after_build_folder)
 
             # Build the HTML for this book
-            build_page(path_url_page, path_build_new_folder, path_images_new_folder, path_template=path_template)
+            build_page(path_url_page, path_build_new_folder, path_images_new_folder,
+                       path_template=path_template, kernel_name=kernel_name)
 
         elif path_url_page.endswith('.md'):
             # If a non-notebook file, just copy it over.
@@ -308,12 +309,13 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
     print_message_box('\n'.join(msg))
 
 
-def build_page(path_ntbk, path_html_output, path_media_output=None, execute=False, path_template=None, verbose=False):
+def build_page(path_ntbk, path_html_output, path_media_output=None, execute=False,
+               path_template=None, verbose=False, kernel_name=None):
     """Build the HTML for a single notebook page.
-    
+
     Inputs
     ======
-    
+
     path_ntbk : string
         The path to a notebook we want to convert.
     path_html_output : string
@@ -325,6 +327,8 @@ def build_page(path_ntbk, path_html_output, path_media_output=None, execute=Fals
         Whether to execute the notebook before converting
     path_template : string
         A path to the template used in conversion.
+    kernel_name : string
+        The name of the kernel to use if we execute notebooks.
     """
     ntbk = nbf.read(path_ntbk, nbf.NO_CONVERT)
     notebook_name = op.splitext(op.basename(path_ntbk))[0]
@@ -356,9 +360,12 @@ def build_page(path_ntbk, path_html_output, path_media_output=None, execute=Fals
     c.HTMLExporter.exclude_output_prompt = True
 
     if execute is True:
+        if kernel_name is None:
+            kernel_name = ntbk['metadata']['kernelspec']['name']
+
         # Excution of the notebook if we wish
         ep = ExecutePreprocessor(timeout=600, kernel_name=kernel_name)
-        ep.preprocess(ntbk, {'metadata': {'path': op.dirname(path_url_folder)}})
+        ep.preprocess(ntbk, {'metadata': {'path': op.dirname(path_ntbk)}})
 
     # Define the path to images and then the relative path to where they'll originally be placed
     if isinstance(path_media_output, str):

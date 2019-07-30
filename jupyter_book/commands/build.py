@@ -10,6 +10,7 @@ DESCRIPTION = ("Convert a collection of Jupyter Notebooks into HTML "
 
 DESCRIPTION_PAGE = ("Convert a single Jupyter Notebook into HTML.")
 
+
 def build():
     parser = argparse.ArgumentParser(description=DESCRIPTION)
     parser.add_argument(
@@ -52,6 +53,7 @@ def build():
     build_book(PATH_BOOK, PATH_TOC_YAML, CONFIG_FILE,
                PATH_TEMPLATE, local_build, execute, overwrite)
 
+
 def page():
     parser = argparse.ArgumentParser(description=DESCRIPTION_PAGE)
     parser.add_argument(
@@ -74,7 +76,7 @@ def page():
     PATH_PAGE = op.abspath(args.path_ntbk)
     PATH_HTML_OUTPUT = op.abspath(args.path_html_output)
     PATH_MEDIA_OUTPUT = args.path_media_output if args.path_media_output is not None else PATH_HTML_OUTPUT
-    
+
     # Choose the template we'll use
     path_template = op.abspath(args.template)
 
