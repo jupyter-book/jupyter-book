@@ -198,11 +198,8 @@ def test_build(tmpdir):
 
 def test_notebook(tmpdir):
     path_build_test = op.join(tmpdir.dirpath(), 'tmp_test', 'test')
-    with open(op.join(path_build_test, '_build', 'tests', 'notebooks.md'), 'r') as ff:
+    with open(op.join(path_build_test, '_build', 'tests', 'notebooks.html'), 'r') as ff:
         lines = ff.readlines()
-
-    # Escaping characters get doubled
-    assert is_in(lines, "\\\\$Escape \\\\$your \\\\$dollar signs!")
 
     # Notebook-converted images work
     assert is_in(lines, "../images/tests/notebooks_2_0.png")
@@ -229,16 +226,16 @@ def test_notebook(tmpdir):
     ###########################################
     # Testing interactive features
 
-    with open(op.join(path_build_test, '_build', 'tests', 'interactive.md'), 'r') as ff:
+    with open(op.join(path_build_test, '_build', 'tests', 'interactive.html'), 'r') as ff:
         lines = ff.readlines()
 
     assert is_in(lines, "has_widgets: true")
 
     ###########################################
     # Testing notebook image paths etc
-    with open(op.join(path_build_test, '_build', 'simple_notebook.md'), 'r') as ff:
+    with open(op.join(path_build_test, '_build', 'simple_notebook.html'), 'r') as ff:
         lines = ff.readlines()
-    assert is_in(lines, "![png](images/simple_notebook_2_0.png)")
+    assert is_in(lines, '<img src="images/simple_notebook_2_0.png"')
 
 
 def test_split_yaml(tmpdir):

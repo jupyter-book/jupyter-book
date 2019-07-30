@@ -45,19 +45,18 @@
         }
 
         // Find the input cells and add a hide button
-        document.querySelectorAll('div.input_area').forEach(function (item, index) {
-            if (!item.classList.contains("hidecode")) {
+        pageElements['inputCells'].forEach(function (inputCell) {
+            if (!inputCell.classList.contains("hidecode")) {
                 // Skip the cell if it doesn't have a hidecode class
                 return;
             }
+            const id = inputCell.getAttribute('id')
 
-            const id = codeCellId(index)
-            item.setAttribute('id', id);
             // Insert the button just inside the end of the next div
-            item.querySelector('div').insertAdjacentHTML('beforeend', hideCodeButton(id))
+            inputCell.querySelector('div.input').insertAdjacentHTML('beforeend', hideCodeButton(id))
 
             // Set up the visibility toggle
-            hideLink = document.querySelector(`#${id} div.highlight + input + label`);
+            hideLink = document.querySelector(`#${id} div.inner_cell + input + label`);
             hideLink.addEventListener('click', toggleCodeCellVisibility)
         });
     }

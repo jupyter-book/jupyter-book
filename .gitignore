@@ -103,6 +103,7 @@ venv.bak/
 # Jekyll
 _site/
 .sass-cache
+Gemfile.lock
 
 # Test builds
 scripts/tests/site/_build
@@ -110,3 +111,4 @@ scripts/tests/site/content/LICENSE.md
 
 # Template build
 jupyter_book/book_template/_build
+

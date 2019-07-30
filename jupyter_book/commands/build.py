@@ -44,7 +44,7 @@ def build():
     CONFIG_FILE = args.config if args.config is not None else op.join(
         PATH_BOOK, '_config.yml')
     PATH_TEMPLATE = args.template if args.template is not None else op.join(
-        PATH_BOOK, 'scripts', 'templates', 'jekyllmd.tpl')
+        PATH_BOOK, 'scripts', 'templates', 'html.tpl')
 
     local_build = args.local_build
 

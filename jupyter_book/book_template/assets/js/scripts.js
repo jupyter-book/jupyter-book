@@ -148,3 +148,4 @@ highlightRightSidebar = function() {
 };
 
 initFunction(highlightRightSidebar);
+

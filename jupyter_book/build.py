@@ -7,10 +7,9 @@ import nbformat as nbf
 from nbclean import NotebookCleaner
 from nbconvert.preprocessors import ExecutePreprocessor
 from traitlets.config import Config
-from nbconvert.exporters import MarkdownExporter
+from nbconvert.exporters import HTMLExporter
 from nbconvert.writers import FilesWriter
 from tqdm import tqdm
-import numpy as np
 from glob import glob
 from uuid import uuid4
 
@@ -29,28 +28,18 @@ SUPPORTED_FILE_SUFFIXES = ['.ipynb', '.md']
 
 def _clean_lines(lines, filepath, PATH_BOOK, path_images_folder):
     """Replace images with jekyll image root and add escape chars as needed."""
-    inline_replace_chars = ['#']
+
     # Images: replace absolute nbconvert image paths to baseurl paths
     path_rel_root = op.relpath(PATH_BOOK, op.dirname(filepath))
     path_rel_root_one_up = path_rel_root.replace('../', '', 1)
     for ii, line in enumerate(lines):
         # Handle relative paths because we remove `content/` from the URL
         # If there's a path that goes back to the root, remove a level`
-        # This is for images referenced directly in the markdown
+        # This is for images referenced directly in the html
         if path_rel_root in line:
             line = line.replace(path_rel_root, path_rel_root_one_up)
         # For programmatically-generated images from notebooks, replace the abspath with relpath
-        line = line.replace(path_images_folder, op.relpath(
-            path_images_folder, op.dirname(filepath)))
-
-        # Adding escape slashes since Jekyll removes them when it serves the page
-        # Make sure we have at least two dollar signs and they
-        # Aren't right next to each other
-        dollars = np.where(['$' == char for char in line])[0]
-        if len(dollars) > 2 and all(ii > 1 for ii in (dollars[1:] - dollars[:1])):
-            for char in inline_replace_chars:
-                line = line.replace('\\{}'.format(char), '\\\\{}'.format(char))
-        line = line.replace(' \\$', ' \\\\$')
+        line = line.replace(path_images_folder, op.join(path_rel_root_one_up, 'images'))
         lines[ii] = line
     return lines
 
@@ -98,10 +87,10 @@ def _case_sensitive_fs(path):
     return len(written) == 2
 
 
-def build_book(path_book, path_toc_yaml=None, config_file=None,
+def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
                path_template=None, local_build=False, execute=False,
                overwrite=False):
-    """Build the markdown for a book using its TOC and a content folder.
+    """Build the HTML for a book using its TOC and a content folder.
 
     Parameters
     ----------
@@ -109,17 +98,17 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
         Path to the root of the book repository
     path_toc_yaml : str | None
         Path to the Table of Contents YAML file
-    config_file : str | None
+    path_ssg_config : str | None
         Path to the Jekyll configuration file
     path_template : str | None
-        Path to the template nbconvert uses to build markdown
+        Path to the template nbconvert uses to build HTML
         files
     local_build : bool
         Specify you are building site locally for later upload
     execute : bool
-        Whether to execute notebooks before converting to markdown
+        Whether to execute notebooks before converting to HTML
     overwrite : bool
-        Whether to overwrite existing markdown files
+        Whether to overwrite existing HTML files
     """
 
     PATH_IMAGES_FOLDER = op.join(path_book, '_build', 'images')
@@ -129,7 +118,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
     # Read in textbook configuration
 
     # Load the yaml for this site
-    with open(config_file, 'r') as ff:
+    with open(path_ssg_config, 'r') as ff:
         site_yaml = yaml.safe_load(ff.read())
     CONTENT_FOLDER_NAME = site_yaml.get('content_folder_name').strip('/')
     PATH_CONTENT_FOLDER = op.join(path_book, CONTENT_FOLDER_NAME)
@@ -183,7 +172,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
         path_build_new_folder = path_url_folder.replace(
             os.sep + CONTENT_FOLDER_NAME, os.sep + BUILD_FOLDER_NAME) + os.sep
         path_build_new_file = op.join(path_build_new_folder, op.basename(
-            path_url_page).replace('.ipynb', '.md'))
+            path_url_page).replace('.ipynb', '.html'))
 
         if overwrite is False and op.exists(path_build_new_file) \
            and os.stat(path_build_new_file).st_mtime > os.stat(path_url_page).st_mtime:
@@ -244,10 +233,17 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
             _clean_notebook_cells(ntbk)
 
             #############################################
-            # Conversion to Jekyll Markdown
+            # Conversion to HTML
             # create a configuration object that changes the preprocessors
             c = Config()
             c.FilesWriter.build_directory = path_build_new_folder
+            # So the images are written to disk
+            c.HTMLExporter.preprocessors = ['nbconvert.preprocessors.ExtractOutputPreprocessor']
+            # The text used as the text for anchor links. Set to empty since we'll use anchor.js for the links
+            c.HTMLExporter.anchor_link_text = " "
+            # Excluding input/output prompts
+            c.HTMLExporter.exclude_input_prompt = True
+            c.HTMLExporter.exclude_output_prompt = True
 
             if execute is True:
                 # Excution of the notebook if we wish
@@ -261,9 +257,10 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
                 PATH_IMAGES_FOLDER, path_after_build_folder)
             path_images_rel = op.relpath(path_images_new_folder, path_build_new_folder)
 
-            # Generate Markdown from our notebook using the template
+            # Generate HTML from our notebook using the template
+
             output_resources = {'output_files_dir': path_images_rel, 'unique_key': notebook_name}
-            exp = MarkdownExporter(template_file=path_template, config=c)
+            exp = HTMLExporter(template_file=path_template, config=c)
             markdown, resources = exp.from_notebook_node(ntbk, resources=output_resources)
 
             # Now write the markdown and resources
@@ -279,8 +276,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
                 "Files must end in ipynb or md. Found file {}".format(path_url_page))
 
         ###############################################################################
-        # Modify the generated Markdown to work with Jekyll
-        # Clean markdown for Jekyll quirks (e.g. extra escape characters)
+        # Modify the generated HTML to work with the SSG
         with open(path_build_new_file, 'r', encoding='utf8') as ff:
             lines = ff.readlines()
         lines = _clean_lines(lines, path_build_new_file,
@@ -344,7 +340,7 @@ def build_book(path_book, path_toc_yaml=None, config_file=None,
     msg = ["Generated {} new files\nSkipped {} already-built files".format(
         n_built_files, n_skipped_files)]
     if n_built_files == 0:
-        msg += ["Delete the markdown files in '{}' for any pages that you wish to re-build, or use --overwrite option to re-build all.".format(
+        msg += ["Delete the markdown/HTML files in '{}' for any pages that you wish to re-build, or use --overwrite option to re-build all.".format(
             BUILD_FOLDER_NAME)]
     msg += ["Your Jupyter Book is now in `{}/`.".format(BUILD_FOLDER_NAME)]
     msg += ["Demo your Jupyter book with `make serve` or push to GitHub!"]

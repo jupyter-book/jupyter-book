@@ -2,8 +2,6 @@
 /**
  * Set up copy/paste for code blocks
  */
-const codeCellId = index => `codecell${index}`
-
 const clipboardButton = id =>
   `<a id="copy-button-${id}" class="btn copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#${id}">
     <img src="{{ site.images_url | relative_url }}/copy-button.svg" alt="Copy to clipboard">
@@ -33,10 +31,8 @@ const addCopyButtonToCodeCells = () => {
     return
   }
 
-  const codeCells = document.querySelectorAll('div.c-textbook__content > div.highlighter-rouge > div.highlight > pre, div.input_area pre')
-  codeCells.forEach((codeCell, index) => {
-    const id = codeCellId(index)
-    codeCell.setAttribute('id', id)
+  pageElements['codeCells'].forEach((codeCell) => {
+    const id = codeCell.getAttribute('id')
     if (document.getElementById("copy-button" + id) == null) {
       codeCell.insertAdjacentHTML('afterend', clipboardButton(id));
     }
