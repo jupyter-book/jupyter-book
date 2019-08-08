@@ -1,6 +1,4 @@
-import argparse
 from jupyter_book import __version__
-import sys
 
 
 def version():
