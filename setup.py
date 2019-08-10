@@ -34,8 +34,10 @@ setup(
     },
     # this should be a whitespace separated string of keywords, not a list
     keywords="reproducible science environments scholarship notebook",
-    description="Jupyter Books: Create an online book with Jupyter Notebooks"
+    description="Jupyter Book: Create an online book with Jupyter Notebooks"
                 " and Jekyll",
+    long_description=open('./README.md', 'r').read(),
+    long_description_content_type='text/markdown',
     license='BSD',
     packages=find_packages(),
     use_package_data=True,
