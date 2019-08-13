@@ -5,13 +5,13 @@ jobs:
     docker:
       - image: circleci/ruby:2.6
     steps:
-      # Attach the built markdown files
+      # Attach the built intermediate files
       - checkout
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
           at: /tmp/workspace
 
-      # Copy over the built markdown files
+      # Copy over the built intermediate files
       - copy_built_files
 
       # Build the site's HTML w/ the base_url for CircleCI artifacts
@@ -42,7 +42,7 @@ jobs:
           fingerprints:
             - "19:34:f0:15:b8:3a:e4:44:27:a8:e9:8b:b5:e4:48:a9"
 
-      # Copy over the built markdown files
+      # Copy over the built intermediate files
       - copy_built_files
 
       # Build the site so we have local files
@@ -109,7 +109,7 @@ jobs:
 
       # If tests pass, build the site itself
       - run:
-          name: Build site markdown
+          name: Build site intermediate files
           command: jupyter-book build jupyter_book/book_template/
 
       # Persist the specified paths (see https://circleci.com/docs/2.0/workflows/#using-workspaces-to-share-data-among-jobs)
@@ -151,7 +151,7 @@ commands:
   copy_built_files:
     description: "Copy the build site files so we can build the HTML"
     steps:
-      # Grab the the built markdown from the last step
+      # Grab the the built intermediate files from the last step
       - run:
           name: Copy over built site files
           command: |

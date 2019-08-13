@@ -50,10 +50,10 @@ automatically inserts into your course material.
 
 ## Build the book's site HTML locally
 
-Once you've generated the markdown for your notebooks and installed the
+Once you've generated the intermediate files for your notebooks and installed the
 necessary dependencies. You are ready to build your site HTML.
 
-Ensure that your notebooks have been converted to markdown, there should be a
+Ensure that your notebooks have been converted to intermediate files, there should be a
 collection of them in `_build/`.
 
 In order to locally build your site's HTML with Jekyll, you'll take one of two approaches:
@@ -207,7 +207,7 @@ This should open up a port on your computer with a live version of the book.
 
 ### When should you build the HTML locally?
 
-You might ask: if GitHub pages can build my site automatically from the markdown files, why
+You might ask: if GitHub pages can build my site automatically from the intermediate files, why
 build it locally? The main reason for this is that you get more flexibility by building locally
 and serving raw HTML, as opposed to auto-building the site with GitHub-pages.
 

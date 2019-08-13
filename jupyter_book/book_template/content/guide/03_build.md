@@ -5,7 +5,7 @@ build the raw material that Jekyll will use to turn your book into a website.
 We'll also cover how to turn this book into the HTML for a website that can
 be served online.
 
-## Build the book's markdown
+## Build the book's intermediate files
 
 Now that you've got the files installed content is in the book, you can build
 your book.
@@ -20,7 +20,7 @@ This will:
 
 * Use the links specified in the `_data/toc.yml` file (pointing to files in `/content/`) and
   do the following:
-  * Run `nbconvert` to turn the `.ipynb` files into markdown
+  * Run `nbconvert` to turn the `.ipynb` files into HTML
   * Replace relative image file paths so that they work on your new built site
   * Clean up formatting issues for things like MathJax to display properly
   * Place all these generated files in the `mybookname/_build/` directory.
@@ -52,11 +52,13 @@ From here, you have **two options**
 
 You've created your book on your own computer, but you haven't yet added it
 online. This section covers the steps to create your own GitHub repository,
-and to add your book's content to it.
+and to add your book's content to it. In this case, we'll use GitHub-Pages
+to build the HTML for your book. If you wish to do this manually, see the
+advanced topic [guide to building your book's HTML locally](05_advanced.html)
 
 1. First, log-in to GitHub, then go to the "create a new repository" page:
 
-https://github.com/new
+   https://github.com/new
 
 2. Next, add a name and description for your book. You can choose whatever
    initialization you'd like.
@@ -90,12 +92,12 @@ That's it!
 
 ## Publish your book online with GitHub Pages
 
-Once you've built the markdown for your book (in `_build`) or built the HTML
+Once you've built the intermediate files for your book (in `_build`) or built the HTML
 for your book (in `_site`), you can push your book contents to GitHub so that
 others can access your book. To do so, follow these steps:
 
 0. Confirm that your site files are built. You should see a
-   collection of markdown files/folders in the `_build` folder,
+   collection of HTML files/markdown files/folders in the `_build` folder,
    or a collection of HTML in your `_site/` folder.
 1. Commit and push the changes to your repository.
 2. Enable GitHub site building for your repository.
