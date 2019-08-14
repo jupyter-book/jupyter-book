@@ -21,8 +21,6 @@ This cheatsheet is specifically *Markdown Here's* version of Github-flavored Mar
 
 You can play around with Markdown on our [live demo page](http://www.markdown-here.com/livedemo.html).
 
-(If you're not a Markdown Here user, check out the [Markdown Cheatsheet](./Markdown-Cheatsheet) that is not specific to MDH. But, really, you should also use Markdown Here, because it's awesome. http://markdown-here.com)
-
 ##### Table of Contents
 [Headers](#headers)
 [Emphasis](#emphasis)
