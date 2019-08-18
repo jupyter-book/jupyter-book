@@ -269,7 +269,7 @@ def upgrade_book(path_book):
             extra_files = None
 
         # Add bibliography folder to extra files
-        bib_folder = op.join(path_book, '_bibliography'),
+        bib_folder = op.join(path_book, '_bibliography')
         extra_files.append(bib_folder)
 
         new_book(path_book_new, toc=op.join(path_book, '_data', 'toc.yml'),
