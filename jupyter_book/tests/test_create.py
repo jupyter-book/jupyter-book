@@ -43,7 +43,8 @@ def test_round_trip(tmpdir):
              custom_js=path_js, custom_css=path_css,
              extra_files=[op.join(path_test_book, 'foo', 'baz.txt'),
                           op.join(path_test_book, 'foo', 'you'),
-                          op.join(path_test_book, "requirements.txt")],
+                          op.join(path_test_book, "requirements.txt"),
+                          op.join(path_test_book, "_bibliography")],
              license=path_license)
 
     # Table of contents
@@ -141,6 +142,11 @@ def test_upgrade(tmpdir):
     with open(op.join(path_build_test, 'requirements.txt'), 'r') as ff:
         text = ff.read()
         assert "mytestrequirement" in text
+
+    # Make sure the bibliography file was copied over properly
+    with open(op.join(path_build_test, '_bibliography', 'references.bib'), 'r') as ff:
+        text = ff.read()
+        assert "my_references" in text
 
 ########################################################################################################
 # Building the book after the book is created
