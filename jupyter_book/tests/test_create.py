@@ -142,6 +142,11 @@ def test_upgrade(tmpdir):
         text = ff.read()
         assert "mytestrequirement" in text
 
+    # Make sure the bibliography file was copied over properly
+    with open(op.join(path_build_test, '_bibliography', 'references.bib'), 'r') as ff:
+        text = ff.read()
+        assert "my_references" in text
+
 ########################################################################################################
 # Building the book after the book is created
 ########################################################################################################
