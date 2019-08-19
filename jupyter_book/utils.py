@@ -112,7 +112,7 @@ def _prepare_url(url):
     return url
 
 
-def _clean_notebook_cells(ntbk):
+def _clean_markdown_cells(ntbk):
     """Clean up cell text of an nbformat NotebookNode."""
     # Remove '#' from the end of markdown headers
     for cell in ntbk.cells:
