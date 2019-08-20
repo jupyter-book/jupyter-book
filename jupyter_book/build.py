@@ -4,8 +4,6 @@ import sys
 import shutil as sh
 import yaml
 import nbformat as nbf
-from nbclean import NotebookCleaner
-from nbconvert.preprocessors import ExecutePreprocessor
 from traitlets.config import Config
 from nbconvert.exporters import HTMLExporter
 from nbconvert.writers import FilesWriter
@@ -13,9 +11,9 @@ from tqdm import tqdm
 from glob import glob
 from uuid import uuid4
 
-from jupyter_book.utils import print_message_box
-from jupyter_book.utils import (_split_yaml, _check_url_page, _prepare_toc,
-                                _prepare_url, _clean_notebook_cells, _error)
+from .utils import (print_message_box, _split_yaml, _check_url_page, _prepare_toc,
+                    _prepare_url, _clean_markdown_cells, _error)
+from .run import run_ntbk
 
 # Add path to our utility functions
 this_folder = op.dirname(op.abspath(__file__))
@@ -336,12 +334,8 @@ def build_page(path_ntbk, path_html_output, path_media_output=None, execute=Fals
     ########################################
     # Notebook cleaning
 
-    # Clean up the file before converting
-    cleaner = NotebookCleaner(ntbk)
-    cleaner.remove_cells(empty=True)
-    cleaner.clear('stderr')
-    ntbk = cleaner.ntbk
-    _clean_notebook_cells(ntbk)
+    # Minor edits to cells
+    _clean_markdown_cells(ntbk)
 
     #############################################
     # Conversion to HTML
@@ -349,8 +343,21 @@ def build_page(path_ntbk, path_html_output, path_media_output=None, execute=Fals
     c = Config()
 
     c.FilesWriter.build_directory = path_html_output
+
+    # Remove cell elements using tags
+    c.TagRemovePreprocessor.remove_cell_tags = ("remove_cell", "removecell")
+    c.TagRemovePreprocessor.remove_all_outputs_tags = ('remove_output',)
+    c.TagRemovePreprocessor.remove_input_tags = ('remove_input',)
+
+    # Remove any cells that are *only* whitespace
+    c.RegexRemovePreprocessor.patterns = ["\\s*\\Z"]
+
     # So the images are written to disk
-    c.HTMLExporter.preprocessors = ['nbconvert.preprocessors.ExtractOutputPreprocessor']
+    c.HTMLExporter.preprocessors = [
+        'nbconvert.preprocessors.TagRemovePreprocessor',
+        'nbconvert.preprocessors.RegexRemovePreprocessor',
+        'nbconvert.preprocessors.ExtractOutputPreprocessor',
+    ]
 
     # The text used as the text for anchor links. Set to empty since we'll use anchor.js for the links
     c.HTMLExporter.anchor_link_text = " "
@@ -359,20 +366,15 @@ def build_page(path_ntbk, path_html_output, path_media_output=None, execute=Fals
     c.HTMLExporter.exclude_input_prompt = True
     c.HTMLExporter.exclude_output_prompt = True
 
+    # Excution of the notebook if we wish
     if execute is True:
-        if kernel_name is None:
-            kernel_name = ntbk['metadata']['kernelspec']['name']
-
-        # Excution of the notebook if we wish
-        ep = ExecutePreprocessor(timeout=600, kernel_name=kernel_name)
-        ep.preprocess(ntbk, {'metadata': {'path': op.dirname(path_ntbk)}})
+        ntbk = run_ntbk(ntbk, op.dirname(path_ntbk))
 
     # Define the path to images and then the relative path to where they'll originally be placed
     if isinstance(path_media_output, str):
         path_media_output_rel = op.relpath(path_media_output, path_html_output)
 
     # Generate HTML from our notebook using the template
-
     output_resources = {'output_files_dir': path_media_output_rel, 'unique_key': notebook_name}
     exp = HTMLExporter(template_file=path_template, config=c)
     html, resources = exp.from_notebook_node(ntbk, resources=output_resources)
