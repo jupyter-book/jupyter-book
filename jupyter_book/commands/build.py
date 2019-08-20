@@ -3,7 +3,8 @@ import os.path as op
 
 import argparse
 
-from jupyter_book.build import build_book, build_page
+from jupyter_book.build import build_book
+from jupyter_book.page import build_page
 
 DESCRIPTION = ("Convert a collection of Jupyter Notebooks into HTML "
                "suitable for a course textbook.")
