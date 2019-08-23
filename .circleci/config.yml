@@ -118,6 +118,23 @@ jobs:
           paths:
             - jupyter_book/book_template/_build/
 
+  # Check that ruby properly installs with conda inside a python envt
+  install_ruby:
+    docker:
+      - image: circleci/python:3.6-stretch
+    steps:
+      # Get our data and merge with upstream
+      - run: sudo apt-get update
+      - checkout
+
+      # Make sure the instructions from https://jekyllrb.com/docs/installation/ubuntu/ work
+      - run:
+          name: Install Jekyll with jekyll instructions
+          command: |
+            sudo apt-get install ruby-full build-essential zlib1g-dev
+            export GEM_HOME="$HOME/gems
+            export PATH="$HOME/gems/bin:$PATH"
+            gem install jekyll bundler github-pages
 
 
 # Tell CircleCI to use this workflow when it builds the site
@@ -137,6 +154,7 @@ workflows:
             branches:
               ignore:
                 - gh-pages
+      - install_ruby
       - deploy:
           requires:
             - run_tests
