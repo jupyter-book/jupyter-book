@@ -245,3 +245,39 @@ check out these resources:
 
 This process can be tricky to set up initially, but is quite useful in ensuring that your live book
 always stays up-to-date.
+
+## Store your notebook content as text files with Jupytext
+
+One major drawback of Jupyter Notebooks is that they can be difficult
+to use with version control tools such as Git and GitHub. Creating
+a "diff" with notebooks often results in large, unreadable results
+because of the metadata and binary information that is stored in a notebook.
+
+If you'd like to have the flexibliity and interface experience of a notebook,
+but the simplicity of using text-based content, a good option is to use
+[**Jupytext** for two-way sync between notebooks and text files](https://jupytext.readthedocs.io).
+
+For example, say you're collaborating on a book with several co-authors on GitHub.
+Take the following steps to use Jupytext for keeping a text-based version
+of your notebook content:
+
+1. **Make sure collaborators install Jupytext**. This will allow them to synchronize
+   the text and `ipynb` versions of the content.
+2. **Begin writing the notebook**. To start with, create your notebook's content. We'll
+   convert it into text in the next step.
+3. **Configure jupytext to save the notebook in a text format**. The easiest way to
+   do this is to use the JupyterLab command palette (`ctrl+shift c` will open this palette).
+   Start typing `jupytext` and you will see a collection of options for pairing the
+   notebook with a variety of text files. Choose the one you'd like and click it.
+4. **Save the notebook**. From now on, when you save the notebook within your
+   Jupyter session, the text file will be automatically updated when you save your notebook.
+5. **How to use the two formats in diffs?** You've now got two versions of each
+   notebook file in your content folder (after you save each notebook). You can commit
+   each to the repository. Use the `.ipynb` files to preview the full rendered content,
+   and the text files to track the diffs in the content.
+5. **(optional) Add `ipynb` files to your gitignore**. You may wish to *only* use the
+   text files in your repository instead of both the text files and the notebooks. In
+   this case, you can add any `.ipynb` files to your gitignore file. This will prevent
+   git from adding in any `.ipynb` files to your repository (even though they still
+   exist on disk). When you pull in new changes to your text files, the next time you
+   open them in Jupyter the notebook will automatically update itself.
