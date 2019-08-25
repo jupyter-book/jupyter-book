@@ -13,9 +13,6 @@
  */
 
 /* [2] */
-$right-sidebar-center-offset: ($page-max-width - $sidebar-width) / 2 -
-    $spacing-unit-large;
-
 .sidebar__right > * {
     direction: ltr;
 }
@@ -23,27 +20,20 @@ $right-sidebar-center-offset: ($page-max-width - $sidebar-width) / 2 -
 .sidebar__right {
     display: none;
     overflow-x: hidden;
-    background-color: white;
+    background-color: $book-background-color;
     @include mq($from: desktop) {
         display: block;
-        width: $right-sidebar-width;
+        width: $right-sidebar-width - $spacing-unit-small; // To account for the small margin on the right
 
         position: fixed;
-        top: 0px;
+        top: 3 * $spacing-unit;
         right: 0; /* [1] */
-        padding-top: $spacing-unit;
-        padding-right: $spacing-unit;
+        margin-right: $spacing-unit-small;
         overflow-y: auto;
         max-height: 90%; // Required for scrolling to work properly
         scrollbar-width: thin;
         direction: rtl;
-        z-index: 1; // Keep sidebar on top of page content
-    }
-
-    @include mq($from: wide) {
-        /* [2] */
-        left: 50%;
-        transform: translateX($right-sidebar-center-offset);
+        z-index: 1; // Keep sidebar under page content
     }
 }
 
@@ -107,29 +97,4 @@ nav.onthispage li.active a {
 li.active {
     border-left: 1px solid #0077d8;
     margin-left: -1px;
-}
-
-// Popouts to the right
-.popout {
-    border-top: 1px solid #c3c3c3;
-    margin-left: $spacing-unit;
-
-    @include mq($from: desktop) {
-        width: $right-sidebar-width;
-        font-size: .8em;
-        position: absolute;
-        right: 0px;
-        padding-right: 20px;
-        padding-left: $spacing-unit / 2;
-        margin-left: none;
-
-        h1, h2, h3, h4, h5, h6 {
-            margin: .5em 0px 0px 0px;
-        }
-    }
-
-    @include mq($from: wide) {
-        // Add a few extra pixels because of the extra width
-        padding-left: $spacing-unit + 5;
-    }
 }

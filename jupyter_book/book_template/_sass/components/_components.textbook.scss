@@ -23,45 +23,88 @@
  *   simultaneously, so make sure that the page doesn't overflow.
  */
 
+$left-sidebar-width: 300px;
+$textbook-page-width: 100%;
+$right-sidebar-width: 220px;
+$topbar-height: 70px;
+$book-background-color: white;
+
 .c-textbook {
   /* [1] */
   position: relative;
   height: 100vh;
   overflow: hidden;
+  margin: 0 0 0 auto;
+}
 
-  max-width: $page-max-width;
-  margin: 0 auto;
+.c-topbar {
+  background-color: $book-background-color;
+  position: fixed;
+  top: 0;
+  height: $topbar-height;
+  width: 100%;
+  left: 0;
+  padding-top: $spacing-unit;
+  padding-left: $spacing-unit;
+  z-index: 1;
+  transition: top 0.3s, transform 250ms ease; // For animations
 }
 
 .c-textbook__sidebar,
 .c-textbook__page {
-  /* [2] */
-  position: absolute;
+  /* [2] */  
   height: 100vh;
   overflow: auto;
-  background-color: white; /* [3] */
+  position: fixed;
+  background-color: $book-background-color;; /* [3] */
 }
 
 .c-textbook__sidebar {
-  width: $sidebar-width;
+  width: $left-sidebar-width;
+  top: 0;
+  left: 0;
 }
 
 .c-textbook__page {
-  width: 100%;
-
+  width: $textbook-page-width;
   transition: transform 250ms ease;
+  left: 0;
+  padding: 0 0 $spacing-unit-small 0;
+  overflow-x: auto;
+  @include mq($from: tablet) {
+    padding-left: $spacing-unit-small * 3;
+    padding-right: $spacing-unit;
+  }
+
+  @include mq($from: desktop) {
+    padding-right: $right-sidebar-width;
+  }
+
+  @include mq($from: wide) {
+    padding-right: 200px;  
+  }
+
+  &:focus {
+    /* [2] */
+    outline: none;
+  }
 }
 
 .js-show-sidebar {
-  .c-textbook__page {
+  .c-textbook__page, .c-topbar {
     /* [4] */
-    transform: translate($sidebar-width, 0);
+    transform: translate($left-sidebar-width, 0);
 
     @include mq($from: tablet) {
       /* [5] */
-      width: calc(100% - #{$sidebar-width});
+      width: calc(100% - #{$left-sidebar-width});
     }
   }
+}
+
+.c-textbook__content {
+  clear: both;
+  padding-top: $topbar-height;
 }
 
 // Scrollbar width

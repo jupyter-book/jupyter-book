@@ -215,7 +215,7 @@ def test_notebook(tmpdir):
     assert is_in(lines, 'class="input_area')
 
     # Cell hiding etc works
-    assert is_in(lines, 'hidecode')
+    assert is_in(lines, 'class="jb_cell tag_hide_input')
     assert not is_in(lines, 'none of this should show up in the textbook')
 
     # Static files are copied over
@@ -231,7 +231,7 @@ def test_notebook(tmpdir):
     assert is_in(lines, "url: https://github.com")
 
     # popout tag is inserted properly
-    assert is_in(lines, 'class="markdowncell popout"', 1)
+    assert is_in(lines, 'class="jb_cell tag_popout"', 1)
 
     ###########################################
     # Testing interactive features

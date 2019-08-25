@@ -4,7 +4,7 @@
  *
  * Most of the textbook content is styled using this component.
  *
- * [1]: Don't add horizontal padding since the content lies within a .o-wrapper
+ * [1]: Within-textbook__page layout
  * [2]: Since we use JS to focus the page on load, hide the outline to avoid
  *   visual cruft.
  *
@@ -15,22 +15,30 @@
  * [5]: Inline code snippets (usually variable names) should have a gray bg.
  */
 
-.c-textbook__page {
-  /* [1] */
-  padding: $spacing-unit-small 0;
-  overflow-x: auto;
-  @include mq($from: tablet) {
-    padding-left: $spacing-unit-small;
-    padding-right: $spacing-unit;
-  }
+/**
+ * [1] Within-textbook__page layout
+*/
 
+div.jb_cell {
+  width: 70%;
+  position: relative;
+}
+
+// Right margin
+div.jb_cell.tag_popout {
+  border-top: 1px solid #c3c3c3;
+
+  // On desktops, pop out to the right instead of in-line
   @include mq($from: desktop) {
-    padding-right: $right-sidebar-width;
-  }
+      width: 25%;
+      font-size: .8em;
+      float: right;
+      padding-left: $spacing-unit / 2;
+      margin-left: none;
 
-  &:focus {
-    /* [2] */
-    outline: none;
+      h1, h2, h3, h4, h5, h6 {
+          margin: .5em 0px 0px 0px;
+      }
   }
 }
 
@@ -172,3 +180,4 @@ div.output_subarea {
 .jp-OutputPrompt {
   display: none;
 }
+

@@ -149,3 +149,26 @@ highlightRightSidebar = function() {
 
 initFunction(highlightRightSidebar);
 
+
+
+/**
+ * [6] Top navbar hiding for scrolling
+ */
+
+initScrollingNavbar = () => {
+  var content = document.querySelector('.c-textbook__page');
+  var topbar = document.getElementById("top-navbar");
+
+  var prevScrollpos = content.scrollTop;
+  content.onscroll = function() {
+    var currentScrollPos = content.scrollTop;
+    if (prevScrollpos > currentScrollPos) {
+      topbar.style.top = "0";
+    } else {
+      topbar.style.top = "-200px";
+    }
+    prevScrollpos = currentScrollPos;
+  }
+}
+
+initFunction(initScrollingNavbar);

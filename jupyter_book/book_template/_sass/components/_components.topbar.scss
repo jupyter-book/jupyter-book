@@ -1,11 +1,17 @@
-.c-sidebar-toggle {
-  margin-bottom: $spacing-unit;
-}
-
-.c-sidebar-toggle__label {
+.c-topbar__label {
   @include inuit-font-size(12px);
   display: inline-block;
   margin-left: $spacing-unit-tiny;
   vertical-align: middle;
   text-transform: uppercase;
+}
+
+.c-topbar {
+  .hamburger, .buttons {
+    float: left;
+  }
+
+  #js-sidebar-toggle {
+    padding-right: 15px;
+  }
 }

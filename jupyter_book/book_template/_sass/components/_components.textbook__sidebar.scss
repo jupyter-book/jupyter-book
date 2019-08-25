@@ -18,11 +18,13 @@ $color-sidebar-divider: #bbb !default;
 .c-textbook__sidebar {
   background-color: $color-sidebar-bg;
   padding: $spacing-unit-small;
+
   @include inuit-font-size(14px);
   border-right: 1px solid rgba(0, 0, 0, 0.07);
   opacity: 0.6;
   -webkit-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
+
   &:hover {
     opacity: 1;
   }
