@@ -5,7 +5,7 @@
   <body>
     <!-- .js-show-sidebar shows sidebar by default -->
     <div id="js-textbook" class="c-textbook {% if site.show_sidebar %}js-show-sidebar{% endif %}">
-      {% if site.show_sidebar == true %}{% include sidebar.html %}{% endif %}
+      {% include sidebar.html %}
       {% if page.search_page != true %}
       <!-- Empty sidebar placeholder that we'll auto-fill with javascript -->
       <aside class="sidebar__right">

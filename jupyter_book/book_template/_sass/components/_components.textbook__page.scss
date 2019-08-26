@@ -28,8 +28,8 @@ div.jb_cell {
 div.jb_cell.tag_popout {
   border-top: 1px solid #c3c3c3;
 
-  // On desktops, pop out to the right instead of in-line
-  @include mq($from: desktop) {
+  // On laptops, pop out to the right instead of in-line
+  @include mq($from: tablet) {
       width: 25%;
       font-size: .8em;
       float: right;

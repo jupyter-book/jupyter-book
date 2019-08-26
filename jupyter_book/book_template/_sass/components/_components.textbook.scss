@@ -25,8 +25,9 @@
 
 $left-sidebar-width: 300px;
 $textbook-page-width: 100%;
+$textbook-page-max-width: 1650px;
 $right-sidebar-width: 220px;
-$topbar-height: 70px;
+$topbar-height: 60px;
 $book-background-color: white;
 
 .c-textbook {
@@ -44,8 +45,8 @@ $book-background-color: white;
   height: $topbar-height;
   width: 100%;
   left: 0;
-  padding-top: $spacing-unit;
-  padding-left: $spacing-unit;
+  padding-top: $spacing-unit-small;
+  padding-left: $spacing-unit-med * 2;
   z-index: 1;
   transition: top 0.3s, transform 250ms ease; // For animations
 }
@@ -69,24 +70,37 @@ $book-background-color: white;
   width: $textbook-page-width;
   transition: transform 250ms ease;
   left: 0;
-  padding: 0 0 $spacing-unit-small 0;
+  padding: 0 $spacing-unit $spacing-unit-small $spacing-unit-small * 3;
   overflow-x: auto;
+
   @include mq($from: tablet) {
-    padding-left: $spacing-unit-small * 3;
-    padding-right: $spacing-unit;
+    // For tablet, don't show TOC
+
   }
 
-  @include mq($from: desktop) {
+  @include mq($from: laptop) {
+    // At laptop, we show the right TOC
     padding-right: $right-sidebar-width;
   }
 
-  @include mq($from: wide) {
-    padding-right: 200px;  
+  @include mq($from: desktop_wide) {
+    // At desktop, we begin fixing things in place
+    padding-right: calc(100% + #{$right-sidebar-width} - #{$textbook-page-max-width});
   }
 
   &:focus {
     /* [2] */
     outline: none;
+  }
+}
+
+.sidebar__right {
+  // By default we hide the sidebar
+  display: none;
+
+  @include mq($from: laptop) {
+    // Show right TOC at laptop size
+    display: block;
   }
 }
 
