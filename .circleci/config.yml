@@ -130,7 +130,7 @@ workflows:
             branches:
               ignore:
                 - gh-pages
-      - demo_site:
+      - doc:
           requires:
             - run_tests
           filters:
