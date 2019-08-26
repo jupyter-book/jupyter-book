@@ -1,7 +1,7 @@
 version: 2.1
 jobs:
   # Build the site to store artifacts
-  demo_site:
+  doc:
     docker:
       - image: circleci/ruby:2.6
     steps:
