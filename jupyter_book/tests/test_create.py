@@ -156,11 +156,12 @@ def test_upgrade(tmpdir):
 # Helper funcs
 
 
-def is_in(lines, check):
-    is_in = False
+def is_in(lines, check, count=None):
+    is_in = 0
     for line in lines:
         if check in line:
-            is_in = True
+            is_in += 1
+    is_in = is_in > 0 if count is None else is_in == count
     return is_in
 
 
@@ -214,7 +215,7 @@ def test_notebook(tmpdir):
     assert is_in(lines, 'class="input_area')
 
     # Cell hiding etc works
-    assert is_in(lines, 'hidecode')
+    assert is_in(lines, 'class="jb_cell tag_hide_input')
     assert not is_in(lines, 'none of this should show up in the textbook')
 
     # Static files are copied over
@@ -228,6 +229,9 @@ def test_notebook(tmpdir):
 
     # Testing external link
     assert is_in(lines, "url: https://github.com")
+
+    # popout tag is inserted properly
+    assert is_in(lines, 'class="jb_cell tag_popout"', 1)
 
     ###########################################
     # Testing interactive features

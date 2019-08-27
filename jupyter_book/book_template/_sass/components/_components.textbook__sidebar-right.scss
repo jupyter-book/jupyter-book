@@ -13,36 +13,24 @@
  */
 
 /* [2] */
-$right-sidebar-center-offset: ($page-max-width - $sidebar-width) / 2 -
-    $spacing-unit-large;
-
 .sidebar__right > * {
     direction: ltr;
 }
 
 .sidebar__right {
-    display: none;
     overflow-x: hidden;
-    @include mq($from: desktop) {
-        display: block;
-        width: $right-sidebar-width;
+    background-color: $book-background-color;
+    width: $right-sidebar-width - $spacing-unit-small; // To account for the small margin on the right
 
-        position: fixed;
-        top: 3 * $spacing-unit;
-        right: 0; /* [1] */
-        padding-right: $spacing-unit;
-        overflow-y: auto;
-        max-height: 90%; // Required for scrolling to work properly
-        scrollbar-width: thin;
-        direction: rtl;
-        z-index: 1; // Keep sidebar on top of page content
-    }
-
-    @include mq($from: wide) {
-        /* [2] */
-        left: 50%;
-        transform: translateX($right-sidebar-center-offset);
-    }
+    position: fixed;
+    top: 3 * $spacing-unit;
+    right: 0; /* [1] */
+    margin-right: $spacing-unit-small;
+    overflow-y: auto;
+    max-height: 90%; // Required for scrolling to work properly
+    scrollbar-width: thin;
+    direction: rtl;
+    z-index: 1; // Keep sidebar under page content
 }
 
 aside.sidebar__right {

@@ -1,0 +1,26 @@
+.c-topbar__label {
+  @include inuit-font-size(12px);
+  display: inline-block;
+  margin-left: $spacing-unit-tiny;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+
+.c-topbar {
+  .hamburger, .buttons {
+    float: left;
+  }
+
+  #js-sidebar-toggle {
+    margin-right: 5px;
+    padding-top: 4px;
+  }
+
+  span.hamburger-box {
+    width: 40px;
+    height: 30px;
+    padding-left: 10px;
+  }
+}
+
+// Hamburger size
