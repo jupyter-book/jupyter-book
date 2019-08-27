@@ -27,7 +27,7 @@ $left-sidebar-width: 300px;
 $textbook-page-width: 100%;
 $textbook-page-max-width: 1650px;
 $right-sidebar-width: 220px;
-$topbar-height: 60px;
+$topbar-height: 70px;
 $book-background-color: white;
 
 .c-textbook {
@@ -45,7 +45,7 @@ $book-background-color: white;
   height: $topbar-height;
   width: 100%;
   left: 0;
-  padding-top: $spacing-unit-small;
+  padding-top: $spacing-unit-med;
   padding-left: $spacing-unit-med * 2;
   z-index: 1;
   transition: top 0.3s, transform 250ms ease; // For animations
@@ -118,7 +118,8 @@ $book-background-color: white;
 
 .c-textbook__content {
   clear: both;
-  padding-top: $topbar-height;
+  padding-top: $topbar-height * 1.5;
+  width: 95%;
 }
 
 // Scrollbar width

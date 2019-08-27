@@ -20,26 +20,7 @@
 */
 
 div.jb_cell {
-  width: 70%;
   position: relative;
-}
-
-// Right margin
-div.jb_cell.tag_popout {
-  border-top: 1px solid #c3c3c3;
-
-  // On laptops, pop out to the right instead of in-line
-  @include mq($from: tablet) {
-      width: 25%;
-      font-size: .8em;
-      float: right;
-      padding-left: $spacing-unit / 2;
-      margin-left: none;
-
-      h1, h2, h3, h4, h5, h6 {
-          margin: .5em 0px 0px 0px;
-      }
-  }
 }
 
 /**
