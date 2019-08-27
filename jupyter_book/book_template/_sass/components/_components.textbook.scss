@@ -122,6 +122,13 @@ $book-background-color: white;
   width: 95%;
 }
 
+.c-page__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 30px;
+}
+
 // Scrollbar width
 ::-webkit-scrollbar {
   width: 5px;
