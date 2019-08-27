@@ -22,10 +22,9 @@ parser.add_argument(
     help="The character used to split words in the file name. Used to generate titles from file names. Defaults to '_'",
 )
 parser.add_argument(
-    "--overwrite",
-    default=False,
-    action="store_true",
-    help="Overwrite SUMMARY.md if it already exists.",
+    "--path-output",
+    default=None,
+    help="A path to a file where the output TOC will be written.",
 )
 
 
@@ -33,28 +32,27 @@ def toc():
     args = parser.parse_args(sys.argv[2:])
     path_book = args.path_book
     path_content = op.join(path_book, "content")
-    path_toc = op.join(path_book, "_data", "toc.yml")
+    path_output = args.path_output
 
     # Build the TOC
     gen_toc = build_toc(path_content, filename_split_char=args.filename_split_char)
 
-    if op.exists(path_toc) and args.overwrite is False:
-        raise ValueError(
-            "Table of Contents already exists. Use `--overwrite` to over-write the pre-existing TOC"
-        )
+    if path_output is not None:
+        with open(path_output, "w") as ff:
+            ff.write(gen_toc)
 
-    with open(path_toc, "w") as ff:
-        ff.write(gen_toc)
+        # Optional end message
+        msg = [
+            "Finished generating your table of contents file at: {}".format(path_output),
+            "",
+            "This file contains a flat list of TOC entries that point to",
+            "the content in the folder you specified, they've been ordered",
+            "according to the folder / file names.  You should reorder them",
+            "as well as nest them in chapters / sub-chapters as you wish.",
+        ]
 
-    # Optional end message
-    msg = [
-        "Finished generating your table of contents file at: {}".format(path_toc),
-        "",
-        "This file contains a flat list of TOC entries that point to",
-        "the content in the folder you specified, they've been ordered",
-        "according to the folder / file names.  You should reorder them",
-        "as well as nest them in chapters / sub-chapters as you wish.",
-    ]
+        if not args.quiet:
+            print_message_box("\n".join(msg))
+    else:
+        print(gen_toc)
 
-    if not args.quiet:
-        print_message_box("\n".join(msg))

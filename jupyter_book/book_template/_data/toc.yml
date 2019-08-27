@@ -1,5 +1,3 @@
-# This file contains the order and numbering for all sections in the book.
-#
 # Each entry has the following schema:
 #
 # - title: mytitle   # Title of chapter or section
@@ -16,113 +14,106 @@
 # - divider: true  # Will insert a divider in the sidebar
 # - header: My Header  # Will insert a header with no link in the sidebar
 
-
-- title: Home
-  url: /intro
-  not_numbered: true
-- title: Search
-  search: true
-
-- title: Getting started
-  url: /guide/01_overview
-  not_numbered: true
-  expand_sections: true
-  sections:
-  - title: Create your book
-    url: /guide/02_create
-  - title: Build and publish your book
-    url: /guide/03_build
-  - title: FAQ
-    url: /guide/04_faq
-  - title: How-to and advanced topics
-    url: /guide/05_advanced
-
-- title: Features and customization
-  url: /features/features
-  not_numbered: true
-  expand_sections: true
-  sections:
-  - title: Markdown files
-    url: /features/markdown
-    not_numbered: true
-  - title: Jupyter notebooks
-    url: /features/notebooks
-    not_numbered: true
-  - title: Hiding code blocks or entire cells
-    url: /features/hiding
-    not_numbered: true
-  - title: Connecting content with JupyterHub and Binder
-    url: /features/interact
-    not_numbered: true
-  - title: Adding interactivity to your book pages
-    url: /features/interactive_cells
-    not_numbered: true
-  - title: Citations and bibliographies
-    url: /features/citations
-    not_numbered: true
-  - title: Searching your book
-    url: /features/search
-    not_numbered: true
-  - title: Feature Limits
-    url: /features/limits
-    not_numbered: true
+#
+# ==============================
+# AUTOMATICALLY GENERATED TOC FILE.
+# You should review the contents of this file, re-order items as you wish,
+# and nest chapters in sections if you wish. The ======= symbols represent 
+# folder breaks.
+# 
+# See the demo `toc.yml` for the right structure to follow. You can 
+# generate a demo book by running `jupyter-book create mybook --demo`
+# ==============================
 
 
-- title: GitHub repository
-  url: https://github.com/jupyter/jupyter-book
-  external: true
-  not_numbered: true
 
-- divider: true
-- header: Demo textbook
 
-- title: Data Science
+- header: '01'
+- title: What-is-data-science
   url: /01/what-is-data-science
-  sections:
-  - title: Introduction
-    url: /01/1/intro
-  - title: Why Data Science?
-    url: /01/2/why-data-science
-  - title: Plotting the Classics
-    url: /01/3/Plotting_the_Classics
-    subsections:
-    - title: Subsection Demo 1
-      url: /01/3/subsection/subsections
-    - title: Subsection Demo 2
-      url: /01/3/subsection/subsectiontwo
+- title: Intro
+  url: /01/1/intro
+- title: Computational-tools
+  url: /01/1/1/computational-tools
+- title: Statistical-techniques
+  url: /01/1/2/statistical-techniques
+- title: Why-data-science
+  url: /01/2/why-data-science
+- title: Plotting The Classics
+  url: /01/3/Plotting_the_Classics
+- title: Subsections
+  url: /01/3/subsection/subsections
+- title: Subsectiontwo
+  url: /01/3/subsection/subsectiontwo
 
-- title: Causality and Experiments
+- header: '02'
+- title: Causality-and-experiments
   url: /02/causality-and-experiments
-  sections:
-  - title: John Snow and the Broad Street Pump
-    url: /02/1/observation-and-visualization-john-snow-and-the-broad-street-pump
-  - title: "Snow\u2019s \u201CGrand Experiment\u201D"
-    url: /02/2/snow-s-grand-experiment
-  - title: Establishing Causality
-    url: /02/3/establishing-causality
-  - title: Randomization
-    url: /02/4/randomization
-  - title: Endnote
-    url: /02/5/endnote
+- title: Observation-and-visualization-john-snow-and-the-broad-street-pump
+  url: /02/1/observation-and-visualization-john-snow-and-the-broad-street-pump
+- title: Snow-s-grand-experiment
+  url: /02/2/snow-s-grand-experiment
+- title: Establishing-causality
+  url: /02/3/establishing-causality
+- title: Randomization
+  url: /02/4/randomization
+- title: Endnote
+  url: /02/5/endnote
 
-- title: Programming in Python
+- header: '03'
+- title: Programming-in-python
   url: /03/programming-in-python
-  sections:
-  - title: Expressions
-    url: /03/1/Expressions
-  - title: Names
-    url: /03/2/Names
-  - title: Call Expressions
-    url: /03/3/Calls
-  - title: Introduction to Tables
-    url: /03/4/Introduction_to_Tables
+- title: Expressions
+  url: /03/1/Expressions
+- title: Names
+  url: /03/2/Names
+- title: Growth
+  url: /03/2/1/Growth
+- title: Calls
+  url: /03/3/Calls
+- title: Introduction To Tables
+  url: /03/4/Introduction_to_Tables
 
-- title: Data Types
+- header: '04'
+- title: Types
   url: /04/Types
-  sections:
-  - title: Numbers
-    url: /04/1/Numbers
-  - title: Strings
-    url: /04/2/Strings
-  - title: Comparisons
-    url: /04/3/Comparison
+- title: Numbers
+  url: /04/1/Numbers
+- title: Strings
+  url: /04/2/Strings
+- title: String Methods
+  url: /04/2/1/String_Methods
+- title: Comparison
+  url: /04/3/Comparison
+
+- header: Features
+- title: Citations
+  url: /features/citations
+- title: Features
+  url: /features/features
+- title: Hiding
+  url: /features/hiding
+- title: Interact
+  url: /features/interact
+- title: Interactive Cells
+  url: /features/interactive_cells
+- title: Limits
+  url: /features/limits
+- title: Markdown
+  url: /features/markdown
+- title: Notebooks
+  url: /features/notebooks
+- title: Search
+  url: /features/search
+
+- header: Guide
+- title: Overview
+  url: /guide/01_overview
+- title: Create
+  url: /guide/02_create
+- title: Build
+  url: /guide/03_build
+- title: Faq
+  url: /guide/04_faq
+- title: Advanced
+  url: /guide/05_advanced
