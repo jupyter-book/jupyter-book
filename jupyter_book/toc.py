@@ -1,4 +1,5 @@
 import os
+import os.path as op
 from ruamel.yaml import YAML
 from ruamel.yaml.compat import StringIO
 
@@ -65,19 +66,27 @@ def build_toc(content_folder, filename_split_char='_'):
     """
     # Generate YAML from the directory structure
     out = [YAML_TOP, YAML_WARN]
-    for ifolder, _, ifiles in os.walk(content_folder):
+    for ii, (ifolder, folders, ifiles) in enumerate(os.walk(content_folder)):
         if ".ipynb_checkpoints" in ifolder:
             continue
         path_rel_to_content = ifolder.replace(content_folder, '')
 
-        # Create a new section
-        if any(any(ifile.endswith(ii) for ii in [".ipynb", ".md"]) for ifile in ifiles):
-            # Add a comment denoting the new section
-            out.append(TOC_SPACER)
-
-            # Write the TOC to YAML or print it
-            this_toc = []
-
+        this_toc = []
+        if ii == 0:
+            # Create a dictionary of top-level folders we'll append to
+            top_level_dict = {folder: [] for folder in folders if len(folder) > 0}
+            
+            # Append files for the top-most folder
+            for ifile in ifiles:
+                if any(ifile.endswith(ii) for ii in [".ipynb", ".md"]):    
+                    suff = os.path.splitext(ifile)[-1]
+                    i_title = _filename_to_title(ifile, filename_split_char)
+                    i_url = os.path.join(path_rel_to_content, os.path.basename(ifile)).replace(suff, '')
+                    this_toc.append({'title': i_title, 'url': i_url})
+        else:
+            # Grab the top-most folder to choose which list we'll append to
+            folder = path_rel_to_content.lstrip('/').split(os.sep)[0]
+            
             # If the file ends in ipynb or md, add it to this section
             for ifile in ifiles:
                 suff = os.path.splitext(ifile)[-1]
@@ -87,10 +96,21 @@ def build_toc(content_folder, filename_split_char='_'):
                 # Convert to Jupyter-book ready names
                 i_title = _filename_to_title(ifile, filename_split_char)
                 i_url = os.path.join(path_rel_to_content, os.path.basename(ifile)).replace(suff, '')
-                this_toc.append({'title': i_title, 'url': i_url})
+                top_level_dict[folder].append({'title': i_title, 'url': i_url})
 
-            yaml = YAML()
-            string = StringIO()
-            yaml.dump(this_toc, string)
-            out.append(string.getvalue())
+    # Iterate through our top level dict and convert to yaml-style dict
+    top_level_dict = {key: val for key, val in top_level_dict.items() if len(val) > 0}
+    out_children = []
+    for folder, subsections in top_level_dict.items():
+        name = _filename_to_title(folder)
+        out_children.append("## REPLACE ##")
+        out_children.append({'header': name})
+        out_children += subsections
+    this_toc += out_children
+
+    # Convert the dictionary into YAML and append it to our output
+    yaml = YAML()
+    string = StringIO()
+    yaml.dump(this_toc, string)
+    out.append(string.getvalue().replace("- '## REPLACE ##'", ''))
     return '\n'.join(out)
