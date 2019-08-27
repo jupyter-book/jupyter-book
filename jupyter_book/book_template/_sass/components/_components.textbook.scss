@@ -73,11 +73,6 @@ $book-background-color: white;
   padding: 0 $spacing-unit $spacing-unit-small $spacing-unit-small * 3;
   overflow-x: auto;
 
-  @include mq($from: tablet) {
-    // For tablet, don't show TOC
-
-  }
-
   @include mq($from: laptop) {
     // At laptop, we show the right TOC
     padding-right: $right-sidebar-width;
