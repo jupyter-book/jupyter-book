@@ -16,7 +16,7 @@ Here are a few features of Jupyter Books
 * A Command-Line Interface (CLI) to quickly create, build, and upgrade books.
 * Write book content in markdown and Jupyter Notebooks
 * Convert these into Jekyll pages that can be hosted for free on GitHub
-* Pages can have [Binder](https://mybinder.org), JupyterHub, or Theblab links
+* Pages can have [Binder](https://mybinder.org), JupyterHub, or [Thebelab](https://thebelab.readthedocs.io) links
   automatically added for interactivity.
 * The website itself is based on Jekyll and is highly extensible.
 * There are lots of nifty HTML features under-the-hood, such as
