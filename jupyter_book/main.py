@@ -1,9 +1,8 @@
 import sys
 import argparse
 
-from .commands import build, create, upgrade, version, page
+from .commands import build, create, upgrade, version, page, toc
 from .run import run_book
-from .toc import build_toc
 
 DESCRIPTION = (
     "Jupyter Book: Generate an HTML book from your Jupyter Notebooks using"
@@ -13,7 +12,7 @@ commands = {'create': create,
             'page': page,
             'upgrade': upgrade,
             'run': run_book,
-            'toc': build_toc,
+            'toc': toc,
             'version': version}
 parser = argparse.ArgumentParser(description=DESCRIPTION)
 parser.add_argument("command", help="The command you'd like to run. Allowed commands: {}".format(

@@ -156,7 +156,7 @@ def new_book(path_out, content_folder, toc,
 
     # Copy over TOC file
     if toc is None:
-        run(['jupyter-book', 'toc', path_out, '--quiet'], check=True)
+        run(['jupyter-book', 'toc', path_out, '--quiet', '--overwrite'], check=True)
         notes.append(("- Check your Table of Contents file (`_data/toc.yml`). Because you specified a content foler\n"
                       "  but no Table of Conents (`--toc`), we auto-generated a TOC file file using folder and file\n"
                       "  names. You should check its contents and clean it up so that it has the structure you want!\n"))
