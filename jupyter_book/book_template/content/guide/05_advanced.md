@@ -47,6 +47,35 @@ Once you have your JupyterHub set up, you can use the [nbgitpuller](https://gith
 package to send links to course material to your students, or use the interact links that Textbooks for Jupyter
 automatically inserts into your course material.
 
+## Auto-generating a TOC file for your book
+
+Sometimes it can be a pain to create the Table of Contents YAML file by hand.
+Jupyter Book has a convenience function to automatically create this file
+using the alpha-numeric sorting of the file/folder names in your content folder.
+To use it, simply use the following command:
+
+```
+jupyter-book toc path/to/mybook
+```
+
+This put all `.md` and `.ipynb` files in the root of the **content folder** 
+as top-level pages. For any files that are in folders, it will create one
+section per **top-level folder** and place all content files inside that
+section.
+
+By default, running this command will print the TOC YAML to the screen.
+If you'd like to overwrite your `_data/toc.yml` file with the result of
+running this command, you can use the `--path-output` argument like so
+
+```
+jupyter-book toc path/to/mybook --path-output path/to/mybook/_data/toc.yml
+```
+
+This will overwrite the contents of `toc.yml` with the new TOC.
+
+> Note: this will make some assumptions about how you'd like your book to
+> be structured. We recommend using this command as a starting point, and
+> then customizing your TOC how you'd like.
 
 ## Build the book's site HTML locally
 

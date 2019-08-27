@@ -55,4 +55,3 @@ def toc():
             print_message_box("\n".join(msg))
     else:
         print(gen_toc)
-

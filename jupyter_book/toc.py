@@ -64,29 +64,34 @@ def build_toc(content_folder, filename_split_char='_'):
     filename_split_char : str
         The character used in inferring spaces in page names from filenames.
     """
+    if not op.isdir(content_folder):
+        raise ValueError(f"Could not find the provided content folder\n{content_folder}")
+
     # Generate YAML from the directory structure
     out = [YAML_TOP, YAML_WARN]
+    toc_pages = []
     for ii, (ifolder, folders, ifiles) in enumerate(os.walk(content_folder)):
         if ".ipynb_checkpoints" in ifolder:
             continue
         path_rel_to_content = ifolder.replace(content_folder, '')
 
-        this_toc = []
         if ii == 0:
             # Create a dictionary of top-level folders we'll append to
             top_level_dict = {folder: [] for folder in folders if len(folder) > 0}
-            
+
             # Append files for the top-most folder
             for ifile in ifiles:
-                if any(ifile.endswith(ii) for ii in [".ipynb", ".md"]):    
+                if any(ifile.endswith(ii) for ii in [".ipynb", ".md"]):
+                    if ifile == "LICENSE.md":
+                        continue
                     suff = os.path.splitext(ifile)[-1]
                     i_title = _filename_to_title(ifile, filename_split_char)
                     i_url = os.path.join(path_rel_to_content, os.path.basename(ifile)).replace(suff, '')
-                    this_toc.append({'title': i_title, 'url': i_url})
+                    toc_pages.append({'title': i_title, 'url': i_url})
         else:
             # Grab the top-most folder to choose which list we'll append to
             folder = path_rel_to_content.lstrip('/').split(os.sep)[0]
-            
+
             # If the file ends in ipynb or md, add it to this section
             for ifile in ifiles:
                 suff = os.path.splitext(ifile)[-1]
@@ -106,11 +111,12 @@ def build_toc(content_folder, filename_split_char='_'):
         out_children.append("## REPLACE ##")
         out_children.append({'header': name})
         out_children += subsections
-    this_toc += out_children
+
+    toc_pages += out_children
 
     # Convert the dictionary into YAML and append it to our output
     yaml = YAML()
     string = StringIO()
-    yaml.dump(this_toc, string)
+    yaml.dump(toc_pages, string)
     out.append(string.getvalue().replace("- '## REPLACE ##'", ''))
     return '\n'.join(out)
