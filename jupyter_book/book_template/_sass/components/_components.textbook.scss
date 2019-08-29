@@ -25,7 +25,7 @@
 
 $left-sidebar-width: 300px;
 $textbook-page-width: 100%;
-$textbook-page-max-width: 1650px;
+$textbook-page-max-width: 1200px;
 $right-sidebar-width: 220px;
 $topbar-height: 70px;
 $book-background-color: white;
@@ -49,6 +49,13 @@ $book-background-color: white;
   padding-left: $spacing-unit-med * 2;
   z-index: 1;
   transition: top 0.3s, transform 250ms ease; // For animations
+}
+
+@include mq($until: desktop_wide) {
+  .c-topbar.hidetop {
+    // At desktop, we stop hiding the navbar
+    top: -250px;
+  }
 }
 
 .c-textbook__sidebar,
