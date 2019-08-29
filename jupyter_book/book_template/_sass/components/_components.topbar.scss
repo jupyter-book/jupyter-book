@@ -21,4 +21,22 @@
     height: 30px;
     padding-left: 10px;
   }
+
+  .c-topbar__buttons {
+    @include mq($from: tablet) {
+      width: calc(100% - #{$right-sidebar-width} - 20px)
+    }
+  }
+
+  #search-button {
+    font-size: 1.4em;
+    display: block;
+    float: right;
+    color: #7a8288;
+    padding: 0 0.5rem;
+
+    &:hover {
+      color: $color-links;
+    }
+  }
 }

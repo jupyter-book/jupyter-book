@@ -19,28 +19,60 @@
  * [1] Within-textbook__page layout
 */
 
+$textbook-page-with-sidebar-width: 70%;
 div.jb_cell {
   width: 100%;
   position: relative;
+
+  @include mq($from: laptop) {
+    width: $textbook-page-with-sidebar-width;
+  }
 }
 
 // Right margin
-div.jb_cell.tag_popout {
-  border-top: 1px solid #c3c3c3;
-
-  // On laptops, pop out to the right instead of in-line
-  @include mq($from: tablet) {
-      width: 25%;
+div.jb_cell {
+  &.tag_popout {
+    .cell {
+      border-left: 3px solid #c3c3c3;
+      padding-left: 5%
+    }
+    
+    // On laptops, pop out to the right instead of in-line
+    @include mq($from: laptop) {
+      width: calc(100% - #{$textbook-page-with-sidebar-width});
       font-size: .8em;
       position: relative;
-      right: -25%;
-      padding-left: $spacing-unit / 2;
+      float: right;
+      padding-left: $spacing-unit-large * .8;
+      clear: both;
 
       h1, h2, h3, h4, h5, h6 {
           margin: .5em 0px 0px 0px;
       }
+
+      // This prevents *sequential* popouts from creating a bunch of white-space when stacked
+      & + div.tag_popout {
+        height: 0px;
+      }
+      
+      // Remove the border when we pop-out to the right
+      .cell {
+        border-left: none;
+        padding-left: 0;
+      }
+    }
+  }
+
+  &.tag_full_width {
+    width: 100%;
+
+    img {
+      max-width: 100%;
+    }
   }
 }
+
+
 
 /**
  * Jupyter notebook styling

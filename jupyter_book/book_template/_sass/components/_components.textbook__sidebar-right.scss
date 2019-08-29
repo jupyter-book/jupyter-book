@@ -17,22 +17,16 @@
     direction: ltr;
 }
 
-.sidebar__right {
+aside.sidebar__right {
+    // Positioning
     overflow-x: hidden;
     background-color: $book-background-color;
-    width: $right-sidebar-width - $spacing-unit-small; // To account for the small margin on the right
-
-    position: fixed;
-    top: $spacing-unit-small * 1.5;
-    right: $spacing-unit-small; /* [1] */
     overflow-y: auto;
     max-height: 90vh; // Required for scrolling to work properly
     scrollbar-width: thin;
     direction: rtl;
-    z-index: 1; // Keep sidebar under page content
-}
 
-aside.sidebar__right {
+    // Font and look
     font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Segoe UI',
         'Helvetica Neue', 'Lucida Grande', Arial, sans-serif;
     color: #7a8288;
@@ -40,6 +34,7 @@ aside.sidebar__right {
     text-transform: uppercase;
     letter-spacing: 1px;
 
+    // Show/hide navbar underneath
     nav {
         transition: opacity .25s ease-in-out, height .25s ease-in-out;
         -moz-transition: opacity .25s ease-in-out, height .25s ease-in-out;
@@ -48,7 +43,7 @@ aside.sidebar__right {
         opacity: 0;
         height: 0px;
 
-        @include mq($from: desktop_wide) {
+        @include mq($from: desktop) {
             opacity: 100;
             height: auto;
         }
@@ -59,6 +54,7 @@ aside.sidebar__right {
         height: auto;
     }
 }
+
 
 h4.nav__title {
     color: #7a8288;
