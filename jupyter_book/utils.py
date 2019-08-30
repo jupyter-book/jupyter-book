@@ -4,6 +4,8 @@ import string
 import argparse
 import os
 import os.path as op
+import nbformat as nbf
+import jupytext as jpt
 
 ##############################################################################
 # CLI utilities
@@ -122,4 +124,14 @@ def _clean_markdown_cells(ntbk):
                 if line.startswith('#'):
                     cell_lines[ii] = line.rstrip('#').rstrip()
             cell.source = '\n'.join(cell_lines)
+    return ntbk
+
+
+def read_notebook(path_notebook):
+    """Read in a notebook using either nbformat or jupytext."""
+    suff = op.splitext(path_notebook)[-1]
+    if suff == ".ipynb":
+        ntbk = nbf.read(path_notebook, nbf.NO_CONVERT)
+    elif suff == ".md":
+        ntbk = jpt.read(path_notebook)
     return ntbk

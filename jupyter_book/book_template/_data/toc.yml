@@ -60,6 +60,9 @@
   - title: Citations and bibliographies
     url: /features/citations
     not_numbered: true
+  - title: Using Jupytext for text-based Notebook content
+    url: /features/jupytext
+    not_numbered: true
   - title: Searching your book
     url: /features/search
     not_numbered: true
