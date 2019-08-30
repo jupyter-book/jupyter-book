@@ -1,0 +1,21 @@
+<!-- Include nbinteract for interactive widgets -->
+<script src="{{ '/assets/js/print.min.js' | relative_url }}"  type="text/javascript"></script>
+<script>
+printContent = () => {
+    printJS({
+        printable: 'textbook_content',
+        type: 'html',
+        css: "{{ site.css_url | relative_url }}/styles.css",
+        scanStyles: false,
+        targetStyles: ["*"],
+        ignoreElements: [".copybtn"]
+    })
+};
+
+initPrint = () => {
+    document.querySelector('#interact-button-print').addEventListener('click', printContent)
+}
+
+initFunction(initPrint)
+    
+</script>
