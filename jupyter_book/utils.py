@@ -4,8 +4,6 @@ import string
 import argparse
 import os
 import os.path as op
-import nbformat as nbf
-import jupytext as jpt
 
 ##############################################################################
 # CLI utilities
@@ -127,11 +125,6 @@ def _clean_markdown_cells(ntbk):
     return ntbk
 
 
-def read_notebook(path_notebook):
-    """Read in a notebook using either nbformat or jupytext."""
-    suff = op.splitext(path_notebook)[-1]
-    if suff == ".ipynb":
-        ntbk = nbf.read(path_notebook, nbf.NO_CONVERT)
-    elif suff == ".md":
-        ntbk = jpt.read(path_notebook)
-    return ntbk
+def _file_newer_than(path1, path2):
+    """Check whether file at path1 is newer than path2."""
+    return os.stat(path1).st_mtime > os.stat(path2).st_mtime

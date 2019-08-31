@@ -3,8 +3,9 @@ from traitlets.config import Config
 
 from nbconvert.exporters import HTMLExporter
 from nbconvert.writers import FilesWriter
+import jupytext as jpt
 
-from .utils import _clean_markdown_cells, read_notebook
+from .utils import _clean_markdown_cells
 from .run import run_ntbk
 
 
@@ -35,7 +36,7 @@ def build_page(path_ntbk, path_html_output, path_media_output=None, execute=Fals
     ########################################
     # Load in the notebook
     notebook_name = op.splitext(op.basename(path_ntbk))[0]
-    ntbk = read_notebook(path_ntbk)
+    ntbk = jpt.read(path_ntbk)
     if _is_jupytext_file(ntbk):
         execute = True
 
@@ -98,6 +99,10 @@ def _is_jupytext_file(ntbk):
     """Infer whether a notebook node was created from a Jupytext Markdown file.
 
     Right now, this just tries to guess based on whether there's a particular piece of
-    metadata in the notebook. Not sure if this is actually correct though...
+    metadata in the notebook.
     """
-    return ntbk.get('metadata', {}).get('jupytext', {}).get('cell_metadata_filter', '') != "-all"
+    jupytext_meta = ntbk.get('metadata', {}).get('jupytext')
+    if jupytext_meta is None:
+        return False
+    else:
+        return jupytext_meta.get('notebook_metadata_filter', '') != "-all"

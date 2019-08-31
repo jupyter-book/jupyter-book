@@ -1,10 +1,10 @@
 ---
 jupyter:
   jupytext:
-    formats: ipynb,md,Rmd,py:percent
+    formats: ipynb,md
     text_representation:
-      extension: .md
-      format_name: markdown
+      extension: .Rmd
+      format_name: rmarkdown
       format_version: '1.1'
       jupytext_version: 1.2.1
   kernelspec:
@@ -29,45 +29,15 @@ a markdown file. [You can find the original (text-based) format here](https://gi
 
 Below we'll show some Python code, which Jupyter Book can execute at build time.
 
-```python
-# Import some data
-import numpy as np
-import matplotlib.pyplot as plt
-plt.ion()
+```{python}
+print("This message should display: %s" % (2 + 2))
 ```
 
-```python
-# We'll make a simple plot!
-data = np.random.randn(2, 100)
+Now let's see if tags are propagated correctly...
 
-fig, ax = plt.subplots()
-ax.scatter(*data, c=data[0], s=500)
-ax.text(0, 0, "Jupytext is great!", fontdict={'size': 40, 'horizontalalignment': 'center'})
+```{python tags=c("hide_input")}
+print("This message should have a hide_input tag")
 ```
-
-## Jupytext works with cell tags
-
-You can still use cell tags in your Jupytext files by using the format that Jupytext expects.
-For example, the Python code below will have its code cell hidden:
-
-```python tags=["hide_input"]
-# We'll make a simple plot!
-data = np.random.randn(2, 100)
-
-fig, ax = plt.subplots()
-ax.scatter(*data, c=data[1], s=500, cmap='coolwarm')
-ax.text(0, 0, "Jupytext is great!", fontdict={'size': 40, 'horizontalalignment': 'center'})
-```
-
-## Supported Jupytext formats
-
-There are [many supported formats in Jupytext](https://jupytext.readthedocs.io/en/latest/formats.html). Jupyter
-Book works with a subset of common ones:
-
-* Markdown files (`.md` or `.markdown`)
-* Python files meant for Jupytext (`.py` with Sphinx-Gallery or `%%` syntax to break cells)
-* RMarkdown files (`.Rmd`)
-
 
 ## A recommended workflow with Jupytext and notebooks
 
