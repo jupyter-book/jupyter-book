@@ -2,18 +2,18 @@ import os
 import os.path as op
 import shutil as sh
 import yaml
-import nbformat as nbf
 from tqdm import tqdm
 from glob import glob
 from uuid import uuid4
+import jupytext as jpt
 
 from .utils import (print_message_box, _split_yaml, _check_url_page, _prepare_toc,
-                    _prepare_url, _error)
+                    _prepare_url, _error, _file_newer_than)
 from .page import build_page
 
 # Defaults
 BUILD_FOLDER_NAME = "_build"
-SUPPORTED_FILE_SUFFIXES = ['.ipynb', '.md']
+SUPPORTED_FILE_SUFFIXES = ['.ipynb', '.md', ".markdown", ".Rmd", ".py", "#BREAK#"]
 
 
 def _clean_lines(lines, filepath, PATH_BOOK, path_images_folder):
@@ -149,23 +149,26 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
 
         # URLs shouldn't have the suffix in there already so
         # now we find which one to add
-        for suf in SUPPORTED_FILE_SUFFIXES:
-            if op.exists(path_url_page + suf):
-                path_url_page = path_url_page + suf
+        for suff in SUPPORTED_FILE_SUFFIXES:
+            if op.exists(path_url_page + suff):
+                path_url_page = path_url_page + suff
                 break
-
-        if not op.exists(path_url_page):
-            raise _error("Could not find file called {} with any of these extensions: {}".format(
-                path_url_page, SUPPORTED_FILE_SUFFIXES))
+            elif suff == "#BREAK#":
+                # Final suffix means we didn't find any existing content
+                raise _error(
+                    "Could not find file called {} with any of these extensions: {}".format(
+                        path_url_page, SUPPORTED_FILE_SUFFIXES))
 
         # Create and check new folder / file paths
         path_build_new_folder = path_url_folder.replace(
             os.sep + CONTENT_FOLDER_NAME, os.sep + BUILD_FOLDER_NAME) + os.sep
-        path_build_new_file = op.join(path_build_new_folder, op.basename(
-            path_url_page).replace('.ipynb', '.html'))
+        path_build_new_file = op.join(
+            path_build_new_folder, op.basename(path_url_page).replace(suff, '.html'))
 
+        # If the new build file exists and is *newer* than the original file, assume
+        # the original content file hasn't changed and skip it.
         if overwrite is False and op.exists(path_build_new_file) \
-           and os.stat(path_build_new_file).st_mtime > os.stat(path_url_page).st_mtime:
+           and _file_newer_than(path_build_new_file, path_url_page):
             n_skipped_files += 1
             continue
 
@@ -198,17 +201,16 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         # Get kernel name and presence of widgets from notebooks metadata
 
         kernel_name = ''
-        if path_url_page.endswith('.ipynb'):
-            data = nbf.read(path_url_page, nbf.NO_CONVERT)
-            if 'metadata' in data and 'kernelspec' in data['metadata']:
-                kernel_name = data['metadata']['kernelspec']['name']
-            has_widgets = "true" if any("interactive" in cell['metadata'].get('tags', []) for cell in data['cells']) else "false"
+        data = jpt.read(path_url_page)
+        if 'metadata' in data and 'kernelspec' in data['metadata']:
+            kernel_name = data['metadata']['kernelspec']['name']
+        has_widgets = "true" if any("interactive" in cell['metadata'].get('tags', []) for cell in data['cells']) else "false"
 
         ############################################
         # Content conversion
 
         # Convert notebooks or just copy md if no notebook.
-        if path_url_page.endswith('.ipynb'):
+        if any(path_url_page.endswith(ii) for ii in ['.md', '.ipynb']):
             # Decide the path where the images will be placed, relative to the HTML location
             path_after_build_folder = path_build_new_folder.split(
                 os.sep + BUILD_FOLDER_NAME + os.sep)[-1]
@@ -217,12 +219,8 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
 
             # Build the HTML for this book
             build_page(path_url_page, path_build_new_folder, path_images_new_folder,
-                       path_template=path_template, kernel_name=kernel_name)
-
-        elif path_url_page.endswith('.md'):
-            # If a non-notebook file, just copy it over.
-            # If markdown we'll add frontmatter later
-            sh.copy2(path_url_page, path_build_new_file)
+                       path_template=path_template, kernel_name=kernel_name,
+                       execute=execute)
         else:
             raise _error(
                 "Files must end in ipynb or md. Found file {}".format(path_url_page))
@@ -251,12 +249,13 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
                     'sensitive FS, e.g. case-sensitive disk image on Mac')
             yaml_fm += ['redirect_from:']
             yaml_fm += ['  - "{}"'.format(sanitized)]
-        if path_url_page.endswith('.ipynb'):
-            interact_path = CONTENT_FOLDER_NAME + '/' + \
-                path_url_page.split(CONTENT_FOLDER_NAME + '/')[-1]
-            yaml_fm += ['interact_link: {}'.format(interact_path)]
-            yaml_fm += ["kernel_name: {}".format(kernel_name)]
-            yaml_fm += ["has_widgets: {}".format(has_widgets)]
+
+        # Add interactive kernel info
+        interact_path = CONTENT_FOLDER_NAME + '/' + \
+            path_url_page.split(CONTENT_FOLDER_NAME + '/')[-1]
+        yaml_fm += ['interact_link: {}'.format(interact_path)]
+        yaml_fm += ["kernel_name: {}".format(kernel_name)]
+        yaml_fm += ["has_widgets: {}".format(has_widgets)]
 
         # Page metadata
         yaml_fm += ["title: '{}'".format(title)]

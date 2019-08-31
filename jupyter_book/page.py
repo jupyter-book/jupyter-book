@@ -1,9 +1,9 @@
-import nbformat as nbf
 import os.path as op
 from traitlets.config import Config
 
 from nbconvert.exporters import HTMLExporter
 from nbconvert.writers import FilesWriter
+import jupytext as jpt
 
 from .utils import _clean_markdown_cells
 from .run import run_ntbk
@@ -17,7 +17,9 @@ def build_page(path_ntbk, path_html_output, path_media_output=None, execute=Fals
     ======
 
     path_ntbk : string
-        The path to a notebook we want to convert.
+        The path to a notebook or text file we want to convert. If a text
+        file, then Jupytext will be used to convert into a notebook. This
+        will also cause the notebook to be *run* (e.g. execute=True).
     path_html_output : string
         The path to the folder where the HTML will be output.
     path_media_output : string | None
@@ -30,8 +32,13 @@ def build_page(path_ntbk, path_html_output, path_media_output=None, execute=Fals
     kernel_name : string
         The name of the kernel to use if we execute notebooks.
     """
-    ntbk = nbf.read(path_ntbk, nbf.NO_CONVERT)
+
+    ########################################
+    # Load in the notebook
     notebook_name = op.splitext(op.basename(path_ntbk))[0]
+    ntbk = jpt.read(path_ntbk)
+    if _is_jupytext_file(ntbk):
+        execute = True
 
     ########################################
     # Notebook cleaning
@@ -86,3 +93,16 @@ def build_page(path_ntbk, path_html_output, path_media_output=None, execute=Fals
     writer.write(html, resources, notebook_name=notebook_name)
     if verbose:
         print("Finished writing notebook to {}".format(path_html_output))
+
+
+def _is_jupytext_file(ntbk):
+    """Infer whether a notebook node was created from a Jupytext Markdown file.
+
+    Right now, this just tries to guess based on whether there's a particular piece of
+    metadata in the notebook.
+    """
+    jupytext_meta = ntbk.get('metadata', {}).get('jupytext')
+    if jupytext_meta is None:
+        return False
+    else:
+        return jupytext_meta.get('notebook_metadata_filter', '') != "-all"

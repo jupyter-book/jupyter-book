@@ -250,7 +250,7 @@ def test_notebook(tmpdir):
 
 def test_split_yaml(tmpdir):
     path_build_test = op.join(tmpdir.dirpath(), 'tmp_test', 'test')
-    with open(op.join(path_build_test, '_build', 'tests', 'features.md'), 'r') as ff:
+    with open(op.join(path_build_test, '_build', 'tests', 'features.html'), 'r') as ff:
         lines = ff.readlines()
 
     # Make sure the yaml remains in the file
@@ -278,7 +278,7 @@ def test_notebook_update(tmpdir):
     cmd = ["jupyter-book", 'build', path_build_test]
 
     source_file = op.join(path_build_test, 'content', 'tests', 'features.md')
-    target_file = op.join(path_build_test, '_build', 'tests', 'features.md')
+    target_file = op.join(path_build_test, '_build', 'tests', 'features.html')
     source_text = 'https://'
     target_text = 'www.'
 

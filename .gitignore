@@ -112,3 +112,6 @@ scripts/tests/site/content/LICENSE.md
 # Template build
 jupyter_book/book_template/_build
 
+# This is a jupyter notebook file we convert to `md` with jupytext
+# We only want to store the `md` file
+jupyter_book/book_template/content/features/jupytext.ipynb

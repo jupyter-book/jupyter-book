@@ -123,3 +123,8 @@ def _clean_markdown_cells(ntbk):
                     cell_lines[ii] = line.rstrip('#').rstrip()
             cell.source = '\n'.join(cell_lines)
     return ntbk
+
+
+def _file_newer_than(path1, path2):
+    """Check whether file at path1 is newer than path2."""
+    return os.stat(path1).st_mtime > os.stat(path2).st_mtime

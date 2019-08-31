@@ -84,9 +84,8 @@ jobs:
       - restore_cache:
           keys:
             - cache-pip
-      - run: pip install --user flake8 pytest-cov
-      # Install the packages needed to build our documentation
-      # This will depend on your particular package!
+      # Documentation-specific packages
+      - run: pip install --user flake8 pytest-cov matplotlib numpy pandas
       - run: pip install --user -r requirements.txt
       - run: pip install --user -e ./  # Install Jupyter Book CLI
 
