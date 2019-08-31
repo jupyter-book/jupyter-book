@@ -26,9 +26,6 @@ a 1-level nesting; we will label 1.2, but not 1.2.1.
       {% if chapter.divider %}
         <li class="c-sidebar__divider"></li>
         {% continue %}
-      {% elsif chapter.search %}
-        <li class="c-sidebar__chapter"><a class="c-sidebar__entry" href="{{ '/search.html' | relative_url }}">{{ chapter.title }}</a></li>
-        {% continue %}
       {% elsif chapter.header %}
         <li><h2 class="c-sidebar__title">{{ chapter.header }}</li>
         {% continue %}

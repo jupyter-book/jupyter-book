@@ -132,14 +132,7 @@ initFunction(initListener);
  *   * Top navbar hiding for scrolling
  */
 
-highlightRightSidebar = function(content) {
-
-};
-
-decideToShowNavbar = function() {
-  
-
-}
+var didScroll;
 
 initScrollFunc = function() {
   var content = document.querySelector('.c-textbook__page');
@@ -147,18 +140,26 @@ initScrollFunc = function() {
   var prevScrollpos = content.scrollTop; // Initializing
 
   scrollFunc = function() {
+    // This is the function that does all the stuff when scrolling happens
+
     var position = content.scrollTop; // Because we use this differently for sidebar
     
     // Decide to show the navbar
     var currentScrollPos = content.scrollTop;
-    if (prevScrollpos > currentScrollPos) {
-      topbar.style.top = "0";
+    var delta = 10;
+    var scrollDiff = prevScrollpos - currentScrollPos;
+    if (scrollDiff >= delta) {
+      // If we scrolled down, consider showing the menu
+      topbar.classList.remove("hidetop")
+    } else if (Math.abs(scrollDiff) >= delta) {
+      // If we scrolled up, consider hiding the menu
+      topbar.classList.add("hidetop")
     } else {
-      topbar.style.top = "-200px";
+      // Do nothing because we didn't scroll enough
     }
     prevScrollpos = currentScrollPos;
 
-    // Highlight the right sidebar
+    // Highlight the right sidebar section
     position = position + (window.innerHeight / 4);  // + Manual offset
   
     content.querySelectorAll('h2, h3').forEach((header, index) => {
@@ -177,7 +178,17 @@ initScrollFunc = function() {
       }
     });
   }
-  content.addEventListener('scroll', scrollFunc);
+
+  // Our event listener just sets "yep, I scrolled" to true.
+  // The interval function will set it to false after it runs.
+  content.addEventListener('scroll', () => {didScroll = true;});
+  scrollWait = 250;
+  setInterval(() => {
+    if (didScroll) {
+      scrollFunc();
+      didScroll = false;
+    }
+  }, scrollWait)
 }
 
 initFunction(initScrollFunc);

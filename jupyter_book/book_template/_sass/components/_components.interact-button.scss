@@ -12,7 +12,7 @@
 $color-interact-button: #5a5a5a !default;
 
 %interact-button {
-  @include inuit-font-size(16px);
+  @include inuit-font-size(14px);
   background-color: $color-interact-button;
   border-radius: 3px;
   border: none;
@@ -57,5 +57,4 @@ $color-interact-button: #5a5a5a !default;
 div.interact-context {
   display: inline;
   padding-left: 1em;
-  font-weight: 600;
 }

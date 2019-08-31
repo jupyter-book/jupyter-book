@@ -20,8 +20,6 @@
 - title: Home
   url: /intro
   not_numbered: true
-- title: Search
-  search: true
 
 - title: Getting started
   url: /guide/01_overview
@@ -47,6 +45,8 @@
     not_numbered: true
   - title: Jupyter notebooks
     url: /features/notebooks
+  - title: Controlling page layout
+    url: /features/layout
     not_numbered: true
   - title: Hiding code blocks or entire cells
     url: /features/hiding
