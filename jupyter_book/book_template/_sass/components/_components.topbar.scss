@@ -28,7 +28,7 @@
     }
   }
 
-  #search-button {
+  .topbar-right-button {
     font-size: 1.4em;
     display: block;
     float: right;
@@ -38,5 +38,27 @@
     &:hover {
       color: $color-links;
     }
+  }
+}
+
+// Download buttons
+
+.download-buttons {
+  display: none;
+  position: absolute;
+
+  button {
+    min-width: 100px !important;
+    border: 1px white solid !important;
+    border-radius: 0 !important;
+  }
+}
+
+.download-buttons-dropdown {
+  position: relative;
+  display: inline-block;
+
+  &:hover div.download-buttons {
+    display: block;
   }
 }
