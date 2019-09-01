@@ -113,3 +113,16 @@ There are two straightforward ways to add metadata to cells:
    Here's what the tags UI in JupyterLab looks like.
 
    ![](../images/tags_jupyterlab.png)
+
+
+## Why doesn't math show properly when printing?
+
+Currently, we use a library called [PrintJS](https://printjs.crabbly.com/) to handle
+printing of *just* the notebook content (when you click the "print -> PDF" buttons).
+
+However, a drawback of this approach is that MathJax mathematics cannot access the
+same fonts available when you're viewing a page live. This means that mathematics often
+look simplified and incorrectly-formatted.
+
+If you have an idea for how to improve this, please
+[open an issue](https://github.com/jupyter/jupyter-book/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc)!
