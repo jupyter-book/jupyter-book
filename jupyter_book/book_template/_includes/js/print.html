@@ -2,12 +2,23 @@
 <script src="{{ '/assets/js/print.min.js' | relative_url }}"  type="text/javascript"></script>
 <script>
 printContent = () => {
+    // MathJax displays a second version of any math for assistive devices etc.
+    // This prevents double-rendering in the PDF output.
+    var ignoreAssistList = [];
+    assistives = document.querySelectorAll('.MathJax_Display span.MJX_Assistive_MathML').forEach((element, index) => {
+        var thisId = 'MathJax-assistive-' + index.toString();
+        element.setAttribute('id', thisId);
+        ignoreAssistList.push(thisId)
+    });
+
+    // Print the actual content object
     printJS({
         printable: 'textbook_content',
         type: 'html',
         css: "{{ site.css_url | relative_url }}/styles.css",
         scanStyles: false,
         targetStyles: ["*"],
+        ignoreElements: ignoreAssistList
     })
 };
 
