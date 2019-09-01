@@ -25,6 +25,7 @@
 
 $left-sidebar-width: 300px;
 $textbook-page-width: 100%;
+$textbook-page-with-sidebar-width: 70%;
 $textbook-page-max-width: 950px;
 $right-sidebar-width: 220px;
 $topbar-height: 60px;
@@ -131,6 +132,10 @@ $book-background-color: white;
   justify-content: space-between;
   align-items: center;
   padding-top: 30px;
+
+  @include mq($from: laptop) {
+    width: $textbook-page-with-sidebar-width;
+  }
 }
 
 // Scrollbar width
