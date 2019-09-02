@@ -1,6 +1,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js" async></script>
 <script>
-var initToc = function () {
+const initToc = () => {
+  if (window.tocbot === undefined) {
+    setTimeout(initToc, 250)
+    return
+  }
+
   tocbot.init({
     tocSelector: 'nav.onthispage',
     contentSelector: '.c-textbook__content',
@@ -11,7 +16,7 @@ var initToc = function () {
     activeListItemClass: "",  // Not using
     activeLinkClass: "", // Not using
   });
-  tocbot.refresh();
+
 }
 initFunction(initToc);
 </script>
