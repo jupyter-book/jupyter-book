@@ -39,24 +39,26 @@ def build_page(path_ntbk, path_html_output, path_media_output=None, execute=Fals
     # Load in the notebook
     notebook_name, suff = op.splitext(op.basename(path_ntbk))
 
+    is_raw_markdown_file = False
     if suff in ['.md', '.markdown']:
         # If it's a markdown file, we need to check whether it's a jupytext format
         with open(path_ntbk, 'r') as ff:
             lines = ff.readlines()
-            yaml, content = _split_yaml(lines)
-            yaml = YAML().load(''.join(yaml))
+            yaml_lines, content = _split_yaml(lines)
+            yaml = YAML().load(''.join(yaml_lines))
 
         if (yaml is not None) and yaml.get('jupyter', {}).get('jupytext'):
             # If we have jupytext metadata, then use it to read the markdown file
             ntbk = jpt.reads(''.join(lines), 'md')
         else:
             # Otherwise, create an empty notebook and add all of the file contents as a markdown file
+            is_raw_markdown_file = True
             ntbk = nbf.v4.new_notebook()
             ntbk['cells'].append(nbf.v4.new_markdown_cell(source=''.join(content)))
     else:
         # If it's not markdown, we assume it's either ipynb or a jupytext format
         ntbk = jpt.read(path_ntbk)
-    
+
     if _is_jupytext_file(ntbk):
         execute = True
 
@@ -111,6 +113,18 @@ def build_page(path_ntbk, path_html_output, path_media_output=None, execute=Fals
     # Now write the markdown and resources
     writer = FilesWriter(config=c)
     writer.write(html, resources, notebook_name=notebook_name)
+
+    # Add the frontmatter to the yaml file in case it's wanted
+    if is_raw_markdown_file and len(yaml_lines) > 0:
+        with open(op.join(path_html_output, notebook_name + '.html'), 'r') as ff:
+            md_lines = ff.readlines()
+        md_lines.insert(0, '---\n')
+        for iline in yaml_lines[::-1]:
+            md_lines.insert(0, iline + '\n')
+        md_lines.insert(0, '---\n')
+        with open(op.join(path_html_output, notebook_name + '.html'), 'w') as ff:
+            ff.writelines(md_lines)
+
     if verbose:
         print("Finished writing notebook to {}".format(path_html_output))
 
