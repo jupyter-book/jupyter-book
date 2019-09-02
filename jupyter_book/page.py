@@ -4,8 +4,10 @@ from traitlets.config import Config
 from nbconvert.exporters import HTMLExporter
 from nbconvert.writers import FilesWriter
 import jupytext as jpt
+import nbformat as nbf
+from ruamel.yaml import YAML
 
-from .utils import _clean_markdown_cells
+from .utils import _clean_markdown_cells, _split_yaml
 from .run import run_ntbk
 
 
@@ -35,8 +37,26 @@ def build_page(path_ntbk, path_html_output, path_media_output=None, execute=Fals
 
     ########################################
     # Load in the notebook
-    notebook_name = op.splitext(op.basename(path_ntbk))[0]
-    ntbk = jpt.read(path_ntbk)
+    notebook_name, suff = op.splitext(op.basename(path_ntbk))
+
+    if suff in ['.md', '.markdown']:
+        # If it's a markdown file, we need to check whether it's a jupytext format
+        with open(path_ntbk, 'r') as ff:
+            lines = ff.readlines()
+            yaml, content = _split_yaml(lines)
+            yaml = YAML().load(''.join(yaml))
+
+        if (yaml is not None) and yaml.get('jupyter', {}).get('jupytext'):
+            # If we have jupytext metadata, then use it to read the markdown file
+            ntbk = jpt.reads(''.join(lines), 'md')
+        else:
+            # Otherwise, create an empty notebook and add all of the file contents as a markdown file
+            ntbk = nbf.v4.new_notebook()
+            ntbk['cells'].append(nbf.v4.new_markdown_cell(source=''.join(content)))
+    else:
+        # If it's not markdown, we assume it's either ipynb or a jupytext format
+        ntbk = jpt.read(path_ntbk)
+    
     if _is_jupytext_file(ntbk):
         execute = True
 
