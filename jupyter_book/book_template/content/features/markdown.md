@@ -1,3 +1,18 @@
+---
+jupyter:
+  jupytext:
+    formats: md
+    text_representation:
+      extension: .md
+      format_name: markdown
+      format_version: '1.1'
+      jupytext_version: 1.2.1
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
 # Creating book content
 
 The two kinds of files that contain course content are:
@@ -10,6 +25,7 @@ Each are contained in the `content/` folder and referenced from `_data/toc.yml`.
 If the file is markdown, it will be copied over with front-matter YAML added so
 that Jekyll can parse it.
 
+<!-- #region -->
 ```python
 print("Python (and any language-specific) code still works as expected")
 ```
@@ -17,6 +33,7 @@ print("Python (and any language-specific) code still works as expected")
 ```
 As does non-language code.
 ```
+<!-- #endregion -->
 
 ## Page navigation Table of Contents
 
@@ -45,6 +62,7 @@ P(A_1 \cup A_2 \cup A_3) ~ = ~ P(B \cup A_3) &= ~ P(B) + P(A_3) - P(BA_3) \\
 
 And here is the code that was used to generate it:
 
+<!-- #region -->
 ```python
 \begin{align*}
 P(A_1 \cup A_2 \cup A_3) ~ = ~ P(B \cup A_3) &= ~ P(B) + P(A_3) - P(BA_3) \\
@@ -52,6 +70,7 @@ P(A_1 \cup A_2 \cup A_3) ~ = ~ P(B \cup A_3) &= ~ P(B) + P(A_3) - P(BA_3) \\
 &= ~ \sum_{i=1}^3 P(A_i) - \mathop{\sum \sum}_{1 \le i < j \le 3} P(A_iA_j) + P(A_1A_2A_3)
 \end{align*}
 ```
+<!-- #endregion -->
 
 <!-- #region {"tags": ["popout"]} -->
 **Note**: If you print your page (using the print button), then mathematics may not show
