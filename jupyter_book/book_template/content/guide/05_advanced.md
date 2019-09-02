@@ -77,6 +77,92 @@ This will overwrite the contents of `toc.yml` with the new TOC.
 > be structured. We recommend using this command as a starting point, and
 > then customizing your TOC how you'd like.
 
+
+## Adding tags to notebook cells based on their content
+
+Sometimes you'd like to quickly scan through a notebook's cells in order to
+add tags based on the content of the cell. For example, you might want to
+hide any cell with an import statement in it using the `remove_input` tag.
+
+Here's a short Python snippet to accomplish something close to this.
+First change directories into the root of your book folder, and then
+run the script below as a Python script or within a Jupyter Notebook
+(modifying as necessary for your use case).
+Finally, check the changes that will be made and commit them to your repository.
+
+```python
+import nbformat as nbf
+from glob import glob
+
+# Collect a list of all notebooks in the content folder
+notebooks = glob("./content/**/*.ipynb", recursive=True)
+
+# Text to look for in adding tags
+text_search_dict = {
+    "# HIDDEN": "remove_cell",  # Remove the whole cell
+    "# NO CODE": "remove_input",  # Remove only the input
+    "# HIDE CODE": "hide_input"  # Hide the input w/ a button to show
+}
+
+# Search through each notebook and look for th text, add a tag if necessary
+for ipath in notebooks:
+    ntbk = nbf.read(ipath, nbf.NO_CONVERT)
+    
+    for cell in ntbk.cells:
+        cell_tags = cell.get('metadata', {}).get('tags', [])
+        for key, val in text_search_dict.items():
+            if key in cell['source']:
+                if val not in cell_tags:
+                    cell_tags.append(val)
+        if len(cell_tags) > 0:
+            cell['metadata']['tags'] = cell_tags
+    
+    nbf.write(ntbk, ipath)
+```
+
+## Customizing your `toc.yml` file
+
+The `toc.yml` file is used to control the chapter order etc of your book.
+There are a few extra features you can use to trigger certain kinds of behavior.
+This section explains the possible structure of this file so you can customize it
+as you like.
+
+### The structure of a single page
+
+Below is all of the possible fields in the entry of a single page in `toc.yml`:
+
+```
+- title: mytitle   # Title of chapter or section
+  url: /myurl  # URL of section relative to the /content/ folder.
+  not_numbered: true  # if the section shouldn't have a number in the sidebar
+    (e.g. Introduction or appendices) (default: true)
+  expand_sections: true  # if you'd like the sections of this chapter to always
+    be expanded in the sidebar. (default: true)
+  sections:  # Contains an optional list of more entries that make up the chapter's sections
+```
+
+### Adding an external link in your TOC
+
+To add an external link in your TOC, simply make the url point to a fully-resolved
+URL and add the `external: true` field. Here's an example:
+
+```
+- title: Jupyter Homepage   # Title of chapter or section
+  url: https://jupyter.org  # URL of external site
+  external: true
+```
+
+### Extra TOC entries
+
+These are special entries that will trigger different behavior if they are
+in the `toc.yml` file:
+
+```
+- search: true  # Will provide a link to a search page
+- divider: true  # Will insert a divider in the sidebar
+- header: My Header  # Will insert a header with no link in the sidebar
+```
+
 ## Build the book's site HTML locally
 
 Once you've generated the intermediate files for your notebooks and installed the
