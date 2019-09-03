@@ -37,12 +37,12 @@
   </script>
 
   <!-- Add AnchorJS to let headers be linked -->
-  <script src="{{ '/assets/js/anchor.min.js' | relative_url }}"  type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js" async></script>
   {% include js/anchors.html %}
 
   <!-- Include Turbolinks to make page loads fast -->
   <!-- https://github.com/turbolinks/turbolinks -->
-  <script src="{{ site.js_url | relative_url }}/turbolinks.js" async></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js" async></script>
   <meta name="turbolinks-cache-control" content="no-cache">
 
   <!-- Selectors for elements on the page -->
@@ -61,7 +61,7 @@
   <script src="{{ site.js_url | relative_url }}/ga.js" async></script>
 
   <!-- Clipboard copy button -->
-  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" async></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script>
 
   <!-- Load custom website scripts -->
   <script src="{{ site.js_url | relative_url }}/scripts.js" async></script>
@@ -74,7 +74,7 @@
   {% include js/interact-update.html %}
 
   <!-- Lunr search code - will only be executed on the /search page -->
-  <script src="{{ '/assets/js/lunr/lunr.min.js' | relative_url }}" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.6/lunr.min.js" async></script>
   <script>{% include search/lunr/lunr-en.js %}</script>
 
   <!-- Load JS that depends on site variables -->
