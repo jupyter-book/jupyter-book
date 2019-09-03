@@ -70,6 +70,15 @@
     url: /features/limits
     not_numbered: true
 
+- title: Advanced Topics
+  url: /advanced/advanced
+  not_numbered: true
+  expand_sections: true
+  sections:
+  - title: Previewing or building your book with CircleCI
+    url: /advanced/circleci
+    not_numbered: true
+
 
 - title: GitHub repository
   url: https://github.com/jupyter/jupyter-book
