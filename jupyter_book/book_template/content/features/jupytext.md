@@ -15,6 +15,8 @@ jupyter:
 
 # Jupytext with Jupyter Book
 
+✨**experimental**✨
+
 It's also possible to build Jupyter Books using [Jupytext](https://jupytext.readthedocs.io), a tool for
 two-way conversion between Jupyter Notebooks an text-based versions of a Jupyter Notebook (e.g., `.md` or `.py`).
 

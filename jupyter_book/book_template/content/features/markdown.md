@@ -98,3 +98,18 @@ You can even embed references to movies on the web! For example, here's a little
 ![](https://media.giphy.com/media/yoJC2A59OCZHs1LXvW/giphy.gif)
 
 This will be included in your website when it is built.
+
+## Downloading and Printing pages
+
+✨**experimental**✨
+
+While interactivity is nice, sometimes you need a static version of your book
+that's suitable for printing. Currently, Jupyter Book uses a tool called
+[PrintJS](https://printjs.crabbly.com) to create rendered PDF versions of your
+book's content.
+
+In the top of each page you'll find a "download" button. Hovering over this button
+gives the reader an option to print to PDF. When clicked, PrintJS will convert
+*only the book's content* (so no sidebar or in-page navigation) to PDF, and trigger
+a print action. Note that results for this vary between devices or browsers, and
+PRs that improve this functionality are welcome!
