@@ -45,8 +45,6 @@
     not_numbered: true
   - title: Jupyter notebooks
     url: /features/notebooks
-  - title: Controlling page layout
-    url: /features/layout
     not_numbered: true
   - title: Hiding code blocks or entire cells
     url: /features/hiding
@@ -54,17 +52,17 @@
   - title: Connecting content with JupyterHub and Binder
     url: /features/interact
     not_numbered: true
-  - title: Adding interactivity to your book pages
+  - title: BETA - Adding interactivity to your book pages
     url: /features/interactive_cells
     not_numbered: true
-  - title: Citations and bibliographies
+  - title: BETA - Citations and bibliographies
     url: /features/citations
     not_numbered: true
-  - title: Using Jupytext for text-based Notebook content
+  - title: BETA - Using Jupytext for text-based Notebook content
     url: /features/jupytext
     not_numbered: true
-  - title: Searching your book
-    url: /features/search
+  - title: BETA - Controlling page layout
+    url: /features/layout
     not_numbered: true
   - title: Feature Limits
     url: /features/limits
