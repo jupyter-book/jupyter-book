@@ -3,7 +3,7 @@ import os
 import os.path as op
 import shutil as sh
 
-from jupyter_book.run import run_book
+from jupyter_book.run import run_pages
 
 this_folder = op.dirname(__file__)
 
@@ -16,7 +16,7 @@ def test_run(tmpdir):
     os.remove(op.join(path_new_content, 'tests', 'notebooks.ipynb'))
 
     # Run the notebooks in the new content folder
-    run_book(path_new_content, 'python3')
+    run_pages(path_new_content, 'python3')
 
     # Check that the outputs are there
     path_new_ntbk = op.join(path_new_content, 'tests', 'run.ipynb')

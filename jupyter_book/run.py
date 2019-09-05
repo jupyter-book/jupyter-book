@@ -8,10 +8,19 @@ from nbconvert.preprocessors import ExecutePreprocessor
 import os.path as op
 
 
-def run_book(path, kernel_name='python3'):
+def run_pages(path, kernel_name='python3'):
     "Run a collection of notebooks. Each will be run in-place."
-    print("Running all notebooks underneath {}".format(path))
-    ipynb_files = glob(op.join(path, '**', '*.ipynb'), recursive=True)
+    if not op.exists(path):
+        raise ValueError(f"Couldn't find anything at the path provided: {path}")
+    if path.endswith('.ipynb'):
+        print('Running single notebook...')
+        ipynb_files = [path]
+    else:
+        ipynb_files = glob(op.join(path, '**', '*.ipynb'), recursive=True)
+        n_notebooks = len(ipynb_files)
+        if n_notebooks > 0:
+            raise ValueError(f"No notebooks were found in the provided folder: {path}")
+        print(f"Running a folder of notebooks, {n_notebooks} in total.")
 
     failed_files = []
     for ifile in tqdm(ipynb_files):
