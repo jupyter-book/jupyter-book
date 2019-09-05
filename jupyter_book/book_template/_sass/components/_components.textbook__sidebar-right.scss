@@ -47,6 +47,13 @@ aside.sidebar__right {
             opacity: 100;
             height: auto;
         }
+
+        @include mq($from: laptop) {
+            &.no_sidebar_content {
+              opacity: 100;
+              height: auto;
+            }
+        }
     }
 
     &:hover nav {
