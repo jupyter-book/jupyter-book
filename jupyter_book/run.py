@@ -18,7 +18,7 @@ def run_pages(path, kernel_name='python3'):
     else:
         ipynb_files = glob(op.join(path, '**', '*.ipynb'), recursive=True)
         n_notebooks = len(ipynb_files)
-        if n_notebooks > 0:
+        if n_notebooks == 0:
             raise ValueError(f"No notebooks were found in the provided folder: {path}")
         print(f"Running a folder of notebooks, {n_notebooks} in total.")
 
@@ -31,9 +31,10 @@ def run_pages(path, kernel_name='python3'):
         except Exception:
             failed_files.append(ifile)
 
-    print('Failing files:')
-    for ifile in failed_files:
-        print(ifile)
+    if len(failed_files) > 0:
+        print('Finished printing with these failing pages:')
+        for ifile in failed_files:
+            print(ifile)
 
 
 def run_ntbk(ntbk, path_directory, timeout=600, kernel_name=None):
