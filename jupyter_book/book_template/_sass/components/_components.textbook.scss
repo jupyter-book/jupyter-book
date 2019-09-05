@@ -132,7 +132,10 @@ $book-background-color: white;
   justify-content: space-between;
   align-items: center;
   padding-top: 30px;
+}
 
+// Make sure that the bottom content has the same width as non-sidebar content
+.footer, .c-page__nav {
   @include mq($from: laptop) {
     width: $textbook-page-with-sidebar-width;
   }
