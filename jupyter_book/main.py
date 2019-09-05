@@ -1,8 +1,7 @@
 import sys
 import argparse
 
-from .commands import build, create, upgrade, version, page, toc
-from .run import run_book
+from .commands import build, create, upgrade, version, page, toc, run
 
 DESCRIPTION = (
     "Jupyter Book: Generate an HTML book from your Jupyter Notebooks using"
@@ -11,7 +10,7 @@ commands = {'create': create,
             'build': build,
             'page': page,
             'upgrade': upgrade,
-            'run': run_book,
+            'run': run,
             'toc': toc,
             'version': version}
 parser = argparse.ArgumentParser(description=DESCRIPTION)
