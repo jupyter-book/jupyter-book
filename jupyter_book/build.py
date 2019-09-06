@@ -258,13 +258,16 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         yaml_fm += ["has_widgets: {}".format(has_widgets)]
 
         # Page metadata
-        yaml_fm += ["title: '{}'".format(title)]
+        yaml_fm += ["title: |-"]
+        yaml_fm += ["  {}".format(title)]
         yaml_fm += ['prev_page:']
         yaml_fm += ['  url: {}'.format(url_prev_page)]
-        yaml_fm += ["  title: '{}'".format(prev_file_title)]
+        yaml_fm += ["  title: |-"]
+        yaml_fm += ["    {}".format(prev_file_title)]
         yaml_fm += ['next_page:']
         yaml_fm += ['  url: {}'.format(url_next_page)]
-        yaml_fm += ["  title: '{}'".format(next_file_title)]
+        yaml_fm += ["  title: |-"]
+        yaml_fm += ["    {}".format(next_file_title)]
 
         # Add back any original YaML, and end markers
         yaml_fm += yaml_orig
