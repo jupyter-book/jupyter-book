@@ -10,6 +10,14 @@ from ruamel.yaml import YAML
 from .utils import _clean_markdown_cells, _split_yaml
 from .run import run_ntbk
 
+# We need to use {{ and }} since we want single brackets in the final output
+# string: https://stackoverflow.com/a/5466478
+HTML_WRAPPER = '''
+{{% raw %}}
+{}
+{{% endraw %}}
+'''
+
 
 def build_page(path_ntbk, path_html_output, path_media_output=None, execute=False,
                path_template=None, verbose=False, kernel_name=None):
@@ -109,6 +117,10 @@ def build_page(path_ntbk, path_html_output, path_media_output=None, execute=Fals
     output_resources = {'output_files_dir': path_media_output_rel, 'unique_key': notebook_name}
     exp = HTMLExporter(template_file=path_template, config=c)
     html, resources = exp.from_notebook_node(ntbk, resources=output_resources)
+
+    # Wrap HTML in a {% raw %} tag to prevent errors when a notebook contains
+    # characters that have special meaning for Jekyll (like `{{`).
+    html = HTML_WRAPPER.format(html)
 
     # Now write the markdown and resources
     writer = FilesWriter(config=c)
