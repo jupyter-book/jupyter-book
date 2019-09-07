@@ -3,12 +3,38 @@ from traitlets.config import Config
 
 from nbconvert.exporters import HTMLExporter
 from nbconvert.writers import FilesWriter
+from nbconvert.preprocessors import Preprocessor
 import jupytext as jpt
 import nbformat as nbf
 from ruamel.yaml import YAML
 
 from .utils import _clean_markdown_cells, _split_yaml
 from .run import run_ntbk
+
+
+class _RawCellPreprocessor(Preprocessor):
+    '''
+    If a cell has the `jekyll-raw` cell tag, wrap the cell contents in a
+    Jekyll {% raw %} {% endraw %} tag.
+    '''
+    TAG = 'jekyll-raw'
+
+    # We need to make new cells because code cells can be marked as raw but
+    # but we shouldn't put Jekyll commands directly into the cell's Python.
+    START_RAW = nbf.v4.new_raw_cell('{% raw %}')
+    END_RAW = nbf.v4.new_raw_cell('{% endraw %}')
+
+    def preprocess(self, nb, resources):
+        new_cells = []
+        for cell in nb.cells:
+            if self.TAG in cell.metadata.get('tags', []):
+                new_cells.append(self.START_RAW)
+                new_cells.append(cell)
+                new_cells.append(self.END_RAW)
+            else:
+                new_cells.append(cell)
+        nb.cells = new_cells
+        return nb, resources
 
 
 def build_page(path_ntbk, path_html_output, path_media_output=None, execute=False,
@@ -83,11 +109,13 @@ def build_page(path_ntbk, path_html_output, path_media_output=None, execute=Fals
     # Remove any cells that are *only* whitespace
     c.RegexRemovePreprocessor.patterns = ["\\s*\\Z"]
 
-    # So the images are written to disk
     c.HTMLExporter.preprocessors = [
         'nbconvert.preprocessors.TagRemovePreprocessor',
         'nbconvert.preprocessors.RegexRemovePreprocessor',
+        # So the images are written to disk
         'nbconvert.preprocessors.ExtractOutputPreprocessor',
+        # Wrap cells in Jekyll raw tags
+        _RawCellPreprocessor,
     ]
 
     # The text used as the text for anchor links. Set to empty since we'll use anchor.js for the links
