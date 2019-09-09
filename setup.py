@@ -22,6 +22,7 @@ setup(
     name='jupyter-book',
     version=__version__,
     install_requires=install_packages,
+    include_package_data=True,
     python_requires='>=3.4',
     author='Project Jupyter Contributors',
     author_email='jupyter@googlegroups.com',
