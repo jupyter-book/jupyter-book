@@ -3,8 +3,9 @@ import os.path as op
 
 import argparse
 
-from jupyter_book.build import build_book
-from jupyter_book.page import build_page
+from .build import build_book
+from .page import build_page
+from .utils import _error
 
 DESCRIPTION = ("Convert a collection of Jupyter Notebooks into HTML "
                "suitable for a course textbook.")
@@ -51,8 +52,13 @@ def build():
 
     local_build = args.local_build
 
-    build_book(PATH_BOOK, PATH_TOC_YAML, CONFIG_FILE,
-               PATH_TEMPLATE, local_build, execute, overwrite)
+    try:
+        build_book(PATH_BOOK, PATH_TOC_YAML, CONFIG_FILE,
+                   PATH_TEMPLATE, local_build, execute, overwrite)
+    except Exception as exc:
+        raise _error(
+            "ERROR!"
+        )
 
 
 def page():
