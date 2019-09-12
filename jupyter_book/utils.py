@@ -4,7 +4,7 @@ import string
 import argparse
 import os
 import os.path as op
-from ruamel.yaml import YAML
+import yaml
 
 from . import __version__
 
@@ -146,10 +146,10 @@ def _check_book_versions(path_book):
     """Check whether the version of a book matches the version of the
     CLI that's building it."""
 
-    yaml = YAML()
-    config_version = yaml.load(op.join(path_book, "_config.yml")).get(
-        "jupyter_book_version"
-    )
+    with open(op.join(path_book, "_config.yml"), 'r') as ff:
+        config_version = yaml.safe_load(ff.read()).get(
+            "jupyter_book_version"
+        )
 
     if config_version is None:
         raise _error(
@@ -162,12 +162,14 @@ def _check_book_versions(path_book):
             f"The version of the book you are modifying doesn't match the\n"
             "version of the command-line tool that you're using. Please run\n"
             "\n"
-            "    jupyter-book upgrade {path_book} \n"
+            f"    jupyter-book upgrade {path_book} \n"
             "\n"
             "to upgrade your book to the CLI version.\n"
             "\n"
             f"This book's version: {config_version}\n"
-            f"Your CLI's version: {__version__}"
+            f"Your CLI's version: {__version__}\n"
+            "\n"
+            "See above for the error message."
         )
 
     return True

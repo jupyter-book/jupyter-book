@@ -202,6 +202,13 @@ def test_build(tmpdir):
     cmd = ["jupyter-book", 'build', path_build_test]
     run(cmd, check=True)
 
+    # Make sure a config with incorrect version raises an error
+    path_config_wrong_version = op.join(this_folder, 'configs', 'config_wrongversion.yml')
+    with pytest.raises(ValueError):
+        cmd = ["jupyter-book", 'build', path_build_test,
+               '--config', path_config_wrong_version]
+        run(cmd, check=True)
+
 
 def test_notebook(tmpdir):
     path_build_test = op.join(tmpdir.dirpath(), 'tmp_test', 'test')
