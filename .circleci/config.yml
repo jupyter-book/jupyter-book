@@ -85,9 +85,10 @@ jobs:
           keys:
             - cache-pip
       # Documentation-specific packages
-      - run: pip install --user flake8 pytest-cov matplotlib numpy pandas
-      - run: pip install --user -r requirements.txt
-      - run: pip install --user -e ./  # Install Jupyter Book CLI
+      # TEMPORARY HACK: adding | cat to avoid circle text output bug
+      - run: pip install --user flake8 pytest-cov matplotlib numpy pandas | cat
+      - run: pip install --user -r requirements.txt | cat
+      - run: pip install --user -e ./ | cat # Install Jupyter Book CLI
 
       # Cache some files for a speedup in subsequent builds
       - save_cache:
