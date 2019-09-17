@@ -157,7 +157,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
                 # Final suffix means we didn't find any existing content
                 raise _error(
                     "Could not find file called {} with any of these extensions: {}".format(
-                        path_url_page, SUPPORTED_FILE_SUFFIXES))
+                        path_url_page, SUPPORTED_FILE_SUFFIXES[:-1]))
 
         # Create and check new folder / file paths
         path_build_new_folder = path_url_folder.replace(

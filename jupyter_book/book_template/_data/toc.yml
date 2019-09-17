@@ -28,12 +28,14 @@
   sections:
   - title: Create your book
     url: /guide/02_create
-  - title: Build and publish your book
+  - title: Build HTML for each page of your book
     url: /guide/03_build
-  - title: FAQ
-    url: /guide/04_faq
+  - title: Build and publish your book online
+    url: /guide/04_publish
+  - title: Frequently Asked Questions (FAQ)
+    url: /guide/05_faq
   - title: How-to and advanced topics
-    url: /guide/05_advanced
+    url: /guide/06_advanced
 
 - title: Features and customization
   url: /features/features

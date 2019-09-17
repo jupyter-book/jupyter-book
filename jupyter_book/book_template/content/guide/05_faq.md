@@ -41,13 +41,13 @@ The two browsers on which Jupyter Book should always behave as expected are
 
 ## Why isn't my math showing up properly?
 
-This site uses MathJax to render all math, with `$` denoting inline math,
+This book uses MathJax to render all math, with `$` denoting inline math,
 and `$$` denoting multi-line math blocks. Make sure that all of your math
 is wrapped in these characters.
 
 Another tip is to remember to use **escape characters** when you *don't* want
 math to be rendered and instead want an actual dollar sign to show up.
-To do so, simply add a `\` in front of the dollar sign. For example, I 
+To do so, simply add a `\` in front of the dollar sign. For example, I
 can write \$35 by writing it like `\\$35` in the markdown.
 
 ## How can I include interactive Plotly figures?
