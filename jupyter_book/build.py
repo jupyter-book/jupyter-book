@@ -8,7 +8,7 @@ from uuid import uuid4
 import jupytext as jpt
 
 from .utils import (print_message_box, _split_yaml, _check_url_page, _prepare_toc,
-                    _prepare_url, _error, _file_newer_than)
+                    _prepare_url, _error, _file_newer_than, _check_book_versions)
 from .page import build_page
 
 # Defaults
@@ -100,6 +100,15 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
     overwrite : bool
         Whether to overwrite existing HTML files
     """
+    if not op.isdir(path_book):
+        raise _error(
+            "Could not find a Jupyter Book at the given location.\n"
+            "Double-check the path you've provided:\n"
+            "\n"
+            f"{path_book}"
+        )
+
+    _check_book_versions(path_book)
 
     PATH_IMAGES_FOLDER = op.join(path_book, '_build', 'images')
     BUILD_FOLDER = op.join(path_book, BUILD_FOLDER_NAME)

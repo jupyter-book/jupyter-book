@@ -174,7 +174,7 @@ def new_book(path_out, content_folder, toc,
         # placeholders for users to change
         update_config(op.join(path_out, '_config.yml'), config)
 
-    # Add the Jupyter Book version fo the config
+    # Add the Jupyter Book version to the config
     yaml = YAML()
     with open(op.join(path_out, '_config.yml'), 'r') as ff:
         data = yaml.load(ff)
