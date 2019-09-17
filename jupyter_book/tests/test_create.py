@@ -230,8 +230,8 @@ def test_notebook(tmpdir):
     with open(op.join(path_build_test, '_build', 'tests', 'notebooks.html'), 'r') as ff:
         lines = ff.readlines()
 
-    # Notebook-converted images work
-    assert is_in(lines, "../images/tests/notebooks_2_0.png")
+    # Notebook-converted images work (not checking number in case cell count changes)
+    assert is_in(lines, "../images/tests/notebooks_")
 
     # Input area classes are there
     assert is_in(lines, 'class="input_area')
