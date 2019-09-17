@@ -76,3 +76,9 @@ jupyter-book create mybookname --content-folder myoldbook/content \
 This will create a new Jupyter Book using these files. In this case, you need to ensure
 that the values in `_config.yml` are correct, and that the Table of Contents (`toc.yml`) file
 has the structure that you want.
+
+## Next step: convert your book content into HTML
+
+Now that you've got a Jupyter Book folder structure, we can create
+the HTML for each of your book's pages. That's covered in the next
+section.

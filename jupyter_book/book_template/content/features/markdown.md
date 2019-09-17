@@ -87,7 +87,7 @@ You can reference external media like images from your markdown file. If you use
 relative paths, then they will continue to work when the markdown files are copied over,
 so long as they point to a file that's inside of the repository.
 
-Here's an image relative to the site root
+Here's an image relative to the book content root
 
 ![](../images/C-3PO_droid.png)
 
@@ -97,7 +97,7 @@ You can even embed references to movies on the web! For example, here's a little
 
 ![](https://media.giphy.com/media/yoJC2A59OCZHs1LXvW/giphy.gif)
 
-This will be included in your website when it is built.
+This will be included in your book when it is built.
 
 ## Downloading and Printing pages
 
