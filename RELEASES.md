@@ -28,6 +28,9 @@ and check off the boxes as you complete items:
    [following the twine release instructions](https://twine.readthedocs.io/en/latest/#using-twine)
 - [ ] Confirm that the new version of Jupyter Book [is posted to pypi](https://pypi.org/project/jupyter-book/)
 - [ ] Create a new [release on GitHub](https://github.com/jupyter/jupyter-book/releases).
+
+      Call the release simply the version of Jupyter Book you are releasing. Leave the description blank, we'll
+      fill it in later.
 - [ ] Bump the [Jupyter Book version number](https://github.com/jupyter/jupyter-book/blob/master/jupyter_book/__init__.py) to
    the next minor (or major) release and append `dev0` to the end.
 - [ ] Generate the new changelog using the `github-changelog-generator`.
@@ -39,5 +42,6 @@ and check off the boxes as you complete items:
      ```
    * It will overwrite [`CHANGELOG.md`](https://github.com/jupyter/jupyter-book/blob/master/CHANGELOG.md).
      Ensure that the new version looks correct, then commit it to master.
+   * Copy the resulting markdown for the latest release into the GitHub release you just created.
 - [ ] Celebrate! You've just released a new version of Jupyter Book!
 ```
