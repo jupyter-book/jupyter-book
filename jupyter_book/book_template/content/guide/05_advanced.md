@@ -263,7 +263,15 @@ HTML with Jekyll.
 > and follow the directions.
 
 The easiest way to install Ruby on *nix systems is to use
-the *`conda`* package manager:
+the *`conda`* package manager. On some systems the following should work:
+
+```bash
+conda install -c conda-forge rb-github-pages
+```
+
+This will install pre-compiled binaries for the Ruby package GitHub pages, Jekyll, and all of their dependencies. If this works for you, you can skip straight to [the section using `make install`](#install-ruby-plugins). 
+
+However, if you are on a platform for which the `rb-github-pages` package isn't available, you can also try install Ruby and a C++ compiler manually using *`conda`*, as follows:
 
 ```bash
 conda install -c conda-forge ruby
@@ -302,22 +310,16 @@ Finally, run
 make install
 ```
 
-which will install Bundler (a Ruby dependency management tool) and then install the plugins
+which will install Bundler (a Ruby dependency management tool) if Bundler is not already installed (e.g. by running `conda install -c conda-forge rb-github-pages`), and then it will use Bundler to install the plugins
 needed to build the site for your book.
 
-You can then build the site locally by running:
-
-```
-make site
-```
-
-Alternatively, you can preview your book's site locally by running this command:
+You can then preview your book's site locally by running this command:
 
 ```
 make serve
 ```
 
-This should open up a port on your computer with a live version of the book.
+This should run Jekyll, building your site, and then open up a port on your computer with a live version of the book.
 
 
 ### When should you build the HTML locally?
