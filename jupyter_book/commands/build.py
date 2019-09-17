@@ -5,7 +5,6 @@ import argparse
 
 from ..build import build_book
 from ..page import build_page
-from ..utils import _error
 
 DESCRIPTION = ("Convert a collection of Jupyter Notebooks into HTML "
                "suitable for a course textbook.")

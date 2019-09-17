@@ -63,7 +63,7 @@ def _split_yaml(lines):
             elif iline:
                 break
         elif iline == "---":
-            return lines[yaml0 + 1 : ii], lines[ii + 1 :]
+            return lines[yaml0 + 1: ii], lines[ii + 1:]
     return [], lines
 
 
