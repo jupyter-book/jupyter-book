@@ -54,6 +54,9 @@
   - title: Connecting content with JupyterHub and Binder
     url: /features/interact
     not_numbered: true
+  - title: Running each page when building your book
+    url: /features/executing
+    not_numbered: true
   - title: BETA - Adding interactivity to your book pages
     url: /features/interactive_cells
     not_numbered: true
