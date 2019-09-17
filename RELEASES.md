@@ -38,7 +38,7 @@ and check off the boxes as you complete items:
    * Run the generator with this command:
 
      ```
-     github_changelog_generator sphinx-gallery/sphinx-gallery --token <<your-github-api-token>>
+     github_changelog_generator jupyter/jupyter-book --token <<your-github-api-token>>
      ```
    * It will overwrite [`CHANGELOG.md`](https://github.com/jupyter/jupyter-book/blob/master/CHANGELOG.md).
      Ensure that the new version looks correct, then commit it to master.
