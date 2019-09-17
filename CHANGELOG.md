@@ -1,11 +1,88 @@
 # Change Log
 
-## [Unreleased](https://github.com/jupyter/jupyter-book/tree/HEAD)
+## [v0.6.0](https://github.com/jupyter/jupyter-book/tree/v0.6.0) (2019-09-17)
+[Full Changelog](https://github.com/jupyter/jupyter-book/compare/v0.5.2...v0.6.0)
 
-[Full Changelog](https://github.com/jupyter/jupyter-book/compare/v0.5.2...HEAD)
+**Implemented enhancements:**
+
+- Improve the auto-TOC function [\#271](https://github.com/jupyter/jupyter-book/issues/271)
+- Export pages to PDF [\#267](https://github.com/jupyter/jupyter-book/issues/267)
+- Adding popouts to the right [\#266](https://github.com/jupyter/jupyter-book/issues/266)
+- Add option to execute notebooks when building the book [\#234](https://github.com/jupyter/jupyter-book/issues/234)
+- Add a footer for each page [\#233](https://github.com/jupyter/jupyter-book/issues/233)
+- adding error message context to the build CLI command [\#320](https://github.com/jupyter/jupyter-book/pull/320) ([choldgraf](https://github.com/choldgraf))
+- Wrap `jekyll-raw` cells with {% raw %} [\#308](https://github.com/jupyter/jupyter-book/pull/308) ([SamLau95](https://github.com/SamLau95))
+- adding popout cell [\#302](https://github.com/jupyter/jupyter-book/pull/302) ([choldgraf](https://github.com/choldgraf))
+- adding right toc showing when there's no sidebar content [\#300](https://github.com/jupyter/jupyter-book/pull/300) ([choldgraf](https://github.com/choldgraf))
+- adding jupytext support [\#280](https://github.com/jupyter/jupyter-book/pull/280) ([choldgraf](https://github.com/choldgraf))
+- adding print button [\#279](https://github.com/jupyter/jupyter-book/pull/279) ([choldgraf](https://github.com/choldgraf))
+- Updating page layout and hoverable table of contents [\#278](https://github.com/jupyter/jupyter-book/pull/278) ([choldgraf](https://github.com/choldgraf))
+- Add a hiding topbar w/ scroll [\#276](https://github.com/jupyter/jupyter-book/pull/276) ([choldgraf](https://github.com/choldgraf))
+- Improving TOC functionality [\#273](https://github.com/jupyter/jupyter-book/pull/273) ([choldgraf](https://github.com/choldgraf))
+- use celltagpreprocessor to remove parts of cells and updating running code module [\#264](https://github.com/jupyter/jupyter-book/pull/264) ([choldgraf](https://github.com/choldgraf))
+- Create footer [\#254](https://github.com/jupyter/jupyter-book/pull/254) ([martinagvilas](https://github.com/martinagvilas))
+- removing jekyll markdown templates [\#249](https://github.com/jupyter/jupyter-book/pull/249) ([choldgraf](https://github.com/choldgraf))
+- adding simple page building [\#248](https://github.com/jupyter/jupyter-book/pull/248) ([choldgraf](https://github.com/choldgraf))
+- HTML build step [\#239](https://github.com/jupyter/jupyter-book/pull/239) ([choldgraf](https://github.com/choldgraf))
+- \[WIP\] Refactoring page layout + adding popouts and a topbar [\#169](https://github.com/jupyter/jupyter-book/pull/169) ([choldgraf](https://github.com/choldgraf))
+
+**Fixed bugs:**
+
+- Some small formatting issues following upgrade to master [\#296](https://github.com/jupyter/jupyter-book/issues/296)
+- Make the PDF print work for MathJax math [\#285](https://github.com/jupyter/jupyter-book/issues/285)
+- Code cells in plain Markdown files are rendered as raw text [\#283](https://github.com/jupyter/jupyter-book/issues/283)
+- 'jupyter-book upgrade' deletes new references [\#261](https://github.com/jupyter/jupyter-book/issues/261)
+- default book doesn't build properly on github - symlink error  [\#237](https://github.com/jupyter/jupyter-book/issues/237)
+- Double check installation dependencies [\#211](https://github.com/jupyter/jupyter-book/issues/211)
+- Don't use quotes for user-entered YAML entries [\#305](https://github.com/jupyter/jupyter-book/pull/305) ([SamLau95](https://github.com/SamLau95))
+- Set a blank excerpt for all pages [\#303](https://github.com/jupyter/jupyter-book/pull/303) ([SamLau95](https://github.com/SamLau95))
+- fixing footer width [\#301](https://github.com/jupyter/jupyter-book/pull/301) ([choldgraf](https://github.com/choldgraf))
+- Use CDNs for JS libraries [\#292](https://github.com/jupyter/jupyter-book/pull/292) ([SamLau95](https://github.com/SamLau95))
+- Load thebelab asynchronously [\#291](https://github.com/jupyter/jupyter-book/pull/291) ([SamLau95](https://github.com/SamLau95))
+- Fix missing \</div\> if page.interact\_link is false [\#290](https://github.com/jupyter/jupyter-book/pull/290) ([SamLau95](https://github.com/SamLau95))
+- fixing jupytext markdown inconsistencies [\#288](https://github.com/jupyter/jupyter-book/pull/288) ([choldgraf](https://github.com/choldgraf))
+- fixing double math printing [\#286](https://github.com/jupyter/jupyter-book/pull/286) ([choldgraf](https://github.com/choldgraf))
+- fixing up print functionality [\#284](https://github.com/jupyter/jupyter-book/pull/284) ([choldgraf](https://github.com/choldgraf))
+- making a download PDF button appear on all pages [\#282](https://github.com/jupyter/jupyter-book/pull/282) ([choldgraf](https://github.com/choldgraf))
+- fixing the TOC function [\#270](https://github.com/jupyter/jupyter-book/pull/270) ([choldgraf](https://github.com/choldgraf))
+- \[FIX\] Fix references being deleted with jupyter-upgrade [\#263](https://github.com/jupyter/jupyter-book/pull/263) ([martinagvilas](https://github.com/martinagvilas))
+- fixing links [\#260](https://github.com/jupyter/jupyter-book/pull/260) ([choldgraf](https://github.com/choldgraf))
+- adding instructions for build [\#257](https://github.com/jupyter/jupyter-book/pull/257) ([choldgraf](https://github.com/choldgraf))
+- fixing pypi description [\#256](https://github.com/jupyter/jupyter-book/pull/256) ([choldgraf](https://github.com/choldgraf))
+- version fix [\#250](https://github.com/jupyter/jupyter-book/pull/250) ([choldgraf](https://github.com/choldgraf))
+
+**Closed issues:**
+
+- Jupyter Notebook can't close a running notebook [\#317](https://github.com/jupyter/jupyter-book/issues/317)
+- Building book fails with a jinja2.exceptions.TemplateNotFound error [\#310](https://github.com/jupyter/jupyter-book/issues/310)
+- serving non- md/ipynb content [\#295](https://github.com/jupyter/jupyter-book/issues/295)
+- Broken links [\#259](https://github.com/jupyter/jupyter-book/issues/259)
+- Missing file error [\#253](https://github.com/jupyter/jupyter-book/issues/253)
+- Multicursor sometimes only deletes one line when there's spaces [\#251](https://github.com/jupyter/jupyter-book/issues/251)
+- Release summary for v0.6 [\#331](https://github.com/jupyter/jupyter-book/issues/331)
 
 **Merged pull requests:**
 
+- fixing releases info [\#333](https://github.com/jupyter/jupyter-book/pull/333) ([choldgraf](https://github.com/choldgraf))
+- dev0 bump [\#332](https://github.com/jupyter/jupyter-book/pull/332) ([choldgraf](https://github.com/choldgraf))
+- bumping version for release [\#330](https://github.com/jupyter/jupyter-book/pull/330) ([choldgraf](https://github.com/choldgraf))
+- fixing up execute docs [\#328](https://github.com/jupyter/jupyter-book/pull/328) ([choldgraf](https://github.com/choldgraf))
+- updating documentation for build [\#326](https://github.com/jupyter/jupyter-book/pull/326) ([choldgraf](https://github.com/choldgraf))
+- adding miniconda-based test [\#324](https://github.com/jupyter/jupyter-book/pull/324) ([choldgraf](https://github.com/choldgraf))
+- removing outdated FAQ entry [\#319](https://github.com/jupyter/jupyter-book/pull/319) ([choldgraf](https://github.com/choldgraf))
+- Changes to make work with `conda skeleton pypi jupyter-book` [\#315](https://github.com/jupyter/jupyter-book/pull/315) ([krinsman](https://github.com/krinsman))
+- Update Docs to include alternative method for building Jekyll locally. [\#313](https://github.com/jupyter/jupyter-book/pull/313) ([krinsman](https://github.com/krinsman))
+- Omit entries w/o URLs and external links from TOC [\#309](https://github.com/jupyter/jupyter-book/pull/309) ([SamLau95](https://github.com/SamLau95))
+- documenting execution functionality [\#299](https://github.com/jupyter/jupyter-book/pull/299) ([choldgraf](https://github.com/choldgraf))
+- adding beta label to features [\#294](https://github.com/jupyter/jupyter-book/pull/294) ([choldgraf](https://github.com/choldgraf))
+- adding a sample CircleCI build config [\#293](https://github.com/jupyter/jupyter-book/pull/293) ([choldgraf](https://github.com/choldgraf))
+- footer width [\#287](https://github.com/jupyter/jupyter-book/pull/287) ([choldgraf](https://github.com/choldgraf))
+- adding help entries [\#277](https://github.com/jupyter/jupyter-book/pull/277) ([choldgraf](https://github.com/choldgraf))
+- Circlecibot [\#269](https://github.com/jupyter/jupyter-book/pull/269) ([choldgraf](https://github.com/choldgraf))
+- factoring out page module [\#265](https://github.com/jupyter/jupyter-book/pull/265) ([choldgraf](https://github.com/choldgraf))
+- summary not large image for twitter [\#247](https://github.com/jupyter/jupyter-book/pull/247) ([choldgraf](https://github.com/choldgraf))
+- twitter share [\#246](https://github.com/jupyter/jupyter-book/pull/246) ([choldgraf](https://github.com/choldgraf))
+- updating changelog [\#245](https://github.com/jupyter/jupyter-book/pull/245) ([choldgraf](https://github.com/choldgraf))
 - version bump to dev [\#243](https://github.com/jupyter/jupyter-book/pull/243) ([choldgraf](https://github.com/choldgraf))
 
 ## [v0.5.2](https://github.com/jupyter/jupyter-book/tree/v0.5.2) (2019-07-26)
@@ -25,7 +102,6 @@
 - Errors when running on Windows [\#137](https://github.com/jupyter/jupyter-book/issues/137)
 - Docs aren't being updated from master [\#136](https://github.com/jupyter/jupyter-book/issues/136)
 - toc help is incorrect [\#132](https://github.com/jupyter/jupyter-book/issues/132)
-- Double check installation dependencies [\#211](https://github.com/jupyter/jupyter-book/issues/211)
 
 **Closed issues:**
 
@@ -136,7 +212,6 @@
 - source dependencies from requirements.txt [\#106](https://github.com/jupyter/jupyter-book/pull/106) ([Zsailer](https://github.com/Zsailer))
 - Adding download links for the notebook files [\#104](https://github.com/jupyter/jupyter-book/pull/104) ([choldgraf](https://github.com/choldgraf))
 - fixing thebelab keyboard shortcuts behavior [\#103](https://github.com/jupyter/jupyter-book/pull/103) ([choldgraf](https://github.com/choldgraf))
-- adding codemirror theme config [\#84](https://github.com/jupyter/jupyter-book/pull/84) ([choldgraf](https://github.com/choldgraf))
 
 ## [v0.4.1](https://github.com/jupyter/jupyter-book/tree/v0.4.1) (2019-02-09)
 [Full Changelog](https://github.com/jupyter/jupyter-book/compare/v0.2...v0.4.1)
@@ -173,6 +248,7 @@
 - Fix very small typo [\#88](https://github.com/jupyter/jupyter-book/pull/88) ([mwcraig](https://github.com/mwcraig))
 - adding update instructions [\#86](https://github.com/jupyter/jupyter-book/pull/86) ([choldgraf](https://github.com/choldgraf))
 - adding search functionality and external links in sidebar [\#85](https://github.com/jupyter/jupyter-book/pull/85) ([choldgraf](https://github.com/choldgraf))
+- adding codemirror theme config [\#84](https://github.com/jupyter/jupyter-book/pull/84) ([choldgraf](https://github.com/choldgraf))
 - ignoring gh-pages for circle [\#81](https://github.com/jupyter/jupyter-book/pull/81) ([choldgraf](https://github.com/choldgraf))
 - transferring over book to new owner [\#80](https://github.com/jupyter/jupyter-book/pull/80) ([choldgraf](https://github.com/choldgraf))
 - sidebar logo link [\#79](https://github.com/jupyter/jupyter-book/pull/79) ([choldgraf](https://github.com/choldgraf))
@@ -200,6 +276,7 @@
 - moving notebook images folder to build [\#34](https://github.com/jupyter/jupyter-book/pull/34) ([choldgraf](https://github.com/choldgraf))
 - fixing interact link paths [\#33](https://github.com/jupyter/jupyter-book/pull/33) ([choldgraf](https://github.com/choldgraf))
 - Refactor textbook generator to check redirects [\#27](https://github.com/jupyter/jupyter-book/pull/27) ([matthew-brett](https://github.com/matthew-brett))
+- A blank target URL here would be nice. [\#15](https://github.com/jupyter/jupyter-book/pull/15) ([arokem](https://github.com/arokem))
 
 ## [v0.2](https://github.com/jupyter/jupyter-book/tree/v0.2) (2018-10-23)
 [Full Changelog](https://github.com/jupyter/jupyter-book/compare/v0.1...v0.2)
@@ -230,7 +307,6 @@
 - Add pip requirements file [\#26](https://github.com/jupyter/jupyter-book/pull/26) ([matthew-brett](https://github.com/matthew-brett))
 - Made textbook\_folder an optional input [\#22](https://github.com/jupyter/jupyter-book/pull/22) ([jmason86](https://github.com/jmason86))
 - adding advanced section [\#16](https://github.com/jupyter/jupyter-book/pull/16) ([choldgraf](https://github.com/choldgraf))
-- A blank target URL here would be nice. [\#15](https://github.com/jupyter/jupyter-book/pull/15) ([arokem](https://github.com/arokem))
 - adding copy buttons [\#9](https://github.com/jupyter/jupyter-book/pull/9) ([choldgraf](https://github.com/choldgraf))
 - fixing c3po [\#8](https://github.com/jupyter/jupyter-book/pull/8) ([choldgraf](https://github.com/choldgraf))
 - adding intro material [\#7](https://github.com/jupyter/jupyter-book/pull/7) ([choldgraf](https://github.com/choldgraf))

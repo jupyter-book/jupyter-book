@@ -33,6 +33,13 @@ and check off the boxes as you complete items:
       fill it in later.
 - [ ] Bump the [Jupyter Book version number](https://github.com/jupyter/jupyter-book/blob/master/jupyter_book/__init__.py) to
    the next minor (or major) release and append `dev0` to the end.
+- [ ] Create a release summary that github_changelog_generator will use
+
+      * Create a new GitHub Issue
+      * In the Issue's Description field, add your release summary content
+      * Add the Issue Label "release-summary"
+      * Add the issue to the milestone of the version you just released
+      * Close the issue
 - [ ] Generate the new changelog using the `github-changelog-generator`.
    * See [here for `github-changelog-generator` installation instructions](https://github.com/github-changelog-generator/github-changelog-generator#installation).
    * Run the generator with this command:
