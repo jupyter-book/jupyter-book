@@ -90,23 +90,21 @@ def _check_url_page(url_page, content_folder_name):
 
 def _prepare_toc(toc):
     """Prepare the TOC for processing."""
-    # Drop toc items w/o links
-    toc = [ii for ii in toc if ii.get("url", None) is not None]
     # Un-nest the TOC so it's a flat list
     new_toc = []
-    for ii in toc:
-        sections = ii.pop("sections", None)
-        new_toc.append(ii)
-        if sections is None:
-            continue
-        for jj in sections:
-            subsections = jj.pop("subsections", None)
-            new_toc.append(jj)
-            if subsections is None:
-                continue
-            for kk in subsections:
-                new_toc.append(kk)
-    return new_toc
+    for chapter in toc:
+        sections = chapter.get('sections', [])
+        new_toc.append(chapter)
+        for section in sections:
+            subsections = section.get('subsections', [])
+            new_toc.append(section)
+            new_toc.extend(subsections)
+
+    # Omit items that don't have URLs (like dividers) or have an external link
+    return [
+        item for item in new_toc
+        if 'url' in item and not item.get('external', False)
+    ]
 
 
 def _prepare_url(url):
