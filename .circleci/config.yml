@@ -1,22 +1,79 @@
 version: 2.1
 jobs:
-  # Build the site to store artifacts
+  run_tests:
+    docker:
+      - image: circleci/python:3.7-stretch
+    steps:
+      # Get our data and merge with upstream
+      - run: sudo apt-get update
+      - checkout
+
+      #################################################################
+      # Install dependencies
+      #################################################################
+
+      # Restore cached files to speed things up
+      - restore_cache:
+          keys:
+            - cache-pip
+
+      # Documentation-specific packages
+      - run: pip install --user flake8 pytest-cov matplotlib numpy pandas
+      - run: pip install --user -r requirements.txt
+      - run: pip install --user -e ./  # Install Jupyter Book CLI
+
+      # Cache some files for a speedup in subsequent builds
+      - save_cache:
+          key: cache-pip
+          paths:
+            - ~/.cache/pip
+
+      #################################################################
+      # Tests
+      #################################################################
+
+      - run:
+          name: Tests
+          command: |
+            flake8 --count jupyter_book
+            pytest --cov=./
+
+      # Run code coverage
+      - run:
+          name: codecov deploy
+          command: bash <(curl -s https://codecov.io/bash)
+
+      #################################################################
+      # Build the HTML for book pages if tests pass for next steps
+      #################################################################
+
+      - run:
+          name: Build site intermediate files
+          command: jupyter-book build jupyter_book/book_template/
+
+      # Persist the built files for the deploy step
+      - persist_to_workspace:
+          root: .
+          paths:
+            - jupyter_book/book_template/_build/
+
+
   doc:
     docker:
-      - image: circleci/ruby:2.6
+      - image: circleci/python:3.7-stretch
     steps:
-      # Attach the built intermediate files
+      # Get our data and merge with upstream
+      - run: sudo apt-get update
       - checkout
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
           at: /tmp/workspace
 
-      # Copy over the built intermediate files
-      - copy_built_files
+      - prepare_jekyll_installation
 
-      # Build the site's HTML w/ the base_url for CircleCI artifacts
-      - build_site:
-          build_args: --baseurl /0/html/
+      - run:
+          name: Build the website
+          command: cd jupyter_book/book_template && bundle exec jekyll build --baseurl /0/html/
 
       # Tell Circle to store the documentation output in a folder that we can access later
       - store_artifacts:
@@ -30,7 +87,7 @@ jobs:
   # Deploy the built site to jupyter-book.github.io
   deploy:
     docker:
-      - image: circleci/ruby:2.6
+      - image: circleci/python:3.7-stretch
     steps:
       - checkout
       - attach_workspace:
@@ -42,12 +99,11 @@ jobs:
           fingerprints:
             - "19:34:f0:15:b8:3a:e4:44:27:a8:e9:8b:b5:e4:48:a9"
 
-      # Copy over the built intermediate files
-      - copy_built_files
+      - prepare_jekyll_installation
 
-      # Build the site so we have local files
-      - build_site:
-          build_args: ""
+      - run:
+          name: Build the website for deploy
+          command: cd jupyter_book/book_template && bundle exec jekyll build
 
       # Copying over built website to the live site
       - run:
@@ -70,53 +126,6 @@ jobs:
             git add -A
             git commit -m "jekyll book web deploy"
             git push -f origin gh-pages:gh-pages
-
-  run_tests:
-    docker:
-      - image: circleci/python:3.6-stretch
-    steps:
-      # Get our data and merge with upstream
-      - run: sudo apt-get update
-      - checkout
-      # Update our path
-      - run: echo "export PATH=~/.local/bin:$PATH" >> $BASH_ENV
-      # Restore cached files to speed things up
-      - restore_cache:
-          keys:
-            - cache-pip
-      # Documentation-specific packages
-      - run: pip install --user flake8 pytest-cov matplotlib numpy pandas
-      - run: pip install --user -r requirements.txt
-      - run: pip install --user -e ./  # Install Jupyter Book CLI
-
-      # Cache some files for a speedup in subsequent builds
-      - save_cache:
-          key: cache-pip
-          paths:
-            - ~/.cache/pip
-      # Run tests
-      - run:
-          name: Tests
-          command: |
-            flake8 --count jupyter_book
-            pytest --cov=./
-
-      # Run code coverage
-      - run:
-          name: codecov deploy
-          command: bash <(curl -s https://codecov.io/bash)
-
-      # If tests pass, build the site itself
-      - run:
-          name: Build site intermediate files
-          command: jupyter-book build jupyter_book/book_template/
-
-      # Persist the specified paths (see https://circleci.com/docs/2.0/workflows/#using-workspaces-to-share-data-among-jobs)
-      - persist_to_workspace:
-          root: .
-          paths:
-            - jupyter_book/book_template/_build/
-
 
 
 # Tell CircleCI to use this workflow when it builds the site
@@ -147,8 +156,7 @@ workflows:
                   - gh-pages
 
 commands:
-  copy_built_files:
-    description: "Copy the build site files so we can build the HTML"
+  prepare_jekyll_installation:
     steps:
       # Grab the the built intermediate files from the last step
       - run:
@@ -157,28 +165,28 @@ commands:
             rm -rf jupyter_book/book_template/_build
             cp -r /tmp/workspace/jupyter_book/book_template/_build ./jupyter_book/book_template
 
-  build_site:
-    description: "Build the site with Jekyll"
-    parameters:
-      build_args:
-        type: string
-        default: ""
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - rails-demo-bundle-v2-{{ checksum "jupyter_book/book_template/Gemfile.lock" }}
-            - rails-demo-bundle-v2-
-
-      - run: gem install bundler
-      - run: cd jupyter_book/book_template && bundle install
-
-      # Store bundle cache
-      - save_cache:
-          key: rails-demo-bundle-v2-{{ checksum "jupyter_book/book_template/Gemfile.lock" }}
-          paths:
-            - vendor/bundle
-
+      # Install miniconda to test install
       - run:
-          name: Build the website
-          command: cd jupyter_book/book_template && bundle exec jekyll build << parameters.build_args >>
+          name: install miniconda
+          command: |
+            export MINICONDA=$HOME/miniconda
+            echo "export PATH=$MINICONDA/bin:$PATH" >> $BASH_ENV
+            source $BASH_ENV
+            hash -r
+            wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+            bash miniconda.sh -b -f -p $MINICONDA
+            conda config --set always_yes yes
+            conda update conda
+            conda info -a
+            conda create -n testenv python=3.7.0
+            source activate testenv
+
+      # Install Ruby/Jekyll dependencies
+      - run:
+          name: Installing Ruby/Jekyll from conda-forge
+          command: conda install -c conda-forge rb-github-pages
+
+      # Build the book's HTML w/ the base_url for CircleCI artifacts
+      - run:
+          name: Install book Ruby dependencies
+          command: cd jupyter_book/book_template && bundle install

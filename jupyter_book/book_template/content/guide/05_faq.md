@@ -41,16 +41,14 @@ The two browsers on which Jupyter Book should always behave as expected are
 
 ## Why isn't my math showing up properly?
 
-This site uses MathJax to render all math, with `$` denoting inline math,
+This book uses MathJax to render all math, with `$` denoting inline math,
 and `$$` denoting multi-line math blocks. Make sure that all of your math
 is wrapped in these characters.
 
-Another tip is to make sure that your math isn't being escaped improperly.
-Jekyll strips escape characters, so you should make sure to add **two**
-escape characters when needed. This is done automatically for many escape
-characters in `generate_book.py`, and if you notice something that should
-be included in this script, please open an issue
-[at the textbook template issues page](https://github.com/jupyter/jupyter-book/issues)
+Another tip is to remember to use **escape characters** when you *don't* want
+math to be rendered and instead want an actual dollar sign to show up.
+To do so, simply add a `\` in front of the dollar sign. For example, I
+can write \$35 by writing it like `\\$35` in the markdown.
 
 ## How can I include interactive Plotly figures?
 

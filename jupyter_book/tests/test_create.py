@@ -202,14 +202,36 @@ def test_build(tmpdir):
     cmd = ["jupyter-book", 'build', path_build_test]
     run(cmd, check=True)
 
+    # Make sure a config with incorrect version raises an error
+    path_config_built = op.join(path_build_test, "_config.yml")
+    # Read in our built config and update the version so it's a mismatch
+    with open(path_config_built, 'r') as ff:
+        config = yaml.load(ff)
+        # Store the old version so we can re-use it later
+        old_version = config['jupyter_book_version']
+        config['jupyter_book_version'] = 999.999
+
+    with open(path_config_built, 'w') as ff:
+        yaml.dump(config, ff)
+
+    # Now use the new config to build the book and it should error
+    with pytest.raises(CalledProcessError):
+        cmd = ["jupyter-book", 'build', path_build_test]
+        run(cmd, check=True)
+
+    # Finally we'll re-update the config so that it has the the right version again
+    config['jupyter_book_version'] = old_version
+    with open(path_config_built, 'w') as ff:
+        yaml.dump(config, ff)
+
 
 def test_notebook(tmpdir):
     path_build_test = op.join(tmpdir.dirpath(), 'tmp_test', 'test')
     with open(op.join(path_build_test, '_build', 'tests', 'notebooks.html'), 'r') as ff:
         lines = ff.readlines()
 
-    # Notebook-converted images work
-    assert is_in(lines, "../images/tests/notebooks_2_0.png")
+    # Notebook-converted images work (not checking number in case cell count changes)
+    assert is_in(lines, "../images/tests/notebooks_")
 
     # Input area classes are there
     assert is_in(lines, 'class="input_area')
