@@ -249,8 +249,8 @@ def test_notebook(tmpdir):
     # No interactive outputs
     assert is_in(lines, "has_widgets: false")
 
-    # Testing external link
-    assert is_in(lines, "url: https://github.com")
+    # Testing external link being excluded from "next page"
+    assert not is_in(lines, "url: https://github.com")
 
     # popout tag is inserted properly
     assert is_in(lines, 'class="jb_cell tag_popout"', 1)
