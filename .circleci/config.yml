@@ -186,7 +186,7 @@ commands:
           name: Installing Ruby/Jekyll from conda-forge
           command: conda install -c conda-forge rb-github-pages
 
-      # Build the site's HTML w/ the base_url for CircleCI artifacts
+      # Build the book's HTML w/ the base_url for CircleCI artifacts
       - run:
           name: Install book Ruby dependencies
           command: cd jupyter_book/book_template && bundle install
