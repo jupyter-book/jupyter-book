@@ -120,11 +120,16 @@ def new_book(path_out, content_folder, toc,
     sh.copytree(TEMPLATE_PATH, path_out,
                 ignore=sh.ignore_patterns('.git', *ignore_folders))
 
+    ####################################################################
+    # Copying over book files
+    ####################################################################
+
     # If the Demo argument is provided, copy over a couple demo files and stop
     if demo is True:
         print("Copying over demo repository content")
         sh.copytree(op.join(TEMPLATE_PATH, 'content'),
                     op.join(path_out, 'content'))
+
         message = [
             "- You've chosen to copy over the demo Jupyter Book. This"
             "  contains",
@@ -165,7 +170,9 @@ def new_book(path_out, content_folder, toc,
         print("Copying over your TOC file...\n")
         sh.copy2(toc, op.join(path_out, '_data', 'toc.yml'))
 
+    ####################################################################
     # Configuration file
+    ####################################################################
     if config is None:
         update_config(op.join(path_out, '_config.yml'),
                       op.join(MINIMAL_PATH, '_config.yml'))
@@ -174,17 +181,23 @@ def new_book(path_out, content_folder, toc,
         # placeholders for users to change
         update_config(op.join(path_out, '_config.yml'), config)
 
-    # Add the Jupyter Book version to the config
+    # Update config values for a new book
     yaml = YAML()
     with open(op.join(path_out, '_config.yml'), 'r') as ff:
         data = yaml.load(ff)
 
+    # Add the Jupyter Book version to the config
     data['jupyter_book_version'] = __version__
+    # Remove the GA tracking code for the docs
+    data['google_analytics']['mytrackingcode'] = ''
 
     with open(op.join(path_out, '_config.yml'), 'w') as ff:
         yaml.dump(data, ff)
 
-    # Custom CSS and JS
+    ####################################################################
+    # Extra files (CSS/JS/etc) and license
+    ####################################################################
+
     if custom_css is not None:
         if not os.path.exists(custom_css):
             raise ValueError(
