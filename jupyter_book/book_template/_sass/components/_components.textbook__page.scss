@@ -98,6 +98,10 @@ pre code.language-no-highlight {
   white-space: pre-wrap;
 }
 
+div.output_wrapper {
+  margin-bottom: $spacing-unit-small;
+}
+
 div.output_wrapper pre {
   border: 1px solid $color-light-gray !important;
   background-color: #fcfcfc !important;
