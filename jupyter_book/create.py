@@ -272,7 +272,7 @@ def upgrade_book(path_book):
         print("Creating new book from your original one...")
 
         # Double check for pre-existing environment files as special cases
-        extra_files_to_check = ['requirements.txt', 'environment.yml']
+        extra_files_to_check = ['requirements.txt', 'environment.yml', '_bibliography']
         extra_files = []
         for ifile in extra_files_to_check:
             path_extra = op.join(path_book, ifile)
@@ -281,18 +281,23 @@ def upgrade_book(path_book):
         if len(extra_files) == 0:
             extra_files = None
 
-        # Add bibliography folder to extra files
-        bib_folder = op.join(path_book, '_bibliography')
-        extra_files.append(bib_folder)
+        # A few optional files that are not strictly required
+        optional_files = {
+            "license": op.join(path_book, 'content', 'LICENSE.md'),
+            "custom_css": op.join(path_book, 'assets', 'custom', 'custom.css'),
+            "custom_js": op.join(path_book, 'assets', 'custom', 'custom.js')
+        }
+        for key, path in optional_files.items():
+            if not op.exists(path):
+                optional_files[key] = None
 
+        # Now create the new book
         new_book(path_book_new, toc=op.join(path_book, '_data', 'toc.yml'),
                  content_folder=op.join(path_book, 'content'),
-                 license=op.join(path_book, 'content', 'LICENSE.md'),
+                 license=optional_files['license'],
                  config=op.join(path_book, '_config.yml'),
-                 custom_css=op.join(path_book, 'assets',
-                                    'custom', 'custom.css'),
-                 custom_js=op.join(path_book, 'assets',
-                                   'custom', 'custom.js'),
+                 custom_css=optional_files['custom_css'],
+                 custom_js=optional_files['custom_js'],
                  extra_files=extra_files,
                  overwrite=True, verbose=False)
 
