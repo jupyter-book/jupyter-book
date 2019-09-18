@@ -96,32 +96,18 @@ jobs:
             - "19:34:f0:15:b8:3a:e4:44:27:a8:e9:8b:b5:e4:48:a9"
 
       - prepare_jekyll_installation
-
       - run:
           name: Build the website for deploy
           command: cd jupyter_book/book_template && bundle exec jekyll build
 
-      # Copying over built website to the live site
+      # Deploy the built site with ghp-import
       - run:
-          name: Copy built site to a folder to store
-          command: cp -r ./jupyter_book/book_template/_site ../_site
-
-      - run:
-          name: Change to gh-pages branch and replace w/ new site
+          name: Deploying site using ghp-import
           command: |
-            git checkout gh-pages
-            rm -rf ./*
-            cp -r ../_site/* ./
-            touch ./.nojekyll
-
-      - run:
-          name: Commit results and push to gh-pages
-          command: |
+            pip install ghp-import
             git config --global user.email "choldgraf@berkeley.edu"
             git config --global user.name "Chris Holdgraf"
-            git add -A
-            git commit -m "jekyll book web deploy"
-            git push -f origin gh-pages:gh-pages
+            ghp-import -p -f -n ./jupyter_book/book_template/_site/
 
 
 # Tell CircleCI to use this workflow when it builds the site
