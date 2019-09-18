@@ -35,7 +35,7 @@ div.jb_cell {
       border-left: 3px solid #c3c3c3;
       padding-left: 5%
     }
-    
+
     // On laptops, pop out to the right instead of in-line
     @include mq($from: laptop) {
       width: calc(100% - #{$textbook-page-with-sidebar-width});
@@ -53,7 +53,7 @@ div.jb_cell {
       & + div.tag_popout {
         height: 0px;
       }
-      
+
       // Remove the border when we pop-out to the right
       .cell {
         border-left: none;
@@ -211,4 +211,3 @@ div.output_subarea {
 .jp-OutputPrompt {
   display: none;
 }
-

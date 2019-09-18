@@ -163,12 +163,14 @@ initScrollFunc = function() {
     position = position + (window.innerHeight / 4);  // + Manual offset
 
     content.querySelectorAll('h2, h3').forEach((header, index) => {
-        var target = header.offsetTop;
-        var id = header.id;
-        if (position >= target) {
-          var query = 'ul.toc__menu a[href="#' + id + '"]';
-          document.querySelectorAll('ul.toc__menu li').forEach((item) => {item.classList.remove('active')});
-          document.querySelectorAll(query).forEach((item) => {item.parentElement.classList.add('active')});
+      // Highlight based on location from the top of the screen
+      var target = header.getBoundingClientRect().top
+      var pixelOffset = 300;  // Number of pixels from top to be highlighted
+      var id = header.id;
+      if (target < pixelOffset) {
+        var query = 'ul.toc__menu a[href="#' + id + '"]';
+        document.querySelectorAll('ul.toc__menu li').forEach((item) => {item.classList.remove('active')});
+        document.querySelectorAll(query).forEach((item) => {item.parentElement.classList.add('active')});
       }
     });
   }
