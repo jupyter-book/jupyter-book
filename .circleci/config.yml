@@ -62,15 +62,7 @@ jobs:
     docker:
       - image: circleci/python:3.7-stretch
     steps:
-      # Get our data and merge with upstream
-      - run: sudo apt-get update
-      - checkout
-      - attach_workspace:
-          # Must be absolute path or relative path from working_directory
-          at: /tmp/workspace
-
       - prepare_jekyll_installation
-
       - run:
           name: Build the website
           command: cd jupyter_book/book_template && bundle exec jekyll build --baseurl /0/html/
@@ -85,11 +77,6 @@ jobs:
     docker:
       - image: circleci/python:3.7-stretch
     steps:
-      - checkout
-      - attach_workspace:
-          # Must be absolute path or relative path from working_directory
-          at: /tmp/workspace
-
       # Add deployment key fingerprint for CircleCI to use for a push
       - add_ssh_keys:
           fingerprints:
@@ -105,8 +92,6 @@ jobs:
           name: Deploying site using ghp-import
           command: |
             pip install ghp-import
-            git config --global user.email "choldgraf@berkeley.edu"
-            git config --global user.name "Chris Holdgraf"
             ghp-import -p -f -n ./jupyter_book/book_template/_site/
 
 
@@ -140,6 +125,11 @@ workflows:
 commands:
   prepare_jekyll_installation:
     steps:
+      - checkout
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: /tmp/workspace
+
       # Grab the the built intermediate files from the last step
       - run:
           name: Copy over built site files
