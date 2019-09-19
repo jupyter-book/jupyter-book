@@ -49,22 +49,7 @@ def str2bool(msg):
 ##############################################################################
 # Book conversion formatting
 
-
 ALLOWED_CHARACTERS = string.ascii_letters + "-_/." + string.digits
-
-
-def _split_yaml(lines):
-    yaml0 = None
-    for ii, iline in enumerate(lines):
-        iline = iline.strip()
-        if yaml0 is None:
-            if iline == "---":
-                yaml0 = ii
-            elif iline:
-                break
-        elif iline == "---":
-            return lines[yaml0 + 1: ii], lines[ii + 1:]
-    return [], lines
 
 
 def _check_url_page(url_page, content_folder_name):
@@ -181,3 +166,16 @@ def _check_book_versions(path_book):
         )
 
     return True
+
+
+def _is_jupytext_file(ntbk):
+    """Infer whether a notebook node was created from a Jupytext Markdown file.
+
+    Right now, this just tries to guess based on whether there's a particular piece of
+    metadata in the notebook.
+    """
+    jupytext_meta = ntbk.get('metadata', {}).get('jupytext')
+    if jupytext_meta is None:
+        return False
+    else:
+        return jupytext_meta.get('notebook_metadata_filter', '') != "-all"

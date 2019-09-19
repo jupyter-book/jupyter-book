@@ -1,33 +1,40 @@
 import os.path as op
+import os
 from traitlets.config import Config
 
 from nbconvert.exporters import HTMLExporter
 from nbconvert.writers import FilesWriter
 from nbconvert.preprocessors import Preprocessor
-import jupytext as jpt
 import nbformat as nbf
-from ruamel.yaml import YAML
+import sass
 
-from .utils import _clean_markdown_cells, _split_yaml
+from .utils import _clean_markdown_cells
 from .run import run_ntbk
+
+PATH_FILE = op.dirname(op.abspath(__file__))
+PATH_TEMPLATE = op.join(PATH_FILE, "templates", "html.tpl")
+PATH_MATHJAX = op.join(PATH_FILE, "book_template", "_includes", "js", "mathjax.html")
+PATH_JS = op.join(PATH_FILE, "book_template", "assets", "js")
+PATH_SCSS = op.join(PATH_FILE, "book_template", "_sass", "main.scss")
 
 
 class _RawCellPreprocessor(Preprocessor):
-    '''
+    """
     If a cell has the `jekyll-raw` cell tag, wrap the cell contents in a
     Jekyll {% raw %} {% endraw %} tag.
-    '''
-    TAG = 'jekyll-raw'
+    """
+
+    TAG = "jekyll-raw"
 
     # We need to make new cells because code cells can be marked as raw but
     # but we shouldn't put Jekyll commands directly into the cell's Python.
-    START_RAW = nbf.v4.new_raw_cell('{% raw %}')
-    END_RAW = nbf.v4.new_raw_cell('{% endraw %}')
+    START_RAW = nbf.v4.new_raw_cell("{% raw %}")
+    END_RAW = nbf.v4.new_raw_cell("{% endraw %}")
 
     def preprocess(self, nb, resources):
         new_cells = []
         for cell in nb.cells:
-            if self.TAG in cell.metadata.get('tags', []):
+            if self.TAG in cell.metadata.get("tags", []):
                 new_cells.append(self.START_RAW)
                 new_cells.append(cell)
                 new_cells.append(self.END_RAW)
@@ -37,143 +44,192 @@ class _RawCellPreprocessor(Preprocessor):
         return nb, resources
 
 
-def build_page(path_ntbk, path_html_output, path_media_output=None, execute=False,
-               path_template=None, verbose=False, kernel_name=None, clear_output=False):
+def write_page(html, path_out, resources, standalone=False):
+    """
+    Write an HTML page to disk and extract images if desired.
+    Meant for running after converting a page with `page_html`.
+    This uses the nbconvert `FilesWriter` class to write the HTML
+    content.
+
+    html : string
+        The HTML to be written to disk.
+    path_out : string
+        The path to the folder where the HTML will be output.
+    resources : dictionary
+        NBConvert resources to be used in the conversion process. These are
+        generated from the `build_book` function.
+    standalone : bool
+        Whether to write the page as a full standalone HTML file with its own
+        <head> and <body> sections. If False, just the converted HTML will
+        be written with the expectation that it will be compiled to "full"
+        HTML by Jupyter Book later.
+    """
+    c = Config()
+    c.FilesWriter.build_directory = path_out
+    notebook_name = resources.get("unique_key", "notebook").split(os.sep)[-1]
+
+    # If standalone, add a head and body
+    if standalone is True:
+        html = f"""
+        <!DOCTYPE html>
+        {page_head()}
+        <body>
+        {html}
+        </body>
+        </html>\n
+        """
+    # Now write the html and resources
+    writer = FilesWriter(config=c)
+    path_html = writer.write(html, resources, notebook_name=notebook_name)
+    return path_html
+
+
+def page_html(ntbk, path_media_output=None, name=None, preprocessors=None,
+              execute_dir=False, kernel_name=None, clear_output=False):
     """Build the HTML for a single notebook page.
 
     Inputs
     ======
 
-    path_ntbk : string
-        The path to a notebook or text file we want to convert. If a text
-        file, then Jupytext will be used to convert into a notebook. This
-        will also cause the notebook to be *run* (e.g. execute=True).
-    path_html_output : string
-        The path to the folder where the HTML will be output.
+    ntbk : Instance of NotebookNode
+        The notebook that we'll convert to a page's HTML.
     path_media_output : string | None
-        If a string, the path to where images should be extracted. If None,
-        images will be embedded in the HTML.
-    execute : bool
-        Whether to execute the notebook before converting
-    path_template : string
-        A path to the template used in conversion.
+        If a string, the path to where images should be extracted, relative
+        to wherever you will write the final HTML file. If None,
+        images will be embedded in the HTML. Note that this will not actually
+        write the images. To do so, use the `write_page` function.
+    name : string | None
+        The name of the notebook being converted. This will be used if
+        `path_media_output` is noe None in order to create unique media
+        file names.
+    preprocessors : list of NBConvert Preprocessors | None
+        Any extra preprocessors to add to the end of the preprocessor chain
+        in the HTMLConverter.
+    execute_dir : string | None
+        Execute the notebook with a kernel started in the directory specified
+        with this argument. If None, the notebook will not be executed.
     kernel_name : string
         The name of the kernel to use if we execute notebooks.
     clear_output: bool
         To remove the output from notebook
+
+    Returns
+    =======
+    page : HTML document
+        The input content file converted to HTML format.
     """
 
-    ########################################
-    # Load in the notebook
-    notebook_name, suff = op.splitext(op.basename(path_ntbk))
+    if preprocessors is None:
+        preprocessors = []
+    elif not isinstance(preprocessors, (list, tuple)):
+        preprocessors = [preprocessors]
 
-    is_raw_markdown_file = False
-    if suff in ['.md', '.markdown']:
-        # If it's a markdown file, we need to check whether it's a jupytext format
-        with open(path_ntbk, 'r') as ff:
-            lines = ff.readlines()
-            yaml_lines, content = _split_yaml(lines)
-            yaml = YAML().load(''.join(yaml_lines))
-
-        if (yaml is not None) and yaml.get('jupyter', {}).get('jupytext'):
-            # If we have jupytext metadata, then use it to read the markdown file
-            ntbk = jpt.reads(''.join(lines), 'md')
-        else:
-            # Otherwise, create an empty notebook and add all of the file contents as a markdown file
-            is_raw_markdown_file = True
-            ntbk = nbf.v4.new_notebook()
-            ntbk['cells'].append(nbf.v4.new_markdown_cell(source=''.join(content)))
-    else:
-        # If it's not markdown, we assume it's either ipynb or a jupytext format
-        ntbk = jpt.read(path_ntbk)
-
-    if _is_jupytext_file(ntbk):
-        execute = True
+    if name is None:
+        name = "notebook"
 
     ########################################
     # Notebook cleaning
-
-    # Minor edits to cells
     _clean_markdown_cells(ntbk)
 
     #############################################
-    # Conversion to HTML
-    # create a configuration object that changes the preprocessors
+    # Preprocessor configuration
     c = Config()
-
-    c.FilesWriter.build_directory = path_html_output
 
     # Remove cell elements using tags
     c.TagRemovePreprocessor.remove_cell_tags = ("remove_cell", "removecell")
-    c.TagRemovePreprocessor.remove_all_outputs_tags = ('remove_output',)
-    c.TagRemovePreprocessor.remove_input_tags = ('remove_input',)
+    c.TagRemovePreprocessor.remove_all_outputs_tags = ("remove_output",)
+    c.TagRemovePreprocessor.remove_input_tags = ("remove_input",)
 
     # Remove any cells that are *only* whitespace
     c.RegexRemovePreprocessor.patterns = ["\\s*\\Z"]
 
     c.HTMLExporter.preprocessors = [
-        'nbconvert.preprocessors.TagRemovePreprocessor',
-        'nbconvert.preprocessors.RegexRemovePreprocessor',
-        # So the images are written to disk
-        'nbconvert.preprocessors.ExtractOutputPreprocessor',
-        # Wrap cells in Jekyll raw tags
-        _RawCellPreprocessor,
+        "nbconvert.preprocessors.TagRemovePreprocessor",
+        "nbconvert.preprocessors.RegexRemovePreprocessor",
     ]
 
     if clear_output:
         c.HTMLExporter.preprocessors.append('nbconvert.preprocessors.ClearOutputPreprocessor')
 
+    if path_media_output is not None:
+        # So the images are written to disk
+        c.HTMLExporter.preprocessors.append(
+            "nbconvert.preprocessors.ExtractOutputPreprocessor"
+        )
+
+    # Add extra preprocessors given by the user
+    for preprocessor in preprocessors:
+        c.HTMLExporter.preprocessors.append(preprocessor)
+
+    # The text used as the text for anchor links.
     # The text used as the text for anchor links.
     # TEMPORATILY Set to empty since we'll use anchor.js for the links
     # Once https://github.com/jupyter/nbconvert/pull/1101 is fixed
     # set to '<i class="fas fa-link"> </i>'
-    c.HTMLExporter.anchor_link_text = ' '
+    c.HTMLExporter.anchor_link_text = " "
 
     # Excluding input/output prompts
     c.HTMLExporter.exclude_input_prompt = True
     c.HTMLExporter.exclude_output_prompt = True
 
-    # Excution of the notebook if we wish
-    if execute is True:
-        ntbk = run_ntbk(ntbk, op.dirname(path_ntbk))
+    #############################################
+    # Run and convert to HTML
 
-    # Define the path to images and then the relative path to where they'll originally be placed
-    if isinstance(path_media_output, str):
-        path_media_output_rel = op.relpath(path_media_output, path_html_output)
+    # Excution of the notebook if we wish
+    if execute_dir is not None:
+        ntbk = run_ntbk(ntbk, execute_dir)
 
     # Generate HTML from our notebook using the template
-    output_resources = {'output_files_dir': path_media_output_rel, 'unique_key': notebook_name}
-    exp = HTMLExporter(template_file=path_template, config=c)
+    output_resources = {"output_files_dir": path_media_output, "unique_key": name}
+    exp = HTMLExporter(template_file=PATH_TEMPLATE, config=c)
     html, resources = exp.from_notebook_node(ntbk, resources=output_resources)
-    html = '<main class="jupyter-page">\n' + html + '\n</main>\n'
-
-    # Now write the markdown and resources
-    writer = FilesWriter(config=c)
-    writer.write(html, resources, notebook_name=notebook_name)
-
-    # Add the frontmatter to the yaml file in case it's wanted
-    if is_raw_markdown_file and len(yaml_lines) > 0:
-        with open(op.join(path_html_output, notebook_name + '.html'), 'r') as ff:
-            md_lines = ff.readlines()
-        md_lines.insert(0, '---\n')
-        for iline in yaml_lines[::-1]:
-            md_lines.insert(0, iline + '\n')
-        md_lines.insert(0, '---\n')
-        with open(op.join(path_html_output, notebook_name + '.html'), 'w') as ff:
-            ff.writelines(md_lines)
-
-    if verbose:
-        print("Finished writing notebook to {}".format(path_html_output))
+    html = '<main class="jupyter-page">\n' + html + "\n</main>\n"
+    return html, resources
 
 
-def _is_jupytext_file(ntbk):
-    """Infer whether a notebook node was created from a Jupytext Markdown file.
+def page_head():
+    """Write a header for a standalone HTML file.
 
-    Right now, this just tries to guess based on whether there's a particular piece of
-    metadata in the notebook.
+    This uses CSS/JS from the book template.
     """
-    jupytext_meta = ntbk.get('metadata', {}).get('jupytext')
-    if jupytext_meta is None:
-        return False
-    else:
-        return jupytext_meta.get('notebook_metadata_filter', '') != "-all"
+    # Javascript files to embed
+    js_files = ["dom-update.js", "documentSelectors.js", "hide-cell.js"]
+    js = []
+    for js_file in js_files:
+        with open(op.join(PATH_JS, js_file), "r") as ff:
+            js += ["<script>"]
+            js += ff.readlines()
+            js += ["</script>"]
+    js = "\n".join(js)
+
+    # Mathjax embed
+    with open(PATH_MATHJAX, "r") as ff:
+        html_mathjax = ff.read()
+
+    # SCSS styling for the page
+    page_css = """
+    <style type="text/css">
+    main.jupyter-page {
+        max-width: 1000px;
+        margin: 0px auto;
+        margin-top: 50px;
+    }
+    </style>"""
+
+    scss = sass.compile(filename=PATH_SCSS)
+    scss = f"""
+    <style type="text/css">
+    {scss}
+    </style>
+    """
+
+    # Stitch them all together into a head
+    head = f"""
+    <head>
+    {html_mathjax}
+    {scss}
+    {page_css}
+    {js}
+    </head>
+    """
+    return head

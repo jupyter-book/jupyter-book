@@ -6,10 +6,12 @@ from tqdm import tqdm
 from glob import glob
 from uuid import uuid4
 import jupytext as jpt
+from nbformat.v4.nbbase import new_markdown_cell, new_notebook
 
-from .utils import (print_message_box, _split_yaml, _check_url_page, _prepare_toc,
-                    _prepare_url, _error, _file_newer_than, _check_book_versions)
-from .page import build_page
+from .utils import (print_message_box, _check_url_page, _prepare_toc,
+                    _prepare_url, _error, _file_newer_than, _check_book_versions,
+                    _is_jupytext_file)
+from .page import page_html, write_page, _RawCellPreprocessor
 
 # Defaults
 BUILD_FOLDER_NAME = "_build"
@@ -60,8 +62,12 @@ def _case_sensitive_fs(path):
 
 
 def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
+<<<<<<< HEAD
                path_template=None, local_build=False, execute=False,
                overwrite=False, clear_output=False):
+=======
+               local_build=False, execute=False, overwrite=False):
+>>>>>>> modularizing the bage building
     """Build the HTML for a book using its TOC and a content folder.
 
     Parameters
@@ -72,9 +78,6 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         Path to the Table of Contents YAML file
     path_ssg_config : str | None
         Path to the Jekyll configuration file
-    path_template : str | None
-        Path to the template nbconvert uses to build HTML
-        files
     local_build : bool
         Specify you are building site locally for later upload
     execute : bool
@@ -97,7 +100,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
     PATH_IMAGES_FOLDER = op.join(path_book, '_build', 'images')
     BUILD_FOLDER = op.join(path_book, BUILD_FOLDER_NAME)
 
-    ###############################################
+    ###############################################################################
     # Read in textbook configuration
 
     # Load the yaml for this site
@@ -116,7 +119,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
     # Drop divider items and non-linked pages in the sidebar, un-nest sections
     toc = _prepare_toc(toc)
 
-    ################################################
+    ################################################################################
     # Generating the Jekyll files for all content
 
     n_skipped_files = 0
@@ -133,12 +136,13 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         # Make sure URLs (file paths) have correct structure
         _check_url_page(url_page, CONTENT_FOLDER_NAME)
 
-        ##############################################
+        ##############################################################################
         # Create path to old/new file and create directory
 
         # URL will be relative to the CONTENT_FOLDER
         path_url_page = os.path.join(PATH_CONTENT_FOLDER, url_page.lstrip('/'))
         path_url_folder = os.path.dirname(path_url_page)
+        notebook_name = path_url_page.split(os.sep)[-1]  # No extension yet
 
         # URLs shouldn't have the suffix in there already so
         # now we find which one to add
@@ -168,7 +172,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         if not op.isdir(path_build_new_folder):
             os.makedirs(path_build_new_folder)
 
-        ################################################
+        ################################################################################
         # Generate previous/next page URLs
         if ix_file == 0:
             url_prev_page = ''
@@ -190,41 +194,69 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
             if next_external is False:
                 url_next_page = _prepare_url(url_next_page)
 
-        ###############################################################################
-        # Get kernel name and presence of widgets from notebooks metadata
+        ###########################################################################
+        # Check page metadata and file structure
 
-        kernel_name = ''
-        data = jpt.read(path_url_page)
-        if 'metadata' in data and 'kernelspec' in data['metadata']:
-            kernel_name = data['metadata']['kernelspec']['name']
-        has_widgets = "true" if any("interactive" in cell['metadata'].get('tags', []) for cell in data['cells']) else "false"
+        # Read in the notebook with Jupytext
+        ntbk = jpt.read(path_url_page)
 
-        ############################################
-        # Content conversion
+        # Decide whether to execute the notebook
+        execute_dir = path_url_folder if execute is True else None
 
-        # Convert notebooks or just copy md if no notebook.
-        if any(path_url_page.endswith(ii) for ii in ['.md', '.ipynb']):
-            # Decide the path where the images will be placed, relative to the HTML location
-            path_after_build_folder = path_build_new_folder.split(
-                os.sep + BUILD_FOLDER_NAME + os.sep)[-1]
-            path_images_new_folder = op.join(
-                PATH_IMAGES_FOLDER, path_after_build_folder)
+        # If it's a Jupytext file, execute it anyway
+        if _is_jupytext_file(ntbk) and op.splitext(path_url_page)[-1] != '.ipynb':
+            execute_dir = path_url_folder
 
-            # Build the HTML for this book
-            build_page(path_url_page, path_build_new_folder, path_images_new_folder,
-                       path_template=path_template, kernel_name=kernel_name,
-                       execute=execute, clear_output=clear_output)
+        # Check if we had extra YAML frontmatter in the first cell. If so, grab it.
+        if 'lines_to_next_cell' in ntbk.cells[0].metadata:
+            yaml_extra = ntbk.cells.pop(0).source.replace('---', '').strip().split('\n')
         else:
-            raise _error(
-                "Files must end in ipynb or md. Found file {}".format(path_url_page))
+            yaml_extra = []
 
-        ###############################################################################
+        # If the file was markdown and didn't have any jupytext frontmatter
+        # Just add in the raw source
+        if not _is_jupytext_file(ntbk) and op.splitext(path_url_page)[-1] in ['.md', 'markdown']:
+            # Recover the Markdown content
+            md = jpt.writes(ntbk, 'md')
+            # Replace the notebook with a new one, made of just one Markdown cell
+            ntbk = new_notebook(cells=[new_markdown_cell(md)])
+
+        # Get kernel name and presence of widgets from notebooks metadata
+        kernel_name = ntbk['metadata'].get('kernelspec', {}).get('name', '')
+        has_widgets = "true" if any("interactive" in cell['metadata'].get('tags', []) for cell in ntbk['cells']) else "false"
+
+        ###########################################################################
+        # Convert to HTML
+
+        # Decide the path where the images will be placed, relative to the HTML location
+        path_after_build_folder = path_build_new_folder.split(
+            os.sep + BUILD_FOLDER_NAME + os.sep)[-1]
+        path_images_new_folder = op.join(
+            PATH_IMAGES_FOLDER, path_after_build_folder)
+
+        # Figure out the relative path between the HTML output and the images folder
+        path_media_rel_to_build = op.relpath(path_images_new_folder, path_build_new_folder)
+
+        # Convert the notebook to HTML
+        html, resources = page_html(
+            ntbk, path_media_output=path_media_rel_to_build,
+            name=notebook_name, preprocessors=_RawCellPreprocessor, execute_dir=execute_dir,
+            kernel_name=kernel_name, clear_output=clear_output
+        )
+
+        # Write the HTML to disk
+        path_html = write_page(html, path_build_new_folder, resources)
+        if path_html != path_build_new_file:
+            raise ValueError(
+                "HTML not written to the expected location.\n\n"
+                f"expected\t{path_build_new_folder}\ngot\t\t{path_html}\n"
+            )
+
+        ###########################################################################
         # Modify the generated HTML to work with the SSG
+
         with open(path_build_new_file, 'r', encoding='utf8') as ff:
             lines = ff.readlines()
-
-        # Split off original yaml
-        yaml_orig, lines = _split_yaml(lines)
 
         # Front-matter YAML
         yaml_fm = []
@@ -252,30 +284,27 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         # Use YAML block scalars for titles so that people can use special characters
         # See http://blogs.perl.org/users/tinita/2018/03/strings-in-yaml---to-quote-or-not-to-quote.html
         yaml_fm += ["title: |-"]
-        yaml_fm += ["  {}".format(title)]
+        yaml_fm += [f"  {title}"]
         yaml_fm += ['prev_page:']
-        yaml_fm += ['  url: {}'.format(url_prev_page)]
+        yaml_fm += [f'  url: {url_prev_page}']
         yaml_fm += ["  title: |-"]
-        yaml_fm += ["    {}".format(prev_file_title)]
+        yaml_fm += [f"    {prev_file_title}"]
         yaml_fm += ['next_page:']
-        yaml_fm += ['  url: {}'.format(url_next_page)]
+        yaml_fm += [f'  url: {url_next_page}']
         yaml_fm += ["  title: |-"]
-        yaml_fm += ["    {}".format(next_file_title)]
-
-        # Add back any original YaML, and end markers
-        yaml_fm += yaml_orig
-        yaml_fm += ['comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /{}***"'.format(
-            CONTENT_FOLDER_NAME)]
+        yaml_fm += [f"    {next_file_title}"]
+        yaml_fm += yaml_extra  # Add back any original YaML
+        yaml_fm += [f'comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /{CONTENT_FOLDER_NAME}***"']
         yaml_fm += ['---']
         yaml_fm = [ii + '\n' for ii in yaml_fm]
-        lines = yaml_fm + lines
 
         # Write the result as UTF-8.
+        lines = yaml_fm + lines
         with open(path_build_new_file, 'w', encoding='utf8') as ff:
             ff.writelines(lines)
         n_built_files += 1
 
-    #######################################################
+    ###########################################################################
     # Finishing up...
 
     # Copy non-markdown files in notebooks/ in case they're referenced in the notebooks
@@ -284,11 +313,12 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
                             CONTENT_FOLDER_NAME, BUILD_FOLDER_NAME)
 
     # Message at the end
-    msg = ["Generated {} new files\nSkipped {} already-built files".format(
-        n_built_files, n_skipped_files)]
+    msg = [f"Generated {n_built_files} new files\n"
+           f"Skipped {n_skipped_files} already-built files"]
     if n_built_files == 0:
-        msg += ["Delete the markdown/HTML files in '{}' for any pages that you wish to re-build, or use --overwrite option to re-build all.".format(
-            BUILD_FOLDER_NAME)]
-    msg += ["Your Jupyter Book is now in `{}/`.".format(BUILD_FOLDER_NAME)]
+        msg += [f"Delete the markdown/HTML files in '{BUILD_FOLDER_NAME}' "
+                "for any pages that you wish to re-build, or use --overwrite "
+                "option to re-build all."]
+    msg += [f"Your Jupyter Book is now in `{BUILD_FOLDER_NAME}/`."]
     msg += ["Demo your Jupyter book with `make serve` or push to GitHub!"]
     print_message_box('\n'.join(msg))
