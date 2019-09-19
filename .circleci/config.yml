@@ -152,6 +152,7 @@ commands:
             conda info -a
             conda create -n testenv python=3.7.0
             source activate testenv
+            rm miniconda.sh
 
       # Install Ruby/Jekyll dependencies
       - run:
