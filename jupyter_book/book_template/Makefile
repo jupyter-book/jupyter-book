@@ -29,6 +29,11 @@ clean:
 serve:
 	bundle exec guard
 
+site:
+	jupyter-book build ./ --overwrite
+	bundle exec jekyll build
+	touch _site/.nojekyll
+
 build:
 	bundle exec jekyll build
 	touch _site/.nojekyll
