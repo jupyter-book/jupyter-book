@@ -1,10 +1,9 @@
-<script>
 /**
  * Set up copy/paste for code blocks
  */
 const clipboardButton = id =>
   `<a id="copy-button-${id}" class="btn copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#${id}">
-    <img src="{{ site.images_url | relative_url }}/copy-button.svg" alt="Copy to clipboard">
+    <i class="far fa-copy"></i>
   </a>`
 
 // Clears selected text since ClipboardJS will select the text when copying
@@ -55,4 +54,3 @@ const addCopyButtonToCodeCells = () => {
 }
 
 initFunction(addCopyButtonToCodeCells);
-</script>

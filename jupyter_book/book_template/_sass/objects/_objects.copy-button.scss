@@ -8,6 +8,11 @@
   width: $spacing-unit;
   height: $spacing-unit;
   padding: 0 4px 2px;
+
+  i {
+    font-style: normal;
+    color: #777777
+  }
 }
 
 .input_area .highlight, .text_cell_render .highlight {

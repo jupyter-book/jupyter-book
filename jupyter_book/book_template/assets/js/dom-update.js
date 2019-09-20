@@ -1,4 +1,3 @@
-<script>
 const runWhenDOMLoaded = cb => {
   if (document.readyState != 'loading') {
     cb()
@@ -16,4 +15,3 @@ initFunction = function(myfunc) {
   runWhenDOMLoaded(myfunc);
   document.addEventListener('turbolinks:load', myfunc);
 };
-</script>

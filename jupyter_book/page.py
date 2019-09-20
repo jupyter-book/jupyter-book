@@ -118,8 +118,11 @@ def build_page(path_ntbk, path_html_output, path_media_output=None, execute=Fals
         _RawCellPreprocessor,
     ]
 
-    # The text used as the text for anchor links. Set to empty since we'll use anchor.js for the links
-    c.HTMLExporter.anchor_link_text = " "
+    # The text used as the text for anchor links.
+    # TEMPORATILY Set to empty since we'll use anchor.js for the links
+    # Once https://github.com/jupyter/nbconvert/pull/1101 is fixed
+    # set to '<i class="fas fa-link"> </i>'
+    c.HTMLExporter.anchor_link_text = ' '
 
     # Excluding input/output prompts
     c.HTMLExporter.exclude_input_prompt = True
@@ -137,6 +140,7 @@ def build_page(path_ntbk, path_html_output, path_media_output=None, execute=Fals
     output_resources = {'output_files_dir': path_media_output_rel, 'unique_key': notebook_name}
     exp = HTMLExporter(template_file=path_template, config=c)
     html, resources = exp.from_notebook_node(ntbk, resources=output_resources)
+    html = '<main class="jupyter-page">\n' + html + '\n</main>\n'
 
     # Now write the markdown and resources
     writer = FilesWriter(config=c)

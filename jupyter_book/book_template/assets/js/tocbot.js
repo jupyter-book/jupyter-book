@@ -1,5 +1,3 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js" async></script>
-<script>
 const initToc = () => {
   if (window.tocbot === undefined) {
     setTimeout(initToc, 250)
@@ -24,7 +22,5 @@ const initToc = () => {
     activeListItemClass: "",  // Not using
     activeLinkClass: "", // Not using
   });
-
 }
 initFunction(initToc);
-</script>
