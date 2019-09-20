@@ -16,24 +16,6 @@ BUILD_FOLDER_NAME = "_build"
 SUPPORTED_FILE_SUFFIXES = ['.ipynb', '.md', ".markdown", ".Rmd", ".py", "#BREAK#"]
 
 
-def _clean_lines(lines, filepath, PATH_BOOK, path_images_folder):
-    """Replace images with jekyll image root and add escape chars as needed."""
-
-    # Images: replace absolute nbconvert image paths to baseurl paths
-    path_rel_root = op.relpath(PATH_BOOK, op.dirname(filepath))
-    path_rel_root_one_up = path_rel_root.replace('../', '', 1)
-    for ii, line in enumerate(lines):
-        # Handle relative paths because we remove `content/` from the URL
-        # If there's a path that goes back to the root, remove a level`
-        # This is for images referenced directly in the html
-        if path_rel_root in line:
-            line = line.replace(path_rel_root, path_rel_root_one_up)
-        # For programmatically-generated images from notebooks, replace the abspath with relpath
-        line = line.replace(path_images_folder, op.join(path_rel_root_one_up, 'images'))
-        lines[ii] = line
-    return lines
-
-
 def _copy_non_content_files(path_content_folder, content_folder_name,
                             build_folder_name):
     """Copy non-markdown/notebook files in the content folder into build folder so relative links work."""
@@ -238,8 +220,6 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         # Modify the generated HTML to work with the SSG
         with open(path_build_new_file, 'r', encoding='utf8') as ff:
             lines = ff.readlines()
-        lines = _clean_lines(lines, path_build_new_file,
-                             path_book, PATH_IMAGES_FOLDER)
 
         # Split off original yaml
         yaml_orig, lines = _split_yaml(lines)
