@@ -1,4 +1,3 @@
-<script>
 /**
  * Select various elements on the page for later use
  */
@@ -34,4 +33,3 @@ findInputCells = function() {
 };
 
 initFunction(findInputCells);
-</script>
