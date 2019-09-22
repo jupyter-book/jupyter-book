@@ -8,14 +8,27 @@ from nbconvert.preprocessors import Preprocessor
 import nbformat as nbf
 import sass
 
-from .utils import _clean_markdown_cells
-from .run import run_ntbk
+from .utils import _clean_markdown_cells, run_ntbk
 
 PATH_FILE = op.dirname(op.abspath(__file__))
+PATH_BOOK_TEMPLATE = op.join(PATH_FILE, '..', 'book_template')
 PATH_TEMPLATE = op.join(PATH_FILE, "templates", "html.tpl")
-PATH_MATHJAX = op.join(PATH_FILE, "book_template", "_includes", "js", "mathjax.html")
-PATH_JS = op.join(PATH_FILE, "book_template", "assets", "js")
-PATH_SCSS = op.join(PATH_FILE, "book_template", "_sass", "main.scss")
+PATH_MATHJAX = op.join(PATH_BOOK_TEMPLATE, "_includes", "mathjax.html")
+PATH_JS = op.join(PATH_BOOK_TEMPLATE, "assets", "js", "page")
+PATH_SCSS = op.join(PATH_BOOK_TEMPLATE, "_sass", "page", "main.scss")
+
+PAGE_CSS = """
+<style type="text/css">
+main.jupyter-page {
+    max-width: 1100px;
+    margin: 0px auto;
+    margin-top: 50px;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    padding: 50px;
+}
+</style>
+"""
 
 
 class _RawCellPreprocessor(Preprocessor):
@@ -75,6 +88,7 @@ def write_page(html, path_out, resources, standalone=False):
         {page_head()}
         <body>
         {html}
+        <nav class="onthispage"></nav>
         </body>
         </html>\n
         """
@@ -84,8 +98,9 @@ def write_page(html, path_out, resources, standalone=False):
     return path_html
 
 
-def page_html(ntbk, path_media_output=None, name=None, preprocessors=None,
-              execute_dir=False, kernel_name=None, clear_output=False):
+def page_html(ntbk, path_media_output=None, name=None, title=None,
+              author=None, preprocessors=None, execute_dir=False,
+              kernel_name=None, clear_output=False):
     """Build the HTML for a single notebook page.
 
     Inputs
@@ -102,6 +117,12 @@ def page_html(ntbk, path_media_output=None, name=None, preprocessors=None,
         The name of the notebook being converted. This will be used if
         `path_media_output` is noe None in order to create unique media
         file names.
+    title : string | None
+        The title of the page. If provided, it will be created at the top of
+        the page.
+    author : string | None
+        The author of the page. If provided, it will be placed just below the
+        title (if it is provided).
     preprocessors : list of NBConvert Preprocessors | None
         Any extra preprocessors to add to the end of the preprocessor chain
         in the HTMLConverter.
@@ -183,7 +204,18 @@ def page_html(ntbk, path_media_output=None, name=None, preprocessors=None,
     output_resources = {"output_files_dir": path_media_output, "unique_key": name}
     exp = HTMLExporter(template_file=PATH_TEMPLATE, config=c)
     html, resources = exp.from_notebook_node(ntbk, resources=output_resources)
-    html = '<main class="jupyter-page">\n' + html + "\n</main>\n"
+
+    # Add title and author information if it's provided
+    title = '' if title is None else f'<div id="page-title">{title}</div>'
+    author = '' if author is None else f'<div id="page-author">{author}</div>'
+
+    html = f"""
+    <main class="jupyter-page">
+    {title}
+    {author}
+    {html}
+    </main>
+    """
     return html, resources
 
 
@@ -193,7 +225,15 @@ def page_head():
     This uses CSS/JS from the book template.
     """
     # Javascript files to embed
-    js_files = ["dom-update.js", "documentSelectors.js", "hide-cell.js"]
+
+    js_files = [
+        "dom-update.js",
+        "documentSelectors.js",
+        "copy-button.js",
+        "hide-cell.js",
+        "anchors.js",
+        "tocbot.js"
+    ]
     js = []
     for js_file in js_files:
         with open(op.join(PATH_JS, js_file), "r") as ff:
@@ -207,15 +247,6 @@ def page_head():
         html_mathjax = ff.read()
 
     # SCSS styling for the page
-    page_css = """
-    <style type="text/css">
-    main.jupyter-page {
-        max-width: 1000px;
-        margin: 0px auto;
-        margin-top: 50px;
-    }
-    </style>"""
-
     scss = sass.compile(filename=PATH_SCSS)
     scss = f"""
     <style type="text/css">
@@ -228,7 +259,7 @@ def page_head():
     <head>
     {html_mathjax}
     {scss}
-    {page_css}
+    {PAGE_CSS}
     {js}
     </head>
     """

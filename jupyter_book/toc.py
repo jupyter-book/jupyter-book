@@ -53,6 +53,25 @@ def _filename_to_title(filename, split_char='_'):
     return title
 
 
+def _prepare_toc(toc):
+    """Prepare the TOC for processing."""
+    # Un-nest the TOC so it's a flat list
+    new_toc = []
+    for chapter in toc:
+        sections = chapter.get('sections', [])
+        new_toc.append(chapter)
+        for section in sections:
+            subsections = section.get('subsections', [])
+            new_toc.append(section)
+            new_toc.extend(subsections)
+
+    # Omit items that don't have URLs (like dividers) or have an external link
+    return [
+        item for item in new_toc
+        if 'url' in item and not item.get('external', False)
+    ]
+
+
 def build_toc(content_folder, filename_split_char='_'):
     """Auto-generate a Table of Contents from files/folders.
 

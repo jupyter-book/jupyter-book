@@ -16,7 +16,7 @@ def page():
     parser.add_argument(
         "path_ntbk", help="Path to the notebook you'll convert.")
     parser.add_argument(
-        "--path_html_output", default='.', help="Path to the folder where HTML will be placed.")
+        "-o", "--path_html_output", default='.', help="Path to the folder where HTML will be placed.")
     parser.add_argument("--template", default=None, help="Path to a template to render the HTML")
     parser.add_argument("--path_media_output", default=None,
                         help="The path to where images should be extracted")
@@ -44,8 +44,10 @@ def page():
 
     # Load and convert the notebook
     ntbk = jpt.read(PATH_PAGE)
+    name = op.splitext(op.basename(PATH_PAGE))[0]
     html, resources = page_html(
-        ntbk, path_media_output=PATH_MEDIA_OUTPUT, execute_dir=execute_dir,
+        ntbk, path_media_output=PATH_MEDIA_OUTPUT, execute_dir=execute_dir, name=name,
+        title=ntbk.metadata.get('title'), author=ntbk.metadata.get('author')
     )
 
     # Write to disk as a standalone HTML page

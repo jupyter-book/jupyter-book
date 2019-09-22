@@ -28,13 +28,13 @@
   <link rel="shortcut icon" type="image/x-icon" href="{{ site.favicon_path | relative_url }}">
 
   <!-- MathJax Config -->
-  {% include js/mathjax.html %}
+  {% include mathjax.html %}
 
   <!-- DOM updating function -->
-  <script src="{{ site.js_url | relative_url }}/dom-update.js"></script>
+  <script src="{{ site.js_url | relative_url }}/page/dom-update.js"></script>
 
   <!-- Selectors for elements on the page -->
-  <script src="{{ site.js_url | relative_url }}/documentSelectors.js"></script>
+  <script src="{{ site.js_url | relative_url }}/page/documentSelectors.js"></script>
 
   <!-- Define some javascript variables that will be useful in other javascript -->
   <script>
@@ -43,7 +43,7 @@
 
   <!-- Add AnchorJS to let headers be linked -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js" async></script>
-  <script src="{{ site.js_url | relative_url }}/anchors.js" async></script>
+  <script src="{{ site.js_url | relative_url }}/page/anchors.js" async></script>
 
   <!-- Include Turbolinks to make page loads fast -->
   <!-- https://github.com/turbolinks/turbolinks -->
@@ -58,7 +58,7 @@
 
   <!-- Load the auto-generating TOC (non-async otherwise the TOC won't load w/ turbolinks) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js" async></script>
-  <script src="{{ site.js_url | relative_url }}/tocbot.js"></script>
+  <script src="{{ site.js_url | relative_url }}/page/tocbot.js"></script>
 
   <!-- Google analytics -->
   {% include google_analytics.html %}
@@ -81,10 +81,10 @@
   <script>{% include search/lunr/lunr-en.js %}</script>
 
   <!-- Load JS that depends on site variables -->
-  <script src="{{ site.js_url | relative_url }}/copy-button.js" async></script>
+  <script src="{{ site.js_url | relative_url }}/page/copy-button.js" async></script>
 
   <!-- Hide cell code -->
-  <script src="{{ site.js_url | relative_url }}/hide-cell.js" async></script>
+  <script src="{{ site.js_url | relative_url }}/page/hide-cell.js" async></script>
 
   <!-- Printing the screen -->
   {% include js/print.html %}

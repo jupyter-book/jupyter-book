@@ -28,6 +28,18 @@ div.jb_cell {
   }
 }
 
+#page-title {
+  font-size: 4em;
+  font-weight: lighter;
+  line-height: 1em;
+}
+
+#page-author {
+  font-size: 2em;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
 // Right margin
 div.jb_cell {
   &.tag_popout {

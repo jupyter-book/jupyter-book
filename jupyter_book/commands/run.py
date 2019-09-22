@@ -1,7 +1,7 @@
 import sys
 import argparse
 
-from jupyter_book.run import run_pages
+from jupyter_book.utils import run_pages
 
 DESCRIPTION = "Execute pages for your book in-place."
 

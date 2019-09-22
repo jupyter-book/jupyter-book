@@ -8,10 +8,11 @@ from uuid import uuid4
 import jupytext as jpt
 from nbformat.v4.nbbase import new_markdown_cell, new_notebook
 
-from .utils import (print_message_box, _check_url_page, _prepare_toc,
+from .utils import (print_message_box, _check_url_page,
                     _prepare_url, _error, _file_newer_than, _check_book_versions,
                     _is_jupytext_file)
 from .page import page_html, write_page, _RawCellPreprocessor
+from .toc import _prepare_toc
 
 # Defaults
 BUILD_FOLDER_NAME = "_build"
@@ -62,12 +63,8 @@ def _case_sensitive_fs(path):
 
 
 def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
-<<<<<<< HEAD
                path_template=None, local_build=False, execute=False,
                overwrite=False, clear_output=False):
-=======
-               local_build=False, execute=False, overwrite=False):
->>>>>>> modularizing the bage building
     """Build the HTML for a book using its TOC and a content folder.
 
     Parameters
