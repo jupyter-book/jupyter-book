@@ -96,6 +96,21 @@
             };
             thebelabButton.addEventListener('click', addThebelabToCodeCells);
         });
+
+        // Find any cells with an initialization tag and ask ThebeLab to run them when ready
+        thebelab.events.on("request-kernel")((kernel) => {
+            document.querySelectorAll('div.tag_thebelab-init').forEach((cell) => {
+                var lines = cell.querySelectorAll('.CodeMirror-line');
+                var code = [];
+                for (var ii = 0; ii < lines.size; ii++) {
+                    line = lines[ii];
+                    code.append(line.textContent + '\n');
+                }
+                kernel.requestExecute({code: code})
+            })
+            return
+        });
+
     }
 
     // Initialize Thebelab
