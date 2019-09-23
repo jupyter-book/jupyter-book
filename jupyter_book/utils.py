@@ -143,15 +143,16 @@ def _file_newer_than(path1, path2):
 def _minor_release(version):
     """Excludes the patch release from a version number, such that
     only major and minor versions face strict matching."""
-    major_minor_version = version.rsplit('.', 1)[0])
+    major_minor_version = version.rsplit('.', 1)[0]
     if len(major_minor_version .split('.')) != 2:
         raise ValueError("Version doesn't conform to `major.minor.patch` format.")
-    return major_minor_version 
+    return major_minor_version
 
 
 def _check_book_versions(path_book):
     """Check whether the version of a book matches the version of the
-    CLI that's building it."""
+    CLI that's building it.
+    """
 
     with open(op.join(path_book, "_config.yml"), 'r') as ff:
         config_version = yaml.safe_load(ff.read()).get(
