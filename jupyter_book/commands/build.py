@@ -30,6 +30,8 @@ def build():
     parser.add_argument("--local-build", action='store_true',
                         help="Specify you are building site locally"
                              " for later upload.")
+    parser.add_argument("--clear-output", action='store_true',
+                        help="Clear existing outputs from notebooks")
     parser.set_defaults(overwrite=False, execute=False)
 
     ###############################################
@@ -50,9 +52,10 @@ def build():
         PATH_BOOK, 'scripts', 'templates', 'html.tpl')
 
     local_build = args.local_build
+    clear_output = args.clear_output
 
     build_book(PATH_BOOK, PATH_TOC_YAML, CONFIG_FILE,
-               PATH_TEMPLATE, local_build, execute, overwrite)
+               PATH_TEMPLATE, local_build, execute, overwrite, clear_output)
 
 
 def page():
