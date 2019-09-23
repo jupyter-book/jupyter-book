@@ -85,6 +85,15 @@
             outputs.forEach((output, index) => {
                 output.remove();
             });
+
+            // Find any cells with an initialization tag and ask ThebeLab to run them when ready
+            var thebeInitCells = document.querySelectorAll('div.tag_thebelab-init');
+            var thebeOutputCells = document.querySelectorAll('div.tag_thebelab-output');
+            thebeInitCells.forEach((cell) => {
+                console.log("Initializing ThebeLab with cell: " + cell.id);
+                const initButton = cell.querySelector('.thebelab-run-button');
+                initButton.click();
+            });
         }
 
         // Add event listener for the function to modify code cells
@@ -96,21 +105,6 @@
             };
             thebelabButton.addEventListener('click', addThebelabToCodeCells);
         });
-
-        // Find any cells with an initialization tag and ask ThebeLab to run them when ready
-        thebelab.events.on("request-kernel")((kernel) => {
-            document.querySelectorAll('div.tag_thebelab-init').forEach((cell) => {
-                var lines = cell.querySelectorAll('.CodeMirror-line');
-                var code = [];
-                for (var ii = 0; ii < lines.size; ii++) {
-                    line = lines[ii];
-                    code.append(line.textContent + '\n');
-                }
-                kernel.requestExecute({code: code})
-            })
-            return
-        });
-
     }
 
     // Initialize Thebelab
