@@ -88,11 +88,9 @@
 
             // Find any cells with an initialization tag and ask ThebeLab to run them when ready
             var thebeInitCells = document.querySelectorAll('div.tag_thebelab-init');
-            var thebeOutputCells = document.querySelectorAll('div.tag_thebelab-output');
             thebeInitCells.forEach((cell) => {
                 console.log("Initializing ThebeLab with cell: " + cell.id);
-                const initButton = cell.querySelector('.thebelab-run-button');
-                initButton.click();
+                cell.querySelector('.thebelab-run-button').click();
             });
         }
 
