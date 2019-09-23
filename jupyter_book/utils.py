@@ -140,9 +140,19 @@ def _file_newer_than(path1, path2):
     return os.stat(path1).st_mtime > os.stat(path2).st_mtime
 
 
+def _minor_release(version):
+    """Excludes the patch release from a version number, such that
+    only major and minor versions face strict matching."""
+    major_minor_version = version.rsplit('.', 1)[0]
+    if len(major_minor_version .split('.')) != 2:
+        raise ValueError("Version doesn't conform to `major.minor.patch` format.")
+    return major_minor_version
+
+
 def _check_book_versions(path_book):
     """Check whether the version of a book matches the version of the
-    CLI that's building it."""
+    CLI that's building it.
+    """
 
     with open(op.join(path_book, "_config.yml"), 'r') as ff:
         config_version = yaml.safe_load(ff.read()).get(
@@ -155,7 +165,7 @@ def _check_book_versions(path_book):
             f"Try upgrading it with `jupyter-book upgrade {path_book}"
         )
 
-    if config_version != __version__:
+    if _minor_release(config_version) != _minor_release(__version__):
         raise _error(
             f"The version of the book you are modifying doesn't match the\n"
             "version of the command-line tool that you're using. Please run\n"
