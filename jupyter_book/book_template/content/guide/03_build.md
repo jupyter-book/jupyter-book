@@ -34,7 +34,7 @@ From here, you have **two options**
 
    By default, pushing a repository
    cloned from Jupyter Book will tell GitHub to use Jekyll to build the repository
-   using the config files in the project root and the Markdown files in the `_build` directory when you push changes.
+   using the config files in the project root and the HTML files in the `_build` directory when you push changes.
 
    For more information and help troubleshooting setting up Jupyter-Book with a GitHub repository and GitHub pages, see [the relevant section in the documentation below](#troubleshooting).
 
