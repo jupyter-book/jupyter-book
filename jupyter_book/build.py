@@ -61,7 +61,7 @@ def _case_sensitive_fs(path):
 
 def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
                path_template=None, local_build=False, execute=False,
-               overwrite=False):
+               overwrite=False, clear_output=False):
     """Build the HTML for a book using its TOC and a content folder.
 
     Parameters
@@ -81,6 +81,8 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         Whether to execute notebooks before converting to HTML
     overwrite : bool
         Whether to overwrite existing HTML files
+    clear_output: bool
+        Whether to clear existing outputs/results in the notebooks
     """
     if not op.isdir(path_book):
         raise _error(
@@ -211,7 +213,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
             # Build the HTML for this book
             build_page(path_url_page, path_build_new_folder, path_images_new_folder,
                        path_template=path_template, kernel_name=kernel_name,
-                       execute=execute)
+                       execute=execute, clear_output=clear_output)
         else:
             raise _error(
                 "Files must end in ipynb or md. Found file {}".format(path_url_page))

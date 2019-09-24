@@ -38,7 +38,7 @@ class _RawCellPreprocessor(Preprocessor):
 
 
 def build_page(path_ntbk, path_html_output, path_media_output=None, execute=False,
-               path_template=None, verbose=False, kernel_name=None):
+               path_template=None, verbose=False, kernel_name=None, clear_output=False):
     """Build the HTML for a single notebook page.
 
     Inputs
@@ -59,6 +59,8 @@ def build_page(path_ntbk, path_html_output, path_media_output=None, execute=Fals
         A path to the template used in conversion.
     kernel_name : string
         The name of the kernel to use if we execute notebooks.
+    clear_output: bool
+        To remove the output from notebook
     """
 
     ########################################
@@ -117,6 +119,9 @@ def build_page(path_ntbk, path_html_output, path_media_output=None, execute=Fals
         # Wrap cells in Jekyll raw tags
         _RawCellPreprocessor,
     ]
+
+    if clear_output:
+        c.HTMLExporter.preprocessors.append('nbconvert.preprocessors.ClearOutputPreprocessor')
 
     # The text used as the text for anchor links.
     # TEMPORATILY Set to empty since we'll use anchor.js for the links
