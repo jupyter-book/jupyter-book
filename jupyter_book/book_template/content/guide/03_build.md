@@ -98,7 +98,7 @@ for your book (in `_site`), you can push your book contents to GitHub so that
 others can access your book. To do so, follow these steps:
 
 0. Confirm that your site files are built. You should see a
-   collection of HTML files/markdown files/folders in the `_build` folder (if you've run `jupyter-book build`),
+   collection of HTML files/folders in the `_build` folder (if you've run `jupyter-book build`),
    or a collection of HTML in your `_site/` folder (if you've also run `make serve` and/or `bundle exec guard`, see [instructions for building your site locally](./05_advanced.html#building-your-site-locally-with-ruby)).
 1. Commit and push the changes to your repository.
 2. Enable GitHub site building for your repository.
