@@ -40,12 +40,14 @@ In this example, we'll use the `master` branch.
 
 ![Netlify build command](../images/netlify-build.png)
 
-Of note: The default python environment is python 2.7,
+<!-- #region {"tags": ["popout"]} -->
+**Note**: The default python environment is python 2.7,
 which means that some packages may fail to install.
 You can update the python environment by supplying a `runtime.txt` file,
 as detailed in [the Netlify documentation](https://www.netlify.com/docs/build-settings/#build-environment-variables).
 For a full list of available environments,
 please see the [Netlify build image details](https://github.com/netlify/build-image/blob/xenial/included_software.md#languages).
+<!-- #endregion -->
 
 You can then select *Deploy site* and wait for the site to build.
 You'll be re-directed to the site dashboard during the build process.
