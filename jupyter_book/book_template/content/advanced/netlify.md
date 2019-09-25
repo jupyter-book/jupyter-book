@@ -1,3 +1,18 @@
+---
+jupyter:
+  jupytext:
+    formats: md
+    text_representation:
+      extension: .md
+      format_name: markdown
+      format_version: '1.1'
+      jupytext_version: 1.2.1
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
 # Automatically building and hosting your book with Netlify
 
 [Netlify](https://www.netlify.com/) is a continuous deployment service that can **automatically build an updated copy of your Jupyter Book** as you push new content.
