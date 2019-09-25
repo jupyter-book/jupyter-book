@@ -81,6 +81,9 @@
   - title: Building, previewing, and publishing your book with CircleCI
     url: /advanced/circleci
     not_numbered: true
+  - title: Building your book with Netlify
+    url: /advanced/netlify
+    not_numbered: true
 
 
 - title: GitHub repository
