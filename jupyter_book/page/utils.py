@@ -48,6 +48,6 @@ def run_ntbk(ntbk, path_directory, timeout=600, kernel_name=None, allow_errors=T
     c = Config()
     c.ExecutePreprocessor.allow_errors = allow_errors
 
-    ep = ExecutePreprocessor(timeout=timeout, kernel_name=kernel_name)
+    ep = ExecutePreprocessor(timeout=timeout, kernel_name=kernel_name, config=c)
     ntbk, _ = ep.preprocess(ntbk, {'metadata': {'path': path_directory}})
     return ntbk

@@ -57,27 +57,15 @@
  */
 
 // SETTINGS
-@import 'inuitcss/settings/settings.core';
 @import 'settings/settings.global';
 
-// // TOOLS
-@import 'inuitcss/tools/tools.font-size';
-@import 'inuitcss/tools/tools.clearfix';
-@import 'inuitcss/tools/tools.hidden';
-@import 'inuitcss/tools/tools.mq';
+// // INUIT CSS ELEMENTS
+@import 'inuitcss/main';
 
 // // GENERIC
-@import 'inuitcss/generic/generic.box-sizing';
-@import 'inuitcss/generic/generic.normalize';
-@import 'inuitcss/generic/generic.reset';
-@import 'inuitcss/generic/generic.shared';
 @import 'generic/generic.phone-scrolling';
 
 // // ELEMENTS
-@import 'inuitcss/elements/elements.page';
-@import 'inuitcss/elements/elements.headings';
-@import 'inuitcss/elements/elements.images';
-@import 'inuitcss/elements/elements.tables';
 @import 'elements/elements.variables';
 @import 'elements/elements.typography';
 @import 'elements/elements.syntax-highlighting';
@@ -85,9 +73,6 @@
 @import 'elements/elements.links';
 
 // // OBJECTS
-@import 'inuitcss/objects/objects.wrapper';
-@import 'inuitcss/objects/objects.layout';
-
 @import 'objects/objects.tooltip';
 @import 'objects/objects.copy-button';
 
@@ -95,8 +80,3 @@
 @import 'components/components.page';
 @import 'components/components.sidebar-right';
 @import 'components/components.hidecells';
-
-// // UTILITIES
-@import 'inuitcss/utilities/utilities.clearfix';
-@import 'inuitcss/utilities/utilities.hide';
-@import 'inuitcss/utilities/utilities.spacings';
