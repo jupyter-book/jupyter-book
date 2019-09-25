@@ -198,7 +198,7 @@ def page_html(ntbk, path_media_output=None, name=None, title=None,
 
     # Excution of the notebook if we wish
     if execute_dir is not None:
-        ntbk = run_ntbk(ntbk, execute_dir)
+        ntbk = run_ntbk(ntbk, execute_dir, allow_errors=True)
 
     # Generate HTML from our notebook using the template
     output_resources = {"output_files_dir": path_media_output, "unique_key": name}

@@ -1,5 +1,6 @@
 """Utilities for building single pages."""
 from nbconvert.preprocessors import ExecutePreprocessor
+from traitlets.config import Config
 
 
 def _clean_markdown_cells(ntbk):
@@ -15,7 +16,7 @@ def _clean_markdown_cells(ntbk):
     return ntbk
 
 
-def run_ntbk(ntbk, path_directory, timeout=600, kernel_name=None):
+def run_ntbk(ntbk, path_directory, timeout=600, kernel_name=None, allow_errors=True):
     """Run a notebook node.
 
     Parameters
@@ -31,9 +32,21 @@ def run_ntbk(ntbk, path_directory, timeout=600, kernel_name=None):
     kernel_name: string | None
         The kernel name to be used for the notebook. If None, then the kernel
         'python3' will be used.
+    allow_errors: bool
+        Whether to allow errors in cells when running the notebook. If True,
+        any errors will have their output stored in the cell, and the following
+        cells will still be executed.
+
+    Returns
+    -------
+    ntbk : NotebookNode instance
+        The input Jupyter Notebook, but with outputs populated after executing cells.
     """
     if kernel_name is None:
         kernel_name = ntbk.get('metadata', {}).get('kernelspec', {}).get('name', 'python3')
+
+    c = Config()
+    c.ExecutePreprocessor.allow_errors = allow_errors
 
     ep = ExecutePreprocessor(timeout=timeout, kernel_name=kernel_name)
     ntbk, _ = ep.preprocess(ntbk, {'metadata': {'path': path_directory}})
