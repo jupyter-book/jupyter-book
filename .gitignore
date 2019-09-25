@@ -1,7 +1,6 @@
 # Jekyll
 _site/
 .sass-cache
-Gemfile.lock
 
 # Test builds
 scripts/tests/site/_build

@@ -130,6 +130,11 @@ def new_book(path_out, content_folder, toc,
         sh.copytree(op.join(TEMPLATE_PATH, 'content'),
                     op.join(path_out, 'content'))
 
+        # Remove some files/folders that may confuse users
+        files_to_remove = ['Gemfile.lock']
+        for ifile in files_to_remove:
+            os.remove(op.join(path_out, ifile))
+
         message = [
             "- You've chosen to copy over the demo Jupyter Book. This"
             "  contains",
