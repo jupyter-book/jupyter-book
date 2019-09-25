@@ -22,8 +22,8 @@ email: choldgraf@berkeley.edu
 description: >- # this means to ignore newlines until "baseurl:"
   This is an example book built with Jupyter Books.
 
-baseurl: "" # the subpath of your site, e.g. /blog. If there is no subpath for your site, use an empty string ""
-url: "https://jupyter-book.netlify.com" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/jupyter-book" # the subpath of your site, e.g. /blog. If there is no subpath for your site, use an empty string ""
+url: "https://jupyter.org" # the base hostname & protocol for your site, e.g. http://example.com
 
 
 #######################################################################################
@@ -147,4 +147,4 @@ plugins:
   - jekyll-scholar
 
 # Jupyter Book version - DO NOT CHANGE THIS. It is generated when a new book is created
-jupyter_book_version: "0.6.0"
+jupyter_book_version: "0.6.1dev0"

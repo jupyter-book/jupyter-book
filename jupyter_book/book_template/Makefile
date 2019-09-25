@@ -31,9 +31,7 @@ serve:
 
 site:
 	jupyter-book build ./ --overwrite
-	bundle exec jekyll build
-	touch _site/.nojekyll
 
-build:
+build: site
 	bundle exec jekyll build
 	touch _site/.nojekyll
