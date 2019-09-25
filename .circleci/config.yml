@@ -58,6 +58,16 @@ jobs:
             - jupyter_book/book_template/_build/
 
 
+  # This makes sure the site builds with the miniconda instructions, but we don't use it to demo the site
+  build_site:
+    docker:
+      - image: circleci/python:3.7-stretch
+    steps:
+      - prepare_jekyll_installation
+      - run:
+          name: Build the website
+          command: cd jupyter_book/book_template && bundle exec jekyll build --baseurl /0/html/
+
   # Deploy the built site to jupyter-book.github.io
   deploy:
     docker:
@@ -91,7 +101,13 @@ workflows:
             branches:
               ignore:
                 - gh-pages
-
+      - build_site:
+          requires:
+            - run_tests
+          filters:
+            branches:
+              ignore:
+                - gh-pages
       - deploy:
           requires:
             - run_tests
@@ -142,4 +158,4 @@ commands:
       # Build the book's HTML w/ the base_url for CircleCI artifacts
       - run:
           name: Install book Ruby dependencies
-          command: cd jupyter_book/book_template && bundle install
+          command: cd jupyter_book/book_template && rm Gemfile.lock && bundle install
