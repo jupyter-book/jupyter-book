@@ -47,4 +47,4 @@ def build():
     clear_output = args.clear_output
 
     build_book(PATH_BOOK, PATH_TOC_YAML, CONFIG_FILE,
-               local_build, execute, overwrite, clear_output=clear_output)
+               local_build=local_build, execute=execute, overwrite=overwrite, clear_output=clear_output)

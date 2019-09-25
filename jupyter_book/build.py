@@ -134,7 +134,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         _check_url_page(url_page, CONTENT_FOLDER_NAME)
 
         ##############################################################################
-        # Create path to old/new file and create directory
+        # Define paths and prepare directories for writing
 
         # URL will be relative to the CONTENT_FOLDER
         path_url_page = os.path.join(PATH_CONTENT_FOLDER, url_page.lstrip('/'))
@@ -145,7 +145,8 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         # now we find which one to add
         for suff in SUPPORTED_FILE_SUFFIXES:
             if op.exists(path_url_page + suff):
-                path_url_page = path_url_page + suff
+                path_url_page_suff = path_url_page + suff
+                chosen_suff = suff
                 break
             elif suff == "#BREAK#":
                 # Final suffix means we didn't find any existing content
@@ -153,21 +154,30 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
                     "Could not find file called {} with any of these extensions: {}".format(
                         path_url_page, SUPPORTED_FILE_SUFFIXES[:-1]))
 
-        # Create and check new folder / file paths
-        path_build_new_folder = path_url_folder.replace(
+        # Folder / file path for written HTML
+        path_page_output_folder = path_url_folder.replace(
             os.sep + CONTENT_FOLDER_NAME, os.sep + BUILD_FOLDER_NAME) + os.sep
-        path_build_new_file = op.join(
-            path_build_new_folder, op.basename(path_url_page).replace(suff, '.html'))
+        path_page_output_file = op.join(
+            path_page_output_folder, op.basename(path_url_page_suff).replace(suff, '.html'))
+
+        # Path for generated images. They'll be placed in `images/` folder w/ the same folder
+        # structure that they have within the `content/` folder.
+        path_output_folder_from_build_root = path_page_output_folder.split(
+            os.sep + BUILD_FOLDER_NAME + os.sep)[-1]
+        path_media_output_folder = op.join(
+            PATH_IMAGES_FOLDER, path_output_folder_from_build_root)
+        path_media_rel_to_output_folder = op.relpath(path_media_output_folder, path_page_output_folder)
+
+        # Create our build folder if it doesn't exist
+        if not op.isdir(path_page_output_folder):
+            os.makedirs(path_page_output_folder)
 
         # If the new build file exists and is *newer* than the original file, assume
         # the original content file hasn't changed and skip it.
-        if overwrite is False and op.exists(path_build_new_file) \
-           and _file_newer_than(path_build_new_file, path_url_page):
+        if overwrite is False and op.exists(path_page_output_file) \
+           and _file_newer_than(path_page_output_file, path_url_page_suff):
             n_skipped_files += 1
             continue
-
-        if not op.isdir(path_build_new_folder):
-            os.makedirs(path_build_new_folder)
 
         ################################################################################
         # Generate previous/next page URLs
@@ -192,16 +202,16 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
                 url_next_page = _prepare_url(url_next_page)
 
         ###########################################################################
-        # Check page metadata and file structure
+        # Read in the page and check page metadata
 
         # Read in the notebook with Jupytext
-        ntbk = jpt.read(path_url_page)
+        ntbk = jpt.read(path_url_page_suff)
 
         # Decide whether to execute the notebook
         execute_dir = path_url_folder if execute is True else None
 
         # If it's a Jupytext file, execute it anyway
-        if _is_jupytext_file(ntbk) and op.splitext(path_url_page)[-1] != '.ipynb':
+        if _is_jupytext_file(ntbk) and chosen_suff != '.ipynb':
             execute_dir = path_url_folder
 
         # Check if we had extra YAML frontmatter in the first cell. If so, grab it.
@@ -212,7 +222,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
 
         # If the file was markdown and didn't have any jupytext frontmatter
         # Just add in the raw source
-        if not _is_jupytext_file(ntbk) and op.splitext(path_url_page)[-1] in ['.md', 'markdown']:
+        if not _is_jupytext_file(ntbk) and chosen_suff in ['.md', 'markdown']:
             # Recover the Markdown content
             md = jpt.writes(ntbk, 'md')
             # Replace the notebook with a new one, made of just one Markdown cell
@@ -223,36 +233,27 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         has_widgets = "true" if any("interactive" in cell['metadata'].get('tags', []) for cell in ntbk['cells']) else "false"
 
         ###########################################################################
-        # Convert to HTML
-
-        # Decide the path where the images will be placed, relative to the HTML location
-        path_after_build_folder = path_build_new_folder.split(
-            os.sep + BUILD_FOLDER_NAME + os.sep)[-1]
-        path_images_new_folder = op.join(
-            PATH_IMAGES_FOLDER, path_after_build_folder)
-
-        # Figure out the relative path between the HTML output and the images folder
-        path_media_rel_to_build = op.relpath(path_images_new_folder, path_build_new_folder)
+        # Write the page to HTML on disk
 
         # Convert the notebook to HTML
         html, resources = page_html(
-            ntbk, path_media_output=path_media_rel_to_build,
+            ntbk, path_media_output=path_media_rel_to_output_folder,
             name=notebook_name, preprocessors=_RawCellPreprocessor, execute_dir=execute_dir,
             kernel_name=kernel_name, clear_output=clear_output
         )
 
         # Write the HTML to disk
-        path_html = write_page(html, path_build_new_folder, resources)
-        if path_html != path_build_new_file:
+        path_html = write_page(html, path_page_output_folder, resources)
+        if path_html != path_page_output_file:
             raise ValueError(
                 "HTML not written to the expected location.\n\n"
-                f"expected\t{path_build_new_folder}\ngot\t\t{path_html}\n"
+                f"expected\t{path_page_output_folder}\ngot\t\t{path_html}\n"
             )
 
         ###########################################################################
         # Modify the generated HTML to work with the SSG
 
-        with open(path_build_new_file, 'r', encoding='utf8') as ff:
+        with open(path_page_output_file, 'r', encoding='utf8') as ff:
             lines = ff.readlines()
 
         # Front-matter YAML
@@ -272,7 +273,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
 
         # Add interactive kernel info
         interact_path = CONTENT_FOLDER_NAME + '/' + \
-            path_url_page.split(CONTENT_FOLDER_NAME + '/')[-1]
+            path_url_page_suff.split(CONTENT_FOLDER_NAME + '/')[-1]
         yaml_fm += ['interact_link: {}'.format(interact_path)]
         yaml_fm += ["kernel_name: {}".format(kernel_name)]
         yaml_fm += ["has_widgets: {}".format(has_widgets)]
@@ -297,7 +298,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
 
         # Write the result as UTF-8.
         lines = yaml_fm + lines
-        with open(path_build_new_file, 'w', encoding='utf8') as ff:
+        with open(path_page_output_file, 'w', encoding='utf8') as ff:
             ff.writelines(lines)
         n_built_files += 1
 
