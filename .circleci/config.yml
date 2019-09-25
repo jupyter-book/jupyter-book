@@ -58,20 +58,6 @@ jobs:
             - jupyter_book/book_template/_build/
 
 
-  doc:
-    docker:
-      - image: circleci/python:3.7-stretch
-    steps:
-      - prepare_jekyll_installation
-      - run:
-          name: Build the website
-          command: cd jupyter_book/book_template && bundle exec jekyll build --baseurl /0/html/
-
-      # Tell Circle to store the documentation output in a folder that we can access later
-      - store_artifacts:
-          path: jupyter_book/book_template/_site/
-          destination: html
-
   # Deploy the built site to jupyter-book.github.io
   deploy:
     docker:
@@ -105,13 +91,7 @@ workflows:
             branches:
               ignore:
                 - gh-pages
-      - doc:
-          requires:
-            - run_tests
-          filters:
-            branches:
-              ignore:
-                - gh-pages
+
       - deploy:
           requires:
             - run_tests
