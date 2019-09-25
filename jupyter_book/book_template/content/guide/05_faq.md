@@ -124,3 +124,20 @@ look simplified and incorrectly-formatted.
 
 If you have an idea for how to improve this, please
 [open an issue](https://github.com/jupyter/jupyter-book/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc)!
+
+## What is this `Gemfile.lock` file or why am I getting Jekyll dependency warnings?
+
+The way that you define dependencies in the Ruby language is with a `Gemfile`. This is
+like a `requirements.txt` file in Python - it defines the packages needed to deploy
+a web application (in this case, our Jupyter Book). When you build the book, a new
+file will be created called `Gemfile.lock`. This freezes the dependency versions that
+are specified in your `Gemfile`, which is useful for things like cacheing your builds
+to make them faster.
+
+However, sometimes you want to **un-freeze your dependency versions**, often because
+you either wish to use new functionality in a package, or because you're getting
+a warning that there is a _vulnerability_ in an old version of a package.
+
+**To update your Gemfile packages, simply delete `Gemfile.lock` and re-run `make install`**.
+This will generate a new `Gemfile.lock` with the latest versions of each package
+specified in your `Gemfile` (unless you have explicitly provided a version number there).
