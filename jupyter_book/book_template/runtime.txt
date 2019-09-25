@@ -1,2 +1,2 @@
-# Preview
+# Netlify Python version
 3.7
