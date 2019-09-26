@@ -5,7 +5,6 @@ import shutil as sh
 from ruamel.yaml import YAML
 import pytest
 
-from jupyter_book.utils import _split_yaml
 from jupyter_book.create import new_book
 
 
@@ -270,29 +269,13 @@ def test_notebook(tmpdir):
     assert is_in(lines, '<img src="images/simple_notebook_2_0.png"')
 
 
-def test_split_yaml(tmpdir):
+def test_extra_yaml(tmpdir):
     path_build_test = op.join(tmpdir.dirpath(), 'tmp_test', 'test')
     with open(op.join(path_build_test, '_build', 'tests', 'features.html'), 'r') as ff:
         lines = ff.readlines()
 
     # Make sure the yaml remains in the file
     assert is_in(lines, "yaml_frontmatter: true")
-
-    # Edgecases etc on the splitter function
-    assert _split_yaml([]) == ([], [])
-    assert _split_yaml(['foo\n', 'bar\n']) == ([], ['foo\n', 'bar\n'])
-    assert _split_yaml(['---\n', 'foo\n', 'bar\n']) == ([],
-                                                        ['---\n', 'foo\n', 'bar\n'])
-    exp = ['---\n', 'foo\n', '---\n']
-    assert _split_yaml(exp) == (['foo\n'], [])
-    assert (_split_yaml(['---\n', 'foo\n', '---\n', 'baz\n', 'barf\n']) ==
-            (['foo\n'], ['baz\n', 'barf\n']))
-    assert (_split_yaml(['---\n', 'foo\n', 'bar\n', '---\n', 'baz\n', 'barf\n']) ==
-            (['foo\n', 'bar\n'], ['baz\n', 'barf\n']))
-    assert (_split_yaml(['\n', '\n', '---\n', 'foo\n', '---\n', 'baz\n', 'barf\n']) ==
-            (['foo\n'], ['baz\n', 'barf\n']))
-    assert (_split_yaml(['   \n', ' \n', '---\n', 'foo\n', '---\n', 'baz\n', 'barf\n']) ==
-            (['foo\n'], ['baz\n', 'barf\n']))
 
 
 def test_notebook_update(tmpdir):

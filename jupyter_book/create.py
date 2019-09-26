@@ -1,3 +1,4 @@
+"""Create a new book template."""
 from subprocess import run
 import sys
 import os

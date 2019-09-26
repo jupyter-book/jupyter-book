@@ -51,12 +51,26 @@ jobs:
           name: Build site intermediate files
           command: jupyter-book build jupyter_book/book_template/
 
+
       # Persist the built files for the deploy step
       - persist_to_workspace:
           root: .
           paths:
             - jupyter_book/book_template/_build/
 
+      # Build a single-page's HTML so we can preview
+      - run:
+          name: Build individual pages to preview
+          command: |
+            cd jupyter_book/book_template/
+            mkdir html_outputs
+            jupyter-book page content/features/notebooks.ipynb -o html_outputs
+            jupyter-book page content/features/jupytext.md -o html_outputs
+            jupyter-book page content/features/markdown.md -o html_outputs
+
+      - store_artifacts:
+          path: jupyter_book/book_template/html_outputs
+          destination: html_singlepage
 
   # This makes sure the site builds with the miniconda instructions, but we don't use it to demo the site
   build_site:

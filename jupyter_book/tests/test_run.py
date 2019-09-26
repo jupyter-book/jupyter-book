@@ -3,7 +3,7 @@ import os
 import os.path as op
 import shutil as sh
 
-from jupyter_book.run import run_pages
+from jupyter_book.utils import run_pages
 
 this_folder = op.dirname(__file__)
 

@@ -1,8 +1,9 @@
 pytest
 ruamel.yaml
+pyyaml
+libsass
 tqdm
 numpy
-pyyaml
 nbformat
 setuptools
 jupyter_contrib_nbextensions
