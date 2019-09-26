@@ -1,3 +1,4 @@
+"""Build the HTML for a book's pages."""
 import os
 import os.path as op
 import shutil as sh
@@ -155,6 +156,8 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
                         path_url_page, SUPPORTED_FILE_SUFFIXES[:-1]))
 
         # Folder / file path for written HTML
+        path_page_rel_content_folder = CONTENT_FOLDER_NAME + os.sep + \
+            path_url_page_suff.split(CONTENT_FOLDER_NAME + os.sep)[-1]
         path_page_output_folder = path_url_folder.replace(
             os.sep + CONTENT_FOLDER_NAME, os.sep + BUILD_FOLDER_NAME) + os.sep
         path_page_output_file = op.join(
@@ -272,9 +275,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
             yaml_fm += ['  - "{}"'.format(sanitized)]
 
         # Add interactive kernel info
-        interact_path = CONTENT_FOLDER_NAME + '/' + \
-            path_url_page_suff.split(CONTENT_FOLDER_NAME + '/')[-1]
-        yaml_fm += ['interact_link: {}'.format(interact_path)]
+        yaml_fm += ['interact_link: {}'.format(path_page_rel_content_folder.replace(os.sep, '/'))]
         yaml_fm += ["kernel_name: {}".format(kernel_name)]
         yaml_fm += ["has_widgets: {}".format(has_widgets)]
 

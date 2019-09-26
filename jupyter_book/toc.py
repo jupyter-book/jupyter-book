@@ -1,3 +1,4 @@
+"""Functions to process and create a Table of Contents file."""
 import os
 import os.path as op
 from ruamel.yaml import YAML

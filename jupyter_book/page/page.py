@@ -1,3 +1,4 @@
+"""Single page HTML building / writing functionality."""
 import os.path as op
 import os
 from traitlets.config import Config
