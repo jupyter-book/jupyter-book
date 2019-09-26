@@ -17,7 +17,9 @@ def page():
         "path_ntbk", help="Path to the notebook you'll convert.")
     parser.add_argument(
         "-o", "--path_html_output", default='.', help="Path to the folder where HTML will be placed.")
-    parser.add_argument("--template", default=None, help="Path to a template to render the HTML")
+    parser.add_argument("--custom-css", default=None, help="Path to a custom CSS file")
+    parser.add_argument("--custom-js", default=None, help="Path to a custom JS file")
+
     parser.add_argument("--path_media_output", default=None,
                         help="The path to where images should be extracted")
     parser.add_argument("--execute", action='store_true', help="Execute the notebook before converting")
@@ -27,6 +29,22 @@ def page():
     # Default values and arguments
 
     args = parser.parse_args(sys.argv[2:])
+    custom_css = args.custom_css
+    custom_js = args.custom_js
+
+    if custom_css:
+        if not op.exists(custom_css):
+            raise ValueError(f"Could not find custom CSS file {custom_css}")
+        else:
+            with open(custom_css, 'r') as ff:
+                custom_css = ff.read()
+
+    if custom_js:
+        if not op.exists(custom_js):
+            raise ValueError(f"Could not find custom JS file {custom_js}")
+        else:
+            with open(custom_js, 'r') as ff:
+                custom_js = ff.read()
 
     # Paths for our notebooks
     PATH_PAGE = op.abspath(args.path_ntbk)
@@ -46,10 +64,10 @@ def page():
     ntbk = jpt.read(PATH_PAGE)
     name = op.splitext(op.basename(PATH_PAGE))[0]
     html, resources = page_html(
-        ntbk, path_media_output=PATH_MEDIA_OUTPUT, execute_dir=execute_dir, name=name,
-        title=ntbk.metadata.get('title'), author=ntbk.metadata.get('author')
+        ntbk, path_media_output=PATH_MEDIA_OUTPUT, execute_dir=execute_dir, name=name
     )
 
     # Write to disk as a standalone HTML page
-    path_html = write_page(html, PATH_HTML_OUTPUT, resources, standalone=True)
+    path_html = write_page(html, PATH_HTML_OUTPUT, resources, standalone=True,
+                           custom_css=custom_css, custom_js=custom_js)
     print(f"HTML created at: {path_html}")

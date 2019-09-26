@@ -58,7 +58,8 @@ class _RawCellPreprocessor(Preprocessor):
         return nb, resources
 
 
-def write_page(html, path_out, resources, standalone=False):
+def write_page(html, path_out, resources, standalone=False,
+               custom_css=None, custom_js=None):
     """
     Write an HTML page to disk and extract images if desired.
     Meant for running after converting a page with `page_html`.
@@ -77,16 +78,35 @@ def write_page(html, path_out, resources, standalone=False):
         <head> and <body> sections. If False, just the converted HTML will
         be written with the expectation that it will be compiled to "full"
         HTML by Jupyter Book later.
+    custom_css : string of css | path to css file
+        A collection of custom CSS rules to include in the output HTML, or a
+        path to a CSS file. Only used if `standalone=True`.
+    custom_js : string of javascript | path to js file
+        A collection of custom Javascript to include in the output HTML, or a
+        path to a CSS file. Only used if `standalone=True`.
     """
     c = Config()
     c.FilesWriter.build_directory = path_out
     notebook_name = resources.get("unique_key", "notebook").split(os.sep)[-1]
 
+    if custom_css is None:
+        custom_css = ''
+    elif op.exists(custom_css):
+        with open(custom_css, 'r') as ff:
+            custom_css = ff.read()
+    if custom_js is None:
+        custom_js = ''
+    elif op.exists(custom_js):
+        with open(custom_js, 'r') as ff:
+            custom_js = ff.read()
+
     # If standalone, add a head and body
     if standalone is True:
+        head = page_head(custom_css=custom_css, custom_js=custom_js)
         html = f"""
         <!DOCTYPE html>
-        {page_head()}
+        {head}
+
         <body>
         {html}
         <nav class="onthispage"></nav>
@@ -99,9 +119,8 @@ def write_page(html, path_out, resources, standalone=False):
     return path_html
 
 
-def page_html(ntbk, path_media_output=None, name=None, title=None,
-              author=None, preprocessors=None, execute_dir=False,
-              kernel_name=None, clear_output=False):
+def page_html(ntbk, path_media_output=None, name=None, preprocessors=None,
+              execute_dir=False, kernel_name=None, clear_output=False):
     """Build the HTML for a single notebook page.
 
     Inputs
@@ -118,12 +137,6 @@ def page_html(ntbk, path_media_output=None, name=None, title=None,
         The name of the notebook being converted. This will be used if
         `path_media_output` is noe None in order to create unique media
         file names.
-    title : string | None
-        The title of the page. If provided, it will be created at the top of
-        the page.
-    author : string | None
-        The author of the page. If provided, it will be placed just below the
-        title (if it is provided).
     preprocessors : list of NBConvert Preprocessors | None
         Any extra preprocessors to add to the end of the preprocessor chain
         in the HTMLConverter.
@@ -206,27 +219,20 @@ def page_html(ntbk, path_media_output=None, name=None, title=None,
     exp = HTMLExporter(template_file=PATH_TEMPLATE, config=c)
     html, resources = exp.from_notebook_node(ntbk, resources=output_resources)
 
-    # Add title and author information if it's provided
-    title = '' if title is None else f'<div id="page-title">{title}</div>'
-    author = '' if author is None else f'<div id="page-author">{author}</div>'
-
     html = f"""
     <main class="jupyter-page">
-    {title}
-    {author}
     {html}
     </main>
     """
     return html, resources
 
 
-def page_head():
+def page_head(custom_css='', custom_js=''):
     """Write a header for a standalone HTML file.
 
     This uses CSS/JS from the book template.
     """
     # Javascript files to embed
-
     js_files = [
         "dom-update.js",
         "documentSelectors.js",
@@ -235,13 +241,22 @@ def page_head():
         "anchors.js",
         "tocbot.js"
     ]
+
     js = []
     for js_file in js_files:
         with open(op.join(PATH_JS, js_file), "r") as ff:
             js += ["<script>"]
             js += ff.readlines()
             js += ["</script>"]
+
     js = "\n".join(js)
+
+    if custom_js:
+        custom_js = f"""
+            <script>
+            {custom_js}
+            </script>
+            """
 
     # Mathjax embed
     with open(PATH_MATHJAX, "r") as ff:
@@ -255,13 +270,24 @@ def page_head():
     </style>
     """
 
+    if custom_css:
+        custom_css = f"""
+        <style tyle="text/css">
+        {custom_css}
+        </style>
+        """
+    else:
+        custom_css = ""
+
     # Stitch them all together into a head
     head = f"""
     <head>
     {html_mathjax}
     {scss}
+    {custom_css}
     {PAGE_CSS}
     {js}
+    {custom_js}
     </head>
     """
     return head
