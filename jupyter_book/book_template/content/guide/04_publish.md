@@ -214,7 +214,7 @@ docker run --rm --security-opt label:disable  \
    -v /full/path/to/your/book:/srv/jekyll \
    -p 4000:4000 \
    -it -u 1000:1000 \
-   emdupre/jupyter-book bundle exec jekyll serve --host 0.0.0.0
+   emdupre/jupyter-book
 ```
 
 If you navigate to `http://0.0.0.0:4000/jupyter-book/` in your browser,
@@ -245,7 +245,7 @@ Make sure to specify the full path to your Jupyter Book, rather than the relativ
 ```bash
 singularity run -B /full/path/to/your/book:/srv/jekyll \
     --pwd /srv/jekyll \
-    jupyter-book.simg bundle exec jekyll serve
+    jupyter-book.simg
 ```
 
 And that's it! If you navigate to `http://127.0.0.1:4000/jupyter-book/` in your browser,
