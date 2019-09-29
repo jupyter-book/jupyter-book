@@ -135,16 +135,6 @@ pre.highlight code {
   display: block;
 }
 
-blockquote {
-  margin: $spacing-unit-small;
-  padding: $spacing-unit-med;
-  border-left: 4px solid $color-dark-gray;
-
-  p:last-child {
-    margin-bottom: 0;
-  }
-}
-
 /* Outputs */
 .output_stream,
 .output_data_text,
@@ -226,4 +216,49 @@ div.output_subarea {
 
 .jp-OutputPrompt {
   display: none;
+}
+
+// Quotation cells
+
+// Default
+blockquote {
+  margin: $spacing-unit-small;
+  border-left: 4px solid $color-dark-gray;
+  padding: $spacing-unit-tiny $spacing-unit-med;
+
+  p {
+    margin-bottom: $spacing-unit-small;
+  }
+
+  ul, ol {
+    margin-bottom: $spacing-unit-tiny;
+  }
+
+  // This should only trigger if the last child of a blockquote is an ul/ol
+  > :last-child li {
+    text-align: right;
+    list-style-type: none;
+    margin: none;
+    padding-right: 5%;
+
+    &:before {
+      content: "—";
+      padding-right: 10px;
+    }
+  }
+}
+
+// Epigraph adds new styling
+div.jb_cell.tag_epigraph blockquote {
+
+  font-style: italic;
+  font-size: 1.2em;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border-left: none;
+
+  ul {
+    font-style: normal;
+  }
 }
