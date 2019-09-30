@@ -468,7 +468,7 @@ docker run --rm --security-opt label:disable  \
 If you navigate to `http://0.0.0.0:4000/jupyter-book/` in your browser,
 you should see a preview copy of your book.
 If you instead see an error, please try to update your local book;
-see [the Jupyter Book FAQ section](https://jupyter.org/jupyter-book/guide/04_faq.html#how-can-i-update-my-book)
+see [the Jupyter Book FAQ section](https://jupyterbook.org/guide/04_faq.html#how-can-i-update-my-book)
 for more details on how to do so.
 
 ### Building your site locally with Containers: Singularity

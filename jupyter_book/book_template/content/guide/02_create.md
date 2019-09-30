@@ -29,7 +29,7 @@ jupyter-book toc mybookname/
 ## by modifying the Demo Book
 
 If you'd like to see a more fully-functioning demo book for inspiration, you can
-create the book that lives at the [jupyter-book website](https://jupyter.org/jupyter-book)
+create the book that lives at the [jupyter-book website](https://jupyterbook.org)
 by adding the `--demo` flag:
 
 ```

@@ -1,7 +1,7 @@
 # NOTE: This is an example CircleCI configuration that
 # will build your book and preview its HTML content.
 # You will probably have to modify it in order to get it working
-# just the way you want. See https://jupyter.org/jupyter-book/advanced/circleci.html
+# just the way you want. See https://jupyterbook.org/advanced/circleci.html
 # for more information
 version: 2.1
 

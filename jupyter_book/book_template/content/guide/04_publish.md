@@ -220,7 +220,7 @@ docker run --rm --security-opt label:disable  \
 If you navigate to `http://0.0.0.0:4000/jupyter-book/` in your browser,
 you should see a preview copy of your book.
 If you instead see an error, please try to update your local book;
-see [the Jupyter Book FAQ section](https://jupyter.org/jupyter-book/guide/04_faq.html#how-can-i-update-my-book)
+see [the Jupyter Book FAQ section](https://jupyterbook.org/guide/04_faq.html#how-can-i-update-my-book)
 for more details on how to do so.
 
 You'll find the HTML for your book in the `_site/` folder.
@@ -257,7 +257,7 @@ If you're choosing to build the HTML for your book by hand, there are a few opti
 where you should store the book. The two most common approaches are:
 
 * **Use the `gh-pages` or `master` branch of a GitHub repository**. In this case, the build
-  process is very similar to [using GH-pages to build the HTML for your site](https://jupyter.org/jupyter-book/guide/03_build.html#publish-your-book-online-with-github-pages).
+  process is very similar to [using GH-pages to build the HTML for your site](https://jupyterbook.org/guide/03_build.html#publish-your-book-online-with-github-pages).
   However, there is one caveat: you must include a file called `.nojekyll` along with the HTML
   files of your book. This tells GitHub **not** to use Jekyll to build the HTML.
 * **Use a static site hosting service like Netlify**. There are many services that will simply

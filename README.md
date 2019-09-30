@@ -20,8 +20,8 @@ content with your own, and have a Jupyter-based textbook ready to go shortly!
 
 Here are a few links of interest:
 
-* **[A demo of the hosted textbook](http://jupyter.org/jupyter-book/ )**
-* **[A short guide to deploying your own textbook](https://jupyter.org/jupyter-book/guide/01_overview)**
+* **[A demo of the hosted textbook](https://jupyterbook.org/ )**
+* **[A short guide to deploying your own textbook](https://jupyterbook.org/guide/01_overview)**
 * **[The markdown version of the guide in this repo](jupyter_book/book_template/content/guide/)**
 
 ## Explore this book
