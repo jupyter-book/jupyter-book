@@ -13,9 +13,11 @@
   </div>
   <!-- Empty sidebar placeholder that we'll auto-fill with javascript -->
   <aside class="sidebar__right">
-    <header><h4 class="nav__title"><i class="fa fa-list"></i> {{ page.toc_label | default: site.data.ui-text[site.locale].toc_label }}</h4></header>
+    <header><h4 class="nav__title"><img src="{{ site.images_url | relative_url }}/list-solid.svg" alt="Search" /> {{ page.toc_label | default: site.data.ui-text[site.locale].toc_label }}</h4></header>
     <nav class="onthispage">
     </nav>
   </aside>
-  <a href="{{ '/search.html' | relative_url }}" class="topbar-right-button" id="search-button"><i class="fa fa-search"></i></a>
+  <a href="{{ '/search.html' | relative_url }}" class="topbar-right-button" id="search-button">
+    <img src="{{ site.images_url | relative_url }}/search-solid.svg" alt="Search" />
+  </a>
 </div>

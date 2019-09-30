@@ -29,14 +29,13 @@
   }
 
   .topbar-right-button {
-    font-size: 1.4em;
     display: block;
     float: right;
-    color: #7a8288;
-    padding: 0 0.5rem;
+    padding: 0 1rem;
 
-    &:hover {
-      color: $color-links;
+    img {
+      width: 20px;
+      margin-top: 4px;
     }
   }
 }
@@ -60,5 +59,9 @@
 
   &:hover div.download-buttons {
     display: block;
+  }
+
+  img {
+    height: 18px;
   }
 }

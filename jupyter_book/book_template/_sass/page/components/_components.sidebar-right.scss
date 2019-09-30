@@ -34,6 +34,12 @@ aside.sidebar__right {
     text-transform: uppercase;
     letter-spacing: 1px;
 
+    // Icon
+    img {
+        width: 15px;
+        padding-bottom: 2px;
+    }
+
     // Show/hide navbar underneath
     nav {
         transition: opacity .25s ease-in-out, height .25s ease-in-out;

@@ -293,7 +293,10 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         yaml_fm += [f'  url: {url_next_page}']
         yaml_fm += ["  title: |-"]
         yaml_fm += [f"    {next_file_title}"]
-        yaml_fm += yaml_extra  # Add back any original YaML
+        yaml_fm += [f"suffix: {chosen_suff}"]
+
+        # Add back any original YaML
+        yaml_fm += yaml_extra
         yaml_fm += [f'comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /{CONTENT_FOLDER_NAME}***"']
         yaml_fm += ['---']
         yaml_fm = [ii + '\n' for ii in yaml_fm]
