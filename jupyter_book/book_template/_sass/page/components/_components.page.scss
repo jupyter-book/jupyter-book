@@ -26,6 +26,18 @@ div.jb_cell {
   @include mq($from: laptop) {
     width: $textbook-page-with-sidebar-width;
   }
+
+  // Add some empty space before headers for anchor links
+  h1, h2, h3, h4, h5 {
+    &:before {
+      display: block;
+      content: " ";
+      margin-top: -80px;
+      height: 80px;
+      visibility: hidden;
+      pointer-events: none;
+    }
+  }
 }
 
 #page-title {
