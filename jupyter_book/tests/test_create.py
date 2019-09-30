@@ -248,6 +248,9 @@ def test_notebook(tmpdir):
     # No interactive outputs
     assert is_in(lines, "has_widgets: false")
 
+    # Interact links are there
+    assert is_in(lines, "interact_link:")
+
     # Testing external link being excluded from "next page"
     assert not is_in(lines, "url: https://github.com")
 
@@ -267,6 +270,14 @@ def test_notebook(tmpdir):
     with open(op.join(path_build_test, '_build', 'simple_notebook.html'), 'r') as ff:
         lines = ff.readlines()
     assert is_in(lines, '<img src="images/simple_notebook_2_0.png"')
+
+    ###########################################
+    # Testing markdown file conversion
+
+    with open(op.join(path_build_test, '_build', 'tests', 'markdown.html'), 'r') as ff:
+        lines = ff.readlines()
+
+    assert not is_in(lines, 'interact_link: ')
 
 
 def test_extra_yaml(tmpdir):
