@@ -139,7 +139,7 @@ def new_book(path_out, content_folder, toc,
         message = [
             "- You've chosen to copy over the demo Jupyter Book. This"
             "  contains",
-            "  the content shown at https://jupyter.org/jupyter-book.\n"
+            "  the content shown at https://jupyterbook.org.\n"
             "  Use it to get acquainted with the Jupyter-Book structure"
             " and build ",
             "  system. When you're ready, try re-running"

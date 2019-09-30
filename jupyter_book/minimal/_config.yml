@@ -7,7 +7,7 @@ email: YOUR EMAIL
 baseurl: "/" # the subpath of your site, e.g. /blog. If there is no subpath for your site, use an empty string ""
 url: "YOUR URL" # the base hostname & protocol for your site, e.g. http://example.com
 
-textbook_logo_link        : https://jupyter.org/jupyter-book/  # A link for the logo.
+textbook_logo_link        : https://jupyterbook.org/  # A link for the logo.
 
 #######################################################################################
 # Interact link settings

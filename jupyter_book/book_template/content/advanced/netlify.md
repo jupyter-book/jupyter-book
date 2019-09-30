@@ -22,7 +22,7 @@ Although Netlify has both free and paid tiers, the build process is the same acr
 Importantly, the free tier only allows for 100GB of bandwidth usage per month across all of your Netlify built projects.
 
 If your Jupyter Book will be used by a large audience, or if you're creating many Jupyter Books, you might want to consider registering for [a paid account](https://www.netlify.com/pricing/).
-You can also instead automatically build your Jupyter Book with CircleCI, using the configuration shown in the section on [Automatically building, previewing, and pushing your book with CircleCI](https://jupyter.org/jupyter-book/advanced/circleci.html).
+You can also instead automatically build your Jupyter Book with CircleCI, using the configuration shown in the section on [Automatically building, previewing, and pushing your book with CircleCI](https://jupyterbook.org/advanced/circleci.html).
 
 In order to use Netlify, you'll need to [create an account](https://app.netlify.com/signup).
 Here, we'll walk through connecting your Jupyter Book to Netlify's continous deployment services using their UI.

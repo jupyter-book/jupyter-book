@@ -51,7 +51,6 @@ jobs:
           name: Build site intermediate files
           command: jupyter-book build jupyter_book/book_template/
 
-
       # Persist the built files for the deploy step
       - persist_to_workspace:
           root: .
@@ -82,28 +81,6 @@ jobs:
           name: Build the website
           command: cd jupyter_book/book_template && bundle exec jekyll build --baseurl /0/html/
 
-  # Deploy the built site to jupyter-book.github.io
-  deploy:
-    docker:
-      - image: circleci/python:3.7-stretch
-    steps:
-      # Add deployment key fingerprint for CircleCI to use for a push
-      - add_ssh_keys:
-          fingerprints:
-            - "19:34:f0:15:b8:3a:e4:44:27:a8:e9:8b:b5:e4:48:a9"
-
-      - prepare_jekyll_installation
-      - run:
-          name: Build the website for deploy
-          command: cd jupyter_book/book_template && bundle exec jekyll build
-
-      # Deploy the built site with ghp-import
-      - run:
-          name: Deploying site using ghp-import
-          command: |
-            pip install ghp-import
-            ghp-import -p -f -n ./jupyter_book/book_template/_site/
-
 
 # Tell CircleCI to use this workflow when it builds the site
 workflows:
@@ -122,15 +99,6 @@ workflows:
             branches:
               ignore:
                 - gh-pages
-      - deploy:
-          requires:
-            - run_tests
-          filters:
-              branches:
-                only:
-                  - master
-                ignore:
-                  - gh-pages
 
 commands:
   prepare_jekyll_installation:

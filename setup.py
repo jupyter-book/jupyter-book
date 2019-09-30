@@ -27,9 +27,9 @@ setup(
     python_requires='>=3.6',
     author='Project Jupyter Contributors',
     author_email='jupyter@googlegroups.com',
-    url='https://jupyter.org/jupyter-book/',
+    url='https://jupyterbook.org/',
     project_urls={
-        'Documentation': 'https://jupyter.org/jupyter-book',
+        'Documentation': 'https://jupyterbook.org',
         'Funding': 'https://jupyter.org/about',
         'Source': 'https://github.com/jupyter/jupyter-book/',
         'Tracker': 'https://github.com/jupyter/jupyter-book/issues',
