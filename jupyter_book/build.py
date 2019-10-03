@@ -3,6 +3,7 @@ import os
 import os.path as op
 import shutil as sh
 import yaml
+import json
 from tqdm import tqdm
 from glob import glob
 from uuid import uuid4
@@ -11,7 +12,7 @@ from nbformat.v4.nbbase import new_markdown_cell, new_notebook
 
 from .utils import (print_message_box, _check_url_page,
                     _prepare_url, _error, _file_newer_than, _check_book_versions,
-                    _is_jupytext_file)
+                    _is_jupytext_file, _content_to_words)
 from .page import page_html, write_page, _RawCellPreprocessor
 from .toc import _prepare_toc
 
@@ -235,6 +236,12 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         kernel_name = ntbk['metadata'].get('kernelspec', {}).get('name', '')
         has_widgets = "true" if any("interactive" in cell['metadata'].get('tags', []) for cell in ntbk['cells']) else "false"
 
+        # Collect common words that we'll insert into the page metadata for search
+        page_content = ' '.join([cell['source'] for cell in ntbk.cells
+                                 if cell['cell_type'] == "markdown"])
+        max_search_words = site_yaml.get("search_max_words_in_content", 100)
+        search_words = ' '.join(_content_to_words(page_content, max_search_words))
+
         ###########################################################################
         # Write the page to HTML on disk
 
@@ -294,6 +301,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         yaml_fm += ["  title: |-"]
         yaml_fm += [f"    {next_file_title}"]
         yaml_fm += [f"suffix: {chosen_suff}"]
+        yaml_fm += [f"search: {search_words}"]
 
         # Add back any original YaML
         yaml_fm += yaml_extra
@@ -306,6 +314,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         with open(path_page_output_file, 'w', encoding='utf8') as ff:
             ff.writelines(lines)
         n_built_files += 1
+
 
     ###########################################################################
     # Finishing up...

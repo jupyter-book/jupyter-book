@@ -6,6 +6,8 @@ import os
 import os.path as op
 import yaml
 from glob import glob
+from collections import Counter
+from string import ascii_lowercase
 from tqdm import tqdm
 import nbformat as nbf
 from .page import run_ntbk
@@ -180,3 +182,41 @@ def run_pages(path, kernel_name='python3'):
         print('Finished printing with these failing pages:')
         for ifile in failed_files:
             print(ifile)
+
+
+def _content_to_words(content, max_words=100):
+    """Convert a string of content into a list of unique words."""
+    common_words = [
+        "the", "of", "to", "and", "a", "in", "is", "it", "you",
+        "that", "he", "was", "for", "on", "are", "with", "as", "i",
+        "his", "they", "be", "at", "one", "have", "this", "from",
+        "or", "had", "by", "hot", "word", "but", "what", "some", "we",
+        "can", "out", "other", "were", "all", "there", "when", "up", "use",
+        "your", "how", "said", "an", "each", "she", "which", "do", "their",
+        "time", "if", "will", "way", "about", "many", "then", "them", "write",
+        "would", "like", "so", "these", "her", "long", "make", "thing", "see",
+        "him", "two", "has", "look", "more", "day", "could", "go", "come", "did",
+        "number", "sound", "no", "most", "people", "my", "over", "know",
+        "water", "than", "call", "first", "who", "may", "down", "side",
+        "been", "now", "find"
+    ]
+
+    # Replace characters with spaces
+    words = content.replace('\n', ' ')
+    space_characters = '!@#[]()-{}`:=/\\,.?'
+    for char in space_characters:
+        words = words.replace(char, ' ')
+
+    # Collect a list of uncommon english words
+    new_words = []
+    for word in words.split():
+        if 'http' in word:
+            continue
+        word = ''.join([char for char in word.lower() if char in ascii_lowercase])
+        if (len(word) == 0) or (word in common_words):
+            continue
+        new_words.append(word)
+
+    counts = Counter(new_words)
+    out_words = [iword[0] for iword in counts.most_common()[:max_words]]
+    return out_words
