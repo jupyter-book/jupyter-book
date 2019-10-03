@@ -74,6 +74,7 @@ use_show_widgets_button              : true  # If 'true', display a button to al
 # Download settings
 use_download_button              : true  # If 'true', display a button to download a zip file for the notebook
 download_button_text             : "Download" # The text that download buttons will contain
+download_page_header             : "Made with Jupyter Book" # A header that will be displayed at the top of and PDF-printed page
 
 #######################################################################################
 # Jupyter book extensions and additional features
