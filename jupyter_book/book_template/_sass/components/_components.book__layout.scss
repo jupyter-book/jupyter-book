@@ -24,7 +24,7 @@
  */
 
 $left-sidebar-width: 300px;
-$textbook-page-max-width: 950px;
+$page-max-width: 880px;
 $right-sidebar-width: 220px;
 $topbar-height: 60px;
 
@@ -61,7 +61,7 @@ $topbar-height: 60px;
   height: 100vh;
   overflow: auto;
   position: fixed;
-  background-color: $book-background-color;; /* [3] */
+  background-color: $book-background-color; /* [3] */
 }
 
 .c-textbook__sidebar {
@@ -77,11 +77,6 @@ $topbar-height: 60px;
   left: 0;
   padding: 0 $spacing-unit $spacing-unit-small $spacing-unit-small * 3;
   overflow-x: visible;
-
-  @include mq($from: laptop) {
-    // At desktop, we show the right TOC
-    padding-right: calc(100% - #{$left-sidebar-width} - #{$textbook-page-max-width});
-  }
 
   &:focus {
     /* [2] */
@@ -121,6 +116,10 @@ $topbar-height: 60px;
   clear: both;
   padding-top: $topbar-height * 1.5;
   width: 95%;
+}
+
+.c-textbook__content, .c-textbook__footer {
+  max-width: $page-max-width;
 }
 
 .c-page__nav {

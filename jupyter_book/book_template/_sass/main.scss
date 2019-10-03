@@ -19,11 +19,11 @@ $hamburger-types: (arrowalt);
 @import 'objects/objects.thebelab-in-cell-button';
 
 // COMPONENTS
-@import 'components/components.textbook';
-@import 'components/components.textbook__sidebar';
+@import 'components/components.book__layout';
+@import 'components/components.book__topbar';
+@import 'components/components.page__onthispage';
 @import 'components/components.page__nav';
-@import 'components/components.topbar';
+@import 'components/components.page__footer';
 @import 'components/components.interact-button';
 @import 'components/components.thebelab';
 @import 'components/components.search';
-@import 'components/components.footer';
