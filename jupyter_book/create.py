@@ -131,10 +131,8 @@ def new_book(path_out, content_folder, toc=None,
         sh.copytree(op.join(TEMPLATE_PATH, 'content'),
                     op.join(path_out, 'content'))
 
-        # Remove some files/folders that may confuse users
-        files_to_remove = ['Gemfile.lock']
-        for ifile in files_to_remove:
-            os.remove(op.join(path_out, ifile))
+        # Remove extra files we don't want
+        _remove_extra_files(path_out)
 
         message = [
             "- You've chosen to copy over the demo Jupyter Book. This"
@@ -256,6 +254,9 @@ def new_book(path_out, content_folder, toc=None,
                 # Copy the file to the root of the out path directly
                 sh.copy2(ipath, op.join(path_out, op.basename(ipath)))
 
+    # Remove extra files we don't want
+    _remove_extra_files(path_out)
+
     # Cleanup messages
     if verbose:
         print_message_box(_final_message(path_out, notes))
@@ -337,3 +338,11 @@ def upgrade_book(path_book):
                            "content may by in {} if the upgrade got far enough\n"
                            "you can investigate this folder, or delete it if you'd like.\n\n"
                            "Here is the error:\n\n    {}".format(path_book_new, ex)))
+
+
+def _remove_extra_files(path_out):
+    """Remove some extra files we don't want in a created book."""
+    # Remove some files/folders that may confuse users
+    files_to_remove = ['Gemfile.lock']
+    for ifile in files_to_remove:
+        os.remove(op.join(path_out, ifile))
