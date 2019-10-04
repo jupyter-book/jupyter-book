@@ -90,7 +90,7 @@ def build_toc(content_folder, filename_split_char='_'):
     # Generate YAML from the directory structure
     out = [YAML_TOP, YAML_WARN]
     toc_pages = []
-    for ii, (ifolder, folders, ifiles) in enumerate(os.walk(content_folder)):
+    for ii, (ifolder, folders, ifiles) in enumerate(sorted(os.walk(content_folder))):
         if ".ipynb_checkpoints" in ifolder:
             continue
         path_rel_to_content = ifolder.replace(content_folder, '')
