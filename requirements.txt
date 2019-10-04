@@ -3,8 +3,9 @@ ruamel.yaml
 pyyaml
 libsass
 tqdm
-numpy
-nbformat
 setuptools
-jupyter_contrib_nbextensions
 jupytext
+nbformat
+nbconvert
+jupyter_client
+ipykernel
