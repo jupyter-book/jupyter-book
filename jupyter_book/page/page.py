@@ -18,7 +18,7 @@ PATH_MATHJAX = op.join(PATH_BOOK_TEMPLATE, "_includes", "mathjax.html")
 PATH_JS = op.join(PATH_BOOK_TEMPLATE, "assets", "js", "page")
 PATH_SCSS = op.join(PATH_BOOK_TEMPLATE, "_sass", "page", "main.scss")
 
-PAGE_CSS = """
+PAGE_EXTRA_CSS = """
 <style type="text/css">
 main.jupyter-page {
     max-width: 1100px;
@@ -232,25 +232,12 @@ def page_head(custom_css='', custom_js=''):
 
     This uses CSS/JS from the book template.
     """
-    # Javascript files to embed
-    js_files = [
-        "dom-update.js",
-        "documentSelectors.js",
-        "copy-button.js",
-        "hide-cell.js",
-        "anchors.js",
-        "tocbot.js"
-    ]
-
-    js = []
-    for js_file in js_files:
-        with open(op.join(PATH_JS, js_file), "r") as ff:
-            js += ["<script>"]
-            js += ff.readlines()
-            js += ["</script>"]
-
-    js = "\n".join(js)
-
+    js = page_js()
+    js = f"""
+        <script>
+        {js}
+        </script>
+        """
     if custom_js:
         custom_js = f"""
             <script>
@@ -263,7 +250,7 @@ def page_head(custom_css='', custom_js=''):
         html_mathjax = ff.read()
 
     # SCSS styling for the page
-    scss = sass.compile(filename=PATH_SCSS)
+    scss = page_css()
     scss = f"""
     <style type="text/css">
     {scss}
@@ -285,9 +272,36 @@ def page_head(custom_css='', custom_js=''):
     {html_mathjax}
     {scss}
     {custom_css}
-    {PAGE_CSS}
+    {PAGE_EXTRA_CSS}
     {js}
     {custom_js}
     </head>
     """
     return head
+
+
+def page_css():
+    """Return a page's CSS."""
+    css = sass.compile(filename=PATH_SCSS)
+    return css
+
+
+def page_js():
+    """Return a page's javascript."""
+    # Javascript files to embed
+    js_files = [
+        "dom-update.js",
+        "documentSelectors.js",
+        "copy-button.js",
+        "hide-cell.js",
+        "anchors.js",
+        "tocbot.js"
+    ]
+
+    js = []
+    for js_file in js_files:
+        with open(op.join(PATH_JS, js_file), "r") as ff:
+            js += ff.readlines()
+
+    js = "\n".join(js)
+    return js

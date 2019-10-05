@@ -23,7 +23,8 @@ def page():
     parser.add_argument("--path_media_output", default=None,
                         help="The path to where images should be extracted")
     parser.add_argument("--execute", action='store_true', help="Execute the notebook before converting")
-    parser.set_defaults(execute=False)
+    parser.add_argument("--no-head", action='store_true', help="Do not add a <head> to the output page HTML")
+    parser.set_defaults(execute=False, no_head=False)
 
     ###############################################
     # Default values and arguments
@@ -68,6 +69,7 @@ def page():
     )
 
     # Write to disk as a standalone HTML page
-    path_html = write_page(html, PATH_HTML_OUTPUT, resources, standalone=True,
+    standalone = not args.no_head
+    path_html = write_page(html, PATH_HTML_OUTPUT, resources, standalone=standalone,
                            custom_css=custom_css, custom_js=custom_js)
     print(f"HTML created at: {path_html}")
