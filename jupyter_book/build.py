@@ -6,10 +6,9 @@ import yaml
 from tqdm import tqdm
 from glob import glob
 from uuid import uuid4
-import jupytext as jpt
-from nbformat.v4.nbbase import new_markdown_cell, new_notebook
 
-from .utils import (print_message_box, _check_url_page,
+
+from .utils import (print_message_box, _check_url_page, load_ntbk,
                     _prepare_url, _error, _file_newer_than, _check_book_versions,
                     _is_jupytext_file)
 from .page import page_html, write_page, _RawCellPreprocessor
@@ -207,8 +206,8 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         ###########################################################################
         # Read in the page and check page metadata
 
-        # Read in the notebook with Jupytext
-        ntbk = jpt.read(path_url_page_suff)
+        ntbk = load_ntbk(path_url_page_suff)
+        yaml_extra = ntbk['metadata'].get('yaml_header', '').split('\n')
 
         # Decide whether to execute the notebook
         execute_dir = path_url_folder if execute is True else None
@@ -216,20 +215,6 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         # If it's a Jupytext file, execute it anyway
         if _is_jupytext_file(ntbk) and chosen_suff != '.ipynb':
             execute_dir = path_url_folder
-
-        # Check if we had extra YAML frontmatter in the first cell. If so, grab it.
-        if 'lines_to_next_cell' in ntbk.cells[0].metadata:
-            yaml_extra = ntbk.cells.pop(0).source.replace('---', '').strip().split('\n')
-        else:
-            yaml_extra = []
-
-        # If the file was markdown and didn't have any jupytext frontmatter
-        # Just add in the raw source
-        if not _is_jupytext_file(ntbk) and chosen_suff in ['.md', 'markdown']:
-            # Recover the Markdown content
-            md = jpt.writes(ntbk, 'md')
-            # Replace the notebook with a new one, made of just one Markdown cell
-            ntbk = new_notebook(cells=[new_markdown_cell(md)])
 
         # Get kernel name and presence of widgets from notebooks metadata
         kernel_name = ntbk['metadata'].get('kernelspec', {}).get('name', '')
