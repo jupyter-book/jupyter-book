@@ -2,13 +2,13 @@
 
 <img src="https://circleci.com/gh/jupyter/jupyter-book.svg?style=svg" class="left">
 
-Jupyter Books lets you build an online book using a collection of Jupyter Notebooks
+Jupyter Book lets you build an online book using a collection of Jupyter Notebooks
 and Markdown files. Its output is similar to the excellent [Bookdown](https://bookdown.org/yihui/bookdown/) tool,
 and adds extra functionality for people running a Jupyter stack.
 
-For an example of a book built with Jupyter Books, see the [textbook for Data 100](https://www.textbook.ds100.org/) at UC Berkeley.
+For an example of a book built with Jupyter Book, see the [textbook for Data 100](https://www.textbook.ds100.org/) at UC Berkeley.
 
-Here are a few features of Jupyter Books
+Here are a few features of Jupyter Book
 
 * All course content is written in markdown and Jupyter Notebooks, stored in `notebooks/`
 * The Jupyter Book repo comes packaged with helper scripts to convert these into Jekyll pages (in `scripts/`) that can be hosted for free on GitHub
@@ -22,7 +22,7 @@ Here are a few features of Jupyter Books
 To get started, you may be interested in the following links.
 Here are a few links of interest:
 
-* **[Quickstart](features/features)** is a quick demo and overview of Jupyter Books.
+* **[Quickstart](features/features)** is a quick demo and overview of Jupyter Book.
 
 * **[The Jupyter Book Guide](guide/01_overview)**
   will step you through the process of configuring and building your own Jupyter Book.
@@ -45,7 +45,7 @@ complete guide, see [the Jupyter Book guide](guide/01_overview).
 
 ## Acknowledgements
 
-Jupyter Books was originally created by [Sam Lau][sam] and [Chris Holdgraf][chris]
+Jupyter Book was originally created by [Sam Lau][sam] and [Chris Holdgraf][chris]
 with support of the **UC Berkeley Data Science Education Program and the Berkeley
 Institute for Data Science**.
 
