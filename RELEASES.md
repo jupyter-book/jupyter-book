@@ -24,6 +24,10 @@ and check off the boxes as you complete items:
 - [ ] Ensure that the [Jupyter Book version number](https://github.com/jupyter/jupyter-book/blob/master/jupyter_book/__init__.py)
    is correct, and remove the `dev0` part of the version number.
    Make a PR with the new number and merge into master.
+- [ ] Delete the extra files we don't want to include in the package, currently this is
+      everything in::
+    - `jupyter_book/book_template/_site`
+    - `jupyter_book/book_template/_build`
 - [ ] Create a new distribution for Jupyter Book by
    [following the twine release instructions](https://twine.readthedocs.io/en/latest/#using-twine)
 - [ ] Confirm that the new version of Jupyter Book [is posted to pypi](https://pypi.org/project/jupyter-book/)
