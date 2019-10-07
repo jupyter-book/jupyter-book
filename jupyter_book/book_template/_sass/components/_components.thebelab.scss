@@ -1,4 +1,10 @@
 
+.thebelab-cell {
+    // To ensure that thebelab cells are always the top of the Z-stack
+    position: relative;
+    z-index: 999;
+}
+
 .thebelab-button {
     z-index: 999;
     display: inline-block;
