@@ -1,6 +1,58 @@
 # Change Log
 
-## [v0.6.0](https://github.com/jupyter/jupyter-book/tree/v0.6.0) (2019-09-17)
+# v0.6.0...v0.6.3
+([full changelog](https://github.com/jupyter/jupyter-book/compare/v0.6.0...v0.6.3))
+
+
+## Enhancements made
+* adding anchors above headers [#366](https://github.com/jupyter/jupyter-book/pull/366) ([@choldgraf](https://github.com/choldgraf))
+* adding CSS rules for epigraphs [#365](https://github.com/jupyter/jupyter-book/pull/365) ([@choldgraf](https://github.com/choldgraf))
+* netlify config [#359](https://github.com/jupyter/jupyter-book/pull/359) ([@choldgraf](https://github.com/choldgraf))
+* Thebelab init [#352](https://github.com/jupyter/jupyter-book/pull/352) ([@choldgraf](https://github.com/choldgraf))
+* [WIP] Add option to clear outputs in build command [#349](https://github.com/jupyter/jupyter-book/pull/349) ([@akhilputhiry](https://github.com/akhilputhiry))
+* [ENH] Netlify Continuous Deployment [#342](https://github.com/jupyter/jupyter-book/pull/342) ([@emdupre](https://github.com/emdupre))
+
+## Bugs fixed
+* css for thebelab z-order [#386](https://github.com/jupyter/jupyter-book/pull/386) ([@choldgraf](https://github.com/choldgraf))
+* fixing TOC auto gen bug [#375](https://github.com/jupyter/jupyter-book/pull/375) ([@choldgraf](https://github.com/choldgraf))
+* fixing page path link [#368](https://github.com/jupyter/jupyter-book/pull/368) ([@choldgraf](https://github.com/choldgraf))
+* fixing interact link bug [#367](https://github.com/jupyter/jupyter-book/pull/367) ([@choldgraf](https://github.com/choldgraf))
+* Update required python version [#363](https://github.com/jupyter/jupyter-book/pull/363) ([@emdupre](https://github.com/emdupre))
+* fix: fuzzy matching of jupyter book versions [#346](https://github.com/jupyter/jupyter-book/pull/346) ([@emdupre](https://github.com/emdupre))
+* fixing scrolling [#336](https://github.com/jupyter/jupyter-book/pull/336) ([@choldgraf](https://github.com/choldgraf))
+
+## Maintenance and upkeep improvements
+* fixing load ntbk function [#385](https://github.com/jupyter/jupyter-book/pull/385) ([@choldgraf](https://github.com/choldgraf))
+* load ntbk function [#384](https://github.com/jupyter/jupyter-book/pull/384) ([@choldgraf](https://github.com/choldgraf))
+* moving CSS and JS generation to their own function [#381](https://github.com/jupyter/jupyter-book/pull/381) ([@choldgraf](https://github.com/choldgraf))
+* making sure gemfile.lock is removed [#379](https://github.com/jupyter/jupyter-book/pull/379) ([@choldgraf](https://github.com/choldgraf))
+* removing unnecessary requirements [#378](https://github.com/jupyter/jupyter-book/pull/378) ([@choldgraf](https://github.com/choldgraf))
+* making toc gen sorted [#377](https://github.com/jupyter/jupyter-book/pull/377) ([@choldgraf](https://github.com/choldgraf))
+* fixing up download functionality [#373](https://github.com/jupyter/jupyter-book/pull/373) ([@choldgraf](https://github.com/choldgraf))
+* small refactoring of names and layout [#372](https://github.com/jupyter/jupyter-book/pull/372) ([@choldgraf](https://github.com/choldgraf))
+* Bump rubyzip from 1.2.4 to 2.0.0 in /jupyter_book/book_template [#371](https://github.com/jupyter/jupyter-book/pull/371) ([@dependabot](https://github.com/dependabot))
+* moving to jupyterbook.org [#370](https://github.com/jupyter/jupyter-book/pull/370) ([@choldgraf](https://github.com/choldgraf))
+* inlining svgs and small tweaks [#369](https://github.com/jupyter/jupyter-book/pull/369) ([@choldgraf](https://github.com/choldgraf))
+* [fix] update docker image and documentation [#364](https://github.com/jupyter/jupyter-book/pull/364) ([@emdupre](https://github.com/emdupre))
+* moving js outside of _includes if not needed [#347](https://github.com/jupyter/jupyter-book/pull/347) ([@choldgraf](https://github.com/choldgraf))
+* removing unnecessary clean_lines function [#345](https://github.com/jupyter/jupyter-book/pull/345) ([@choldgraf](https://github.com/choldgraf))
+* modularizing the bage building and beefing up single page building [#344](https://github.com/jupyter/jupyter-book/pull/344) ([@choldgraf](https://github.com/choldgraf))
+
+## Documentation improvements
+* DOC: intro.md: Jupyter Books -> Jupyter Book [#383](https://github.com/jupyter/jupyter-book/pull/383) ([@westurner](https://github.com/westurner))
+
+## Other merged PRs
+* Update executing.ipynb [#350](https://github.com/jupyter/jupyter-book/pull/350) ([@psychemedia](https://github.com/psychemedia))
+* adding better circle instructions [#341](https://github.com/jupyter/jupyter-book/pull/341) ([@choldgraf](https://github.com/choldgraf))
+* cleaning up circle [#340](https://github.com/jupyter/jupyter-book/pull/340) ([@choldgraf](https://github.com/choldgraf))
+* ghp-import in circle [#339](https://github.com/jupyter/jupyter-book/pull/339) ([@choldgraf](https://github.com/choldgraf))
+* removing _build artifacts [#338](https://github.com/jupyter/jupyter-book/pull/338) ([@choldgraf](https://github.com/choldgraf))
+* making some files optional in upgrade [#337](https://github.com/jupyter/jupyter-book/pull/337) ([@choldgraf](https://github.com/choldgraf))
+* adding google analytics info [#335](https://github.com/jupyter/jupyter-book/pull/335) ([@choldgraf](https://github.com/choldgraf))
+* updating changelog [#334](https://github.com/jupyter/jupyter-book/pull/334) ([@choldgraf](https://github.com/choldgraf))
+* fixing releases info [#333](https://github.com/jupyter/jupyter-book/pull/333) ([@choldgraf](https://github.com/choldgraf))
+
+# [v0.6.0](https://github.com/jupyter/jupyter-book/tree/v0.6.0) (2019-09-17)
 [Full Changelog](https://github.com/jupyter/jupyter-book/compare/v0.5.2...v0.6.0)
 
 **Implemented enhancements:**
@@ -85,7 +137,7 @@
 - updating changelog [\#245](https://github.com/jupyter/jupyter-book/pull/245) ([choldgraf](https://github.com/choldgraf))
 - version bump to dev [\#243](https://github.com/jupyter/jupyter-book/pull/243) ([choldgraf](https://github.com/choldgraf))
 
-## [v0.5.2](https://github.com/jupyter/jupyter-book/tree/v0.5.2) (2019-07-26)
+# [v0.5.2](https://github.com/jupyter/jupyter-book/tree/v0.5.2) (2019-07-26)
 [Full Changelog](https://github.com/jupyter/jupyter-book/compare/v0.5...v0.5.2)
 
 **Implemented enhancements:**
@@ -134,7 +186,7 @@
 - Ask if kernelspec exists in metadata [\#197](https://github.com/jupyter/jupyter-book/pull/197) ([joergbrech](https://github.com/joergbrech))
 - changelog and version bump [\#194](https://github.com/jupyter/jupyter-book/pull/194) ([choldgraf](https://github.com/choldgraf))
 
-## [v0.5](https://github.com/jupyter/jupyter-book/tree/v0.5) (2019-05-13)
+# [v0.5](https://github.com/jupyter/jupyter-book/tree/v0.5) (2019-05-13)
 [Full Changelog](https://github.com/jupyter/jupyter-book/compare/v0.4.1...v0.5)
 
 **Implemented enhancements:**
@@ -213,7 +265,7 @@
 - Adding download links for the notebook files [\#104](https://github.com/jupyter/jupyter-book/pull/104) ([choldgraf](https://github.com/choldgraf))
 - fixing thebelab keyboard shortcuts behavior [\#103](https://github.com/jupyter/jupyter-book/pull/103) ([choldgraf](https://github.com/choldgraf))
 
-## [v0.4.1](https://github.com/jupyter/jupyter-book/tree/v0.4.1) (2019-02-09)
+# [v0.4.1](https://github.com/jupyter/jupyter-book/tree/v0.4.1) (2019-02-09)
 [Full Changelog](https://github.com/jupyter/jupyter-book/compare/v0.2...v0.4.1)
 
 **Closed issues:**
@@ -278,7 +330,7 @@
 - Refactor textbook generator to check redirects [\#27](https://github.com/jupyter/jupyter-book/pull/27) ([matthew-brett](https://github.com/matthew-brett))
 - A blank target URL here would be nice. [\#15](https://github.com/jupyter/jupyter-book/pull/15) ([arokem](https://github.com/arokem))
 
-## [v0.2](https://github.com/jupyter/jupyter-book/tree/v0.2) (2018-10-23)
+# [v0.2](https://github.com/jupyter/jupyter-book/tree/v0.2) (2018-10-23)
 [Full Changelog](https://github.com/jupyter/jupyter-book/compare/v0.1...v0.2)
 
 **Closed issues:**
@@ -289,7 +341,7 @@
 
 - Update to new build system [\#30](https://github.com/jupyter/jupyter-book/pull/30) ([choldgraf](https://github.com/choldgraf))
 
-## [v0.1](https://github.com/jupyter/jupyter-book/tree/v0.1) (2018-10-20)
+# [v0.1](https://github.com/jupyter/jupyter-book/tree/v0.1) (2018-10-20)
 **Closed issues:**
 
 - Calling newer version of nbclean than is available on pypi [\#21](https://github.com/jupyter/jupyter-book/issues/21)
