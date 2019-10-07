@@ -1,3 +1,7 @@
+---
+testing: yaml
+---
+
 # Creating course content
 
 The two kinds of files that contain course content are:
