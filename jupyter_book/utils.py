@@ -209,11 +209,10 @@ def load_ntbk(path_ntbk):
     ntbk = jpt.read(path_ntbk)
     suff = op.splitext(path_ntbk)[-1]
 
-    # Check if we had extra YAML frontmatter in the first cell. If so, grab it.
-    if 'lines_to_next_cell' in ntbk.cells[0].metadata:
+    # If the first cell has YAML metadata we'll convert it into notebook metadata
+    if ntbk.cells[0].source.startswith('---') and ntbk.cells[0].source.endswith('---'):
         yaml_extra = ntbk.cells.pop(0).source.replace('---', '').strip()
-    else:
-        yaml_extra = None
+        ntbk.metadata['yaml_header'] = yaml_extra
 
     # If the file was markdown and didn't have any jupytext frontmatter
     # Just add in the raw source
@@ -222,8 +221,5 @@ def load_ntbk(path_ntbk):
         md = jpt.writes(ntbk, 'md')
         # Replace the notebook with a new one, made of just one Markdown cell
         ntbk = new_notebook(cells=[new_markdown_cell(md)])
-
-    if yaml_extra is not None:
-        ntbk.metadata['yaml_header'] = yaml_extra
 
     return ntbk
