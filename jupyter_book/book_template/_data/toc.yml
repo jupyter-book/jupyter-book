@@ -85,6 +85,9 @@
     - title: Controlling page layout
       url: /features/layout
       not_numbered: true
+    - title: Build an individual page instead of a book
+      url: /features/page
+      not_numbered: true
   - title: Feature Limits
     url: /features/limits
     not_numbered: true
