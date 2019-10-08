@@ -41,15 +41,19 @@ div.jb_cell {
 }
 
 #page-title {
-  font-size: 4em;
+  font-size: 2.5em;
   font-weight: lighter;
   line-height: 1em;
 }
 
 #page-author {
-  font-size: 1.75em;
-  margin-bottom: 20px;
+  font-size: 1.5em;
   padding-left: 5px;
+}
+
+#page-info {
+  margin-bottom: 20px;
+  max-width: $textbook-page-with-sidebar-width;
 }
 
 // Right margin

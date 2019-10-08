@@ -101,6 +101,13 @@
     url: /advanced/circleci
     not_numbered: true
 
+- title: Beta Features
+  url: /beta/beta
+  not_numbered: true
+  sections:
+  - title: Page titles and authors
+    url: /beta/titles
+    not_numbered: true
 
 - title: GitHub repository
   url: https://github.com/jupyter/jupyter-book

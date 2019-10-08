@@ -119,7 +119,8 @@ def write_page(html, path_out, resources, standalone=False,
 
 
 def page_html(ntbk, path_media_output=None, name=None, preprocessors=None,
-              execute_dir=False, kernel_name=None, clear_output=False):
+              execute_dir=False, kernel_name=None, clear_output=False,
+              title=None, author=None):
     """Build the HTML for a single notebook page.
 
     Inputs
@@ -146,6 +147,17 @@ def page_html(ntbk, path_media_output=None, name=None, preprocessors=None,
         The name of the kernel to use if we execute notebooks.
     clear_output: bool
         To remove the output from notebook
+    title : string | "infer_title" | None
+        A title to include with the page. If given, then the title will
+        be printed at the top of the output page. If "infer_title", look for the title
+        in `ntbk.metadata['title']` and if not found, infer it if the first
+        line of the notebook is an H1 header (beginning with `# `). If None,
+        or if no metadata is found, do not display a title.
+    author : string | "infer_author" | None
+        An author to include with the page. If given, then the author will
+        be printed at the top of the output page. If "infer_author", look for the author
+        in `ntbk.metadata['author']`. If `None`, or if no metadata is found,
+        then do not display an author.
 
     Returns
     =======
@@ -160,6 +172,31 @@ def page_html(ntbk, path_media_output=None, name=None, preprocessors=None,
 
     if name is None:
         name = "notebook"
+
+    # If title and author isn't False or a string, try to infer it
+    meta_html_info = ''
+    if title == 'infer_title':
+        # First try the notebook metadata, if not found try the first line
+        title = ntbk.metadata.get('title')
+        if title is None:
+            first_cell_lines = ntbk.cells[0].source.split('\n')
+
+            # If the first line of the ontebook is H1 header, assume it's the title.
+            if first_cell_lines[0].startswith('# '):
+                title = first_cell_lines.pop(0).strip('# ')
+                ntbk.cells[0].source = '\n'.join(first_cell_lines)
+            else:
+                # Just pass None onwards because we found no title
+                pass
+
+    if isinstance(title, str):
+        meta_html_info += f'<div id="page-title">{title}</div>\n'
+
+    if author == "infer_author":
+        author = ntbk.metadata.get('author')
+    if author:
+        meta_html_info += f'<div id="page-author">{author}</div>\n'
+    meta_html = f'<div id="page-info">{meta_html_info}</div>'
 
     ########################################
     # Notebook cleaning
@@ -220,6 +257,7 @@ def page_html(ntbk, path_media_output=None, name=None, preprocessors=None,
 
     html = f"""
     <main class="jupyter-page">
+    {meta_html}
     {html}
     </main>
     """

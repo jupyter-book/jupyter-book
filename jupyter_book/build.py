@@ -238,6 +238,23 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         kernel_name = ntbk['metadata'].get('kernelspec', {}).get('name', '')
         has_widgets = "true" if any("interactive" in cell['metadata'].get('tags', []) for cell in ntbk['cells']) else "false"
 
+        # Determine the title and author information if we wish
+        html_title_config = {
+            "toc": title,
+            "None": None,
+            "infer": "infer_title"
+        }
+        if site_yaml.get('page_titles') not in html_title_config:
+            raise ValueError(f"Unknown page title configuration: {site_yaml.get('page_titles')}")
+        html_title = html_title_config[site_yaml.get('page_titles')]
+        html_author_config = {
+            "None": None,
+            "infer": "inter_author"
+        }
+        if site_yaml.get('page_authors') not in html_author_config:
+            raise ValueError(f"Unknown page author configuration: {site_yaml.get('page_authors')}")
+        html_author = html_author_config[site_yaml.get('page_authors')]
+
         ###########################################################################
         # Write the page to HTML on disk
 
@@ -245,7 +262,8 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         html, resources = page_html(
             ntbk, path_media_output=path_media_rel_to_output_folder,
             name=notebook_name, preprocessors=_RawCellPreprocessor, execute_dir=execute_dir,
-            kernel_name=kernel_name, clear_output=clear_output
+            kernel_name=kernel_name, clear_output=clear_output, title=html_title,
+            author=html_author
         )
 
         # Write the HTML to disk
