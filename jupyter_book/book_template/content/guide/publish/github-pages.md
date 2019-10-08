@@ -25,7 +25,7 @@ others can access your book.
 **Prerequisites**
 
 * **If you are building your book's HTML manually**
-  
+
   We assume that you have already [built your book's HTML](book-html.html) and that
   your HTML content is in the `_site/` folder. We also assume that you have a
   [GitHub repository created for your book](../03_build.html#Create-an-online-repository-for-your-book).
@@ -34,7 +34,7 @@ others can access your book.
   We assume that you have a
   [GitHub repository created for your book](../03_build.html#Create-an-online-repository-for-your-book).
   We also assume that your book's template and content have been pushed to
-  your GitHub repository. 
+  your GitHub repository.
 
 ## Publish your book's HTML manually to GitHub-pages
 
@@ -47,16 +47,16 @@ GitHub-pages on the repository. To do this, follow these steps:
    collection of HTML files/folders in the `_site` folder.
 1. Install the `ghp-import` tool. This is a command-line tool for
    quickly pushing some built HTML to a GitHub-pages branch.
-   
-   ```
+
+   ```bash
    pip install ghp-import
    ```
 2. Use `ghp-import` to push your book's HTML onto the `gh-pages` branch of your repository.
 
-   ```
+   ```bash
    ghp-import -n -p -f _site
    ```
-   
+
    The `-n` adds a `.nojekyll` file to your book's built HTML, and the `-p` and `-f` tell
    `ghp-import` to push the contents of `_site/` to the `gh-pages` branch. Run `ghp-import -h`
    to see more configuration options for this tool.

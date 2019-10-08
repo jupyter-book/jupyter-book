@@ -6,7 +6,7 @@ the pieces that you'll modify for your own book.
 
 To create a **demo Jupyter Book** to use as a template, run the following command:
 
-```
+```bash
 jupyter-book create mybookname --demo
 ```
 
@@ -14,7 +14,7 @@ A new book will be created at the path that you've given (in this case, `mybookn
 
 Let's take a quick look at some important files in the demo book you created:
 
-```
+```bash
 mybookname/
 ├── assets
 │   └── custom
@@ -38,7 +38,7 @@ ultimately make up your book.
 
 All of the configuration for your book is in the following file:
 
-```
+```bash
 mybookname/
 ├── _config.yml
 ```
@@ -52,7 +52,7 @@ Binder button for pages built from a Jupyter Notebook), and more.
 Your book's content can be found in the `content/` folder. Some content
 files for the demo book are shown below:
 
-```
+```bash
 mybookname/
 ├── content
     └── features
@@ -74,7 +74,7 @@ For example, your chapters, sub-chapters, etc.
 
 The Table of Contents lives at this location:
 
-```
+```bash
 mybookname/
 ├── _data
     └── toc.yml
@@ -123,7 +123,7 @@ what rights you retain to the work. This can make your book more sharable and (r
 
 The license for a Jupyter Book lives in this location:
 
-```
+```bash
 mybookname/
 ├── content
     └── LICENSE.md
@@ -145,7 +145,7 @@ Since your Jupyter Book likely has computational material specified in Jupyter
 Notebooks, you should specify the packages needed to run your Jupyter Book.
 In this case, we use a `requirements.txt` file:
 
-```
+```bash
 mybookname/
 └── requirements.txt
 ```
@@ -158,7 +158,7 @@ include any other files that you'd like to.
 If you'd like to build a bibliography for your book, you can do so by including
 the following file:
 
-```
+```bash
 mybookname/
 ├── _bibliography
     └── references.bib
@@ -171,7 +171,7 @@ on how to use citations in Jupyter Book, see [Citations with Jupyter Book](../fe
 
 These are the files in this location:
 
-```
+```bash
 ├── assets
     └── custom
         ├── custom.css

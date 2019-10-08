@@ -59,7 +59,7 @@ and then load the HTML into the notebook with `display(HTML('file.html'))` prior
 
 e.g.
 
-```
+```python
 from IPython.core.display import display, HTML
 from plotly.offline import init_notebook_mode, plot
 init_notebook_mode(connected=True)
@@ -103,7 +103,7 @@ There are two straightforward ways to add metadata to cells:
    You can install the cell tags plugin with the following command (after installing
    JupyterLab).
 
-   ```
+   ```bash
    jupyter labextension install @jupyterlab/celltags
    ```
 

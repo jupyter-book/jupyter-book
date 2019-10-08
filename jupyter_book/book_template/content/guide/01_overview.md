@@ -11,7 +11,7 @@ First off, make sure you have the CLI installed so that you can work with Jupyte
 The Jupyter-Book CLI allows you to create, build, upgrade, and otherwise control your
 Jupyter Book. You can install it via pip with the following command:
 
-```
+```bash
 pip install jupyter-book
 ```
 
@@ -35,6 +35,6 @@ Building a Jupyter Book broadly consists of three steps:
    section for more information.
 4. **Host your book's HTML online**. Once your book's HTML is built, you can host
    it online as a public website. This guide [covers a few ways to do this](04_publish.html).
-   
+
 To begin, check out the next section. You can follow this guide linearly, or use it as
 a reference later on.

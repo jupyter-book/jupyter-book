@@ -77,7 +77,7 @@ instructions.
 * [Linux (non-Ubuntu) Instructions](https://jekyllrb.com/docs/installation/other-linux)
 * [Windows Instructions](https://jekyllrb.com/docs/installation/windows/)
 
-#### Using `conda-forge` to install Ruby from scratch 
+#### Using `conda-forge` to install Ruby from scratch
 
 If you are on a platform for which the `rb-github-pages` package isn't available, you can also try install Ruby and a C++ compiler manually using *`conda`*, as follows:
 
@@ -145,7 +145,7 @@ functioning **static website**.
 If you'd like to only build your book's HTML without previewing the site, you can
 do this with the following command:
 
-```
+```bash
 bundle exec jekyll serve
 ```
 
