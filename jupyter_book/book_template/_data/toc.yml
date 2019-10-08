@@ -26,12 +26,25 @@
   not_numbered: true
   expand_sections: true
   sections:
+  - title: Anatomy of a Jupyter Book
+    url: /guide/01-5_tour
   - title: Create your book
     url: /guide/02_create
   - title: Build HTML for each page of your book
     url: /guide/03_build
-  - title: Build and publish your book online
+  - title: Publishing your book online
     url: /guide/04_publish
+    subsections:
+    - title: Building the HTML for your book
+      url: /guide/publish/book-html
+      not_numbered: true
+    - title: Publishing your book on GitHub Pages
+      url: /guide/publish/github-pages
+      not_numbered: true
+    - title: Publishing your book on Netlify
+      url: /guide/publish/netlify
+      not_numbered: true
+    
   - title: Frequently Asked Questions (FAQ)
     url: /guide/05_faq
   - title: How-to and advanced topics
@@ -57,18 +70,21 @@
   - title: Running each page when building your book
     url: /features/executing
     not_numbered: true
-  - title: BETA - Adding interactivity to your book pages
-    url: /features/interactive_cells
-    not_numbered: true
-  - title: BETA - Citations and bibliographies
-    url: /features/citations
-    not_numbered: true
-  - title: BETA - Using Jupytext for text-based Notebook content
-    url: /features/jupytext
-    not_numbered: true
-  - title: BETA - Controlling page layout
-    url: /features/layout
-    not_numbered: true
+  - title: Beta features
+    url: /features/beta
+    subsections:
+    - title: Adding interactivity to your book pages
+      url: /features/interactive_cells
+      not_numbered: true
+    - title: Citations and bibliographies
+      url: /features/citations
+      not_numbered: true
+    - title: Using Jupytext for text-based Notebook content
+      url: /features/jupytext
+      not_numbered: true
+    - title: Controlling page layout
+      url: /features/layout
+      not_numbered: true
   - title: Feature Limits
     url: /features/limits
     not_numbered: true
@@ -80,9 +96,6 @@
   sections:
   - title: Building, previewing, and publishing your book with CircleCI
     url: /advanced/circleci
-    not_numbered: true
-  - title: Building your book with Netlify
-    url: /advanced/netlify
     not_numbered: true
 
 

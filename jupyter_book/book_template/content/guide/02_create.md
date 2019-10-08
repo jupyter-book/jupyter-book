@@ -1,4 +1,4 @@
-# Create your Jupyter Book
+# Create your Jupyter Book template
 
 This page covers how to create a Jupyter Book with your own content.
 You've got three primary ways to create your Jupyter Book.
