@@ -55,9 +55,7 @@ The current list of labels are [here][link_labels] and include:
 
     If you feel that you can contribute to one of these issues, we especially encourage you to do so!
 
-* [![Good First Issue](https://img.shields.io/badge/-good%20first%20issue-blueviolet.svg)][link_helpwanted] 
-
-    *These issues contain a task that a member of the team thinks could be a good entry point to the project.*
+* [![Good First Issue](https://img.shields.io/badge/-good%20first%20issue-blueviolet.svg)][link_helpwanted]     *These issues contain a task that a member of the team thinks could be a good entry point to the project.*
 
     If you're new to the `jupyter-book` project, we think that this is a great place for your first contribution!
 
@@ -73,7 +71,7 @@ The current list of labels are [here][link_labels] and include:
 
 * [![Question](https://img.shields.io/badge/-question-DE8BE7.svg)][link_question] *These are questions that users and contributors have asked.*
 
-    Please check the issues (especially closed ones) to see if your question has been asked and answered before. 
+    Please check the issues (especially closed ones) to see if your question has been asked and answered before.
     If you find one that's similar but there are subtle differences please reference the other request in your issue.
 
 ## Repository Structure of Jupyter Book
