@@ -173,8 +173,11 @@ pre.highlight code {
   padding: 1em 1.5em !important;
 }
 
+// Images that are on their own should be centered
+// For text cells, only apply to images that are in their own <p>
 .output_png img,
-p img {
+div.text_cell_render > p > img,
+div.text_cell_render > p > a > img {
   max-width: 500px;
   display: block;
   margin-left: auto;

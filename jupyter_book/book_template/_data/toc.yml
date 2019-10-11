@@ -106,6 +106,9 @@
   url: https://github.com/jupyter/jupyter-book
   external: true
   not_numbered: true
+- title: Contribute to Jupyter Book
+  url: /contributing
+  not_numbered: true
 
 - divider: true
 - header: Demo textbook
