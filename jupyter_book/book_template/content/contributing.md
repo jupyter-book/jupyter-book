@@ -188,7 +188,7 @@ You can see a list of current contributors in the [contributors tab][link_contri
 
 ## Thank you!
 
-You're awesome. :wave::smiley:
+You're awesome.
 
 <br>
 
