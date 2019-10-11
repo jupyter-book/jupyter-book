@@ -91,7 +91,7 @@ It can be found at [`./jupyter_book`](https://github.com/jupyter/jupyter-book/tr
 * **The `page` module builds single pages**. This module is meant to be self-contained for
   converting single `.ipynb`/`.md`/etc pages into HTML. Jupyter Book uses this module when
   building entire books, but the module can also be used on its own (it's what `jupyter-book page` uses).
-  You can find the module at: [`jupyter_book/page`](https://github.com/jupyter/jupyter-book/tree/master/jupyter_book/page)`.
+  You can find the module at: [`jupyter_book/page`](https://github.com/jupyter/jupyter-book/tree/master/jupyter_book/page).
 * **The `create.py` and `build.py` create and build a book**. They connect with the CLI and
   are used to process multiple pages and stitch them together into a static website template.
 
