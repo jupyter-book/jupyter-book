@@ -110,7 +110,7 @@ def build_toc(content_folder, filename_split_char='_'):
                     toc_pages.append({'title': i_title, 'url': i_url})
         else:
             # Grab the top-most folder to choose which list we'll append to
-            folder = path_rel_to_content.lstrip('/').split(os.sep)[0]
+            folder = op.split(path_rel_to_content.lstrip('/'))[0]
 
             # If the file ends in ipynb or md, add it to this section
             for ifile in ifiles:
