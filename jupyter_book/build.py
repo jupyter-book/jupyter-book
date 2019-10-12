@@ -139,7 +139,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         # URL will be relative to the CONTENT_FOLDER
         path_url_page = os.path.join(PATH_CONTENT_FOLDER, url_page.lstrip('/'))
         path_url_folder = os.path.dirname(path_url_page)
-        notebook_name = path_url_page.split(os.sep)[-1]  # No extension yet
+        notebook_name = op.split(path_url_page)[-1]  # No extension yet
 
         # URLs shouldn't have the suffix in there already so
         # now we find which one to add

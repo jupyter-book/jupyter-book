@@ -87,7 +87,7 @@ def write_page(html, path_out, resources, standalone=False,
     """
     c = Config()
     c.FilesWriter.build_directory = path_out
-    notebook_name = resources.get("unique_key", "notebook").split(os.sep)[-1]
+    notebook_name = op.split(resources.get("unique_key", "notebook"))[-1]
 
     if custom_css is None:
         custom_css = ''
