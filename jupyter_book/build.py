@@ -101,7 +101,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
     # Read in textbook configuration
 
     # Load the yaml for this site
-    with open(path_ssg_config, 'r') as ff:
+    with open(path_ssg_config, 'r', encoding='utf8') as ff:
         site_yaml = yaml.safe_load(ff.read())
     CONTENT_FOLDER_NAME = site_yaml.get('content_folder_name').strip('/')
     PATH_CONTENT_FOLDER = op.join(path_book, CONTENT_FOLDER_NAME)
@@ -110,7 +110,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
     if not op.exists(path_toc_yaml):
         raise _error(
             "No toc.yml file found, please create one at `{}`".format(path_toc_yaml))
-    with open(path_toc_yaml, 'r') as ff:
+    with open(path_toc_yaml, 'r', encoding='utf8') as ff:
         toc = yaml.safe_load(ff.read())
 
     # Drop divider items and non-linked pages in the sidebar, un-nest sections
