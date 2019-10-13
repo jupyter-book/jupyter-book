@@ -54,11 +54,12 @@ def _filename_to_title(filename, split_char='_'):
     return title
 
 
-def _list_supported_files(directory, exclude=["LICENSE.md"]):
+def _list_supported_files(directory, exclude=["LICENSE.md"], rglob=False):
+    glob = directory.rglob if rglob is True else directory.glob
     supported_files = [
         ipath for suffix in SUPPORTED_FILE_SUFFIXES
-        for ipath in directory.glob(f"*{suffix}")
-        if ipath.name not in exclude
+        for ipath in glob(f"*{suffix}")
+        if (ipath.name not in exclude) and ('ipynb_checkpoints' not in str(ipath))
     ]
     return supported_files
 
@@ -95,7 +96,7 @@ def build_toc(content_folder, filename_split_char='_'):
                              if (sub.is_dir() and '.ipynb_checkpoints' not in sub.name)])
 
     for subdir in subdirectories:
-        ipaths = _list_supported_files(subdir)
+        ipaths = _list_supported_files(subdir, rglob=True)
         if len(ipaths) == 0:
             continue
 
