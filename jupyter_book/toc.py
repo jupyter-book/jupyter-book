@@ -41,7 +41,7 @@ TOC_SPACER = "# ===== NEW SECTION ========================================"
 
 
 def _filename_to_title(filename, split_char='_'):
-    filename = Path(filename).name.rsplit('.')[0]
+    filename = Path(filename).name
     filename_parts = filename.split(split_char)
     try:
         # If first part of the filename is a number for ordering, remove it
@@ -85,6 +85,7 @@ def build_toc(content_folder, filename_split_char='_'):
     # First find all the allowed file types in path
     paths = _list_supported_files(content_folder)
     for ipath in paths:
+        ipath = ipath.with_suffix('')
         title = _filename_to_title(ipath.name, filename_split_char)
         url = str(Path(*ipath.parts[1:]))
         toc_pages.append({'title': title, 'url': url})
@@ -104,6 +105,7 @@ def build_toc(content_folder, filename_split_char='_'):
 
         # Now add the children as a list of pages
         for ipath in ipaths:
+            ipath = ipath.with_suffix('')
             title = _filename_to_title(ipath.name, filename_split_char)
             url = str(Path(*ipath.parts[1:]))
             toc_pages.append({'title': title, 'url': url})
