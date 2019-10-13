@@ -12,7 +12,6 @@ from .utils import (print_message_box, _check_url_page, load_ntbk,
                     _prepare_url, _error, _file_newer_than, _check_book_versions,
                     _is_jupytext_file)
 from .page import page_html, write_page, _RawCellPreprocessor
-from .toc import _prepare_toc
 
 # Defaults
 BUILD_FOLDER_NAME = "_build"
@@ -36,6 +35,25 @@ def _copy_non_content_files(path_content_folder, content_folder_name,
         if not op.isdir(op.dirname(new_path)):
             os.makedirs(op.dirname(new_path))
         sh.copy2(ifile, new_path)
+
+
+def _prepare_toc(toc):
+    """Prepare the TOC for processing."""
+    # Un-nest the TOC so it's a flat list
+    new_toc = []
+    for chapter in toc:
+        sections = chapter.get('sections', [])
+        new_toc.append(chapter)
+        for section in sections:
+            subsections = section.get('subsections', [])
+            new_toc.append(section)
+            new_toc.extend(subsections)
+
+    # Omit items that don't have URLs (like dividers) or have an external link
+    return [
+        item for item in new_toc
+        if 'url' in item and not item.get('external', False)
+    ]
 
 
 def _case_sensitive_fs(path):

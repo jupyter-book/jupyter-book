@@ -1,8 +1,8 @@
 """Functions to process and create a Table of Contents file."""
-import os
-import os.path as op
+from pathlib import Path
 from ruamel.yaml import YAML
 from ruamel.yaml.compat import StringIO
+from .build import SUPPORTED_FILE_SUFFIXES
 
 DESCRIPTION = ("Automatically generate a toc.yaml file from a collection"
                " of Jupyter Notebooks/markdown files that make a jupyter book."
@@ -41,7 +41,7 @@ TOC_SPACER = "# ===== NEW SECTION ========================================"
 
 
 def _filename_to_title(filename, split_char='_'):
-    filename = os.path.splitext(filename)[0]
+    filename = Path(filename).name.rsplit('.')[0]
     filename_parts = filename.split(split_char)
     try:
         # If first part of the filename is a number for ordering, remove it
@@ -54,23 +54,13 @@ def _filename_to_title(filename, split_char='_'):
     return title
 
 
-def _prepare_toc(toc):
-    """Prepare the TOC for processing."""
-    # Un-nest the TOC so it's a flat list
-    new_toc = []
-    for chapter in toc:
-        sections = chapter.get('sections', [])
-        new_toc.append(chapter)
-        for section in sections:
-            subsections = section.get('subsections', [])
-            new_toc.append(section)
-            new_toc.extend(subsections)
-
-    # Omit items that don't have URLs (like dividers) or have an external link
-    return [
-        item for item in new_toc
-        if 'url' in item and not item.get('external', False)
+def _list_supported_files(directory, exclude=["LICENSE.md"]):
+    supported_files = [
+        ipath for suffix in SUPPORTED_FILE_SUFFIXES
+        for ipath in directory.glob(f"*{suffix}")
+        if ipath.name not in exclude
     ]
+    return supported_files
 
 
 def build_toc(content_folder, filename_split_char='_'):
@@ -84,55 +74,39 @@ def build_toc(content_folder, filename_split_char='_'):
     filename_split_char : str
         The character used in inferring spaces in page names from filenames.
     """
-    if not op.isdir(content_folder):
+    content_folder = Path(content_folder)
+    if not content_folder.is_dir():
         raise ValueError(f"Could not find the provided content folder\n{content_folder}")
 
     # Generate YAML from the directory structure
     out = [YAML_TOP, YAML_WARN]
     toc_pages = []
-    for ii, (ifolder, folders, ifiles) in enumerate(sorted(os.walk(content_folder))):
-        if ".ipynb_checkpoints" in ifolder:
+
+    # First find all the allowed file types in path
+    paths = _list_supported_files(content_folder)
+    for ipath in paths:
+        title = _filename_to_title(ipath.name, filename_split_char)
+        url = str(Path(*ipath.parts[1:]))
+        toc_pages.append({'title': title, 'url': url})
+
+    # Now find all the top-level directories of the content folder
+    subdirectories = sorted([sub for sub in content_folder.glob('*')
+                             if (sub.is_dir() and '.ipynb_checkpoints' not in sub.name)])
+
+    for subdir in subdirectories:
+        ipaths = _list_supported_files(subdir)
+        if len(ipaths) == 0:
             continue
-        path_rel_to_content = ifolder.replace(content_folder, '')
 
-        if ii == 0:
-            # Create a dictionary of top-level folders we'll append to
-            top_level_dict = {folder: [] for folder in folders if len(folder) > 0}
+        # Add a section break for this section
+        toc_pages.append("## REPLACE ##")
+        toc_pages.append({'header': _filename_to_title(subdir.name, filename_split_char)})
 
-            # Append files for the top-most folder
-            for ifile in ifiles:
-                if any(ifile.endswith(ii) for ii in [".ipynb", ".md"]):
-                    if ifile == "LICENSE.md":
-                        continue
-                    suff = os.path.splitext(ifile)[-1]
-                    i_title = _filename_to_title(ifile, filename_split_char)
-                    i_url = os.path.join(path_rel_to_content, os.path.basename(ifile)).replace(suff, '')
-                    toc_pages.append({'title': i_title, 'url': i_url})
-        else:
-            # Grab the top-most folder to choose which list we'll append to
-            folder = path_rel_to_content.lstrip('/').split(os.sep)[0]
-
-            # If the file ends in ipynb or md, add it to this section
-            for ifile in ifiles:
-                suff = os.path.splitext(ifile)[-1]
-                if not any(ii == suff for ii in [".ipynb", ".md"]):
-                    continue
-
-                # Convert to Jupyter-book ready names
-                i_title = _filename_to_title(ifile, filename_split_char)
-                i_url = os.path.join(path_rel_to_content, os.path.basename(ifile)).replace(suff, '')
-                top_level_dict[folder].append({'title': i_title, 'url': i_url})
-
-    # Iterate through our top level dict and convert to yaml-style dict
-    top_level_dict = {key: val for key, val in top_level_dict.items() if len(val) > 0}
-    out_children = []
-    for folder, subsections in top_level_dict.items():
-        name = _filename_to_title(folder)
-        out_children.append("## REPLACE ##")
-        out_children.append({'header': name})
-        out_children += subsections
-
-    toc_pages += out_children
+        # Now add the children as a list of pages
+        for ipath in ipaths:
+            title = _filename_to_title(ipath.name, filename_split_char)
+            url = str(Path(*ipath.parts[1:]))
+            toc_pages.append({'title': title, 'url': url})
 
     # Convert the dictionary into YAML and append it to our output
     yaml = YAML()
