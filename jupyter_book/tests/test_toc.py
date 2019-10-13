@@ -23,3 +23,7 @@ def test_toc():
 
         # Links to nested folder work
         assert "tests/features" in yaml
+
+        # Make sure the extensions are removed
+        assert ".ipynb" not in yaml
+        assert ".md" not in yaml
