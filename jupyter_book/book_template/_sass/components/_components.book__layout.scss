@@ -32,13 +32,13 @@ $topbar-height: 60px;
   /* [1] */
   position: relative;
   height: 100vh;
-  overflow: hidden;
-  margin: 0 0 0 auto;
+  margin: 0 auto;
+  max-width:1600px;
 }
 
 .c-topbar {
   background-color: $book-background-color;
-  position: fixed;
+  position: absolute;
   top: 0;
   height: $topbar-height;
   width: 100%;
@@ -60,7 +60,7 @@ $topbar-height: 60px;
   /* [2] */
   height: 100vh;
   overflow: auto;
-  position: fixed;
+  position: absolute;
   background-color: $book-background-color; /* [3] */
 }
 
@@ -101,7 +101,7 @@ $topbar-height: 60px;
 }
 
 .js-show-sidebar {
-  .c-textbook__page, .c-topbar {
+  .c-textbook__page {
     /* [4] */
     transform: translate($left-sidebar-width, 0);
 

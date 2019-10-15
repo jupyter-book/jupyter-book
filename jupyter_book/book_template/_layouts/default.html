@@ -5,10 +5,8 @@
     <!-- .js-show-sidebar shows sidebar by default -->
     <div id="js-textbook" class="c-textbook {% if site.show_sidebar %}js-show-sidebar{% endif %}">
       {% include sidebar.html %}
-      {% if page.search_page != true %}
-      {% endif %}
-      {% include topbar.html %}
       <main class="c-textbook__page" tabindex="-1">
+            {% include topbar.html %}
             <div class="c-textbook__content" id="textbook_content">
               {{ content }}
             </div>
