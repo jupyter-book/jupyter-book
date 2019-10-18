@@ -42,13 +42,16 @@ li.c-sidebar__chapter > a {
 }
 
 /* [1] */
-.c-sidebar__sections {
+.c-sidebar__sections, .c-sidebar__subsections {
   list-style: none;
-  margin-left: $spacing-unit-small;
   margin-bottom: 0;
 }
 
-li.c-sidebar__subsection {
+.c-sidebar__sections {
+  margin-left: $spacing-unit-small;
+}
+
+.c-sidebar__subsections {
   margin-left: 20px;
 }
 
