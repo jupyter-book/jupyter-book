@@ -7,6 +7,6 @@ const initAnchors = () => {
 
   // Disable Turbolinks for anchors
   document.querySelector('.anchorjs-link')
-  	.forEach(it => it.dataset['turbolinks'] = false);
+    .forEach(it => it.dataset['turbolinks'] = false);
 }
 initFunction(initAnchors);
