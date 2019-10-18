@@ -31,7 +31,6 @@ a 1-level nesting; we will label 1.2, but not 1.2.1.
         {% continue %}
       {% endif %}
 
-<<<<<<< HEAD
       {% comment %}
       Find the title for this chapter
       {% endcomment %}
@@ -43,17 +42,6 @@ a 1-level nesting; we will label 1.2, but not 1.2.1.
       {%- endfor %}
       {% if chapter.external == true %}{% assign chapter_title = chapter.title  %}{% endif %}
 
-      {% comment %}
-      If the entry is the current page, assign a CSS class to highlight it.
-      {% endcomment %}
-      {% if page.url contains chapter.url %}
-        {% assign active_class = "c-sidebar__entry--active" %}
-      {% else %}
-        {% assign active_class = "" %}
-      {% endif %}
-
-=======
->>>>>>> refactoring sidebar highlighting and allowing collapsed subsections
       {% assign topUrl = chapter.url | relative_url %}
       {% unless chapter.external == true %}
         {% assign topUrl = topUrl | append: '.html'  %}
@@ -69,8 +57,27 @@ a 1-level nesting; we will label 1.2, but not 1.2.1.
         </a>
       </li>
 
-      {% if chapter.sections %}
+      {% comment %}
+      Flags for whether we hide all inactive sections or sub-sections
+      {% endcomment %}
+      {% if site.collapse_inactive_chapters == true %}
+        {% assign sectionsHideClass = " u-hidden-visually" %}
+      {% else %}
+        {% assign sectionsHideClass = "" %}
+      {% endif %}
 
+      {% if site.collapse_inactive_sections == true %}
+        {% assign subSectionsHideClass = " u-hidden-visually" %}
+      {% else %}
+        {% assign subSectionsHideClass = "" %}
+      {% endif %}
+
+      {% comment %}Per-chapter overrides from TOC data{% endcomment %}
+      {% if chapter.expand_sections == true %}
+        {% assign sectionsHideClass = "" %}
+      {% endif %}
+
+      {% if chapter.sections %}
         {% comment %}
         By default, all sections are hidden. We show a chapter's sections
         if the chapter or any of its sections are the current page.
@@ -78,8 +85,13 @@ a 1-level nesting; we will label 1.2, but not 1.2.1.
 
         {% assign section_num = 1 %}
 
-        <ul class="c-sidebar__sections u-hidden-visually">
+        <ul class="c-sidebar__sections{{ sectionsHideClass }}">
           {% for section in chapter.sections %}
+            {% comment %}Per-section overrides from TOC data{% endcomment %}
+            {% if section.expand_subsections == true %}
+              {% assign subSectionsHideClass = "" %}
+            {% endif %}
+
             <li class="c-sidebar__section" data-url="{{ section.url }}">
               <a class="c-sidebar__entry"
                 href="{{ section.url  | relative_url | append: '.html'}}"
@@ -92,7 +104,7 @@ a 1-level nesting; we will label 1.2, but not 1.2.1.
             </li>
             {% if section.subsections %}
               {% assign subsection_num = 1 %}
-              <ul class='c-sidebar__subsections u-hidden-visually'>
+              <ul class='c-sidebar__subsections{{ subSectionsHideClass }}'>
               {% for subsection in section.subsections %}
                 <li class="c-sidebar__subsection" data-url="{{ subsection.url }}">
                   <a class="c-sidebar__entry"
