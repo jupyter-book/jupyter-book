@@ -6,7 +6,7 @@ const initAnchors = () => {
   anchors.add("main h1, main h2, main h3, main h4");
 
   // Disable Turbolinks for anchors
-  document.querySelector('.anchorjs-link')
+  document.querySelectorAll('.anchorjs-link')
     .forEach(it => it.dataset['turbolinks'] = false);
 }
 initFunction(initAnchors);
