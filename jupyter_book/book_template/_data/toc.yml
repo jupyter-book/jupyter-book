@@ -76,6 +76,9 @@
     - title: Adding interactivity to your book pages
       url: /features/interactive_cells
       not_numbered: true
+    - title: Control page titles and authors
+      url: /features/titles
+      not_numbered: true
     - title: Citations and bibliographies
       url: /features/citations
       not_numbered: true
@@ -101,13 +104,6 @@
     url: /advanced/circleci
     not_numbered: true
 
-- title: Beta Features
-  url: /beta/beta
-  not_numbered: true
-  sections:
-  - title: Page titles and authors
-    url: /beta/titles
-    not_numbered: true
 
 - title: GitHub repository
   url: https://github.com/jupyter/jupyter-book
