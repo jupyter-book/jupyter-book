@@ -14,6 +14,22 @@ All of the sections on here allow us to test that. And they'll give you a full g
 
 The following test is all thanks to @adam-p's great [wiki](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
 
+# Testing Unicode headers
+
+The following headers test that we are able to render non-American characters
+in ways that look nice.
+
+## Це тестовий заголовок Кирилицею
+Lorem ipsum
+
+## これは日本語のテストヘッダーです
+Lorem ipsum 
+
+## هذا اختبار للرأس باللغة العربية
+Lorem ipsum 
+
+## 這是中文標題測試
+
 # Markdown Cheatsheet
 This is intended as a quick reference and showcase. For more complete info, see [John Gruber's original spec](http://daringfireball.net/projects/markdown/) and the [Github-flavored Markdown info page](http://github.github.com/github-flavored-markdown/).
 
