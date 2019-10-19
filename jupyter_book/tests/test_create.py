@@ -280,6 +280,23 @@ def test_notebook(tmpdir):
     assert not is_in(lines, 'interact_link: ')
 
 
+def test_titles(tmpdir):
+    path_build_test = op.join(tmpdir.dirpath(), 'tmp_test', 'test')
+    titles = [
+        ("/titles/title_filename", "Title Filename"),
+        ("/titles/title_heading", "My Heading Title"),
+        ("/titles/title_toc", "My TOC Title")
+    ]
+    for ipath, ititle in titles:
+        ipath = ipath.lstrip('/') + '.html'
+        with open(op.join(path_build_test, '_build', ipath), 'r') as ff:
+            lines = ff.readlines()
+        assert is_in(lines, f'{ititle}\n')
+
+        if "title_heading" in ipath:
+            assert not is_in(lines, '<h1 id="My-Heading-Title">')
+
+
 def test_extra_yaml(tmpdir):
     path_build_test = op.join(tmpdir.dirpath(), 'tmp_test', 'test')
     with open(op.join(path_build_test, '_build', 'tests', 'features.html'), 'r') as ff:

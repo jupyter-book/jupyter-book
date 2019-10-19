@@ -1,5 +1,4 @@
-Statistical Techniques
-----------------------
+# Statistical Techniques
 
 The discipline of statistics has long addressed the same fundamental challenge
 as data science: how to draw robust conclusions about the world using incomplete

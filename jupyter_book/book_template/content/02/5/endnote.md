@@ -1,5 +1,4 @@
-Endnote
--------
+# Endnote
 
 In the terminology of that we have developed, John Snow conducted an
 observational study, not a randomized experiment. But he called his study a

@@ -1,3 +1,5 @@
+# Advanced topics and how-tos
+
 This page contains more advanced and complete information about the
 [`jupyter-book` repository](https://github.com/jupyter/jupyter-book). See the sections below.
 

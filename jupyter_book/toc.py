@@ -2,7 +2,7 @@
 from pathlib import Path
 from ruamel.yaml import YAML
 from ruamel.yaml.compat import StringIO
-from .build import SUPPORTED_FILE_SUFFIXES
+from .build import SUPPORTED_FILE_SUFFIXES, _filename_to_title
 
 DESCRIPTION = ("Automatically generate a toc.yaml file from a collection"
                " of Jupyter Notebooks/markdown files that make a jupyter book."
@@ -40,20 +40,6 @@ YAML_WARN = ("#\n"
 TOC_SPACER = "# ===== NEW SECTION ========================================"
 
 
-def _filename_to_title(filename, split_char='_'):
-    filename = Path(filename).name
-    filename_parts = filename.split(split_char)
-    try:
-        # If first part of the filename is a number for ordering, remove it
-        int(filename_parts[0])
-        if len(filename_parts) > 1:
-            filename_parts = filename_parts[1:]
-    except Exception:
-        pass
-    title = ' '.join(ii.capitalize() for ii in filename_parts)
-    return title
-
-
 def _list_supported_files(directory, exclude=["LICENSE.md"], rglob=False):
     glob = directory.rglob if rglob is True else directory.glob
     supported_files = [
@@ -87,9 +73,8 @@ def build_toc(content_folder, filename_split_char='_'):
     paths = _list_supported_files(content_folder)
     for ipath in paths:
         ipath = ipath.with_suffix('')
-        title = _filename_to_title(ipath.name, filename_split_char)
         url = str(Path(*ipath.parts[1:]))
-        toc_pages.append({'title': title, 'url': url})
+        toc_pages.append({'url': url})
 
     # Now find all the top-level directories of the content folder
     subdirectories = sorted([sub for sub in content_folder.glob('*')
@@ -107,9 +92,8 @@ def build_toc(content_folder, filename_split_char='_'):
         # Now add the children as a list of pages
         for ipath in ipaths:
             ipath = ipath.with_suffix('')
-            title = _filename_to_title(ipath.name, filename_split_char)
             url = str(Path(*ipath.parts[1:]))
-            toc_pages.append({'title': title, 'url': url})
+            toc_pages.append({'url': url})
 
     # Convert the dictionary into YAML and append it to our output
     yaml = YAML()

@@ -1,5 +1,4 @@
-Snow’s “Grand Experiment”
--------------------------
+# Snow’s “Grand Experiment”
 
 Encouraged by what he had learned in Soho, Snow completed a more thorough
 analysis of cholera deaths. For some time, he had been gathering data on cholera

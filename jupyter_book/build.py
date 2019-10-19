@@ -1,6 +1,7 @@
 """Build the HTML for a book's pages."""
 import os
 import os.path as op
+from pathlib import Path
 import shutil as sh
 import yaml
 from tqdm import tqdm
@@ -12,6 +13,7 @@ from .utils import (print_message_box, _check_url_page, load_ntbk,
                     _prepare_url, _error, _file_newer_than, _check_book_versions,
                     _is_jupytext_file)
 from .page import page_html, write_page, _RawCellPreprocessor
+from .page.utils import _infer_title
 
 # Defaults
 BUILD_FOLDER_NAME = "_build"
@@ -54,6 +56,21 @@ def _prepare_toc(toc):
         item for item in new_toc
         if 'url' in item and not item.get('external', False)
     ]
+
+
+def _filename_to_title(filename, split_char='_'):
+    """Convert a file path into a more readable title."""
+    filename = Path(filename).with_suffix('').name
+    filename_parts = filename.split(split_char)
+    try:
+        # If first part of the filename is a number for ordering, remove it
+        int(filename_parts[0])
+        if len(filename_parts) > 1:
+            filename_parts = filename_parts[1:]
+    except Exception:
+        pass
+    title = ' '.join(ii.capitalize() for ii in filename_parts)
+    return title
 
 
 def _case_sensitive_fs(path):
@@ -142,11 +159,10 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
     case_check = _case_sensitive_fs(BUILD_FOLDER) and local_build
     print("Convert and copy notebook/md files...")
     for ix_file, page in enumerate(tqdm(list(toc))):
-        url_page = page.get('url', None)
-        title = page.get('title', None)
-        if page.get('external', None):
+        if page.get('external'):
             # If its an external link, just pass
             continue
+        url_page = page.get('url')
 
         # Make sure URLs (file paths) have correct structure
         _check_url_page(url_page, CONTENT_FOLDER_NAME)
@@ -203,9 +219,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         # Generate previous/next page URLs
         if ix_file == 0:
             url_prev_page = ''
-            prev_file_title = ''
         else:
-            prev_file_title = toc[ix_file - 1].get('title')
             url_prev_page = toc[ix_file - 1].get('url')
             pre_external = toc[ix_file - 1].get('external', False)
             if pre_external is False:
@@ -213,9 +227,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
 
         if ix_file == len(toc) - 1:
             url_next_page = ''
-            next_file_title = ''
         else:
-            next_file_title = toc[ix_file + 1].get('title')
             url_next_page = toc[ix_file + 1].get('url')
             next_external = toc[ix_file + 1].get('external', False)
             if next_external is False:
@@ -239,21 +251,24 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         has_widgets = "true" if any("interactive" in cell['metadata'].get('tags', []) for cell in ntbk['cells']) else "false"
 
         # Determine the title and author information if we wish
-        html_title_config = {
-            "toc": title,
-            "None": None,
-            "infer": "infer_title"
-        }
-        if site_yaml.get('page_titles') not in html_title_config:
-            raise ValueError(f"Unknown page title configuration: {site_yaml.get('page_titles')}")
-        html_title = html_title_config[site_yaml.get('page_titles')]
-        html_author_config = {
-            "None": None,
-            "infer": "inter_author"
-        }
-        if site_yaml.get('page_authors') not in html_author_config:
-            raise ValueError(f"Unknown page author configuration: {site_yaml.get('page_authors')}")
-        html_author = html_author_config[site_yaml.get('page_authors')]
+        title = page.get('title')
+        if title is None:
+            # If the title isn't in the TOC and we want titles, then infer from the page
+            title = _infer_title(ntbk)
+        if title is None:
+            # If there's no title info in the notebook, use the filename
+            title = _filename_to_title(path_url_page_suff,
+                                       site_yaml.get('filename_title_split_character', '_'))
+
+        # Use another variable to decide whether we *show* the title
+        html_title = title
+        if site_yaml.get("page_titles", False) is False:
+            html_title = False
+
+        author = page.get('author', ntbk.metadata.get('author'))
+        html_author = author
+        if site_yaml.get("page_authors", False) is False:
+            html_author = False
 
         ###########################################################################
         # Write the page to HTML on disk
@@ -306,14 +321,13 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         # See http://blogs.perl.org/users/tinita/2018/03/strings-in-yaml---to-quote-or-not-to-quote.html
         yaml_fm += ["title: |-"]
         yaml_fm += [f"  {title}"]
+        if author:
+            yaml_fm += [f"author: {author}"]
+        yaml_fm += [f"pagenum: {ix_file}"]
         yaml_fm += ['prev_page:']
         yaml_fm += [f'  url: {url_prev_page}']
-        yaml_fm += ["  title: |-"]
-        yaml_fm += [f"    {prev_file_title}"]
         yaml_fm += ['next_page:']
         yaml_fm += [f'  url: {url_next_page}']
-        yaml_fm += ["  title: |-"]
-        yaml_fm += [f"    {next_file_title}"]
         yaml_fm += [f"suffix: {chosen_suff}"]
 
         # Add back any original YaML

@@ -34,3 +34,8 @@
   - title: Interactive test
     url: /tests/interactive
     not_numbered: true
+
+- url: /titles/title_filename
+- url: /titles/title_heading
+- title: "My TOC Title"
+  url: /titles/title_toc

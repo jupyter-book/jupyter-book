@@ -1,3 +1,5 @@
+# Frequently Asked Questions (FAQ)
+
 The following are some common issues and questions that have arisen when
 building your textbook with Jekyll.
 

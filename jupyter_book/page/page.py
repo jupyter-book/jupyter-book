@@ -8,7 +8,7 @@ from nbconvert.preprocessors import Preprocessor
 import nbformat as nbf
 import sass
 
-from .utils import _clean_markdown_cells, run_ntbk
+from .utils import _clean_markdown_cells, run_ntbk, _infer_title
 
 PATH_FILE = op.dirname(op.abspath(__file__))
 PATH_BOOK_TEMPLATE = op.join(PATH_FILE, '..', 'book_template')
@@ -176,18 +176,7 @@ def page_html(ntbk, path_media_output=None, name=None, preprocessors=None,
     # If title and author isn't False or a string, try to infer it
     meta_html_info = ''
     if title == 'infer_title':
-        # First try the notebook metadata, if not found try the first line
-        title = ntbk.metadata.get('title')
-        if title is None:
-            first_cell_lines = ntbk.cells[0].source.split('\n')
-
-            # If the first line of the ontebook is H1 header, assume it's the title.
-            if first_cell_lines[0].startswith('# '):
-                title = first_cell_lines.pop(0).strip('# ')
-                ntbk.cells[0].source = '\n'.join(first_cell_lines)
-            else:
-                # Just pass None onwards because we found no title
-                pass
+        title = _infer_title(ntbk)
 
     if isinstance(title, str):
         meta_html_info += f'<div id="page-title">{title}</div>\n'

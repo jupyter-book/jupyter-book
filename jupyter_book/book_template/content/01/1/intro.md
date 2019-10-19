@@ -1,5 +1,4 @@
-Chapter 1: Introduction
-=======================
+# Chapter 1: Introduction
 
 Data are descriptions of the world around us, collected through observation and
 stored on computers. Computers enable us to infer properties of the world from
