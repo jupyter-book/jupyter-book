@@ -67,6 +67,7 @@ div.jb_cell {
 
     // On laptops, pop out to the right instead of in-line
     @include mq($from: laptop) {
+      z-index: 999;
       width: calc(100% - #{$textbook-page-with-sidebar-width});
       font-size: .8em;
       position: relative;

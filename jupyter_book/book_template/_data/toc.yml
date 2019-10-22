@@ -67,8 +67,6 @@
       not_numbered: true
     - url: /features/page
       not_numbered: true
-  - url: /features/limits
-    not_numbered: true
 
 - url: /advanced/advanced
   not_numbered: true
@@ -79,8 +77,10 @@
 
 
 - url: https://github.com/jupyter/jupyter-book
+  title: GitHub repository
   external: true
   not_numbered: true
+
 - url: /contributing
   not_numbered: true
 
@@ -116,3 +116,11 @@
   - url: /04/1/Numbers
   - url: /04/2/Strings
   - url: /04/3/Comparison
+
+- divider: true
+
+- url: /test_pages/test
+  not_numbered: true
+  sections:
+    - url: /test_pages/layout_elements
+    - url: /test_pages/limits
