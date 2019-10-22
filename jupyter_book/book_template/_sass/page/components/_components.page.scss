@@ -93,7 +93,11 @@ div.jb_cell {
   }
 
   &.tag_full_width {
-    width: 100%;
+      width: 100%;
+      div.input {
+          // Input sections of cells should stay the same width, only outputs are wide
+          width: 70%;
+      }
 
     img {
       max-width: 100%;
