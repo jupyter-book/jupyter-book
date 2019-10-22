@@ -164,6 +164,7 @@ def page_html(ntbk, path_media_output=None, name=None, preprocessors=None,
     page : HTML document
         The input content file converted to HTML format.
     """
+    _check_cell_tags(ntbk)
 
     if preprocessors is None:
         preprocessors = []
@@ -331,3 +332,14 @@ def page_js():
 
     js = "\n".join(js)
     return js
+
+
+def _check_cell_tags(ntbk):
+    """Perform some checks on cell tags to make sure they're correct."""
+    for cell in ntbk.cells:
+        tags = cell['metadata'].get('tags', [])
+        if cell['cell_type'] == "markdown":
+            if 'hide_input' in tags:
+                raise ValueError("Found a `hide_input` tag in a markdown cell. Hiding markdown "
+                                 "is not currently implemented. To hide markdown content, you should "
+                                 "use `remove_cell`.")

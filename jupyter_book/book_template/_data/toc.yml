@@ -75,12 +75,6 @@
   - url: /advanced/circleci
     not_numbered: true
 
-- url: /test_pages/test
-  not_numbered: true
-  sections:
-    - url: test_pages/layout_elements
-    - url: test_pages/limits
-
 
 - url: https://github.com/jupyter/jupyter-book
   title: GitHub repository
@@ -122,3 +116,11 @@
   - url: /04/1/Numbers
   - url: /04/2/Strings
   - url: /04/3/Comparison
+
+- divider: true
+
+- url: /test_pages/test
+  not_numbered: true
+  sections:
+    - url: /test_pages/layout_elements
+    - url: /test_pages/limits
