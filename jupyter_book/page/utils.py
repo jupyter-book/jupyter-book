@@ -51,3 +51,23 @@ def run_ntbk(ntbk, path_directory, timeout=600, kernel_name=None, allow_errors=T
     ep = ExecutePreprocessor(timeout=timeout, kernel_name=kernel_name, config=c)
     ntbk, _ = ep.preprocess(ntbk, {'metadata': {'path': path_directory}})
     return ntbk
+
+
+def _infer_title(ntbk, strip_title_header=True):
+    """Infer a title from notebook metadata.
+
+    First looks in metadata['title'] and if nothing is found,
+    looks for whether the first line of the first cell is an H1
+    header. Optionally it strips this header from the notebook content.
+    """
+    # First try the notebook metadata, if not found try the first line
+    title = ntbk.metadata.get('title')
+
+    # If the first line of the ontebook is H1 header, assume it's the title.
+    if title is None:
+        first_cell_lines = ntbk.cells[0].source.split('\n')
+        if first_cell_lines[0].startswith('# '):
+            title = first_cell_lines.pop(0).strip('# ')
+            if strip_title_header is True:
+                ntbk.cells[0].source = '\n'.join(first_cell_lines)
+    return title

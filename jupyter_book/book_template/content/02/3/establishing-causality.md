@@ -1,5 +1,4 @@
-Establishing Causality
-----------------------
+# Establishing Causality
 
 In the language developed earlier in the section, you can think of the people in
 the S&V houses as the treatment group, and those in the Lambeth houses at the
