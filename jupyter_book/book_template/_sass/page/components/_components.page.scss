@@ -149,8 +149,7 @@ div.output_wrapper pre {
 /* [5] */
 code {
   padding: 4px;
-  overflow-x: auto;
-  @include inuit-font-size(14px);
+  background: #F7F7F7;
 }
 
 pre.highlight code {
