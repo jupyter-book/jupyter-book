@@ -123,4 +123,6 @@
   not_numbered: true
   sections:
     - url: /test_pages/layout_elements
+    - url: /test_pages/equations
+    - url: /test_pages/code
     - url: /test_pages/limits

@@ -93,7 +93,11 @@ div.jb_cell {
   }
 
   &.tag_full_width {
-    width: 100%;
+      width: 100%;
+      div.input {
+          // Input sections of cells should stay the same width, only outputs are wide
+          width: 70%;
+      }
 
     img {
       max-width: 100%;
@@ -112,8 +116,8 @@ div.highlighter-rouge {
   position: relative;
 }
 
-div.inner_cell div.highlight > pre,
-div.highlighter-rouge > div.highlight > pre,
+div.inner_cell > div > div > pre,
+div.inner_cell > div > pre
 div.output_wrapper pre {
   background-color: $color-light-gray;
   font-size: 0.9em;
@@ -145,12 +149,18 @@ div.output_wrapper pre {
 /* [5] */
 code {
   padding: 4px;
-  overflow-x: auto;
-  @include inuit-font-size(14px);
+  background: #F7F7F7;
+  font-size: inherit;
 }
 
 pre.highlight code {
   display: block;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  code {
+    font-size: inherit;
+  }
 }
 
 /* Outputs */
@@ -282,4 +292,10 @@ div.jb_cell.tag_epigraph blockquote {
   ul {
     font-style: normal;
   }
+}
+
+// MathJax blocks
+
+.MathJax_Display {
+  padding: 20px 0px;
 }
