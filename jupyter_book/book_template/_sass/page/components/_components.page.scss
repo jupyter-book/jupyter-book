@@ -116,8 +116,8 @@ div.highlighter-rouge {
   position: relative;
 }
 
-div.inner_cell div.highlight > pre,
-div.highlighter-rouge > div.highlight > pre,
+div.inner_cell > div > div > pre,
+div.inner_cell > div > pre
 div.output_wrapper pre {
   background-color: $color-light-gray;
   font-size: 0.9em;
@@ -150,11 +150,17 @@ div.output_wrapper pre {
 code {
   padding: 4px;
   background: #F7F7F7;
-  font-size: 1em;
+  font-size: inherit;
 }
 
 pre.highlight code {
   display: block;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  code {
+    font-size: inherit;
+  }
 }
 
 /* Outputs */
