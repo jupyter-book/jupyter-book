@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Template } from '../mixins/template';
-import { hover_cite, bibliography_cite } from '../helpers/citation';
+import { Template } from './d-template';
+import { hover_cite, bibliography_cite } from './helpers/citation';
 
 const T = Template('d-cite', `
 <style>

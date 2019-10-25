@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { bibliography_cite } from '../helpers/citation';
+import { bibliography_cite } from './helpers/citation';
 
 const styles = `
 d-citation-list {
