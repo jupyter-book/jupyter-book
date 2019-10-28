@@ -4,6 +4,7 @@ import os.path as op
 from pathlib import Path
 import shutil as sh
 import yaml
+import json
 from tqdm import tqdm
 from glob import glob
 from uuid import uuid4
@@ -11,7 +12,7 @@ from uuid import uuid4
 
 from .utils import (print_message_box, _check_url_page, load_ntbk,
                     _prepare_url, _error, _file_newer_than, _check_book_versions,
-                    _is_jupytext_file)
+                    _is_jupytext_file, _content_to_words)
 from .page import page_html, write_page, _RawCellPreprocessor
 from .page.utils import _infer_title
 
@@ -250,6 +251,12 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         kernel_name = ntbk['metadata'].get('kernelspec', {}).get('name', '')
         has_widgets = "true" if any("interactive" in cell['metadata'].get('tags', []) for cell in ntbk['cells']) else "false"
 
+        # Collect common words that we'll insert into the page metadata for search
+        page_content = ' '.join([cell['source'] for cell in ntbk.cells
+                                 if cell['cell_type'] == "markdown"])
+        max_search_words = site_yaml.get("search_max_words_in_content", 100)
+        search_words = ' '.join(_content_to_words(page_content, max_search_words))
+
         # Determine the title and author information if we wish
         title = page.get('title')
         if title is None:
@@ -329,6 +336,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         yaml_fm += ['next_page:']
         yaml_fm += [f'  url: {url_next_page}']
         yaml_fm += [f"suffix: {chosen_suff}"]
+        yaml_fm += [f"search: {search_words}"]
 
         # Add back any original YaML
         yaml_fm += yaml_extra
@@ -341,6 +349,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         with open(path_page_output_file, 'w', encoding='utf8') as ff:
             ff.writelines(lines)
         n_built_files += 1
+
 
     ###########################################################################
     # Finishing up...
