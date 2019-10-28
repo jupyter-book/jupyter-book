@@ -1,20 +1,20 @@
 """Build the HTML for a book's pages."""
 import os
 import os.path as op
+from pathlib import Path
 import shutil as sh
 import yaml
 import json
 from tqdm import tqdm
 from glob import glob
 from uuid import uuid4
-import jupytext as jpt
-from nbformat.v4.nbbase import new_markdown_cell, new_notebook
 
-from .utils import (print_message_box, _check_url_page,
+
+from .utils import (print_message_box, _check_url_page, load_ntbk,
                     _prepare_url, _error, _file_newer_than, _check_book_versions,
                     _is_jupytext_file, _content_to_words)
 from .page import page_html, write_page, _RawCellPreprocessor
-from .toc import _prepare_toc
+from .page.utils import _infer_title
 
 # Defaults
 BUILD_FOLDER_NAME = "_build"
@@ -38,6 +38,40 @@ def _copy_non_content_files(path_content_folder, content_folder_name,
         if not op.isdir(op.dirname(new_path)):
             os.makedirs(op.dirname(new_path))
         sh.copy2(ifile, new_path)
+
+
+def _prepare_toc(toc):
+    """Prepare the TOC for processing."""
+    # Un-nest the TOC so it's a flat list
+    new_toc = []
+    for chapter in toc:
+        sections = chapter.get('sections', [])
+        new_toc.append(chapter)
+        for section in sections:
+            subsections = section.get('subsections', [])
+            new_toc.append(section)
+            new_toc.extend(subsections)
+
+    # Omit items that don't have URLs (like dividers) or have an external link
+    return [
+        item for item in new_toc
+        if 'url' in item and not item.get('external', False)
+    ]
+
+
+def _filename_to_title(filename, split_char='_'):
+    """Convert a file path into a more readable title."""
+    filename = Path(filename).with_suffix('').name
+    filename_parts = filename.split(split_char)
+    try:
+        # If first part of the filename is a number for ordering, remove it
+        int(filename_parts[0])
+        if len(filename_parts) > 1:
+            filename_parts = filename_parts[1:]
+    except Exception:
+        pass
+    title = ' '.join(ii.capitalize() for ii in filename_parts)
+    return title
 
 
 def _case_sensitive_fs(path):
@@ -103,7 +137,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
     # Read in textbook configuration
 
     # Load the yaml for this site
-    with open(path_ssg_config, 'r') as ff:
+    with open(path_ssg_config, 'r', encoding='utf8') as ff:
         site_yaml = yaml.safe_load(ff.read())
     CONTENT_FOLDER_NAME = site_yaml.get('content_folder_name').strip('/')
     PATH_CONTENT_FOLDER = op.join(path_book, CONTENT_FOLDER_NAME)
@@ -112,7 +146,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
     if not op.exists(path_toc_yaml):
         raise _error(
             "No toc.yml file found, please create one at `{}`".format(path_toc_yaml))
-    with open(path_toc_yaml, 'r') as ff:
+    with open(path_toc_yaml, 'r', encoding='utf8') as ff:
         toc = yaml.safe_load(ff.read())
 
     # Drop divider items and non-linked pages in the sidebar, un-nest sections
@@ -126,11 +160,10 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
     case_check = _case_sensitive_fs(BUILD_FOLDER) and local_build
     print("Convert and copy notebook/md files...")
     for ix_file, page in enumerate(tqdm(list(toc))):
-        url_page = page.get('url', None)
-        title = page.get('title', None)
-        if page.get('external', None):
+        if page.get('external'):
             # If its an external link, just pass
             continue
+        url_page = page.get('url')
 
         # Make sure URLs (file paths) have correct structure
         _check_url_page(url_page, CONTENT_FOLDER_NAME)
@@ -141,7 +174,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         # URL will be relative to the CONTENT_FOLDER
         path_url_page = os.path.join(PATH_CONTENT_FOLDER, url_page.lstrip('/'))
         path_url_folder = os.path.dirname(path_url_page)
-        notebook_name = path_url_page.split(os.sep)[-1]  # No extension yet
+        notebook_name = op.split(path_url_page)[-1]  # No extension yet
 
         # URLs shouldn't have the suffix in there already so
         # now we find which one to add
@@ -187,9 +220,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         # Generate previous/next page URLs
         if ix_file == 0:
             url_prev_page = ''
-            prev_file_title = ''
         else:
-            prev_file_title = toc[ix_file - 1].get('title')
             url_prev_page = toc[ix_file - 1].get('url')
             pre_external = toc[ix_file - 1].get('external', False)
             if pre_external is False:
@@ -197,9 +228,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
 
         if ix_file == len(toc) - 1:
             url_next_page = ''
-            next_file_title = ''
         else:
-            next_file_title = toc[ix_file + 1].get('title')
             url_next_page = toc[ix_file + 1].get('url')
             next_external = toc[ix_file + 1].get('external', False)
             if next_external is False:
@@ -208,8 +237,8 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         ###########################################################################
         # Read in the page and check page metadata
 
-        # Read in the notebook with Jupytext
-        ntbk = jpt.read(path_url_page_suff)
+        ntbk = load_ntbk(path_url_page_suff)
+        yaml_extra = ntbk['metadata'].get('yaml_header', '').split('\n')
 
         # Decide whether to execute the notebook
         execute_dir = path_url_folder if execute is True else None
@@ -217,20 +246,6 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         # If it's a Jupytext file, execute it anyway
         if _is_jupytext_file(ntbk) and chosen_suff != '.ipynb':
             execute_dir = path_url_folder
-
-        # Check if we had extra YAML frontmatter in the first cell. If so, grab it.
-        if 'lines_to_next_cell' in ntbk.cells[0].metadata:
-            yaml_extra = ntbk.cells.pop(0).source.replace('---', '').strip().split('\n')
-        else:
-            yaml_extra = []
-
-        # If the file was markdown and didn't have any jupytext frontmatter
-        # Just add in the raw source
-        if not _is_jupytext_file(ntbk) and chosen_suff in ['.md', 'markdown']:
-            # Recover the Markdown content
-            md = jpt.writes(ntbk, 'md')
-            # Replace the notebook with a new one, made of just one Markdown cell
-            ntbk = new_notebook(cells=[new_markdown_cell(md)])
 
         # Get kernel name and presence of widgets from notebooks metadata
         kernel_name = ntbk['metadata'].get('kernelspec', {}).get('name', '')
@@ -242,6 +257,26 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         max_search_words = site_yaml.get("search_max_words_in_content", 100)
         search_words = ' '.join(_content_to_words(page_content, max_search_words))
 
+        # Determine the title and author information if we wish
+        title = page.get('title')
+        if title is None:
+            # If the title isn't in the TOC and we want titles, then infer from the page
+            title = _infer_title(ntbk)
+        if title is None:
+            # If there's no title info in the notebook, use the filename
+            title = _filename_to_title(path_url_page_suff,
+                                       site_yaml.get('filename_title_split_character', '_'))
+
+        # Use another variable to decide whether we *show* the title
+        html_title = title
+        if site_yaml.get("page_titles", False) is False:
+            html_title = False
+
+        author = page.get('author', ntbk.metadata.get('author'))
+        html_author = author
+        if site_yaml.get("page_authors", False) is False:
+            html_author = False
+
         ###########################################################################
         # Write the page to HTML on disk
 
@@ -249,7 +284,8 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         html, resources = page_html(
             ntbk, path_media_output=path_media_rel_to_output_folder,
             name=notebook_name, preprocessors=_RawCellPreprocessor, execute_dir=execute_dir,
-            kernel_name=kernel_name, clear_output=clear_output
+            kernel_name=kernel_name, clear_output=clear_output, title=html_title,
+            author=html_author
         )
 
         # Write the HTML to disk
@@ -292,14 +328,13 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         # See http://blogs.perl.org/users/tinita/2018/03/strings-in-yaml---to-quote-or-not-to-quote.html
         yaml_fm += ["title: |-"]
         yaml_fm += [f"  {title}"]
+        if author:
+            yaml_fm += [f"author: {author}"]
+        yaml_fm += [f"pagenum: {ix_file}"]
         yaml_fm += ['prev_page:']
         yaml_fm += [f'  url: {url_prev_page}']
-        yaml_fm += ["  title: |-"]
-        yaml_fm += [f"    {prev_file_title}"]
         yaml_fm += ['next_page:']
         yaml_fm += [f'  url: {url_next_page}']
-        yaml_fm += ["  title: |-"]
-        yaml_fm += [f"    {next_file_title}"]
         yaml_fm += [f"suffix: {chosen_suff}"]
         yaml_fm += [f"search: {search_words}"]
 

@@ -43,6 +43,11 @@ number_toc_chapters       : true  # Whether to add numbers to chapterse in your 
 # Search settings
 search_max_words_in_content : 100  # In the search function, use at most this many words (too many words will make search slow)
 
+# Controlling page information
+page_titles                    : infer  # Either `None`, `infer`, or `toc`
+page_authors                   : None  # Either `None` or `infer`
+filename_title_split_character : '_'  # If inferring titles based on filename, splt on this character.
+
 #######################################################################################
 # Interact link settings
 
@@ -148,4 +153,4 @@ plugins:
   - jekyll-scholar
 
 # Jupyter Book version - DO NOT CHANGE THIS. It is generated when a new book is created
-jupyter_book_version: "0.6.3dev0"
+jupyter_book_version: "0.6.4dev0"

@@ -28,6 +28,12 @@ In order to use Netlify, you'll need to [create an account](https://app.netlify.
 Here, we'll walk through connecting your Jupyter Book to Netlify's continous deployment services using their UI.
 You can also check out their [documentation on continuous deployment](https://www.netlify.com/docs/continuous-deployment/).
 
+**Prerequisites**
+
+We assume that you have already [built your book's HTML](book-html.html) and that
+your HTML content is in the `_site/` folder. We also assume that you have a
+[GitHub repository created for your book](../03_build.html#Create-an-online-repository-for-your-book).
+
 ## Step 1: The Netlify site builder
 
 After you've created a Netlify account, you'll need to log in.
@@ -44,7 +50,7 @@ For the purposes of this tutorial, we'll assume that your book is hosted on GitH
 When you select the "GitHub" option, you'll be asked to grant permission for Netlify to access your GitHub account.
 Authorizing access will take you to the next step of the build process, where you can select your Jupyter Book repository.
 
-![Netlify continous deployment](../images/netlify-cd.png)
+![Netlify continous deployment](../../images/netlify-cd.png)
 
 Once you've selected the correct repository, you'll need to supply build instructions.
 For a standard Jupyter Book, the build instructions should build the book and then serve the resulting HTML with Jekyll.
@@ -53,7 +59,7 @@ That is, the *Build command* should be `make site && jekyll build` and the *Publ
 You'll also need to select the appropriate branch to build your repository from.
 In this example, we'll use the `master` branch.
 
-![Netlify build command](../images/netlify-build.png)
+![Netlify build command](../../images/netlify-build.png)
 
 <!-- #region {"tags": ["popout"]} -->
 **Note**: The default python environment is python 2.7,
@@ -75,7 +81,7 @@ In order to have a more memorable address, you can update your site's name.
 From the site dashboard, select *Domain settings*.
 This will take you to a sub-menu, where you can choose to update your site name.
 
-![Netlify configure domain](../images/netlify-domain.png)
+![Netlify configure domain](../../images/netlify-domain.png)
 
 You can enter a memorable, unique name here to describe your Jupyter Book!
 Note that it will be prepended to `.netlify.com` so, `MY-BOOK` will become `MY-BOOK.netlify.com`.

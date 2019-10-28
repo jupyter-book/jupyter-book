@@ -1,6 +1,5 @@
 """Single page HTML building / writing functionality."""
 import os.path as op
-import os
 from traitlets.config import Config
 
 from nbconvert.exporters import HTMLExporter
@@ -9,7 +8,7 @@ from nbconvert.preprocessors import Preprocessor
 import nbformat as nbf
 import sass
 
-from .utils import _clean_markdown_cells, run_ntbk
+from .utils import _clean_markdown_cells, run_ntbk, _infer_title
 
 PATH_FILE = op.dirname(op.abspath(__file__))
 PATH_BOOK_TEMPLATE = op.join(PATH_FILE, '..', 'book_template')
@@ -18,7 +17,7 @@ PATH_MATHJAX = op.join(PATH_BOOK_TEMPLATE, "_includes", "mathjax.html")
 PATH_JS = op.join(PATH_BOOK_TEMPLATE, "assets", "js", "page")
 PATH_SCSS = op.join(PATH_BOOK_TEMPLATE, "_sass", "page", "main.scss")
 
-PAGE_CSS = """
+PAGE_EXTRA_CSS = """
 <style type="text/css">
 main.jupyter-page {
     max-width: 1100px;
@@ -87,7 +86,7 @@ def write_page(html, path_out, resources, standalone=False,
     """
     c = Config()
     c.FilesWriter.build_directory = path_out
-    notebook_name = resources.get("unique_key", "notebook").split(os.sep)[-1]
+    notebook_name = op.split(resources.get("unique_key", "notebook"))[-1]
 
     if custom_css is None:
         custom_css = ''
@@ -120,7 +119,8 @@ def write_page(html, path_out, resources, standalone=False,
 
 
 def page_html(ntbk, path_media_output=None, name=None, preprocessors=None,
-              execute_dir=False, kernel_name=None, clear_output=False):
+              execute_dir=False, kernel_name=None, clear_output=False,
+              title=None, author=None):
     """Build the HTML for a single notebook page.
 
     Inputs
@@ -147,12 +147,24 @@ def page_html(ntbk, path_media_output=None, name=None, preprocessors=None,
         The name of the kernel to use if we execute notebooks.
     clear_output: bool
         To remove the output from notebook
+    title : string | "infer_title" | None
+        A title to include with the page. If given, then the title will
+        be printed at the top of the output page. If "infer_title", look for the title
+        in `ntbk.metadata['title']` and if not found, infer it if the first
+        line of the notebook is an H1 header (beginning with `# `). If None,
+        or if no metadata is found, do not display a title.
+    author : string | "infer_author" | None
+        An author to include with the page. If given, then the author will
+        be printed at the top of the output page. If "infer_author", look for the author
+        in `ntbk.metadata['author']`. If `None`, or if no metadata is found,
+        then do not display an author.
 
     Returns
     =======
     page : HTML document
         The input content file converted to HTML format.
     """
+    _check_cell_tags(ntbk)
 
     if preprocessors is None:
         preprocessors = []
@@ -161,6 +173,20 @@ def page_html(ntbk, path_media_output=None, name=None, preprocessors=None,
 
     if name is None:
         name = "notebook"
+
+    # If title and author isn't False or a string, try to infer it
+    meta_html_info = ''
+    if title == 'infer_title':
+        title = _infer_title(ntbk)
+
+    if isinstance(title, str):
+        meta_html_info += f'<div id="page-title">{title}</div>\n'
+
+    if author == "infer_author":
+        author = ntbk.metadata.get('author')
+    if author:
+        meta_html_info += f'<div id="page-author">{author}</div>\n'
+    meta_html = f'<div id="page-info">{meta_html_info}</div>'
 
     ########################################
     # Notebook cleaning
@@ -221,6 +247,7 @@ def page_html(ntbk, path_media_output=None, name=None, preprocessors=None,
 
     html = f"""
     <main class="jupyter-page">
+    {meta_html}
     {html}
     </main>
     """
@@ -232,25 +259,12 @@ def page_head(custom_css='', custom_js=''):
 
     This uses CSS/JS from the book template.
     """
-    # Javascript files to embed
-    js_files = [
-        "dom-update.js",
-        "documentSelectors.js",
-        "copy-button.js",
-        "hide-cell.js",
-        "anchors.js",
-        "tocbot.js"
-    ]
-
-    js = []
-    for js_file in js_files:
-        with open(op.join(PATH_JS, js_file), "r") as ff:
-            js += ["<script>"]
-            js += ff.readlines()
-            js += ["</script>"]
-
-    js = "\n".join(js)
-
+    js = page_js()
+    js = f"""
+        <script>
+        {js}
+        </script>
+        """
     if custom_js:
         custom_js = f"""
             <script>
@@ -263,7 +277,7 @@ def page_head(custom_css='', custom_js=''):
         html_mathjax = ff.read()
 
     # SCSS styling for the page
-    scss = sass.compile(filename=PATH_SCSS)
+    scss = page_css()
     scss = f"""
     <style type="text/css">
     {scss}
@@ -285,9 +299,47 @@ def page_head(custom_css='', custom_js=''):
     {html_mathjax}
     {scss}
     {custom_css}
-    {PAGE_CSS}
+    {PAGE_EXTRA_CSS}
     {js}
     {custom_js}
     </head>
     """
     return head
+
+
+def page_css():
+    """Return a page's CSS."""
+    css = sass.compile(filename=PATH_SCSS)
+    return css
+
+
+def page_js():
+    """Return a page's javascript."""
+    # Javascript files to embed
+    js_files = [
+        "dom-update.js",
+        "documentSelectors.js",
+        "copy-button.js",
+        "hide-cell.js",
+        "anchors.js",
+        "tocbot.js"
+    ]
+
+    js = []
+    for js_file in js_files:
+        with open(op.join(PATH_JS, js_file), "r") as ff:
+            js += ff.readlines()
+
+    js = "\n".join(js)
+    return js
+
+
+def _check_cell_tags(ntbk):
+    """Perform some checks on cell tags to make sure they're correct."""
+    for cell in ntbk.cells:
+        tags = cell['metadata'].get('tags', [])
+        if cell['cell_type'] == "markdown":
+            if 'hide_input' in tags:
+                raise ValueError("Found a `hide_input` tag in a markdown cell. Hiding markdown "
+                                 "is not currently implemented. To hide markdown content, you should "
+                                 "use `remove_cell`.")

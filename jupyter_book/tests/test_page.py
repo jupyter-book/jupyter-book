@@ -4,6 +4,7 @@ import os.path as op
 import jupytext as jpt
 
 from jupyter_book.page import page_html, write_page
+from jupyter_book.utils import load_ntbk
 
 this_folder = op.dirname(__file__)
 
@@ -58,3 +59,9 @@ def test_page_standalone(tmpdir):
     assert "<!DOCTYPE html>" in html
     assert custom_css in html
     assert custom_js in html
+
+
+def test_load_ntbk():
+    path_ipynb = op.join(this_folder, 'site', 'content', 'tests', 'markdown.md')
+    ntbk = load_ntbk(path_ipynb)
+    assert 'testing: yaml' in ntbk.metadata['yaml_header']

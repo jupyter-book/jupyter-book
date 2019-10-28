@@ -1,5 +1,4 @@
 """Create a new book template."""
-from subprocess import run
 import sys
 import os
 import os.path as op
@@ -7,6 +6,7 @@ import shutil as sh
 from ruamel.yaml import YAML
 
 from .utils import print_message_box
+from .toc import build_toc
 from . import __version__
 
 TEMPLATE_PATH = op.join(op.dirname(__file__), 'book_template')
@@ -64,8 +64,8 @@ def update_config(path_to_config, new_config):
         yaml.dump(data, ff)
 
 
-def new_book(path_out, content_folder, toc,
-             license, custom_css=None, custom_js=None, config=None,
+def new_book(path_out, content_folder, toc=None,
+             license=None, custom_css=None, custom_js=None, config=None,
              extra_files=None, demo=False, verbose=True,
              overwrite=None):
     """Create a new Jupyter Book.
@@ -131,10 +131,8 @@ def new_book(path_out, content_folder, toc,
         sh.copytree(op.join(TEMPLATE_PATH, 'content'),
                     op.join(path_out, 'content'))
 
-        # Remove some files/folders that may confuse users
-        files_to_remove = ['Gemfile.lock']
-        for ifile in files_to_remove:
-            os.remove(op.join(path_out, ifile))
+        # Remove extra files we don't want
+        _remove_extra_files(path_out)
 
         message = [
             "- You've chosen to copy over the demo Jupyter Book. This"
@@ -167,7 +165,9 @@ def new_book(path_out, content_folder, toc,
 
     # Copy over TOC file
     if toc is None:
-        run(['jupyter-book', 'toc', path_out, '--quiet', '--overwrite'], check=True)
+        toc = build_toc(content_folder)
+        with open(op.join(path_out, '_data', 'toc.yml'), 'w') as ff:
+            ff.write(toc)
         notes.append(("- Check your Table of Contents file (`_data/toc.yml`). Because you specified a content foler\n"
                       "  but no Table of Conents (`--toc`), we auto-generated a TOC file file using folder and file\n"
                       "  names. You should check its contents and clean it up so that it has the structure you want!\n"))
@@ -254,6 +254,9 @@ def new_book(path_out, content_folder, toc,
                 # Copy the file to the root of the out path directly
                 sh.copy2(ipath, op.join(path_out, op.basename(ipath)))
 
+    # Remove extra files we don't want
+    _remove_extra_files(path_out)
+
     # Cleanup messages
     if verbose:
         print_message_box(_final_message(path_out, notes))
@@ -335,3 +338,11 @@ def upgrade_book(path_book):
                            "content may by in {} if the upgrade got far enough\n"
                            "you can investigate this folder, or delete it if you'd like.\n\n"
                            "Here is the error:\n\n    {}".format(path_book_new, ex)))
+
+
+def _remove_extra_files(path_out):
+    """Remove some extra files we don't want in a created book."""
+    # Remove some files/folders that may confuse users
+    files_to_remove = ['Gemfile.lock']
+    for ifile in files_to_remove:
+        os.remove(op.join(path_out, ifile))

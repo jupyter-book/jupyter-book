@@ -18,8 +18,9 @@ def test_toc():
         # License file is skipped
         assert "LICENSE.md" not in yaml
 
-        # Line breaks and page title works
-        assert "Simple Notebook" in yaml
-
         # Links to nested folder work
         assert "tests/features" in yaml
+
+        # Make sure the extensions are removed
+        assert ".ipynb" not in yaml
+        assert ".md" not in yaml

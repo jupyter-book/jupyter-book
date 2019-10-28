@@ -1,4 +1,4 @@
-# Building and publishing your book
+# Build HTML for each page of your book
 
 Once you've added content and configured your book, it's time to
 build the HTML for each **page** of your book. We'll use the
@@ -22,7 +22,7 @@ the HTML for each page of your book.
 
 Do so by running the following command:
 
-```
+```bash
 jupyter-book build mybookname/
 ```
 
@@ -46,49 +46,7 @@ force Jupyter Book to re-build a particular page, you can either edit the
 corresponding file in the `content/` folder, or delete that page's HTML
 in the `_build/` folder.
 
-## Create an *online* repository for your book
-
-You've created your book on your own computer, but you haven't yet added it
-online. This section covers the steps to create your own GitHub repository,
-and to add your book's content to it. In this case, we'll use GitHub-Pages
-to build the HTML for your book. However, you can also build the book's HTML
-manually. Both will be covered in [building and publishing your book](04_publish.html).
-
-1. First, log-in to GitHub, then go to the "create a new repository" page:
-
-   https://github.com/new
-
-2. Next, add a name and description for your book. You can choose whatever
-   initialization you'd like.
-
-3. Now, clone the empty repository to your computer:
-
-   ```bash
-   git clone https://github.com/<my-org>/<my-book-name>
-   ```
-
-4. Copy all of your book files and folders (what was created when you ran `jupyter-book create mybook`)
-   into the new repository. For example, if you created your book locally with `jupyter-book create mylocalbook`
-   and your online repository is called `myonlinebook`, the command would be:
-
-   ```bash
-   cp -r mylocalbook/* myonlinebook/
-   ```
-
-   This will copy over the local book files into the online book folder.
-
-5. Commit the new files to the repository in `myonlinebook/`:
-
-   ```bash
-   cd myonlinebook
-   git add ./*
-   git commit -m "adding my first book!"
-   git push
-   ```
-
-That's it!
-
-## Next step: build your book
+## Next step: build and publish your book
 
 Now that you've created the HTML for each page of your book, it's time
 to stitch them together into a book. That's covered in the next section.

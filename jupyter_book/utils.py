@@ -10,6 +10,8 @@ from collections import Counter
 from string import ascii_lowercase
 from tqdm import tqdm
 import nbformat as nbf
+import jupytext as jpt
+from nbformat.v4.nbbase import new_markdown_cell, new_notebook
 from .page import run_ntbk
 
 from . import __version__
@@ -220,3 +222,49 @@ def _content_to_words(content, max_words=100):
     counts = Counter(new_words)
     out_words = [iword[0] for iword in counts.most_common()[:max_words]]
     return out_words
+  
+
+def load_ntbk(path_ntbk):
+    """Load a notebook from a text or ipynb file, reading out YAML header as needed.
+
+    Parameters
+    ----------
+    path_ntbk : string
+        Path to an ipynb file or a text file.
+
+    Returns
+    -------
+    ntbk : instance of NotebookNode
+        A Jupyter Notebook created from `path_ntbk`. If `path_ntbk` is an ipynb
+        file, this will simply read it in. If a text file, then Jupytext will
+        be used to read in the file. If Jupytext metadata is not found, then
+        the content of `path_ntbk` will be read into a single markdown cell
+        in the notebook.
+
+    yaml_extra : list of yaml metadata
+        If any YAML metadata is found as a header in `path_ntbk`, it will be
+        collected and returned in this object.
+    """
+    # Read in the notebook with Jupytext
+    ntbk = jpt.read(path_ntbk)
+    suff = op.splitext(path_ntbk)[-1]
+
+    # If the first cell has YAML metadata we'll convert it into notebook metadata
+    if ntbk.cells[0].source.startswith('---') and ntbk.cells[0].source.endswith('---'):
+        yaml_extra = ntbk.cells.pop(0).source.replace('---', '').strip()
+    else:
+        yaml_extra = None
+
+    # If the file was markdown and didn't have any jupytext frontmatter
+    # Just add in the raw source
+    if not _is_jupytext_file(ntbk) and suff in ['.md', 'markdown']:
+        # Recover the Markdown content
+        md = jpt.writes(ntbk, 'md')
+        # Replace the notebook with a new one, made of just one Markdown cell
+        ntbk = new_notebook(cells=[new_markdown_cell(md)])
+
+    # Add the extra YAML header info if it's there
+    if yaml_extra:
+        ntbk.metadata['yaml_header'] = yaml_extra
+
+    return ntbk

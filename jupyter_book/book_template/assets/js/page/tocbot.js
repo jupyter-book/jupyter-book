@@ -1,7 +1,7 @@
 const initToc = () => {
   if (window.tocbot === undefined) {
-    setTimeout(initToc, 250)
-    return
+    setTimeout(initToc, 250);
+    return;
   }
 
   // Check whether we have any sidebar content. If not, then show the sidebar earlier.
@@ -19,8 +19,12 @@ const initToc = () => {
     orderedList: false,
     collapseDepth: 6,
     listClass: 'toc__menu',
-    activeListItemClass: "",  // Not using
-    activeLinkClass: "", // Not using
+    activeListItemClass: " ",  // Not using, can't be empty
+    activeLinkClass: " ", // Not using, can't be empty
   });
+
+  // Disable Turbolinks for TOC links
+  document.querySelectorAll('.toc-list-item a')
+    .forEach(it => it.dataset['turbolinks'] = false);
 }
 initFunction(initToc);

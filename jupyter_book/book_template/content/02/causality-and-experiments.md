@@ -1,5 +1,4 @@
-Causality and Experiments
-======================
+# Causality and Experiments
 
 *"These problems are, and will probably ever remain, among the inscrutable
 secrets of nature. They belong to a class of questions radically inaccessible to

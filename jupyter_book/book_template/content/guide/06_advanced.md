@@ -1,3 +1,5 @@
+# Advanced topics and how-tos
+
 This page contains more advanced and complete information about the
 [`jupyter-book` repository](https://github.com/jupyter/jupyter-book). See the sections below.
 
@@ -54,7 +56,7 @@ Jupyter Book has a convenience function to automatically create this file
 using the alpha-numeric sorting of the file/folder names in your content folder.
 To use it, simply use the following command:
 
-```
+```bash
 jupyter-book toc path/to/mybook
 ```
 
@@ -67,7 +69,7 @@ By default, running this command will print the TOC YAML to the screen.
 If you'd like to overwrite your `_data/toc.yml` file with the result of
 running this command, you can use the `--path-output` argument like so
 
-```
+```bash
 jupyter-book toc path/to/mybook --path-output path/to/mybook/_data/toc.yml
 ```
 
@@ -131,7 +133,7 @@ as you like.
 
 Below is all of the possible fields in the entry of a single page in `toc.yml`:
 
-```
+```yaml
 - title: mytitle   # Title of chapter or section
   url: /myurl  # URL of section relative to the /content/ folder.
   not_numbered: true  # if the section shouldn't have a number in the sidebar
@@ -146,7 +148,7 @@ Below is all of the possible fields in the entry of a single page in `toc.yml`:
 To add an external link in your TOC, simply make the url point to a fully-resolved
 URL and add the `external: true` field. Here's an example:
 
-```
+```yaml
 - title: Jupyter Homepage   # Title of chapter or section
   url: https://jupyter.org  # URL of external site
   external: true
@@ -157,7 +159,7 @@ URL and add the `external: true` field. Here's an example:
 These are special entries that will trigger different behavior if they are
 in the `toc.yml` file:
 
-```
+```yaml
 - search: true  # Will provide a link to a search page
 - divider: true  # Will insert a divider in the sidebar
 - header: My Header  # Will insert a header with no link in the sidebar
