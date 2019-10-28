@@ -271,6 +271,9 @@ def test_notebook(tmpdir):
         lines = ff.readlines()
     assert is_in(lines, '<img src="images/simple_notebook_2_0.png"')
 
+    # Make sure the most common words at at the beginning of search
+    assert is_in(lines, "search: commonword lesscommonword")
+
     ###########################################
     # Testing markdown file conversion
 
