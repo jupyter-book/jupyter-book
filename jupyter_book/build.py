@@ -319,7 +319,7 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         # Add interactive kernel info if the page is executable
         if chosen_suff == ".ipynb":
             interact_path = path_page_rel_content_folder.replace(os.sep, '/')
-            kernel_path = '/'.join(interact_path.split('/')[:-1])
+            kernel_path = op.dirname(interact_path)
             yaml_fm += ['interact_link: {}'.format(interact_path)]
             yaml_fm += ["kernel_name: {}".format(kernel_name)]
             yaml_fm += ['kernel_path: {}'.format(kernel_path)]
