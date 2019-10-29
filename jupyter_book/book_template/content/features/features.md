@@ -1,3 +1,6 @@
+---
+test_yaml_frontmatter: true
+---
 # Features
 
 This is a short demonstration textbook to show the general layout / style of textbooks built

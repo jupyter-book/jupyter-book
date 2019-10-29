@@ -1,0 +1,5 @@
+[build]
+  command = "gem install bundler -v '2.0.2' && pip install -U git+https://github.com/jupyter/jupyter-book && jupyter-book build ./ --overwrite && jupyter-book page ./content/features/notebooks.ipynb -o _build && bundle exec jekyll build"
+
+[context.deploy-preview]
+  command = "gem install bundler -v '2.0.2' && pip install -e ../../ && jupyter-book build ./ --overwrite && jupyter-book page ./content/features/notebooks.ipynb -o _build && bundle exec jekyll build"

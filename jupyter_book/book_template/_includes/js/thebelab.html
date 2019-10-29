@@ -20,7 +20,7 @@
       }
     }
 </script>
-<script src="https://unpkg.com/thebelab@0.4.0/lib/index.js"></script>
+<script src="https://unpkg.com/thebelab@0.4.0/lib/index.js" async></script>
 <script>
     /**
      * Add attributes to Thebelab blocks
@@ -85,6 +85,13 @@
             const outputs = document.querySelectorAll('.output *, .output')
             outputs.forEach((output, index) => {
                 output.remove();
+            });
+
+            // Find any cells with an initialization tag and ask ThebeLab to run them when ready
+            var thebeInitCells = document.querySelectorAll('div.tag_thebelab-init');
+            thebeInitCells.forEach((cell) => {
+                console.log("Initializing ThebeLab with cell: " + cell.id);
+                cell.querySelector('.thebelab-run-button').click();
             });
         }
 

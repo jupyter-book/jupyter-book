@@ -1,8 +1,11 @@
 pytest
 ruamel.yaml
-tqdm
-numpy
 pyyaml
-nbformat
-nbclean
+libsass
+tqdm
 setuptools
+jupytext
+nbformat
+nbconvert
+jupyter_client
+ipykernel

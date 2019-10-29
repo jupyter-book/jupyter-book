@@ -5,7 +5,7 @@
  * [2] Sidebar toggling
  * [3] Sidebar scroll preserving
  * [4] Keyboard navigation
- * [5] Right sidebar scroll highlighting
+ * [5] Right sidebar scroll highlighting / navbar show
  */
 
 const togglerId = 'js-sidebar-toggle'
@@ -51,7 +51,7 @@ const toggleSidebar = () => {
  * _sass/inuitcss/tools/_tools.mq.scss
  *
  */
-const autoCloseSidebarBreakpoint = 740
+const autoCloseSidebarBreakpoint = 769
 
 // Set up event listener for sidebar toggle button
 const sidebarButtonHandler = () => {
@@ -127,24 +127,64 @@ const initListener = () => {
 initFunction(initListener);
 
 /**
- * [5] Right sidebar scroll highlighting
+ * [5] Scrolling functions:
+ *   * Right sidebar scroll highlighting
+ *   * Top navbar hiding for scrolling
  */
 
-highlightRightSidebar = function() {
-  var position = document.querySelector('.c-textbook__page').scrollTop;
-  position = position + (window.innerHeight / 4);  // + Manual offset
+var didScroll;
 
-  // Highlight the "active" menu item
-  document.querySelectorAll('.c-textbook__content h2, .c-textbook__content h3').forEach((header, index) => {
-      var target = header.offsetTop;
+initScrollFunc = function() {
+  var content = document.querySelector('.c-textbook__page');
+  var topbar = document.getElementById("top-navbar");
+  var prevScrollpos = content.scrollTop; // Initializing
+
+  scrollFunc = function() {
+    // This is the function that does all the stuff when scrolling happens
+
+    var position = content.scrollTop; // Because we use this differently for sidebar
+
+    // Decide to show the navbar
+    var currentScrollPos = content.scrollTop;
+    var delta = 10;
+    var scrollDiff = prevScrollpos - currentScrollPos;
+    if (scrollDiff >= delta) {
+      // If we scrolled down, consider showing the menu
+      topbar.classList.remove("hidetop")
+    } else if (Math.abs(scrollDiff) >= delta) {
+      // If we scrolled up, consider hiding the menu
+      topbar.classList.add("hidetop")
+    } else {
+      // Do nothing because we didn't scroll enough
+    }
+    prevScrollpos = currentScrollPos;
+
+    // Highlight the right sidebar section
+    position = position + (window.innerHeight / 4);  // + Manual offset
+
+    content.querySelectorAll('h2, h3').forEach((header, index) => {
+      // Highlight based on location from the top of the screen
+      var target = header.getBoundingClientRect().top
+      var pixelOffset = 300;  // Number of pixels from top to be highlighted
       var id = header.id;
-      if (position >= target) {
+      if (target < pixelOffset) {
         var query = 'ul.toc__menu a[href="#' + id + '"]';
         document.querySelectorAll('ul.toc__menu li').forEach((item) => {item.classList.remove('active')});
         document.querySelectorAll(query).forEach((item) => {item.parentElement.classList.add('active')});
-    }
-  });
-  document.querySelector('.c-textbook__page').addEventListener('scroll', highlightRightSidebar);
-};
+      }
+    });
+  }
 
-initFunction(highlightRightSidebar);
+  // Our event listener just sets "yep, I scrolled" to true.
+  // The interval function will set it to false after it runs.
+  content.addEventListener('scroll', () => {didScroll = true;});
+  scrollWait = 250;
+  setInterval(() => {
+    if (didScroll) {
+      scrollFunc();
+      didScroll = false;
+    }
+  }, scrollWait)
+}
+
+initFunction(initScrollFunc);

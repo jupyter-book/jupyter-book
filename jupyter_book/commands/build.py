@@ -3,19 +3,16 @@ import os.path as op
 
 import argparse
 
-from jupyter_book.build import build_book
+from ..build import build_book
 
-DESCRIPTION = ("Convert a collection of Jupyter Notebooks into Jekyll "
-               "markdown suitable for a course textbook.")
+DESCRIPTION = ("Convert a collection of Jupyter Notebooks into HTML "
+               "suitable for a course textbook.")
 
 
 def build():
     parser = argparse.ArgumentParser(description=DESCRIPTION)
     parser.add_argument(
         "path_book", help="Path to the root of the book repository.")
-    parser.add_argument("--template", default=None,
-                        help="Path to the template nbconvert uses"
-                             " to build markdown files")
     parser.add_argument("--config", default=None,
                         help="Path to the Jekyll configuration file")
     parser.add_argument("--toc", default=None,
@@ -23,10 +20,12 @@ def build():
     parser.add_argument("--overwrite", action='store_true',
                         help="Overwrite md files if they already exist.")
     parser.add_argument("--execute", action='store_true',
-                        help="Execute notebooks before converting to MD.")
+                        help="Execute notebooks before converting them.")
     parser.add_argument("--local-build", action='store_true',
                         help="Specify you are building site locally"
                              " for later upload.")
+    parser.add_argument("--clear-output", action='store_true',
+                        help="Clear existing outputs from notebooks")
     parser.set_defaults(overwrite=False, execute=False)
 
     ###############################################
@@ -43,10 +42,9 @@ def build():
         PATH_BOOK, '_data', 'toc.yml')
     CONFIG_FILE = args.config if args.config is not None else op.join(
         PATH_BOOK, '_config.yml')
-    PATH_TEMPLATE = args.template if args.template is not None else op.join(
-        PATH_BOOK, 'scripts', 'templates', 'jekyllmd.tpl')
 
     local_build = args.local_build
+    clear_output = args.clear_output
 
     build_book(PATH_BOOK, PATH_TOC_YAML, CONFIG_FILE,
-               PATH_TEMPLATE, local_build, execute, overwrite)
+               local_build=local_build, execute=execute, overwrite=overwrite, clear_output=clear_output)

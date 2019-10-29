@@ -1,3 +1,7 @@
+---
+testing: yaml
+---
+
 # Creating course content
 
 The two kinds of files that contain course content are:
@@ -22,6 +26,14 @@ of a line.
 
 This section is here purely to demonstrate the third-level header of the
 rendered page!
+
+### Some Python
+
+Here's some python code that should *not* be executed because this is not a Jupytext md file.
+
+```python
+print('2+2 is %s' % (2 + 2))
+```
 
 ## Embedding media
 

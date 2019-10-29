@@ -5,7 +5,6 @@ import shutil as sh
 from ruamel.yaml import YAML
 import pytest
 
-from jupyter_book.utils import _split_yaml
 from jupyter_book.create import new_book
 
 
@@ -42,7 +41,9 @@ def test_round_trip(tmpdir):
              config=path_config, toc=path_toc, content_folder=path_content,
              custom_js=path_js, custom_css=path_css,
              extra_files=[op.join(path_test_book, 'foo', 'baz.txt'),
-                          op.join(path_test_book, 'foo', 'you')],
+                          op.join(path_test_book, 'foo', 'you'),
+                          op.join(path_test_book, "requirements.txt"),
+                          op.join(path_test_book, "_bibliography")],
              license=path_license)
 
     # Table of contents
@@ -125,7 +126,6 @@ def test_config_update(tmpdir):
 
 def test_upgrade(tmpdir):
     path_build_test = op.join(tmpdir.dirpath(), 'tmp_test', 'test')
-
     # Change the contents of a file in test to see if it is updated
     with open(op.join(path_build_test, 'assets', 'css', 'styles.scss'), 'w') as ff:
         ff.write("RANDOMTEXT")
@@ -137,6 +137,16 @@ def test_upgrade(tmpdir):
         text = ff.read()
         assert "RANDOMTEXT" not in text
 
+    # Make sure the requirements file was copied over properly
+    with open(op.join(path_build_test, 'requirements.txt'), 'r') as ff:
+        text = ff.read()
+        assert "mytestrequirement" in text
+
+    # Make sure the bibliography file was copied over properly
+    with open(op.join(path_build_test, '_bibliography', 'references.bib'), 'r') as ff:
+        text = ff.read()
+        assert "my_references" in text
+
 ########################################################################################################
 # Building the book after the book is created
 ########################################################################################################
@@ -145,11 +155,12 @@ def test_upgrade(tmpdir):
 # Helper funcs
 
 
-def is_in(lines, check):
-    is_in = False
+def is_in(lines, check, count=None):
+    is_in = 0
     for line in lines:
         if check in line:
-            is_in = True
+            is_in += 1
+    is_in = is_in > 0 if count is None else is_in == count
     return is_in
 
 
@@ -190,24 +201,43 @@ def test_build(tmpdir):
     cmd = ["jupyter-book", 'build', path_build_test]
     run(cmd, check=True)
 
+    # Make sure a config with incorrect version raises an error
+    path_config_built = op.join(path_build_test, "_config.yml")
+    # Read in our built config and update the version so it's a mismatch
+    with open(path_config_built, 'r') as ff:
+        config = yaml.load(ff)
+        # Store the old version so we can re-use it later
+        old_version = config['jupyter_book_version']
+        config['jupyter_book_version'] = 999.999
+
+    with open(path_config_built, 'w') as ff:
+        yaml.dump(config, ff)
+
+    # Now use the new config to build the book and it should error
+    with pytest.raises(CalledProcessError):
+        cmd = ["jupyter-book", 'build', path_build_test]
+        run(cmd, check=True)
+
+    # Finally we'll re-update the config so that it has the the right version again
+    config['jupyter_book_version'] = old_version
+    with open(path_config_built, 'w') as ff:
+        yaml.dump(config, ff)
+
 
 def test_notebook(tmpdir):
     path_build_test = op.join(tmpdir.dirpath(), 'tmp_test', 'test')
-    with open(op.join(path_build_test, '_build', 'tests', 'notebooks.md'), 'r') as ff:
+    with open(op.join(path_build_test, '_build', 'tests', 'notebooks.html'), 'r') as ff:
         lines = ff.readlines()
 
-    # Escaping characters get doubled
-    assert is_in(lines, "\\\\$Escape \\\\$your \\\\$dollar signs!")
+    # Notebook-converted images work (not checking number in case cell count changes)
+    assert is_in(lines, "../images/tests/notebooks_")
 
-    # Notebook-converted images work
-    assert is_in(lines, "../images/tests/notebooks_2_0.png")
-
-    # Jekyll markdown classes are there
+    # Input area classes are there
     assert is_in(lines, 'class="input_area')
 
     # Cell hiding etc works
-    assert is_in(lines, 'hidecode')
-    assert is_in(lines, 'removed')
+    assert is_in(lines, 'class="jb_cell tag_hide_input')
+    assert not is_in(lines, 'none of this should show up in the textbook')
 
     # Static files are copied over
     assert op.exists(op.join(path_build_test, '_build', 'tests', 'cool.jpg'))
@@ -218,47 +248,65 @@ def test_notebook(tmpdir):
     # No interactive outputs
     assert is_in(lines, "has_widgets: false")
 
-    # Testing external link
-    assert is_in(lines, "url: https://github.com")
+    # Interact links are there
+    assert is_in(lines, "interact_link:")
+
+    # Testing external link being excluded from "next page"
+    assert not is_in(lines, "url: https://github.com")
+
+    # popout tag is inserted properly
+    assert is_in(lines, 'class="jb_cell tag_popout"', 1)
 
     ###########################################
     # Testing interactive features
 
-    with open(op.join(path_build_test, '_build', 'tests', 'interactive.md'), 'r') as ff:
+    with open(op.join(path_build_test, '_build', 'tests', 'interactive.html'), 'r') as ff:
         lines = ff.readlines()
 
     assert is_in(lines, "has_widgets: true")
 
     ###########################################
     # Testing notebook image paths etc
-    with open(op.join(path_build_test, '_build', 'simple_notebook.md'), 'r') as ff:
+    with open(op.join(path_build_test, '_build', 'simple_notebook.html'), 'r') as ff:
         lines = ff.readlines()
-    assert is_in(lines, "![png](images/simple_notebook_2_0.png)")
+    assert is_in(lines, '<img src="images/simple_notebook_2_0.png"')
+
+    # Make sure the most common words at at the beginning of search
+    assert is_in(lines, "search: commonword lesscommonword")
+
+    ###########################################
+    # Testing markdown file conversion
+
+    with open(op.join(path_build_test, '_build', 'tests', 'markdown.html'), 'r') as ff:
+        lines = ff.readlines()
+
+    assert not is_in(lines, 'interact_link: ')
 
 
-def test_split_yaml(tmpdir):
+def test_titles(tmpdir):
     path_build_test = op.join(tmpdir.dirpath(), 'tmp_test', 'test')
-    with open(op.join(path_build_test, '_build', 'tests', 'features.md'), 'r') as ff:
+    titles = [
+        ("/titles/title_filename", "Title Filename"),
+        ("/titles/title_heading", "My Heading Title"),
+        ("/titles/title_toc", "My TOC Title")
+    ]
+    for ipath, ititle in titles:
+        ipath = ipath.lstrip('/') + '.html'
+        with open(op.join(path_build_test, '_build', ipath), 'r') as ff:
+            lines = ff.readlines()
+        assert is_in(lines, f'{ititle}\n')
+
+        if "title_heading" in ipath:
+            assert not is_in(lines, '<h1 id="My-Heading-Title">')
+
+
+def test_extra_yaml(tmpdir):
+    path_build_test = op.join(tmpdir.dirpath(), 'tmp_test', 'test')
+    with open(op.join(path_build_test, '_build', 'tests', 'features.html'), 'r') as ff:
         lines = ff.readlines()
 
     # Make sure the yaml remains in the file
     assert is_in(lines, "yaml_frontmatter: true")
-
-    # Edgecases etc on the splitter function
-    assert _split_yaml([]) == ([], [])
-    assert _split_yaml(['foo\n', 'bar\n']) == ([], ['foo\n', 'bar\n'])
-    assert _split_yaml(['---\n', 'foo\n', 'bar\n']) == ([],
-                                                        ['---\n', 'foo\n', 'bar\n'])
-    exp = ['---\n', 'foo\n', '---\n']
-    assert _split_yaml(exp) == (['foo\n'], [])
-    assert (_split_yaml(['---\n', 'foo\n', '---\n', 'baz\n', 'barf\n']) ==
-            (['foo\n'], ['baz\n', 'barf\n']))
-    assert (_split_yaml(['---\n', 'foo\n', 'bar\n', '---\n', 'baz\n', 'barf\n']) ==
-            (['foo\n', 'bar\n'], ['baz\n', 'barf\n']))
-    assert (_split_yaml(['\n', '\n', '---\n', 'foo\n', '---\n', 'baz\n', 'barf\n']) ==
-            (['foo\n'], ['baz\n', 'barf\n']))
-    assert (_split_yaml(['   \n', ' \n', '---\n', 'foo\n', '---\n', 'baz\n', 'barf\n']) ==
-            (['foo\n'], ['baz\n', 'barf\n']))
 
 
 def test_notebook_update(tmpdir):
@@ -266,7 +314,7 @@ def test_notebook_update(tmpdir):
     cmd = ["jupyter-book", 'build', path_build_test]
 
     source_file = op.join(path_build_test, 'content', 'tests', 'features.md')
-    target_file = op.join(path_build_test, '_build', 'tests', 'features.md')
+    target_file = op.join(path_build_test, '_build', 'tests', 'features.html')
     source_text = 'https://'
     target_text = 'www.'
 

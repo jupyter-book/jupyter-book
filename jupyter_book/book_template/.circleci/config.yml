@@ -1,0 +1,138 @@
+# NOTE: This is an example CircleCI configuration that
+# will build your book and preview its HTML content.
+# You will probably have to modify it in order to get it working
+# just the way you want. See https://jupyterbook.org/advanced/circleci.html
+# for more information
+version: 2.1
+
+# Commands are snippets of configuration we can re-use
+commands:
+  copy_built_files:
+    description: "Copy the build site files so we can build the HTML"
+    steps:
+      # Grab the the built markdown from the last step
+      - run:
+          name: Copy over built site files
+          command: |
+            rm -rf _build
+            cp -r /tmp/workspace/_build .
+
+# Jobs define the actual code that CircleCI runs
+jobs:
+  build_page_files:
+    docker:
+      - image: circleci/python:3.6-stretch
+    steps:
+      # Get our data and merge with upstream
+      - checkout
+
+      # Install the packages needed to build our documentation
+      # This will depend on your particular package!
+      - run: pip install --user -r requirements.txt
+
+      # Build the page intermediate HTML files
+      - run:
+          name: Build page intermediate HTML files
+          command: jupyter-book build .
+
+      # Persist the specified paths (see https://circleci.com/docs/2.0/workflows/#using-workspaces-to-share-data-among-jobs)
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./_build/
+
+  # Build the site to store artifacts
+  html_demo:
+    docker:
+      - image: circleci/ruby:2.6
+    steps:
+      - checkout
+
+      # Attach the workspace that contains the files from our Python step
+      - attach_workspace:
+          at: /tmp/workspace
+
+      # Copy over the built page files
+      - copy_built_files
+
+      # Build the site's HTML w/ the base_url for CircleCI artifacts
+      - run:
+          name: Install Bundler and Jekyll, then build the book
+          command: |
+            gem install bundler
+            bundle install
+            bundle exec jekyll build --baseurl /0/html/
+
+      # Tell Circle to store the documentation output in a folder we can access later
+      - store_artifacts:
+          path: _site/
+          destination: html
+
+  # Finally, push the HTML to the gh-pages branch
+  html_live:
+    docker:
+      - image: circleci/ruby:2.6
+    steps:
+      - checkout
+
+      # Attach the workspace that contains the files from our Python step
+      - attach_workspace:
+          at: /tmp/workspace
+
+      # Copy over the built page files
+      - copy_built_files
+
+      # Install the ghp-import tool which we'll use to push the files
+      - run:
+          name: "Install ghp-import"
+          command: |
+            export PATH=$PATH:/home/circleci/.local/bin
+            curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+            python get-pip.py --user
+            pip install -U ghp-import --user
+
+      # Tell CircleCI to use the SSH key we've set up with permissions to push to our repo
+      - add_ssh_keys:
+          fingerprints:
+            # The SSH key fingerprint
+            - "4e:f9:a5:62:b0:62:f5:d4:7d:f2:52:0a:53:c9:d6:39"
+
+      # Build the site's HTML using the base_url defined in the *book's* configuration
+      - run:
+          name: Install Bundler and Jekyll, then build the book
+          command: |
+            gem install bundler
+            bundle install
+            bundle exec jekyll build
+
+      # Push the `_site` folder to our gh-pages branch for it to go live
+      - run:
+          name: Push site to gh-pages
+          command: |
+            export PATH=$PATH:/home/circleci/.local/bin
+            ghp-import -p -n -f _site
+
+
+# These workflows define how the jobs above will run. In our case, we
+# want the Ruby jobs to run *after* the Python job has finished so that
+# they can use the outputs from the Python page build step.
+workflows:
+  version: 2
+  default:
+    jobs:
+      # First we build the pages
+      - build_page_files
+
+      # Then we build the book HTML to preview
+      - html_demo:
+          requires:
+            - build_page_files
+
+      # If we're on master branch, also push the HTML live
+      - html_live:
+          requires:
+            - build_page_files
+          filters:
+            branches:
+              only:
+                - master

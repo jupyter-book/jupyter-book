@@ -22,26 +22,31 @@ email: choldgraf@berkeley.edu
 description: >- # this means to ignore newlines until "baseurl:"
   This is an example book built with Jupyter Books.
 
-baseurl: "/jupyter-book" # the subpath of your site, e.g. /blog. If there is no subpath for your site, use an empty string ""
-url: "https://jupyter.org" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "" # the subpath of your site, e.g. /blog. If there is no subpath for your site, use an empty string ""
+url: "https://jupyterbook.org" # the base hostname & protocol for your site, e.g. http://example.com
 
 
 #######################################################################################
 # Jupyter Book settings
 
-# Notebook content settings
-use_hide_code_button      : true  # If True, a small button appears to the right of each cell that lets you hide its contents.
+# Main page settings
+footer_text               : This page was created by <a href="https://github.com/jupyter/jupyter-book/graphs/contributors">The Jupyter Book Community</a>
 
 # Sidebar settings
 show_sidebar              : true  # Show the sidebar. Only set to false if your only wish to host a single page.
 collapse_inactive_chapters: true  # Whether to collapse the inactive chapters in the sidebar
-textbook_logo             : images/logo/logo.png  # A logo to be displayed at the top of your textbook sidebar
-textbook_logo_link        : https://jupyter.org/jupyter-book/intro.html  # A link for the logo.
-sidebar_footer_text       : 'Powered by <a href="https://github.com/jupyter/jupyter-book">Jupyter Book</a>'
+textbook_logo             : images/logo/logo.png  # A logo to be displayed at the top of your textbook sidebar. Should be square
+textbook_logo_link        : https://jupyterbook.org/intro.html  # A link for the logo.
+sidebar_footer_text       : 'Powered by <a href="https://jupyterbook.org">Jupyter Book</a>'
 number_toc_chapters       : true  # Whether to add numbers to chapterse in your Table of Contents. If true, you can control this at the Chapter level in _data/toc.yml
 
 # Search settings
 search_max_words_in_content : 100  # In the search function, use at most this many words (too many words will make search slow)
+
+# Controlling page information
+page_titles                    : infer  # Either `None`, `infer`, or `toc`
+page_authors                   : None  # Either `None` or `infer`
+filename_title_split_character : '_'  # If inferring titles based on filename, splt on this character.
 
 #######################################################################################
 # Interact link settings
@@ -74,6 +79,7 @@ use_show_widgets_button              : true  # If 'true', display a button to al
 # Download settings
 use_download_button              : true  # If 'true', display a button to download a zip file for the notebook
 download_button_text             : "Download" # The text that download buttons will contain
+download_page_header             : "Made with Jupyter Book" # A header that will be displayed at the top of and PDF-printed page
 
 #######################################################################################
 # Jupyter book extensions and additional features
@@ -87,7 +93,7 @@ scholar:
 
 # Navigate to https://analytics.google.com, add a new property for your jupyter book and copy the tracking id here.
 google_analytics:
-  mytrackingcode:
+  mytrackingcode: UA-52617120-7
 
 #######################################################################################
 # Jupyter book settings you probably don't need to change
@@ -111,6 +117,7 @@ defaults:
       toc: true
       toc_label: "  On this page"
       toc_icon: "list-ul"
+      excerpt: ''
 
 favicon_path: "images/logo/favicon.ico"
 
@@ -146,4 +153,4 @@ plugins:
   - jekyll-scholar
 
 # Jupyter Book version - DO NOT CHANGE THIS. It is generated when a new book is created
-jupyter_book_version: INSERT
+jupyter_book_version: "0.6.4dev0"

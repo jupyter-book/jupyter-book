@@ -9,6 +9,7 @@ template_files = glob(
     op.join('jupyter_book', 'book_template', '**', '*'), recursive=True)
 template_files += glob(op.join('jupyter_book', 'minimal',
                                '**', '*'), recursive=True)
+template_files += glob(op.join('jupyter_book', 'page', 'templates', '*.tpl'))
 template_files = [ii.replace('jupyter_book' + os.sep, '', 1)
                   for ii in template_files]
 PACKAGE_DATA = {"jupyter_book": template_files}
@@ -22,20 +23,23 @@ setup(
     name='jupyter-book',
     version=__version__,
     install_requires=install_packages,
-    python_requires='>=3.4',
+    include_package_data=True,
+    python_requires='>=3.6',
     author='Project Jupyter Contributors',
     author_email='jupyter@googlegroups.com',
-    url='https://jupyter.org/jupyter-book/',
+    url='https://jupyterbook.org/',
     project_urls={
-        'Documentation': 'https://jupyter.org/jupyter-book',
+        'Documentation': 'https://jupyterbook.org',
         'Funding': 'https://jupyter.org/about',
         'Source': 'https://github.com/jupyter/jupyter-book/',
         'Tracker': 'https://github.com/jupyter/jupyter-book/issues',
     },
     # this should be a whitespace separated string of keywords, not a list
     keywords="reproducible science environments scholarship notebook",
-    description="Jupyter Books: Create an online book with Jupyter Notebooks"
+    description="Jupyter Book: Create an online book with Jupyter Notebooks"
                 " and Jekyll",
+    long_description=open('./README.md', 'r').read(),
+    long_description_content_type='text/markdown',
     license='BSD',
     packages=find_packages(),
     use_package_data=True,

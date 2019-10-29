@@ -1,5 +1,4 @@
-Programming in Python
-=====================
+# Programming in Python
 
 Programming can dramatically improve our ability to collect and analyze information
 about the world, which in turn can lead to discoveries through the kind of careful

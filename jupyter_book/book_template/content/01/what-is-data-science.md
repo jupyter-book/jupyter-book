@@ -1,5 +1,4 @@
-What is Data Science
-====================
+# What is Data Science
 
 Data Science is about drawing useful conclusions from large and diverse data
 sets through exploration, prediction, and inference.  Exploration involves

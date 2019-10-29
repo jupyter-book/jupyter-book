@@ -1,5 +1,4 @@
-Why Data Science?
-=================
+# Why Data Science?
 
 Most important decisions are made with only partial information and uncertain
 outcomes. However, the degree of uncertainty for many decisions can be reduced

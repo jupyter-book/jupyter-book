@@ -3,3 +3,6 @@ from .build import build
 from .create import create
 from .upgrade import upgrade
 from .run import run
+from .version import version
+from .toc import toc
+from .page import page

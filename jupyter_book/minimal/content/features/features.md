@@ -4,7 +4,7 @@ This is a short demonstration textbook to show the general layout / style of tex
 with Jupyter and Jekyll. The markdown files for *this* page (and others in the textbook) is generated from the notebooks
 with the `scripts/generate_textbook.py` script, which is called when you run `make book`.
 
-The content for the book is contained in a folder in the site's repository called `content/`. It has a
+The content for the book is contained in a folder in the book's repository called `content/`. It has a
 combination of markdown and Jupyter notebooks. This content is rendered into the textbook that you see here!
 
 To begin, click on one of the chapter sections in the sidebar to the left. The first section demonstrates some
