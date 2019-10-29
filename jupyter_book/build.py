@@ -4,7 +4,6 @@ import os.path as op
 from pathlib import Path
 import shutil as sh
 import yaml
-import json
 from tqdm import tqdm
 from glob import glob
 from uuid import uuid4
@@ -349,7 +348,6 @@ def build_book(path_book, path_toc_yaml=None, path_ssg_config=None,
         with open(path_page_output_file, 'w', encoding='utf8') as ff:
             ff.writelines(lines)
         n_built_files += 1
-
 
     ###########################################################################
     # Finishing up...

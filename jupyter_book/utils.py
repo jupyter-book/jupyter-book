@@ -222,7 +222,7 @@ def _content_to_words(content, max_words=100):
     counts = Counter(new_words)
     out_words = [iword[0] for iword in counts.most_common()[:max_words]]
     return out_words
-  
+
 
 def load_ntbk(path_ntbk):
     """Load a notebook from a text or ipynb file, reading out YAML header as needed.
