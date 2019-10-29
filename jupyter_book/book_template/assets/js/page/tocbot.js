@@ -15,7 +15,7 @@ const initToc = () => {
   tocbot.init({
     tocSelector: 'nav.onthispage',
     contentSelector: '.c-textbook__content',
-    headingSelector: 'h2, h3',
+    headingSelector: 'h1, h2, h3',
     orderedList: false,
     collapseDepth: 6,
     listClass: 'toc__menu',

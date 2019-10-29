@@ -65,7 +65,7 @@ def _infer_title(ntbk, strip_title_header=True):
 
     # If the first line of the ontebook is H1 header, assume it's the title.
     if title is None:
-        first_cell_lines = ntbk.cells[0].source.split('\n')
+        first_cell_lines = ntbk.cells[0].source.lstrip().split('\n')
         if first_cell_lines[0].startswith('# '):
             title = first_cell_lines.pop(0).strip('# ')
             if strip_title_header is True:
