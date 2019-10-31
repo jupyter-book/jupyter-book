@@ -107,8 +107,8 @@ def write_page(html, path_out, resources, standalone=False,
         {head}
 
         <body>
-        {html}
         <nav class="onthispage"></nav>
+        {html}
         </body>
         </html>\n
         """
@@ -246,7 +246,7 @@ def page_html(ntbk, path_media_output=None, name=None, preprocessors=None,
     html, resources = exp.from_notebook_node(ntbk, resources=output_resources)
 
     html = f"""
-    <main class="jupyter-page">
+    <main class="jupyter-page c-textbook__content">
     {meta_html}
     {html}
     </main>
@@ -276,6 +276,11 @@ def page_head(custom_css='', custom_js=''):
     with open(PATH_MATHJAX, "r") as ff:
         html_mathjax = ff.read()
 
+    html_tocbot = """
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    """
+
     # SCSS styling for the page
     scss = page_css()
     scss = f"""
@@ -297,6 +302,7 @@ def page_head(custom_css='', custom_js=''):
     head = f"""
     <head>
     {html_mathjax}
+    {html_tocbot}
     {scss}
     {custom_css}
     {PAGE_EXTRA_CSS}
