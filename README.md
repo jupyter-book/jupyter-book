@@ -39,9 +39,8 @@ considerably!
 ## Contribute or improve the book
 
 Notice some inefficient CSS? A typo in the text? Want to add a cool feature so that others
-can enjoy the improvements to Jupyter Books? Don't hesitate to [open an issue or a PR on the
-Jupyter Book template repo](https://github.com/jupyter/jupyter-book). We'd love your
-help!
+can enjoy the improvements to Jupyter Books? Check out the [Jupyter Book Contributor's
+Guide](https://jupyterbook.org/contributing.html). We'd love your help!
 
 We ask that all contributions to Jupyter Book respect the
 [Jupyter code of conduct](https://github.com/jupyter/governance/blob/master/conduct/code_of_conduct.md).
