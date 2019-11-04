@@ -76,4 +76,5 @@ const distillMain = function () {
     console.debug('Runlevel 4: Distill Template initialisation complete.');
 };
 
+window.distillRunlevel = 0;
 distillMain()

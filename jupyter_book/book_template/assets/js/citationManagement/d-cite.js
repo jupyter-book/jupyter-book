@@ -47,21 +47,6 @@ figcaption .citation-number {
   line-height: 1em;
 }
 
-ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-
-ul li {
-  padding: 15px 10px 15px 10px;
-  border-bottom: 1px solid rgba(0,0,0,0.1)
-}
-
-ul li:last-of-type {
-  border-bottom: none;
-}
-
 </style>
 
 <d-hover-box id="hover-box"></d-hover-box>
