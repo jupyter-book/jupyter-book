@@ -1,21 +1,21 @@
 /**
   Add buttons to hide code cells
 */
-var setCodeCellVisibility = function (inputField, kind) {
+var setCellVisibility = function (inputField, kind) {
     // Update the image and class for hidden
     var id = inputField.getAttribute('data-id');
-    var codeCell = document.querySelector(`#${id} div.highlight`);
+    var element = document.querySelector(`#${id}`);
 
     if (kind === "visible") {
-        codeCell.classList.remove('hidden');
+        element.classList.remove('hidden');
         inputField.checked = true;
     } else {
-        codeCell.classList.add('hidden');
+        element.classList.add('hidden');
         inputField.checked = false;
     }
 }
 
-var toggleCodeCellVisibility = function (event) {
+var toggleCellVisibility = function (event) {
     // The label is clicked, and now we decide what to do based on the input field's clicked status
     if (event.target.tagName === "LABEL") {
         var inputField = event.target.previousElementSibling;
@@ -25,9 +25,9 @@ var toggleCodeCellVisibility = function (event) {
     }
 
     if (inputField.checked === true) {
-        setCodeCellVisibility(inputField, "visible");
+        setCellVisibility(inputField, "visible");
     } else {
-        setCodeCellVisibility(inputField, "hidden");
+        setCellVisibility(inputField, "hidden");
     }
 }
 
@@ -35,27 +35,38 @@ var toggleCodeCellVisibility = function (event) {
 // Button constructor
 const hideCodeButton = id => `<input class="hidebtn" type="checkbox" id="hidebtn${id}" data-id="${id}"><label title="Toggle cell" for="hidebtn${id}" class="plusminus"><span class="pm_h"></span><span class="pm_v"></span></label>`
 
-var addHideButton = function () {
+var addHideButton = (element, id) => {
+    // Add a hide button to an HTML element.
+    element.setAttribute("id", id)
+    // Insert the button just inside the end of the next div
+    element.insertAdjacentHTML('afterend', hideCodeButton(id))
+
+    // Set up the visibility toggle
+    // The label will be two-sibings deep from the element to-be hidden
+    hideLink = element.nextElementSibling.nextElementSibling;
+    hideLink.addEventListener('click', toggleCellVisibility)
+}
+
+var addAllHideButtons = function () {
     // If a hide button is already added, don't add another
-    if (document.querySelector('div.tag_hide_input input') !== null) {
+    if (document.querySelector('input.hidebtn') !== null) {
         return;
     }
 
     // Find the input cells and add a hide button
-    pageElements['inputCells'].forEach(function (inputCell) {
-        if (!inputCell.classList.contains("tag_hide_input")) {
-            // Skip the cell if it doesn't have a hidecode class
-            return;
+    hideIdNum = 0;
+    pageElements['inputCells'].forEach((cell) => {
+        const id = cell.getAttribute('id')
+
+        if (cell.classList.contains("tag_hide_input")) {
+            addHideButton(cell.querySelector('div.inner_cell'), `hide-${hideIdNum}`);
+            hideIdNum ++;
         }
 
-        const id = inputCell.getAttribute('id')
-
-        // Insert the button just inside the end of the next div
-        inputCell.querySelector('div.input').insertAdjacentHTML('beforeend', hideCodeButton(id))
-
-        // Set up the visibility toggle
-        hideLink = document.querySelector(`#${id} div.inner_cell + input + label`);
-        hideLink.addEventListener('click', toggleCodeCellVisibility)
+        if (cell.classList.contains("tag_hide_output")) {
+            addHideButton(cell.querySelector('div.output'), `hide-${hideIdNum}`);
+            hideIdNum ++;
+        }
     });
 }
 
@@ -63,11 +74,11 @@ var addHideButton = function () {
 // Initialize the hide buttos
 var initHiddenCells = function () {
     // Add hide buttons to the cells
-    addHideButton();
+    addAllHideButtons();
 
     // Toggle the code cells that should be hidden
-    document.querySelectorAll('div.tag_hide_input input').forEach(function (item) {
-        setCodeCellVisibility(item, 'hidden');
+    document.querySelectorAll('div.tag_hide_input input, div.tag_hide_output input').forEach(function (item) {
+        setCellVisibility(item, 'hidden');
         item.checked = true;
     })
 }

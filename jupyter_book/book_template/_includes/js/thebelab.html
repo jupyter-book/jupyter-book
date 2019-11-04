@@ -5,6 +5,15 @@
 {% include js/thebelab-cell-button.html %}
 
 <script type="text/x-thebe-config">
+    {% if page.kernel_name %}
+        {% if page.kernel_name contains "python" %}
+            {% assign cm_language="python" %}
+        {% else %}
+            {% assign cm_language={{ page.kernel_name }} %}
+        {% endif %}
+    {% else %}
+        {% assign cm_language="python" %}
+    {% endif %}
     {
       requestKernel: true,
       binderOptions: {
@@ -12,7 +21,8 @@
         ref: '{{ site.binder_repo_branch }}',
       },
       codeMirrorConfig: {
-        theme: "{{ site.codemirror_theme }}"
+        theme: "{{ site.codemirror_theme }}",
+        mode: "{{ cm_language }}"
       },
       kernelOptions: {
         name: '{% if page.kernel_name %}{{ page.kernel_name }}{% else %}python3{% endif %}',
@@ -20,7 +30,7 @@
       }
     }
 </script>
-<script src="https://unpkg.com/thebelab@0.5.1/lib/index.js" async></script>
+<script src="https://unpkg.com/thebelab@latest/lib/index.js" async></script>
 <script>
     /**
      * Add attributes to Thebelab blocks

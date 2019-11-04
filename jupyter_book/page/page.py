@@ -336,10 +336,6 @@ def page_js():
 
 def _check_cell_tags(ntbk):
     """Perform some checks on cell tags to make sure they're correct."""
+    # TODO: add checks based on cell tags. Currently this is just a placeholder.
     for cell in ntbk.cells:
-        tags = cell['metadata'].get('tags', [])
-        if cell['cell_type'] == "markdown":
-            if 'hide_input' in tags:
-                raise ValueError("Found a `hide_input` tag in a markdown cell. Hiding markdown "
-                                 "is not currently implemented. To hide markdown content, you should "
-                                 "use `remove_cell`.")
+        cell['metadata'].get('tags', [])
