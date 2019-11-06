@@ -250,7 +250,7 @@ def load_ntbk(path_ntbk):
     suff = op.splitext(path_ntbk)[-1]
 
     # If the first cell has YAML metadata we'll convert it into notebook metadata
-    if ntbk.cells[0].source.startswith('---') and ntbk.cells[0].source.endswith('---'):
+    if ntbk.cells and ntbk.cells[0].source.startswith('---') and ntbk.cells[0].source.endswith('---'):
         yaml_extra = ntbk.cells.pop(0).source.replace('---', '').strip()
     else:
         yaml_extra = None
