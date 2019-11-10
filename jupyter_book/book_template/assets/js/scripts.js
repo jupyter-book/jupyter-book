@@ -35,6 +35,10 @@ document.addEventListener('turbolinks:load', () => {
 
 var initMathAnchors = () => {
   // Disable Turbolinks for MathJax links
+  if (!MathJax) {
+    setTimeout(initMathAnchors, 250);
+    return;
+  }
   MathJax.Hub.Queue(function () {
     document.querySelectorAll('.MathJax a')
       .forEach(it => it.dataset['turbolinks'] = false);
