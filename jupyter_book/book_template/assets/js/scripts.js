@@ -25,7 +25,10 @@ const getTextbook = () => document.getElementById(textbookId)
 document.addEventListener('turbolinks:load', () => {
   const textbook = getTextbook()
   if (window.MathJax && !textbook.classList.contains(mathRenderedClass)) {
-    MathJax.Hub.Queue(['Typeset', MathJax.Hub])
+    MathJax.Hub.Queue(
+      ["resetEquationNumbers", MathJax.InputJax.TeX],
+      ['Typeset', MathJax.Hub]
+    )
     textbook.classList.add(mathRenderedClass)
   }
 })
