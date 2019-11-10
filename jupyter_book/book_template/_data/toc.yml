@@ -47,6 +47,8 @@
     not_numbered: true
   - url: /features/notebooks
     not_numbered: true
+  - url: /features/math
+    not_numbered: true
   - url: /features/hiding
     not_numbered: true
   - url: /features/interact
