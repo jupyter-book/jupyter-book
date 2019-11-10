@@ -35,7 +35,7 @@ document.addEventListener('turbolinks:load', () => {
 
 var initMathAnchors = () => {
   // Disable Turbolinks for MathJax links
-  if (!MathJax) {
+  if (typeof MathJax === 'undefined') {
     setTimeout(initMathAnchors, 250);
     return;
   }

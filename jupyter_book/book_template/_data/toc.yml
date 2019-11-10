@@ -47,8 +47,6 @@
     not_numbered: true
   - url: /features/notebooks
     not_numbered: true
-  - url: /features/math
-    not_numbered: true
   - url: /features/hiding
     not_numbered: true
   - url: /features/interact
@@ -58,6 +56,8 @@
   - url: /features/beta
     subsections:
     - url: /features/interactive_cells
+      not_numbered: true
+    - url: /features/math
       not_numbered: true
     - url: /features/titles
       not_numbered: true
