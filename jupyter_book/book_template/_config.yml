@@ -49,6 +49,9 @@ page_titles                    : infer  # Either `None`, `infer`, or `toc`
 page_authors                   : None  # Either `None` or `infer`
 filename_title_split_character : '_'  # If inferring titles based on filename, splt on this character.
 
+# Math settings
+number_equations               : false  # Whether to automatically number all block equations with MathJax
+
 #######################################################################################
 # Interact link settings
 

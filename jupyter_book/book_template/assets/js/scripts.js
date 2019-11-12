@@ -25,10 +25,27 @@ const getTextbook = () => document.getElementById(textbookId)
 document.addEventListener('turbolinks:load', () => {
   const textbook = getTextbook()
   if (window.MathJax && !textbook.classList.contains(mathRenderedClass)) {
-    MathJax.Hub.Queue(['Typeset', MathJax.Hub])
+    MathJax.Hub.Queue(
+      ["resetEquationNumbers", MathJax.InputJax.TeX],
+      ['Typeset', MathJax.Hub]
+    )
     textbook.classList.add(mathRenderedClass)
   }
 })
+
+var initMathAnchors = () => {
+  // Disable Turbolinks for MathJax links
+  if (typeof MathJax === 'undefined') {
+    setTimeout(initMathAnchors, 250);
+    return;
+  }
+  MathJax.Hub.Queue(function () {
+    document.querySelectorAll('.MathJax a')
+      .forEach(it => it.dataset['turbolinks'] = false);
+  });
+}
+
+initFunction(initMathAnchors);
 
 /**
  * [2] Toggles sidebar and menu icon

@@ -15,7 +15,15 @@ MathJax.Hub.Config({
     "HTML-CSS": {
         styles: {'.MathJax_Display': {"margin": 0}},
         linebreaks: { automatic: true },
+    },
+    {% if site.number_equations %}
+    // Number LaTeX-style equations
+    "TeX": {
+        equationNumbers: {
+          autoNumber: "all"
+        }
     }
+    {% endif %}
 });
 </script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML' async></script>
