@@ -43,7 +43,7 @@ GEM
     formatador (0.2.5)
     forwardable-extended (2.6.0)
     gemoji (3.0.1)
-    github-pages (202)
+    github-pages (201)
       activesupport (= 4.2.11.1)
       github-pages-health-check (= 1.16.1)
       jekyll (= 3.8.5)
@@ -294,7 +294,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  github-pages
+  github-pages (~> 201)
   guard (~> 2.14.2)
   guard-jekyll-plus (~> 2.0.2)
   guard-livereload (~> 2.5.2)
