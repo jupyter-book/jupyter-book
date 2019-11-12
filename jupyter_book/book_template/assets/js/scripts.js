@@ -188,3 +188,53 @@ initScrollFunc = function() {
 }
 
 initFunction(initScrollFunc);
+
+
+/**
+ * [6] Left sidebar highlight
+ *   Loop through the left sidebar links and show / highlight the relevant ones
+ */
+
+var updateSidebar = () => {
+  var currentUrl = window.location.href;
+  var chapters = document.querySelector('ul.c-sidebar__chapters')
+  chapters.querySelectorAll('li.c-sidebar__chapter').forEach((chapter, index) => {
+    var sections = chapter.nextElementSibling;
+    if (currentUrl.endsWith(chapter.dataset.url + '.html')) {
+      chapter.querySelector('a').classList.add('c-sidebar__entry--active')
+      if (sections.classList.contains('c-sidebar__sections')) {
+        sections.classList.remove('u-hidden-visually');
+      }
+    }
+
+    // Loop through sections to highlight as needed
+    if (sections) {
+      sections.querySelectorAll('li.c-sidebar__section').forEach((section, ix_section) => {
+        var subsections = section.nextElementSibling;
+
+        // If we're in a top-level section page, show the section
+        if (currentUrl.endsWith(section.dataset.url + '.html')) {
+          section.querySelector('a').classList.add('c-sidebar__entry--active');
+          sections.classList.remove('u-hidden-visually');
+
+          // If we have subsections, show them if we've clicked the parent section
+          if (subsections.classList.contains('c-sidebar__subsections')) {
+            subsections.classList.remove('u-hidden-visually');
+          }
+        }
+
+        // Loop through subections to highlight if needed
+        if (subsections) {
+          subsections.querySelectorAll('li.c-sidebar__subsection').forEach((subsection, ix_subsection) => {
+            if (currentUrl.endsWith(subsection.dataset.url + '.html')) {
+              subsection.querySelector('a').classList.add('c-sidebar__entry--active');
+              sections.classList.remove('u-hidden-visually');
+              subsections.classList.remove('u-hidden-visually');
+            }
+          })
+        }
+      })
+    }
+  });
+}
+initFunction(updateSidebar);

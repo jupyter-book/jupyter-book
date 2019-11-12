@@ -28,6 +28,7 @@
   - url: /guide/02_create
   - url: /guide/03_build
   - url: /guide/04_publish
+    expand_subsections: false
     subsections:
     - url: /guide/publish/book-html
       not_numbered: true
