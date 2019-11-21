@@ -85,6 +85,12 @@ use_download_button              : true  # If 'true', display a button to downlo
 download_button_text             : "Download" # The text that download buttons will contain
 download_page_header             : "Made with Jupyter Book" # A header that will be displayed at the top of and PDF-printed page
 
+# Edit settings
+use_edit_on_github_button        : true  # If true, add an "edit this page" button to the top of each page.
+edit_repo_org                    : jupyter
+edit_repo_name                   : jupyter-book
+edit_repo_branch                 : gh-pages
+
 #######################################################################################
 # Jupyter book extensions and additional features
 
