@@ -103,6 +103,11 @@ div.jb_cell {
       max-width: 100%;
     }
   }
+    
+  &.tag_output_scroll div.output_wrapper {
+      max-height: 24em;
+      overflow-y: auto;
+  }
 }
 
 
