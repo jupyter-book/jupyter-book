@@ -6,6 +6,12 @@
 
 <script type="text/x-thebe-config">
     {% if page.kernel_name %}
+        {% assign kernelName = page.kernel_name %}
+    {% else %}
+        {% assign kernelName = "python3" %}
+    {% endif %}
+
+    {% if page.kernel_name %}
         {% if page.kernel_name contains "python" %}
             {% assign cm_language="python" %}
         {% else %}
@@ -25,7 +31,7 @@
         mode: "{{ cm_language }}"
       },
       kernelOptions: {
-        kernelName: '{% if page.kernel_name %}{{ page.kernel_name }}{% else %}python3{% endif %}',
+        kernelName: '{{ kernelName }}',
         path: "{{ page.kernel_path }}"
       }
     }
@@ -55,20 +61,12 @@
             const codeCells = document.querySelectorAll('.input_area pre')
             codeCells.forEach((codeCell, index) => {
                 const id = codeCellId(index)
-                codeCell.setAttribute('data-executable', 'true')
 
-                // Figure out the language it uses and add this too
-                var parentDiv = codeCell.parentElement.parentElement;
-                var arrayLength = parentDiv.classList.length;
-                for (var ii = 0; ii < arrayLength; ii++) {
-                    var parts = parentDiv.classList[ii].split('language-');
-                    if (parts.length === 2) {
-                        // If found, assign dataLanguage and break the loop
-                        var dataLanguage = parts[1];
-                        break;
-                    }
-                }
+                // Clean up the language to make it work w/ CodeMirror and add it to the cell
+                dataLanguage = "{{ kernelName }}"
+                dataLanguage = detectLanguage(dataLanguage);
                 codeCell.setAttribute('data-language', dataLanguage)
+                codeCell.setAttribute('data-executable', 'true')
 
                 // If the code cell is hidden, show it
                 var inputCheckbox = document.querySelector(`input#hidebtn${codeCell.id}`);
@@ -118,5 +116,14 @@
 
     // Initialize Thebelab
     initFunction(initThebelab);
+
+// Helper function to munge the language name
+var detectLanguage = (language) => {
+    if (language.indexOf('python') > -1) {
+        language = "python";
+    }
+    return language;
+}
+
 </script>
 {% endif %}
