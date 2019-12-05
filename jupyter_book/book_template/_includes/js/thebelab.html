@@ -3,39 +3,6 @@
 
 <!-- Display Thebelab button in each code cell -->
 {% include js/thebelab-cell-button.html %}
-
-<script type="text/x-thebe-config">
-    {% if page.kernel_name %}
-        {% assign kernelName = page.kernel_name %}
-    {% else %}
-        {% assign kernelName = "python3" %}
-    {% endif %}
-
-    {% if page.kernel_name %}
-        {% if page.kernel_name contains "python" %}
-            {% assign cm_language="python" %}
-        {% else %}
-            {% assign cm_language={{ page.kernel_name }} %}
-        {% endif %}
-    {% else %}
-        {% assign cm_language="python" %}
-    {% endif %}
-    {
-      requestKernel: true,
-      binderOptions: {
-        repo: '{{ site.binder_repo_org }}/{{ site.binder_repo_name }}',
-        ref: '{{ site.binder_repo_branch }}',
-      },
-      codeMirrorConfig: {
-        theme: "{{ site.codemirror_theme }}",
-        mode: "{{ cm_language }}"
-      },
-      kernelOptions: {
-        kernelName: '{{ kernelName }}',
-        path: "{{ page.kernel_path }}"
-      }
-    }
-</script>
 <script src="https://unpkg.com/thebelab@latest/lib/index.js" async></script>
 <script>
     /**
@@ -124,6 +91,5 @@ var detectLanguage = (language) => {
     }
     return language;
 }
-
 </script>
 {% endif %}
