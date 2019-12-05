@@ -2,6 +2,9 @@
 <html lang="en">
   {% include head.html %}
   <body>
+    <!-- Include the ThebeLab config so it gets reloaded on each page -->
+    {% include js/thebelab-page-config.html %}
+
     <!-- .js-show-sidebar shows sidebar by default -->
     <div id="js-textbook" class="c-textbook {% if site.show_sidebar %}js-show-sidebar{% endif %}">
       {% include sidebar.html %}
