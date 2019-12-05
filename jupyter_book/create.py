@@ -4,8 +4,10 @@ import os
 import os.path as op
 import shutil as sh
 from ruamel.yaml import YAML
+import tempfile
+from pathlib import Path
 
-from .utils import print_message_box
+from .utils import print_message_box, _error
 from .toc import build_toc
 from . import __version__
 
@@ -194,8 +196,10 @@ def new_book(path_out, content_folder, toc=None,
 
     # Add the Jupyter Book version to the config
     data['jupyter_book_version'] = __version__
-    # Remove the GA tracking code for the docs
-    data['google_analytics']['mytrackingcode'] = ''
+    # Remove the GA tracking code for the docs if the user didn't overwrite it
+    jb_ga_code = "UA-52617120-7"
+    if data['google_analytics']['mytrackingcode'] == jb_ga_code:
+        data['google_analytics']['mytrackingcode'] = ''
 
     with open(op.join(path_out, '_config.yml'), 'w') as ff:
         yaml.dump(data, ff)
@@ -270,9 +274,10 @@ def upgrade_book(path_book):
     path_book : str
         Path to the root of the book repository you'd like to upgrade.
     """
+    if not isinstance(path_book, Path):
+        path_book = Path(path_book)
 
-    path_book_new = path_book + '_UPGRADED'
-    if not op.exists(op.join(path_book, '_config.yml')):
+    if not path_book.joinpath('_config.yml').exists():
         raise ValueError(
             "This does not appear to be a valid Jupyter Book. Searched in location: {}".format(path_book))
 
@@ -284,44 +289,51 @@ def upgrade_book(path_book):
         extra_files_to_check = ['requirements.txt', 'environment.yml', '_bibliography']
         extra_files = []
         for ifile in extra_files_to_check:
-            path_extra = op.join(path_book, ifile)
-            if op.exists(path_extra):
-                extra_files.append(path_extra)
+            path_extra = path_book.joinpath(ifile)
+            if path_extra.exists():
+                extra_files.append(str(path_extra))
         if len(extra_files) == 0:
             extra_files = None
 
         # A few optional files that are not strictly required
         optional_files = {
-            "license": op.join(path_book, 'content', 'LICENSE.md'),
-            "custom_css": op.join(path_book, 'assets', 'custom', 'custom.css'),
-            "custom_js": op.join(path_book, 'assets', 'custom', 'custom.js')
+            "license": path_book.joinpath('content', 'LICENSE.md'),
+            "custom_css": path_book.joinpath('assets', 'custom', 'custom.css'),
+            "custom_js": path_book.joinpath('assets', 'custom', 'custom.js')
         }
         for key, path in optional_files.items():
-            if not op.exists(path):
+            if not path.exists():
                 optional_files[key] = None
 
-        # Now create the new book
-        new_book(path_book_new, toc=op.join(path_book, '_data', 'toc.yml'),
-                 content_folder=op.join(path_book, 'content'),
-                 license=optional_files['license'],
-                 config=op.join(path_book, '_config.yml'),
-                 custom_css=optional_files['custom_css'],
-                 custom_js=optional_files['custom_js'],
-                 extra_files=extra_files,
-                 overwrite=True, verbose=False)
+        # Now delete everything in the current folder and replace with new book
+        with tempfile.TemporaryDirectory(prefix="jb_") as path_book_temp:
+            path_book_temp = Path(path_book_temp)
 
-        # Now overwrite the original book files with the upgraded ones
-        print("Copying over upgraded files into original folder...")
-        for path, _, ifiles in os.walk(path_book_new):
-            new_path = path.replace(path_book_new, path_book)
-            for ifile in ifiles:
-                if not op.isdir(new_path):
-                    os.makedirs(new_path)
-                sh.copy(op.join(path, ifile), op.join(new_path, ifile))
+            # Now create the new book
+            new_book(path_book_temp, toc=path_book.joinpath('_data', 'toc.yml'),
+                     content_folder=path_book.joinpath('content'),
+                     license=optional_files['license'],
+                     config=path_book.joinpath('_config.yml'),
+                     custom_css=optional_files['custom_css'],
+                     custom_js=optional_files['custom_js'],
+                     extra_files=extra_files,
+                     overwrite=True, verbose=False)
 
-        # Cleanup and Success message
-        print("Removing the backup book...")
-        sh.rmtree(path_book_new)
+            # Delete the files in the current folder
+            for ipath in path_book.glob('*'):
+                if ipath.is_dir():
+                    sh.rmtree(ipath)
+                else:
+                    os.remove(ipath)
+
+            # Now move the new book into our folder
+            print("Replacing current book with upgraded book...")
+            for ipath in path_book_temp.glob('*'):
+                newpath = Path(str(ipath).replace(str(path_book_temp), str(path_book)))
+                if ipath.is_dir():
+                    sh.copytree(ipath, newpath)
+                else:
+                    sh.copy2(ipath, newpath)
 
         print_message_box(("Finished upgrading your book at: {}\n\n"
                            "Your content, configuration, etc should not have changed, but all surrounding book\n"
@@ -333,11 +345,10 @@ def upgrade_book(path_book):
                            "\n"
                            "Don't forget to commit these changes to git!".format(path_book, path_book)))
     except Exception as ex:
-        print_message_box(("There was an error in upgrading your Jupyter Book!\n\n"
-                           "Don't worry, your content, configuration, etc should not have changed. Any new book\n"
-                           "content may by in {} if the upgrade got far enough\n"
-                           "you can investigate this folder, or delete it if you'd like.\n\n"
-                           "Here is the error:\n\n    {}".format(path_book_new, ex)))
+        raise _error(("There was an error in upgrading your Jupyter Book!\n\n"
+                      "Don't worry, your content, configuration, etc should not have changed.\n"
+                      "If it did, reset your repository with `git reset --hard HEAD`.\n"
+                      "Here is the error:\n\n    {}".format(ex)))
 
 
 def _remove_extra_files(path_out):
@@ -345,4 +356,5 @@ def _remove_extra_files(path_out):
     # Remove some files/folders that may confuse users
     files_to_remove = ['Gemfile.lock']
     for ifile in files_to_remove:
-        os.remove(op.join(path_out, ifile))
+        if Path(ifile).exists():
+            os.remove(op.join(path_out, ifile))
