@@ -17,13 +17,15 @@ jupyter-book upgrade path/to/mybook
 
 This will do the following:
 
-1. Generate a fresh Jupyter Book in `mybook_UPGRADED` using the content files in your
-   current book.
-2. If this succeeds, copy over the contents of `mybook_UPGRADED` into your current book folder.
-3. If this succeeds, delete the `mybook_UPGRADED` folder.
+1. Generate a fresh Jupyter Book in a temporary folder using the content files
+   and configuration in your current book. You can specify files to manually keep
+   with `--extra-files=<comma-separated-list-of-paths>`.
+2. If this succeeds, delete all of the non-hidden files in your book's folder.
+3. Copy over the newly-generated book to your book's folder.
 
 Note that only the content that you can manually specify via the `jupyter-book create` command
-will be retained in your upgraded book. For a list of these options, see the help menu for this command:
+will be retained in your upgraded book (except for files you specify with `--extra-files`).
+For a list of these options, see the help menu for this command:
 
 ```bash
 jupyter-book create -h
@@ -31,6 +33,19 @@ jupyter-book create -h
 
 You should check out the content in your upgraded book to make sure it looks correct, then
 commit the changes to your repository.
+
+If something goes wrong, you may have a folder with partially-incorrect files. To
+totally reset the folder's contents (and assuming you are using version control),
+remove all of the files/folders that are in your book's folder, and then reset the
+state of the folder with `git`, like so:
+
+```
+cd path/to/mybook
+rm -rf ./*
+git reset --hard HEAD
+```
+
+This should reset the state of the folder to the last commit in your git history.
 
 ## Does the book behave differently depending on the browser?
 

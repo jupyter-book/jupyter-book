@@ -4,6 +4,7 @@ from subprocess import run, CalledProcessError
 import shutil as sh
 from ruamel.yaml import YAML
 import pytest
+from pathlib import Path
 
 from jupyter_book.create import new_book
 
@@ -125,27 +126,36 @@ def test_config_update(tmpdir):
 
 
 def test_upgrade(tmpdir):
-    path_build_test = op.join(tmpdir.dirpath(), 'tmp_test', 'test')
+    path_build_test = Path(tmpdir.dirpath()) / 'tmp_test' / 'test'
+
     # Change the contents of a file in test to see if it is updated
-    with open(op.join(path_build_test, 'assets', 'css', 'styles.scss'), 'w') as ff:
-        ff.write("RANDOMTEXT")
-    cmd = ["jupyter-book", 'upgrade', path_build_test]
+    (path_build_test / 'assets' / 'css' / 'styles.scss').write_text('RANDOMTEXT')
+    cmd = ["jupyter-book", 'upgrade', str(path_build_test),
+           "--extra-files", path_build_test / 'baz.txt']
     run(cmd, check=True)
 
     # Make sure the test contents are the same
-    with open(op.join(path_build_test, 'assets', 'css', 'styles.scss'), 'r') as ff:
-        text = ff.read()
-        assert "RANDOMTEXT" not in text
+    text = (path_build_test / 'assets' / 'css' / 'styles.scss').read_text()
+    assert "RANDOMTEXT" not in text
 
     # Make sure the requirements file was copied over properly
-    with open(op.join(path_build_test, 'requirements.txt'), 'r') as ff:
-        text = ff.read()
-        assert "mytestrequirement" in text
+    text = (path_build_test / 'requirements.txt').read_text()
+    assert "mytestrequirement" in text
 
     # Make sure the bibliography file was copied over properly
-    with open(op.join(path_build_test, '_bibliography', 'references.bib'), 'r') as ff:
-        text = ff.read()
-        assert "my_references" in text
+    text = (path_build_test / '_bibliography' / 'references.bib').read_text()
+    assert "my_references" in text
+
+    # Make sure that old configuration values are not overwritten
+    config = yaml.load((path_build_test / '_config.yml').read_text())
+    assert config.get('google_analytics').get('mytrackingcode') == 'NOT_OVERWRITTEN'
+    assert config.get('title') == "THIS SHOULD BE THE TITLE"
+
+    # Make sure that specified extra files are kept, and non-specified extras are gone
+    path_extra = path_build_test / 'baz.txt'
+    path_skipped = path_build_test / 'you'
+    assert path_extra.exists()
+    assert not path_skipped.exists()
 
 ########################################################################################################
 # Building the book after the book is created
