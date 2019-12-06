@@ -141,7 +141,11 @@ commands:
       - run:
           name: Install book Ruby dependencies
           command: |
+            export MINICONDA=$HOME/miniconda
+            echo "export PATH=$MINICONDA/bin:$PATH" >> $BASH_ENV
+            source $BASH_ENV
+            pip install --user -e ./
+            conda install gxx_linux-64
             cd jupyter_book/book_template
-            sudo apt install libffi-dev
             rm Gemfile.lock
             make install

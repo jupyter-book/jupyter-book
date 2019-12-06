@@ -12,11 +12,7 @@ help:
 
 
 install:
-	# Check to see whether bundler is already installed. If not, install it.
-	if [ hash bundler 2>/dev/null ]; then \
-	gem install bundler;\
-	fi
-	bundle install
+	jupyter-book install ./
 
 book:
 	jupyter-book build ./
