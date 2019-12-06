@@ -140,4 +140,8 @@ commands:
       # Build the book's HTML w/ the base_url for CircleCI artifacts
       - run:
           name: Install book Ruby dependencies
-          command: cd jupyter_book/book_template && rm Gemfile.lock && bundle install
+          command: |
+            cd jupyter_book/book_template
+            sudo apt install libffi-dev
+            rm Gemfile.lock
+            make install
