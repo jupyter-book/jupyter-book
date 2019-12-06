@@ -266,13 +266,19 @@ def new_book(path_out, content_folder, toc=None,
         print_message_box(_final_message(path_out, notes))
 
 
-def upgrade_book(path_book):
+def upgrade_book(path_book, extra_files=None):
     """Upgrade a book to the latest Jupyter Book version.
 
     Parameters
     ----------
     path_book : str
         Path to the root of the book repository you'd like to upgrade.
+    extra_files : list of paths | None
+        Paths to extra files to include in the upgrade. If these files
+        would normally be over-written by a update to Jupyter Book,
+        they will not. If these files are not part of the default
+        Jupyter Book structure, they will be included in the
+        updated book.
     """
     if not isinstance(path_book, Path):
         path_book = Path(path_book)
@@ -284,11 +290,16 @@ def upgrade_book(path_book):
     # Now create a new book from the old one
     try:
         print("Creating new book from your original one...")
-
         # Double check for pre-existing environment files as special cases
-        extra_files_to_check = ['requirements.txt', 'environment.yml', '_bibliography']
-        extra_files = []
-        for ifile in extra_files_to_check:
+        if extra_files is None:
+            extra_files = []
+
+        if not isinstance(extra_files, list):
+            extra_files = [extra_files]
+        extra_files = [Path(ii).absolute() for ii in extra_files]
+
+        # These are files we always check for as they're commonly over-written
+        for ifile in ['requirements.txt', 'environment.yml', '_bibliography']:
             path_extra = path_book.joinpath(ifile)
             if path_extra.exists():
                 extra_files.append(str(path_extra))
@@ -347,8 +358,13 @@ def upgrade_book(path_book):
     except Exception as ex:
         raise _error(("There was an error in upgrading your Jupyter Book!\n\n"
                       "Don't worry, your content, configuration, etc should not have changed.\n"
-                      "If it did, reset your repository with `git reset --hard HEAD`.\n"
-                      "Here is the error:\n\n    {}".format(ex)))
+                      "If it did, reset your repository with\n"
+                      "\n"
+                      "    cd {}\n"
+                      "    rm -rf ./*\n"
+                      "    git reset --hard HEAD`.\n"
+                      "\n"
+                      "Here is the error:\n\n    {}".format(path_book, ex)))
 
 
 def _remove_extra_files(path_out):
