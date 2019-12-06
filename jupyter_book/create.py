@@ -308,9 +308,9 @@ def upgrade_book(path_book, extra_files=None):
 
         # A few optional files that are not strictly required
         optional_files = {
-            "license": path_book.joinpath('content', 'LICENSE.md'),
-            "custom_css": path_book.joinpath('assets', 'custom', 'custom.css'),
-            "custom_js": path_book.joinpath('assets', 'custom', 'custom.js')
+            "license": path_book / 'content' / 'LICENSE.md',
+            "custom_css": path_book / 'assets' / 'custom' / 'custom.css',
+            "custom_js": path_book / 'assets' / 'custom' / 'custom.js'
         }
         for key, path in optional_files.items():
             if not path.exists():
@@ -327,11 +327,14 @@ def upgrade_book(path_book, extra_files=None):
                      config=path_book.joinpath('_config.yml'),
                      custom_css=optional_files['custom_css'],
                      custom_js=optional_files['custom_js'],
-                     extra_files=extra_files,
+                     extra_files=[str(ifile) for ifile in extra_files],
                      overwrite=True, verbose=False)
 
             # Delete the files in the current folder
+            skip_folders = [".git", ".gitignore"]
             for ipath in path_book.glob('*'):
+                if any(sfolder in str(ipath) for sfolder in skip_folders):
+                    continue
                 if ipath.is_dir():
                     sh.rmtree(ipath)
                 else:
