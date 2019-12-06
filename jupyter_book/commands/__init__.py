@@ -6,3 +6,4 @@ from .run import run
 from .version import version
 from .toc import toc
 from .page import page
+from .install import install
