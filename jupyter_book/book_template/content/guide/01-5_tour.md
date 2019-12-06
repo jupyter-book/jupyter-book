@@ -84,21 +84,23 @@ This is a YAML file with a collection of pages, each one linking to a
 file in your `content/` folder. Here's an example of a few pages defined in `toc.yml`.
 
 ```yaml
-- title: Features and customization
-  url: /features/features
+- url: /features/features
   not_numbered: true
   expand_sections: true
   sections:
-  - title: Markdown files
-    url: /features/markdown
+  - url: /features/markdown
     not_numbered: true
-  - title: Jupyter notebooks
-    url: /features/notebooks
+  - url: /features/notebooks
     not_numbered: true
 ```
 
 The top-most level of your TOC file are **book chapters**. Above, this is the
-"Features and customization" page. Each chapter can have
+"Features" page.
+Note that in this case the title of the page is not explicitly specified but 
+is inferred from the source files.
+This behavior is controlled by the `page_titles` setting in `_config.yml` 
+(see [the titles feature page](../features/titles) for more details).
+Each chapter can have
 several sections (defined in `sections:`) and each section can have several sub-sections
 (which would be define with a deeper level of `sections:`). In addition, you can
 use a few extra YAML values to control the behavior of Jupyter-Book (for example,
@@ -112,8 +114,7 @@ For example, in the example above there is a file in
 this file is here:
 
 ```yaml
-    - title: Jupyter notebooks
-        url: /features/notebooks
+    - url: /features/notebooks
 ```
 
 ## A license for your content
