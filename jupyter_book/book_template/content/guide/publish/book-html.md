@@ -56,8 +56,8 @@ head to [install ruby plugins](#install-ruby-plugins) and follow the directions.
 
 #### Using the `conda-forge` recipe `rb-github-pages`
 
-The easiest way to install Ruby on *nix systems is to use
-the *`conda`* package manager. On some systems the following should work:
+The easiest way to install Ruby on `*nix` systems is to use
+the `conda` package manager. On some systems the following should work:
 
 ```bash
 conda install -c conda-forge rb-github-pages
@@ -99,7 +99,7 @@ conda install -c conda-forge clangxx_osx-64
 ```
 
 If you are running OSX 10.14 (Mojave) you also need to install system libraries in
-the default *nix locations by running
+the default `*nix` locations by running
 
 ```bash
 open /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg
