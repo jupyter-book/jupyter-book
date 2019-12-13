@@ -23,6 +23,7 @@
 - url: /guide/01_overview
   not_numbered: true
   expand_sections: true
+  anchor: The-book-building-process
   sections:
   - url: /guide/01-5_tour
   - url: /guide/02_create
