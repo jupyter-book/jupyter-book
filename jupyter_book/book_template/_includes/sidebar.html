@@ -47,7 +47,7 @@ a 1-level nesting; we will label 1.2, but not 1.2.1.
         {% assign topUrl = topUrl | append: '.html'  %}
       {% endunless %}
       {% if chapter.anchor %}
-        {% assign topUrl = topUrl | append: chapter.anchor %}
+        {% assign topUrl = topUrl | append: '#' | append: chapter.anchor %}
       {% endif %}
 
       <li class="c-sidebar__chapter" data-url="{{ chapter.url }}">
