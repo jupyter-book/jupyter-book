@@ -15,7 +15,7 @@ You've got two options to do this.
    Ruby (an open source programming language) or to run Ruby with a containerization
    platform like Docker or Singularity.
    
-   See the [guide to building your book's HTML manually](book-html.html) for information
+   See the [guide to building your book's HTML manually](publish/book-html.html) for information
    on how to do this.
    
 1. **Option 2: Use GitHub Pages to build and host your book**:
@@ -24,7 +24,7 @@ You've got two options to do this.
    template. GitHub Pages can automatically build a website from a Jekyll template,
    and you can use this to automatically generate the HTML for your book.
    
-   See the [guide to building books with GitHub Pages](github-pages.html#Build-your-book's-HTML-automatically-with-GitHub-Pages)
+   See the [guide to building books with GitHub Pages](publish/github-pages.html)
    for information on how to do this.
 
 ## When should you build the HTML locally?
