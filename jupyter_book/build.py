@@ -51,10 +51,11 @@ def _prepare_toc(toc):
             new_toc.append(section)
             new_toc.extend(subsections)
 
-    # Omit items that don't have URLs (like dividers) or have an external link
+    # Omit items that don't have URLs (like dividers), have an external link,
+    # or are internal links (have an anchor)
     return [
         item for item in new_toc
-        if 'url' in item and not item.get('external', False)
+        if 'url' in item and not item.get('external', False) and item.get('anchor') is None
     ]
 
 
