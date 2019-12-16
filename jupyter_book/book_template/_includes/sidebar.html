@@ -35,11 +35,19 @@ a 1-level nesting; we will label 1.2, but not 1.2.1.
       Find the title for this chapter
       {% endcomment %}
       {% assign chapter_url_html = chapter.url | append: '.html' %}
-      {% for build_page in site.build %}
-        {% if build_page.url == chapter_url_html %}
-          {% assign chapter_title = build_page.title %}
+      {% if chapter.anchor %}
+        {% if chapter.title %}
+          {% assign chapter_title = chapter.title %}
+        {% else %}
+          {% assign chapter_title = chapter.anchor | replace: "-", " " %}
         {% endif %}
-      {%- endfor %}
+      {% else %}
+        {% for build_page in site.build %}
+          {% if build_page.url == chapter_url_html %}
+            {% assign chapter_title = build_page.title %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
       {% if chapter.external == true %}{% assign chapter_title = chapter.title  %}{% endif %}
 
       {% assign topUrl = chapter.url | relative_url %}
@@ -97,14 +105,22 @@ a 1-level nesting; we will label 1.2, but not 1.2.1.
             {% endif %}
 
             {% comment %}
-            Find the title for this chapter
+            Find the title for this section
             {% endcomment %}
             {% assign section_url_html = section.url | append: '.html' %}
-            {% for build_page in site.build %}
-              {% if build_page.url == section_url_html %}
-                {% assign section_title = build_page.title %}
+            {% if section.anchor %}
+              {% if section.title %}
+                {% assign section_title = section.title %}
+              {% else %}
+                {% assign section_title = section.anchor | replace: "-", " " %}
               {% endif %}
-            {%- endfor %}
+            {% else %}
+              {% for build_page in site.build %}
+                {% if build_page.url == section_url_html %}
+                  {% assign section_title = build_page.title %}
+                {% endif %}
+              {% endfor %}
+            {% endif %}
             {% if section.external == true %}{% assign section_title = section.title  %}{% endif %}
 
             {% assign topUrl = section.url | relative_url %}
@@ -133,11 +149,19 @@ a 1-level nesting; we will label 1.2, but not 1.2.1.
                 Find the title for this sub-section
                 {% endcomment %}
                 {% assign subsection_url_html = subsection.url | append: '.html' %}
-                {% for build_page in site.build %}
-                  {% if build_page.url == subsection_url_html %}
-                    {% assign subsection_title = build_page.title %}
+                {% if subsection.anchor %}
+                  {% if subsection.title %}
+                    {% assign subsection_title = subsection.title %}
+                  {% else %}
+                    {% assign subsection_title = subsection.anchor | replace: "-", " " %}
                   {% endif %}
-                {%- endfor %}
+                {% else %}
+                  {% for build_page in site.build %}
+                    {% if build_page.url == subsection_url_html %}
+                      {% assign subsection_title = build_page.title %}
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
                 {% if subsection.external == true %}{% assign subsection_title = subsection.title  %}{% endif %}
 
                 {% assign topUrl = subsection.url | relative_url %}
