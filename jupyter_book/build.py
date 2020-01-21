@@ -51,12 +51,21 @@ def _prepare_toc(toc):
             new_toc.append(section)
             new_toc.extend(subsections)
 
-    # Omit items that don't have URLs (like dividers), have an external link,
-    # or are internal links (have an anchor)
-    return [
+    # Omit items that don't have URLs (like dividers) or have an external link
+    all_pages = [
         item for item in new_toc
-        if 'url' in item and not item.get('external', False) and item.get('anchor') is None
+        if 'url' in item and not item.get('external', False)
     ]
+
+    # Remove duplicates
+    pages_to_build, used_urls = [], []
+    for page in all_pages:
+        if page['url'] in used_urls:
+            continue
+        pages_to_build.append(page)
+        used_urls.append(page['url'])
+
+    return pages_to_build
 
 
 def _filename_to_title(filename, split_char='_'):
