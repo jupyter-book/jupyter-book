@@ -1,4 +1,4 @@
-# <img src="jupyter_book/book_template/content/images/logo/logo.png" width=40 /> Jupyter Book
+# <img src="https://raw.githubusercontent.com/jupyter/jupyter-book/master/jupyter_book/book_template/content/images/logo/logo.png" width=40 /> Jupyter Book
 
 [![CircleCI](https://circleci.com/gh/jupyter/jupyter-book.svg?style=svg)](https://circleci.com/gh/jupyter/jupyter-book)
 [![codecov](https://codecov.io/gh/jupyter/jupyter-book/branch/master/graph/badge.svg)](https://codecov.io/gh/jupyter/jupyter-book)
