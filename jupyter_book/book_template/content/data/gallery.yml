@@ -1,0 +1,13 @@
+- name: Geographic Data Science with Python
+  url: https://geographicdata.science/book/notebooks/04_spatial_weights.html
+  logo_url: https://geographicdata.science/book/images/logo/logo.png
+- name: AWS Certified Machine Learning-Specialty (ML-S) Guide
+  url: https://noahgift.github.io/aws-ml-guide/intro
+  logo_url: https://noahgift.github.io/aws-ml-guide/images/logo.png
+- name: Inferential Thinking textbook
+  url: https://inferentialthinking.com
+  logo_url: https://www.inferentialthinking.com/favicon.png
+- name: Qiskit Textbook
+  url: https://qiskit.org/textbook/ch-gates/quantum-gates.html
+  logo_url: https://qiskit.org/textbook/images/logo/logo.png
+  

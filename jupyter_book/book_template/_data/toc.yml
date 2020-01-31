@@ -86,6 +86,10 @@
 
 - url: /contributing
   not_numbered: true
+  
+- title: Example Book Gallery
+  url: /features/gallery
+  not_numbered: true
 
 - divider: true
 - header: Demo textbook
