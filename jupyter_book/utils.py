@@ -79,6 +79,10 @@ def _check_url_page(url_page, content_folder_name):
                 url_page
             )
         )
+    if not url_page.startswith(os.sep):
+        raise ValueError(
+            "Page URLs need to start with {}. Here is the page URL: {}".format(os.sep, url_page)
+        )
 
 
 def _prepare_url(url):
