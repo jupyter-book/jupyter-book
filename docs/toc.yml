@@ -1,0 +1,63 @@
+- path: index
+- path: citations
+- path: guide/01_overview
+  not_numbered: true
+  expand_sections: true
+  sections:
+  - path: guide/01-5_tour
+  - path: guide/02_create
+  - path: guide/03_build
+  - path: guide/04_publish
+    expand_sections: false
+    sections:
+    - path: guide/publish/book-html
+      not_numbered: true
+
+  - path: guide/05_faq
+  - path: guide/06_advanced
+
+- path: features/features
+  not_numbered: true
+  expand_sections: true
+  sections:
+  - path: features/markdown
+    not_numbered: true
+  - path: features/notebooks
+    not_numbered: true
+  - path: features/hiding
+    not_numbered: true
+  - path: features/interact
+    not_numbered: true
+  - path: features/executing
+    not_numbered: true
+  - path: features/beta
+    sections:
+    - path: features/interactive_cells
+      not_numbered: true
+    - path: features/math
+      not_numbered: true
+    - path: features/titles
+      not_numbered: true
+    - path: features/citations
+      not_numbered: true
+    - path: features/jupytext
+      not_numbered: true
+    - path: features/layout
+      not_numbered: true
+    - path: features/page
+      not_numbered: true
+
+- path: advanced/advanced
+  not_numbered: true
+  expand_sections: true
+  sections:
+  - path: advanced/circleci
+    not_numbered: true
+
+- path: test_pages/test
+  not_numbered: true
+  sections:
+    - path: test_pages/layout_elements
+    - path: test_pages/equations
+    - path: test_pages/code
+    - path: test_pages/limits
