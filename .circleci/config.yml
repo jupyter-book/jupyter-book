@@ -1,0 +1,42 @@
+version: 2
+jobs:
+  build_docs:
+    docker:
+      - image: circleci/python:3.6-stretch
+    steps:
+      # Get our data and merge with upstream
+      - run: sudo apt-get update
+      - checkout
+
+      - restore_cache:
+          keys:
+            - cache-pip
+
+      - run: pip install --user .[sphinx,circleci]
+      - save_cache:
+          key: cache-pip
+          paths:
+            - ~/.cache/pip
+
+      # Run the docs so they are up-to-date
+      - run:
+          name: Running notebooks in docs so they are up to date
+          command: python .circleci/run_notebooks.py
+
+      # Build the docs
+      - run:
+          name: Build docs to store
+          command: |
+            cd docs
+            jb build
+
+      - store_artifacts:
+          path: docs/_build/html/
+          destination: html
+
+
+workflows:
+  version: 2
+  default:
+    jobs:
+      - build_docs
