@@ -41,20 +41,18 @@ def main():
 @click.option(
     "--path-book", default=".", help="Path to the root of the book repository."
 )
-@click.option("--content", default=None, help="Path to the book content")
 @click.option("--path-output", default=None, help="Path to the output artifacts")
 @click.option("--config", default=None, help="Path to the YAML configuration file")
 @click.option("--toc", default=None, help="Path to the Table of Contents YAML file")
 @click.option(
     "--execute", is_flag=True, help="Execute notebooks before converting them."
 )
-def build(path_book, path_output, content, config, toc, execute):
+def build(path_book, path_output, config, toc, execute):
     """Convert a collection of Jupyter Notebooks into HTML suitable for a course textbook.
     """
     # Paths for our notebooks
     PATH_BOOK = Path(path_book).absolute()
 
-    PATH_CONTENT = content if content is not None else PATH_BOOK.joinpath("content")
     PATH_TOC_YAML = toc if toc is not None else PATH_BOOK.joinpath("toc.yml")
     CONFIG_FILE = config if config is not None else PATH_BOOK.joinpath("_config.yml")
 
@@ -66,9 +64,9 @@ def build(path_book, path_output, content, config, toc, execute):
     config.update(
         {"yaml_config_path": str(CONFIG_FILE), "globaltoc_path": str(PATH_TOC_YAML)}
     )
-
+    print(PATH_BOOK)
     build_sphinx(
-        PATH_CONTENT, OUTPUT_PATH, noconfig=True, confoverrides=config, builder="html"
+        PATH_BOOK, OUTPUT_PATH, noconfig=True, confoverrides=config, builder="html"
     )
 
 
