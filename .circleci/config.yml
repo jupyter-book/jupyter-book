@@ -34,6 +34,19 @@ jobs:
           path: docs/_build/html/
           destination: html
 
+      # Deploy to docs if we're on master
+      - add_ssh_keys:
+          fingerprints:
+            - "53:80:a8:f7:12:c7:c6:72:ed:42:b0:f8:53:7d:27:1c"
+
+      - run:
+          name: Deploying to gh-pages from master branch
+          command: |
+            if [ ${CIRCLE_BRANCH} == "master" ]
+            then
+              pip install ghp-import
+              ghp-import -n -p -f docs/_build/html
+            fi
 
 workflows:
   version: 2
