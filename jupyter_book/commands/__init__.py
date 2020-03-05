@@ -27,7 +27,7 @@ DEFAULT_CONFIG = dict(
     exclude_patterns=["_build", "Thumbs.db", ".DS_Store", "**.ipynb_checkpoints"],
     pygments_style="sphinx",
     # -- Options for HTML output -------------------------------------------------
-    html_theme="pandas_sphinx_theme",
+    html_theme="jupyter_book_theme",
 )
 
 

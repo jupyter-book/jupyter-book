@@ -1,10 +1,19 @@
 """Build an online book using Jupyter Notebooks and Jekyll."""
 from pathlib import Path
 import os
+from pandas_sphinx_theme import setup as pandas_setup
 from .toc import update_indexname, add_toctree
 from .yaml import add_yaml_config
+from .theme import setup
 
 __version__ = "0.0.1dev0"
+
+
+def get_html_theme_path():
+    """Return list of HTML theme paths."""
+    theme_path = str(Path(__file__).parent.joinpath('theme').absolute())
+    return theme_path
+
 
 # We connect this function to the step after the builder is initialized
 def setup(app):
@@ -17,7 +26,8 @@ def setup(app):
 
     # Add configuration value to the template
     app.connect("builder-inited", add_yaml_config)
-
+    app.add_html_theme("jupyter_book_theme", get_html_theme_path())
+    pandas_setup(app)
     return {
         "version": __version__,
         "parallel_read_safe": True,
