@@ -4,7 +4,6 @@ import os
 from pandas_sphinx_theme import setup as pandas_setup
 from .toc import update_indexname, add_toctree
 from .yaml import add_yaml_config
-from .theme import setup
 
 __version__ = "0.0.1dev0"
 

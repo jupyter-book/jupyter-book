@@ -19,7 +19,7 @@ DEFAULT_CONFIG = dict(
         "sphinxcontrib.bibtex",
     ],
     togglebutton_selector=".toggle, .secondtoggle",
-    myst_nb_require_url="",
+    jupyter_sphinx_require_url="",
     # Add any paths that contain templates here, relative to this directory.
     templates_path=[
         "_templates",

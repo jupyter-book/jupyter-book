@@ -72,4 +72,13 @@ setup(
         "console_scripts": ["jb = jupyter_book.commands:main"],
         "sphinx.html_themes": ["sphinx_jupyter_book_theme = jupyter_book.theme"],
     },
+    package_data={
+        "jupyter_book": [
+            "theme/theme.conf",
+            "theme/*.html",
+            "theme/static/css/*.css",
+            "theme/static/js/*.js",
+        ]
+    },
+    include_package_data=True,
 )
