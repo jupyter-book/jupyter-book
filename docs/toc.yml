@@ -1,4 +1,4 @@
-- path: index
+- path: intro
 - path: guide/01_overview
   not_numbered: true
   expand_sections: true

@@ -32,17 +32,19 @@ def find_name(pages, name):
 
 
 def add_toctree(app, docname, source):
-    path = app.env.doc2path(docname, base=None)
+    # If no globaltoc is given, we'll skip this part
+    if not app.config["globaltoc_path"]:
+        return
 
     # First check whether this page has any descendants
     # If so, then we'll manually add them as a toctree object
-    if app.config["globaltoc_path"] is not None:
-        toc = app.config["globaltoc"]
-        page = find_name(toc, _no_suffix(path))
+    path = app.env.doc2path(docname, base=None)
+    toc = app.config["globaltoc"]
+    page = find_name(toc, _no_suffix(path))
 
-        # If we didn't find this page in the TOC, skip it
-        if page is None:
-            return
+    # If we didn't find this page in the TOC, skip it
+    if page is None:
+        return
 
     # If we have no sections, then don't worry about a toctree
     sections = [(ii.get("path"), ii.get("name")) for ii in page.get("sections", [])]
@@ -98,6 +100,10 @@ def add_toctree(app, docname, source):
 
 
 def update_indexname(app, config):
+    # If no globaltoc is given, we'll skip this part
+    if not app.config["globaltoc_path"]:
+        return
+
     # Load the TOC and update the env so we have it later
     toc = yaml.safe_load(Path(app.config["globaltoc_path"]).read_text())
     if isinstance(toc, list):

@@ -3,35 +3,9 @@ import sys
 import os.path as op
 from pathlib import Path
 import click
+from glob import glob
 
-from ..sphinx import build_sphinx
-
-ROOT = Path(__file__)
-DEFAULT_CONFIG = dict(
-    project="Testing my book",
-    copyright="2018, Chris Holdgraf",
-    author="Chris Holdgraf",
-    extensions=[
-        "sphinx_togglebutton",
-        "myst_parser",
-        "myst_nb",
-        "jupyter_book",
-        "sphinxcontrib.bibtex",
-    ],
-    togglebutton_selector=".toggle, .secondtoggle",
-    jupyter_sphinx_require_url="",
-    # Add any paths that contain templates here, relative to this directory.
-    templates_path=[
-        "_templates",
-        str(ROOT.parent.joinpath("static", "templates").absolute()),
-    ],
-    master_doc="index.rst",
-    language=None,
-    exclude_patterns=["_build", "Thumbs.db", ".DS_Store", "**.ipynb_checkpoints"],
-    pygments_style="sphinx",
-    # -- Options for HTML output -------------------------------------------------
-    html_theme="jupyter_book_theme",
-)
+from ..sphinx import build_sphinx, DEFAULT_CONFIG
 
 
 @click.group()
@@ -63,11 +37,54 @@ def build(path_book, path_output, config, toc, execute):
     OUTPUT_PATH = Path(OUTPUT_PATH).joinpath("_build/html")
 
     # Now call the Sphinx commands to build
-    config = DEFAULT_CONFIG.copy()
-    config.update(
-        {"yaml_config_path": str(CONFIG_FILE), "globaltoc_path": str(PATH_TOC_YAML)}
-    )
-    print(PATH_BOOK)
+    config = {
+        "yaml_config_path": str(CONFIG_FILE),
+        "globaltoc_path": str(PATH_TOC_YAML),
+    }
     build_sphinx(
         PATH_BOOK, OUTPUT_PATH, noconfig=True, confoverrides=config, builder="html"
+    )
+
+
+@main.command()
+@click.argument("path-page")
+@click.option("--path-output", default=None, help="Path to the output artifacts")
+@click.option("--config", default=None, help="Path to the YAML configuration file")
+def page(path_page, path_output, config):
+    """Convert a single notebook page to HTML or PDF.
+    """
+    # Paths for our notebooks
+    PATH_PAGE = Path(path_page)
+    PATH_PAGE_FOLDER = PATH_PAGE.parent.absolute()
+    PAGE_NAME = PATH_PAGE.with_suffix("").name
+    CONFIG_FILE = (
+        config if config is not None else PATH_PAGE_FOLDER.joinpath("_config.yml")
+    )
+
+    OUTPUT_PATH = path_output if path_output is not None else PATH_PAGE
+    OUTPUT_PATH = Path(OUTPUT_PATH).joinpath("_build/html")
+
+    # Find all files that *aren't* the page we're building and exclude them
+    to_exclude = glob(str(PATH_PAGE_FOLDER.joinpath("**", "*")), recursive=True)
+    to_exclude = [
+        op.relpath(ifile, PATH_PAGE_FOLDER)
+        for ifile in to_exclude
+        if ifile != str(PATH_PAGE.absolute())
+    ]
+    to_exclude = DEFAULT_CONFIG["exclude_patterns"] + to_exclude
+
+    # Now call the Sphinx commands to build
+    config = {
+        "master_doc": PAGE_NAME,
+        "yaml_config_path": str(CONFIG_FILE),
+        "globaltoc_path": "",
+        "exclude_patterns": to_exclude,
+    }
+
+    build_sphinx(
+        PATH_PAGE_FOLDER,
+        OUTPUT_PATH,
+        noconfig=True,
+        confoverrides=config,
+        builder="html",
     )
