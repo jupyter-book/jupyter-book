@@ -1,9 +1,39 @@
 """Tools for interacting with Sphinx."""
 import sys
 import os.path as op
+from pathlib import Path
 from sphinx.util.docutils import docutils_namespace, patch_docutils
 from sphinx.application import Sphinx
 from sphinx.cmd.build import handle_exception
+
+
+ROOT = Path(__file__)
+DEFAULT_CONFIG = dict(
+    project="Jupyter Book",
+    copyright="2020, ExecutableBookProject",
+    author="Executable Book Project",
+    extensions=[
+        "sphinx_togglebutton",
+        "myst_parser",
+        "myst_nb",
+        "jupyter_book",
+        "sphinxcontrib.bibtex",
+    ],
+    togglebutton_selector=".toggle, .secondtoggle",
+    jupyter_sphinx_require_url="",
+    # Add any paths that contain templates here, relative to this directory.
+    templates_path=[
+        "_templates",
+        str(ROOT.parent.joinpath("static", "templates").absolute()),
+    ],
+    master_doc="index.rst",
+    language=None,
+    exclude_patterns=["_build", "Thumbs.db", ".DS_Store", "**.ipynb_checkpoints"],
+    pygments_style="sphinx",
+    # -- Options for HTML output -------------------------------------------------
+    html_theme="jupyter_book_theme",
+)
+
 
 def build_sphinx(
     sourcedir,
@@ -35,12 +65,14 @@ def build_sphinx(
     # Manual configuration overrides
     if confoverrides is None:
         confoverrides = {}
+    config = DEFAULT_CONFIG.copy()
+    config.update(confoverrides)
 
     # HTML-specific configuration
     if htmloverrides is None:
         htmloverrides = {}
     for key, val in htmloverrides.items():
-        confoverrides["html_context.%s" % key] = val
+        config["html_context.%s" % key] = val
 
     # Configuration directory
     if noconfig:
@@ -87,7 +119,7 @@ def build_sphinx(
 
     # Error on warnings
     if nitpicky:
-        confoverrides["nitpicky"] = True
+        config["nitpicky"] = True
 
     app = None  # In case we fail, this allows us to handle the exception
     try:
@@ -98,7 +130,7 @@ def build_sphinx(
                 outputdir,
                 doctreedir,
                 builder,
-                confoverrides,
+                config,
                 status,
                 warning,
                 freshenv,

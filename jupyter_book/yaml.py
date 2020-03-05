@@ -13,7 +13,9 @@ def add_yaml_config(app):
 
     path_yaml = Path(path_yaml)
     if not path_yaml.exists():
-        raise ValueError(f"Path to a YAML configuration file was given, but not found: {path_yaml}")
+        raise ValueError(
+            f"Path to a YAML configuration file was given, but not found: {path_yaml}"
+        )
 
     # Load the YAML and update our site's configuration
     if not path_yaml.exists():
