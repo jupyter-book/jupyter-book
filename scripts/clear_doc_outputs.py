@@ -3,10 +3,11 @@ from subprocess import run
 from glob import glob
 from nbconvert.exporters import NotebookExporter
 from traitlets.config import Config
+
 notebooks = glob("docs/content/**/*.ipynb", recursive=True)
 
 c = Config()
-c.NotebookExporter.preprocessors = ['nbconvert.preprocessors.ClearOutputPreprocessor']
+c.NotebookExporter.preprocessors = ["nbconvert.preprocessors.ClearOutputPreprocessor"]
 exporter = NotebookExporter(config=c)
 
 for path_ntbk in notebooks:

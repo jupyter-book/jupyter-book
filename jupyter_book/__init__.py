@@ -11,7 +11,7 @@ __version__ = "0.0.1dev0"
 
 def get_html_theme_path():
     """Return list of HTML theme paths."""
-    theme_path = str(Path(__file__).parent.joinpath('theme').absolute())
+    theme_path = str(Path(__file__).parent.joinpath("theme").absolute())
     return theme_path
 
 

@@ -13,6 +13,7 @@ def get_html_theme_path():
 
 def setup(app):
     from pandas_sphinx_theme import setup
+
     setup(app)
 
     app.add_html_theme("jupyter_book_theme", get_html_theme_path())

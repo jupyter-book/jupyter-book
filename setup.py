@@ -63,20 +63,13 @@ setup(
             "numpy",
             "matplotlib",
             "ipywidgets",
-            "pandas"
-
-
+            "pandas",
         ],
-        "testing": [
-            "coverage",
-            "pytest>=3.6,<4",
-            "pytest-cov",
-            "beautifulsoup4",
-        ],
-        "circleci": [
-            "nbclient",
-        ]
+        "testing": ["coverage", "pytest>=3.6,<4", "pytest-cov", "beautifulsoup4"],
+        "circleci": ["nbclient"],
     },
-    entry_points={"console_scripts": ["jb = jupyter_book.commands:main"],
-                  "sphinx.html_themes" : ["sphinx_jupyter_book_theme = jupyter_book.theme"]},
+    entry_points={
+        "console_scripts": ["jb = jupyter_book.commands:main"],
+        "sphinx.html_themes": ["sphinx_jupyter_book_theme = jupyter_book.theme"],
+    },
 )

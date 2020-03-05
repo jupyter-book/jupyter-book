@@ -21,7 +21,10 @@ DEFAULT_CONFIG = dict(
     togglebutton_selector=".toggle, .secondtoggle",
     myst_nb_require_url="",
     # Add any paths that contain templates here, relative to this directory.
-    templates_path=["_templates", str(ROOT.parent.joinpath("static", "templates").absolute())],
+    templates_path=[
+        "_templates",
+        str(ROOT.parent.joinpath("static", "templates").absolute()),
+    ],
     master_doc="index.rst",
     language=None,
     exclude_patterns=["_build", "Thumbs.db", ".DS_Store", "**.ipynb_checkpoints"],
@@ -68,5 +71,3 @@ def build(path_book, path_output, config, toc, execute):
     build_sphinx(
         PATH_BOOK, OUTPUT_PATH, noconfig=True, confoverrides=config, builder="html"
     )
-
-
