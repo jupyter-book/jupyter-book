@@ -32,6 +32,7 @@ DEFAULT_CONFIG = dict(
     pygments_style="sphinx",
     # -- Options for HTML output -------------------------------------------------
     html_theme="jupyter_book_theme",
+    html_theme_options={"single_page": False},
 )
 
 

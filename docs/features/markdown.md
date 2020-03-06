@@ -20,7 +20,7 @@ The two kinds of files that contain course content are:
 * Jupyter Notebooks
 * Markdown files
 
-Each are contained in the `content/` folder and referenced from `_data/toc.yml`.
+Each are contained in your book's root folder and referenced from `_toc.yml`.
 
 If the file is markdown, it will be copied over with front-matter YAML added so
 that Jekyll can parse it.

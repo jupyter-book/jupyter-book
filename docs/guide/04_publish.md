@@ -1,41 +1,17 @@
 # Publishing your book online
 
-Now that you've built the HTML for each **page**, it's
-time to stitch together these pages into HTML for a **book**
-and host it online. This means building the left Table of Contents and
-stitching each of your pages together.
+Now that you've built the HTML for your book, it's time to host it online.
+The best way to do this is with a service that hosts **static websites**
+(because that's what you have just created with Jupyter Book).
 
-You've got two options to do this.
+There are many options for doing this, and the next sections cover some of the
+more popular ones.
 
-2. **Option 1: Build your book's HTML manually and host wherever you like**:
-
-   Building your book's site locally lets you preview your book locally before you
-   push it online. It also gives you more functionality than using
-   GitHub Pages to build your book. However, it also requires you to install
-   Ruby (an open source programming language) or to run Ruby with a containerization
-   platform like Docker or Singularity.
-
-   See the [guide to building your book's HTML manually](publish/book-html) for information
-   on how to do this.
-
-
-## When should you build the HTML locally?
-
-You might ask: if GitHub pages can build my site automatically from the intermediate files, why
-build it locally? The main reason for this is that you get more flexibility by building locally
-and serving raw HTML, as opposed to auto-building the site with GitHub-pages.
-
-If you wish to use any **extra Jekyll plugins**, such as the `jekyll-scholar` plugin that
-enables you to add citations and bibliographies, then you need to build your site
-locally as HTML. GitHub Pages doesn't let you enable any extra plugins if it auto-builds your site.
-In addition, if you'd like to **host your book's HTML anyhwere other than GitHub Pages**,
-then you'll need to build the book's HTML on your own.
-
-### Prerequisites
-
+```{note}
 Ensure that your the HTML has been built for each page of your book
 (see [the previous section](03_build)). There should be a collection of HTML
-files in your book's `_build/` folder.
+files in your book's `_build/html` folder.
+```
 
 ## Create an *online* repository for your book
 
@@ -58,12 +34,12 @@ and to add your book's content to it.
    git clone https://github.com/<my-org>/<my-book-name>
    ```
 
-4. Copy all of your book files and folders (what was created when you ran `jupyter-book create mybook`)
-   into the new repository. For example, if you created your book locally with `jupyter-book create mylocalbook`
+4. Copy all of your book files and folders (what was created when you ran `jb build mybook`)
+   into the new repository. For example, if you created your book locally with `jb create mylocalbook`
    and your online repository is called `myonlinebook`, the command would be:
 
    ```bash
-   cp -r mylocalbook/* myonlinebook/
+   cp -r mylocalbook/_build/html/* myonlinebook/
    ```
 
    This will copy over the local book files into the online book folder.
@@ -81,3 +57,35 @@ That's it!
 
 Now that your repository is created and you have your book content pushed to it,
 it's time to publish your book online. The next sections cover how to do this.
+
+## Host with `github-pages`
+
+Since your content is already on GitHub, you can easily host it as a `github-pages`
+website. This is a service where GitHub hosts your static files as if they were
+a standalone website.
+
+The easiest way to use GitHub-pages with your built HTML is to use the `ghp-import`
+tool. It is a lightweight Python package that makes it easier to push HTML content
+to a GitHub repository.
+
+Follow these steps to use it:
+
+1. Install `ghp-import`
+
+   ```
+   pip install ghp-import
+   ```
+2. Call `ghp-import` and point it to your HTML files, like so:
+   
+   ```
+   ghp-import -n -p -f mylocalbook/_build/html
+   ```
+   
+This will cause `ghp-import` to push *all* of the contents of the `_build/html` folder
+to the `gh-pages` branch of your current repository, and push the contents to GitHub.
+By default, this generally means your site should now be viewable online.
+
+```{warning}
+Make sure that you included the `-n` - this tells GitHub *not* to build your book with
+Jekyll, which we don't want because our HTML is already built!
+```

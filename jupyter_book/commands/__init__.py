@@ -4,6 +4,7 @@ import os.path as op
 from pathlib import Path
 import click
 from glob import glob
+import shutil as sh
 
 from ..sphinx import build_sphinx, DEFAULT_CONFIG
 
@@ -30,7 +31,7 @@ def build(path_book, path_output, config, toc, execute):
     # Paths for our notebooks
     PATH_BOOK = Path(path_book).absolute()
 
-    PATH_TOC_YAML = toc if toc is not None else PATH_BOOK.joinpath("toc.yml")
+    PATH_TOC_YAML = toc if toc is not None else PATH_BOOK.joinpath("_toc.yml")
     CONFIG_FILE = config if config is not None else PATH_BOOK.joinpath("_config.yml")
 
     OUTPUT_PATH = path_output if path_output is not None else PATH_BOOK
@@ -88,3 +89,16 @@ def page(path_page, path_output, config):
         confoverrides=config,
         builder="html",
     )
+
+
+@main.command()
+@click.argument("path-output")
+def create(path_output):
+    """Create a simple Jupyter Book that you can customize."""
+
+    PATH_OUTPUT = Path(path_output)
+    if PATH_OUTPUT.is_dir():
+        raise ValueError(f"The output book already exists. Delete {path_output} first.")
+    template_path = Path(__file__).parent.parent.joinpath("book_template")
+    sh.copytree(template_path, PATH_OUTPUT)
+    print(f"Your book template can be found at {PATH_OUTPUT}")

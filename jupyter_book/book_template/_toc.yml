@@ -1,0 +1,6 @@
+- path: intro
+- path: content
+  sections:
+    - path: markdown
+    - path: notebooks
+- path: syntax
