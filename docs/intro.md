@@ -19,6 +19,27 @@ do the following:
 
 Currently it accomplishes a subset of these features.
 
+## The components of Jupyter Book 2.0
+
+Jupyter Book 2.0 is a wrapper around a collection of tools in the Python
+ecosystem that make it easier to publish computational documents. Here are
+a few key pieces:
+
+* It uses [the MyST markdown language](https://myst-parser.readthedocs.io/) in
+  markdown and notebook documents. This allows users to write rich,
+  publication-quality markup in their documents.
+* It uses [the MyST-NB package](https://myst-nb.readthedocs.io/) to parse and
+  read-in notebooks so they are built into your book.
+* It uses [the Sphinx documentation engine](https://www.sphinx-doc.org/en/master/)
+  to build outputs from your book's content.
+* It uses a slightly-modified version of the [PyData Sphinx theme](https://pandas-sphinx-theme.readthedocs.io/en/latest/)
+  for beautiful HTML output.
+* It uses a collection of Sphinx plugins and tools to add new functionality.
+
+For more information about the project behind many of these tools, see
+[The Executable Book Project](https://ebp.jupyterbook.org/) documentation.
+
+
 ## Get started
 
 To get started, check out the pages above. These are major sections of the documentation.
