@@ -1,4 +1,4 @@
-# The Jupyter Book Guide
+# Getting Started
 
 This is a guide for creating your own book using Jupyter Book.
 Book content is written in markdown and Jupyter Notebooks, and

@@ -4,7 +4,7 @@ from glob import glob
 from pathlib import Path
 
 ROOT = Path(__file__)
-DOCS = ROOT.absolute().parent.parent.joinpath('docs')
+DOCS = ROOT.absolute().parent.parent.joinpath("docs")
 expected_errors = ["features/notebooks.ipynb"]
 notebooks = DOCS.glob("**/*.ipynb")
 for path_ntbk in notebooks:
