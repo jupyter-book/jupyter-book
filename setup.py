@@ -47,6 +47,7 @@ setup(
         "sphinx",
         "nbformat",
         "nbconvert",
+        "nbclient",
         "sphinx-togglebutton",
         "sphinx-copybutton",
         "sphinxcontrib-bibtex",
