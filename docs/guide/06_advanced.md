@@ -75,10 +75,11 @@ jupyter-book toc path/to/mybook --path-output path/to/mybook/_data/toc.yml
 
 This will overwrite the contents of `toc.yml` with the new TOC.
 
-> Note: this will make some assumptions about how you'd like your book to
-> be structured. We recommend using this command as a starting point, and
-> then customizing your TOC how you'd like.
-
+```{note}
+this will make some assumptions about how you'd like your book to
+be structured. We recommend using this command as a starting point, and
+then customizing your TOC how you'd like.
+```
 
 ## Adding tags to notebook cells based on their content
 
@@ -135,34 +136,8 @@ Below is all of the possible fields in the entry of a single page in `toc.yml`:
 
 ```yaml
 - title: mytitle   # Title of chapter or section
-  url: /myurl  # URL of section relative to the /content/ folder.
-  not_numbered: true  # if the section shouldn't have a number in the sidebar
-    (e.g. Introduction or appendices) (default: true)
-  expand_sections: true  # if you'd like the sections of this chapter to always
-    be expanded in the sidebar. (default: true)
+  path: myurl  # URL of section relative to the /content/ folder.
   sections:  # Contains an optional list of more entries that make up the chapter's sections
-```
-
-### Adding an external link in your TOC
-
-To add an external link in your TOC, simply make the url point to a fully-resolved
-URL and add the `external: true` field. Here's an example:
-
-```yaml
-- title: Jupyter Homepage   # Title of chapter or section
-  url: https://jupyter.org  # URL of external site
-  external: true
-```
-
-### Extra TOC entries
-
-These are special entries that will trigger different behavior if they are
-in the `toc.yml` file:
-
-```yaml
-- search: true  # Will provide a link to a search page
-- divider: true  # Will insert a divider in the sidebar
-- header: My Header  # Will insert a header with no link in the sidebar
 ```
 
 ## Automatically build your book HTML with CI/CD

@@ -4,6 +4,7 @@ import os.path as op
 from pathlib import Path
 import click
 from glob import glob
+import shutil as sh
 
 from ..sphinx import build_sphinx, DEFAULT_CONFIG
 
@@ -95,38 +96,9 @@ def page(path_page, path_output, config):
 def create(path_output):
     """Create a simple Jupyter Book that you can customize."""
 
-    # Paths for our notebooks
-    PATH_PAGE = Path(path_page)
-    PATH_PAGE_FOLDER = PATH_PAGE.parent.absolute()
-    PAGE_NAME = PATH_PAGE.with_suffix("").name
-    CONFIG_FILE = (
-        config if config is not None else PATH_PAGE_FOLDER.joinpath("_config.yml")
-    )
-
-    OUTPUT_PATH = path_output if path_output is not None else PATH_PAGE
-    OUTPUT_PATH = Path(OUTPUT_PATH).joinpath("_build/html")
-
-    # Find all files that *aren't* the page we're building and exclude them
-    to_exclude = glob(str(PATH_PAGE_FOLDER.joinpath("**", "*")), recursive=True)
-    to_exclude = [
-        op.relpath(ifile, PATH_PAGE_FOLDER)
-        for ifile in to_exclude
-        if ifile != str(PATH_PAGE.absolute())
-    ]
-    to_exclude = DEFAULT_CONFIG["exclude_patterns"] + to_exclude
-
-    # Now call the Sphinx commands to build
-    config = {
-        "master_doc": PAGE_NAME,
-        "yaml_config_path": str(CONFIG_FILE),
-        "globaltoc_path": "",
-        "exclude_patterns": to_exclude,
-    }
-
-    build_sphinx(
-        PATH_PAGE_FOLDER,
-        OUTPUT_PATH,
-        noconfig=True,
-        confoverrides=config,
-        builder="html",
-    )
+    PATH_OUTPUT = Path(path_output)
+    if PATH_OUTPUT.is_dir():
+        raise ValueError(f"The output book already exists. Delete {path_output} first.")
+    template_path = Path(__file__).parent.parent.joinpath("book_template")
+    sh.copytree(template_path, PATH_OUTPUT)
+    print(f"Your book template can be found at {PATH_OUTPUT}")

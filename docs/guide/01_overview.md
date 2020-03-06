@@ -31,7 +31,7 @@ Building a Jupyter Book broadly consists of two steps:
 2. **Build your book**. Using Jupyter Book's command-line interface you can
    convert your pages into either an HTML or a PDF book.
 3. **Host your book's HTML online**. Once your book's HTML is built, you can host
-   it online as a public website. See {ref}`04_publish` for more information.
+   it online as a public website. See {doc}`04_publish` for more information.
 
 To begin, check out the next section. You can follow this guide linearly, or use it as
 a reference later on.

@@ -20,4 +20,4 @@ This will do the following:
 
 The page's HTML will be missing a few Jupyter Book features, such as
 a Table of Contents, however the layout and style will largely be the
-same. [Here is an example of what this looks like](notebooks).
+same. [Here is an example of what this looks like](../../features/notebooks).

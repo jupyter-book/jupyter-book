@@ -1,81 +1,143 @@
-# Create your Jupyter Book template
+# Anatomy of a Jupyter Book
 
-This page covers how to create a Jupyter Book with your own content.
-You've got three primary ways to create your Jupyter Book.
-
-## by starting with a minimal book
+Jupyter-Book comes with a demo book so that you can see how the content files
+are used in the book. We'll begin with a quick tour of these files, as they are
+the pieces that you'll modify for your own book.
 
 Running the following command will create a new Jupyter Book with a few
 content pages and a Table of Contents to get you started:
 
+## Create a template Jupyter Book
+
+We'll use a small template book to show what kinds of files you might put inside your own.
+To create a new Jupyter Book, type the following at the command-line:
+
 ```bash
-jupyter-book create mybookname
+jb create mybookname
 ```
 
-This will create a new book using your content in `mybookname/`. You'll then need to
+A new book will be created at the path that you've given (in this case, `mybookname/`).
 
-1. Add your content to `mybookname/content/`
-2. Modify `mybookname/_data/toc.yml` to match your content
-3. Modify `mybookname/_config.yml` to the configuration you'd like
-
-Note that if you choose to create the book template and later add content
-to it, you can quickly **generate a basic Table of Contents** by running
-the following command:
+````{note}
+If you would like to quickly **generate a basic Table of Contents** YAML file,
+run the following command:
 
 ```bash
 jupyter-book toc mybookname/
 ```
+````
 
-## by modifying the Demo Book
+## Inspecting your book's contents
 
-If you'd like to see a more fully-functioning demo book for inspiration, you can
-create the book that lives at the [jupyter-book website](https://jupyterbook.org)
-by adding the `--demo` flag:
-
-```bash
-jupyter-book create mybookname --demo
-```
-
-See the previous section for a description of all of the relevant files you
-should modify for your book.
-
-
-## by using a pre-existing book configuration
-
-If you've used Jupyter Book before, you can quickly generate a *new* book using a pre-existing
-set of folders and files. These are all available as arguments in the command line interface.
-
-For example, if you have your book's content in a folder structure like this:
+Let's take a quick look at some important files in the demo book you created:
 
 ```bash
-myoldbook/
-├── content
-│   ├── root_test.md
-│   └── tests
-├── _data
-│   └── toc.yml
-├── images
-│   └── tests
-├── mylicense.md
-├── myextrafolder
-│   └── myextrafile.txt
-└── config.yml
+mybookname/
+├── _config.yml
+├── _toc.yml
+├── content.md
+├── intro.md
+├── markdown.md
+├── notebooks.ipynb
+├── references.bib
+└── syntax.md
 ```
 
-You can generate a Jupyter Book from it with the following command:
+Here's a quick rundown of the files you can modify for yourself, and that
+ultimately make up your book.
 
+## Book configuration
+
+All of the configuration for your book is in the following file:
 
 ```bash
-jupyter-book create mybookname --content-folder myoldbook/content \
-                               --toc myoldbook/_data/toc.yml \
-                               --config myoldbook/_config.yml \
-                               --license myoldbook/mylicense.md \
-                               --extra-files myoldbook/myextrafolder
+mybookname/
+├── _config.yml
 ```
 
-This will create a new Jupyter Book using these files. In this case, you need to ensure
-that the values in `_config.yml` are correct, and that the Table of Contents (`toc.yml`) file
-has the structure that you want.
+You can define metadata for your book (such as its title), add
+a book logo, turn on different "interactive" buttons (such as a
+Binder button for pages built from a Jupyter Notebook), and more.
+
+
+## Table of Contents
+
+Jupyter Book uses your Table of Contents to define the structure of your book.
+For example, your chapters, sub-chapters, etc.
+
+The Table of Contents lives at this location:
+
+```bash
+mybookname/
+├── _toc.yml
+```
+
+This is a YAML file with a collection of pages, each one linking to a
+file in your `content/` folder. Here's an example of a few pages defined in `toc.yml`.
+
+```yaml
+- path: features/features
+  sections:
+  - path: features/markdown
+  - path: features/notebooks
+```
+
+The top-most level of your TOC file are **book chapters**. Above, this is the
+"Features" page.
+Note that in this case the title of the page is not explicitly specified but
+is inferred from the source files.
+This behavior is controlled by the `page_titles` setting in `_config.yml`
+(see [the titles feature page](../old_docs/features/titles) for more details).
+Each chapter can have
+several sections (defined in `sections:`) and each section can have several sub-sections
+(which would be define with a deeper level of `sections:`). In addition, you can
+use a few extra YAML values to control the behavior of Jupyter-Book (for example,
+`not_numbered: true` will prevent Jupyter Book from numbering the pages in that chapter).
+
+Each item in the YAML file points to a single content file. The links
+should be **relative to your book's folder and with no extension.**
+
+For example, in the example above there is a file in
+`mybookname/features/notebooks.ipynb`. The TOC entry that points to
+this file is here:
+
+```yaml
+    - path: /features/notebooks
+```
+
+## Book content
+
+The markdown and ipynb files in your folder is your book's content. Some content
+files for the demo book are shown below:
+
+```bash
+mybookname/
+...
+├── features.md
+└── notebooks.ipynb
+```
+
+Note that the content files are either **Jupyter Notebooks** or **Markdown**
+files. These are the files that define "pages" in your book.
+
+You can store these files in whatever collection of folders you'd like, note that
+the *structure* of your book when it is built will depend solely on the order of
+items in your `_toc.yml` file (see below section)
+
+
+## Book bibliography for citations
+
+If you'd like to build a bibliography for your book, you can do so by including
+the following file:
+
+```bash
+mybookname/
+└── references.bib
+```
+
+This BiBTex file can be used to insert citations into your book's pages. For more information,
+see {doc}`../features/citations`.
+
 
 ## Next step: convert your book content into HTML
 

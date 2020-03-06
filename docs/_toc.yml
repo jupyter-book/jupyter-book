@@ -3,7 +3,6 @@
   not_numbered: true
   expand_sections: true
   sections:
-  - path: guide/01-5_tour
   - path: guide/02_create
   - path: guide/03_build
   - path: guide/04_publish
@@ -14,45 +13,14 @@
 
   - path: guide/05_faq
   - path: guide/06_advanced
-
-- path: features/features
-  not_numbered: true
-  expand_sections: true
+  
+- path: features/index
   sections:
-  - path: features/markdown
-    not_numbered: true
-  - path: features/notebooks
-    not_numbered: true
-  - path: features/hiding
-    not_numbered: true
-  - path: features/interact
-    not_numbered: true
-  - path: features/executing
-    not_numbered: true
-  - path: features/beta
-    sections:
-    - path: features/interactive_cells
-      not_numbered: true
-    - path: features/math
-      not_numbered: true
-    - path: features/titles
-      not_numbered: true
+    - path: features/markdown
+    - path: features/notebooks
+    - path: features/hiding
     - path: features/citations
-      not_numbered: true
-    - path: features/jupytext
-      not_numbered: true
-    - path: features/layout
-      not_numbered: true
-    - path: features/page
-      not_numbered: true
-
-- path: advanced/advanced
-  not_numbered: true
-  expand_sections: true
-  sections:
-  - path: advanced/circleci
-    not_numbered: true
-
+    - path: features/math
 - path: test_pages/test
   not_numbered: true
   sections:
@@ -60,3 +28,26 @@
     - path: test_pages/equations
     - path: test_pages/code
     - path: test_pages/limits
+
+- path: old_docs/index
+  sections:
+  - path: old_docs/features/features
+    not_numbered: true
+    expand_sections: true
+    sections:
+      - path: old_docs/features/interact
+        not_numbered: true
+      - path: old_docs/features/executing
+        not_numbered: true
+      - path: old_docs/features/interactive_cells
+      - path: old_docs/features/titles
+      - path: old_docs/features/jupytext
+      - path: old_docs/features/layout
+      - path: old_docs/features/page
+
+  - path: old_docs/advanced/advanced
+    not_numbered: true
+    expand_sections: true
+    sections:
+    - path: old_docs/advanced/circleci
+      not_numbered: true

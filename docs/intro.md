@@ -19,6 +19,12 @@ do the following:
 
 Currently it accomplishes a subset of these features.
 
+## Get started
+
+To get started, check out the pages above. These are major sections of the documentation.
+In particular, {doc}`guide/01_overview` is a good way to get familiar with this tool and how to
+create your own books.
+
 ## Install
 
 Install this tool directly from the Master branch. When it has stabilized
@@ -54,4 +60,4 @@ In the future this will probably be renamed to `jupyter-book`, but it remains
 `jb` for now to avoid confusion with the current `jupyter-book` project.
 ```
 
-For more information on how to use this tool, see {ref}`guide/01_overview`.
+For more information on how to use this tool, see {doc}`guide/01_overview`.

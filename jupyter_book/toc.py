@@ -35,16 +35,16 @@ def add_toctree(app, docname, source):
     # If no globaltoc is given, we'll skip this part
     if not app.config["globaltoc_path"]:
         return
-
+    
     # First check whether this page has any descendants
     # If so, then we'll manually add them as a toctree object
     path = app.env.doc2path(docname, base=None)
     toc = app.config["globaltoc"]
     page = find_name(toc, _no_suffix(path))
 
-    # If we didn't find this page in the TOC, skip it
+    # If we didn't find this page in the TOC, raise an error
     if page is None:
-        return
+        raise FileNotFoundError(f"The following path in your table of contents couldn't be found:\n\n{path}.\n\nDouble check your `_toc.yml` file to make sure the paths are correct.")
 
     # If we have no sections, then don't worry about a toctree
     sections = [(ii.get("path"), ii.get("name")) for ii in page.get("sections", [])]
