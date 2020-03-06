@@ -6,14 +6,9 @@
   - path: guide/02_create
   - path: guide/03_build
   - path: guide/04_publish
-    expand_sections: false
-    sections:
-    - path: guide/publish/book-html
-      not_numbered: true
-
   - path: guide/05_faq
   - path: guide/06_advanced
-  
+
 - path: features/index
   sections:
     - path: features/markdown
