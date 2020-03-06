@@ -147,14 +147,14 @@ def build_sphinx(
                 keep_going,
             )
             app.build(force_all, filenames)
-            
+
             # Write an index.html file in the root to redirect to the first page
-            path_index = outputdir.joinpath('index.html')
-            path_toc = Path(config['globaltoc_path'])
+            path_index = outputdir.joinpath("index.html")
+            path_toc = Path(config["globaltoc_path"])
             if not path_index.exists() and path_toc.exists():
                 toc = yaml.safe_load(path_toc.read_text())
-                first_page = toc[0]['path'].split('.')[0] + '.html'
-                with open(path_index, 'w') as ff:
+                first_page = toc[0]["path"].split(".")[0] + ".html"
+                with open(path_index, "w") as ff:
                     ff.write(REDIRECT_TEXT.format(first_page=first_page))
             return app.statuscode
     except (Exception, KeyboardInterrupt) as exc:
