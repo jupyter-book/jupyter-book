@@ -1,4 +1,5 @@
 {% extends "pandas_sphinx_theme/layout.html" %}
+
 {% block docs_body %}
 {% include "topbar.html" %}
 {{ super() }}
@@ -6,8 +7,10 @@
 
 {% block docs_sidebar %}
 <div class="col-12 col-md-3 col-xl-2 bd-sidebar">
+{% if not theme_single_page %}{{ super () }}{% endif %}
 </div>
-{% endblock %}
+{%- endblock %}
 
 {% block docs_navbar %}
-{% endblock %}
+{% if not theme_single_page %}{{ super () }}{% endif %}
+{%- endblock %}

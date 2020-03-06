@@ -7,7 +7,7 @@ the pieces that you'll modify for your own book.
 To create a **demo Jupyter Book** to use as a template, run the following command:
 
 ```bash
-jupyter-book create mybookname --demo
+jb create mybookname --demo
 ```
 
 A new book will be created at the path that you've given (in this case, `mybookname/`).
@@ -96,9 +96,9 @@ file in your `content/` folder. Here's an example of a few pages defined in `toc
 
 The top-most level of your TOC file are **book chapters**. Above, this is the
 "Features" page.
-Note that in this case the title of the page is not explicitly specified but 
+Note that in this case the title of the page is not explicitly specified but
 is inferred from the source files.
-This behavior is controlled by the `page_titles` setting in `_config.yml` 
+This behavior is controlled by the `page_titles` setting in `_config.yml`
 (see [the titles feature page](../features/titles) for more details).
 Each chapter can have
 several sections (defined in `sections:`) and each section can have several sub-sections
