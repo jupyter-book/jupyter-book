@@ -1,11 +1,16 @@
 """Tools for interacting with Sphinx."""
 import sys
 import os.path as op
+import yaml
 from pathlib import Path
 from sphinx.util.docutils import docutils_namespace, patch_docutils
 from sphinx.application import Sphinx
 from sphinx.cmd.build import handle_exception
 
+
+REDIRECT_TEXT = """
+<meta http-equiv="Refresh" content="0; url={first_page}" />
+"""
 
 ROOT = Path(__file__)
 DEFAULT_CONFIG = dict(
@@ -142,6 +147,15 @@ def build_sphinx(
                 keep_going,
             )
             app.build(force_all, filenames)
+            
+            # Write an index.html file in the root to redirect to the first page
+            path_index = outputdir.joinpath('index.html')
+            path_toc = Path(config['globaltoc_path'])
+            if not path_index.exists() and path_toc.exists():
+                toc = yaml.safe_load(path_toc.read_text())
+                first_page = toc[0]['path'].split('.')[0] + '.html'
+                with open(path_index, 'w') as ff:
+                    ff.write(REDIRECT_TEXT.format(first_page=first_page))
             return app.statuscode
     except (Exception, KeyboardInterrupt) as exc:
         handle_exception(app, debug_args, exc, error)
