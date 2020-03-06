@@ -27,8 +27,7 @@ jobs:
       - run:
           name: Build docs to store
           command: |
-            cd docs
-            jb build
+            jupyter-book build docs
 
       - store_artifacts:
           path: docs/_build/html/

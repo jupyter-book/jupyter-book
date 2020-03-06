@@ -48,6 +48,7 @@ setup(
         "nbformat",
         "nbconvert",
         "sphinx-togglebutton",
+        "sphinx-copybutton",
         "sphinxcontrib-bibtex",
     ],
     extras_require={
@@ -69,7 +70,10 @@ setup(
         "circleci": ["nbclient"],
     },
     entry_points={
-        "console_scripts": ["jb = jupyter_book.commands:main"],
+        "console_scripts": [
+            "jb = jupyter_book.commands:main",
+            "jupyter-book = jupyter_book.commands:main",
+        ],
         "sphinx.html_themes": ["sphinx_jupyter_book_theme = jupyter_book.theme"],
     },
     package_data={

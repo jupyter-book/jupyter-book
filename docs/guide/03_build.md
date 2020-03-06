@@ -2,7 +2,7 @@
 
 Once you've added content and configured your book, it's time to
 build the HTML for each **page** of your book. We'll use the
-`jb build` command-line tool for this. In the _next step_,
+`jupyter-book build` command-line tool for this. In the _next step_,
 we'll stitch these HTML pages into a book.
 
 ## Prerequisites
@@ -22,7 +22,7 @@ the HTML for your book.
 Do so by running the following command:
 
 ```bash
-jb build mybookname/
+jupyter-book build mybookname/
 ```
 
 This will generate a fully-functioning HTML site using a **static site generator**.

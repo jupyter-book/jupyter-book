@@ -19,6 +19,7 @@ DEFAULT_CONFIG = dict(
     author="Executable Book Project",
     extensions=[
         "sphinx_togglebutton",
+        "sphinx_copybutton",
         "myst_parser",
         "myst_nb",
         "jupyter_book",

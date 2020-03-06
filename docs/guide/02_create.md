@@ -13,7 +13,7 @@ We'll use a small template book to show what kinds of files you might put inside
 To create a new Jupyter Book, type the following at the command-line:
 
 ```bash
-jb create mybookname
+jupyter-book create mybookname
 ```
 
 A new book will be created at the path that you've given (in this case, `mybookname/`).

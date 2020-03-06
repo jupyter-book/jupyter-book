@@ -13,5 +13,5 @@ pip install -e .
 
 ```
 cd docs
-jb build
+jupyter-book build
 ```

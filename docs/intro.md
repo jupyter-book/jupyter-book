@@ -52,12 +52,7 @@ pip install -e .
 ## Use
 
 The primary way to use this tool is via the command line. It provides a
-top-level command called `jb`, and a number of sub-commands. Run `jb -h` for
-more information.
-
-```{note}
-In the future this will probably be renamed to `jupyter-book`, but it remains
-`jb` for now to avoid confusion with the current `jupyter-book` project.
-```
+top-level command called `jupyter-book`, and a number of sub-commands.
+Run `jupyter-book -h` for more information.
 
 For more information on how to use this tool, see {doc}`guide/01_overview`.

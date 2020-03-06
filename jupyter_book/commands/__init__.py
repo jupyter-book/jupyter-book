@@ -16,9 +16,7 @@ def main():
 
 
 @main.command()
-@click.option(
-    "--path-book", default=".", help="Path to the root of the book repository."
-)
+@click.argument("path-book")
 @click.option("--path-output", default=None, help="Path to the output artifacts")
 @click.option("--config", default=None, help="Path to the YAML configuration file")
 @click.option("--toc", default=None, help="Path to the Table of Contents YAML file")
