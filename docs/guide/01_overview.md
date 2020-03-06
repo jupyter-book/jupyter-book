@@ -24,7 +24,7 @@ Building a Jupyter Book broadly consists of two steps:
 
    * Your content files (the pages of your book) in either markdown or Jupyter
      Notebooks.
-   * A Table of Contents `YAML` file (`_config.yaml`) that defines
+   * A Table of Contents `YAML` file (`_toc.yml`) that defines
      the structure of your book.
    * (optional) A configuration file (`_config.yml`) to control the behavior
      of Jupyter Book.
