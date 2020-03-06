@@ -34,8 +34,8 @@ and to add your book's content to it.
    git clone https://github.com/<my-org>/<my-book-name>
    ```
 
-4. Copy all of your book files and folders (what was created when you ran `jb build mybook`)
-   into the new repository. For example, if you created your book locally with `jb create mylocalbook`
+4. Copy all of your book files and folders (what was created when you ran `jupyter-book build mybook`)
+   into the new repository. For example, if you created your book locally with `jupyter-book create mylocalbook`
    and your online repository is called `myonlinebook`, the command would be:
 
    ```bash
@@ -76,11 +76,11 @@ Follow these steps to use it:
    pip install ghp-import
    ```
 2. Call `ghp-import` and point it to your HTML files, like so:
-   
+
    ```
    ghp-import -n -p -f mylocalbook/_build/html
    ```
-   
+
 This will cause `ghp-import` to push *all* of the contents of the `_build/html` folder
 to the `gh-pages` branch of your current repository, and push the contents to GitHub.
 By default, this generally means your site should now be viewable online.
