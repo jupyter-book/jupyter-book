@@ -12,7 +12,7 @@ jobs:
           keys:
             - cache-pip
 
-      - run: pip install --user .[sphinx,circleci]
+      - run: pip install --user .[sphinx]
       - save_cache:
           key: cache-pip
           paths:

@@ -12,6 +12,7 @@
 - path: features/index
   sections:
     - path: features/markdown
+    - path: features/myst
     - path: features/notebooks
     - path: features/hiding
     - path: features/citations
