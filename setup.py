@@ -36,7 +36,7 @@ setup(
         "sphinx",
         (
             "myst_parser @ "
-            "https://github.com/ExecutableBookProject/myst_parser/archive/develop.zip"
+            "https://github.com/ExecutableBookProject/myst_parser/archive/master.zip"
         ),
         (
             "myst_nb @ "
@@ -66,9 +66,9 @@ setup(
             "matplotlib",
             "ipywidgets",
             "pandas",
+            "nbclient"
         ],
         "testing": ["coverage", "pytest>=3.6,<4", "pytest-cov", "beautifulsoup4"],
-        "circleci": ["nbclient"],
     },
     entry_points={
         "console_scripts": [
