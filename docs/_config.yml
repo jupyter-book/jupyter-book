@@ -10,6 +10,7 @@ baseurl: "" # the subpath of your site, e.g. /blog. If there is no subpath for y
 url: "https://jupyterbook.org" # the base hostname & protocol for your site, e.g. http://example.com
 html_logo: images/logo.png
 html_favicon: images/favicon.ico
+html_title: ''
 numfig: true
 
 #######################################################################################

@@ -53,8 +53,8 @@ setup(
         "sphinx-copybutton",
         "sphinxcontrib-bibtex",
         (
-            "pandas_sphinx_theme @ "
-            "https://github.com/pandas-dev/pandas-sphinx-theme/archive/master.zip"
+            "sphinx_book_theme @ "
+            "https://github.com/ExecutableBookProject/sphinx-book-theme/archive/master.zip"
         ),
     ],
     extras_require={
@@ -66,16 +66,7 @@ setup(
             "jb = jupyter_book.commands:main",
             "jupyter-book = jupyter_book.commands:main",
         ],
-        "sphinx.html_themes": ["sphinx_jupyter_book_theme = jupyter_book.theme"],
     },
-    package_data={
-        "jupyter_book": [
-            "theme/theme.conf",
-            "theme/*.html",
-            "theme/static/css/*.css",
-            "theme/static/js/*.js",
-            "book_template/*",
-        ]
-    },
+    package_data={"jupyter_book": ["book_template/*",]},
     include_package_data=True,
 )
