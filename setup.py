@@ -33,6 +33,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         "pyyaml",
+        "docutils>=0.15",
         "sphinx",
         (
             "myst_parser @ "
@@ -51,16 +52,13 @@ setup(
         "sphinx-togglebutton",
         "sphinx-copybutton",
         "sphinxcontrib-bibtex",
+        (
+            "pandas_sphinx_theme @ "
+            "https://github.com/pandas-dev/pandas-sphinx-theme/archive/master.zip"
+        ),
     ],
     extras_require={
         "sphinx": [
-            "pyyaml",
-            "docutils>=0.15",
-            "sphinx>=2,<3",
-            (
-                "pandas_sphinx_theme @ "
-                "https://github.com/pandas-dev/pandas-sphinx-theme/archive/master.zip"
-            ),
             "folium",
             "numpy",
             "matplotlib",
