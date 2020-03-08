@@ -58,14 +58,7 @@ setup(
         ),
     ],
     extras_require={
-        "sphinx": [
-            "folium",
-            "numpy",
-            "matplotlib",
-            "ipywidgets",
-            "pandas",
-            "nbclient"
-        ],
+        "sphinx": ["folium", "numpy", "matplotlib", "ipywidgets", "pandas", "nbclient"],
         "testing": ["coverage", "pytest>=3.6,<4", "pytest-cov", "beautifulsoup4"],
     },
     entry_points={

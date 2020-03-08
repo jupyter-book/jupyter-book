@@ -1,49 +1,40 @@
-- path: intro
-- path: guide/01_overview
-  not_numbered: true
-  expand_sections: true
-  sections:
-  - path: guide/02_create
-  - path: guide/03_build
-  - path: guide/04_publish
-  - path: guide/05_faq
-  - path: guide/06_advanced
+- file: intro
+- file: guide/01_overview
+  pages:
+  - file: guide/02_create
+  - file: guide/03_build
+  - file: guide/04_publish
+  - file: guide/05_faq
+  - file: guide/06_advanced
 
-- path: features/index
-  sections:
-    - path: features/markdown
-    - path: features/myst
-    - path: features/notebooks
-    - path: features/hiding
-    - path: features/citations
-    - path: features/math
-- path: test_pages/test
-  not_numbered: true
-  sections:
-    - path: test_pages/layout_elements
-    - path: test_pages/equations
-    - path: test_pages/code
-    - path: test_pages/limits
+- file: features/index
+  pages:
+    - file: features/markdown
+    - file: features/myst
+    - file: features/notebooks
+    - file: features/hiding
+    - file: features/citations
+    - file: features/math
 
-- path: old_docs/index
-  sections:
-  - path: old_docs/features/features
-    not_numbered: true
-    expand_sections: true
-    sections:
-      - path: old_docs/features/interact
-        not_numbered: true
-      - path: old_docs/features/executing
-        not_numbered: true
-      - path: old_docs/features/interactive_cells
-      - path: old_docs/features/titles
-      - path: old_docs/features/jupytext
-      - path: old_docs/features/layout
-      - path: old_docs/features/page
+- file: test_pages/test
+  pages:
+    - file: test_pages/layout_elements
+    - file: test_pages/equations
+    - file: test_pages/code
+    - file: test_pages/limits
 
-  - path: old_docs/advanced/advanced
-    not_numbered: true
-    expand_sections: true
-    sections:
-    - path: old_docs/advanced/circleci
-      not_numbered: true
+- file: old_docs/index
+  pages:
+  - file: old_docs/features/features
+    pages:
+      - file: old_docs/features/interact
+      - file: old_docs/features/executing
+      - file: old_docs/features/interactive_cells
+      - file: old_docs/features/titles
+      - file: old_docs/features/jupytext
+      - file: old_docs/features/layout
+      - file: old_docs/features/page
+
+  - file: old_docs/advanced/advanced
+    pages:
+    - file: old_docs/advanced/circleci

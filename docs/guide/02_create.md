@@ -16,6 +16,11 @@ To create a new Jupyter Book, type the following at the command-line:
 jupyter-book create mybookname
 ```
 
+```{note}
+You can also use the short-hand `jb` for `jupyter-book`. E.g.,:
+`jb create mybookname`. We'll use `jupyter-book` for the rest of this guide.
+```
+
 A new book will be created at the path that you've given (in this case, `mybookname/`).
 
 ````{note}
@@ -76,10 +81,10 @@ This is a YAML file with a collection of pages, each one linking to a
 file in your `content/` folder. Here's an example of a few pages defined in `toc.yml`.
 
 ```yaml
-- path: features/features
-  sections:
-  - path: features/markdown
-  - path: features/notebooks
+- file: features/features
+  pages:
+  - file: features/markdown
+  - file: features/notebooks
 ```
 
 The top-most level of your TOC file are **book chapters**. Above, this is the
@@ -89,8 +94,8 @@ is inferred from the source files.
 This behavior is controlled by the `page_titles` setting in `_config.yml`
 (see [the titles feature page](../old_docs/features/titles) for more details).
 Each chapter can have
-several sections (defined in `sections:`) and each section can have several sub-sections
-(which would be define with a deeper level of `sections:`). In addition, you can
+several sections (defined in `pages:`) and each section can have several sub-sections
+(which would be define with a deeper level of `pages:`). In addition, you can
 use a few extra YAML values to control the behavior of Jupyter-Book (for example,
 `not_numbered: true` will prevent Jupyter Book from numbering the pages in that chapter).
 
@@ -102,7 +107,7 @@ For example, in the example above there is a file in
 this file is here:
 
 ```yaml
-    - path: /features/notebooks
+    - file: features/notebooks
 ```
 
 ## Book content

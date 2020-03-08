@@ -14,10 +14,17 @@ def get_html_theme_path():
     return theme_path
 
 
+def add_static_path(app):
+    static_path = Path(__file__).parent.joinpath("theme", "static").absolute()
+    app.config.html_static_path.append(str(static_path))
+
+
 # We connect this function to the step after the builder is initialized
 def setup(app):
     app.connect("config-inited", update_indexname)
     app.connect("source-read", add_toctree)
+    app.connect("builder-inited", add_static_path)
+
     app.add_config_value("globaltoc_path", "toc.yml", "env")
 
     # configuration for YAML metadata

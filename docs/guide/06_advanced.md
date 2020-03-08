@@ -137,7 +137,7 @@ Below is all of the possible fields in the entry of a single page in `toc.yml`:
 ```yaml
 - title: mytitle   # Title of chapter or section
   path: myurl  # URL of section relative to the /content/ folder.
-  sections:  # Contains an optional list of more entries that make up the chapter's sections
+  pages:  # Contains an optional list of more entries that make up the chapter's sections
 ```
 
 ## Automatically build your book HTML with CI/CD
