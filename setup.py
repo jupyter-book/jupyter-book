@@ -72,8 +72,7 @@ setup(
         "jupyter_book": [
             "theme/theme.conf",
             "theme/*.html",
-            "theme/static/css/*.css",
-            "theme/static/js/*.js",
+            "theme/static/*",
             "book_template/*",
         ]
     },
