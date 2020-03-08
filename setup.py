@@ -74,6 +74,7 @@ setup(
             "theme/*.html",
             "theme/static/css/*.css",
             "theme/static/js/*.js",
+            "book_template/*",
         ]
     },
     include_package_data=True,
