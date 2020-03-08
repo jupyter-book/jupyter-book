@@ -58,14 +58,7 @@ setup(
         ),
     ],
     extras_require={
-        "sphinx": [
-            "folium",
-            "numpy",
-            "matplotlib",
-            "ipywidgets",
-            "pandas",
-            "nbclient"
-        ],
+        "sphinx": ["folium", "numpy", "matplotlib", "ipywidgets", "pandas", "nbclient"],
         "testing": ["coverage", "pytest>=3.6,<4", "pytest-cov", "beautifulsoup4"],
     },
     entry_points={
@@ -81,6 +74,7 @@ setup(
             "theme/*.html",
             "theme/static/css/*.css",
             "theme/static/js/*.js",
+            "book_template/*",
         ]
     },
     include_package_data=True,

@@ -1,9 +1,13 @@
 repos:
--   repo: local
-    hooks:
-    -   id: clear-doc-notebook-outputs
-        name: Clear outputs in documentation notebooks
-        language: system
-        entry: python scripts/clear_doc_outputs.py
-        always_run: true
-        files: \.ipynb$
+- repo: local
+  hooks:
+  - id: clear-doc-notebook-outputs
+    name: Clear outputs in documentation notebooks
+    language: system
+    entry: python scripts/clear_doc_outputs.py
+    always_run: true
+    files: \.ipynb$
+- repo: https://github.com/psf/black
+  rev: stable
+  hooks:
+  - id: black

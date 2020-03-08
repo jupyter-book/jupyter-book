@@ -39,6 +39,7 @@ DEFAULT_CONFIG = dict(
     # -- Options for HTML output -------------------------------------------------
     html_theme="jupyter_book_theme",
     html_theme_options={"single_page": False},
+    html_add_permalinks="¶",
 )
 
 
@@ -154,7 +155,7 @@ def build_sphinx(
             path_toc = Path(config["globaltoc_path"])
             if not path_index.exists() and path_toc.exists():
                 toc = yaml.safe_load(path_toc.read_text())
-                first_page = toc[0]["path"].split(".")[0] + ".html"
+                first_page = toc[0]["file"].split(".")[0] + ".html"
                 with open(path_index, "w") as ff:
                     ff.write(REDIRECT_TEXT.format(first_page=first_page))
             return app.statuscode

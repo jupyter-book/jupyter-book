@@ -22,10 +22,10 @@ def find_name(pages, name):
         pages = [pages]
 
     for page in pages:
-        if _no_suffix(page.get("path")) == name:
+        if _no_suffix(page.get("file")) == name:
             return page
         else:
-            sections = page.get("sections", [])
+            sections = page.get("pages", [])
             page = find_name(sections, name)
             if page is not None:
                 return page
@@ -49,13 +49,13 @@ def add_toctree(app, docname, source):
         )
 
     # If we have no sections, then don't worry about a toctree
-    sections = [(ii.get("path"), ii.get("name")) for ii in page.get("sections", [])]
+    sections = [(ii.get("file"), ii.get("name")) for ii in page.get("pages", [])]
     if len(sections) == 0:
         return
 
     for ii, (path_sec, name) in enumerate(sections):
         # Update path so it is relative to the root of the parent
-        path_parent_folder = Path(page["path"]).parent
+        path_parent_folder = Path(page["file"]).parent
         path_sec = os.path.relpath(path_sec, path_parent_folder)
 
         # Decide whether we'll over-ride with a name in the toctree
@@ -64,10 +64,10 @@ def add_toctree(app, docname, source):
             this_section = f"{name} <{this_section}>"
         sections[ii] = this_section
 
-    # Parse the options block
-    options = page.get("options", [])
-    if isinstance(options, str):
-        options = [options]
+    # Parse flags in the page metadata
+    options = []
+    if page.get("numbered"):
+        options.append("numbered")
     options = "\n".join([f":{ii}:" for ii in options])
 
     # Figure out what kind of text defines a toctree directive for this file
@@ -112,8 +112,8 @@ def update_indexname(app, config):
         toc_updated = toc[0]
         if len(toc) > 1:
             subsections = toc[1:]
-            toc_updated["sections"] = subsections
+            toc_updated["pages"] = subsections
     app.config["globaltoc"] = toc_updated
 
     # Update the main toctree file for whatever the first file here is
-    app.config["master_doc"] = _no_suffix(toc_updated["path"])
+    app.config["master_doc"] = _no_suffix(toc_updated["file"])

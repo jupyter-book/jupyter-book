@@ -30,6 +30,11 @@ The site will be placed in the `_build/html` folder. You can then open the pages
 in the site by entering that folder and opening the `html` files with your
 web browser.
 
+```{note}
+You can also use the short-hand `jb` for `jupyter-book`. E.g.,:
+`jb build mybookname/`.
+```
+
 ## Page caching
 
 By default, Jupyter Book will only build the HTML for pages that have
