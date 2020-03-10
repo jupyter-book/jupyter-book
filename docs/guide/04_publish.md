@@ -23,7 +23,7 @@ and to add your book's content to it.
 
 1. First, log-in to GitHub, then go to the "create a new repository" page:
 
-   https://github.com/new
+   <https://github.com/new>
 
 2. Next, add a name and description for your book. You can choose whatever
    initialization you'd like.
