@@ -99,7 +99,7 @@ several sections (defined in `pages:`) and each section can have several sub-sec
 use a few extra YAML values to control the behavior of Jupyter-Book (for example,
 `not_numbered: true` will prevent Jupyter Book from numbering the pages in that chapter).
 
-Each item in the YAML file points to a single content file. The links
+Each item in the `_toc.yml` file points to a single content file. The links
 should be **relative to your book's folder and with no extension.**
 
 For example, in the example above there is a file in
