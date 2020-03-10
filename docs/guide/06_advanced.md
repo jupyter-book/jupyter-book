@@ -67,14 +67,14 @@ section per **top-level folder** and treat all content files inside that
 folder as pages within that section.
 
 By default, running this command will print the TOC YAML to the screen.
-If you'd like to overwrite your `_data/toc.yml` file with the result of
+If you'd like to overwrite your `_toc.yml` with the result of
 running this command, you can use the `--path-output` argument like so
 
 ```bash
-jupyter-book toc path/to/mybook --path-output path/to/mybook/_data/toc.yml
+jupyter-book toc path/to/mybook --path-output path/to/mybook/_toc.yml
 ```
 
-This will overwrite the contents of `toc.yml` with the new TOC.
+This will overwrite the contents of `_toc.yml` with the new TOC.
 
 ```{note}
 this will make some assumptions about how you'd like your book to
