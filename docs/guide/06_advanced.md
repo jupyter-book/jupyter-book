@@ -60,10 +60,11 @@ To use it, simply use the following command:
 jupyter-book toc path/to/mybook
 ```
 
-This put all `.md` and `.ipynb` files in the root of the **content folder**
-as top-level pages. For any files that are in folders, it will create one
-section per **top-level folder** and place all content files inside that
-section.
+This will treat all `.md` and `.ipynb` files in the root of the 
+**content folder** as top-level pages, or chapters.
+For any files that are in folders, it will create one
+section per **top-level folder** and treat all content files inside that
+folder as pages within that section.
 
 By default, running this command will print the TOC YAML to the screen.
 If you'd like to overwrite your `_data/toc.yml` file with the result of
