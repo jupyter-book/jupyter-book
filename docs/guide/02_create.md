@@ -118,7 +118,7 @@ files for the demo book are shown below:
 ```bash
 mybookname/
 ...
-├── features.md
+├── content.md
 └── notebooks.ipynb
 ```
 
