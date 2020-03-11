@@ -16,7 +16,7 @@ def test_build_book(tmpdir):
     assert path.joinpath("_config.yml").exists()
 
     # Build the book
-    run(f"jb build {path}".split())
+    run(f"jb build {path}".split(), check=True)
     path_html = path.joinpath("_build", "html")
     assert path_html.joinpath("index.html").exists()
     for path_static in path_template.joinpath("static").glob("*"):
