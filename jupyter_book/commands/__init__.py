@@ -56,11 +56,10 @@ def page(path_page, path_output, config):
     PATH_PAGE = Path(path_page)
     PATH_PAGE_FOLDER = PATH_PAGE.parent.absolute()
     PAGE_NAME = PATH_PAGE.with_suffix("").name
-    CONFIG_FILE = (
-        config if config is not None else PATH_PAGE_FOLDER.joinpath("_config.yml")
-    )
+    if config is None:
+        config = ""
 
-    OUTPUT_PATH = path_output if path_output is not None else PATH_PAGE
+    OUTPUT_PATH = path_output if path_output is not None else PATH_PAGE_FOLDER
     OUTPUT_PATH = Path(OUTPUT_PATH).joinpath("_build/html")
 
     # Find all files that *aren't* the page we're building and exclude them
@@ -75,7 +74,7 @@ def page(path_page, path_output, config):
     # Now call the Sphinx commands to build
     config = {
         "master_doc": PAGE_NAME,
-        "yaml_config_path": str(CONFIG_FILE),
+        "yaml_config_path": config,
         "globaltoc_path": "",
         "exclude_patterns": to_exclude,
     }
