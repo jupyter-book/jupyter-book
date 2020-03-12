@@ -152,8 +152,20 @@ def build_sphinx(
 
             # Write an index.html file in the root to redirect to the first page
             path_index = outputdir.joinpath("index.html")
-            path_toc = Path(config["globaltoc_path"])
-            if not path_index.exists() and path_toc.exists():
+            if config["globaltoc_path"]:
+                path_toc = Path(config["globaltoc_path"])
+                if not path_toc.exists():
+                    raise ValueError(
+                        f"You gave a Table of Contents path that doesn't exist: {path_toc}"
+                    )
+                if path_toc.suffix not in [".yml", ".yaml"]:
+                    raise ValueError(
+                        f"You gave a Table of Contents path that is not a YAML file: {path_toc}"
+                    )
+            else:
+                path_toc = None
+
+            if not path_index.exists() and path_toc:
                 toc = yaml.safe_load(path_toc.read_text())
                 first_page = toc[0]["file"].split(".")[0] + ".html"
                 with open(path_index, "w") as ff:

@@ -42,7 +42,10 @@ setup(
         "nbformat",
         "nbconvert",
         "nbclient",
-        "sphinx-togglebutton",
+        (
+            "sphinx_togglebutton @ "
+            "https://github.com/ExecutableBookProject/sphinx-togglebutton/archive/master.zip"
+        ),
         "sphinx-copybutton",
         "sphinxcontrib-bibtex",
         (

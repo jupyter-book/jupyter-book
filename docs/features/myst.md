@@ -280,4 +280,41 @@ content. To add sidebar content, use this syntax:
 It is pretty cool!
 ```
 
+### Hide your markdown with toggle buttons
+
+Sometimes you'd like to initially hide content, and give readers the option
+of clicking in order to read. You can activate this behavior in markdown with the `{toggle}`
+directive like so:
+
+````
+```{toggle}
+This content will be toggled!
+```
+````
+
+This results in:
+
+```{toggle}
+This content will be toggled!
+```
+
+You can also include a title with your toggle section. The title will always be displayed,
+and the toggle button will reveal the section's content. Use this like so:
+
+````
+```{toggle} Click the button to reveal!
+Some hidden toggle content!
+
+![](../images/cool.jpg)
+```
+````
+
+This results in:
+
+```{toggle} Click the button to reveal!
+Some hidden toggle content!
+
+![](../images/cool.jpg)
+```
+
 [myst-parser]: https://myst-parser.readthedocs.io/en/latest/
