@@ -9,9 +9,8 @@
 
 - file: features/index
   pages:
-    - file: features/markdown
-    - file: features/myst
     - file: features/notebooks
+    - file: features/myst
     - file: features/hiding
     - file: features/citations
     - file: features/math

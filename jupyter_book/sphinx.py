@@ -38,7 +38,16 @@ DEFAULT_CONFIG = dict(
     pygments_style="sphinx",
     # -- Options for HTML output -------------------------------------------------
     html_theme="sphinx_book_theme",
-    html_theme_options={"single_page": False},
+    html_theme_options={
+        "single_page": False,
+        "sidebar_footer_text": "Powered by <a href='https://jupyterbook.org'>Jupyter Book</a>",
+        "binder_config": {
+            "use_binder_button": True,
+            "binderhub_url": "https://mybinder.org",
+            "path_to_docs": "docs",
+            "repository_url": "https://github.com/ExecutableBookProject/cli",
+        },
+    },
     html_add_permalinks="¶",
 )
 

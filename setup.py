@@ -35,7 +35,7 @@ setup(
         "pyyaml",
         "docutils>=0.15",
         "sphinx",
-        "myst-nb~=0.2.1",
+        "myst-nb~=0.3.0",
         "click",
         "setuptools",
         "sphinx",

@@ -1,11 +1,15 @@
-# MyST Markdown
+# Extended markdown with MyST Markdown
 
-In addition to {doc}`CommonMark markdown <markdown>`, Jupyter Book also supports
+In addition to {doc}`Jupyter Notebook markdown <notebooks>`, Jupyter Book also supports
 a special flavor of markdown called **MyST (or
 Markedly Structured Text)**. It was designed to make it easier to create
 publishable computational documents in Markdown. It is a superset of
 [CommonMark markdown](https://commonmark.org/) and draws heavy inspiration
 from the fantastic [RMarkdown language from RStudio](https://rmarkdown.rstudio.com/).
+
+```{sidebar} MyST and Sphinx
+For those who are familiar with Sphinx, MyST markdown is basically CommonMark + Sphinx roles and directives
+```
 
 You can write MyST markdown in either markdown files, or in Jupyter Notebooks.
 Jupyter Book will know how to parse both of them.
@@ -14,6 +18,7 @@ This page contains a few pieces of information about MyST markdown and how it
 relates to Jupyter Book. You can
 find much more information about this flavor of markdown at
 [The Myst Parser documentation][myst-parser].
+
 
 ```{note}
 Roles and directives are two of the most powerful tools in Jupyter Book. They
