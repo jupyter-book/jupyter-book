@@ -7,6 +7,7 @@ from glob import glob
 import shutil as sh
 
 from ..sphinx import build_sphinx, DEFAULT_CONFIG
+from ..toc import build_toc
 
 
 @click.group()
@@ -29,19 +30,32 @@ def build(path_book, path_output, config, toc, execute):
     # Paths for our notebooks
     PATH_BOOK = Path(path_book).absolute()
 
-    PATH_TOC_YAML = toc if toc is not None else PATH_BOOK.joinpath("_toc.yml")
-    CONFIG_FILE = config if config is not None else PATH_BOOK.joinpath("_config.yml")
+    book_config = {}
+
+    # Table of contents
+    if toc is None:
+        if PATH_BOOK.joinpath("_toc.yml").exists():
+            toc = PATH_BOOK.joinpath("_toc.yml")
+        else:
+            raise ValueError(
+                f"Couldn't find a Table of Contents file. To auto-generate one, run\n\n\tjupyter-book build {path_book}"
+            )
+    book_config["globaltoc_path"] = str(toc)
+
+    # Configuration file
+    if config is None:
+        if PATH_BOOK.joinpath("_config.yml").exists():
+            config = PATH_BOOK.joinpath("_config.yml")
+
+    if config is not None:
+        book_config["yaml_config_path"] = str(config)
 
     OUTPUT_PATH = path_output if path_output is not None else PATH_BOOK
     OUTPUT_PATH = Path(OUTPUT_PATH).joinpath("_build/html")
 
     # Now call the Sphinx commands to build
-    config = {
-        "yaml_config_path": str(CONFIG_FILE),
-        "globaltoc_path": str(PATH_TOC_YAML),
-    }
     build_sphinx(
-        PATH_BOOK, OUTPUT_PATH, noconfig=True, confoverrides=config, builder="html"
+        PATH_BOOK, OUTPUT_PATH, noconfig=True, confoverrides=book_config, builder="html"
     )
 
 
@@ -99,3 +113,34 @@ def create(path_output):
     template_path = Path(__file__).parent.parent.joinpath("book_template")
     sh.copytree(template_path, PATH_OUTPUT)
     print(f"Your book template can be found at {PATH_OUTPUT}")
+
+
+@main.command()
+@click.argument("path")
+@click.option(
+    "--filename_split_char",
+    default="_",
+    help="A character used to split file names for titles",
+)
+@click.option(
+    "--skip_text",
+    default=None,
+    help="If this text is found in any files or folders, they will be skipped.",
+)
+@click.option(
+    "--output-folder",
+    default=None,
+    help="A folder where the TOC will be written. Default is `path`",
+)
+def toc(path, filename_split_char, skip_text, output_folder):
+    """Generate a _toc.yml file for your content folder (and sub-directories).
+    The alpha-numeric name of valid conten files will be used to choose the
+    order of pages/sections. If any file is called "index.{extension}", it will be
+    chosen as the first file.
+    """
+    out_yaml = build_toc(path, filename_split_char, skip_text)
+    if output_folder is None:
+        output_folder = path
+    output_file = Path(output_folder).joinpath("_toc.yml")
+    output_file.write_text(out_yaml)
+    print(f"Table of Contents written to {output_file}")
