@@ -122,20 +122,20 @@ def update_indexname(app, config):
     app.config["master_doc"] = _no_suffix(toc["file"])
 
 
-def _content_path_to_yaml(path, split_char="_"):
+def _content_path_to_yaml(path, root_path, split_char="_"):
     """Return a YAML entry for the TOC from a path."""
     path = path.with_suffix("")
     if path.name == "index":
         title = _filename_to_title(path.resolve().parent.name, split_char=split_char)
-
     else:
         title = _filename_to_title(path.name, split_char=split_char)
 
-    out = {"file": str(path.with_suffix("")), "title": title}
+    path_rel_root = path.relative_to(root_path)
+    out = {"file": str(path_rel_root.with_suffix("")), "title": title}
     return out
 
 
-def _find_content_structure(path, split_char="_", skip_text=None):
+def _find_content_structure(path, root_folder, split_char="_", skip_text=None):
     """Parse a folder and sub-folders for content and return a dict."""
     if skip_text is None:
         skip_text = []
@@ -160,14 +160,14 @@ def _find_content_structure(path, split_char="_", skip_text=None):
             first_content = content_files.pop(ii)
     if not first_content:
         first_content = content_files.pop(0)
-    parent = _content_path_to_yaml(first_content, split_char=split_char)
+    parent = _content_path_to_yaml(first_content, root_folder, split_char=split_char)
     parent["pages"] = []
 
     # Children become pages of the parent
     for content_file in content_files:
         if any(iskip in str(content_file) for iskip in skip_text):
             continue
-        parent["pages"].append(_content_path_to_yaml(content_file))
+        parent["pages"].append(_content_path_to_yaml(content_file, root_folder))
 
     # Now recursively run this on folders, and add as another sub-page
     folders = [ii for ii in path.iterdir() if ii.is_dir()]
@@ -175,7 +175,7 @@ def _find_content_structure(path, split_char="_", skip_text=None):
         if any(iskip in str(folder) for iskip in skip_text):
             continue
         folder_out = _find_content_structure(
-            folder, split_char=split_char, skip_text=skip_text
+            folder, root_folder, split_char=split_char, skip_text=skip_text
         )
         if folder_out:
             parent["pages"].append(folder_out)
@@ -211,7 +211,7 @@ def build_toc(path, filename_split_char="_", skip_text=None):
         If this text is found in any files or folders, they will be skipped.
     """
     structure = _find_content_structure(
-        path, split_char=filename_split_char, skip_text=skip_text
+        path, path, split_char=filename_split_char, skip_text=skip_text
     )
     if not structure:
         raise ValueError(f"No content files were found in {path}.")
