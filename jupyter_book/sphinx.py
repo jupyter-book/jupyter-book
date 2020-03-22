@@ -14,9 +14,9 @@ REDIRECT_TEXT = """
 
 ROOT = Path(__file__)
 DEFAULT_CONFIG = dict(
-    project="Jupyter Book",
-    copyright="2020, ExecutableBookProject",
-    author="Executable Book Project",
+    project="My Jupyter Book",
+    copyright="2020",
+    author="",
     extensions=[
         "sphinx_togglebutton",
         "sphinx_copybutton",
@@ -41,12 +41,6 @@ DEFAULT_CONFIG = dict(
     html_theme_options={
         "single_page": False,
         "sidebar_footer_text": "Powered by <a href='https://jupyterbook.org'>Jupyter Book</a>",
-        "binder_config": {
-            "use_binder_button": True,
-            "binderhub_url": "https://mybinder.org",
-            "path_to_docs": "docs",
-            "repository_url": "https://github.com/ExecutableBookProject/cli",
-        },
     },
     html_add_permalinks="¶",
 )
@@ -176,7 +170,11 @@ def build_sphinx(
 
             if not path_index.exists() and path_toc:
                 toc = yaml.safe_load(path_toc.read_text())
-                first_page = toc[0]["file"].split(".")[0] + ".html"
+                if isinstance(toc, dict):
+                    first_page = toc["file"]
+                else:
+                    first_page = toc[0]["file"]
+                first_page = first_page.split(".")[0] + ".html"
                 with open(path_index, "w") as ff:
                     ff.write(REDIRECT_TEXT.format(first_page=first_page))
             return app.statuscode
