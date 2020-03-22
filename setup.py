@@ -61,8 +61,8 @@ setup(
         "console_scripts": [
             "jb = jupyter_book.commands:main",
             "jupyter-book = jupyter_book.commands:main",
-        ],
+        ]
     },
-    package_data={"jupyter_book": ["book_template/*",]},
+    package_data={"jupyter_book": ["book_template/*"]},
     include_package_data=True,
 )
