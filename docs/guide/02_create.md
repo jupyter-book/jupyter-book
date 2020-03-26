@@ -92,7 +92,7 @@ The top-most level of your TOC file are **book chapters**. Above, this is the
 Note that in this case the title of the page is not explicitly specified but
 is inferred from the source files.
 This behavior is controlled by the `page_titles` setting in `_config.yml`
-(see [the titles feature page](../old_docs/features/titles) for more details).
+(see {ref}`toc/titles` for more details).
 Each chapter can have
 several sections (defined in `pages:`) and each section can have several sub-sections
 (which would be define with a deeper level of `pages:`). In addition, you can

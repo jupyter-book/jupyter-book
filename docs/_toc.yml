@@ -1,5 +1,8 @@
 - file: intro
+
+- header: Jupyter Book Guide
 - file: guide/01_overview
+  title: Getting started with Jupyter Book
   pages:
   - file: guide/02_create
   - file: guide/03_build
@@ -8,13 +11,17 @@
   - file: guide/06_advanced
 
 - file: features/index
+  expand_sections: true
   pages:
     - file: features/notebooks
     - file: features/myst
     - file: features/hiding
     - file: features/citations
     - file: features/math
+    - file: features/toc
 
+- header: Reference and test pages
+- divider: true
 - file: test_pages/test
   pages:
     - file: test_pages/layout_elements
@@ -24,16 +31,9 @@
 
 - file: old_docs/index
   pages:
-  - file: old_docs/features/features
-    pages:
-      - file: old_docs/features/interact
-      - file: old_docs/features/executing
-      - file: old_docs/features/interactive_cells
-      - file: old_docs/features/titles
-      - file: old_docs/features/jupytext
-      - file: old_docs/features/layout
-      - file: old_docs/features/page
-
-  - file: old_docs/advanced/advanced
-    pages:
-    - file: old_docs/advanced/circleci
+    - file: old_docs/interact
+    - file: old_docs/executing
+    - file: old_docs/interactive_cells
+    - file: old_docs/jupytext
+    - file: old_docs/layout
+    - file: old_docs/page

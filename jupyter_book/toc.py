@@ -51,52 +51,89 @@ def add_toctree(app, docname, source):
         )
 
     # If we have no sections, then don't worry about a toctree
-    sections = [(ii.get("file"), ii.get("name")) for ii in page.get("pages", [])]
-    if len(sections) == 0:
+    pages = page.get("pages")
+    if not pages:
         return
 
-    for ii, (path_sec, name) in enumerate(sections):
+    def gen_toctree(options, pages):
+        # Copy out our options and pages so we can clear later
+        this_options = "\n".join(options.copy())
+        this_pages = "\n".join(pages.copy())
+
+        # Generate the TOC from our options/pages
+        toctree_text = dedent(
+            """
+        ```{{toctree}}
+        :hidden:
+        :titlesonly:
+        {options}
+
+        {pages}
+        ```
+        """
+        )
+
+        # Create the markdown directive for our toctree
+        toctree = toctree_text.format(options=this_options, pages=this_pages)
+        return toctree
+
+    # Build toctrees for the page. We may need more than one depending on the options
+    toctrees = []
+    toc_pages = []
+    toc_options = []
+    for ipage in pages:
+        # First handle special case of dividers and headers
+        if ipage.get("divider") or ipage.get("header"):
+            if toc_pages:
+                # If we already have some pages added, we need to make a new toctree
+                old_toctree = gen_toctree(toc_options, toc_pages)
+                toc_pages = []
+                toc_options = []
+                toctrees.append(old_toctree)
+            # Adding options to our toctree
+            if ipage.get("divider"):
+                toc_options.append(":divider:")
+            if ipage.get("header"):
+                toc_options.append(f":caption: {ipage.get('header')}")
+            continue
+
+        # If not a special case, assume we have a "regular" page structure
+        path_sec = ipage.get("file")
+        title = ipage.get("title")
+
         # Update path so it is relative to the root of the parent
         path_parent_folder = Path(page["file"]).parent
         path_sec = os.path.relpath(path_sec, path_parent_folder)
 
-        # Decide whether we'll over-ride with a name in the toctree
+        # Decide whether we'll over-ride with a title in the toctree
         this_section = f"{path_sec}"
-        if name:
-            this_section = f"{name} <{this_section}>"
-        sections[ii] = this_section
+        if title:
+            this_section = f"{title} <{this_section}>"
+        toc_pages.append(this_section)
 
-    # Parse flags in the page metadata
-    options = []
-    if page.get("numbered"):
-        options.append("numbered")
-    options = "\n".join([f":{ii}:" for ii in options])
+        option_flags = ["numbered", "expand_sections"]
+        for option in option_flags:
+            if page.get(option):
+                toc_options.append(f":{option}:")
+
+    # Now create the final toctree for this page
+    final_toctree = gen_toctree(toc_options, toc_pages)
+    toctrees.append(final_toctree)
+
+    toctrees = "\n".join(toctrees)
 
     # Figure out what kind of text defines a toctree directive for this file
     # currently, assumed to be markdown
     suff = Path(path).suffix
-    toctree_text = dedent(
-        """
-    ```{{toctree}}
-    :hidden:
-    :titlesonly:
-    {options}
-
-    {sections}
-    ```
-    """
-    )
-
-    # Create the markdown directive for our toctree
-    toctree = toctree_text.format(options=options, sections="\n".join(sections))
     if suff == ".md":
-        source[0] += toctree + "\n"
+        source[0] += toctrees + "\n"
+
     elif suff == ".ipynb":
         # Lazy import nbformat because we only need it if we have an ipynb file
         import nbformat as nbf
 
         ntbk = nbf.reads(source[0], nbf.NO_CONVERT)
-        md = nbf.v4.new_markdown_cell(toctree)
+        md = nbf.v4.new_markdown_cell(toctrees)
         ntbk.cells.append(md)
         source[0] = nbf.writes(ntbk)
     else:
@@ -104,6 +141,7 @@ def add_toctree(app, docname, source):
 
 
 def update_indexname(app, config):
+    """Update `master_doc` to be the first page defined in the TOC"""
     # If no globaltoc is given, we'll skip this part
     if not app.config["globaltoc_path"]:
         return

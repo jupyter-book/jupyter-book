@@ -269,6 +269,7 @@ Results in the following output:
 Here's the admonition content
 ```
 
+(myst/sidebar)=
 ### Sidebar content
 
 You can also specify content that should exist in the sidebar. This content
