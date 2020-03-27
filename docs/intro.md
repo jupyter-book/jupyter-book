@@ -43,7 +43,7 @@ For more information about the project behind many of these tools, see
 ## Get started
 
 To get started, check out the pages above. These are major sections of the documentation.
-In particular, {doc}`guide/01_overview` is a good way to get familiar with this tool and how to
+In particular, {doc}`start/01_overview` is a good way to get familiar with this tool and how to
 create your own books.
 
 ## Install
@@ -76,4 +76,4 @@ The primary way to use this tool is via the command line. It provides a
 top-level command called `jupyter-book`, and a number of sub-commands.
 Run `jupyter-book -h` for more information.
 
-For more information on how to use this tool, see {doc}`guide/01_overview`.
+For more information on how to use this tool, see {doc}`start/01_overview`.
