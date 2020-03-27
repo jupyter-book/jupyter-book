@@ -1,0 +1,42 @@
+#######################################################################################
+# A default configuration that will be loaded for all jupyter books
+# Users are expected to override these values in their own `_config.yml` file.
+# This is also the "master list" of all allowed keys and values.
+
+#######################################################################################
+# Book settings
+title                       : My Jupyter Book
+author                      : The Jupyter Book community,
+copyright                   : 2020,
+logo                        : ""
+exclude_files               : []
+
+#######################################################################################
+# HTML-specific settings
+html:
+  favicon                   : ""
+  sidebar_footer_text       : 'Powered by <a href="https://jupyterbook.org">Jupyter Book</a>'
+  google_analytics_id       : ""
+
+
+#######################################################################################
+# Interact link settings
+notebook_interface          : "notebook"  # or "jupyterlab"
+
+repository:
+  url                       : https://github.com/ExecutableBookProject/cli
+  path_to_book              : ""
+
+binder:
+  binderhub_url             : "https://mybinder.org"
+  text                      : "Launch binder"
+
+jupyterhub:
+  url                       : ""
+  text                      : "Launch JupyterHub"
+
+thebelab:  
+  use_cell_buttons          : false
+  use_page_button           : false
+  thebelab_button_text      : "Thebelab"  # The text to display inside the Thebelab initialization button
+  codemirror_theme          : "abcdef"  # Theme for codemirror cells, for options see https://codemirror.net/doc/manual.html#config

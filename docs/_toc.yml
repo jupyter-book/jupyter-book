@@ -1,24 +1,25 @@
 - file: intro
 
 - header: Jupyter Book Guide
-- file: guide/01_overview
-  title: Getting started with Jupyter Book
+- file: start/01_overview
+  title: Get started with Jupyter Book
   pages:
-  - file: guide/02_create
-  - file: guide/03_build
-  - file: guide/04_publish
-  - file: guide/05_faq
-  - file: guide/06_advanced
+  - file: start/02_create
+  - file: start/03_build
+  - file: start/04_publish
+  - file: start/05_faq
+  - file: start/06_advanced
 
-- file: features/index
+- file: use/index
   expand_sections: true
   pages:
-    - file: features/notebooks
-    - file: features/myst
-    - file: features/hiding
-    - file: features/citations
-    - file: features/math
-    - file: features/toc
+    - file: use/notebooks
+    - file: use/myst
+    - file: use/customize
+    - file: use/hiding
+    - file: use/citations
+    - file: use/math
+    - file: use/toc
 
 - header: Reference and test pages
 - divider: true

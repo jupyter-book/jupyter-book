@@ -13,10 +13,8 @@ REDIRECT_TEXT = """
 """
 
 ROOT = Path(__file__)
+# Some configuration values that don't make sense to be in `default_config.yml` because they are sphinx-specific
 DEFAULT_CONFIG = dict(
-    project="My Jupyter Book",
-    copyright="2020",
-    author="",
     extensions=[
         "sphinx_togglebutton",
         "sphinx_copybutton",
@@ -27,22 +25,16 @@ DEFAULT_CONFIG = dict(
     ],
     togglebutton_selector=".toggle, .secondtoggle",
     jupyter_sphinx_require_url="",
-    # Add any paths that contain templates here, relative to this directory.
-    templates_path=[
-        "_templates",
-        str(ROOT.parent.joinpath("static", "templates").absolute()),
-    ],
-    master_doc="index.rst",
+    master_doc="index.rst",  # This is auto-updated to the first page of the TOC
     language=None,
-    exclude_patterns=["_build", "Thumbs.db", ".DS_Store", "**.ipynb_checkpoints"],
     pygments_style="sphinx",
-    # -- Options for HTML output -------------------------------------------------
     html_theme="sphinx_book_theme",
     html_theme_options={
         "single_page": False,
         "sidebar_footer_text": "Powered by <a href='https://jupyterbook.org'>Jupyter Book</a>",
     },
     html_add_permalinks="¶",
+    numfig=True,
 )
 
 

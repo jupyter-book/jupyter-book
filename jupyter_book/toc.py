@@ -46,8 +46,11 @@ def add_toctree(app, docname, source):
 
     # If we didn't find this page in the TOC, raise an error
     if page is None:
+        import IPython
+
+        IPython.embed()
         raise FileNotFoundError(
-            f"The following path in your table of contents couldn't be found:\n\n{path}.\n\nDouble check your `_toc.yml` file to make sure the paths are correct."
+            f"The following content page exists, but is not in your table of contents:\n\n{path}.\n\nDouble check your `_toc.yml` file to make sure the paths are correct."
         )
 
     # If we have no sections, then don't worry about a toctree

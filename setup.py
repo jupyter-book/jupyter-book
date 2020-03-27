@@ -63,6 +63,6 @@ setup(
             "jupyter-book = jupyter_book.commands:main",
         ]
     },
-    package_data={"jupyter_book": ["book_template/*"]},
+    package_data={"jupyter_book": ["default_config.yml", "book_template/*"]},
     include_package_data=True,
 )
