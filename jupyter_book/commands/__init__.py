@@ -99,6 +99,7 @@ def page(path_page, path_output, config, execute):
         "globaltoc_path": "",
         "exclude_patterns": to_exclude,
         "jupyter_execute_notebooks": execute,
+        "html_theme_options": {"single_page": True},
     }
 
     build_sphinx(
