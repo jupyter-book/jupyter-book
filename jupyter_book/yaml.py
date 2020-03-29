@@ -12,24 +12,22 @@ PATH_YAML_DEFAULT = Path(__file__).parent.joinpath("default_config.yml")
 
 def add_yaml_config(app):
     """Load all of the key/vals in a config file into the HTML page context"""
-    path_yaml = app.config["yaml_config_path"]
-
-    # If no path is given we'll just skip
-    if len(path_yaml) == 0:
-        return
-
-    path_yaml = Path(path_yaml)
-    if not path_yaml.exists():
-        raise ValueError(
-            f"Path to a YAML configuration file was given, but not found: {path_yaml}"
-        )
-
     # First load the default YAML config
     yaml_config = safe_load(PATH_YAML_DEFAULT.read_text())
 
-    # Load the YAML and update its values to translate it into Sphinx keys
-    yaml_update = safe_load(path_yaml.read_text())
-    yaml_config.update(yaml_update)
+    # Update the default config with a provided one, if it exists
+    path_yaml = app.config["yaml_config_path"]
+    print(path_yaml)
+    if len(path_yaml) > 0:
+        path_yaml = Path(path_yaml)
+        if not path_yaml.exists():
+            raise ValueError(
+                f"Path to a YAML configuration file was given, but not found: {path_yaml}"
+            )
+
+        # Load the YAML and update its values to translate it into Sphinx keys
+        yaml_update = safe_load(path_yaml.read_text())
+        yaml_config.update(yaml_update)
 
     # Now update our Sphinx build configuration
     config = yaml_to_sphinx(yaml_config)
@@ -69,7 +67,11 @@ def yaml_to_sphinx(yaml):
     out["exclude_patterns"].extend(yaml.get("exclude_patterns", []))
 
     # Now do simple top-level translations
-    YAML_TRANSLATIONS = {"logo": "html_logo", "title": "project"}
+    YAML_TRANSLATIONS = {
+        "logo": "html_logo",
+        "title": "project",
+        "execute_notebooks": "jupyter_execute_notebooks",
+    }
     for key, newkey in YAML_TRANSLATIONS.items():
         if key in yaml:
             out[newkey] = yaml.pop(key)

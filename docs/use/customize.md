@@ -1,4 +1,4 @@
-# Customize and configure your book
+# Configure and customize your book
 
 Now that you've built a book, you may wish to trigger different kinds
 of behavior. In Jupyter Book, most configuration is controlled with a

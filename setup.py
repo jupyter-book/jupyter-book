@@ -35,7 +35,10 @@ setup(
         "pyyaml",
         "docutils>=0.15",
         "sphinx",
-        "myst-nb~=0.3.0",
+        (
+            "myst-nb @ "
+            "https://github.com/ExecutableBookProject/myst-nb/archive/master.zip"
+        ),
         "click",
         "setuptools",
         "sphinx",
@@ -55,7 +58,14 @@ setup(
     ],
     extras_require={
         "sphinx": ["folium", "numpy", "matplotlib", "ipywidgets", "pandas", "nbclient"],
-        "testing": ["coverage", "pytest>=3.6,<4", "pytest-cov", "beautifulsoup4"],
+        "testing": [
+            "coverage",
+            "pytest>=3.6,<4",
+            "pytest-cov",
+            "beautifulsoup4",
+            "matplotlib",
+            "numpy",
+        ],
     },
     entry_points={
         "console_scripts": [

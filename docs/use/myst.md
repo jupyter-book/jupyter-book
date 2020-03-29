@@ -269,58 +269,70 @@ Results in the following output:
 Here's the admonition content
 ```
 
-(myst/sidebar)=
-### Sidebar content
+### Quotations and epigraphs
 
-You can also specify content that should exist in the sidebar. This content
-will be placed to the right, allowing it to exist separately from your main
-content. To add sidebar content, use this syntax:
+Quotations and epigraphs provide ways to highlight information given by others.
+They behave slightly differently.
+
+**Regular quotations** are controlled with standard markdown syntax, i.e., by
+putting a caret (`>`) symbol in front of one or more lines of text. For example,
+the following quotation:
+
+> Here is a cool quotation.
+>
+> From me, Jo the Jovyan
+
+Was created with this text:
+
+```
+> Here is a cool quotation.
+>
+> From me, Jo the Jovyan
+```
+
+**Epigraphs** draw more attention to a quote and highlight its author. You should
+keep these relatively short so that they don't take up too much vertical space. Here's
+how an epigraph looks:
+
+```{epigraph}
+Here is a cool quotation.
+
+From me, Jo the Jovyan
+```
+
+Was generated with this markdown:
 
 ````
-```{sidebar}
-**Here is my sidebar content**, it is pretty cool!
+```{epigraph}
+Here is a cool quotation.
+
+From me, Jo the Jovyan
 ```
 ````
 
-```{sidebar} **Here is my sidebar content**
-It is pretty cool!
+You can provide an **attribution** to an epigraph by adding `--` to the final line, followed
+by the quote author. For example:
+
+```{epigraph}
+Here is a cool quotation.
+
+-- Jo the Jovyan
 ```
 
-### Hide your markdown with toggle buttons
-
-Sometimes you'd like to initially hide content, and give readers the option
-of clicking in order to read. You can activate this behavior in markdown with the `{toggle}`
-directive like so:
+Was generated with this markdown:
 
 ````
-```{toggle}
-This content will be toggled!
-```
-````
+```{epigraph}
+Here is a cool quotation.
 
-This results in:
-
-```{toggle}
-This content will be toggled!
-```
-
-You can also include a title with your toggle section. The title will always be displayed,
-and the toggle button will reveal the section's content. Use this like so:
-
-````
-```{toggle} Click the button to reveal!
-Some hidden toggle content!
-
-![](../images/cool.jpg)
+-- Jo the Jovyan
 ```
 ````
 
-This results in:
+### Page layout and sidebar content
 
-```{toggle} Click the button to reveal!
-Some hidden toggle content!
+You can also use MyST to control various aspects of the page layout. For more
+information on this, see {doc}`layout`.
 
-![](../images/cool.jpg)
-```
 
 [myst-parser]: https://myst-parser.readthedocs.io/en/latest/

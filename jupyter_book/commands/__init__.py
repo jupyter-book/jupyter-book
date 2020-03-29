@@ -6,7 +6,7 @@ import click
 from glob import glob
 import shutil as sh
 
-from ..sphinx import build_sphinx, DEFAULT_CONFIG
+from ..sphinx import build_sphinx
 from ..toc import build_toc
 
 
@@ -22,10 +22,12 @@ def main():
 @click.option("--config", default=None, help="Path to the YAML configuration file")
 @click.option("--toc", default=None, help="Path to the Table of Contents YAML file")
 @click.option(
-    "--execute", is_flag=True, help="Execute notebooks before converting them."
+    "--execute/--no-execute",
+    is_flag=True,
+    help="Execute notebooks before converting them.",
 )
 def build(path_book, path_output, config, toc, execute):
-    """Convert a collection of Jupyter Notebooks into HTML suitable for a course textbook.
+    """Convert a collection of Jupyter Notebooks into HTML suitable for a book.
     """
     # Paths for our notebooks
     PATH_BOOK = Path(path_book).absolute()
@@ -63,7 +65,8 @@ def build(path_book, path_output, config, toc, execute):
 @click.argument("path-page")
 @click.option("--path-output", default=None, help="Path to the output artifacts")
 @click.option("--config", default=None, help="Path to the YAML configuration file")
-def page(path_page, path_output, config):
+@click.option("--execute", default=None, help="Whether to execute the notebook first")
+def page(path_page, path_output, config, execute):
     """Convert a single notebook page to HTML or PDF.
     """
     # Paths for our notebooks
@@ -72,6 +75,8 @@ def page(path_page, path_output, config):
     PAGE_NAME = PATH_PAGE.with_suffix("").name
     if config is None:
         config = ""
+    if not execute:
+        execute = "off"
 
     OUTPUT_PATH = path_output if path_output is not None else PATH_PAGE_FOLDER
     OUTPUT_PATH = Path(OUTPUT_PATH).joinpath("_build/html")
@@ -83,7 +88,7 @@ def page(path_page, path_output, config):
         for ifile in to_exclude
         if ifile != str(PATH_PAGE.absolute())
     ]
-    to_exclude = DEFAULT_CONFIG["exclude_patterns"] + to_exclude
+    to_exclude.extend(["_build", "Thumbs.db", ".DS_Store", "**.ipynb_checkpoints"])
 
     # Now call the Sphinx commands to build
     config = {
@@ -91,6 +96,8 @@ def page(path_page, path_output, config):
         "yaml_config_path": config,
         "globaltoc_path": "",
         "exclude_patterns": to_exclude,
+        "jupyter_execute_notebooks": execute,
+        "html_theme_options": {"single_page": True},
     }
 
     build_sphinx(
