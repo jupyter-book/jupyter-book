@@ -35,7 +35,10 @@ setup(
         "pyyaml",
         "docutils>=0.15",
         "sphinx",
-        "myst-nb~=0.3.0",
+        (
+            "myst-nb @ "
+            "https://github.com/ExecutableBookProject/myst-nb/archive/master.zip"
+        ),
         "click",
         "setuptools",
         "sphinx",

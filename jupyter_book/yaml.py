@@ -69,7 +69,11 @@ def yaml_to_sphinx(yaml):
     out["exclude_patterns"].extend(yaml.get("exclude_patterns", []))
 
     # Now do simple top-level translations
-    YAML_TRANSLATIONS = {"logo": "html_logo", "title": "project"}
+    YAML_TRANSLATIONS = {
+        "logo": "html_logo",
+        "title": "project",
+        "execute_notebooks": "jupyter_execute_notebooks",
+    }
     for key, newkey in YAML_TRANSLATIONS.items():
         if key in yaml:
             out[newkey] = yaml.pop(key)

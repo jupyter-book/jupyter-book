@@ -16,6 +16,7 @@
     - file: use/notebooks
     - file: use/myst
     - file: use/customize
+    - file: use/execute
     - file: use/hiding
     - file: use/citations
     - file: use/math
