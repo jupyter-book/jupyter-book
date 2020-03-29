@@ -23,6 +23,7 @@
     - file: use/interactlinks
     - file: use/math
     - file: use/toc
+    - file: use/page
 
 - header: Reference and test pages
 - divider: true
@@ -35,7 +36,5 @@
 
 - file: old_docs/index
   pages:
-    - file: old_docs/executing
     - file: old_docs/interactive_cells
     - file: old_docs/jupytext
-    - file: old_docs/page

@@ -271,48 +271,63 @@ Here's the admonition content
 
 ### Quotations and epigraphs
 
-This last section shows quotations and epigraphs. First off, we'll have a quotation:
+Quotations and epigraphs provide ways to highlight information given by others.
+They behave slightly differently.
 
-A quote with no attribution:
+**Regular quotations** are controlled with standard markdown syntax, i.e., by
+putting a caret (`>`) symbol in front of one or more lines of text. For example,
+the following quotation:
 
-> Here's my quote, it's pretty neat.
-> I wonder how many lines I can create with
-> a single stream-of-consciousness quote.
-> I could try to add a list of ideas to talk about.
-> I suppose I could just keep going on forever,
-> but I'll stop here.
+> Here is a cool quotation.
+>
+> From me, Jo the Jovyan
 
-A quote with attribution
+Was created with this text:
 
-> Here's my quote, it's pretty neat.
-> I wonder how many lines I can create with
-> a single stream-of-consciousness quote.
-> I could try to add a list of ideas to talk about.
-> I suppose I could just keep going on forever,
-> but I'll stop here.
-> 
-> - Jo the Jovyan
+```
+> Here is a cool quotation.
+>
+> From me, Jo the Jovyan
+```
 
-And now here's the same thing with an epigraph!
+**Epigraphs** draw more attention to a quote and highlight its author. You should
+keep these relatively short so that they don't take up too much vertical space. Here's
+how an epigraph looks:
 
-A quote with no attribution:
+```{epigraph}
+Here is a cool quotation.
 
-> Here's my quote, it's pretty neat.
-> I wonder how many lines I can create with
-> a single stream-of-consciousness quote.
-> I could try to add a list of ideas to talk about.
-> I suppose I could just keep going on forever,
-> but I'll stop here.
+From me, Jo the Jovyan
+```
 
-A quote with attribution
+Was generated with this markdown:
 
-> Here's my quote, it's pretty neat.
-> I wonder how many lines I can create with
-> a single stream-of-consciousness quote.
-> I could try to add a list of ideas to talk about.
-> I suppose I could just keep going on forever,
-> but I'll stop here.
-> - Jo the Jovyan
+````
+```{epigraph}
+Here is a cool quotation.
+
+From me, Jo the Jovyan
+```
+````
+
+You can provide an **attribution** to an epigraph by adding `--` to the final line, followed
+by the quote author. For example:
+
+```{epigraph}
+Here is a cool quotation.
+
+-- Jo the Jovyan
+```
+
+Was generated with this markdown:
+
+````
+```{epigraph}
+Here is a cool quotation.
+
+-- Jo the Jovyan
+```
+````
 
 ### Page layout and sidebar content
 
