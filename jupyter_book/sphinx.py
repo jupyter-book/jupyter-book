@@ -151,11 +151,11 @@ def build_sphinx(
                 path_toc = Path(config["globaltoc_path"])
                 if not path_toc.exists():
                     raise ValueError(
-                        f"You gave a Table of Contents path that doesn't exist: {path_toc}"
+                        f"You gave a Configuration file path that doesn't exist: {path_toc}"
                     )
                 if path_toc.suffix not in [".yml", ".yaml"]:
                     raise ValueError(
-                        f"You gave a Table of Contents path that is not a YAML file: {path_toc}"
+                        f"You gave a Configuration file path that is not a YAML file: {path_toc}"
                     )
             else:
                 path_toc = None

@@ -69,7 +69,8 @@ instance/
 .scrapy
 
 # Sphinx documentation
-docs/_build/
+docs/_build
+examples/_build
 jupyter_book/book_template/_build
 
 # PyBuilder
