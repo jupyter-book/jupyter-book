@@ -269,58 +269,55 @@ Results in the following output:
 Here's the admonition content
 ```
 
-(myst/sidebar)=
-### Sidebar content
+### Quotations and epigraphs
 
-You can also specify content that should exist in the sidebar. This content
-will be placed to the right, allowing it to exist separately from your main
-content. To add sidebar content, use this syntax:
+This last section shows quotations and epigraphs. First off, we'll have a quotation:
 
-````
-```{sidebar}
-**Here is my sidebar content**, it is pretty cool!
-```
-````
+A quote with no attribution:
 
-```{sidebar} **Here is my sidebar content**
-It is pretty cool!
-```
+> Here's my quote, it's pretty neat.
+> I wonder how many lines I can create with
+> a single stream-of-consciousness quote.
+> I could try to add a list of ideas to talk about.
+> I suppose I could just keep going on forever,
+> but I'll stop here.
 
-### Hide your markdown with toggle buttons
+A quote with attribution
 
-Sometimes you'd like to initially hide content, and give readers the option
-of clicking in order to read. You can activate this behavior in markdown with the `{toggle}`
-directive like so:
+> Here's my quote, it's pretty neat.
+> I wonder how many lines I can create with
+> a single stream-of-consciousness quote.
+> I could try to add a list of ideas to talk about.
+> I suppose I could just keep going on forever,
+> but I'll stop here.
+> 
+> - Jo the Jovyan
 
-````
-```{toggle}
-This content will be toggled!
-```
-````
+And now here's the same thing with an epigraph!
 
-This results in:
+A quote with no attribution:
 
-```{toggle}
-This content will be toggled!
-```
+> Here's my quote, it's pretty neat.
+> I wonder how many lines I can create with
+> a single stream-of-consciousness quote.
+> I could try to add a list of ideas to talk about.
+> I suppose I could just keep going on forever,
+> but I'll stop here.
 
-You can also include a title with your toggle section. The title will always be displayed,
-and the toggle button will reveal the section's content. Use this like so:
+A quote with attribution
 
-````
-```{toggle} Click the button to reveal!
-Some hidden toggle content!
+> Here's my quote, it's pretty neat.
+> I wonder how many lines I can create with
+> a single stream-of-consciousness quote.
+> I could try to add a list of ideas to talk about.
+> I suppose I could just keep going on forever,
+> but I'll stop here.
+> - Jo the Jovyan
 
-![](../images/cool.jpg)
-```
-````
+### Page layout and sidebar content
 
-This results in:
+You can also use MyST to control various aspects of the page layout. For more
+information on this, see {doc}`layout`.
 
-```{toggle} Click the button to reveal!
-Some hidden toggle content!
-
-![](../images/cool.jpg)
-```
 
 [myst-parser]: https://myst-parser.readthedocs.io/en/latest/

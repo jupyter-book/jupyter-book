@@ -88,9 +88,7 @@ def page(path_page, path_output, config, execute):
         for ifile in to_exclude
         if ifile != str(PATH_PAGE.absolute())
     ]
-    to_exclude.extend(
-        ["_build", "Thumbs.db", ".DS_Store", "**.ipynb_checkpoints",]
-    )
+    to_exclude.extend(["_build", "Thumbs.db", ".DS_Store", "**.ipynb_checkpoints"])
 
     # Now call the Sphinx commands to build
     config = {

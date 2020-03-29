@@ -15,10 +15,12 @@
   pages:
     - file: use/notebooks
     - file: use/myst
+    - file: use/layout
     - file: use/customize
     - file: use/execute
     - file: use/hiding
     - file: use/citations
+    - file: use/interactlinks
     - file: use/math
     - file: use/toc
 
@@ -33,9 +35,7 @@
 
 - file: old_docs/index
   pages:
-    - file: old_docs/interact
     - file: old_docs/executing
     - file: old_docs/interactive_cells
     - file: old_docs/jupytext
-    - file: old_docs/layout
     - file: old_docs/page
