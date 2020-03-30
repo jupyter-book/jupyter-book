@@ -69,7 +69,7 @@ def yaml_to_sphinx(yaml):
     # Now do simple top-level translations
     YAML_TRANSLATIONS = {
         "logo": "html_logo",
-        "title": "project",
+        "title": "html_title",
         "execute_notebooks": "jupyter_execute_notebooks",
     }
     for key, newkey in YAML_TRANSLATIONS.items():

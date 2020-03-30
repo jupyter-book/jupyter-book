@@ -119,14 +119,6 @@ def create(path_output):
         raise ValueError(f"The output book already exists. Delete {path_output} first.")
     template_path = Path(__file__).parent.parent.joinpath("book_template")
     sh.copytree(template_path, PATH_OUTPUT)
-
-    # Now copy the logo images
-    PATH_IMAGE = Path(__file__).parent.parent.parent.joinpath(
-        "docs", "images", "logo.png"
-    )
-    PATH_OUTPUT_IMAGES = PATH_OUTPUT.joinpath("images")
-    PATH_OUTPUT_IMAGES.mkdir()
-    sh.copy2(PATH_IMAGE, PATH_OUTPUT_IMAGES)
     print(f"Your book template can be found at {PATH_OUTPUT}")
 
 
