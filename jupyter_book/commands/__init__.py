@@ -21,12 +21,7 @@ def main():
 @click.option("--path-output", default=None, help="Path to the output artifacts")
 @click.option("--config", default=None, help="Path to the YAML configuration file")
 @click.option("--toc", default=None, help="Path to the Table of Contents YAML file")
-@click.option(
-    "--execute/--no-execute",
-    is_flag=True,
-    help="Execute notebooks before converting them.",
-)
-def build(path_book, path_output, config, toc, execute):
+def build(path_book, path_output, config, toc):
     """Convert a collection of Jupyter Notebooks into HTML suitable for a book.
     """
     # Paths for our notebooks
