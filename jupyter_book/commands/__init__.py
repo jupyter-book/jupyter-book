@@ -5,9 +5,11 @@ from pathlib import Path
 import click
 from glob import glob
 import shutil as sh
+import asyncio
 
 from ..sphinx import build_sphinx
 from ..toc import build_toc
+from ..pdf import html_to_pdf
 
 
 @click.group()
@@ -21,13 +23,24 @@ def main():
 @click.option("--path-output", default=None, help="Path to the output artifacts")
 @click.option("--config", default=None, help="Path to the YAML configuration file")
 @click.option("--toc", default=None, help="Path to the Table of Contents YAML file")
-def build(path_book, path_output, config, toc):
+@click.option(
+    "--build",
+    default="html",
+    help="What kind of output to build. Currently only 'html' is supported.",
+)
+def build(path_book, path_output, config, toc, build):
     """Convert a collection of Jupyter Notebooks into HTML suitable for a book.
     """
     # Paths for our notebooks
     PATH_BOOK = Path(path_book).absolute()
 
     book_config = {}
+    build_dict = {"html": "html", "pdf_html": "singlehtml"}
+    if build not in build_dict.keys():
+        raise ValueError(
+            f"Value for --build must be one of {tuple(build_dict.keys())}. Got '{build}'"
+        )
+    builder = build_dict[build]
 
     # Table of contents
     if toc is None:
@@ -47,13 +60,32 @@ def build(path_book, path_output, config, toc):
     if config is not None:
         book_config["yaml_config_path"] = str(config)
 
+    # Builder-specific overrides
+    if build == "pdf_html":
+        book_config["html_theme_options"] = {"single_page": True}
+
     OUTPUT_PATH = path_output if path_output is not None else PATH_BOOK
     OUTPUT_PATH = Path(OUTPUT_PATH).joinpath("_build/html")
 
     # Now call the Sphinx commands to build
     build_sphinx(
-        PATH_BOOK, OUTPUT_PATH, noconfig=True, confoverrides=book_config, builder="html"
+        PATH_BOOK,
+        OUTPUT_PATH,
+        noconfig=True,
+        confoverrides=book_config,
+        builder=builder,
     )
+
+    # Builder-specific options
+    if build == "pdf_html":
+        print("Finished generating HTML for book...")
+        print("Converting book HTML into PDF...")
+        path_pdf_output = OUTPUT_PATH.parent.joinpath("pdf")
+        path_pdf_output.mkdir(exist_ok=True)
+        path_pdf_output = path_pdf_output.joinpath("book.pdf")
+        html_to_pdf(OUTPUT_PATH.joinpath("index.html"), path_pdf_output)
+        path_pdf_output_rel = path_pdf_output.relative_to(Path(".").resolve())
+        print(f"A PDF of your book can be found at: {path_pdf_output_rel}")
 
 
 @main.command()
