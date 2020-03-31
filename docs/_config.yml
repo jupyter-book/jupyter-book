@@ -15,5 +15,6 @@ repository:
   url                       : https://github.com/ExecutableBookProject/cli
   path_to_book              : "docs"
 
-binder:
+launch_buttons:
+  notebook_interface        : "lab"  # The interface interactive links will activate ["classic", "jupyterlab"]
   binderhub_url             : "https://mybinder.org"

@@ -17,24 +17,19 @@ execute_notebooks           : auto
 html:
   favicon                   : ""
   sidebar_footer_text       : 'Powered by <a href="https://jupyterbook.org">Jupyter Book</a>'
-  google_analytics_id       : ""
+  google_analytics_id       : "" 
 
 
 #######################################################################################
 # Interact link settings
-notebook_interface          : "notebook"  # or "jupyterlab"
+launch_buttons:
+  notebook_interface        : "classic"  # The interface interactive links will activate ["classic", "jupyterlab"]
+  binderhub_url             : "https://mybinder.org"  # The URL of the BinderHub (e.g., https://mybinder.org)
+  jupyterhub_url            : ""  # The URL of the JupyterHub (e.g., https://datahub.berkeley.edu)
 
 repository:
-  url                       : https://github.com/ExecutableBookProject/cli
-  path_to_book              : ""
-
-binder:
-  binderhub_url             : "https://mybinder.org"
-  text                      : "Launch binder"
-
-jupyterhub:
-  url                       : ""
-  text                      : "Launch JupyterHub"
+  url                       : https://github.com/ExecutableBookProject/cli  # The URL to your book's repository
+  path_to_book              : ""  # A path to your book's folder, relative to the repository root.
 
 thebelab:  
   use_cell_buttons          : false

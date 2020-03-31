@@ -46,14 +46,17 @@ def yaml_to_sphinx(yaml):
             "**.ipynb_checkpoints",
         ],
     }
-    binder = yaml.get("binder")
-    if binder:
-        binder_config = {}
-        binder_config["use_binder_button"] = True
-        binder_config["binderhub_url"] = binder.get("binderhub_url")
-        binder_config["path_to_docs"] = yaml.get("repository", {}).get("path_to_book")
-        binder_config["repository_url"] = yaml.get("repository", {}).get("url")
-        out["html_theme_options"]["binder_config"] = binder_config
+
+    theme_options = out.get("html_theme_options", {})
+    launch_buttons_config = yaml.get("launch_buttons", {})
+    repository_config = yaml.get("repository", {})
+    theme_options["binderhub_url"] = launch_buttons_config.get("binderhub_url")
+    theme_options["jupyterhub_url"] = launch_buttons_config.get("jupyterhub_url")
+
+    theme_options["notebook_ui"] = launch_buttons_config.get("notebook_interface")
+    theme_options["path_to_docs"] = repository_config.get("path_to_book")
+    theme_options["repository_url"] = repository_config.get("url")
+    out["html_theme_options"] = theme_options
 
     html = yaml.get("html")
     if html:
