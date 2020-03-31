@@ -47,13 +47,17 @@ def yaml_to_sphinx(yaml):
         ],
     }
 
+    # Theme configuration updates
     theme_options = out.get("html_theme_options", {})
+
+    # Launch button configuration
+    theme_launch_buttons_config = theme_options.get("launch_buttons", {})
     launch_buttons_config = yaml.get("launch_buttons", {})
     repository_config = yaml.get("repository", {})
-    theme_options["binderhub_url"] = launch_buttons_config.get("binderhub_url")
-    theme_options["jupyterhub_url"] = launch_buttons_config.get("jupyterhub_url")
 
-    theme_options["notebook_ui"] = launch_buttons_config.get("notebook_interface")
+    theme_launch_buttons_config.update(launch_buttons_config)
+    theme_options["launch_buttons"] = theme_launch_buttons_config
+
     theme_options["path_to_docs"] = repository_config.get("path_to_book")
     theme_options["repository_url"] = repository_config.get("url")
     out["html_theme_options"] = theme_options

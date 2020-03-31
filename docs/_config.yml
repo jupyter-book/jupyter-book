@@ -17,5 +17,5 @@ repository:
   path_to_book              : "docs"
 
 launch_buttons:
-  notebook_interface        : "lab"  # The interface interactive links will activate ["classic", "jupyterlab"]
+  notebook_interface        : "jupyterlab"  # The interface interactive links will activate ["classic", "jupyterlab"]
   binderhub_url             : "https://mybinder.org"
