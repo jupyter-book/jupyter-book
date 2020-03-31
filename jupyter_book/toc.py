@@ -3,8 +3,11 @@ import os
 import yaml
 from textwrap import dedent
 from pathlib import Path
+from sphinx.util import logging
 
 from .utils import _filename_to_title, SUPPORTED_FILE_SUFFIXES
+
+logger = logging.getLogger(__name__)
 
 
 def _no_suffix(path):
@@ -44,11 +47,12 @@ def add_toctree(app, docname, source):
     toc = app.config["globaltoc"]
     page = find_name(toc, _no_suffix(path))
 
-    # If we didn't find this page in the TOC, raise an error
+    # If we didn't find this page in the TOC, raise a warning
     if page is None:
-        raise FileNotFoundError(
-            f"The following content page exists, but is not in your table of contents:\n\n{path}.\n\nDouble check your `_toc.yml` file to make sure the paths are correct."
+        logger.warning(
+            f"Found a content page that is not in Table of Contents: {path}."
         )
+        return
 
     # If we have no sections, then don't worry about a toctree
     pages = page.get("pages")

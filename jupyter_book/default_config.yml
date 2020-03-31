@@ -5,19 +5,19 @@
 
 #######################################################################################
 # Book settings
-title                       : My Jupyter Book
-author                      : The Jupyter Book community,
-copyright                   : 2020,
-logo                        : ""
-exclude_files               : []
-execute_notebooks           : auto
+title                       : My Jupyter Book  # The title of the book. Will be placed in the sidebar.
+author                      : The Jupyter Book community,  # The author of the book
+copyright                   : 2020,  # Copyright year to be placed in the footer
+logo                        : ""  # A path to the book logo
+exclude_patterns               : []  # Patterns to skip when building the book. Can be glob-style (e.g. "*skip.ipynb")
+execute_notebooks           : auto  # Whether to execute notebooks at build time. Must be one of ("auto", "force", "cache", "off")
 
 #######################################################################################
 # HTML-specific settings
 html:
-  favicon                   : ""
-  sidebar_footer_text       : 'Powered by <a href="https://jupyterbook.org">Jupyter Book</a>'
-  google_analytics_id       : "" 
+  favicon                   : ""  # A path to a favicon image
+  sidebar_footer_text       : 'Powered by <a href="https://jupyterbook.org">Jupyter Book</a>'  # Will be displayed underneath the sidebar.
+  google_analytics_id       : ""  # A GA id that can be used to track book views.
 
 
 #######################################################################################
@@ -31,7 +31,7 @@ repository:
   url                       : https://github.com/ExecutableBookProject/cli  # The URL to your book's repository
   path_to_book              : ""  # A path to your book's folder, relative to the repository root.
 
-thebelab:  
+thebelab:    # NOT YET IMPLEMENTED
   use_cell_buttons          : false
   use_page_button           : false
   thebelab_button_text      : "Thebelab"  # The text to display inside the Thebelab initialization button
