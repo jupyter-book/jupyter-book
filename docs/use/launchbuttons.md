@@ -1,7 +1,7 @@
 # Interaction links for your content
 
-Because Jupyter Books are built with Jupyter Notebooks, you can connect your online
-book with a Jupyter kernel running in the cloud. This lets readers quickly interact
+Because Jupyter Books are built with Jupyter Notebooks, you can allow users to launch
+live Jupyter sessions in the cloud directly from your book. This lets readers quickly interact
 with your content in a traditional coding interface using either JupyterHub or BinderHub.
 This page describes a few ways to accomplish this.
 
@@ -28,19 +28,14 @@ To automatically include Binder link buttons in each page of your Jupyter Book, 
 configuration in `_config.yml`:
 
 ```yaml
-# Configure your Binder links, such as the URL of the BinderHub.
-binder:
-  binderhub_url             : "https://mybinder.org"
+launch_buttons:
+  binderhub_url: "https://mybinder.org"  # The URL for your BinderHub (e.g., https://mybinder.org)
 ```
 
 By adding this configuration, along with the repository url configuration above, Jupyter Book
 will insert Binder links to any pages that were built from notebook content.
 
 ## Creating interact buttons for JupyterHub
-
-```{warning}
-This feature is not yet implemented
-```
 
 JupyterHub lets you host an online service that gives users their own Jupyter servers
 with an environment that you specify for them. It allows you to give users access to
@@ -56,6 +51,6 @@ You can configure the location of the JupyterHub (which you may set up on your o
 such as [zero to jupyterhub for kubernetes](https://z2jh.jupyter.org) or [the littlest jupyterhub](https://tljh.jupyter.org)) with the following configuration.
 
 ```yaml
-jupyterhub:
-    url:                   : "your-hub-url"  # The URL for your JupyterHub.
+launch_buttons:
+  jupyterhub_url: "your-hub-url"  # The URL for your JupyterHub. (e.g., https://datahub.berkeley.edu)
 ```

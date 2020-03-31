@@ -20,7 +20,7 @@
     - file: use/execute
     - file: use/hiding
     - file: use/citations
-    - file: use/interactlinks
+    - file: use/launchbuttons
     - file: use/math
     - file: use/toc
     - file: use/page
