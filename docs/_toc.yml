@@ -15,6 +15,7 @@
   pages:
     - file: use/notebooks
     - file: use/myst
+    - file: use/myst-notebooks
     - file: use/layout
     - file: use/customize
     - file: use/execute
@@ -24,6 +25,7 @@
     - file: use/math
     - file: use/toc
     - file: use/page
+    - file: use/pdf
 
 - header: Reference and test pages
 - divider: true
