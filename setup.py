@@ -4,12 +4,11 @@ import os.path as op
 from glob import glob
 from pathlib import Path
 
-version = [
-    line
-    for line in Path("jupyter_book/__init__.py").read_text().split()
-    if "__version__" in line
-]
-version = version[0].split(" = ")[-1]
+text = Path("./jupyter_book/__init__.py").read_text()
+for line in text.split("\n"):
+    if "__version__" in line:
+        break
+version = line.split("= ")[-1].strip('"')
 
 setup(
     name="jupyter-book",

@@ -37,23 +37,7 @@ This cheatsheet is specifically *Markdown Here's* version of Github-flavored Mar
 
 You can play around with Markdown on our [live demo page](http://www.markdown-here.com/livedemo.html).
 
-##### Table of Contents
-[Headers](#headers)
-[Emphasis](#emphasis)
-[Lists](#lists)
-[Links](#links)
-[Images](#images)
-[Code and Syntax Highlighting](#code)
-[Tables](#tables)
-[Blockquotes](#blockquotes)
-[Inline HTML](#html)
-[Horizontal Rule](#hr)
-[Line Breaks](#lines)
-[YouTube Videos](#videos)
-[TeX Mathematical Formulae](#tex)
-
-<a name="headers"/>
-
+(headers=)
 ## Headers
 
 ```bash
