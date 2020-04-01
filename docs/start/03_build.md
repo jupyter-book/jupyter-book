@@ -16,7 +16,7 @@ a collection of notebook/markdown files in your `mybookname/` folder, a `_toc.ym
 that defines the structure of your book, and any configuration you'd like
 in the `_config.yml` file.
 
-## Build each page's HTML
+## Build your book's HTML
 
 Now that your book's content is in your book folder and you've
 defined your book's structure in `_toc.yml`, you can build
@@ -36,35 +36,6 @@ web browser.
 ```{note}
 You can also use the short-hand `jb` for `jupyter-book`. E.g.,:
 `jb build mybookname/`.
-```
-
-## Build a PDF from your book HTML
-
-It is also possible to build a single PDF from your book's HTML. This first
-converts all of your book's content into a single HTML file, and then renders
-it as a PDF by emulating a browser from the command-line.
-
-```{warning}
-This is an experimental feature, and may change in the future.
-```
-
-````{sidebar} **Note**
-If you wish to build a PDF from your book's HTML, you will need the `pyppeteer` package.
-You can install it like so:
-
-```
-pip install pyppeteer
-```
-
-In addition, if you get errors about libraries that don't exist, check out
-[these install commands](https://circleci.com/orbs/registry/orb/threetreeslight/puppeteer)
-to see if that fixes it. We warned you it was an experimental feature :-)
-````
-
-To build a single PDF from your book's HTML, use the following command:
-
-```
-jupyter-book build mybookname/ --build pdf_html
 ```
 
 ## Page caching
