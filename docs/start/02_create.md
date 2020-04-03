@@ -82,7 +82,7 @@ file in your `content/` folder. Here's an example of a few pages defined in `toc
 
 ```yaml
 - file: features/features
-  pages:
+  sections:
   - file: features/markdown
   - file: features/notebooks
 ```
@@ -92,10 +92,10 @@ The top-most level of your TOC file are **book chapters**. Above, this is the
 Note that in this case the title of the page is not explicitly specified but
 is inferred from the source files.
 This behavior is controlled by the `page_titles` setting in `_config.yml`
-(see {ref}`toc/titles` for more details).
+(see {ref}`toc/files` for more details).
 Each chapter can have
-several sections (defined in `pages:`) and each section can have several sub-sections
-(which would be define with a deeper level of `pages:`). In addition, you can
+several sections (defined in `sections:`) and each section can have several sub-sections
+(which would be define with a deeper level of `sections:`). In addition, you can
 use a few extra YAML values to control the behavior of Jupyter-Book (for example,
 `not_numbered: true` will prevent Jupyter Book from numbering the pages in that chapter).
 
@@ -123,7 +123,7 @@ mybookname/
 ```
 
 Note that the content files are either **Jupyter Notebooks** or **Markdown**
-files. These are the files that define "pages" in your book.
+files. These are the files that define "sections" in your book.
 
 You can store these files in whatever collection of folders you'd like, note that
 the *structure* of your book when it is built will depend solely on the order of

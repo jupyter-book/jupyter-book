@@ -1,42 +1,45 @@
 - file: intro
 
-- header: Jupyter Book Guide
+- header: Getting started
 - file: start/01_overview
-  title: Get started with Jupyter Book
-  pages:
+  title: Create a Jupyter Book
+  sections:
   - file: start/02_create
   - file: start/03_build
   - file: start/04_publish
-  - file: start/05_faq
-  - file: start/06_advanced
 
-- file: use/index
-  expand_sections: true
-  pages:
-    - file: use/notebooks
-    - file: use/myst
-    - file: use/myst-notebooks
-    - file: use/layout
-    - file: use/customize
-    - file: use/execute
-    - file: use/hiding
-    - file: use/citations
-    - file: use/launchbuttons
-    - file: use/math
-    - file: use/toc
-    - file: use/page
-    - file: use/pdf
+- file: customize/index
+  sections:
+    - file: customize/toc  
+    - file: customize/faq
+    - file: customize/advanced
+
+- header: Book pages and types
+- file: use/notebooks
+- file: use/myst
+- file: use/myst-notebooks
+- file: use/execute
+- file: use/launchbuttons
+
+- header: Writing book content
+- file: use/citations
+- file: use/math
+- file: use/hiding
+- file: use/layout
+
+- header: Advanced topics
+- file: use/page
+- file: use/pdf
 
 - header: Reference and test pages
-- divider: true
 - file: test_pages/test
-  pages:
+  sections:
     - file: test_pages/layout_elements
     - file: test_pages/equations
     - file: test_pages/code
     - file: test_pages/limits
 
 - file: old_docs/index
-  pages:
+  sections:
     - file: old_docs/interactive_cells
     - file: old_docs/jupytext

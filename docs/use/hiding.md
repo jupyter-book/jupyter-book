@@ -13,24 +13,65 @@ kernelspec:
 
 # Hide or remove content
 
-It's possible to control which cells show up in your final book pages. For example,
+It's possible to control which content shows up in your book. For example,
 you may want to display a complex visualization to illustrate an idea, but don't
 want the page to be cluttered with a large code cell that generated the viz. In other
 cases, you may want to remove a code cell entirely.
 
 In this case, you have two options:
 
-* **Hiding** the inputs of a code cell will hide the cell's contents and provide
-  a button that lets readers reveal the content.
-* **Removing** the inputs (or the entire cell) will prevent the contents from
-  making it into your book's HTML. It will be entirely gone (though still present in
-  the `.ipynb` file)
-  
-In both cases, Jupyter Books uses **notebook cell tags** to determine which code cells to hide.
-To make this process easier to manage, we recommend the
-[JupyterLab Cell Tags extension](https://github.com/jupyterlab/jupyterlab-celltags)
+* **Hiding** content provide a button that lets readers reveal the content.
+* **Removing** content prevents it from making it into your book. It
+  will be entirely gone (though still present in the source files)
 
-## Hiding page elements and displaying a button to show them
+There are two ways to hide content:
+
+* To hide markdown, use the `{toggle}` directive.
+* To hide or remove code cells or their outputs, use **notebook cell tags**.
+
+We'll cover each below.
+
+## Hide markdown using MyST markdown
+
+In order to hide markdown content, you can use the `{toggle}` directive.
+This allows you to wrap chunks of markdown in a button that lets users show
+and hide the content.
+
+You can activate this behavior in markdown with the `{toggle}`
+directive like so:
+
+````
+```{toggle}
+This content will be toggled!
+```
+````
+
+This results in:
+
+```{toggle}
+This content will be toggled!
+```
+
+You can also include a title with your toggle section. The title will always be displayed,
+and the toggle button will reveal the section's content. Use this like so:
+
+````
+```{toggle} Click the button to reveal!
+Some hidden toggle content!
+
+![](../images/cool.jpg)
+```
+````
+
+This results in:
+
+```{toggle} Click the button to reveal!
+Some hidden toggle content!
+
+![](../images/cool.jpg)
+```
+
+## Hide code cell content
 
 You can hide most cell elements of a page. The sections below describe how
 to hide each.
@@ -39,7 +80,8 @@ If an element is hidden, Jupyter Book will display a small button to the right o
 old location for the hidden element. If a user clicks the button,
 the element will be displayed.
 
-### Hiding inputs 
+
+### Hide cell inputs 
 
 If you add the tag `hide_input` to a cell, then Jupyter Book will hide the cell but
 display the outputs.
@@ -73,7 +115,7 @@ to the right of the empty spot above!
 
 +++
 
-### Hiding outputs
+### Hide cell outputs
 
 You can also hide the *outputs* of a cell. For example, if you'd like to ask users to
 think about what the output will look like first before viewing an answer. To do so,
@@ -96,30 +138,9 @@ fig, ax = plt.subplots()
 ax.scatter(*data, c=data[1], s=100*np.abs(data[0]));
 ```
 
-### Hiding markdown cells
+### Hide entire code cells
 
-Finally, you can also hide markdown cells in your page. This is useful if you'd
-like to provide some extra information to readers that want to dig deeper, but you
-don't want to clutter the page with too much information. To do so,
-add the following tag to your markdown cell:
-
-```json
-{
-    "tags": [
-        "hide_input",
-    ]
-}
-```
-
-+++ {"tags": ["hide_input"]}
-
-For example, this cell should be hidden!
-
-+++
-
-### Hiding the whole cell
-
-If you'd like to hide the whole cell (both inputs and outputs) just add each
+If you'd like to hide the whole code cell (both inputs and outputs) just add each
 tag to the cell metadata, like so:
 
 ```json
@@ -139,7 +160,7 @@ fig, ax = plt.subplots()
 ax.scatter(*data, c=data[1], s=100*np.abs(data[0]));
 ```
 
-## Removing inputs from the HTML
+## Removing code cell content
 
 In the above examples, we are only *hiding* the inputs, with the option
 that readers can reveal them if they wish. However, if you'd like to completely **remove**
@@ -164,7 +185,7 @@ the entire input cell is gone!
 
 +++
 
-### Removing inputs
+### Remove cell inputs
 
 The following cell has its inputs removed
 
@@ -181,7 +202,7 @@ fig, ax = plt.subplots()
 ax.scatter(*data, c=data[1], s=100*np.abs(data[0]));
 ```
 
-### Removing outputs
+### Remove cell outputs
 
 Similar to hiding inputs, it is also possible to hide the outputs
 of a cell.
@@ -198,7 +219,7 @@ To remove the outputs of a cell:
 
 +++
 
-### Removing an entire cell
+### Remove an entire code cell
 
 You can also remove **both** the inputs and outputs of a cell, in which case it
 won't show up in your book at all. These cells remain in the notebook file itself,
@@ -234,33 +255,7 @@ fig, ax = plt.subplots()
 ax.scatter(*data, c=data[1], s=100*np.abs(data[0]));
 ```
 
-### Removing markdown cells
-
-Sometimes, you have extra Markdown in your documents that isn't meant for the
-reader. For example, if you want to organize your notebook based on developer-relevant
-information (like "# Import packages") but you don't want the reader to see this.
-
-In this case, you can use the `remove_cell` pattern described above as well.
-
-Here's an example of markdown cell metadata that would trigger the "hide text" behavior:
-
-```json
-{
-    "tags": [
-        "remove_cell",
-    ]
-}
-```
-
-+++ {"tags": ["remove_cell"]}
-
-#### For example 🎉
-
-This markdown cell will be hidden from users!
-
-+++
-
-### Removing empty cells
+### Remove empty cells
 
 You don't need to do anything to remove empty cells from your pages.
 Jupyter Book will remove these automatically. Any cell with *only*
