@@ -30,7 +30,7 @@ def find_name(pages, name):
         if _no_suffix(page.get("file")) == name:
             return page
         else:
-            sections = page.get("pages", [])
+            sections = page.get("sections", [])
             page = find_name(sections, name)
             if page is not None:
                 return page
@@ -43,62 +43,68 @@ def add_toctree(app, docname, source):
 
     # First check whether this page has any descendants
     # If so, then we'll manually add them as a toctree object
-    path = app.env.doc2path(docname, base=None)
+    path_parent = app.env.doc2path(docname, base=None)
     toc = app.config["globaltoc"]
-    page = find_name(toc, _no_suffix(path))
-
+    parent_page = find_name(toc, _no_suffix(path_parent))
+    parent_suff = Path(path_parent).suffix
     # If we didn't find this page in the TOC, raise a warning
-    if page is None:
+    if parent_page is None:
         logger.warning(
-            f"Found a content page that is not in Table of Contents: {path}."
+            f"Found a content page that is not in Table of Contents: {path_parent}."
         )
         return
 
     # If we have no sections, then don't worry about a toctree
-    pages = page.get("pages")
-    if not pages:
+    subsections = parent_page.get("sections")
+    if not subsections:
         return
 
-    def gen_toctree(options, pages):
-        # Copy out our options and pages so we can clear later
-        this_options = "\n".join(options.copy())
-        this_pages = "\n".join(pages.copy())
+    def gen_toctree(options, subsections):
 
         # Generate the TOC from our options/pages
-        toctree_text = dedent(
-            """
+        toctree_text_md = """
         ```{{toctree}}
         :hidden:
         :titlesonly:
         {options}
 
-        {pages}
+        {sections}
         ```
         """
-        )
+        toctree_text_rst = """
+        .. toctree::
+           :hidden:
+           :titlesonly:
+           {options}
+
+           {sections}
+        """
+
+        if parent_suff in [".ipynb", ".md"]:
+            toctree_template = toctree_text_md
+        elif parent_suff == ".rst":
+            toctree_template = toctree_text_rst
 
         # Create the markdown directive for our toctree
-        toctree = toctree_text.format(options=this_options, pages=this_pages)
+        toctree = dedent(toctree_template).format(
+            options="\n".join(options), sections="\n".join(subsections)
+        )
         return toctree
 
     # Build toctrees for the page. We may need more than one depending on the options
     toctrees = []
-    toc_pages = []
+    toc_sections = []
     toc_options = []
-    for ipage in pages:
-        # First handle special case of dividers and headers
-        if ipage.get("divider") or ipage.get("header"):
-            if toc_pages:
-                # If we already have some pages added, we need to make a new toctree
-                old_toctree = gen_toctree(toc_options, toc_pages)
-                toc_pages = []
-                toc_options = []
+    for ipage in subsections:
+        # First handle special case of chapters
+        if "header" in ipage:
+            # If we already have some pages added, we need to make a new toctree
+            if toc_sections:
+                old_toctree = gen_toctree(toc_options, toc_sections)
                 toctrees.append(old_toctree)
-            # Adding options to our toctree
-            if ipage.get("divider"):
-                toc_options.append(":divider:")
-            if ipage.get("header"):
-                toc_options.append(f":caption: {ipage.get('header')}")
+                toc_sections = []
+                toc_options = []
+            toc_options.append(f":caption: {ipage.get('header')}")
             continue
 
         # If not a special case, assume we have a "regular" page structure
@@ -106,33 +112,32 @@ def add_toctree(app, docname, source):
         title = ipage.get("title")
 
         # Update path so it is relative to the root of the parent
-        path_parent_folder = Path(page["file"]).parent
+        path_parent_folder = Path(parent_page["file"]).parent
         path_sec = os.path.relpath(path_sec, path_parent_folder)
 
         # Decide whether we'll over-ride with a title in the toctree
         this_section = f"{path_sec}"
         if title:
             this_section = f"{title} <{this_section}>"
-        toc_pages.append(this_section)
+        toc_sections.append(this_section)
 
         option_flags = ["numbered", "expand_sections"]
         for option in option_flags:
-            if page.get(option):
+            if parent_page.get(option):
                 toc_options.append(f":{option}:")
 
-    # Now create the final toctree for this page
-    final_toctree = gen_toctree(toc_options, toc_pages)
-    toctrees.append(final_toctree)
-
+    # Now create the final toctree for this page and prep them to insert into the page
+    if toc_sections:
+        final_toctree = gen_toctree(toc_options, toc_sections)
+        toctrees.append(final_toctree)
     toctrees = "\n".join(toctrees)
 
     # Figure out what kind of text defines a toctree directive for this file
     # currently, assumed to be markdown
-    suff = Path(path).suffix
-    if suff == ".md":
+    if parent_suff in [".md", ".rst"]:
         source[0] += toctrees + "\n"
 
-    elif suff == ".ipynb":
+    elif parent_suff == ".ipynb":
         # Lazy import nbformat because we only need it if we have an ipynb file
         import nbformat as nbf
 
@@ -141,7 +146,7 @@ def add_toctree(app, docname, source):
         ntbk.cells.append(md)
         source[0] = nbf.writes(ntbk)
     else:
-        raise ValueError("Only markdown and ipynb files are supported.")
+        raise ValueError("Only markdown, ipynb, and rst files are supported.")
 
 
 def update_indexname(app, config):
@@ -156,7 +161,7 @@ def update_indexname(app, config):
         toc_updated = toc[0]
         if len(toc) > 1:
             subsections = toc[1:]
-            toc_updated["pages"] = subsections
+            toc_updated["sections"] = subsections
         toc = toc_updated
     app.config["globaltoc"] = toc
 
@@ -203,13 +208,13 @@ def _find_content_structure(path, root_folder, split_char="_", skip_text=None):
     if not first_content:
         first_content = content_files.pop(0)
     parent = _content_path_to_yaml(first_content, root_folder, split_char=split_char)
-    parent["pages"] = []
+    parent["sections"] = []
 
-    # Children become pages of the parent
+    # Children become sections of the parent
     for content_file in content_files:
         if any(iskip in str(content_file) for iskip in skip_text):
             continue
-        parent["pages"].append(_content_path_to_yaml(content_file, root_folder))
+        parent["sections"].append(_content_path_to_yaml(content_file, root_folder))
 
     # Now recursively run this on folders, and add as another sub-page
     folders = [ii for ii in path.iterdir() if ii.is_dir()]
@@ -220,10 +225,10 @@ def _find_content_structure(path, root_folder, split_char="_", skip_text=None):
             folder, root_folder, split_char=split_char, skip_text=skip_text
         )
         if folder_out:
-            parent["pages"].append(folder_out)
+            parent["sections"].append(folder_out)
 
-    if len(parent["pages"]) == 0:
-        parent.pop("pages")
+    if len(parent["sections"]) == 0:
+        parent.pop("sections")
     return parent
 
 
@@ -237,10 +242,10 @@ def build_toc(path, filename_split_char="_", skip_text=None):
     It uses the following logic:
 
     * In a given folder, the first content page is the folder parent.
-    * All subsequent pages are sections of the parent page
+    * All subsequent files are sections of the parent page
     * For each sub-folder
         * Its first page is appended to sections of the parent page
-        * All other sub-folder pages are children of the subfolder's first page 
+        * All other sub-folder are children of the subfolder's first page 
 
     Parameters
     ----------

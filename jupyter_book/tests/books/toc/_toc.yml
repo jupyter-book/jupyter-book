@@ -1,12 +1,12 @@
 file: index
 title: Toc
-pages:
+sections:
 - file: content1
   title: Content1
 - file: content2
   title: Content2
 - file: subfolder/index
   title: Subfolder
-  pages:
+  sections:
   - file: subfolder/asubpage
     title: Asubpage
