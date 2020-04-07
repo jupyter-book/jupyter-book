@@ -24,7 +24,7 @@ Let's begin with a sample plot. You can click the toggle button to the right
 to see the code that generated it.
 
 ```{code-cell} ipython3
-:tags: [hide_input]
+:tags: [hide-input]
 
 def make_fig(figsize):
     from matplotlib import rcParams, cycler
@@ -111,7 +111,7 @@ For example, we'll re-display the figure above, and add a `sidebar` tag to the c
 make_fig(figsize=(10, 5))
 ```
 
-This can be combined with other tags like `remove_input` to **only display the figure**.
+This can be combined with other tags like `remove-input` to **only display the figure**.
 
 +++
 
@@ -155,7 +155,7 @@ following cell metadata tag:
 ```json
 {
     "tags": [
-        "full_width",
+        "full-width",
     ]
 }
 ```
@@ -166,7 +166,7 @@ For example, let's take a look at the figure at full-width. We'll tell Matplotli
 to make it a bit wider so we can take advantage of the extra space!
 
 ```{code-cell} ipython3
-:tags: [hide_input, full_width]
+:tags: [hide-input, full-width]
 
 make_fig(figsize=(20, 5))
 ```
@@ -174,10 +174,10 @@ make_fig(figsize=(20, 5))
 This can work with markdown cells as well. For example, we'll make the following warning block full-width so that
 it draws more attention:
 
-+++ {"tags": ["full_width"]}
++++ {"tags": ["full-width"]}
 
 ```{admonition} **Be careful about mixing popouts and full-width content**.
-:class: full_width
+:class: full-width
 
 Sometimes these can conflict
 with one another in visual space. You should use them relatively sparingly in order

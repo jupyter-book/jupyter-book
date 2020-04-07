@@ -86,7 +86,7 @@ then customizing your TOC how you'd like.
 
 Sometimes you'd like to quickly scan through a notebook's cells in order to
 add tags based on the content of the cell. For example, you might want to
-hide any cell with an import statement in it using the `remove_input` tag.
+hide any cell with an import statement in it using the `remove-input` tag.
 
 Here's a short Python snippet to accomplish something close to this.
 First change directories into the root of your book folder, and then
@@ -103,9 +103,9 @@ notebooks = glob("./content/**/*.ipynb", recursive=True)
 
 # Text to look for in adding tags
 text_search_dict = {
-    "# HIDDEN": "remove_cell",  # Remove the whole cell
-    "# NO CODE": "remove_input",  # Remove only the input
-    "# HIDE CODE": "hide_input"  # Hide the input w/ a button to show
+    "# HIDDEN": "remove-cell",  # Remove the whole cell
+    "# NO CODE": "remove-input",  # Remove only the input
+    "# HIDE CODE": "hide-input"  # Hide the input w/ a button to show
 }
 
 # Search through each notebook and look for th text, add a tag if necessary
