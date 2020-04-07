@@ -26,6 +26,7 @@ launch_buttons:
   notebook_interface        : "classic"  # The interface interactive links will activate ["classic", "jupyterlab"]
   binderhub_url             : "https://mybinder.org"  # The URL of the BinderHub (e.g., https://mybinder.org)
   jupyterhub_url            : ""  # The URL of the JupyterHub (e.g., https://datahub.berkeley.edu)
+  thebelab                  : false  # Add a thebelab button to pages (requires the repository to run on Binder)
 
 repository:
   url                       : https://github.com/ExecutableBookProject/cli  # The URL to your book's repository
