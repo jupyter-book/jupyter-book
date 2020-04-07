@@ -38,8 +38,3 @@
     - file: test_pages/equations
     - file: test_pages/code
     - file: test_pages/limits
-
-- file: old_docs/index
-  sections:
-    - file: old_docs/interactive_cells
-    - file: old_docs/jupytext
