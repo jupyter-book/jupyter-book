@@ -56,7 +56,7 @@ setup(
         ),
     ],
     extras_require={
-        "sphinx": ["folium", "numpy", "matplotlib", "ipywidgets", "pandas", "nbclient"],
+        "sphinx": ["folium", "numpy", "matplotlib", "ipywidgets", "pandas", "nbclient", "sympy"],
         "testing": [
             "coverage",
             "pytest>=3.6,<4",

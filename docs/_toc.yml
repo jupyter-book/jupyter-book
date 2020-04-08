@@ -24,6 +24,7 @@
 - header: Writing book content
 - file: use/citations
 - file: use/math
+- file: use/glue
 - file: use/hiding
 - file: use/layout
 
