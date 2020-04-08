@@ -160,6 +160,7 @@ fig, ax = plt.subplots()
 ax.scatter(*data, c=data[1], s=100*np.abs(data[0]));
 ```
 
+(hiding/remove-content)=
 ## Removing code cell content
 
 In the above examples, we are only *hiding* the inputs, with the option
