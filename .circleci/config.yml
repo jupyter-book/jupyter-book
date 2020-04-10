@@ -32,11 +32,6 @@ jobs:
           name: Install chromium
           command: pyppeteer-install
 
-      # Run the docs so they are up-to-date
-      - run:
-          name: Running tests
-          command: pytest
-
       # Build a PDF of the book to view as an artifact
       - run:
           name: PDF from HTML
