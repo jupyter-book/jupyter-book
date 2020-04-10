@@ -27,6 +27,7 @@
 - file: use/glue
 - file: use/hiding
 - file: use/layout
+- file: use/interactive
 
 - header: Advanced topics
 - file: use/page

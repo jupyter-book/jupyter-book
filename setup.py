@@ -61,6 +61,9 @@ setup(
             "pandas",
             "nbclient",
             "sympy",
+            "plotly",
+            "bokeh",
+            "altair",
         ],
         "testing": [
             "coverage",
