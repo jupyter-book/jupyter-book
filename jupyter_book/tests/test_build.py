@@ -1,7 +1,5 @@
-import os
 from pathlib import Path
 from subprocess import run
-import jupyter_book as jb
 
 
 path_tests = Path(__file__).parent

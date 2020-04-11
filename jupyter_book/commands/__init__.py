@@ -1,11 +1,9 @@
 """Defines the commands that the CLI will use."""
-import sys
 import os.path as op
 from pathlib import Path
 import click
 from glob import glob
 import shutil as sh
-import asyncio
 
 from ..sphinx import build_sphinx
 from ..toc import build_toc
@@ -37,8 +35,9 @@ def build(path_book, path_output, config, toc, build):
     book_config = {}
     build_dict = {"html": "html", "pdf_html": "singlehtml"}
     if build not in build_dict.keys():
+        allowed_keys = tuple(build_dict.keys())
         raise ValueError(
-            f"Value for --build must be one of {tuple(build_dict.keys())}. Got '{build}'"
+            f"Value for --build must be one of {allowed_keys}. Got '{build}'"
         )
     builder = build_dict[build]
 
@@ -48,7 +47,8 @@ def build(path_book, path_output, config, toc, build):
             toc = PATH_BOOK.joinpath("_toc.yml")
         else:
             raise ValueError(
-                f"Couldn't find a Table of Contents file. To auto-generate one, run\n\n\tjupyter-book build {path_book}"
+                f"Couldn't find a Table of Contents file. To auto-generate"
+                "one, run\n\n\tjupyter-book build {path_book}"
             )
     book_config["globaltoc_path"] = str(toc)
 

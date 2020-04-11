@@ -1,5 +1,4 @@
 import nbformat as nbf
-from subprocess import run
 from glob import glob
 from nbconvert.exporters import NotebookExporter
 from traitlets.config import Config

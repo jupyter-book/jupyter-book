@@ -32,36 +32,36 @@ way.
 1. Modify the file in `_bibliography/references.bib`. This has a few sample citations
 in bibtex form. Update as you wish!
 2. In your content, add the following text to include a citation
-   
+
    ```
    {cite}`mybibtexcitation`
    ```
 
    For example, this text
-   
+
    ```
    {cite}`holdgraf_rapid_2016`
    ```
-   
+
    generates this citation: {cite}`holdgraf_rapid_2016`
-   
+
    You can also include multiple citations in one go, like so:
-   
+
    ```
    {cite}`holdgraf_evidence_2014,holdgraf_portable_2017`
    ```
-   
+
    becomes {cite}`holdgraf_evidence_2014,holdgraf_portable_2017`.
-   
+
 3. Generate a bibliography on your page by using the following text:
 
    ````
    ```{bibliography} path/to/your/bibtexfile.bib
    ```
    ````
-   
+
    This will generate a bibliography for your entire bibtex file, like so:
-   
+
    ```{bibliography} ../references.bib
    ```
 

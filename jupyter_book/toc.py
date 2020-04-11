@@ -49,9 +49,7 @@ def add_toctree(app, docname, source):
     parent_suff = Path(path_parent).suffix
     # If we didn't find this page in the TOC, raise a warning
     if parent_page is None:
-        logger.warning(
-            f"Found a content page that is not in Table of Contents: {path_parent}."
-        )
+        logger.warning(f"Found a content page that is not in _toc.yml: {path_parent}.")
         return
 
     # If we have no sections, then don't worry about a toctree
@@ -91,7 +89,7 @@ def add_toctree(app, docname, source):
         )
         return toctree
 
-    # Build toctrees for the page. We may need more than one depending on the options
+    # Build toctrees for the page. We may need more than one
     toctrees = []
     toc_sections = []
     toc_options = []
@@ -126,7 +124,7 @@ def add_toctree(app, docname, source):
             if parent_page.get(option):
                 toc_options.append(f":{option}:")
 
-    # Now create the final toctree for this page and prep them to insert into the page
+    # Now create the final toctree for this page and prep to insert into page
     if toc_sections:
         final_toctree = gen_toctree(toc_options, toc_sections)
         toctrees.append(final_toctree)
@@ -245,7 +243,7 @@ def build_toc(path, filename_split_char="_", skip_text=None):
     * All subsequent files are sections of the parent page
     * For each sub-folder
         * Its first page is appended to sections of the parent page
-        * All other sub-folder are children of the subfolder's first page 
+        * All other sub-folder are children of the subfolder's first page
 
     Parameters
     ----------

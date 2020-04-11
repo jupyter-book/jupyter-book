@@ -76,12 +76,12 @@ Some hidden toggle content!
 You can hide most cell elements of a page. The sections below describe how
 to hide each.
 
-If an element is hidden, Jupyter Book will display a small button to the right of the 
+If an element is hidden, Jupyter Book will display a small button to the right of the
 old location for the hidden element. If a user clicks the button,
 the element will be displayed.
 
 
-### Hide cell inputs 
+### Hide cell inputs
 
 If you add the tag `hide-input` to a cell, then Jupyter Book will hide the cell but
 display the outputs.
