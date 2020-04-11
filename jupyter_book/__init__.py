@@ -1,6 +1,4 @@
-"""Build an online book using Jupyter Notebooks and Jekyll."""
-from pathlib import Path
-import os
+"""Build a book with Jupyter Notebooks and Sphinx."""
 from docutils.parsers.rst.directives.body import Sidebar
 from .toc import update_indexname, add_toctree
 from .yaml import add_yaml_config

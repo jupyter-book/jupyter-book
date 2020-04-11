@@ -22,7 +22,7 @@ def add_yaml_config(app):
         path_yaml = Path(path_yaml)
         if not path_yaml.exists():
             raise ValueError(
-                f"Path to a YAML configuration file was given, but not found: {path_yaml}"
+                f"Path to a _config.yml file was given, but not found: {path_yaml}"
             )
 
         # Load the YAML and update its values to translate it into Sphinx keys

@@ -9,7 +9,7 @@ This page describes the general structure of `_config.yml`, and how
 you can use it to control some basic parts of your book. The rest of the
 pages in this section describe more detail for specific features.
 
-## Structure of `_config.yml` 
+## Structure of `_config.yml`
 
 Here is a very simple `_config.yml` configuration (it is taken from
 {download}`the demo book config file <../../jupyter_book/book_template/_config.yml>`):

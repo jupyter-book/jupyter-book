@@ -10,7 +10,7 @@
 
 - file: customize/index
   sections:
-    - file: customize/toc  
+    - file: customize/toc
     - file: customize/faq
     - file: customize/advanced
 

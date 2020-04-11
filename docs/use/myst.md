@@ -219,7 +219,7 @@ name: my_figure
 Here is my figure caption!
 ```
 
-You can then refer to this figure using the `{ref}` role like: 
+You can then refer to this figure using the `{ref}` role like:
 `` {ref}`my-figure` ``, which will replace the reference with the figure
 caption like so: {ref}`my_figure`.
 Another convenient way to create cross-references is with the `{numref}` role,

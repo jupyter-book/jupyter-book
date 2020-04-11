@@ -13,7 +13,7 @@ REDIRECT_TEXT = """
 """
 
 ROOT = Path(__file__)
-# Some configuration values that don't make sense to be in `default_config.yml` because they are sphinx-specific
+# Some configuration values that are really sphinx-specific
 DEFAULT_CONFIG = dict(
     extensions=[
         "sphinx_togglebutton",
@@ -30,7 +30,9 @@ DEFAULT_CONFIG = dict(
     html_theme="sphinx_book_theme",
     html_theme_options={
         "single_page": False,
-        "sidebar_footer_text": "Powered by <a href='https://jupyterbook.org'>Jupyter Book</a>",
+        "sidebar_footer_text": (
+            "Powered by <a href='https://jupyterbook.org'>Jupyter Book</a>"
+        ),
     },
     html_add_permalinks="¶",
     numfig=True,
@@ -150,11 +152,15 @@ def build_sphinx(
                 path_toc = Path(config["globaltoc_path"])
                 if not path_toc.exists():
                     raise ValueError(
-                        f"You gave a Configuration file path that doesn't exist: {path_toc}"
+                        (
+                            f"You gave a Configuration file path"
+                            "that doesn't exist: {path_toc}"
+                        )
                     )
                 if path_toc.suffix not in [".yml", ".yaml"]:
                     raise ValueError(
-                        f"You gave a Configuration file path that is not a YAML file: {path_toc}"
+                        f"You gave a Configuration file path"
+                        "that is not a YAML file: {path_toc}"
                     )
             else:
                 path_toc = None

@@ -181,5 +181,5 @@ Content in one markdown cell
 Content in another markdown cell
 ```
 ````
- 
+
 [jupytext]: https://jupytext.readthedocs.io/

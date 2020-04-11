@@ -1,13 +1,23 @@
+# Install pre-commit hooks via
+# pre-commit install
+
+exclude: >
+    (?x)^(
+      \.vscode/settings\.json|
+    )$
+
 repos:
-- repo: local
-  hooks:
-  - id: clear-doc-notebook-outputs
-    name: Clear outputs in documentation notebooks
-    language: system
-    entry: python scripts/clear_doc_outputs.py
-    always_run: true
-    files: \.ipynb$
-- repo: https://github.com/psf/black
-  rev: stable
-  hooks:
-  - id: black
+
+  - repo: git://github.com/pre-commit/pre-commit-hooks
+    rev: v2.2.3
+    hooks:
+    - id: check-json
+    - id: check-yaml
+    - id: end-of-file-fixer
+    - id: trailing-whitespace
+    - id: flake8
+
+  - repo: https://github.com/psf/black
+    rev: stable
+    hooks:
+    - id: black
