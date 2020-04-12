@@ -16,8 +16,11 @@ class MySidebar(Sidebar):
     def run(self):
         if not self.arguments:
             self.arguments = [""]
-
-        return super().run()
+        nodes = super().run()
+        # Remove the "title" node if it is empty
+        if not self.arguments:
+            nodes[0].children.pop(0)
+        return nodes
 
 
 # We connect this function to the step after the builder is initialized
