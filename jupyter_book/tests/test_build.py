@@ -19,3 +19,24 @@ def test_build_book(tmpdir):
     assert path_html.joinpath("index.html").exists()
     for path_static in path_template.joinpath("static").glob("*"):
         assert path.joinpath("_static", path_static.name).exists()
+
+
+def test_build_docs(tmpdir):
+    """Test building the documentation book."""
+    path_output = Path(tmpdir).absolute()
+    path_docs = path_tests.parent.parent.joinpath("docs")
+    run(f"jb build {path_docs} --path-output {path_output}".split(), check=True)
+    path_html = path_output.joinpath("_build", "html")
+    assert path_html.joinpath("index.html").exists()
+    assert path_html.joinpath("intro.html").exists()
+    assert path_html.joinpath("use", "citations.html").exists()
+
+
+def test_build_page(tmpdir):
+    """Test building the documentation book."""
+    path_output = Path(tmpdir).absolute()
+    path_page = path_tests.parent.parent.joinpath("examples", "single_page.ipynb")
+
+    run(f"jb page {path_page} --path-output {path_output}".split(), check=True)
+    path_html = path_output.joinpath("_build", "html")
+    assert path_html.joinpath("single_page.html").exists()

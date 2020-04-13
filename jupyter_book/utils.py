@@ -58,5 +58,5 @@ def _message_box(msg, color="green", doprint=True):
 
 
 def _error(msg):
-    box = _message_box(msg, color="red")
+    box = _message_box(msg, color="red", doprint=False)
     raise ValueError(box)

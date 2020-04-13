@@ -72,39 +72,50 @@ def build(path_book, path_output, config, toc, build):
     OUTPUT_PATH = Path(OUTPUT_PATH).joinpath("_build/html")
 
     # Now call the Sphinx commands to build
-    build_sphinx(
+    exc = build_sphinx(
         PATH_BOOK,
         OUTPUT_PATH,
         noconfig=True,
         confoverrides=book_config,
         builder=builder,
     )
-
-    # Builder-specific options
-    if build == "html":
-        path_index = OUTPUT_PATH.joinpath("index.html").relative_to(Path().resolve())
+    if exc:
         _message_box(
-            f"""\
-        Finished generating HTML for book. You can open your book at this file:
-
-            {path_index}\
-        """
+            "There was an error in building your book. "
+            "Look above for the error message.",
+            color="red",
         )
-    if build == "pdf_html":
-        print("Finished generating HTML for book...")
-        print("Converting book HTML into PDF...")
-        path_pdf_output = OUTPUT_PATH.parent.joinpath("pdf")
-        path_pdf_output.mkdir(exist_ok=True)
-        path_pdf_output = path_pdf_output.joinpath("book.pdf")
-        html_to_pdf(OUTPUT_PATH.joinpath("index.html"), path_pdf_output)
-        path_pdf_output_rel = path_pdf_output.relative_to(Path(".").resolve())
-        _message_box(
-            f"""\
-        Finished generating PDF via HTML for book. You can open your PDF at this file:
+    else:
+        # Builder-specific options
+        if build == "html":
+            path_output_rel = Path(op.relpath(OUTPUT_PATH, Path()))
+            path_index = path_output_rel.joinpath("index.html")
+            _message_box(
+                f"""\
+            Finished generating HTML for book.
 
-            {path_pdf_output_rel}\
-        """
-        )
+            Your book's HTML pages are here:
+                {path_output_rel}{os.sep}
+
+            You can look at your book by opening this file in a browser:
+                {path_index}\
+            """
+            )
+        if build == "pdf_html":
+            print("Finished generating HTML for book...")
+            print("Converting book HTML into PDF...")
+            path_pdf_output = OUTPUT_PATH.parent.joinpath("pdf")
+            path_pdf_output.mkdir(exist_ok=True)
+            path_pdf_output = path_pdf_output.joinpath("book.pdf")
+            html_to_pdf(OUTPUT_PATH.joinpath("index.html"), path_pdf_output)
+            path_pdf_output_rel = Path(op.relpath(path_pdf_output, Path()))
+            _message_box(
+                f"""\
+            Finished generating PDF via HTML for book. Your PDF is here:
+
+                {path_pdf_output_rel}\
+            """
+            )
 
 
 @main.command()
@@ -154,7 +165,8 @@ def page(path_page, path_output, config, execute):
         builder="html",
     )
 
-    path_page = OUTPUT_PATH.joinpath(f"{PAGE_NAME}.html").relative_to(Path().resolve())
+    path_output_rel = Path(op.relpath(OUTPUT_PATH, Path()))
+    path_page = path_output_rel.joinpath(f"{PAGE_NAME}.html")
     _message_box(f"Page build finished. Open your page at:\n\n    {path_page}")
 
 

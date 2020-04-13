@@ -46,14 +46,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -e .[testing]
 
-    # Build the docs to make sure they build w/o error
-    - name: Build docs book
-      run: |
-        jb build docs
-    - name: Build example page
-      run: |
-        jb page examples/single_page.ipynb
-
     # Tests
     - name: Run pytest
       run: |
