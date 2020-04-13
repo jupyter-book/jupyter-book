@@ -7,18 +7,23 @@ the pieces that you'll modify for your own book.
 Running the following command will create a new Jupyter Book with a few
 content pages and a Table of Contents to get you started:
 
+```{note}
+Jupyter Book uses a command-line interface to generate books. For more complete
+information about the CLI, see {doc}`cli`.
+```
+
 ## Create a template Jupyter Book
 
 We'll use a small template book to show what kinds of files you might put inside your own.
 To create a new Jupyter Book, type the following at the command-line:
 
-```bash
-jupyter-book create mybookname
-```
-
-```{note}
+```{sidebar}
 You can also use the short-hand `jb` for `jupyter-book`. E.g.,:
 `jb create mybookname`. We'll use `jupyter-book` for the rest of this guide.
+```
+
+```bash
+jupyter-book create mybookname
 ```
 
 A new book will be created at the path that you've given (in this case, `mybookname/`).

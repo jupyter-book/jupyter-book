@@ -7,6 +7,19 @@ for line in text.split("\n"):
         break
 version = line.split("= ")[-1].strip('"')
 
+# Documentation requirements
+path_doc_reqs = Path(__file__).parent.joinpath("docs", "requirements.txt")
+doc_reqs = [
+    ii for ii in path_doc_reqs.read_text().split("\n") if not ii.startswith("#")
+]
+test_reqs = [
+    "coverage",
+    "pytest>=3.6,<4",
+    "pytest-cov",
+    "beautifulsoup4",
+    "matplotlib",
+    "pytest-regressions",
+] + doc_reqs
 setup(
     name="jupyter-book",
     version=version,
@@ -53,34 +66,8 @@ setup(
     ],
     extras_require={
         "code_style": ["flake8<3.8.0,>=3.7.0", "black", "pre-commit==1.17.0"],
-        "sphinx": [
-            "folium",
-            "numpy",
-            "matplotlib",
-            "ipywidgets",
-            "pandas",
-            "nbclient",
-            "sympy",
-            "plotly",
-            "bokeh",
-            "altair",
-        ],
-        "testing": [
-            "coverage",
-            "pytest>=3.6,<4",
-            "pytest-cov",
-            "beautifulsoup4",
-            "matplotlib",
-            "pytest-regressions",
-            "numpy",
-            "pandas",
-            "nbclient",
-            "sympy",
-            "plotly",
-            "bokeh",
-            "altair",
-            "pyppeteer",
-        ],
+        "sphinx": doc_reqs,
+        "testing": test_reqs,
         "pdf_html": "pyppeteer",
     },
     entry_points={

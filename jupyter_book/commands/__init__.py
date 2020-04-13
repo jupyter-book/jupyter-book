@@ -5,6 +5,7 @@ from pathlib import Path
 import click
 from glob import glob
 import shutil as sh
+import yaml
 
 from ..sphinx import build_sphinx
 from ..toc import build_toc
@@ -26,23 +27,24 @@ BUILD_OPTIONS = ["html", "pdf_html"]
 @click.option("--path-output", default=None, help="Path to the output artifacts")
 @click.option("--config", default=None, help="Path to the YAML configuration file")
 @click.option("--toc", default=None, help="Path to the Table of Contents YAML file")
+@click.option("-W", "--warningiserror", is_flag=True, help="Error on warnings.")
 @click.option(
     "--build",
     default="html",
     help="What kind of output to build. Must be one of {BUILD_OPTIONS}",
 )
-def build(path_book, path_output, config, toc, build):
+def build(path_book, path_output, config, toc, warningiserror, build):
     """Convert your book's content to HTML or a PDF."""
     # Paths for our notebooks
     PATH_BOOK = Path(path_book).absolute()
+    if not PATH_BOOK.is_dir():
+        _error(f"Path to book isn't a directory: {PATH_BOOK}")
 
     book_config = {}
     build_dict = {"html": "html", "pdf_html": "singlehtml"}
     if build not in build_dict.keys():
         allowed_keys = tuple(build_dict.keys())
-        raise ValueError(
-            f"Value for --build must be one of {allowed_keys}. Got '{build}'"
-        )
+        _error(f"Value for --build must be one of {allowed_keys}. Got '{build}'")
     builder = build_dict[build]
 
     # Table of contents
@@ -50,9 +52,9 @@ def build(path_book, path_output, config, toc, build):
         if PATH_BOOK.joinpath("_toc.yml").exists():
             toc = PATH_BOOK.joinpath("_toc.yml")
         else:
-            raise ValueError(
-                f"Couldn't find a Table of Contents file. To auto-generate"
-                "one, run\n\n\tjupyter-book build {path_book}"
+            _error(
+                f"Couldn't find a Table of Contents file. To auto-generate "
+                "one, run\n\n\tjupyter-book toc {path_book}"
             )
     book_config["globaltoc_path"] = str(toc)
 
@@ -61,8 +63,13 @@ def build(path_book, path_output, config, toc, build):
         if PATH_BOOK.joinpath("_config.yml").exists():
             config = PATH_BOOK.joinpath("_config.yml")
 
+    extra_extensions = None
     if config is not None:
         book_config["yaml_config_path"] = str(config)
+        config_yaml = yaml.safe_load(config.read_text())
+
+        # Pop the extra extensions since we need to append, not replace
+        extra_extensions = config_yaml.pop("sphinx", {}).get("extra_extensions")
 
     # Builder-specific overrides
     if build == "pdf_html":
@@ -78,12 +85,13 @@ def build(path_book, path_output, config, toc, build):
         noconfig=True,
         confoverrides=book_config,
         builder=builder,
+        warningiserror=warningiserror,
+        extra_extensions=extra_extensions,
     )
     if exc:
-        _message_box(
+        _error(
             "There was an error in building your book. "
             "Look above for the error message.",
-            color="red",
         )
     else:
         # Builder-specific options

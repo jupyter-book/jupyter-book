@@ -37,3 +37,8 @@ thebelab:    # NOT YET IMPLEMENTED
   use_page_button           : false
   thebelab_button_text      : "Thebelab"  # The text to display inside the Thebelab initialization button
   codemirror_theme          : "abcdef"  # Theme for codemirror cells, for options see https://codemirror.net/doc/manual.html#config
+
+#######################################################################################
+# Advanced and power-user settings
+sphinx:
+  extra_extensions          : None  # A list of extra extensions to load by Sphinx.

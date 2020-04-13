@@ -34,8 +34,8 @@ def setup(app):
     # configuration for YAML metadata
     app.add_config_value("yaml_config_path", "", "html")
 
-    # Add configuration value to the template
-    app.connect("builder-inited", add_yaml_config)
+    app.connect("config-inited", add_yaml_config)
+
     return {
         "version": __version__,
         "parallel_read_safe": True,
