@@ -7,6 +7,7 @@
   - file: start/02_create
   - file: start/03_build
   - file: start/04_publish
+  - file: start/cli
 
 - file: customize/index
   sections:

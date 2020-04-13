@@ -45,6 +45,7 @@ def build_sphinx(
     confdir=None,
     noconfig=False,
     confoverrides=None,
+    extra_extensions=None,
     htmloverrides=None,
     doctreedir=None,
     filenames=None,
@@ -64,6 +65,14 @@ def build_sphinx(
 
     This is a slightly modified version of
     https://github.com/sphinx-doc/sphinx/blob/3.x/sphinx/cmd/build.py#L198.
+
+    Extra parameters
+    ----------------
+
+    extra_extensions : list | None
+        A list of extra extensions to load into Sphinx. This must be done
+        before Sphinx is initialized otherwise the extensions aren't properly
+        initialized.
     """
 
     # Manual configuration overrides
@@ -71,6 +80,12 @@ def build_sphinx(
         confoverrides = {}
     config = DEFAULT_CONFIG.copy()
     config.update(confoverrides)
+
+    if extra_extensions:
+        if not isinstance(extra_extensions, list):
+            extra_extensions = [extra_extensions]
+        for ext in extra_extensions:
+            config["extensions"].append(ext)
 
     # HTML-specific configuration
     if htmloverrides is None:
@@ -121,7 +136,7 @@ def build_sphinx(
     if really_quiet:
         status = warning = None
 
-    # Error on warnings
+    # Raise more warnings
     if nitpicky:
         config["nitpicky"] = True
 

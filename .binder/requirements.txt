@@ -1,4 +1,1 @@
-matplotlib
-numpy
-folium
-pandas
+../docs/requirements.txt

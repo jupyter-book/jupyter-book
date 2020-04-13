@@ -20,3 +20,6 @@ launch_buttons:
   notebook_interface        : "jupyterlab"  # The interface interactive links will activate ["classic", "jupyterlab"]
   binderhub_url             : "https://mybinder.org"
   thebelab                  : true
+
+sphinx:
+  extra_extensions          : ["sphinx_click.ext"]
