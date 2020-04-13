@@ -177,4 +177,4 @@ def build_sphinx(
             return app.statuscode
     except (Exception, KeyboardInterrupt) as exc:
         handle_exception(app, debug_args, exc, error)
-        return 2
+        return exc

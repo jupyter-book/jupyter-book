@@ -1,4 +1,5 @@
 """Defines the commands that the CLI will use."""
+import os
 import os.path as op
 from pathlib import Path
 import click
@@ -8,12 +9,16 @@ import shutil as sh
 from ..sphinx import build_sphinx
 from ..toc import build_toc
 from ..pdf import html_to_pdf
+from ..utils import _message_box, _error
 
 
 @click.group()
 def main():
     """Build and manage books with Jupyter."""
     pass
+
+
+BUILD_OPTIONS = ["html", "pdf_html"]
 
 
 @main.command()
@@ -24,11 +29,10 @@ def main():
 @click.option(
     "--build",
     default="html",
-    help="What kind of output to build. Currently only 'html' is supported.",
+    help="What kind of output to build. Must be one of {BUILD_OPTIONS}",
 )
 def build(path_book, path_output, config, toc, build):
-    """Convert a collection of Jupyter Notebooks into HTML suitable for a book.
-    """
+    """Convert your book's content to HTML or a PDF."""
     # Paths for our notebooks
     PATH_BOOK = Path(path_book).absolute()
 
@@ -68,24 +72,50 @@ def build(path_book, path_output, config, toc, build):
     OUTPUT_PATH = Path(OUTPUT_PATH).joinpath("_build/html")
 
     # Now call the Sphinx commands to build
-    build_sphinx(
+    exc = build_sphinx(
         PATH_BOOK,
         OUTPUT_PATH,
         noconfig=True,
         confoverrides=book_config,
         builder=builder,
     )
+    if exc:
+        _message_box(
+            "There was an error in building your book. "
+            "Look above for the error message.",
+            color="red",
+        )
+    else:
+        # Builder-specific options
+        if build == "html":
+            path_output_rel = Path(op.relpath(OUTPUT_PATH, Path()))
+            path_index = path_output_rel.joinpath("index.html")
+            _message_box(
+                f"""\
+            Finished generating HTML for book.
 
-    # Builder-specific options
-    if build == "pdf_html":
-        print("Finished generating HTML for book...")
-        print("Converting book HTML into PDF...")
-        path_pdf_output = OUTPUT_PATH.parent.joinpath("pdf")
-        path_pdf_output.mkdir(exist_ok=True)
-        path_pdf_output = path_pdf_output.joinpath("book.pdf")
-        html_to_pdf(OUTPUT_PATH.joinpath("index.html"), path_pdf_output)
-        path_pdf_output_rel = path_pdf_output.relative_to(Path(".").resolve())
-        print(f"A PDF of your book can be found at: {path_pdf_output_rel}")
+            Your book's HTML pages are here:
+                {path_output_rel}{os.sep}
+
+            You can look at your book by opening this file in a browser:
+                {path_index}\
+            """
+            )
+        if build == "pdf_html":
+            print("Finished generating HTML for book...")
+            print("Converting book HTML into PDF...")
+            path_pdf_output = OUTPUT_PATH.parent.joinpath("pdf")
+            path_pdf_output.mkdir(exist_ok=True)
+            path_pdf_output = path_pdf_output.joinpath("book.pdf")
+            html_to_pdf(OUTPUT_PATH.joinpath("index.html"), path_pdf_output)
+            path_pdf_output_rel = Path(op.relpath(path_pdf_output, Path()))
+            _message_box(
+                f"""\
+            Finished generating PDF via HTML for book. Your PDF is here:
+
+                {path_pdf_output_rel}\
+            """
+            )
 
 
 @main.command()
@@ -94,7 +124,7 @@ def build(path_book, path_output, config, toc, build):
 @click.option("--config", default=None, help="Path to the YAML configuration file")
 @click.option("--execute", default=None, help="Whether to execute the notebook first")
 def page(path_page, path_output, config, execute):
-    """Convert a single notebook page to HTML or PDF.
+    """Convert a single content file to HTML or PDF.
     """
     # Paths for our notebooks
     PATH_PAGE = Path(path_page)
@@ -135,6 +165,10 @@ def page(path_page, path_output, config, execute):
         builder="html",
     )
 
+    path_output_rel = Path(op.relpath(OUTPUT_PATH, Path()))
+    path_page = path_output_rel.joinpath(f"{PAGE_NAME}.html")
+    _message_box(f"Page build finished. Open your page at:\n\n    {path_page}")
+
 
 @main.command()
 @click.argument("path-output")
@@ -143,10 +177,10 @@ def create(path_output):
 
     PATH_OUTPUT = Path(path_output)
     if PATH_OUTPUT.is_dir():
-        raise ValueError(f"The output book already exists. Delete {path_output} first.")
+        _error(f"The output book already exists. Delete {PATH_OUTPUT}{os.sep} first.")
     template_path = Path(__file__).parent.parent.joinpath("book_template")
     sh.copytree(template_path, PATH_OUTPUT)
-    print(f"Your book template can be found at {PATH_OUTPUT}")
+    _message_box(f"Your book template can be found at\n\n    {PATH_OUTPUT}{os.sep}")
 
 
 @main.command()
@@ -177,4 +211,5 @@ def toc(path, filename_split_char, skip_text, output_folder):
         output_folder = path
     output_file = Path(output_folder).joinpath("_toc.yml")
     output_file.write_text(out_yaml)
-    print(f"Table of Contents written to {output_file}")
+
+    _message_box(f"Table of Contents written to {output_file}")
