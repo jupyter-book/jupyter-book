@@ -2,6 +2,8 @@
 from pathlib import Path
 import asyncio
 
+from .utils import _error
+
 
 def html_to_pdf(html_file, pdf_file):
     """
@@ -21,11 +23,10 @@ async def _html_to_pdf(html_file, pdf_file):
     try:
         from pyppeteer import launch
     except ImportError:
-        raise ImportError(
-            (
-                "Generating PDF from book HTML requires the pyppetteer package."
-                "Install it first."
-            )
+        _error(
+            "Generating PDF from book HTML requires the pyppetteer package. "
+            "Install it first.",
+            ImportError,
         )
     browser = await launch(args=["--no-sandbox"])
     page = await browser.newPage()

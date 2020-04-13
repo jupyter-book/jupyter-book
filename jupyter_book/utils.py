@@ -57,6 +57,8 @@ def _message_box(msg, color="green", doprint=True):
     return box
 
 
-def _error(msg):
+def _error(msg, kind=None):
+    if kind is None:
+        kind = ValueError
     box = _message_box(msg, color="red", doprint=False)
-    raise ValueError(box)
+    raise kind(box)

@@ -79,6 +79,7 @@ setup(
             "plotly",
             "bokeh",
             "altair",
+            "pyppeteer",
         ],
         "pdf_html": "pyppeteer",
     },
