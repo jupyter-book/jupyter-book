@@ -11,8 +11,7 @@ kernelspec:
   name: python3
 ---
 
-Widgets and interactive outputs
-===============================
+# Interactive data visualizations
 
 Jupyter Notebooks have support for many kinds of interactive outputs, including
 the ipywidgets ecosystem as well as many interactive visualization libraries.
@@ -27,8 +26,6 @@ import plotly.express as px
 data = px.data.iris()
 data.head()
 ```
-
-# Plotting libraries
 
 ## Altair
 
@@ -79,47 +76,19 @@ Bokeh provides several options for interactive visualizations, and is part of th
 [the Bokeh with Jupyter documentation](https://docs.bokeh.org/en/latest/docs/user_guide/jupyter.html#userguide-jupyter) to
 get started.
 
-Below is some example output.
+Below is some example output. First we'll initialized Bokeh with `output_notebook()`.
+This needs to be in a separate cell to give the JavaScript time to load.
 
 
 ```{code-cell} ipython3
 from bokeh.plotting import figure, show, output_notebook
 output_notebook()
+```
 
+Now we'll make our plot.
+
+```{code-cell} ipython3
 p = figure()
 p.circle(data["sepal_width"], data["sepal_length"], fill_color=data["species"], size=data["sepal_length"])
 show(p)
-```
-
-# ipywidgets
-
-You may also run code for Jupyter Widgets in your document, and the interactive HTML
-outputs will embed themselves in your side. See [the ipywidgets documentation](https://ipywidgets.readthedocs.io/en/latest/user_install.html)
-for how to get set up in your own environment.
-
-Here are some simple widget elements rendered below.
-
-```{code-cell} ipython3
-import ipywidgets as widgets
-widgets.IntSlider(
-    value=7,
-    min=0,
-    max=10,
-    step=1,
-    description='Test:',
-    disabled=False,
-    continuous_update=False,
-    orientation='horizontal',
-    readout=True,
-    readout_format='d'
-)
-```
-
-```{code-cell} ipython3
-tab_contents = ['P0', 'P1', 'P2', 'P3', 'P4']
-children = [widgets.Text(description=name) for name in tab_contents]
-tab = widgets.Tab()
-tab.children = children
-tab.titles = [str(i) for i in range(len(children))]
-tab
 ```

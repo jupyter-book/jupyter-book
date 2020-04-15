@@ -1,9 +1,9 @@
-# Table of Contents configuration and structure
+# Table of Contents configuration
 
 There are many ways in which you can control the table of contents for
 your book. Most of them involve adding syntax to your `_toc.yml` file.
 
-```{sidebar} HTML vs. PDF outputs
+```{sidebar}
 Note that some TOC options may only trigger behavior in HTML or PDF outputs,
 respectively.
 ```
@@ -21,17 +21,14 @@ Let's take a look at an example `_toc.yml` file
 for reference (it is a subset of this book's `_toc.yml` file):
 
 ```yaml
-- header: Jupyter Book Guide
-- file: start/01_overview
-  title: Get started with Jupyter Book
-  sections:
-  - file: start/02_create
-  - file: start/03_build
-- file: use/index
-  expand_sections: true
-  sections:
-    - file: use/notebooks
-    - file: use/myst
+- header: Get started
+- file: start/overview
+- file: start/build
+
+- header: Book pages and types
+- file: use/markdown
+- file: use/notebooks
+- file: use/myst-notebooks
 
 - header: Reference and test pages
 - file: test_pages/test

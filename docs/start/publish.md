@@ -1,15 +1,15 @@
-# Publishing your book online
+# Publish your book online
 
-Now that you've built the HTML for your book, it's time to host it online.
+Once you've built the HTML for your book, it's time to host it online.
 The best way to do this is with a service that hosts **static websites**
 (because that's what you have just created with Jupyter Book).
 
-There are many options for doing this, and the next sections cover some of the
+There are many options for doing this, and these sections cover some of the
 more popular ones.
 
 ```{note}
 Ensure that your the HTML has been built for each page of your book
-(see [the previous section](03_build)). There should be a collection of HTML
+(see [the previous section](build)). There should be a collection of HTML
 files in your book's `_build/html` folder.
 ```
 
@@ -53,39 +53,5 @@ and to add your book's content to it.
    git push
    ```
 
-That's it!
-
-Now that your repository is created and you have your book content pushed to it,
-it's time to publish your book online. The next sections cover how to do this.
-
-## Host with `github-pages`
-
-Since your content is already on GitHub, you can easily host it as a `github-pages`
-website. This is a service where GitHub hosts your static files as if they were
-a standalone website.
-
-The easiest way to use GitHub-pages with your built HTML is to use the `ghp-import`
-tool. It is a lightweight Python package that makes it easier to push HTML content
-to a GitHub repository.
-
-Follow these steps to use it:
-
-1. Install `ghp-import`
-
-   ```
-   pip install ghp-import
-   ```
-2. Call `ghp-import` and point it to your HTML files, like so:
-
-   ```
-   ghp-import -n -p -f mylocalbook/_build/html
-   ```
-
-This will cause `ghp-import` to push *all* of the contents of the `_build/html` folder
-to the `gh-pages` branch of your current repository, and push the contents to GitHub.
-By default, this generally means your site should now be viewable online.
-
-```{warning}
-Make sure that you included the `-n` - this tells GitHub *not* to build your book with
-Jekyll, which we don't want because our HTML is already built!
-```
+Follow the steps in the next sections for how to host your book online with various
+online hosting services.

@@ -1,7 +1,6 @@
-# Configure and customize your book
+# Book-wide configuration
 
-Now that you've built a book, you may wish to trigger different kinds
-of behavior. In Jupyter Book, most configuration is controlled with a
+In Jupyter Book, most configuration is controlled with a
 **Configuration YAML file (`_config.yml`)**. This file controls a number
 of options that you may use to configure your book.
 
@@ -53,4 +52,5 @@ section below:
 
 ```{literalinclude} ../../jupyter_book/default_config.yml
    :language: yaml
+   :class: full-width
 ```
