@@ -10,7 +10,7 @@ import yaml
 from ..sphinx import build_sphinx
 from ..toc import build_toc
 from ..pdf import html_to_pdf
-from ..utils import _message_box, _error
+from ..utils import _message_box, _error, init_myst_file
 
 
 @click.group()
@@ -91,7 +91,7 @@ def build(path_book, path_output, config, toc, warningiserror, build):
     if exc:
         _error(
             "There was an error in building your book. "
-            "Look above for the error message.",
+            "Look above for the error message."
         )
     else:
         # Builder-specific options
@@ -221,3 +221,21 @@ def toc(path, filename_split_char, skip_text, output_folder):
     output_file.write_text(out_yaml)
 
     _message_box(f"Table of Contents written to {output_file}")
+
+
+@main.group()
+def myst():
+    """Manipulate MyST markdown files."""
+    pass
+
+
+@myst.command()
+@click.argument("path", nargs=-1, type=click.Path(exists=True, dir_okay=False))
+@click.option(
+    "--kernel", help="The name of the Jupyter kernel to attach to this markdown file."
+)
+def init(path, kernel):
+    """Add Jupytext metadata for your markdown file(s), with optional Kernel name.
+    """
+    for ipath in path:
+        init_myst_file(ipath, kernel, verbose=True)
