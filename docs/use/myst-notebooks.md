@@ -53,6 +53,22 @@ If **both** an `.ipynb` and a `.md` file exist in your book's folders, then
 the `.md` file will take precedence!
 ```
 
+### The Jupyter Book MyST CLI
+
+Jupyter Book has a small CLI to provide common functionality for manipulating and
+creating MyST markdown files that synchronize with Jupytext. To add Jupytext syntax
+to a markdown file (that will tell Jupytext it is a MyST markdown file), run the
+following command:
+
+```bash
+jupyter-book myst init mymarkdownfile.md --kernel kernelname
+```
+
+If you do not specify `--kernel`, then the default kernel will be used *if there is
+only one available*. If there are multiple kernels available, you must specify one
+manually.
+
+
 ## Structure of MyST notebooks
 
 Let's take a look at the structure that Jupytext creates, which you may also use

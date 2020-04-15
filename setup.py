@@ -19,6 +19,7 @@ test_reqs = [
     "beautifulsoup4",
     "matplotlib",
     "pytest-regressions",
+    "jupytext",
 ] + doc_reqs
 setup(
     name="jupyter-book",

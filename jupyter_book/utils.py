@@ -1,5 +1,6 @@
 from pathlib import Path
 from textwrap import dedent
+from jupyter_client.kernelspec import find_kernel_specs
 
 SUPPORTED_FILE_SUFFIXES = [".ipynb", ".md", ".markdown", ".myst", ".Rmd", ".py"]
 
@@ -62,3 +63,52 @@ def _error(msg, kind=None):
         kind = ValueError
     box = _message_box(msg, color="red", doprint=False)
     raise kind(box)
+
+
+##############################################################################
+# MyST + Jupytext
+
+
+def init_myst_file(path, kernel, verbose=True):
+    """Initialize a file with a Jupytext header that marks it as MyST markdown.
+
+    Parameters
+    ----------
+    path : string
+        A path to a markdown file to be initialized for Jupytext
+    kernel : string
+        A kernel name to add to the markdown file. See a list of kernel names with
+        `jupyter kernelspec list`.
+    """
+    try:
+        from jupytext.cli import jupytext
+    except ImportError:
+        raise ImportError(
+            "In order to use myst markdown features, " "please install jupytext first."
+        )
+    if not Path(path).exists():
+        raise FileNotFoundError(f"Markdown file not found: {path}")
+
+    kernels = list(find_kernel_specs().keys())
+    kernels_text = "\n".join(kernels)
+    if kernel is None:
+        if len(kernels) > 1:
+            _error(
+                "There are multiple kernel options, so you must give one manually."
+                " with `--kernel`\nPlease specify one of the following kernels.\n\n"
+                f"{kernels_text}"
+            )
+        else:
+            kernel = kernels[0]
+
+    if kernel not in kernels:
+        raise ValueError(
+            f"Did not find kernel: {kernel}\nPlease specify one of the "
+            f"installed kernels:\n\n{kernels_text}"
+        )
+
+    args = (str(path), "-q", "--set-kernel", kernel, "--set-formats", "myst")
+    jupytext(args)
+
+    if verbose:
+        print(f"Initialized file: {path}\nWith kernel: {kernel}")
