@@ -1,4 +1,4 @@
-# Execute and cache your notebooks
+# Execute and cache your pages
 
 Jupyter Book can automatically run and cache any notebook pages. Notebooks can either
 be run each time the documentation is built, or cached locally so that notebooks

@@ -11,11 +11,13 @@ kernelspec:
   name: python3
 ---
 
-# Notebooks as text files with MyST markdown
+# Notebooks in pure-text files
 
 It is possible to store Jupyter Notebooks in pure markdown. This allows you
-to define a notebook structure entirely using MyST Markdown. This structure
-can be read in, executed, and cached by Jupyter Book (see {doc}`execute` for
+to define a notebook structure entirely using MyST Markdown. For more information
+about MyST Markdown, see {doc}`myst`.
+
+Notebooks with markdown can be read in, executed, and cached by Jupyter Book (see {doc}`execute` for
 information on how to cache pages). This allows you to store all of your
 notebook content in a text format that is much friendlier to version control,
 while still having all the functionality of a Jupyter Notebook.
@@ -130,7 +132,7 @@ kernelspec:
 Tells Jupytext that the file is in `myst` format, and that its code should
 be run with a Python3 kernel.
 
-```{sidebar} One kernel per notebook...
+```{sidebar}
 Remember that Jupyter always defines one, and only one, kernel per notebook.
 ```
 

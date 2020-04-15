@@ -1,38 +1,39 @@
 - file: intro
 
-- header: Getting started
-- file: start/01_overview
-  title: Create a Jupyter Book
+- header: Get started
+- file: start/overview
+- file: start/build
+- file: start/publish
   sections:
-  - file: start/02_create
-  - file: start/03_build
-  - file: start/04_publish
-  - file: start/cli
-
-- file: customize/index
-  sections:
-    - file: customize/toc
-    - file: customize/faq
-    - file: customize/advanced
+    - file: start/publish-gh-pages
+- file: start/cli
+- file: customize/config
+- file: customize/toc
 
 - header: Book pages and types
+- file: use/markdown
 - file: use/notebooks
-- file: use/myst
 - file: use/myst-notebooks
 - file: use/execute
-- file: use/launchbuttons
 
 - header: Writing book content
+- file: use/myst
 - file: use/citations
 - file: use/math
 - file: use/glue
-- file: use/hiding
 - file: use/layout
-- file: use/interactive
 
-- header: Advanced topics
+- header: Making your book interactive
+- file: use/launchbuttons
+- file: use/hiding
+- file: use/interactive
+- file: use/widgets
+
+- header: Advanced and miscellaneous
 - file: use/page
 - file: use/pdf
+- file: customize/faq
+- file: customize/advanced
 
 - header: Reference and test pages
 - file: test_pages/test

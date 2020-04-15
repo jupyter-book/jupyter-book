@@ -72,7 +72,7 @@ wider and it'll pop out to the right.
 To add sidebar content within a markdown cell, use this syntax:
 
 ````
-```{sidebar} **My sidebar title**
+```{sidebar} An optional title
 My sidebar content
 ```
 ````

@@ -11,7 +11,7 @@ from the book HTML.
 ## Prerequisites
 
 In order to build the HTML for each page, you should have followed the steps
-in [creating your Jupyter Book structure](02_create). You should have
+in [creating your Jupyter Book structure](overview). You should have
 a collection of notebook/markdown files in your `mybookname/` folder, a `_toc.yml` file
 that defines the structure of your book, and any configuration you'd like
 in the `_config.yml` file.

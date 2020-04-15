@@ -7,8 +7,9 @@ publishable computational documents in Markdown. It is a superset of
 [CommonMark markdown](https://commonmark.org/) and draws heavy inspiration
 from the fantastic [RMarkdown language from RStudio](https://rmarkdown.rstudio.com/).
 
-```{sidebar} MyST and Sphinx
-For those who are familiar with Sphinx, MyST markdown is basically CommonMark + Sphinx roles and directives
+```{sidebar}
+For those who are familiar with Sphinx, MyST markdown is basically
+CommonMark + Sphinx roles and directives
 ```
 
 You can write MyST markdown in either markdown files, or in Jupyter Notebooks.

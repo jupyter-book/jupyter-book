@@ -9,7 +9,7 @@ title                       : My Jupyter Book  # The title of the book. Will be 
 author                      : The Jupyter Book community,  # The author of the book
 copyright                   : 2020,  # Copyright year to be placed in the footer
 logo                        : ""  # A path to the book logo
-exclude_patterns               : []  # Patterns to skip when building the book. Can be glob-style (e.g. "*skip.ipynb")
+exclude_patterns            : []  # Patterns to skip when building the book. Can be glob-style (e.g. "*skip.ipynb")
 execute_notebooks           : auto  # Whether to execute notebooks at build time. Must be one of ("auto", "force", "cache", "off")
 
 #######################################################################################
@@ -21,7 +21,7 @@ html:
 
 
 #######################################################################################
-# Interact link settings
+# Launch button settings
 launch_buttons:
   notebook_interface        : "classic"  # The interface interactive links will activate ["classic", "jupyterlab"]
   binderhub_url             : "https://mybinder.org"  # The URL of the BinderHub (e.g., https://mybinder.org)
@@ -31,12 +31,6 @@ launch_buttons:
 repository:
   url                       : https://github.com/ExecutableBookProject/cli  # The URL to your book's repository
   path_to_book              : ""  # A path to your book's folder, relative to the repository root.
-
-thebelab:    # NOT YET IMPLEMENTED
-  use_cell_buttons          : false
-  use_page_button           : false
-  thebelab_button_text      : "Thebelab"  # The text to display inside the Thebelab initialization button
-  codemirror_theme          : "abcdef"  # Theme for codemirror cells, for options see https://codemirror.net/doc/manual.html#config
 
 #######################################################################################
 # Advanced and power-user settings
