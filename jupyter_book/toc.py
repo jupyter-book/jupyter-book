@@ -155,12 +155,19 @@ def update_indexname(app, config):
 
     # Load the TOC and update the env so we have it later
     toc = yaml.safe_load(Path(app.config["globaltoc_path"]).read_text())
+
+    # If it's a flat list, treat the first page as the master doc
     if isinstance(toc, list):
         toc_updated = toc[0]
         if len(toc) > 1:
             subsections = toc[1:]
             toc_updated["sections"] = subsections
         toc = toc_updated
+
+    # Check for proper structure, naming, etc
+    _check_toc_entries([toc])
+
+    # Update our global toc
     app.config["globaltoc"] = toc
 
     # Update the main toctree file for whatever the first file here is
@@ -262,3 +269,24 @@ def build_toc(path, filename_split_char="_", skip_text=None):
         raise ValueError(f"No content files were found in {path}.")
     yaml_out = yaml.safe_dump(structure, default_flow_style=False, sort_keys=False)
     return yaml_out
+
+
+def _check_toc_entries(sections):
+    """Recursive function to check a TOC structure."""
+    allowed_keys = ["file", "url", "header", "sections", "title"]
+    for section in sections:
+        # Allowed keys
+        for key in section.keys():
+            if key not in allowed_keys:
+                logger.warning(f"Unknown key in `_toc.yml`: {key}")
+        # Correct for old toc naming
+        # TODO: deprecate in a few release cycles
+        if "url" in section and "path" not in section:
+            logger.warning(
+                f"Found `url:` entry in `_toc.yml`: {section}. "
+                "Rename `url:` to `file:`. This will raise an error in the future."
+            )
+            section["file"] = section["url"].lstrip("/")
+        # Recursive call
+        if "sections" in section:
+            _check_toc_entries(section["sections"])
