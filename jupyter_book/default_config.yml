@@ -18,7 +18,7 @@ html:
   favicon                   : ""  # A path to a favicon image
   sidebar_footer_text       : 'Powered by <a href="https://jupyterbook.org">Jupyter Book</a>'  # Will be displayed underneath the sidebar.
   google_analytics_id       : ""  # A GA id that can be used to track book views.
-
+  home_page_in_sidebar      : true  # Whether to include your home page in the left Table of Contents
 
 #######################################################################################
 # Interact link settings
