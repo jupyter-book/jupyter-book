@@ -64,6 +64,30 @@ def test_build_book(tmpdir):
             raise ValueError(err)
     assert "There was an error in building your book" in err
 
+    # TOC errors
+    p_toc = path_books.joinpath("toc")
+    with pytest.raises(ValueError):
+        path_toc = p_toc.joinpath("_toc_url.yml")
+        out = run(
+            f"jb build {p_syntax} --path-output {path} --toc {path_toc} -W".split(),
+            stderr=PIPE,
+        )
+        err = out.stderr.decode()
+        if "Warning, treated as error:" in err:
+            raise ValueError(err)
+    assert "Rename `url:` to `file:`" in err
+
+    with pytest.raises(ValueError):
+        path_toc = p_toc.joinpath("_toc_wrongkey.yml")
+        out = run(
+            f"jb build {p_syntax} --path-output {path} --toc {path_toc} -W".split(),
+            stderr=PIPE,
+        )
+        err = out.stderr.decode()
+        if "Warning, treated as error:" in err:
+            raise ValueError(err)
+    assert "Unknown key in `_toc.yml`: foo" in err
+
 
 def test_build_docs(tmpdir):
     """Test building the documentation book."""
