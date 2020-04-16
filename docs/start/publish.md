@@ -13,6 +13,7 @@ Ensure that your the HTML has been built for each page of your book
 files in your book's `_build/html` folder.
 ```
 
+(publish/online-repo)=
 ## Create an *online* repository for your book
 
 Regardless of the approach you use for publishing your book online, it will require

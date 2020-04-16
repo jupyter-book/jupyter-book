@@ -5,7 +5,8 @@
 - file: start/build
 - file: start/publish
   sections:
-    - file: start/publish-gh-pages
+    - file: publish/gh-pages
+    - file: publish/netlify
 - file: start/cli
 - file: customize/config
 - file: customize/toc
