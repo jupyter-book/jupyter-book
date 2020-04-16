@@ -5,7 +5,7 @@ import pytest
 
 path_tests = Path(__file__).parent.resolve()
 path_books = path_tests.joinpath("books")
-path_root = path_tests.parent.parent
+path_root = path_tests.parent
 
 
 def test_build_book(tmpdir):
