@@ -26,7 +26,12 @@ def add_yaml_config(app, config):
 
         # Load the YAML and update its values to translate it into Sphinx keys
         yaml_update = safe_load(path_yaml.read_text())
-        yaml_config.update(yaml_update)
+        for key, val in yaml_update.items():
+            # If it's a dictionary, we should just updated the newly-given values
+            if isinstance(yaml_config.get(key), dict):
+                yaml_config[key].update(val)
+            else:
+                yaml_config[key] = val
 
     # Now update our Sphinx build configuration
     new_config = yaml_to_sphinx(yaml_config, config)
@@ -36,7 +41,7 @@ def add_yaml_config(app, config):
 
 def yaml_to_sphinx(yaml, config):
     """Convert a Jupyter Book style config structure into a Sphinx docs structure."""
-    out = {
+    sphinx_config = {
         "html_theme_options": {},
         "exclude_patterns": [
             "_build",
@@ -47,7 +52,7 @@ def yaml_to_sphinx(yaml, config):
     }
 
     # Theme configuration updates
-    theme_options = out.get("html_theme_options", {})
+    theme_options = sphinx_config.get("html_theme_options", {})
 
     # Launch button configuration
     theme_launch_buttons_config = theme_options.get("launch_buttons", {})
@@ -59,18 +64,20 @@ def yaml_to_sphinx(yaml, config):
 
     theme_options["path_to_docs"] = repository_config.get("path_to_book")
     theme_options["repository_url"] = repository_config.get("url")
-    out["html_theme_options"] = theme_options
 
     html = yaml.get("html")
     if html:
-        out["html_favicon"] = html.get("favicon")
-        out["html_theme_options"]["sidebar_footer_text"] = html.get(
-            "sidebar_footer_text"
-        )
-        out["google_analytics_id"] = html.get("google_analytics_id")
+        sphinx_config["html_favicon"] = html.get("favicon")
+        sphinx_config["google_analytics_id"] = html.get("google_analytics_id")
 
+        theme_options["sidebar_footer_text"] = html.get("sidebar_footer_text")
+        theme_options["home_page_in_toc"] = html.get("home_page_in_sidebar")
+
+    # Update the theme options in the main config
+    sphinx_config["html_theme_options"] = theme_options
+    print(html)
     # Files that we wish to skip
-    out["exclude_patterns"].extend(yaml.get("exclude_patterns", []))
+    sphinx_config["exclude_patterns"].extend(yaml.get("exclude_patterns", []))
 
     # Now do simple top-level translations
     YAML_TRANSLATIONS = {
@@ -80,5 +87,5 @@ def yaml_to_sphinx(yaml, config):
     }
     for key, newkey in YAML_TRANSLATIONS.items():
         if key in yaml:
-            out[newkey] = yaml.pop(key)
-    return out
+            sphinx_config[newkey] = yaml.pop(key)
+    return sphinx_config
