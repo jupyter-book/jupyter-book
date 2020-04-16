@@ -13,6 +13,7 @@ html:
   google_analytics_id: UA-52617120-7
   home_page_in_sidebar: false
 
+
 repository:
   url                       : https://github.com/ExecutableBookProject/cli
   path_to_book              : "docs"

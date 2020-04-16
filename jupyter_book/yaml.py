@@ -71,6 +71,7 @@ def yaml_to_sphinx(yaml, config):
         sphinx_config["google_analytics_id"] = html.get("google_analytics_id")
 
         theme_options["sidebar_footer_text"] = html.get("sidebar_footer_text")
+        theme_options["number_toc_sections"] = html.get("sidebar_number_sections")
         theme_options["home_page_in_toc"] = html.get("home_page_in_sidebar")
 
     # Update the theme options in the main config
