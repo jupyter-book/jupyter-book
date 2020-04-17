@@ -224,7 +224,7 @@ To remove the outputs of a cell:
 
 You can also remove **both** the inputs and outputs of a cell, in which case it
 won't show up in your book at all. These cells remain in the notebook file itself,
-so they'll show up if readers click on a JupyterHub or Binder link from a page.
+so they'll show up if readers click on a {term}`JupyterHub` or {term}`Binder` link from a page.
 
 To remove both the inputs and outputs of a cell, add the tag `remove-cell` to the tags
 of the cell. Here's an example of cell metadata that would trigger the "remove cell" behavior:

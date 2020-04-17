@@ -3,7 +3,7 @@
 This tool provides a command-line interface and a Python API that lets users
 do the following:
 
-* Write their content in markdown files, Jupyter Notebooks, or rST files.
+* Write their content in markdown files or Jupyter Notebooks.
 * Include computational elements in any of the above (e.g. executable
   code cells along with their outputs)
 * Include rich syntax for publication features, such as citations,
@@ -23,12 +23,12 @@ Jupyter Book 2.0 is a wrapper around a collection of tools in the Python
 ecosystem that make it easier to publish computational documents. Here are
 a few key pieces:
 
-* It uses [the MyST markdown language](https://myst-parser.readthedocs.io/) in
+* It uses {term}`the MyST markdown language<MyST>` in
   markdown and notebook documents. This allows users to write rich,
   publication-quality markup in their documents.
-* It uses [the MyST-NB package](https://myst-nb.readthedocs.io/) to parse and
+* It uses {term}`the MyST-NB package<MyST-NB>` to parse and
   read-in notebooks so they are built into your book.
-* It uses [the Sphinx documentation engine](https://www.sphinx-doc.org/en/master/)
+* It uses {term}`the Sphinx documentation engine<Sphinx>`
   to build outputs from your book's content.
 * It uses a slightly-modified version of the [PyData Sphinx theme](https://pydata-sphinx-theme.readthedocs.io/en/latest/)
   for beautiful HTML output.

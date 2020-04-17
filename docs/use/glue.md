@@ -13,7 +13,7 @@ kernelspec:
 
 (glue)=
 
-# Insert figures, tables, and statistics from your code
+# Insert code outputs into page content
 
 You often wish to run analyses in one notebook and insert them into your
 documents text elsewhere. For example, if you'd like to include a figure,

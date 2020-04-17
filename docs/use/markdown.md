@@ -1,12 +1,9 @@
-# Basic Jupyter markdown
+# Markdown pages
 
-Jupyter Book supports any markdown that is supported by Jupyter Notebooks.
-This is mostly a flavor of markdown called
-[CommonMark Markdown](https://commonmark.org/) with minor modifications.
-This page gives a quick overview of the Markdown syntax available as a part
-of the default Jupyter Notebook.
-
-It has many elements
+You can write content in regular markdown files (e.g., files ending in `.md`).
+Jupyter Book supports any markdown syntax that is supported by Jupyter Notebooks.
+Jupyter Notebook markdown is a slight extension of a flavor of markdown called
+[CommonMark Markdown](https://commonmark.org/). It has many elements
 for standard text processing, though it lacks a lot of features used for
 publishing and documentation.
 

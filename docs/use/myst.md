@@ -228,12 +228,7 @@ which automatically numbers the labelled objects.
 For example, `` {numref}`my_figure` `` will produce a reference like:
 {numref}`my_figure`.
 
-## Special blocks of markdown
-
-Another common use of directives is to designate "special blocks" of your
-content. This section covers a few common ones.
-
-### Notes and warnings
+## Notes and warnings
 
 Let's say you wish to highlight a particular block of
 text that exists slightly apart from the narrative of your page. You can
@@ -270,7 +265,7 @@ Results in the following output:
 Here's the admonition content
 ```
 
-### Quotations and epigraphs
+## Quotations and epigraphs
 
 Quotations and epigraphs provide ways to highlight information given by others.
 They behave slightly differently.
@@ -330,7 +325,38 @@ Here is a cool quotation.
 ```
 ````
 
-### Page layout and sidebar content
+## Glossaries
+
+Glossaries allow you to define terms in a glossary, and then link back to the
+glossary throughout your content. You can create a glossary with the following
+syntax:
+
+````
+```{glossary}
+term one
+  An indented explanation of term 1
+
+A second term
+  An indented explanation of term2
+```
+````
+
+which creates:
+
+```{glossary}
+term one
+  An indented explanation of term 1
+
+A second term
+  An indented explanation of term2
+```
+
+To reference terms in your glossary, use the `{term}` role. For example,
+`` {term}`term one` `` becomes {term}`term one`. And `` {term}`A second term` ``
+becomes {term}`A second term`.
+
+
+## Page layout and sidebar content
 
 You can also use MyST to control various aspects of the page layout. For more
 information on this, see {doc}`layout`.

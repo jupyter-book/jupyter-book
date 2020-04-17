@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Mathematics in your book
+# Mathematics
 
 Jupyter Book uses [MathJax](http://docs.mathjax.org/) for typesetting math in your
 book. This allows you to have LaTeX-style mathematics in your online content.

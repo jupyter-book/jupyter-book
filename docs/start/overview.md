@@ -102,7 +102,7 @@ mybookname/
 
 You can define metadata for your book (such as its title), add
 a book logo, turn on different "interactive" buttons (such as a
-Binder button for pages built from a Jupyter Notebook), and more.
+{term}`Binder` button for pages built from a Jupyter Notebook), and more.
 
 ```{sidebar}
 For more information about your book's configuration file, see

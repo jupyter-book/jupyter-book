@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Controlling the page layout
+# Control the page layout
 
 ```{warning}
 Many of the features on this page are experimental, and may change.
