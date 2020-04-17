@@ -38,6 +38,23 @@ You can also use the short-hand `jb` for `jupyter-book`. E.g.,:
 `jb build mybookname/`.
 ```
 
+## Build a standalone page
+
+Sometimes you'd like to build a single page of content rather than an
+entire book. For example, if you'd like to generate a web-friendly HTML
+page from a Jupyter Notebook for a report or publication.
+
+You can generate a standalone HTML file for a single page of Jupyter Book
+content by running the following command:
+
+```
+jupyter-book page path/to/mypage.ipynb
+```
+
+This will execute your content and output the proper HTML in a
+`_build/html` folder. Your page will be called `mypage.html`. This will work
+for any [content source file](../content-types/index) that is supported by Jupyter Book.
+
 ## Page caching
 
 By default, Jupyter Book will only build the HTML for pages that have

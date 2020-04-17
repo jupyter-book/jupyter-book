@@ -5,7 +5,7 @@
 
 #######################################################################################
 # Book settings
-title                       : My Jupyter Book  # The title of the book. Will be placed in the sidebar.
+title                       : My Jupyter Book  # The title of the book. Will be placed in the left navbar.
 author                      : The Jupyter Book community,  # The author of the book
 copyright                   : 2020,  # Copyright year to be placed in the footer
 logo                        : ""  # A path to the book logo
@@ -16,10 +16,10 @@ execute_notebooks           : auto  # Whether to execute notebooks at build time
 # HTML-specific settings
 html:
   favicon                   : ""  # A path to a favicon image
-  sidebar_number_sections   : False  # Add a number to each section in your left sidebar
-  sidebar_footer_text       : 'Powered by <a href="https://jupyterbook.org">Jupyter Book</a>'  # Will be displayed underneath the sidebar.
+  navbar_number_sections   : False  # Add a number to each section in your left navbar
+  navbar_footer_text       : 'Powered by <a href="https://jupyterbook.org">Jupyter Book</a>'  # Will be displayed underneath the left navbar.
   google_analytics_id       : ""  # A GA id that can be used to track book views.
-  home_page_in_sidebar      : true  # Whether to include your home page in the left Table of Contents
+  home_page_in_navbar      : true  # Whether to include your home page in the left Table of Contents
 
 #######################################################################################
 # Launch button settings

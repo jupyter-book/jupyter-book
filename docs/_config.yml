@@ -11,8 +11,7 @@ execute_notebooks: cache
 html:
   favicon: images/favicon.ico
   google_analytics_id: UA-52617120-7
-  home_page_in_sidebar: false
-
+  home_page_in_navbar: false
 
 repository:
   url                       : https://github.com/ExecutableBookProject/cli

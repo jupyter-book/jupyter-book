@@ -97,7 +97,7 @@ def test_build_docs(tmpdir):
     path_html = path_output.joinpath("_build", "html")
     assert path_html.joinpath("index.html").exists()
     assert path_html.joinpath("intro.html").exists()
-    assert path_html.joinpath("use", "citations.html").exists()
+    assert path_html.joinpath("content", "citations.html").exists()
 
 
 def test_build_page(tmpdir):

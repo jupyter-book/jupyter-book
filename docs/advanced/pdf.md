@@ -31,7 +31,7 @@ You may also need to install this bundle of packages below (on *nix systems):
 ```{literalinclude} ../../.github/workflows/pyppeteer_reqs.txt
 ```
 
-```{sidebar}
+```{margin}
 In addition, if you get errors about libraries that don't exist, check out
 [these install commands](https://circleci.com/orbs/registry/orb/threetreeslight/puppeteer)
 to see if that fixes it. We warned you it was an experimental feature :-)

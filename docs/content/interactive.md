@@ -50,7 +50,7 @@ Plotly is another interactive plotting library that provides a high-level API fo
 visualization. See the [Plotly JupyterLab documentation](https://plotly.com/python/getting-started/#jupyterlab-support-python-35)
 to get started with Plotly in the notebook.
 
-```{sidebar}
+```{margin}
 Plotly uses [renderers to output different kinds of information](https://plotly.com/python/renderers/)
 when you display a plot. Experiment with renderers to get the output you want.
 ```

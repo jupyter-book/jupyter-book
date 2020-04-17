@@ -38,7 +38,7 @@ Authorizing access will take you to the next step of the build process, where yo
 
 ![Netlify continous deployment](../images/netlify-cd.png)
 
-```{sidebar}
+```{margin}
 If your book content is not in the root of your repository, make sure you point to it
 in the `jupyter-book build` command.
 ```

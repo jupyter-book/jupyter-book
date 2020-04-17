@@ -15,10 +15,10 @@ kernelspec:
 
 It is possible to store Jupyter Notebooks in pure markdown. This allows you
 to define a notebook structure entirely using MyST Markdown. For more information
-about MyST Markdown, see {doc}`myst`.
+about MyST Markdown, see {doc}`../content/myst`.
 
-Notebooks with markdown can be read in, executed, and cached by Jupyter Book (see {doc}`execute` for
-information on how to cache pages). This allows you to store all of your
+Notebooks with markdown can be read in, executed, and cached by Jupyter Book (see {doc}`../content/execute`
+for information on how to cache pages). This allows you to store all of your
 notebook content in a text format that is much friendlier to version control,
 while still having all the functionality of a Jupyter Notebook.
 
@@ -30,7 +30,7 @@ See its documentation for more information.
 
 To see an example of a MyST notebook, you can look at
 [many of the pages of this documentation](https://github.com/ExecutableBookProject/cli/tree/master/docs).
-For example, see {download}`hiding.md` and {download}`layout.md`.
+For example, see {download}`../content/hiding.md` and {download}`../content/layout.md`.
 
 ## Create a MyST notebook with Jupytext
 
@@ -50,7 +50,7 @@ Jupytext can also **automatically synchronize an `.ipynb` file with your markdow
 To do so, use a Jupyter interface such as Jupyter Lab or the classic Notebook interface
 and follow the [Jupytext instructions for paired notebooks](https://jupytext.readthedocs.io/en/latest/using-server.html#paired-notebooks).
 
-```{sidebar} Markdown takes precedence
+```{margin} Markdown takes precedence
 If **both** an `.ipynb` and a `.md` file exist in your book's folders, then
 the `.md` file will take precedence!
 ```
@@ -132,7 +132,7 @@ kernelspec:
 Tells Jupytext that the file is in `myst` format, and that its code should
 be run with a Python3 kernel.
 
-```{sidebar}
+```{margin}
 Remember that Jupyter always defines one, and only one, kernel per notebook.
 ```
 
@@ -171,7 +171,7 @@ However, remember that there is only one kernel allowed per page.
 ### Markdown content
 
 Everything in-between your code cells is parsed as markdown content using the
-[MyST Markdown parser](https://myst-parser.readthedocs.io/). See {doc}`myst` for
+[MyST Markdown parser](https://myst-parser.readthedocs.io/). See {doc}`../content/myst` for
 more information about MyST markdown.
 
 To explicitly split up markdown content into two markdown cells, use the following

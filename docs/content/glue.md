@@ -19,7 +19,7 @@ You often wish to run analyses in one notebook and insert them into your
 documents text elsewhere. For example, if you'd like to include a figure,
 or if you want to cite a statistic that you have run.
 
-```{sidebar}
+```{margin}
 Currently, `glue` only works with Python.
 ```
 
@@ -38,7 +38,7 @@ follows a two-step process:
 
 We'll cover each step in more detail below.
 
-```{sidebar}
+```{margin}
 For more information about roles, see {doc}`myst`.
 ```
 

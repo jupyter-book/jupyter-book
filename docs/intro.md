@@ -14,7 +14,7 @@ do the following:
 
 ```{warning}
 This is an early prototype tool that may evolve quickly. Your feedback is
-very welcome! To give it, please [open an issue in the CLI repository](https://github.com/ExecutableBookProject/cli/issues/new)
+very welcome! To give it, please [open an issue](https://github.com/ExecutableBookProject/cli/issues/new)
 ```
 
 ## The components of Jupyter Book 2.0

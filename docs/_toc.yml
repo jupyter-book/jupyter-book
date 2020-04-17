@@ -7,34 +7,34 @@
   sections:
     - file: publish/gh-pages
     - file: publish/netlify
-- file: start/cli
 - file: customize/config
 - file: customize/toc
-
-- header: Book pages and types
-- file: use/markdown
-- file: use/notebooks
-- file: use/myst-notebooks
-- file: use/execute
+- file: content-types/index
+  sections:
+    - file: content-types/markdown
+    - file: content-types/notebooks
+    - file: content-types/myst-notebooks
+    - file: content-types/jupytext
 
 - header: Writing book content
-- file: use/myst
-- file: use/citations
-- file: use/math
-- file: use/glue
-- file: use/layout
+- file: content/myst
+- file: content/citations
+- file: content/math
+- file: content/glue
+- file: content/layout
+- file: content/execute
 
 - header: Making your book interactive
-- file: use/launchbuttons
-- file: use/hiding
-- file: use/interactive
-- file: use/widgets
+- file: content/launchbuttons
+- file: content/hiding
+- file: content/interactive
+- file: content/widgets
 
 - header: Advanced and miscellaneous
-- file: use/page
-- file: use/pdf
+- file: advanced/pdf
+- file: advanced/advanced
 - file: customize/faq
-- file: customize/advanced
 
 - header: Reference
+- file: reference/cli
 - file: reference/glossary

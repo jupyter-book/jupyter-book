@@ -70,9 +70,9 @@ def yaml_to_sphinx(yaml, config):
         sphinx_config["html_favicon"] = html.get("favicon")
         sphinx_config["google_analytics_id"] = html.get("google_analytics_id")
 
-        theme_options["sidebar_footer_text"] = html.get("sidebar_footer_text")
-        theme_options["number_toc_sections"] = html.get("sidebar_number_sections")
-        theme_options["home_page_in_toc"] = html.get("home_page_in_sidebar")
+        theme_options["navbar_footer_text"] = html.get("navbar_footer_text")
+        theme_options["number_toc_sections"] = html.get("navbar_number_sections")
+        theme_options["home_page_in_toc"] = html.get("home_page_in_navbar")
 
     # Update the theme options in the main config
     sphinx_config["html_theme_options"] = theme_options
