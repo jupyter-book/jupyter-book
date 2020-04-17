@@ -14,12 +14,6 @@ kernelspec:
 
 # Citations and references
 
-```{warning}
-✨✨experimental✨✨
-```
-
-+++
-
 Because `jupyter-book` is built on top of {term}`Sphinx`, we can use the excellent
 [sphinxcontrib-bibtex](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/)
 extension to include citations and a bibliography with your book.
