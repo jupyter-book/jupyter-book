@@ -64,15 +64,25 @@ def yaml_to_sphinx(yaml, config):
 
     theme_options["path_to_docs"] = repository_config.get("path_to_book")
     theme_options["repository_url"] = repository_config.get("url")
+    theme_options["repository_branch"] = repository_config.get("branch")
 
     html = yaml.get("html")
     if html:
         sphinx_config["html_favicon"] = html.get("favicon")
         sphinx_config["google_analytics_id"] = html.get("google_analytics_id")
+        sphinx_config["html_baseurl"] = html.get("baseurl")
 
         theme_options["navbar_footer_text"] = html.get("navbar_footer_text")
         theme_options["number_toc_sections"] = html.get("navbar_number_sections")
         theme_options["home_page_in_toc"] = html.get("home_page_in_navbar")
+
+        if html.get("use_edit_page_button"):
+            for key in ["url", "branch"]:
+                if not repository_config.get(key):
+                    raise ValueError(
+                        f"To use 'edit page' buttons, add repository key: {key}"
+                    )
+            theme_options["use_edit_page_button"] = html.get("use_edit_page_button")
 
     # Update the theme options in the main config
     sphinx_config["html_theme_options"] = theme_options

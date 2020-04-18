@@ -44,7 +44,7 @@ content pages and a Table of Contents to get you started:
 
 ```{note}
 Jupyter Book uses a command-line interface to generate books. For more complete
-information about the CLI, see {doc}`cli`.
+information about the CLI, see {doc}`../reference/cli`.
 ```
 
 ### Create a template Jupyter Book

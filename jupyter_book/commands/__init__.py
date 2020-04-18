@@ -73,7 +73,9 @@ def build(path_book, path_output, config, toc, warningiserror, build):
 
     # Builder-specific overrides
     if build == "pdf_html":
-        book_config["html_theme_options"] = {"single_page": True}
+        theme_options = book_config.get("html_theme_options", {})
+        theme_options["single_page"] = True
+        book_config["html_theme_options"] = theme_options
 
     OUTPUT_PATH = path_output if path_output is not None else PATH_BOOK
     OUTPUT_PATH = Path(OUTPUT_PATH).joinpath("_build/html")

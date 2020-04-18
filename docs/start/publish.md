@@ -9,7 +9,7 @@ more popular ones.
 
 ```{note}
 Ensure that your the HTML has been built for each page of your book
-(see [the previous section](build)). There should be a collection of HTML
+(see {doc}`the previous section <build>`). There should be a collection of HTML
 files in your book's `_build/html` folder.
 ```
 

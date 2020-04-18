@@ -4,7 +4,7 @@
 tool for two-way conversion between Jupyter Notebook `.ipynb` files and
 [a variety of text-based files](https://jupytext.readthedocs.io/en/latest/formats.html).
 Currently, Jupyter Book directly supports one Jupytext file format:
-[notebooks with MyST Markdown](./myst-notebooks).
+{doc}`notebooks with MyST Markdown <./myst-notebooks>`).
 
 ```{note}
 If you'd like to see support in Jupyter Book for other types of Jupytext source files,

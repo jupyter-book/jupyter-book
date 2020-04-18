@@ -11,7 +11,7 @@ from the book HTML.
 ## Prerequisites
 
 In order to build the HTML for each page, you should have followed the steps
-in [creating your Jupyter Book structure](overview). You should have
+in {doc}`creating your Jupyter Book structure <overview>`. You should have
 a collection of notebook/markdown files in your `mybookname/` folder, a `_toc.yml` file
 that defines the structure of your book, and any configuration you'd like
 in the `_config.yml` file.
@@ -53,7 +53,7 @@ jupyter-book page path/to/mypage.ipynb
 
 This will execute your content and output the proper HTML in a
 `_build/html` folder. Your page will be called `mypage.html`. This will work
-for any [content source file](../content-types/index) that is supported by Jupyter Book.
+for any {doc}`content source file <../content-types/index>`) that is supported by Jupyter Book.
 
 ## Page caching
 
