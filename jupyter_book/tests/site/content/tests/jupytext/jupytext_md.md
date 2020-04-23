@@ -25,7 +25,7 @@ your files, which means building your book with outputs requires running each fi
 ## This notebook is stored in Jupytext format!
 
 For example, the notebook for this page is stored in a Jupytext format. In this case, we've used
-a markdown file. [You can find the original (text-based) format here](https://github.com/jupyter/jupyter-book/blob/master/jupyter_book/book_template/content/features/jupytext.md).
+a markdown file. [You can find the original (text-based) format here](https://github.com/ExecutableBookProject/jupyter-book/blob/master/jupyter_book/book_template/content/features/jupytext.md).
 
 Below we'll show some Python code, which Jupyter Book can execute at build time.
 

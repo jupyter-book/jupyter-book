@@ -22,7 +22,7 @@ In order to locally build your book's HTML with Jekyll, you'll take one of two a
 1. Install a copy of the Ruby language (which is a free open-source language, but can be a pain to install).
 2. Use a container software (Docker or Singularity) along with a Docker image that we've
    prepared for you
-   [from this Dockerfile](https://github.com/jupyter/jupyter-book/blob/master/jupyter_book/Dockerfile).
+   [from this Dockerfile](https://github.com/ExecutableBookProject/jupyter-book/blob/master/jupyter_book/Dockerfile).
 
 We recommend installing Ruby with one of the supplied methods first, and if this fails,
 try installing with a container tool such as Docker.

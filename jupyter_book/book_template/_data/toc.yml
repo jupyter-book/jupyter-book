@@ -79,14 +79,14 @@
     not_numbered: true
 
 
-- url: https://github.com/jupyter/jupyter-book
+- url: https://github.com/ExecutableBookProject/jupyter-book
   title: GitHub repository
   external: true
   not_numbered: true
 
 - url: /contributing
   not_numbered: true
-  
+
 - title: Example Book Gallery
   url: /features/gallery
   not_numbered: true

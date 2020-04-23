@@ -77,7 +77,7 @@ The current list of labels are [here][link_labels] and include:
 ## Repository Structure of Jupyter Book
 
 This section covers the general structure of the
-[Jupyter Book repository](https://github.com/jupyter/jupyter-book), and
+[Jupyter Book repository](https://github.com/ExecutableBookProject/jupyter-book), and
 explains which pieces are where.
 
 The Jupyter Book repository contains two main pieces:
@@ -85,11 +85,11 @@ The Jupyter Book repository contains two main pieces:
 ### The command-line tool and Python package
 
 This is used to help create and build books.
-It can be found at [`./jupyter_book`](https://github.com/jupyter/jupyter-book/tree/master/jupyter_book).
+It can be found at [`./jupyter_book`](https://github.com/ExecutableBookProject/jupyter-book/tree/master/jupyter_book).
 * **The `page` module builds single pages**. This module is meant to be self-contained for
   converting single `.ipynb`/`.md`/etc pages into HTML. Jupyter Book uses this module when
   building entire books, but the module can also be used on its own (it's what `jupyter-book page` uses).
-  You can find the module at: [`jupyter_book/page`](https://github.com/jupyter/jupyter-book/tree/master/jupyter_book/page).
+  You can find the module at: [`jupyter_book/page`](https://github.com/ExecutableBookProject/jupyter-book/tree/master/jupyter_book/page).
 * **The `create.py` and `build.py` create and build a book**. They connect with the CLI and
   are used to process multiple pages and stitch them together into a static website template.
 
@@ -98,20 +98,20 @@ It can be found at [`./jupyter_book`](https://github.com/jupyter/jupyter-book/tr
 This is used when generating new books. This website defines the structure of
 the site that is created when you run `jupyter-book create`. It contains the Javascript, CSS, and
 HTML structure of a book. It can be found at
-[`jupyter_book/book_template`](https://github.com/jupyter/jupyter-book/tree/master/jupyter_book/book_template).
-* The [`_includes/`](https://github.com/jupyter/jupyter-book/tree/master/jupyter_book/book_template/_includes)
+[`jupyter_book/book_template`](https://github.com/ExecutableBookProject/jupyter-book/tree/master/jupyter_book/book_template).
+* The [`_includes/`](https://github.com/ExecutableBookProject/jupyter-book/tree/master/jupyter_book/book_template/_includes)
   folder contains core HTML and javascript files for the site. For example,
-  [`_includes/head.html`](https://github.com/jupyter/jupyter-book/blob/master/jupyter_book/book_template/_includes/head.html) contains the HTML for the header of each page, which is where CSS and JS files are linked.
-* The [`assets/`](https://github.com/jupyter/jupyter-book/tree/master/jupyter_book/book_template/assets)
+  [`_includes/head.html`](https://github.com/ExecutableBookProject/jupyter-book/blob/master/jupyter_book/book_template/_includes/head.html) contains the HTML for the header of each page, which is where CSS and JS files are linked.
+* The [`assets/`](https://github.com/ExecutableBookProject/jupyter-book/tree/master/jupyter_book/book_template/assets)
   folder contains static CSS/JS files that don't depend on site configuration.
-* The [`_sass/`](https://github.com/jupyter/jupyter-book/tree/master/jupyter_book/book_template/_sass)
+* The [`_sass/`](https://github.com/ExecutableBookProject/jupyter-book/tree/master/jupyter_book/book_template/_sass)
   folder contains all of the book and page CSS rules. This is stitched together in a single CSS file
   at build time (SCSS is a way to split up CSS rules among multiple files). Within this folder, the
-  [`_sass/page/`](https://github.com/jupyter/jupyter-book/tree/master/jupyter_book/book_template/_sass/page) folder
+  [`_sass/page/`](https://github.com/ExecutableBookProject/jupyter-book/tree/master/jupyter_book/book_template/_sass/page) folder
   has CSS files for a single page of content, while the other folders/files contain CSS rules for
   the whole book.
-* The [`content/`](https://github.com/jupyter/jupyter-book/tree/master/jupyter_book/book_template/content)
-  folder contains the content for the Jupyter Book documentation (e.g., the [markdown for this page](https://github.com/jupyter/jupyter-book/tree/master/jupyter_book/book_template/content/contributing.md)).
+* The [`content/`](https://github.com/ExecutableBookProject/jupyter-book/tree/master/jupyter_book/book_template/content)
+  folder contains the content for the Jupyter Book documentation (e.g., the [markdown for this page](https://github.com/ExecutableBookProject/jupyter-book/tree/master/jupyter_book/book_template/content/contributing.md)).
 
 ### An example
 
@@ -122,7 +122,7 @@ Here are a few examples of how this code gets used to help you get started.
   and uses the `page/` module to convert each one into HTML and places it in `mybook/_build`.
 
 Hopefully this explanation gets you situated and helps you understand how the pieces all fit together.
-If you have any questions, feel free to [open an issue asking for help](https://github.com/jupyter/jupyter-book/issues/new)!
+If you have any questions, feel free to [open an issue asking for help](https://github.com/ExecutableBookProject/jupyter-book/issues/new)!
 
 ## Making a change
 
@@ -194,7 +194,7 @@ You're awesome.
 
 [link_git]: https://git-scm.com
 [link_github]: https://github.com/https://github.com/jupyter/governance/blob/master/conduct/code_of_conduct.md
-[link_jupyter-book]: https://github.com/jupyter/jupyter-book
+[link_jupyter-book]: https://github.com/ExecutableBookProject/jupyter-book
 [link_signupinstructions]: https://help.github.com/articles/signing-up-for-a-new-github-account
 
 [writing_formatting_github]: https://help.github.com/articles/getting-started-with-writing-and-formatting-on-github
@@ -204,14 +204,14 @@ You're awesome.
 [sphinx]: http://www.sphinx-doc.org/en/master/index.html
 [readthedocs]: https://docs.readthedocs.io/en/latest/index.html
 
-[link_issues]: https://github.com/jupyter/jupyter-book/issues
+[link_issues]: https://github.com/ExecutableBookProject/jupyter-book/issues
 [link_coc]: https://github.com/jupyter/governance/blob/master/conduct/code_of_conduct.md
 
-[link_labels]: https://github.com/jupyter/jupyter-book/labels
-[link_bugs]: https://github.com/jupyter/jupyter-book/labels/bug
-[link_helpwanted]: https://github.com/jupyter/jupyter-book/labels/help%20wanted
-[link_enhancement]: https://github.com/jupyter/jupyter-book/labels/enhancement
-[link_question]: https://github.com/jupyter/jupyter-book/labels/question
+[link_labels]: https://github.com/ExecutableBookProject/jupyter-book/labels
+[link_bugs]: https://github.com/ExecutableBookProject/jupyter-book/labels/bug
+[link_helpwanted]: https://github.com/ExecutableBookProject/jupyter-book/labels/help%20wanted
+[link_enhancement]: https://github.com/ExecutableBookProject/jupyter-book/labels/enhancement
+[link_question]: https://github.com/ExecutableBookProject/jupyter-book/labels/question
 
 [link_pullrequest]: https://help.github.com/articles/creating-a-pull-request/
 [link_fork]: https://help.github.com/articles/fork-a-repo/
@@ -221,5 +221,5 @@ You're awesome.
 
 [link_drafts]: https://help.github.com/articles/about-pull-requests/#draft-pull-requests
 
-[link_contributors]: https://github.com/jupyter/jupyter-book/graphs/contributors
+[link_contributors]: https://github.com/ExecutableBookProject/jupyter-book/graphs/contributors
 [link_stemmrolemodels]: https://github.com/KirstieJane/STEMMRoleModels
