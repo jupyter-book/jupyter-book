@@ -84,6 +84,12 @@ def yaml_to_sphinx(yaml, config):
                     )
             theme_options["use_edit_page_button"] = html.get("use_edit_page_button")
 
+    execute = yaml.get("execute")
+    if execute:
+        sphinx_config["jupyter_execute_notebooks"] = execute.get("execute_notebooks")
+        sphinx_config["jupyter_cache"] = execute.get("cache")
+        sphinx_config["execution_excludepatterns"] = execute.get("exclude_patterns")
+
     # Update the theme options in the main config
     sphinx_config["html_theme_options"] = theme_options
 

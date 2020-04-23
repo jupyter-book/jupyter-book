@@ -6,7 +6,9 @@ author: The Jupyter Book Community
 email: choldgraf@berkeley.edu
 description: >- # this means to ignore newlines until "baseurl:"
   This is an example book built with Jupyter Books.
-execute_notebooks: cache
+
+execute:
+  execute_notebooks: cache
 
 html:
   favicon: images/favicon.ico

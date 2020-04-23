@@ -4,37 +4,37 @@ Jupyter Book can automatically run and cache any notebook pages. Notebooks can e
 be run each time the documentation is built, or cached locally so that notebooks
 will only be re-run when the code cells in a notebook have changed.
 
-Cacheing behavior is controlled with the following configuration value
-in your `_config.yml` file. See
+Cacheing behavior is controlled with the `execute:` section
+[in your `_config.yml` file](../customize/config). See
 the sections below for each configuration option and its effect.
 
+## Trigger notebook execution
+
+By default, Jupyter Book will execute any content files that have a notebook structure,
+and that are missing at least one output. This is equivalent to the following
+configuration in _config.yml`:
+
 ```yaml
-execute_notebooks: cache
+execute:
+  execute_notebooks: auto
 ```
 
-## Triggering notebook execution
-
-To trigger the execution of notebook pages, use the following configuration in `_config.yml`.
-
-```
-execute_notebooks = "auto"
-```
-
-By default, this will only execute notebooks that are missing at least one output. If
+This will only execute notebooks that are missing at least one output. If
 the notebook has *all* of its outputs populated, then it will not be executed.
 
 **To force the execution of all notebooks, regardless of their outputs**, change the
 above configuration value to:
 
-```
-execute_notebooks = "force"
+```yaml
+execute_notebooks: force
 ```
 
 **To cache execution outputs with [jupyter-cache]**, change the above configuration
 value to:
 
-```
-execute_notebooks = "cache"
+```yaml
+execute:
+  execute_notebooks: cache
 ```
 
 See {ref}`execute/cache` for more information.
@@ -42,15 +42,20 @@ See {ref}`execute/cache` for more information.
 **To turn off notebook execution**,change the
 above configuration value to:
 
-```
-execute_notebooks = "off"
+```yaml
+execute:
+  execute_notebooks: off
 ```
 
 **To exclude certain file patterns from execution**, use the following
 configuration:
 
-```
-execution_excludepatterns = ['list', 'of', '*patterns']
+```yaml
+execute:
+  exclude_patterns:
+    - 'pattern1'
+    - 'pattern2'
+    - '*pattern3withwildcard'
 ```
 
 Any file that matches one of the items in `execution_excludepatterns` will not be
@@ -76,8 +81,9 @@ When you re-build your site, the following will happen:
 
 To enable cacheing of notebook outputs, use the following configuration:
 
-```
-execute_notebooks = "cache"
+```yaml
+execute:
+  execute_notebooks: cache
 ```
 
 By default, the cache will be placed in the parent of your build folder. Generally,
@@ -85,8 +91,9 @@ this is in `_build/.jupyter_cache`.
 
 You may also specify a path to the location of a jupyter cache you'd like to use:
 
-```
-jupyter_cache = path/to/mycache
+```yaml
+execute:
+  cache: path/to/mycache
 ```
 
 The path should point to an **empty folder**, or a folder where a
