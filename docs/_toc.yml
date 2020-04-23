@@ -10,6 +10,7 @@
 - file: customize/config
 - file: customize/toc
 - file: content-types/index
+  expand_sections:
   sections:
     - file: content-types/markdown
     - file: content-types/notebooks

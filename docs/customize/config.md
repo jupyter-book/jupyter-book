@@ -1,4 +1,4 @@
-# Book-wide configuration
+# Configure book settings
 
 In Jupyter Book, most configuration is controlled with a
 **Configuration YAML file (`_config.yml`)**. This file controls a number

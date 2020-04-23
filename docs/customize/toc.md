@@ -89,9 +89,10 @@ file to serve as an "introduction" for a collection of files underneath, like so
 
 We recommend nesting your sections no more than 3 layers deep (as shown above).
 
-## Web-based Table of Contents functionality
+## Web-based Navigation Bar functionality
 
-The following sections apply to HTML books built with Jupyter Book.
+The following sections apply to controlling the left navigation bar in
+HTML books built with Jupyter Book.
 
 ### Automatically expand subsections of a page
 
@@ -104,4 +105,4 @@ your `_toc.yml` file, add the following key:
   expand_sections: true
 ```
 
-All subsections of that page will now be expanded in the Table of Contents.
+All subsections of that page will now be expanded in the Navigation Bar.

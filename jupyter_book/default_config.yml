@@ -19,7 +19,7 @@ html:
   navbar_number_sections    : False  # Add a number to each section in your left navbar
   navbar_footer_text        : 'Powered by <a href="https://jupyterbook.org">Jupyter Book</a>'  # Will be displayed underneath the left navbar.
   google_analytics_id       : ""  # A GA id that can be used to track book views.
-  home_page_in_navbar       : true  # Whether to include your home page in the left Table of Contents
+  home_page_in_navbar       : true  # Whether to include your home page in the left Navigation Bar
   use_edit_page_button      : false  # Whether to add an "edit this page" button to pages. If `true`, repository information in repository: must be filled in
   baseurl                   : ""  # The base URL where your book will be hosted. Used for creating image previews and social links. e.g.: https://mypage.com/mybook/
 

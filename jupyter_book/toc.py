@@ -57,6 +57,12 @@ def add_toctree(app, docname, source):
     if not subsections:
         return
 
+    # Look for expand_sections and add to html config
+    if "expand_sections" in parent_page:
+        expanded_sections = app.config.html_theme_options.get("expand_sections", [])
+        expanded_sections.append(docname)
+        app.config.html_theme_options["expand_sections"] = expanded_sections
+
     def gen_toctree(options, subsections):
 
         # Generate the TOC from our options/pages
@@ -119,7 +125,7 @@ def add_toctree(app, docname, source):
             this_section = f"{title} <{this_section}>"
         toc_sections.append(this_section)
 
-        option_flags = ["numbered", "expand_sections"]
+        option_flags = ["numbered"]
         for option in option_flags:
             if parent_page.get(option):
                 toc_options.append(f":{option}:")
@@ -273,7 +279,7 @@ def build_toc(path, filename_split_char="_", skip_text=None):
 
 def _check_toc_entries(sections):
     """Recursive function to check a TOC structure."""
-    allowed_keys = ["file", "url", "header", "sections", "title"]
+    allowed_keys = ["file", "url", "header", "sections", "title", "expand_sections"]
     for section in sections:
         # Allowed keys
         for key in section.keys():
