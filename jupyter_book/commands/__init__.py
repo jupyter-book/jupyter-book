@@ -181,11 +181,11 @@ def page(path_page, path_output, config, execute):
 
 
 @main.command()
-@click.argument("path-output")
-def create(path_output):
+@click.argument("path-book")
+def create(path_book):
     """Create a simple Jupyter Book that you can customize."""
 
-    PATH_OUTPUT = Path(path_output)
+    PATH_OUTPUT = Path(path_book)
     if PATH_OUTPUT.is_dir():
         _error(f"The output book already exists. Delete {PATH_OUTPUT}{os.sep} first.")
     template_path = Path(__file__).parent.parent.joinpath("book_template")
@@ -223,6 +223,38 @@ def toc(path, filename_split_char, skip_text, output_folder):
     output_file.write_text(out_yaml)
 
     _message_box(f"Table of Contents written to {output_file}")
+
+
+@main.command()
+@click.argument("path-book")
+@click.option("-a", "--all", "all_", is_flag=True, help="Remove build directory.")
+def clean(path_book, all_):
+    """Empty build directory except jupyter_cache subdirectory."""
+
+    PATH_OUTPUT = Path(path_book).absolute()
+    if not PATH_OUTPUT.is_dir():
+        _error(f"Path to book isn't a directory: {PATH_OUTPUT}")
+
+    build_path = PATH_OUTPUT.joinpath("_build")
+    if not build_path.is_dir():
+        _error(f"Your book does not have a _build directory.")
+
+    if all_:
+        # Remove .jupyter_cache
+        sh.rmtree(build_path)
+        _message_box(f"Your _build directory has been removed")
+    else:
+        # Empty _build except .jupyter_cache
+        to_remove = [
+            dd
+            for dd in build_path.iterdir()
+            if dd.is_dir() and dd.name != ".jupyter_cache"
+        ]
+        for dd in to_remove:
+            sh.rmtree(build_path.joinpath(dd.name))
+        _message_box(
+            f"Your _build directory has been emptied except for .jupyter_cache"
+        )
 
 
 @main.group()
