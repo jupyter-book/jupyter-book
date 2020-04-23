@@ -28,7 +28,7 @@
 
 # External link
 - title: GitHub repository
-  url: https://github.com/jupyter/jupyter-book
+  url: https://github.com/ExecutableBookProject/jupyter-book
   external: true
   not_numbered: true
 

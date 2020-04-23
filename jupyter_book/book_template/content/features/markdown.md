@@ -76,7 +76,7 @@ P(A_1 \cup A_2 \cup A_3) ~ = ~ P(B \cup A_3) &= ~ P(B) + P(A_3) - P(BA_3) \\
 **Note**: If you print your page (using the print button), then mathematics may not show
 up properly in an output PDF. This is because MathJax isn't able to render the math
 before converting to PDF. If you have a good idea for how to get around this, please do
-[open an issue](https://github.com/jupyter/jupyter-book/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc)!
+[open an issue](https://github.com/ExecutableBookProject/jupyter-book/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc)!
 <!-- #endregion -->
 
 ## Embedding media

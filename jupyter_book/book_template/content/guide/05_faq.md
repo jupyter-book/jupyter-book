@@ -50,7 +50,7 @@ This should reset the state of the folder to the last commit in your git history
 ## Does the book behave differently depending on the browser?
 
 Maybe - Jupyter Book does use some features that might have different behaviors in
-some browsers. For example, Safari [tends to treat downloadable objects](https://github.com/jupyter/jupyter-book/pull/104#issuecomment-462461188)
+some browsers. For example, Safari [tends to treat downloadable objects](https://github.com/ExecutableBookProject/jupyter-book/pull/104#issuecomment-462461188)
 differently for some reason.
 
 The two browsers on which Jupyter Book should always behave as expected are
@@ -92,7 +92,7 @@ Note that, if viewing the file on a Jupyter Notebook session, the figure will no
 ## What if I have an issue or question?
 
 If you've got questions, concerns, or suggestions, please open an issue at
-[at the jupyter book issues page](https://github.com/jupyter/jupyter-book/issues)
+[at the jupyter book issues page](https://github.com/ExecutableBookProject/jupyter-book/issues)
 
 ## How should I add cell tags to my notebooks?
 
@@ -140,7 +140,7 @@ same fonts available when you're viewing a page live. This means that mathematic
 look simplified and incorrectly-formatted.
 
 If you have an idea for how to improve this, please
-[open an issue](https://github.com/jupyter/jupyter-book/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc)!
+[open an issue](https://github.com/ExecutableBookProject/jupyter-book/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc)!
 
 ## What is this `Gemfile.lock` file or why am I getting Jekyll dependency warnings?
 
