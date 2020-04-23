@@ -64,7 +64,14 @@ force Jupyter Book to re-build a particular page, you can either edit the
 corresponding file in your book's folder, or delete that page's HTML
 in the `_build/html` folder.
 
-## Next step: build and publish your book
+## Local preview
+
+To preview your book, you can open the generated HTML files in your browser.
+Either double-click the html file in your local folder, or enter the absolute
+path to the file in your browser navigation bar adding `file://` at the beginning
+(e.g. `file://Users/my_path_to_book/_build/index.html`).
+
+## Next step: publish your book
 
 Now that you've created the HTML for your book, it's time
 to publish it online. That's covered in the next section.

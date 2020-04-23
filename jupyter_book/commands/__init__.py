@@ -108,7 +108,10 @@ def build(path_book, path_output, config, toc, warningiserror, build):
                 {path_output_rel}{os.sep}
 
             You can look at your book by opening this file in a browser:
-                {path_index}\
+                {path_index}
+
+            Or paste this line directly into your browser bar:
+                file://{path_index.resolve()}\
             """
             )
         if build == "pdf_html":
