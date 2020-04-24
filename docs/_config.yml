@@ -27,4 +27,6 @@ launch_buttons:
   thebelab                  : true
 
 sphinx:
-  extra_extensions          : ["sphinx_click.ext"]
+  extra_extensions:
+    - sphinx_click.ext
+    - sphinx_tabs.tabs

@@ -10,6 +10,7 @@ path_root = path_tests.parent
 
 def test_build_book(tmpdir):
     """Test building the book template and a few test configs."""
+    # Create the book from the template
     path = Path(tmpdir).joinpath("mybook").absolute()
     run(f"jb create {path}".split())
 
@@ -20,6 +21,20 @@ def test_build_book(tmpdir):
     run(f"jb build {path}".split(), check=True)
     path_html = path.joinpath("_build", "html")
     assert path_html.joinpath("index.html").exists()
+    assert path_html.joinpath("intro.html").exists()
+
+    # Test custom config values
+    path_config = path_books.joinpath("config")
+    run(f"jb build {path_config}".split(), check=True)
+    html = path_config.joinpath("_build", "html", "index.html").read_text()
+    assert '<h1 class="site-logo" id="site-title">TEST PROJECT NAME</h1>' in html
+    assert '<div class="sphinx-tabs docutils container">' in html
+
+
+def test_build_errors(tmpdir):
+    # Create the book from the template
+    path = Path(tmpdir).joinpath("mybook").absolute()
+    run(f"jb create {path}".split())
 
     # === Expected errors ===
     # Create pre-existing folder

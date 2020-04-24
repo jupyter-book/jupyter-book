@@ -33,6 +33,7 @@
 
 - header: Advanced and miscellaneous
 - file: advanced/pdf
+- file: advanced/sphinx
 - file: advanced/advanced
 - file: customize/faq
 

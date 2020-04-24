@@ -105,4 +105,9 @@ def yaml_to_sphinx(yaml, config):
     for key, newkey in YAML_TRANSLATIONS.items():
         if key in yaml:
             sphinx_config[newkey] = yaml.pop(key)
+
+    # Manual Sphinx over-rides will supercede other config
+    sphinx_overrides = yaml.get("sphinx", {}).get("config")
+    if sphinx_overrides:
+        sphinx_config.update(sphinx_overrides)
     return sphinx_config
