@@ -12,9 +12,11 @@ Jupyter Book allows users to
     * a publication-quality PDF.
 
 ```{warning}
-This is an early-release version of Jupyter Book. It may change slightly but is ready for general
+This is an early-release of a re-write of Jupyter Book. It may change slightly but is ready for general
 testing and use. See the {ref}`example-project` section below to get started.
 [Feedback](https://github.com/ExecutableBookProject/jupyter-book/issues/new) is very welcome!
+
+For the old Jupyter Book documentation, see [legacy.jupyterbook.org](https://legacy.jupyterbook.org)
 ```
 
 (example-project)=
