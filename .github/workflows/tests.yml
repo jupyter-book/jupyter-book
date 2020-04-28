@@ -51,11 +51,6 @@ jobs:
         sudo apt-get update
         sudo apt-get install -yq $(cat .github/workflows/pyppeteer_reqs.txt)
 
-    - name: Install texlive
-      run: |
-        bash scripts/install_latex.sh
-        export PATH="/tmp/texlive/bin/x86_64-linux:$PATH"
-
     # Tests
     - name: Run pytest
       run: |

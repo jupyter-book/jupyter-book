@@ -25,14 +25,14 @@ setup(
     name="jupyter-book",
     version=version,
     python_requires=">=3.6",
-    author="Project Jupyter Contributors",
+    author="Executable Book Project",
     author_email="jupyter@googlegroups.com",
-    url="https://jupyterbook.org/",
+    url="https://executablebooks.org/",
     project_urls={
         "Documentation": "https://jupyterbook.org",
-        "Funding": "https://jupyter.org/about",
-        "Source": "https://github.com/jupyter/jupyter-book/",
-        "Tracker": "https://github.com/jupyter/jupyter-book/issues",
+        "Funding": "https://executablebooks.org",
+        "Source": "https://github.com/ExecutableBookProject/jupyter-book/",
+        "Tracker": "https://github.com/ExecutableBookProject/jupyter-book/issues",
     },
     # this should be a whitespace separated string of keywords, not a list
     keywords="reproducible science environments scholarship notebook",
@@ -45,25 +45,16 @@ setup(
         "pyyaml",
         "docutils>=0.15",
         "sphinx<3",
-        (
-            "myst-nb @ "
-            "https://github.com/ExecutableBookProject/myst-nb/archive/master.zip"  # noqa E501
-        ),
+        "myst-nb",
         "click",
         "setuptools",
         "nbformat",
         "nbconvert",
         "nbclient",
-        (
-            "sphinx_togglebutton @ "
-            "https://github.com/ExecutableBookProject/sphinx-togglebutton/archive/master.zip"  # noqa E501
-        ),
+        "sphinx_togglebutton",
         "sphinx-copybutton",
         "sphinxcontrib-bibtex",
-        (
-            "sphinx_book_theme @ "
-            "https://github.com/ExecutableBookProject/sphinx-book-theme/archive/master.zip"  # noqa E501
-        ),
+        "sphinx_book_theme",
     ],
     extras_require={
         "code_style": ["flake8<3.8.0,>=3.7.0", "black", "pre-commit==1.17.0"],

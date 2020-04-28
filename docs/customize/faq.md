@@ -28,7 +28,7 @@ Note that, if viewing the file on a Jupyter Notebook session, the figure will no
 ## What if I have an issue or question?
 
 If you've got questions, concerns, or suggestions, please open an issue at
-[at the jupyter book issues page](https://github.com/jupyter/jupyter-book/issues)
+[at the jupyter book issues page](https://github.com/ExecutableBookProject/jupyter-book/issues)
 
 ## How should I add cell tags to my notebooks?
 
