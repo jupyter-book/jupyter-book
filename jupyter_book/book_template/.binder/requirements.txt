@@ -1,4 +1,0 @@
-# A requirements.txt file that will be used with deployments to
-# a BinderHub. You can update this if you wish, or simply edit
-# your book's `requirements.txt` file and keep the reference below.
--r ../requirements.txt
