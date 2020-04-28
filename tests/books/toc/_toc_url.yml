@@ -1,0 +1,12 @@
+url: index
+title: Toc
+sections:
+- url: content1
+  title: Content1
+- url: content2
+  title: Content2
+- url: subfolder/index
+  title: Subfolder
+  sections:
+  - url: subfolder/asubpage
+    title: Asubpage

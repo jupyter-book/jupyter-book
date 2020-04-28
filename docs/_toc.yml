@@ -1,0 +1,42 @@
+- file: intro
+
+- header: Get started
+- file: start/overview
+- file: start/build
+- file: start/publish
+  sections:
+    - file: publish/gh-pages
+    - file: publish/netlify
+- file: customize/config
+- file: customize/toc
+- file: content-types/index
+  expand_sections:
+  sections:
+    - file: content-types/markdown
+    - file: content-types/notebooks
+    - file: content-types/myst-notebooks
+    - file: content-types/jupytext
+
+- header: Writing book content
+- file: content/myst
+- file: content/citations
+- file: content/math
+- file: content/glue
+- file: content/layout
+- file: content/execute
+
+- header: Making your book interactive
+- file: content/launchbuttons
+- file: content/hiding
+- file: content/interactive
+- file: content/widgets
+
+- header: Advanced and miscellaneous
+- file: advanced/pdf
+- file: advanced/sphinx
+- file: advanced/advanced
+- file: customize/faq
+
+- header: Reference
+- file: reference/cli
+- file: reference/glossary
