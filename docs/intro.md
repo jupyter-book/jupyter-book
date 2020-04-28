@@ -12,10 +12,12 @@ Jupyter Book allows users to
     * a publication-quality PDF.
 
 ```{warning}
-This is an early prototype that may evolve quickly. All [feedback](https://github.com/ExecutableBookProject/jupyter-book/issues/new) is very welcome!
+This is an early-release version of Jupyter Book. It may change slightly but is ready for general
+testing and use. See the {ref}`example-project` section below to get started.
+[Feedback](https://github.com/ExecutableBookProject/jupyter-book/issues/new) is very welcome!
 ```
 
-
+(example-project)=
 ## A Small Example Project
 
 Here's [a short example](https://executablebookproject.github.io/quantecon-mini-example/docs/index.html) of a web-based book created by Jupyter Book.
@@ -43,7 +45,7 @@ Note that
 
 * If editing the markdown files using VS Code, the [MyST markdown extension](https://marketplace.visualstudio.com/items?itemName=ExecutableBookProject.myst-highlight) provides syntax highlighting and other features.
 
-## Build the demo book
+### Build the demo book
 
 You can build this book locally on the command line via the following steps:
 

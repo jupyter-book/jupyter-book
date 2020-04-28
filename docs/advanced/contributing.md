@@ -13,10 +13,12 @@ to navigate this page!
 
 ## Joining the conversation
 
-`jupyter-book` is a young project maintained by a growing group of enthusiastic developers&mdash; and we're excited to have you join!
+`jupyter-book` is a young project maintained by a growing group of enthusiastic
+developers&mdash; and we're excited to have you join!
 Most of our discussions will take place on open [issues][link_issues].
 
-As a reminder, we expect all contributors to `jupyter-book` to adhere to the [Jupyter Code of Conduct][link_coc] in these conversations.
+As a reminder, we expect all contributors to `jupyter-book` to adhere to the
+[Jupyter Code of Conduct][link_coc] in these conversations.
 
 ## Contributing through GitHub
 
@@ -82,6 +84,12 @@ explains which pieces are where.
 
 The Jupyter Book repository contains two main pieces:
 
+### MyST markdown
+
+Jupyter Book supports an *extended version of Jupyter Markdown* called "MyST markdown".
+For information about the myst syntax and how to use it, see
+[the myst parser documentation](https://myst-parser.readthedocs.io/en/latest/using/syntax.html).
+
 ### The command-line tool and Python package
 
 This is used to help create and build books.
@@ -90,28 +98,20 @@ It can be found at [`./jupyter_book`](https://github.com/ExecutableBookProject/j
   converting single `.ipynb`/`.md`/etc pages into HTML. Jupyter Book uses this module when
   building entire books, but the module can also be used on its own (it's what `jupyter-book page` uses).
   You can find the module at: [`jupyter_book/page`](https://github.com/ExecutableBookProject/jupyter-book/tree/master/jupyter_book/page).
-* **The `create.py` and `build.py` create and build a book**. They connect with the CLI and
-  are used to process multiple pages and stitch them together into a static website template.
+* **The `commands/` folder has the CLI**. This is the interface for users to create,
+  build, and control their book via the command-line.
+* **The `sphinx.py` module builds the books**.
+* **The `yaml.py` module handles configuration**.
+* **The `toc.py` module prepares the table of contents**.
 
-### The template SSG website
+The other modules handle more specific functionality in Jupyter Book - see their
+module docstrings for more information.
 
-This is used when generating new books. This website defines the structure of
-the site that is created when you run `jupyter-book create`. It contains the Javascript, CSS, and
-HTML structure of a book. It can be found at
+### The template Jupyter Book
+
+Jupyter Book comes bundled with a small template book to show off content. This can
+be immediately built with `jupyter-book build`. It can be found at
 [`jupyter_book/book_template`](https://github.com/ExecutableBookProject/jupyter-book/tree/master/jupyter_book/book_template).
-* The [`_includes/`](https://github.com/ExecutableBookProject/jupyter-book/tree/master/jupyter_book/book_template/_includes)
-  folder contains core HTML and javascript files for the site. For example,
-  [`_includes/head.html`](https://github.com/ExecutableBookProject/jupyter-book/blob/master/jupyter_book/book_template/_includes/head.html) contains the HTML for the header of each page, which is where CSS and JS files are linked.
-* The [`assets/`](https://github.com/ExecutableBookProject/jupyter-book/tree/master/jupyter_book/book_template/assets)
-  folder contains static CSS/JS files that don't depend on site configuration.
-* The [`_sass/`](https://github.com/ExecutableBookProject/jupyter-book/tree/master/jupyter_book/book_template/_sass)
-  folder contains all of the book and page CSS rules. This is stitched together in a single CSS file
-  at build time (SCSS is a way to split up CSS rules among multiple files). Within this folder, the
-  [`_sass/page/`](https://github.com/ExecutableBookProject/jupyter-book/tree/master/jupyter_book/book_template/_sass/page) folder
-  has CSS files for a single page of content, while the other folders/files contain CSS rules for
-  the whole book.
-* The [`content/`](https://github.com/ExecutableBookProject/jupyter-book/tree/master/jupyter_book/book_template/content)
-  folder contains the content for the Jupyter Book documentation (e.g., the [markdown for this page](https://github.com/ExecutableBookProject/jupyter-book/tree/master/jupyter_book/book_template/content/contributing.md)).
 
 ### An example
 
