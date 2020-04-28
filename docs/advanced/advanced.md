@@ -1,7 +1,7 @@
 # Advanced topics and how-tos
 
 This page contains more advanced and complete information about the
-[`jupyter-book` repository](https://github.com/jupyter/jupyter-book). See the sections below.
+[`jupyter-book` repository](https://github.com/ExecutableBookProject/jupyter-book). See the sections below.
 
 
 ## Enable Google Analytics
@@ -150,10 +150,10 @@ check out these resources:
 
 * **[This blog post on pushing changes from a CircleCI Job](https://predictablynoisy.com/circleci-mirror)**
   covers how you can give CircleCI permissions to push to a branch from within a job.
-* **[The Jupyter Book CircleCI configuration file](https://github.com/jupyter/jupyter-book/blob/master/.circleci/config.yml)**
+* **[The Jupyter Book CircleCI configuration file](https://github.com/ExecutableBookProject/jupyter-book/blob/master/.circleci/config.yml)**
   automatically deploys changes to the `jupyter-book` master branch to the live book. In
-  particular, [this section builds the book HTML files](https://github.com/jupyter/jupyter-book/blob/master/.circleci/config.yml#L74)
-  while [this section builds the HTML and pushes them to a `gh-pages` branch](https://github.com/jupyter/jupyter-book/blob/master/.circleci/config.yml#L31).
+  particular, [this section builds the book HTML files](https://github.com/ExecutableBookProject/jupyter-book/blob/master/.circleci/config.yml#L74)
+  while [this section builds the HTML and pushes them to a `gh-pages` branch](https://github.com/ExecutableBookProject/jupyter-book/blob/master/.circleci/config.yml#L31).
 
 This process can be tricky to set up initially, but is quite useful in ensuring that your live book
 always stays up-to-date.
