@@ -25,16 +25,12 @@ considerably!
 
 Notice some inefficient CSS? A typo in the text? Want to add a cool feature so that others
 can enjoy the improvements to Jupyter Books? Check out the [Jupyter Book Contributor's
-Guide](https://jupyterbook.org/contributing.html). We'd love your help!
+Guide](https://jupyterbook.org/advanced/contributing.html). We'd love your help!
 
 We ask that all contributions to Jupyter Book respect the
 [Jupyter code of conduct](https://github.com/jupyter/governance/blob/master/conduct/code_of_conduct.md).
 
 ## Acknowledgements
 
-Jupyter Books was originally created by [Sam Lau][sam] and [Chris Holdgraf][chris]
-with support of the **UC Berkeley Data Science Education Program and the Berkeley
-Institute for Data Science**.
-
-[sam]: http://www.samlau.me/
-[chris]: https://predictablynoisy.com
+Jupyter Book is maintained and primarily developed by
+the [Executable Book Project](https://executablebooks.org).

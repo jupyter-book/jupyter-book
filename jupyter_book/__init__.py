@@ -3,7 +3,7 @@ from .toc import update_indexname, add_toctree
 from .yaml import add_yaml_config
 
 
-__version__ = "0.0.1dev0"
+__version__ = "0.7.0dev0"
 
 
 # We connect this function to the step after the builder is initialized

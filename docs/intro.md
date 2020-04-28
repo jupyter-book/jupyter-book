@@ -145,14 +145,16 @@ First clone the package:
 
 ```
 git clone https://github.com/ExecutableBookProject/jupyter-book
-cd cli
+cd jupyter-book
 ```
 
 Next, install:
 
 ```
-pip install -e .
+pip install -e .[testing]
 ```
+
+See {doc}`advanced/contributing` for more information.
 
 ## Use
 
