@@ -67,7 +67,7 @@ jobs:
       if: matrix.python-version == 3.7 && github.repository == 'ExecutableBookProject/jupyter-book'
       uses: codecov/codecov-action@v1
       with:
-        name: ebp-cli-pytests-py3.7
+        name: ebp-jupyter-book-pytests-py3.7
         flags: pytests
         file: ./coverage.xml
         fail_ci_if_error: true
