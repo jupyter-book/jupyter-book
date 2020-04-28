@@ -47,6 +47,7 @@ def build_sphinx(
     confoverrides=None,
     extra_extensions=None,
     htmloverrides=None,
+    latexoverrides=None,
     doctreedir=None,
     filenames=None,
     force_all=False,
@@ -92,6 +93,13 @@ def build_sphinx(
         htmloverrides = {}
     for key, val in htmloverrides.items():
         config["html_context.%s" % key] = val
+
+    # #LaTeX-specific configuration
+    # TODO: if this is included we should ignore latex_documents
+    # if latexoverrides is None:
+    #     latexoverrides = {}
+    # for key, val in latexoverrides.items():
+    #     config[key] = val
 
     # Configuration directory
     if noconfig:
@@ -159,6 +167,17 @@ def build_sphinx(
                 jobs,
                 keep_going,
             )
+            # Apply Latex Overrides for latex_documents
+            if (
+                latexoverrides is not None
+                and "latex_documents" in latexoverrides.keys()
+            ):
+                from .pdf import update_latex_documents
+
+                latex_documents = update_latex_documents(
+                    app.config.latex_documents[0], latexoverrides
+                )
+                app.config.latex_documents = [latex_documents]
             app.build(force_all, filenames)
 
             # Write an index.html file in the root to redirect to the first page

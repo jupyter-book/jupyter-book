@@ -2,3 +2,7 @@
 title: My sample book
 author: The Jupyter Book Community
 logo: 'images/logo.png'
+
+latex:
+  latex_documents:
+    targetname: book.tex

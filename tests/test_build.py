@@ -55,11 +55,11 @@ def test_build_errors(tmpdir):
 
     # Incorrect build
     with pytest.raises(ValueError):
-        out = run(f"jb build {path} --build blah".split(), stderr=PIPE)
+        out = run(f"jb build {path} --builder blah".split(), stderr=PIPE)
         err = out.stderr.decode()
         if "ValueError" in err:
             raise ValueError(err)
-    assert "Value for --build must be one of" in err
+    assert "Value for --builder must be one of" in err
 
     # No table of contents message
     p_notoc = path_books.joinpath("notoc")

@@ -22,6 +22,8 @@ Now that your book's content is in your book folder and you've
 defined your book's structure in `_toc.yml`, you can build
 the HTML for your book.
 
+**Note:** HTML is the default builder.
+
 Do so by running the following command:
 
 ```bash

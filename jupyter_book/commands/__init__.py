@@ -1,10 +1,13 @@
 """Defines the commands that the CLI will use."""
+import sys
 import os
 import os.path as op
 from pathlib import Path
 import click
 from glob import glob
 import shutil as sh
+import subprocess
+from sphinx.util.osutil import cd
 import yaml
 
 from ..sphinx import build_sphinx
@@ -19,7 +22,7 @@ def main():
     pass
 
 
-BUILD_OPTIONS = ["html", "pdf_html"]
+BUILDER_OPTIONS = ["html", "pdfhtml", "latex", "pdflatex"]
 
 
 @main.command()
@@ -29,11 +32,11 @@ BUILD_OPTIONS = ["html", "pdf_html"]
 @click.option("--toc", default=None, help="Path to the Table of Contents YAML file")
 @click.option("-W", "--warningiserror", is_flag=True, help="Error on warnings.")
 @click.option(
-    "--build",
+    "--builder",
     default="html",
-    help="What kind of output to build. Must be one of {BUILD_OPTIONS}",
+    help="Which builder to use. Must be one of {BUILDER_OPTIONS}",
 )
-def build(path_book, path_output, config, toc, warningiserror, build):
+def build(path_book, path_output, config, toc, warningiserror, builder):
     """Convert your book's content to HTML or a PDF."""
     # Paths for our notebooks
     PATH_BOOK = Path(path_book).absolute()
@@ -41,11 +44,16 @@ def build(path_book, path_output, config, toc, warningiserror, build):
         _error(f"Path to book isn't a directory: {PATH_BOOK}")
 
     book_config = {}
-    build_dict = {"html": "html", "pdf_html": "singlehtml"}
-    if build not in build_dict.keys():
-        allowed_keys = tuple(build_dict.keys())
-        _error(f"Value for --build must be one of {allowed_keys}. Got '{build}'")
-    builder = build_dict[build]
+    builder_dict = {
+        "html": "html",
+        "pdfhtml": "singlehtml",
+        "latex": "latex",
+        "pdflatex": "latex",
+    }
+    if builder not in builder_dict.keys():
+        allowed_keys = tuple(builder_dict.keys())
+        _error(f"Value for --builder must be one of {allowed_keys}. Got '{builder}'")
+    sphinx_builder = builder_dict[builder]
 
     # Table of contents
     if toc is None:
@@ -67,18 +75,39 @@ def build(path_book, path_output, config, toc, warningiserror, build):
     if config is not None:
         book_config["yaml_config_path"] = str(config)
         config_yaml = yaml.safe_load(config.read_text())
-
         # Pop the extra extensions since we need to append, not replace
         extra_extensions = config_yaml.pop("sphinx", {}).get("extra_extensions")
+        # Support Top Level config Passthrough
+        # https://www.sphinx-doc.org/en/latest/usage/configuration.html#project-information
+        sphinx_options = ["project", "author", "copyright"]
+        for option in sphinx_options:
+            if option in config_yaml.keys():
+                book_config[option] = config_yaml[option]
 
     # Builder-specific overrides
-    if build == "pdf_html":
-        theme_options = book_config.get("html_theme_options", {})
-        theme_options["single_page"] = True
-        book_config["html_theme_options"] = theme_options
+    latex_config = None
+    if builder == "pdfhtml":
+        book_config["html_theme_options"] = {"single_page": True}
+    if builder == "pdflatex":
+        if "latex" in config_yaml.keys():
+            latex_config = config_yaml.pop("latex")
+        if "title" in config_yaml.keys():
+            # Note: a latex_documents specified title takes precendence
+            # over a top level title
+            if (
+                latex_config is not None
+                and "title" not in latex_config["latex_documents"].keys()
+            ):
+                latex_config["latex_documents"]["title"] = config_yaml["title"]
+            else:
+                latex_config = {"latex_documents": {"title": config_yaml["title"]}}
 
-    OUTPUT_PATH = path_output if path_output is not None else PATH_BOOK
-    OUTPUT_PATH = Path(OUTPUT_PATH).joinpath("_build/html")
+    BUILD_PATH = path_output if path_output is not None else PATH_BOOK
+    BUILD_PATH = Path(BUILD_PATH).joinpath("_build")
+    if builder in ["html", "pdfhtml"]:
+        OUTPUT_PATH = BUILD_PATH.joinpath("html")
+    elif builder in ["latex", "pdflatex"]:
+        OUTPUT_PATH = BUILD_PATH.joinpath("latex")
 
     # Now call the Sphinx commands to build
     exc = build_sphinx(
@@ -86,10 +115,12 @@ def build(path_book, path_output, config, toc, warningiserror, build):
         OUTPUT_PATH,
         noconfig=True,
         confoverrides=book_config,
-        builder=builder,
+        latexoverrides=latex_config,
+        builder=sphinx_builder,
         warningiserror=warningiserror,
         extra_extensions=extra_extensions,
     )
+
     if exc:
         _error(
             "There was an error in building your book. "
@@ -97,7 +128,7 @@ def build(path_book, path_output, config, toc, warningiserror, build):
         )
     else:
         # Builder-specific options
-        if build == "html":
+        if builder == "html":
             path_output_rel = Path(op.relpath(OUTPUT_PATH, Path()))
             path_index = path_output_rel.joinpath("index.html")
             _message_box(
@@ -114,7 +145,7 @@ def build(path_book, path_output, config, toc, warningiserror, build):
                 file://{path_index.resolve()}\
             """
             )
-        if build == "pdf_html":
+        if builder == "pdfhtml":
             print("Finished generating HTML for book...")
             print("Converting book HTML into PDF...")
             path_pdf_output = OUTPUT_PATH.parent.joinpath("pdf")
@@ -129,6 +160,27 @@ def build(path_book, path_output, config, toc, warningiserror, build):
                 {path_pdf_output_rel}\
             """
             )
+        if builder == "pdflatex":
+            print("Finished generating latex for book...")
+            print("Converting book latex into PDF...")
+            # Convert to PDF via tex and template built Makefile and make.bat
+            if sys.platform == "win32":
+                makecmd = os.environ.get("MAKE", "make.bat")
+            else:
+                makecmd = os.environ.get("MAKE", "make")
+            try:
+                with cd(OUTPUT_PATH):
+                    subprocess.run([makecmd, "all-pdf"])
+                _message_box(
+                    f"""\
+                A PDF of your book can be found at:
+
+                    {OUTPUT_PATH}
+                """
+                )
+            except OSError:
+                _error("Error: Failed to run: %s" % makecmd)
+                return 1
 
 
 @main.command()

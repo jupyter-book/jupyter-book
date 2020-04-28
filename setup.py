@@ -69,7 +69,7 @@ setup(
         "code_style": ["flake8<3.8.0,>=3.7.0", "black", "pre-commit==1.17.0"],
         "sphinx": doc_reqs,
         "testing": test_reqs,
-        "pdf_html": "pyppeteer",
+        "pdfhtml": "pyppeteer",
     },
     entry_points={
         "console_scripts": [
