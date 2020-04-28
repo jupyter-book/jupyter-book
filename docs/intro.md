@@ -12,7 +12,7 @@ Jupyter Book allows users to
     * a publication-quality PDF.
 
 ```{warning}
-This is an early prototype that may evolve quickly. All [feedback](https://github.com/ExecutableBookProject/cli/issues/new) is very welcome!
+This is an early prototype that may evolve quickly. All [feedback](https://github.com/ExecutableBookProject/jupyter-book/issues/new) is very welcome!
 ```
 
 
@@ -58,7 +58,7 @@ You can build this book locally on the command line via the following steps:
 3. Install Jupyter Book
 
     ```
-    pip install git+https://github.com/ExecutableBookProject/cli.git@master
+    pip install git+https://github.com/ExecutableBookProject/jupyter-book.git@master
     ```
 
 4. Clone the repository containing the source files
@@ -136,7 +136,7 @@ Install this tool directly from the Master branch. When it has stabilized
 we will begin creating releases.
 
 ```
-pip install git+https://github.com/ExecutableBookProject/cli.git@master
+pip install git+https://github.com/ExecutableBookProject/jupyter-book.git@master
 ```
 
 ## Develop
@@ -144,7 +144,7 @@ pip install git+https://github.com/ExecutableBookProject/cli.git@master
 First clone the package:
 
 ```
-git clone https://github.com/ExecutableBookProject/cli
+git clone https://github.com/ExecutableBookProject/jupyter-book
 cd cli
 ```
 

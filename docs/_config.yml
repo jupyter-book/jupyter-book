@@ -18,7 +18,7 @@ html:
   baseurl: https://beta.jupyterbook.org/
 
 repository:
-  url                       : https://github.com/ExecutableBookProject/cli
+  url                       : https://github.com/ExecutableBookProject/jupyter-book
   path_to_book              : "docs"
 
 launch_buttons:

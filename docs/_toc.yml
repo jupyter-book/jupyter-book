@@ -36,6 +36,7 @@
 - file: advanced/sphinx
 - file: advanced/advanced
 - file: customize/faq
+- file: advanced/contributing
 
 - header: Reference
 - file: reference/cli
