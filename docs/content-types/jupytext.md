@@ -8,7 +8,7 @@ Currently, Jupyter Book directly supports one Jupytext file format:
 
 ```{note}
 If you'd like to see support in Jupyter Book for other types of Jupytext source files,
-such as Python `.py` files, [open an issue](https://github.com/ExecutableBookProject/jupyter-book/issues/new)
+such as Python `.py` files, [open an issue](https://github.com/executablebooks/jupyter-book/issues/new)
 and let us know!
 ```
 

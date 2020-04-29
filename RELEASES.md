@@ -11,7 +11,7 @@ To create a new release of Jupyter Book, you need to do these things:
 To create a new release, follow these steps:
 
 - Ensure that there aren't any extra issues to tackle in
-   [the milestone for the next release](https://github.com/ExecutableBookProject/jupyter-book/milestones?direction=asc&sort=due_date)
+   [the milestone for the next release](https://github.com/executablebooks/jupyter-book/milestones?direction=asc&sort=due_date)
 - Remove `dev0` from the Jupyter Book version in `__init__.py`
 - Create a "release commit":
 
@@ -20,7 +20,7 @@ To create a new release, follow these steps:
   git commit -m "RLS: <version-number>"
   git push upstream master
   ```
-- [Create a new release](https://github.com/ExecutableBookProject/jupyter-book/releases/new) on GitHub.
+- [Create a new release](https://github.com/executablebooks/jupyter-book/releases/new) on GitHub.
   The tag and title should be `v<version-number>`. For example, `v0.6.0`.
 - Bump `__init__.py` to the next dev version. Increment the minor version and add `dev0` to it. e.g.:
 

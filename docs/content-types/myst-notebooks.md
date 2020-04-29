@@ -29,7 +29,7 @@ See its documentation for more information.
 ```
 
 To see an example of a MyST notebook, you can look at
-[many of the pages of this documentation](https://github.com/ExecutableBookProject/jupyter-book/tree/master/docs).
+[many of the pages of this documentation](https://github.com/executablebooks/jupyter-book/tree/master/docs).
 For example, see {download}`../content/hiding.md` and {download}`../content/layout.md`.
 
 ## Create a MyST notebook with Jupytext

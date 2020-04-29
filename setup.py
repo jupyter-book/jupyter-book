@@ -31,8 +31,8 @@ setup(
     project_urls={
         "Documentation": "https://jupyterbook.org",
         "Funding": "https://executablebooks.org",
-        "Source": "https://github.com/ExecutableBookProject/jupyter-book/",
-        "Tracker": "https://github.com/ExecutableBookProject/jupyter-book/issues",
+        "Source": "https://github.com/executablebooks/jupyter-book/",
+        "Tracker": "https://github.com/executablebooks/jupyter-book/issues",
     },
     # this should be a whitespace separated string of keywords, not a list
     keywords="reproducible science environments scholarship notebook",

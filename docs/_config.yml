@@ -15,10 +15,10 @@ html:
   google_analytics_id: UA-52617120-7
   home_page_in_navbar: false
   use_edit_page_button: true
-  baseurl: https://beta.jupyterbook.org/
+  baseurl: https://jupyterbook.org/
 
 repository:
-  url                       : https://github.com/ExecutableBookProject/jupyter-book
+  url                       : https://github.com/executablebooks/jupyter-book
   path_to_book              : "docs"
 
 launch_buttons:

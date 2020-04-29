@@ -14,7 +14,7 @@ Jupyter Book allows users to
 ```{warning}
 This is an early-release of a re-write of Jupyter Book. It may change slightly but is ready for general
 testing and use. See the {ref}`example-project` section below to get started.
-[Feedback](https://github.com/ExecutableBookProject/jupyter-book/issues/new) is very welcome!
+[Feedback](https://github.com/executablebooks/jupyter-book/issues/new) is very welcome!
 
 For the old Jupyter Book documentation, see [legacy.jupyterbook.org](https://legacy.jupyterbook.org)
 ```
@@ -31,7 +31,7 @@ Some of the features on display include
 * [numbered equations](https://executablebookproject.github.io/quantecon-mini-example/docs/python_by_example.html#another-application)
 * [numbered figures](https://executablebookproject.github.io/quantecon-mini-example/docs/getting_started.html#jupyter-notebooks) with captions and cross-referencing
 
-The source files  can be [found on GitHub](https://github.com/ExecutableBookProject/quantecon-mini-example/) in the [docs directory](https://github.com/ExecutableBookProject/quantecon-mini-example/tree/master/mini_book/docs).
+The source files  can be [found on GitHub](https://github.com/executablebooks/quantecon-mini-example/) in the [docs directory](https://github.com/executablebooks/quantecon-mini-example/tree/master/mini_book/docs).
 
 These files are written in [MyST markdown](https://myst-parser.readthedocs.io/en/latest/), an
 extension of Jupyter notebook markdown that allows for
@@ -68,7 +68,7 @@ You can build this book locally on the command line via the following steps:
 4. Clone the repository containing the source files
 
     ```
-    git clone https://github.com/ExecutableBookProject/quantecon-mini-example
+    git clone https://github.com/executablebooks/quantecon-mini-example
     ```
 
 5. Run Jupyter Book over the source files
@@ -148,7 +148,7 @@ pip install -U jupyter-book --pre
 First clone the package:
 
 ```
-git clone https://github.com/ExecutableBookProject/jupyter-book
+git clone https://github.com/executablebooks/jupyter-book
 cd jupyter-book
 ```
 

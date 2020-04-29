@@ -79,7 +79,7 @@ The current list of labels are [here][link_labels] and include:
 ## Repository Structure of Jupyter Book
 
 This section covers the general structure of the
-[Jupyter Book repository](https://github.com/ExecutableBookProject/jupyter-book), and
+[Jupyter Book repository](https://github.com/executablebooks/jupyter-book), and
 explains which pieces are where.
 
 The Jupyter Book repository contains two main pieces:
@@ -93,11 +93,11 @@ For information about the myst syntax and how to use it, see
 ### The command-line tool and Python package
 
 This is used to help create and build books.
-It can be found at [`./jupyter_book`](https://github.com/ExecutableBookProject/jupyter-book/tree/master/jupyter_book).
+It can be found at [`./jupyter_book`](https://github.com/executablebooks/jupyter-book/tree/master/jupyter_book).
 * **The `page` module builds single pages**. This module is meant to be self-contained for
   converting single `.ipynb`/`.md`/etc pages into HTML. Jupyter Book uses this module when
   building entire books, but the module can also be used on its own (it's what `jupyter-book page` uses).
-  You can find the module at: [`jupyter_book/page`](https://github.com/ExecutableBookProject/jupyter-book/tree/master/jupyter_book/page).
+  You can find the module at: [`jupyter_book/page`](https://github.com/executablebooks/jupyter-book/tree/master/jupyter_book/page).
 * **The `commands/` folder has the CLI**. This is the interface for users to create,
   build, and control their book via the command-line.
 * **The `sphinx.py` module builds the books**.
@@ -111,7 +111,7 @@ module docstrings for more information.
 
 Jupyter Book comes bundled with a small template book to show off content. This can
 be immediately built with `jupyter-book build`. It can be found at
-[`jupyter_book/book_template`](https://github.com/ExecutableBookProject/jupyter-book/tree/master/jupyter_book/book_template).
+[`jupyter_book/book_template`](https://github.com/executablebooks/jupyter-book/tree/master/jupyter_book/book_template).
 
 ### An example
 
@@ -122,7 +122,7 @@ Here are a few examples of how this code gets used to help you get started.
   and uses the `page/` module to convert each one into HTML and places it in `mybook/_build`.
 
 Hopefully this explanation gets you situated and helps you understand how the pieces all fit together.
-If you have any questions, feel free to [open an issue asking for help](https://github.com/ExecutableBookProject/jupyter-book/issues/new)!
+If you have any questions, feel free to [open an issue asking for help](https://github.com/executablebooks/jupyter-book/issues/new)!
 
 ## Making a change
 
@@ -194,7 +194,7 @@ You're awesome.
 
 [link_git]: https://git-scm.com
 [link_github]: https://github.com/https://github.com/jupyter/governance/blob/master/conduct/code_of_conduct.md
-[link_jupyter-book]: https://github.com/ExecutableBookProject/jupyter-book
+[link_jupyter-book]: https://github.com/executablebooks/jupyter-book
 [link_signupinstructions]: https://help.github.com/articles/signing-up-for-a-new-github-account
 
 [writing_formatting_github]: https://help.github.com/articles/getting-started-with-writing-and-formatting-on-github
@@ -204,14 +204,14 @@ You're awesome.
 [sphinx]: http://www.sphinx-doc.org/en/master/index.html
 [readthedocs]: https://docs.readthedocs.io/en/latest/index.html
 
-[link_issues]: https://github.com/ExecutableBookProject/jupyter-book/issues
+[link_issues]: https://github.com/executablebooks/jupyter-book/issues
 [link_coc]: https://github.com/jupyter/governance/blob/master/conduct/code_of_conduct.md
 
-[link_labels]: https://github.com/ExecutableBookProject/jupyter-book/labels
-[link_bugs]: https://github.com/ExecutableBookProject/jupyter-book/labels/bug
-[link_helpwanted]: https://github.com/ExecutableBookProject/jupyter-book/labels/help%20wanted
-[link_enhancement]: https://github.com/ExecutableBookProject/jupyter-book/labels/enhancement
-[link_question]: https://github.com/ExecutableBookProject/jupyter-book/labels/question
+[link_labels]: https://github.com/executablebooks/jupyter-book/labels
+[link_bugs]: https://github.com/executablebooks/jupyter-book/labels/bug
+[link_helpwanted]: https://github.com/executablebooks/jupyter-book/labels/help%20wanted
+[link_enhancement]: https://github.com/executablebooks/jupyter-book/labels/enhancement
+[link_question]: https://github.com/executablebooks/jupyter-book/labels/question
 
 [link_pullrequest]: https://help.github.com/articles/creating-a-pull-request/
 [link_fork]: https://help.github.com/articles/fork-a-repo/
@@ -221,5 +221,5 @@ You're awesome.
 
 [link_drafts]: https://help.github.com/articles/about-pull-requests/#draft-pull-requests
 
-[link_contributors]: https://github.com/ExecutableBookProject/jupyter-book/graphs/contributors
+[link_contributors]: https://github.com/executablebooks/jupyter-book/graphs/contributors
 [link_stemmrolemodels]: https://github.com/KirstieJane/STEMMRoleModels
