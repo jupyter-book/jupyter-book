@@ -12,7 +12,7 @@ The Jupyter-Book CLI allows you to build and control your
 Jupyter Book. You can install it via pip with the following command:
 
 ```bash
-pip install git+https://github.com/ExecutableBookProject/jupyter-book.git@master
+pip install -U jupyter-book --pre
 ```
 
 ## The book building process

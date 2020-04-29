@@ -59,10 +59,10 @@ You can build this book locally on the command line via the following steps:
     conda install numpy matplotlib
     ```
 
-3. Install Jupyter Book
+3. Install the pre-release for Jupyter Book
 
     ```
-    pip install git+https://github.com/ExecutableBookProject/jupyter-book.git@master
+    pip install -U jupyter-book --pre
     ```
 
 4. Clone the repository containing the source files
@@ -136,11 +136,11 @@ create your own books.
 
 ## Install
 
-Install this tool directly from the Master branch. When it has stabilized
-we will begin creating releases.
+Install the pre-release of Jupyter Book from PyPI. This version of
+Jupyter Book may change a bit, but is ready for use.
 
 ```
-pip install git+https://github.com/ExecutableBookProject/jupyter-book.git@master
+pip install -U jupyter-book --pre
 ```
 
 ## Develop
