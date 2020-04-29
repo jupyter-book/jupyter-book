@@ -7,12 +7,6 @@ The best way to do this is with a service that hosts **static websites**
 There are many options for doing this, and these sections cover some of the
 more popular ones.
 
-```{note}
-Ensure that your the HTML has been built for each page of your book
-(see {doc}`the previous section <build>`). There should be a collection of HTML
-files in your book's `_build/html` folder.
-```
-
 (publish/online-repo)=
 ## Create an *online* repository for your book
 

@@ -1,7 +1,7 @@
 # Book settings
 title: My sample book
 author: The Jupyter Book Community
-logo: 'images/logo.png'
+logo: logo.png
 
 latex:
   latex_documents:
