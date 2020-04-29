@@ -22,14 +22,14 @@ For the old Jupyter Book documentation, see [legacy.jupyterbook.org](https://leg
 (example-project)=
 ## A Small Example Project
 
-Here's [a short example](https://executablebookproject.github.io/quantecon-mini-example/docs/index.html) of a web-based book created by Jupyter Book.
+Here's [a short example](https://executablebooks.github.io/quantecon-mini-example/docs/index.html) of a web-based book created by Jupyter Book.
 
 Some of the features on display include
 
-* [Jupyter notebook-style inputs and outputs](https://executablebookproject.github.io/quantecon-mini-example/docs/python_by_example.html#version-1)
-* [citations](https://executablebookproject.github.io/quantecon-mini-example/docs/about_py.html#bibliography)
-* [numbered equations](https://executablebookproject.github.io/quantecon-mini-example/docs/python_by_example.html#another-application)
-* [numbered figures](https://executablebookproject.github.io/quantecon-mini-example/docs/getting_started.html#jupyter-notebooks) with captions and cross-referencing
+* [Jupyter notebook-style inputs and outputs](https://executablebooks.github.io/quantecon-mini-example/docs/python_by_example.html#version-1)
+* [citations](https://executablebooks.github.io/quantecon-mini-example/docs/about_py.html#bibliography)
+* [numbered equations](https://executablebooks.github.io/quantecon-mini-example/docs/python_by_example.html#another-application)
+* [numbered figures](https://executablebooks.github.io/quantecon-mini-example/docs/getting_started.html#jupyter-notebooks) with captions and cross-referencing
 
 The source files  can be [found on GitHub](https://github.com/executablebooks/quantecon-mini-example/) in the [docs directory](https://github.com/executablebooks/quantecon-mini-example/tree/master/mini_book/docs).
 
@@ -45,7 +45,7 @@ Note that
 
 * Jupytext [supports](https://jupytext.readthedocs.io/en/latest/formats.html#myst-markdown) the MyST markdown format.
 
-* If editing the markdown files using VS Code, the [MyST markdown extension](https://marketplace.visualstudio.com/items?itemName=ExecutableBookProject.myst-highlight) provides syntax highlighting and other features.
+* If editing the markdown files using VS Code, the [MyST markdown extension](https://marketplace.visualstudio.com/items?itemName=executablebooks.myst-highlight) provides syntax highlighting and other features.
 
 ### Build the demo book
 
@@ -99,7 +99,7 @@ rebuilding.
 
 ### Further Reading
 
-See [here](https://executablebookproject.github.io/quantecon-example/docs/index.html)
+See [here](https://executablebooks.github.io/quantecon-example/docs/index.html)
 for a longer Jupyter Book use case, drawn from the same source material.
 
 The remaining documentation provides more information on installation, use and

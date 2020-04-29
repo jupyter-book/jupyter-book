@@ -38,7 +38,7 @@ To create a new release, follow these steps:
 - Add a changelog for the latest version by using `github-activity`:
 
   ```
-  github-activity ExecutableBookProject/jupyter-book -s <old-version-tag> -u <new-version-tag>
+  github-activity executablebooks/jupyter-book -s <old-version-tag> -u <new-version-tag>
   ```
 
   and pasting the result into the release description on GitHub.
