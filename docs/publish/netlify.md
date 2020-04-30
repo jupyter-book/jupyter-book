@@ -22,7 +22,7 @@ You should update the python environment by including a `runtime.txt` file in yo
 as detailed in [the Netlify documentation](https://www.netlify.com/docs/build-settings/#build-environment-variables).
 
 For a full list of available environments,
-please see the [Netlify build image details](https://github.com/netlify/build-image/blob/xenial/included_software.md#languages).
+please see the [Netlify build image details](https://github.com/netlify/build-image/blob/xenial/included_software.md).
 ```
 
 ## Step 1: Connect your GitHub repo to Netlify

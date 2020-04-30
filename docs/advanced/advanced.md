@@ -24,6 +24,26 @@ google_analytics:
   mytrackingcode: UA-XXXXXXXXX-X
 ```
 
+## Check external links in your book
+
+If you'd like to make sure that the links outside of your book are valid,
+run the Sphinx link checker with Jupyter Book. This will check each of your
+external links and ensure that it resolves.
+
+```{margin}
+Note that you must ensure each link is
+the *right* target, the link checker will only ensure that it resolves.
+```
+
+To run the link checker, use the following command:
+
+```
+jupyter-book build mybookname/ --builder linkcheck
+```
+
+It will print the status of each link in your book so that you may resolve
+any incorrect links later on.
+
 ## Retain custom YAML front-matter in your files
 
 Jupyter book will check your files for YAML front-matter and will **append**

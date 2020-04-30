@@ -82,7 +82,24 @@ This section covers the general structure of the
 [Jupyter Book repository](https://github.com/executablebooks/jupyter-book), and
 explains which pieces are where.
 
-The Jupyter Book repository contains two main pieces:
+### Other major tools in the Jupyter Book stack
+
+Jupyter Book depends on a collection of open source tools in the Python / Sphinx
+ecosystem. These tools do much of the heavy lifting of Jupyter Book, and are where
+many improvements and changes will need to be. Here is a list of the major tools and
+what kinds of functionality they support:
+
+* {term}`The Sphinx Documentation engine<Sphinx>` is used to build book outputs. This relies
+  on a number of extensions that are developed by Jupyter Book.
+* {term}`MyST markdown<MyST>` is parsed into Sphinx by
+  {term}`the MyST Parser<MyST-Parser>`.
+* {term}`The MyST-NB package<MyST-NB>` parses Jupyter Notebooks into Sphinx and also
+  controls some parts of notebook execution. It also provdes
+  {doc}`inserting code outputs into content <../content/glue>`.
+* {term}`Jupyter-Cache` manages the execution and cacheing of notebook content at
+  build time. It is controlled by {term}`MyST-NB`.
+* The {term}`Sphinx-Book-Theme` defines the look and feel of Jupyter Book, and is
+  where most of the CSS rules are defined.
 
 ### MyST markdown
 
@@ -94,10 +111,7 @@ For information about the myst syntax and how to use it, see
 
 This is used to help create and build books.
 It can be found at [`./jupyter_book`](https://github.com/executablebooks/jupyter-book/tree/master/jupyter_book).
-* **The `page` module builds single pages**. This module is meant to be self-contained for
-  converting single `.ipynb`/`.md`/etc pages into HTML. Jupyter Book uses this module when
-  building entire books, but the module can also be used on its own (it's what `jupyter-book page` uses).
-  You can find the module at: [`jupyter_book/page`](https://github.com/executablebooks/jupyter-book/tree/master/jupyter_book/page).
+
 * **The `commands/` folder has the CLI**. This is the interface for users to create,
   build, and control their book via the command-line.
 * **The `sphinx.py` module builds the books**.
@@ -193,7 +207,7 @@ You're awesome.
 *&mdash; Based on contributing guidelines from the [STEMMRoleModels][link_stemmrolemodels] project.*
 
 [link_git]: https://git-scm.com
-[link_github]: https://github.com/https://github.com/jupyter/governance/blob/master/conduct/code_of_conduct.md
+[link_github]: https://github.com
 [link_jupyter-book]: https://github.com/executablebooks/jupyter-book
 [link_signupinstructions]: https://help.github.com/articles/signing-up-for-a-new-github-account
 

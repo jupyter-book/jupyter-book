@@ -45,7 +45,7 @@ Note that
 
 * Jupytext [supports](https://jupytext.readthedocs.io/en/latest/formats.html#myst-markdown) the MyST markdown format.
 
-* If editing the markdown files using VS Code, the [MyST markdown extension](https://marketplace.visualstudio.com/items?itemName=executablebooks.myst-highlight) provides syntax highlighting and other features.
+* If editing the markdown files using VS Code, the [MyST markdown extension](https://marketplace.visualstudio.com/items?itemName=ExecutableBookProject.myst-highlight) provides syntax highlighting and other features.
 
 ### Build the demo book
 
