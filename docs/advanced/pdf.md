@@ -83,13 +83,13 @@ For `Windows` please install [texlive](https://www.tug.org/texlive/windows.html)
 To build a single PDF using LaTeX, use the following command:
 
 ```
-jupyter-book build mybookname/ --builder latexpdf
+jupyter-book build mybookname/ --builder pdflatex
 ```
 
 or
 
 ```
-jb build mybookname/ --builder latexpdf
+jb build mybookname/ --builder pdflatex
 ```
 
 ```{note}
