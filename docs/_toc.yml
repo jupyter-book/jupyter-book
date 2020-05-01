@@ -10,7 +10,6 @@
 - file: customize/config
 - file: customize/toc
 - file: content-types/index
-  expand_sections:
   sections:
     - file: content-types/markdown
     - file: content-types/notebooks
@@ -21,6 +20,7 @@
 - file: content/myst
 - file: content/citations
 - file: content/math
+- file: content/figures
 - file: content/glue
 - file: content/layout
 - file: content/execute

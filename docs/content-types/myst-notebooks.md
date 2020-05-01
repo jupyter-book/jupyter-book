@@ -55,7 +55,7 @@ If **both** an `.ipynb` and a `.md` file exist in your book's folders, then
 the `.md` file will take precedence!
 ```
 
-### The Jupyter Book MyST CLI
+### Convert a markdown file into Jupytext MyST markdown
 
 Jupyter Book has a small CLI to provide common functionality for manipulating and
 creating MyST markdown files that synchronize with Jupytext. To add Jupytext syntax
