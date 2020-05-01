@@ -31,6 +31,57 @@ def test_build_book(tmpdir):
     assert '<div class="sphinx-tabs docutils container">' in html
 
 
+def test_toc_builds(tmpdir):
+    """Test building the book template with several different TOC files."""
+    path_output = Path(tmpdir).joinpath("mybook").absolute()
+
+    # Regular TOC should work
+    p_toc = path_books.joinpath("toc")
+    path_toc = p_toc.joinpath("_toc.yml")
+    out = run(f"jb build {p_toc} --path-output {tmpdir} --toc {path_toc} -W".split())
+
+    # TOC with a single-item list should work
+    p_toc = path_books.joinpath("toc")
+    path_toc = p_toc.joinpath("_toc_startwithlist.yml")
+    out = run(f"jb build {p_toc} --path-output {tmpdir} --toc {path_toc} -W".split())
+
+    # TOC errors
+    p_toc = path_books.joinpath("toc")
+
+    with pytest.raises(ValueError):
+        path_toc = p_toc.joinpath("_toc_startswithheader.yml")
+        out = run(
+            f"jb build {p_toc} --path-output {path_output} --toc {path_toc} -W".split(),
+            stderr=PIPE,
+        )
+        err = out.stderr.decode()
+        if "There was an error in building your book." in err:
+            raise ValueError(err)
+    assert "Table of Contents must start with your first page" in err
+
+    with pytest.raises(ValueError):
+        path_toc = p_toc.joinpath("_toc_url.yml")
+        out = run(
+            f"jb build {p_toc} --path-output {path_output} --toc {path_toc} -W".split(),
+            stderr=PIPE,
+        )
+        err = out.stderr.decode()
+        if "Warning, treated as error:" in err:
+            raise ValueError(err)
+    assert "Rename `url:` to `file:`" in err
+
+    with pytest.raises(ValueError):
+        path_toc = p_toc.joinpath("_toc_wrongkey.yml")
+        out = run(
+            f"jb build {p_toc} --path-output {path_output} --toc {path_toc} -W".split(),
+            stderr=PIPE,
+        )
+        err = out.stderr.decode()
+        if "Warning, treated as error:" in err:
+            raise ValueError(err)
+    assert "Unknown key in `_toc.yml`: foo" in err
+
+
 def test_build_errors(tmpdir):
     # Create the book from the template
     path = Path(tmpdir).joinpath("mybook").absolute()
@@ -78,30 +129,6 @@ def test_build_errors(tmpdir):
         if "Warning, treated as error:" in err:
             raise ValueError(err)
     assert "There was an error in building your book" in err
-
-    # TOC errors
-    p_toc = path_books.joinpath("toc")
-    with pytest.raises(ValueError):
-        path_toc = p_toc.joinpath("_toc_url.yml")
-        out = run(
-            f"jb build {p_syntax} --path-output {path} --toc {path_toc} -W".split(),
-            stderr=PIPE,
-        )
-        err = out.stderr.decode()
-        if "Warning, treated as error:" in err:
-            raise ValueError(err)
-    assert "Rename `url:` to `file:`" in err
-
-    with pytest.raises(ValueError):
-        path_toc = p_toc.joinpath("_toc_wrongkey.yml")
-        out = run(
-            f"jb build {p_syntax} --path-output {path} --toc {path_toc} -W".split(),
-            stderr=PIPE,
-        )
-        err = out.stderr.decode()
-        if "Warning, treated as error:" in err:
-            raise ValueError(err)
-    assert "Unknown key in `_toc.yml`: foo" in err
 
 
 def test_build_docs(tmpdir):

@@ -5,7 +5,7 @@ from textwrap import dedent
 from pathlib import Path
 from sphinx.util import logging
 
-from .utils import _filename_to_title, SUPPORTED_FILE_SUFFIXES
+from .utils import _filename_to_title, SUPPORTED_FILE_SUFFIXES, _error
 
 logger = logging.getLogger(__name__)
 
@@ -151,7 +151,7 @@ def add_toctree(app, docname, source):
         ntbk.cells.append(md)
         source[0] = nbf.writes(ntbk)
     else:
-        raise ValueError("Only markdown, ipynb, and rst files are supported.")
+        _error("Only markdown, ipynb, and rst files are supported in the TOC.")
 
 
 def update_indexname(app, config):
@@ -165,6 +165,9 @@ def update_indexname(app, config):
 
     # If it's a flat list, treat the first page as the master doc
     if isinstance(toc, list):
+        # Ensure that the first item in the list is not a header
+        if "header" in toc[0]:
+            _error("Table of Contents must start with your first page, not a header.")
         toc_updated = toc[0]
         if len(toc) > 1:
             subsections = toc[1:]
@@ -273,7 +276,7 @@ def build_toc(path, filename_split_char="_", skip_text=None):
         path, path, split_char=filename_split_char, skip_text=skip_text
     )
     if not structure:
-        raise ValueError(f"No content files were found in {path}.")
+        _error(f"No content files were found in {path}.")
     yaml_out = yaml.safe_dump(structure, default_flow_style=False, sort_keys=False)
     return yaml_out
 
