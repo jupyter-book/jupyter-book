@@ -20,14 +20,14 @@ This page shows you a few ways to control this.
 For more information about equation numbering, see the
 [MathJax equation numbering documentation](http://docs.mathjax.org/en/v2.7-latest/tex.html#automatic-equation-numbering).
 
-# In-line math
+## In-line math
 
 To insert in-line math use the `$` symbol within a Markdown cell.
 For example, the text `$this_{is}^{inline}$` will produce: $this_{is}^{inline}$.
 
 +++
 
-# Math blocks
+## Math blocks
 
 You can also include math blocks for separate equations. This allows you to focus attention
 on more complex or longer equations, as well as link to them in your pages. To use a block
@@ -64,7 +64,7 @@ $$
 
 +++
 
-## Numbering equations
+### Numbering equations
 
 If you'd like to number equations so that you can refer to them later, use the **math directive**.
 It looks like this:
@@ -94,7 +94,7 @@ Will generate this:
 w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
 ```
 
-## Linking to equations
+### Linking to equations
 
 If you've created an equation with a label, you can link to it from within your text
 (and across pages!).

@@ -1,4 +1,4 @@
-# Extended markdown with MyST Markdown
+# MyST Markdown Overview
 
 In addition to [Jupyter Notebook markdown](../content-types/notebooks), Jupyter Book also supports
 a special flavor of markdown called **MyST (or
@@ -126,212 +126,7 @@ role syntax `` {doc}`../intro` `` will result in: {doc}`../intro`.
 For more information on writing roles, see the
 [MyST documentation](https://myst-parser.readthedocs.io/).
 
-(labels-and-refs)=
-## Labels and cross-references
-
-Labels are a way to add tags to parts of your content that you can reference
-later on. This is helpful if you want to quickly insert links to other
-parts of your book. Labels can be added before major elements of a page,
-such as titles or figures.
-
-To add a label, use the following pattern **before** the element you wish
-to label:
-
-```
-(my-label)=
-# The thing to label
-```
-
-For example, we've added the following label above the header for this section:
-
-```
-(labels-and-refs)=
-## Labels and cross-references
-```
-
-You can insert cross-references to labels in your content with the following
-syntax: `` {ref}`label-text` ``. For example, the following syntax:
-`` {ref}`labels-and-refs` `` results in a link to this section like so:
-{ref}`labels-and-refs`.
-
-
-## Citations
-
-A common use of both roles and directives is to add citations to your book.
-You can cite references that are stored in a `bibtex` file that is in your
-book's folder. For example, let's say you have a file called
-`references.bib` with the following entry:
-
-```
-@InProceedings{ project_jupyter-proc-scipy-2018,
-  author    = { {P}roject {J}upyter and {M}atthias {B}ussonnier and {J}essica {F}orde and {J}eremy {F}reeman and {B}rian {G}ranger and {T}im {H}ead and {C}hris {H}oldgraf and {K}yle {K}elley and {G}ladys {N}alvarte and {A}ndrew {O}sheroff and {M} {P}acer and {Y}uvi {P}anda and {F}ernando {P}erez and {B}enjamin {R}agan-{K}elley and {C}arol {W}illing },
-  title     = { {B}inder 2.0 - {R}eproducible, interactive, sharable environments for science at scale },
-  booktitle = { {P}roceedings of the 17th {P}ython in {S}cience {C}onference },
-  pages     = { 113 - 120 },
-  year      = { 2018 },
-  editor    = { {F}atih {A}kici and {D}avid {L}ippa and {D}illon {N}iederhut and {M} {P}acer },
-  doi       = { 10.25080/Majora-4af1f417-011 }
-}
-```
-
-You can add a citation in-line in your markdown with the **{cite}** role.
-The following syntax: `` {cite}`project_jupyter-proc-scipy-2018` `` will render like
-this: {cite}`project_jupyter-proc-scipy-2018`.
-
-Once you've added citations to your page, you can add a bibliography by
-calling the **bibliography directive**. To do so, use this syntax:
-
-````
-```{bibliography} references.bib
-```
-````
-
-And in your built book, it will look like this:
-
-```{bibliography} mdrefs.bib
-```
-
-For more information about adding citations, see {doc}`citations`. For more
-information about the MyST markdown language, see
-[The MyST Parser documentation][myst-parser].
-
-## Figures
-
-MyST Markdown also lets you include **figures** in your page. Figures are
-like images, except that they are easier to reference elsewhere in your
-book, and they include things like captions. To include a figure, use this
-pattern:
-
-````
-```{figure} ../images/C-3PO_droid.png
----
-height: 150px
-name: my_figure
----
-Here is my figure caption!
-```
-````
-
-```{figure} ../images/C-3PO_droid.png
----
-height: 150px
-name: my_figure
----
-Here is my figure caption!
-```
-
-### Referencing figures
-
-You can then refer to this figure using the `{ref}` role like:
-`` {ref}`my-figure` ``, which will replace the reference with the figure
-caption like so: {ref}`my_figure`.
-Another convenient way to create cross-references is with the `{numref}` role,
-which automatically numbers the labelled objects.
-For example, `` {numref}`my_figure` `` will produce a reference like:
-{numref}`my_figure`.
-
-If an explicit text is provided, this caption will serve as the title of the reference. The characters "%s" and "{number}" will be replaced with a figure number, while "{name}" will be replaced with a figure caption. For example, ``{numref}`Figure {number}: {name} <my_figure>` `` will produce: {numref}`Figure {number}: {name} <my_figure>`.
-
-### Margin captions and figures
-
-You can include a figure caption on the margin using `:figclass: margin-caption` as seen in {numref}`margin_caption_figure`.
-
-```{figure} ../images/cool.jpg
----
-height: 150px
-figclass: margin-caption
-name: margin_caption_figure
----
-Here is my figure caption!
-```
-
-Another option is to include figures on the margin using `:figclass: margin` as seen in {numref}`margin_figure`.
-
-```{figure} ../images/cool.jpg
----
-width: 60%
-figclass: margin
-name: margin_figure
----
-Here is my figure caption!
-```
-
-### Figure scaling and alignment
-
-Figures can also be aligned by using the option `:align: right` or `:align: left`. By default, figures are aligned to the center (see {numref}`my_figure`).
-
-````
-```{figure} ../images/cool.jpg
----
-scale: 50%
-align: left
----
-Here is my figure caption!
-```
-````
-
-```{figure} ../images/cool.jpg
----
-scale: 50%
-align: left
----
-Here is my figure caption!
-```
-
-````
-```{figure} ../images/cool.jpg
----
-scale: 50%
-align: right
----
-Here is my figure caption!
-```
-````
-
-```{figure} ../images/cool.jpg
----
-scale: 50%
-align: right
-
----
-Here is my figure caption!
-```
-
-### Figure Parameters
-
-The following options are supported:
-
-* `scale` : _integer percentage_
-
-  Uniformly scale the figure. The default is "100" which indicates no scaling. The symbol "%" is optional.
-
-* `width` : _length or percentage_
-
-  You can set the figure width in the following units: "em", "ex", "px","in" ,"cm", "mm", "pt", "pc", "%".
-
-* `height` : _length_
-
-  You can set the figure height in the following units: "em", "ex", "px", "in", "cm", "mm", "pt", "pc", "".
-
-* `alt` : _text_
-
-  Text to be displayed if the figure cannot display, or if the reader is using assistive technologies. Generally entails a short description of the figure.
-
-* `align` : _"left", "center", or "right"_
-
-  Align the figure left, center, or right. Default alignment is center.
-
-* `name` : _text_
-
-  A unique identifier for your figure that you can use to reference it with `{ref}` or `{numref}`. Cannot contain spaces or special characters.
-
-* `figclass` : _text_
-
-  Value of the figure's class attribute which can be used to add custom CSS or JavaScript. Predefined options include:
-  * _"margin"_ : Display figure on the margin
-  * _"margin-caption"_ : Display figure caption on the margin
-
-## Special blocks of markdown
+## Special content blocks
 
 Another common use of directives is to designate "special blocks" of your
 content. This section covers a few common ones.
@@ -463,6 +258,15 @@ To reference terms in your glossary, use the `{term}` role. For example,
 `` {term}`term one` `` becomes {term}`term one`. And `` {term}`A second term` ``
 becomes {term}`A second term`.
 
+## Citations and cross-references
+
+You can add citations and cross-references to your book's content. See
+{doc}`citations` for more information.
+
+## Figures
+
+You can control many aspects of figures in your book. See {doc}`figures` for
+more information.
 
 ## Page layout and sidebar content
 
