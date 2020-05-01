@@ -21,6 +21,8 @@ Let's take a look at an example `_toc.yml` file
 for reference (it is a subset of this book's `_toc.yml` file):
 
 ```yaml
+- file: intro
+
 - header: Get started
 - file: start/overview
 - file: start/build
@@ -35,6 +37,11 @@ for reference (it is a subset of this book's `_toc.yml` file):
   sections:
     - file: test_pages/layout_elements
     - file: test_pages/equations
+```
+
+```{warning}
+The Table of Contents file *must* start with your book's first page. It cannot
+start with a header
 ```
 
 ### The top-layer of `_toc.yml`
