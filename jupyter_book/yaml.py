@@ -107,6 +107,7 @@ def yaml_to_sphinx(yaml, config):
         "logo": "html_logo",
         "title": "html_title",
         "execute_notebooks": "jupyter_execute_notebooks",
+        "copyright": "copyright",
     }
     for key, newkey in YAML_TRANSLATIONS.items():
         if key in yaml:
