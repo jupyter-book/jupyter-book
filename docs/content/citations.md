@@ -35,17 +35,18 @@ with the `{bibliography}` directive.
 
 2. **Add references**. Add some references to your BibTex file. See
    [the BibTex documentation](http://www.bibtex.org/Using/) for information about
-   the BibTex reference style. Here's the example from above:
+   the BibTex reference style. Here's an example citation:
 
    ```
-   @InProceedings{ project_jupyter-proc-scipy-2018,
-     author    = { {P}roject {J}upyter and {M}atthias {B}ussonnier and {J}essica {F}orde and {J}eremy {F}reeman and {B}rian {G}ranger and {T}im {H}ead and    {C}hris {H}oldgraf and {K}yle {K}elley and {G}ladys {N}alvarte and {A}ndrew {O}sheroff and {M} {P}acer and {Y}uvi {P}anda and {F}ernando {P}erez and    {B}enjamin {R}agan-{K}elley and {C}arol {W}illing },
-     title     = { {B}inder 2.0 - {R}eproducible, interactive, sharable environments for science at scale },
-     booktitle = { {P}roceedings of the 17th {P}ython in {S}cience {C}onference },
-     pages     = { 113 - 120 },
-     year      = { 2018 },
-     editor    = { {F}atih {A}kici and {D}avid {L}ippa and {D}illon {N}iederhut and {M} {P}acer },
-     doi       = { 10.25080/Majora-4af1f417-011 }
+   @article{perez2011python
+   ,	title	= {Python: an ecosystem for scientific computing}
+   ,	author	= {Perez, Fernando and Granger, Brian E and Hunter, John D}
+   ,	journal	= {Computing in Science \\& Engineering}
+   ,	volume	= {13}
+   ,	number	= {2}
+   ,	pages	= {13--21}
+   ,	year	= {2011}
+   ,	publisher	= {AIP Publishing}
    }
    ```
 3. **Add a citation**. In your content, add the following text to include a citation
@@ -57,18 +58,18 @@ with the `{bibliography}` directive.
    For example, this text
 
    ```
-   {cite}`project_jupyter-proc-scipy-2018`
+   {cite}`perez2011python`
    ```
 
-   generates this citation: {cite}`project_jupyter-proc-scipy-2018`
+   generates this citation: {cite}`perez2011python`
 
    You can also include multiple citations in one go, like so:
 
    ```
-   {cite}`project_jupyter-proc-scipy-2018,holdgraf_rapid_2016`
+   {cite}`perez2011python,holdgraf_rapid_2016,RePEc:the:publsh:1367,caporaso2010qiime`
    ```
 
-   becomes {cite}`project_jupyter-proc-scipy-2018,holdgraf_rapid_2016`.
+   becomes {cite}`perez2011python,holdgraf_rapid_2016,RePEc:the:publsh:1367,caporaso2010qiime`.
 
 4. **Add a bibliography**. Use the following directive to do so:
 
@@ -77,10 +78,9 @@ with the `{bibliography}` directive.
    ```
    ````
 
-   This will generate a bibliography for your entire bibtex file, like so:
+   This will generate a bibliography for your entire bibtex file. See
+   [the bibliography at the end of this page](citations/bibliography) for an example.
 
-   ```{bibliography} ../references.bib
-   ```
 
 When your book is built, the bibliography and citations will now be included.
 
@@ -96,6 +96,11 @@ jupyter-book clean mybookname/
 
 See {ref}`clean-build` for more information.
 ````
+
+See the [`sphinxcontrib-bibtex documentation`](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/usage.html#roles-and-directives)
+for more information about how to use this feature. Though note the documentation
+is written for rST and you'll need to adapt the directive/role syntax for your
+markdown content.
 
 (labels-and-refs)=
 ## Cross-references and labels
@@ -134,3 +139,9 @@ content you'd like to reference. Here is a quick overview of some common options
 * `{numref}` is used to provide *numbered* references to figures
 * `{doc}` is used to reference other files in your book
 * `{eq}` is used to reference equations that have been given a `label` value
+
+(citations/bibliography)=
+## Bibliography
+
+```{bibliography} ../references.bib
+```
