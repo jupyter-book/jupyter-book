@@ -56,7 +56,7 @@ You can build this book locally on the command line via the following steps:
 2. Install the Python libraries needed to run the code in this particular example:
 
     ```
-    conda install numpy scipy matplotlib sympy pandas
+    conda env create -f environment.yml
     ```
 
 3. Install the pre-release for Jupyter Book
@@ -75,8 +75,7 @@ You can build this book locally on the command line via the following steps:
 
     ```
     cd quantecon-mini-example
-    jupyter-book toc mini_book/docs
-    jupyter-book build mini_book/docs
+    jupyter-book build mini_book
     ```
 
 6. View the result through a browser --- try (with, say, firefox)
