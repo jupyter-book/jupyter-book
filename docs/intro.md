@@ -62,7 +62,7 @@ You can build this book locally on the command line via the following steps:
 3. Install the pre-release for Jupyter Book
 
     ```
-    pip install -U jupyter-book --pre
+    pip install -U jupyter-book>=0.7.0b
     ```
 
 4. Clone the repository containing the source files
@@ -140,7 +140,7 @@ Install the pre-release of Jupyter Book from PyPI. This version of
 Jupyter Book may change a bit, but is ready for use.
 
 ```
-pip install -U jupyter-book --pre
+pip install -U jupyter-book>=0.7.0b
 ```
 
 ## Develop

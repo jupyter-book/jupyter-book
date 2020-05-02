@@ -60,7 +60,12 @@ Assuming that your book's dependencies are in a `requirements.txt` file,
 **put the following command in the *Build command* section**:
 
 ```bash
-pip install --pre jupyter-book && pip install -r requirements.txt && jupyter-book build .
+pip install -r requirements.txt && jupyter-book build .
+```
+
+```{note}
+Ensure that Jupyter Book's version in your `requirements.txt` file is at least
+`0.7.0b`. This line will do the trick: `jupyter-book>=0.7.0b`.
 ```
 
 Finally, the *Publish directory* should be `_build/html`.
