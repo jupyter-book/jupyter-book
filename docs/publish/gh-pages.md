@@ -70,7 +70,14 @@ an action that does the following things:
 * Uses a `gh-pages` action to upload that HTML to your `gh-pages` branch.
 
 For reference, [here is a sample repository](https://github.com/executablebooks/github-action-demo)
-that builds a book with GitHub Actions. Here is a simple YAML configuration
+that builds a book with GitHub Actions.
+
+```{note}
+Ensure that Jupyter Book's version in your `requirements.txt` file is at least
+`0.7.0b`. This line will do the trick: `jupyter-book>=0.7.0b`.
+```
+
+Here is a simple YAML configuration
 for a github action that will publish your book to a `gh-pages` branch.
 
 ```yaml
@@ -98,10 +105,6 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
-    - name: Install Jupyter Book
-      run: |
-        pip install -U --pre jupyter-book
-
 
     # Build the book
     - name: Build the book
