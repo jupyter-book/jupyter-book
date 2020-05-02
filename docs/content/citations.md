@@ -84,21 +84,23 @@ with the `{bibliography}` directive.
 
 When your book is built, the bibliography and citations will now be included.
 
-````{note}
-Adding citations and cross-references to your book might require that you re-build
-your book from scratch in order to ensure that these references and links are resolved
-correctly. If you run into errors, try cleaning your book's `_build/` folder
-by running this command:
+`````{warning}
+If you are adding a bibliography to a *different* page from your references, then
+make sure you add the `:all:` flag when creating the bibliography, like so:
 
+````
+```{bibliography}
+:all:
 ```
-jupyter-book clean mybookname/
-```
-
-See {ref}`clean-build` for more information.
 ````
 
-See the [`sphinxcontrib-bibtex documentation`](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/usage.html#roles-and-directives)
-for more information about how to use this feature. Though note the documentation
+See [this `sphinxcontrib-bibtex` section](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/usage.html#unresolved-citations-across-documents)
+for more information.
+`````
+
+This feature uses [`sphinxcontrib-bibtex`](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/usage.html#roles-and-directives)
+under the hood, see its documentation for more information on how to use and configure
+bibliographies in your book. Though note the documentation
 is written for rST and you'll need to adapt the directive/role syntax for your
 markdown content.
 
