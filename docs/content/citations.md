@@ -86,13 +86,8 @@ When your book is built, the bibliography and citations will now be included.
 
 `````{warning}
 If you are adding a bibliography to a *different* page from your references, then
-make sure you add the `:all:` flag when creating the bibliography, like so:
-
-````
-```{bibliography}
-:all:
-```
-````
+you may need to ensure that page is processed last, which Sphinx does alphabetically.
+For example, name the file `zreferences.rst`.
 
 See [this `sphinxcontrib-bibtex` section](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/usage.html#unresolved-citations-across-documents)
 for more information.
