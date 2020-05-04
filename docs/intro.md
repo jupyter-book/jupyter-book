@@ -82,13 +82,13 @@ You can build this book locally on the command line via the following steps:
 
 
     ```
-    firefox mini_book/docs/_build/html/index.html
+    firefox mini_book/_build/html/index.html
     ```
 
     or
 
     ```
-    cd mini_book/docs/_build/html
+    cd mini_book/_build/html
     python -m http.server
     ```
 
