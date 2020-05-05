@@ -27,10 +27,10 @@
 - file: content/execute
 
 - header: Make your book interactive
-- file: content/launchbuttons
-- file: content/hiding
-- file: content/interactive
-- file: content/widgets
+- file: interactive/launchbuttons
+- file: interactive/hiding
+- file: interactive/interactive
+- file: interactive/widgets
 
 - header: Advanced and miscellaneous
 - file: advanced/pdf

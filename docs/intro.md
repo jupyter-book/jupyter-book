@@ -24,9 +24,9 @@ Jupyter Book has the following main features:
   In addition, {ref}`cache and re-use<execute/cache>` outputs to be used later.
 * **[Insert notebook outputs into your content](content/glue)**. Generate outputs
   as you build your documentation, and insert them in-line with your content across pages.
-* **[Add interactivity to your book](content/launchbuttons)**. You can
-  [toggle visibility of cells](content/hiding), [connect with an online service like Binder](content/launchbuttons),
-  and include [interactive outputs from Jupyter](content/interactive).
+* **[Add interactivity to your book](interactive/launchbuttons)**. You can
+  [toggle visibility of cells](interactive/hiding), [connect with an online service like Binder](interactive/launchbuttons),
+  and include [interactive outputs from Jupyter](interactive/interactive).
 * **[Generate a variety of outputs](start/build)**, including single- and multi-page websites,
   as well [as PDF outputs](advanced/pdf).
 
