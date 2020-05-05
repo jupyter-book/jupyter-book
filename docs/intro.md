@@ -53,22 +53,22 @@ You can build this book locally on the command line via the following steps:
 
 1. Ensure you have a recent version of [Anaconda Python](https://www.anaconda.com/distribution/) installed.
 
-2. Install the Python libraries needed to run the code in this particular example:
-
-    ```
-    conda env create -f environment.yml
-    ```
-
-3. Install the pre-release for Jupyter Book
+2. Install the pre-release for Jupyter Book
 
     ```
     pip install -U jupyter-book>=0.7.0b
     ```
 
-4. Clone the repository containing the source files
+3. Clone the repository containing the source files
 
     ```
     git clone https://github.com/executablebooks/quantecon-mini-example
+    ```
+
+4. Install the Python libraries needed to run the code in this particular example:
+
+    ```
+    conda env create -f environment.yml
     ```
 
 5. Run Jupyter Book over the source files
@@ -82,13 +82,13 @@ You can build this book locally on the command line via the following steps:
 
 
     ```
-    firefox mini_book/docs/_build/html/index.html
+    firefox mini_book/_build/html/index.html
     ```
 
     or
 
     ```
-    cd mini_book/docs/_build/html
+    cd mini_book/_build/html
     python -m http.server
     ```
 
