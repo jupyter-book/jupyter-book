@@ -29,6 +29,8 @@ Jupyter Book has the following main features:
   and include [interactive outputs from Jupyter](interactive/interactive).
 * **[Generate a variety of outputs](start/build)**, including single- and multi-page websites,
   as well [as PDF outputs](advanced/pdf).
+* **[A command-line interface](reference/cli)** to quickly generate your books with one
+  command, like so: `jupyter-book build mybook/`
 
 ```{tip}
 This website is built with Jupyter Book! You can browse its contents to the
@@ -97,14 +99,7 @@ You can build this book locally on the command line via the following steps:
     firefox mini_book/_build/html/index.html
     ```
 
-    or
-
-    ```
-    cd mini_book/_build/html
-    python -m http.server
-    ```
-
-    and point your browser at the indicated port (e.g., ``localhost:8000``).
+    (or simply double-click on the `html` file)
 
 Now you might like to try editing the files in ``mini_book/docs`` and then
 rebuilding.
@@ -114,6 +109,7 @@ rebuilding.
 See [the full QuantEcon example](https://executablebooks.github.io/quantecon-example/docs/index.html)
 for a longer Jupyter Book use case, drawn from the same source material.
 
+For more information on how to use Jupyter Book, see {doc}`start/overview`.
 
 ## Under the hood - the components of Jupyter Book
 
@@ -139,11 +135,3 @@ For more information about the project behind many of these tools, see
 
 Jupyter Book is an open project and we welcome your feedback and contributions!
 To contribute to Jupyter Book, see {doc}`contribute/intro`.
-
-## Use
-
-The primary way to use this tool is via the command line. It provides a
-top-level command called `jupyter-book`, and a number of sub-commands.
-Run `jupyter-book -h` for more information.
-
-For more information on how to use this tool, see {doc}`start/overview`.
