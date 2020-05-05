@@ -16,8 +16,9 @@
     - file: content-types/myst-notebooks
     - file: content-types/jupytext
 
-- header: Writing book content
+- header: Write book content
 - file: content/myst
+- file: content/content-blocks
 - file: content/citations
 - file: content/math
 - file: content/figures
@@ -25,7 +26,7 @@
 - file: content/layout
 - file: content/execute
 
-- header: Making your book interactive
+- header: Make your book interactive
 - file: content/launchbuttons
 - file: content/hiding
 - file: content/interactive
@@ -35,8 +36,9 @@
 - file: advanced/pdf
 - file: advanced/sphinx
 - file: advanced/advanced
-- file: customize/faq
-- file: advanced/contributing
+- file: contribute/intro
+  sections:
+    - file: contribute/develop
 
 - header: Reference
 - file: reference/cli

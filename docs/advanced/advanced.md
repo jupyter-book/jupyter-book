@@ -1,8 +1,7 @@
-# Advanced topics and how-tos
+# How-to and FAQ
 
 This page contains more advanced and complete information about the
 [`jupyter-book` repository](https://github.com/executablebooks/jupyter-book). See the sections below.
-
 
 ## Enable Google Analytics
 
@@ -50,7 +49,33 @@ jupyter-book clean mybookname/ --all
 
 This will entirely remove the folders in the `_build/` directory.
 
-## Add tags to notebook cells based on their content
+## How should I add cell tags to my notebooks?
+
+You can control the behavior of Jupyter Book by putting custom tags
+in the metadata of your cells. This allows you to do things like
+{doc}`automatically hide code cells <../content/hiding>`) as well as
+{ref}`adding interactive widgets to cells <launch/thebelab>`.
+
+There are two straightforward ways to add metadata to cells:
+
+1. **Use the Jupyter Notebook cell tag editor**. The Jupyter Notebook ships with a
+   cell tag editor by default. This lets you add cell tags to each cell quickly.
+
+   To enable the cell tag editor, go click `View -> Cell Toolbar -> Tags`. This
+   will enable the tags UI. Here's what the menu looks like.
+
+   ![](../images/tags_notebook.png)
+
+2. **Use the JupyterLab Cell Tags plugin**. JupyterLab is an IDE-like Jupyter
+   environment that runs in your browser. It has a "cell tags" plugin built-in,
+   which exposes a user interface that lets you quickly insert cell tags.
+
+   You'll find tags under the "wrench" menu section.
+   Here's what the tags UI in JupyterLab looks like.
+
+   ![](../images/tags_jupyterlab.png)
+
+### Add tags to notebook cells based on their content
 
 Sometimes you'd like to quickly scan through a notebook's cells in order to
 add tags based on the content of the cell. For example, you might want to
@@ -91,3 +116,8 @@ for ipath in notebooks:
 
     nbf.write(ntbk, ipath)
 ```
+
+## What if I have an issue or question?
+
+If you've got questions, concerns, or suggestions, please open an issue at
+[at the jupyter book issues page](https://github.com/executablebooks/jupyter-book/issues)
