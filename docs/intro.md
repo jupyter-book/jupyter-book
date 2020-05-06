@@ -39,9 +39,12 @@ left to see what is possible.
 
 ## Get started
 
-To get started with Jupyter Book, check out the [getting started guide](start/overview),
-or browse the contents of the navigation menu of this book (to the left, if you're
-on a laptop).
+To get started with Jupyter Book, you can either
+
+* check out the [getting started guide](start/overview),
+* browse the contents of the navigation menu of this book (to the left, if you're
+on a laptop), or
+* review the example project shown immediately below (if you like learning from examples).
 
 (example-project)=
 ## A Small Example Project
