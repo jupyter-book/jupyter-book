@@ -127,7 +127,7 @@ a few key pieces:
   read-in notebooks so they are built into your book.
 * It uses {term}`the Sphinx documentation engine<Sphinx>`
   to build outputs from your book's content.
-* It uses a slightly-modified version of the [PyData Sphinx theme](https://pydata-sphinx-theme.readthedocs.io/en/latest/)
+* It uses a slightly modified version of the [PyData Sphinx theme](https://pydata-sphinx-theme.readthedocs.io/en/latest/)
   for beautiful HTML output.
 * It uses a collection of Sphinx plugins and tools to add new functionality.
 
