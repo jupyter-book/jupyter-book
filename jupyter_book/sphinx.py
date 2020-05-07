@@ -23,7 +23,6 @@ DEFAULT_CONFIG = dict(
         "sphinxcontrib.bibtex",
     ],
     togglebutton_selector=".toggle, .secondtoggle",
-    jupyter_sphinx_require_url="",
     master_doc="index.rst",  # This is auto-updated to the first page of the TOC
     language=None,
     pygments_style="sphinx",
