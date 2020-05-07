@@ -32,6 +32,7 @@ DEFAULT_CONFIG = dict(
         "navbar_footer_text": (
             "Powered by <a href='https://jupyterbook.org'>Jupyter Book</a>"
         ),
+        "search_bar_text": "Search this book...",
     },
     html_add_permalinks="¶",
     numfig=True,

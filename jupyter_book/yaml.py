@@ -52,7 +52,7 @@ def yaml_to_sphinx(yaml, config):
     }
 
     # Theme configuration updates
-    theme_options = sphinx_config.get("html_theme_options", {})
+    theme_options = config.html_theme_options
 
     # Launch button configuration
     theme_launch_buttons_config = theme_options.get("launch_buttons", {})
