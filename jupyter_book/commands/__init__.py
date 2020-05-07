@@ -290,7 +290,6 @@ def clean(path_book, all_, html, latex):
     If the all option has been flagged, it will remove the entire _build. If html/latex
     option is flagged, it will remove the html/latex subdirectories."""
 
-
     def remove_option(path, option, rm_both=False):
         """Remove folder specified under option. If rm_both is True, remove folder and
         skip message_box."""
@@ -321,16 +320,13 @@ def clean(path_book, all_, html, latex):
     def remove_default(path):
         """Remove all subfolders in _build except .jupyter_cache."""
         to_remove = [
-            dd
-            for dd in path.iterdir()
-            if dd.is_dir() and dd.name != ".jupyter_cache"
+            dd for dd in path.iterdir() if dd.is_dir() and dd.name != ".jupyter_cache"
         ]
         for dd in to_remove:
             sh.rmtree(path.joinpath(dd.name))
         _message_box(
             f"Your _build directory has been emptied except for .jupyter_cache"
         )
-
 
     PATH_OUTPUT = Path(path_book).absolute()
     if not PATH_OUTPUT.is_dir():
