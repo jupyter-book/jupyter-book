@@ -41,10 +41,72 @@ def test_clean_book(tmpdir):
             raise ValueError(err)
     assert "Path to book isn't a directory" in err
 
-    # Non-existent _build
-    with pytest.raises(ValueError):
-        out = run(f"jb clean {path}".split(), stderr=PIPE)
-        err = out.stderr.decode()
-        if "ValueError" in err:
-            raise ValueError(err)
-    assert "Your book does not have a _build directory." in err
+
+def test_clean_html(tmpdir):
+    path = path_books.joinpath("clean_cache")
+    build_path = path.joinpath("_build")
+    run(f"jb build {path}".split())
+
+    # Ensure _build exists
+    assert build_path.exists()
+    # Ensure _build/html exists
+    assert build_path.joinpath("html").exists()
+
+    # Remove html
+    run(f"jb clean --html {path}".split())
+
+    # Ensure _build  exists
+    assert build_path.exists()
+
+    # Ensure html is removed
+    assert not build_path.joinpath("html").exists()
+
+
+def test_clean_latex(tmpdir):
+    path = path_books.joinpath("clean_cache")
+    build_path = path.joinpath("_build")
+    run(f"jb build {path} --builder pdflatex".split(), check=True)
+
+    # Ensure _build exists
+    assert build_path.exists()
+    # Ensure _build/html exists
+    assert build_path.joinpath("latex").exists()
+
+    # Remove html
+    run(f"jb clean --latex {path}".split())
+
+    # Ensure _build exists
+    assert build_path.exists()
+
+    # Ensure latex is removed
+    assert not build_path.joinpath("latex").exists()
+
+
+def test_clean_html_latex(tmpdir):
+    path = path_books.joinpath("clean_cache")
+    build_path = path.joinpath("_build")
+    run(f"jb build {path} --builder pdflatex".split(), check=True)
+
+    # Ensure _build exists
+    assert build_path.exists()
+    # Ensure _build/html exists
+    assert build_path.joinpath("latex").exists()
+
+    # Ensure _build exists
+    assert build_path.exists()
+
+    run(f"jb build {path} --builder html".split())
+    # Ensure _build/html exists
+    assert build_path.joinpath("html").exists()
+
+    # Remove html
+    run(f"jb clean --html --latex {path}".split())
+
+    # Ensure _build exists
+    assert build_path.exists()
+
+    # Ensure latex is removed
+    assert not build_path.joinpath("latex").exists()
+
+    # Ensure html is removed
+    assert not build_path.joinpath("html").exists()

@@ -283,8 +283,50 @@ def toc(path, filename_split_char, skip_text, output_folder):
 @main.command()
 @click.argument("path-book")
 @click.option("-a", "--all", "all_", is_flag=True, help="Remove build directory.")
-def clean(path_book, all_):
-    """Empty build directory except jupyter_cache subdirectory."""
+@click.option("--html", is_flag=True, help="Remove html directory.")
+@click.option("--latex", is_flag=True, help="Remove latex directory.")
+def clean(path_book, all_, html, latex):
+    """By default this method empties the build directory except jupyter_cache.
+    If the all option has been flagged, it will remove the entire _build. If html/latex
+    option is flagged, it will remove the html/latex subdirectories."""
+
+    def remove_option(path, option, rm_both=False):
+        """Remove folder specified under option. If rm_both is True, remove folder and
+        skip message_box."""
+        option_path = path.joinpath(option)
+        if not option_path.is_dir():
+            return
+
+        sh.rmtree(option_path)
+        if not rm_both:
+            _message_box(f"Your {option} directory has been removed")
+
+    def remove_html_latex(path):
+        """Remove both html and latex folders."""
+        print_msg = False
+        for opt in ["html", "latex"]:
+            if path.joinpath(opt).is_dir():
+                print_msg = True
+            remove_option(path, opt, True)
+
+        if print_msg:
+            _message_box(f"Your html and latex directories have been removed")
+
+    def remove_all(path):
+        """Remove _build directory entirely."""
+        sh.rmtree(path)
+        _message_box(f"Your _build directory has been removed")
+
+    def remove_default(path):
+        """Remove all subfolders in _build except .jupyter_cache."""
+        to_remove = [
+            dd for dd in path.iterdir() if dd.is_dir() and dd.name != ".jupyter_cache"
+        ]
+        for dd in to_remove:
+            sh.rmtree(path.joinpath(dd.name))
+        _message_box(
+            f"Your _build directory has been emptied except for .jupyter_cache"
+        )
 
     PATH_OUTPUT = Path(path_book).absolute()
     if not PATH_OUTPUT.is_dir():
@@ -292,24 +334,18 @@ def clean(path_book, all_):
 
     build_path = PATH_OUTPUT.joinpath("_build")
     if not build_path.is_dir():
-        _error(f"Your book does not have a _build directory.")
+        return
 
     if all_:
-        # Remove .jupyter_cache
-        sh.rmtree(build_path)
-        _message_box(f"Your _build directory has been removed")
+        remove_all(build_path)
+    elif html and latex:
+        remove_html_latex(build_path)
+    elif html:
+        remove_option(build_path, "html")
+    elif latex:
+        remove_option(build_path, "latex")
     else:
-        # Empty _build except .jupyter_cache
-        to_remove = [
-            dd
-            for dd in build_path.iterdir()
-            if dd.is_dir() and dd.name != ".jupyter_cache"
-        ]
-        for dd in to_remove:
-            sh.rmtree(build_path.joinpath(dd.name))
-        _message_box(
-            f"Your _build directory has been emptied except for .jupyter_cache"
-        )
+        remove_default(build_path)
 
 
 @main.group()
