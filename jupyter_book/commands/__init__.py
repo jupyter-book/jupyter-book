@@ -172,7 +172,7 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
                 with cd(OUTPUT_PATH):
                     output = subprocess.run([makecmd, "all-pdf"])
                     if output.returncode != 0:
-                        exit(output.returncode)
+                        _error("Error: Failed to build pdf")
                 _message_box(
                     f"""\
                 A PDF of your book can be found at:
