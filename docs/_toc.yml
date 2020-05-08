@@ -30,7 +30,6 @@
 - file: interactive/launchbuttons
 - file: interactive/hiding
 - file: interactive/interactive
-- file: interactive/widgets
 
 - header: Advanced and miscellaneous
 - file: advanced/pdf
