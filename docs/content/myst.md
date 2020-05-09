@@ -164,5 +164,5 @@ Jupytext [supports the MyST markdown format](https://jupytext.readthedocs.io/en/
 ### VSCode
 
 If editing the markdown files using VS Code, the
-[vscode MyST markdown extension](https://marketplace.visualstudio.com/items?itemName=executablebooks.myst-highlight)
+[vscode MyST markdown extension](https://marketplace.visualstudio.com/items?itemName=ExecutableBookProject.myst-highlight)
 provides syntax highlighting and other features.
