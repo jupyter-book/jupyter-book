@@ -21,6 +21,7 @@ relates to Jupyter Book. You can
 find much more information about this flavor of markdown at
 [The Myst Parser documentation][myst-parser].
 
+[myst-parser]: https://myst-parser.readthedocs.io/en/latest/
 
 ## Directives and roles
 
