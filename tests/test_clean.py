@@ -94,7 +94,6 @@ def test_clean_html_latex(tmpdir):
 
     # Ensure _build exists
     assert build_path.exists()
-
     os.mkdir(os.path.join(build_path, "latex"))
 
     # Ensure _build/html exists
