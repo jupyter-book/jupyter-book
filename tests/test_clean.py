@@ -35,7 +35,7 @@ def test_clean_book(tmpdir):
     # === Excepted errors ===
     # Non-existent folder
     with pytest.raises(ValueError):
-        out = run(f"jb clean doesnt/exist".split(), stderr=PIPE)
+        out = run("jb clean doesnt/exist".split(), stderr=PIPE)
         err = out.stderr.decode()
         if "ValueError" in err:
             raise ValueError(err)

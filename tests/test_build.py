@@ -98,7 +98,7 @@ def test_build_errors(tmpdir):
 
     # Non-existent folder
     with pytest.raises(ValueError):
-        out = run(f"jb build doesnt/exist".split(), stderr=PIPE)
+        out = run("jb build doesnt/exist".split(), stderr=PIPE)
         err = out.stderr.decode()
         if "ValueError" in err:
             raise ValueError(err)
