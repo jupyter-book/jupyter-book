@@ -70,7 +70,7 @@ def test_clean_latex(tmpdir):
     # Ensure _build exists
     assert build_path.exists()
 
-    run(f"jb build {path} --builder pdflatex".split(), check=True)
+    run(f"jb build {path} --builder pdflatex".split())
 
     # Ensure _build/html exists
     assert build_path.joinpath("latex").exists()
@@ -89,7 +89,7 @@ def test_clean_html_latex(tmpdir):
     path = path_books.joinpath("clean_cache")
     build_path = path.joinpath("_build")
 
-    run(f"jb build {path} --builder pdflatex".split(), check=True)
+    run(f"jb build {path} --builder pdflatex".split())
 
     # Ensure _build exists
     assert build_path.exists()
