@@ -267,7 +267,7 @@ def create(path_book):
 )
 def toc(path, filename_split_char, skip_text, output_folder):
     """Generate a _toc.yml file for your content folder (and sub-directories).
-    The alpha-numeric name of valid conten files will be used to choose the
+    The alpha-numeric name of valid content files will be used to choose the
     order of pages/sections. If any file is called "index.{extension}", it will be
     chosen as the first file.
     """
