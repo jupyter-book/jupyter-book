@@ -70,6 +70,9 @@ run the following command:
 ```bash
 jupyter-book toc mybookname/
 ```
+
+And it will generate a TOC for you. Note that there must be at least one content
+file in each folder in order for any sub-folders to be parsed.
 ````
 
 ### Inspecting your book's contents

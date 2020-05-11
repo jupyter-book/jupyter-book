@@ -71,6 +71,21 @@ Some hidden toggle content!
 ![](../images/cool.jpg)
 ```
 
+Note that if you'd like to **show the toggle content by default**, you can
+add the `:show:` flag when you call `{toggle}`, like so:
+
+````
+```{toggle} Click the button to reveal!
+:show:
+Some hidden toggle content!
+
+![](../images/cool.jpg)
+```
+````
+
+See the [`sphinx-togglebutton` documentation](https://sphinx-togglebutton.readthedocs.io/en/latest/)
+for more information about toggle functionality.
+
 ## Hide code cell content
 
 You can hide most cell elements of a page. The sections below describe how
