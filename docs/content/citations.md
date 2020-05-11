@@ -119,7 +119,7 @@ For example, we've added the following label above the header for this section:
 
 ```
 (labels-and-refs)=
-## Labels and cross-references
+## Cross-references and labels
 ```
 
 You can insert cross-references to labels in your content with the following
