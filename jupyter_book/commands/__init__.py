@@ -61,8 +61,8 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
             toc = PATH_BOOK.joinpath("_toc.yml")
         else:
             _error(
-                f"Couldn't find a Table of Contents file. To auto-generate "
-                "one, run\n\n\tjupyter-book toc {path_book}"
+                "Couldn't find a Table of Contents file. To auto-generate "
+                f"one, run\n\n\tjupyter-book toc {path_book}"
             )
     book_config["globaltoc_path"] = str(toc)
 
@@ -310,12 +310,12 @@ def clean(path_book, all_, html, latex):
             remove_option(path, opt, True)
 
         if print_msg:
-            _message_box(f"Your html and latex directories have been removed")
+            _message_box("Your html and latex directories have been removed")
 
     def remove_all(path):
         """Remove _build directory entirely."""
         sh.rmtree(path)
-        _message_box(f"Your _build directory has been removed")
+        _message_box("Your _build directory has been removed")
 
     def remove_default(path):
         """Remove all subfolders in _build except .jupyter_cache."""
@@ -324,9 +324,7 @@ def clean(path_book, all_, html, latex):
         ]
         for dd in to_remove:
             sh.rmtree(path.joinpath(dd.name))
-        _message_box(
-            f"Your _build directory has been emptied except for .jupyter_cache"
-        )
+        _message_box("Your _build directory has been emptied except for .jupyter_cache")
 
     PATH_OUTPUT = Path(path_book).absolute()
     if not PATH_OUTPUT.is_dir():
