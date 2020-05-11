@@ -117,7 +117,7 @@ to label:
 
 For example, we've added the following label above the header for this section:
 
-```
+```md
 (labels-and-refs)=
 ## Cross-references and labels
 ```
