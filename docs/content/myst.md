@@ -67,6 +67,7 @@ In your built book.
 For more information on writing directives, see the
 [MyST documentation](https://myst-parser.readthedocs.io/).
 
+(directive-arguments)=
 #### More arguments and metadata in directives
 
 Many directives allow you to control their behavior with extra pieces of
