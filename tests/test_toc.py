@@ -26,5 +26,5 @@ def test_toc_no_title():
     toc_yaml = path_book.joinpath("_toc.yml")
     res = yaml.safe_load(toc_yaml.read_text())
     assert "title" not in res
-    for section in res['sections']:
+    for section in res["sections"]:
         assert "title" not in section

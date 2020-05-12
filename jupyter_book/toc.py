@@ -199,8 +199,9 @@ def _content_path_to_yaml(path, root_path, split_char="_", no_title=True):
     return out
 
 
-def _find_content_structure(path, root_folder, split_char="_", skip_text=None,
-                            no_title=True):
+def _find_content_structure(
+    path, root_folder, split_char="_", skip_text=None, no_title=True
+):
     """Parse a folder and sub-folders for content and return a dict."""
     if skip_text is None:
         skip_text = []
@@ -225,16 +226,18 @@ def _find_content_structure(path, root_folder, split_char="_", skip_text=None,
             first_content = content_files.pop(ii)
     if not first_content:
         first_content = content_files.pop(0)
-    parent = _content_path_to_yaml(first_content, root_folder, split_char=split_char,
-                                   no_title=no_title)
+    parent = _content_path_to_yaml(
+        first_content, root_folder, split_char=split_char, no_title=no_title
+    )
     parent["sections"] = []
 
     # Children become sections of the parent
     for content_file in content_files:
         if any(iskip in str(content_file) for iskip in skip_text):
             continue
-        parent["sections"].append(_content_path_to_yaml(content_file, root_folder,
-                                  no_title=no_title))
+        parent["sections"].append(
+            _content_path_to_yaml(content_file, root_folder, no_title=no_title)
+        )
 
     # Now recursively run this on folders, and add as another sub-page
     folders = [ii for ii in path.iterdir() if ii.is_dir()]
@@ -242,8 +245,11 @@ def _find_content_structure(path, root_folder, split_char="_", skip_text=None,
         if any(iskip in str(folder) for iskip in skip_text):
             continue
         folder_out = _find_content_structure(
-            folder, root_folder, split_char=split_char, skip_text=skip_text,
-            no_title=no_title
+            folder,
+            root_folder,
+            split_char=split_char,
+            skip_text=skip_text,
+            no_title=no_title,
         )
         if folder_out:
             parent["sections"].append(folder_out)
@@ -281,8 +287,11 @@ def build_toc(path, filename_split_char="_", skip_text=None, no_title=True):
         Whether to generate a page title from the file name.
     """
     structure = _find_content_structure(
-        path, path, split_char=filename_split_char, skip_text=skip_text,
-        no_title=no_title
+        path,
+        path,
+        split_char=filename_split_char,
+        skip_text=skip_text,
+        no_title=no_title,
     )
     if not structure:
         _error(f"No content files were found in {path}.")
