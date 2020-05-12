@@ -117,6 +117,25 @@ for ipath in notebooks:
     nbf.write(ntbk, ipath)
 ```
 
+(raw-html-in-markdown)=
+## Use raw html in Markdown
+
+Jupyter notebook markdown allows you to use pure HTML in markdown cells.
+This is strongly discouraged and not guaranteed to work in all cases. 
+
+If, for instance, you use
+
+```
+<img src="images/some/file.png" alt="Some image" style="width: 200px;"/>
+```
+
+in your Markdown texts, the source file `images/some/file.png` will not 
+be copied to the build directory when you run `jupyter-book build`. 
+You would have to copy the source file to the 
+build directory manually. Note that MyST markdown gives you control over the 
+{ref}`image appearance<content-blocks-images>` without having to resort 
+to pure html.
+
 ## What if I have an issue or question?
 
 If you've got questions, concerns, or suggestions, please open an issue at
