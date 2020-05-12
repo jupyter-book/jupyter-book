@@ -30,7 +30,7 @@ MyST markdown syntax:
 This allows you to control aspects of the image with
 {ref}`directive arguments <directive-arguments>`. For example, here we have
 controlled both the *alternative text* as well as the *height* of the image.
-Using html to control your image appearance is discouraged. If you insist, 
+Using html to control your image appearance is discouraged. If you insist,
 read more about {ref}`using raw html in Markdown <raw-html-in-markdown>`.
 
 For a list of all of the options you can supply to `image`, see the
