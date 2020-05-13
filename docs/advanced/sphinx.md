@@ -94,7 +94,7 @@ Simple is better than complex. 😵
 ```
 ````
 
-## Manually sphinx configuration
+## Manual sphinx configuration
 
 You may also directly override the key-value pairs that Sphinx normally has
 you configure in `conf.py`. To do so, use the following section of `_config.yml`:

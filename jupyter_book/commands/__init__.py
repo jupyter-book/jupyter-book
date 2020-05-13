@@ -170,7 +170,10 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
                 makecmd = os.environ.get("MAKE", "make")
             try:
                 with cd(OUTPUT_PATH):
-                    subprocess.run([makecmd, "all-pdf"])
+                    output = subprocess.run([makecmd, "all-pdf"])
+                    if output.returncode != 0:
+                        _error("Error: Failed to build pdf")
+                        return output.returncode
                 _message_box(
                     f"""\
                 A PDF of your book can be found at:
@@ -269,7 +272,8 @@ def toc(path, filename_split_char, skip_text, output_folder):
     """Generate a _toc.yml file for your content folder (and sub-directories).
     The alpha-numeric name of valid content files will be used to choose the
     order of pages/sections. If any file is called "index.{extension}", it will be
-    chosen as the first file.
+    chosen as the first file. Note that each folder must have at least one content file
+    in it.
     """
     out_yaml = build_toc(path, filename_split_char, skip_text)
     if output_folder is None:
