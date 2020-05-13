@@ -187,14 +187,14 @@ def build_sphinx(
                 if not path_toc.exists():
                     raise ValueError(
                         (
-                            f"You gave a Configuration file path"
-                            "that doesn't exist: {path_toc}"
+                            "You gave a Configuration file path"
+                            f"that doesn't exist: {path_toc}"
                         )
                     )
                 if path_toc.suffix not in [".yml", ".yaml"]:
                     raise ValueError(
-                        f"You gave a Configuration file path"
-                        "that is not a YAML file: {path_toc}"
+                        "You gave a Configuration file path"
+                        f"that is not a YAML file: {path_toc}"
                     )
             else:
                 path_toc = None

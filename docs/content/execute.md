@@ -44,7 +44,7 @@ above configuration value to:
 
 ```yaml
 execute:
-  execute_notebooks: off
+  execute_notebooks: 'off'
 ```
 
 **To exclude certain file patterns from execution**, use the following

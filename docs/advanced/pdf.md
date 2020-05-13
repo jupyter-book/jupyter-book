@@ -10,7 +10,7 @@ PDF building is experimental, and may change or have bugs.
 There are two approaches to building PDF files:
 
 ```{contents}
-:depth: 1
+:depth: 2
 ```
 
 ## Build a PDF from your book HTML

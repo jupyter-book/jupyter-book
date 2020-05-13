@@ -21,6 +21,7 @@ relates to Jupyter Book. You can
 find much more information about this flavor of markdown at
 [The Myst Parser documentation][myst-parser].
 
+[myst-parser]: https://myst-parser.readthedocs.io/en/latest/
 
 ## Directives and roles
 
@@ -67,6 +68,7 @@ In your built book.
 For more information on writing directives, see the
 [MyST documentation](https://myst-parser.readthedocs.io/).
 
+(directive-arguments)=
 #### More arguments and metadata in directives
 
 Many directives allow you to control their behavior with extra pieces of
@@ -164,5 +166,5 @@ Jupytext [supports the MyST markdown format](https://jupytext.readthedocs.io/en/
 ### VSCode
 
 If editing the markdown files using VS Code, the
-[vscode MyST markdown extension](https://marketplace.visualstudio.com/items?itemName=executablebooks.myst-highlight)
+[vscode MyST markdown extension](https://marketplace.visualstudio.com/items?itemName=ExecutableBookProject.myst-highlight)
 provides syntax highlighting and other features.

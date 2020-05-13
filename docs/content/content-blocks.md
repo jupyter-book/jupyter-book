@@ -4,6 +4,38 @@ A common use of directives and roles is to designate "special blocks" of your
 content. This allows your to include more complex information such as warnings
 and notes, citations, and figures. This section covers a few common ones.
 
+(content-blocks-images)=
+## Images
+
+You can add images with more control using MyST markdown.
+
+````{margin}
+Note that the traditional way to add images with CommonMark will still work.
+For example:
+```
+![cool!](../images/cool.jpg)
+```
+````
+
+If you'd like more control over an image, use the following
+MyST markdown syntax:
+
+````
+```{image} ../images/cool.jpg
+:alt: cool!
+:height: 100px
+```
+````
+
+This allows you to control aspects of the image with
+{ref}`directive arguments <directive-arguments>`. For example, here we have
+controlled both the *alternative text* as well as the *height* of the image.
+Using html to control your image appearance is discouraged. If you insist,
+read more about {ref}`using raw html in Markdown <raw-html-in-markdown>`.
+
+For a list of all of the options you can supply to `image`, see the
+[reStructured Text image documentation](https://docutils.sourceforge.io/docs/ref/rst/directives.html#image).
+
 ## Notes and warnings
 
 Let's say you wish to highlight a particular block of
