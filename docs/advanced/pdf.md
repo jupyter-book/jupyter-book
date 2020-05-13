@@ -13,6 +13,7 @@ There are two approaches to building PDF files:
 :depth: 2
 ```
 
+(pdf-html)=
 ## Build a PDF from your book HTML
 
 It is also possible to build a single PDF from your book's HTML. This first
@@ -58,10 +59,11 @@ or
 jb build mybookname/ --builder pdfhtml
 ```
 
+(pdf-latex)=
 ## Build a PDF using Latex
 
 You can also use Latex to build a PDF of your book. This can behave differently depending on your
-operating system and setup. This section tries to recommend a few best-practices
+operating system and setup. This section tries to recommend a few best-practices.
 
 ### Installation
 
