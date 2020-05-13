@@ -3,7 +3,7 @@ from pathlib import Path
 
 from .toc import update_indexname, add_toctree
 from .yaml import add_yaml_config
-from .directive import toc
+from .directive.toc import TableofContents
 
 
 __version__ = "0.7.0b2"
@@ -34,7 +34,7 @@ def setup(app):
     app.connect("config-inited", add_yaml_config)
     app.connect("config-inited", add_static_files)
     
-    app.add_directive("tableofcontents", toc.TableofContents)
+    app.add_directive("tableofcontents", TableofContents)
 
     return {
         "version": __version__,
