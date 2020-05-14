@@ -14,7 +14,7 @@ links to their section in this book):
   or in MyST Markdown.
 * [Jupyter Notebooks](notebooks). AKA, `.ipynb` files. These files can contain
   markdown cells with MyST Markdown.
-* [MyST markdown notebooks](myst-notebook). These are markdown files (ending in `.md`)
+* [MyST markdown notebooks](myst-notebooks). These are markdown files (ending in `.md`)
   that will be *converted to a notebook and executed*.
 
 ## Rules for all content types
