@@ -61,7 +61,7 @@ it, we'll do the following:
   ```
   ````
   `````
-* **Activate `sphinx-tabs` in `_config.yml`**. [The `sphinx-tabs` documentation](https://github.com/djungelorm/sphinx-tabs/)
+* **Activate `sphinx-tabs` in `_config.yml`**. [The `sphinx-tabs` documentation](https://github.com/djungelorm/sphinx-tabs#installation)
   says we activate it in sphinx by adding `extensions = ["sphinx_tabs.tabs"]`, so we'll
   add it to our Jupyter Book like so:
 
