@@ -131,3 +131,22 @@ Here are a few examples of how this code gets used to help you get started.
 
 Hopefully this explanation gets you situated and helps you understand how the pieces all fit together.
 If you have any questions, feel free to [open an issue asking for help](https://github.com/executablebooks/jupyter-book/issues/new)!
+
+## Other major tools in the Jupyter Book stack
+
+Jupyter Book depends on a collection of open source tools in the Python / Sphinx
+ecosystem. These tools do much of the heavy lifting of Jupyter Book, and are where
+many improvements and changes will need to be. Here is a list of the major tools and
+what kinds of functionality they support:
+
+* {term}`The Sphinx Documentation engine<Sphinx>` is used to build book outputs. This relies
+  on a number of extensions that are developed by Jupyter Book.
+* {term}`MyST markdown<MyST>` is parsed into Sphinx by
+  {term}`the MyST Parser<MyST-Parser>`.
+* {term}`The MyST-NB package<MyST-NB>` parses Jupyter Notebooks into Sphinx and also
+  controls some parts of notebook execution. It also provdes
+  {doc}`inserting code outputs into content <../content/glue>`.
+* {term}`Jupyter-Cache` manages the execution and cacheing of notebook content at
+  build time. It is controlled by {term}`MyST-NB`.
+* The {term}`Sphinx-Book-Theme` defines the look and feel of Jupyter Book, and is
+  where most of the CSS rules are defined.
