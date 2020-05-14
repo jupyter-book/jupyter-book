@@ -120,6 +120,18 @@ navbar_number_sections: true
 
 See {doc}`config` for more information on the `_config.yml` file.
 
+### Add an external link to your navigation
+
+You can also add external links to websites that are outside of your book.
+To do so, use the following pattern:
+
+```yaml
+- url: https://yoururl.com
+```
+
+The URL will be placed alongside the links to other pages above and below the
+entry.
+
 ## Automatically generate your `_toc.yml` file
 
 You can use `jupyter-book` to *generate* a Table of Contents file from your book
