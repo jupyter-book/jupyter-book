@@ -102,10 +102,6 @@ For information about the myst syntax and how to use it, see
 
 This is used to help create and build books.
 It can be found at [`./jupyter_book`](https://github.com/executablebooks/jupyter-book/tree/master/jupyter_book).
-* **The `page` module builds single pages**. This module is meant to be self-contained for
-  converting single `.ipynb`/`.md`/etc pages into HTML. Jupyter Book uses this module when
-  building entire books, but the module can also be used on its own (it's what `jupyter-book page` uses).
-  You can find the module at: [`jupyter_book/page`](https://github.com/executablebooks/jupyter-book/tree/master/jupyter_book/page).
 * **The `commands/` folder has the CLI**. This is the interface for users to create,
   build, and control their book via the command-line.
 * **The `sphinx.py` module builds the books**.
