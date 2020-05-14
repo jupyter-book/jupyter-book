@@ -57,15 +57,23 @@ class TableofContents(SphinxDirective):
                 header = self._handle_toc_header(subnode, val, depth)
                 subnode["classes"].append("ls-none")
                 subnode.append(header)
-            if key == "file":
-                if val not in self.env.titles:
-                    continue
-                title = clean_astext(self.env.titles[val])
-                val = "/" + val + self.env.app.builder.out_suffix
+            if key == "file" or key == "url":
+                if "title" in tocdict:
+                    title = tocdict["title"]
+                else:
+                    if val not in self.env.titles:
+                        continue
+                    title = clean_astext(self.env.titles[val])
+                if key == "url":
+                    val = val
+                    internal = False
+                else:
+                    val = "/" + val + self.env.app.builder.out_suffix
+                    internal = True
                 reference = nodes.reference(
                     "",
                     "",
-                    internal=False,
+                    internal=internal,
                     refuri=val,
                     anchorname="",
                     *[nodes.Text(title)]

@@ -113,12 +113,17 @@ def add_toctree(app, docname, source):
             continue
 
         # If not a special case, assume we have a "regular" page structure
-        path_sec = ipage.get("file")
-        title = ipage.get("title")
+        if ipage.get("file"):
+            path_sec = ipage.get("file")
 
-        # Update path so it is relative to the root of the parent
-        path_parent_folder = Path(parent_page["file"]).parent
-        path_sec = os.path.relpath(path_sec, path_parent_folder)
+            # Update path so it is relative to the root of the parent
+            path_parent_folder = Path(parent_page["file"]).parent
+            path_sec = os.path.relpath(path_sec, path_parent_folder)
+
+        if ipage.get("url"):
+            path_sec = ipage.get("url")
+
+        title = ipage.get("title")
 
         # Decide whether we'll over-ride with a title in the toctree
         this_section = f"{path_sec}"
@@ -307,14 +312,12 @@ def _check_toc_entries(sections):
         for key in section.keys():
             if key not in allowed_keys:
                 logger.warning(f"Unknown key in `_toc.yml`: {key}")
-        # Correct for old toc naming
-        # TODO: deprecate in a few release cycles
-        if "url" in section and "path" not in section:
+        if "url" in section and "title" not in section:
             logger.warning(
                 f"Found `url:` entry in `_toc.yml`: {section}. "
-                "Rename `url:` to `file:`. This will raise an error in the future."
+                "`url:` link should have a title"
             )
-            section["file"] = section["url"].lstrip("/")
+            # section["file"] = section["url"].lstrip("/")
         # Recursive call
         if "sections" in section:
             _check_toc_entries(section["sections"])
