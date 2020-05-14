@@ -266,16 +266,16 @@ def create(path_book):
     help="A folder where the TOC will be written. Default is `path`",
 )
 @click.option(
-    "--no-title", is_flag=True, help="Whether to generate page titles from file names.",
+    "--add-titles", is_flag=True, help="Whether to generate page titles from file names.",
 )
-def toc(path, filename_split_char, skip_text, output_folder, no_title):
+def toc(path, filename_split_char, skip_text, output_folder, add_titles):
     """Generate a _toc.yml file for your content folder (and sub-directories).
     The alpha-numeric name of valid content files will be used to choose the
     order of pages/sections. If any file is called "index.{extension}", it will be
     chosen as the first file. Note that each folder must have at least one content file
     in it.
     """
-    out_yaml = build_toc(path, filename_split_char, skip_text, no_title)
+    out_yaml = build_toc(path, filename_split_char, skip_text, add_titles)
     if output_folder is None:
         output_folder = path
     output_file = Path(output_folder).joinpath("_toc.yml")
