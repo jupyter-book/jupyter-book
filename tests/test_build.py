@@ -152,5 +152,3 @@ def test_build_page(tmpdir):
     run(f"jb page {path_page} --path-output {path_output}".split(), check=True)
     path_html = path_output.joinpath("_build", "html")
     assert path_html.joinpath("single_page.html").exists()
-
-

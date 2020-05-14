@@ -2,10 +2,10 @@ file: index
 title: Toc
 foo: bar
 sections:
-- file: content1
-  title: Content1
 - file: content2
   title: Content2
+- file: content1
+  title: Content1
 - file: subfolder/index
   title: Subfolder
   sections:
