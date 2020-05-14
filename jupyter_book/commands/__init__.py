@@ -266,7 +266,9 @@ def create(path_book):
     help="A folder where the TOC will be written. Default is `path`",
 )
 @click.option(
-    "--add-titles", is_flag=True, help="Whether to generate page titles from file names.",
+    "--add-titles",
+    is_flag=True,
+    help="Whether to generate page titles from file names.",
 )
 def toc(path, filename_split_char, skip_text, output_folder, add_titles):
     """Generate a _toc.yml file for your content folder (and sub-directories).

@@ -35,4 +35,3 @@ def test_toc_add_titles():
     assert "title" in res
     for section in res["sections"]:
         assert "title" in section
-
