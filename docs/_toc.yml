@@ -15,6 +15,7 @@
     - file: content-types/notebooks
     - file: content-types/myst-notebooks
     - file: content-types/jupytext
+    - file: content-types/restructuredtext
 
 - header: Write book content
 - file: content/myst
