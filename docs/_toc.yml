@@ -10,33 +10,35 @@
 - file: customize/config
 - file: customize/toc
 - file: content-types/index
-  expand_sections:
   sections:
     - file: content-types/markdown
     - file: content-types/notebooks
     - file: content-types/myst-notebooks
     - file: content-types/jupytext
+    - file: content-types/restructuredtext
 
-- header: Writing book content
+- header: Write book content
 - file: content/myst
+- file: content/content-blocks
 - file: content/citations
 - file: content/math
+- file: content/figures
 - file: content/glue
 - file: content/layout
 - file: content/execute
 
-- header: Making your book interactive
-- file: content/launchbuttons
-- file: content/hiding
-- file: content/interactive
-- file: content/widgets
+- header: Make your book interactive
+- file: interactive/launchbuttons
+- file: interactive/hiding
+- file: interactive/interactive
 
 - header: Advanced and miscellaneous
 - file: advanced/pdf
 - file: advanced/sphinx
 - file: advanced/advanced
-- file: customize/faq
-- file: advanced/contributing
+- file: contribute/intro
+  sections:
+    - file: contribute/develop
 
 - header: Reference
 - file: reference/cli

@@ -5,7 +5,7 @@ from textwrap import dedent
 from pathlib import Path
 from sphinx.util import logging
 
-from .utils import _filename_to_title, SUPPORTED_FILE_SUFFIXES
+from .utils import _filename_to_title, SUPPORTED_FILE_SUFFIXES, _error
 
 logger = logging.getLogger(__name__)
 
@@ -151,7 +151,7 @@ def add_toctree(app, docname, source):
         ntbk.cells.append(md)
         source[0] = nbf.writes(ntbk)
     else:
-        raise ValueError("Only markdown, ipynb, and rst files are supported.")
+        _error("Only markdown, ipynb, and rst files are supported in the TOC.")
 
 
 def update_indexname(app, config):
@@ -165,6 +165,9 @@ def update_indexname(app, config):
 
     # If it's a flat list, treat the first page as the master doc
     if isinstance(toc, list):
+        # Ensure that the first item in the list is not a header
+        if "header" in toc[0]:
+            _error("Table of Contents must start with your first page, not a header.")
         toc_updated = toc[0]
         if len(toc) > 1:
             subsections = toc[1:]
@@ -181,7 +184,7 @@ def update_indexname(app, config):
     app.config["master_doc"] = _no_suffix(toc["file"])
 
 
-def _content_path_to_yaml(path, root_path, split_char="_"):
+def _content_path_to_yaml(path, root_path, split_char="_", add_titles=True):
     """Return a YAML entry for the TOC from a path."""
     path = path.with_suffix("")
     if path.name == "index":
@@ -190,11 +193,15 @@ def _content_path_to_yaml(path, root_path, split_char="_"):
         title = _filename_to_title(path.name, split_char=split_char)
 
     path_rel_root = path.relative_to(root_path)
-    out = {"file": str(path_rel_root.with_suffix("")), "title": title}
+    out = {"file": str(path_rel_root.with_suffix(""))}
+    if add_titles:
+        out["title"] = title
     return out
 
 
-def _find_content_structure(path, root_folder, split_char="_", skip_text=None):
+def _find_content_structure(
+    path, root_folder, split_char="_", skip_text=None, add_titles=True
+):
     """Parse a folder and sub-folders for content and return a dict."""
     if skip_text is None:
         skip_text = []
@@ -219,14 +226,18 @@ def _find_content_structure(path, root_folder, split_char="_", skip_text=None):
             first_content = content_files.pop(ii)
     if not first_content:
         first_content = content_files.pop(0)
-    parent = _content_path_to_yaml(first_content, root_folder, split_char=split_char)
+    parent = _content_path_to_yaml(
+        first_content, root_folder, split_char=split_char, add_titles=add_titles
+    )
     parent["sections"] = []
 
     # Children become sections of the parent
     for content_file in content_files:
         if any(iskip in str(content_file) for iskip in skip_text):
             continue
-        parent["sections"].append(_content_path_to_yaml(content_file, root_folder))
+        parent["sections"].append(
+            _content_path_to_yaml(content_file, root_folder, add_titles=add_titles)
+        )
 
     # Now recursively run this on folders, and add as another sub-page
     folders = [ii for ii in path.iterdir() if ii.is_dir()]
@@ -234,7 +245,11 @@ def _find_content_structure(path, root_folder, split_char="_", skip_text=None):
         if any(iskip in str(folder) for iskip in skip_text):
             continue
         folder_out = _find_content_structure(
-            folder, root_folder, split_char=split_char, skip_text=skip_text
+            folder,
+            root_folder,
+            split_char=split_char,
+            skip_text=skip_text,
+            add_titles=add_titles,
         )
         if folder_out:
             parent["sections"].append(folder_out)
@@ -244,7 +259,7 @@ def _find_content_structure(path, root_folder, split_char="_", skip_text=None):
     return parent
 
 
-def build_toc(path, filename_split_char="_", skip_text=None):
+def build_toc(path, filename_split_char="_", skip_text=None, add_titles=True):
     """Auto-generate a Table of Contents from files/folders.
 
     All file and folder names are ordered alpha-numerically, unless
@@ -268,12 +283,18 @@ def build_toc(path, filename_split_char="_", skip_text=None):
         The character used in inferring spaces in page names from filenames.
     skip_text : str | None
         If this text is found in any files or folders, they will be skipped.
+    add_titles : bool
+        Whether to generate a page title from the file name.
     """
     structure = _find_content_structure(
-        path, path, split_char=filename_split_char, skip_text=skip_text
+        path,
+        path,
+        split_char=filename_split_char,
+        skip_text=skip_text,
+        add_titles=add_titles,
     )
     if not structure:
-        raise ValueError(f"No content files were found in {path}.")
+        _error(f"No content files were found in {path}.")
     yaml_out = yaml.safe_dump(structure, default_flow_style=False, sort_keys=False)
     return yaml_out
 

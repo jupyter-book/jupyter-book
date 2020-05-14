@@ -23,7 +23,6 @@ DEFAULT_CONFIG = dict(
         "sphinxcontrib.bibtex",
     ],
     togglebutton_selector=".toggle, .secondtoggle",
-    jupyter_sphinx_require_url="",
     master_doc="index.rst",  # This is auto-updated to the first page of the TOC
     language=None,
     pygments_style="sphinx",
@@ -33,6 +32,7 @@ DEFAULT_CONFIG = dict(
         "navbar_footer_text": (
             "Powered by <a href='https://jupyterbook.org'>Jupyter Book</a>"
         ),
+        "search_bar_text": "Search this book...",
     },
     html_add_permalinks="¶",
     numfig=True,
@@ -93,6 +93,12 @@ def build_sphinx(
         htmloverrides = {}
     for key, val in htmloverrides.items():
         config["html_context.%s" % key] = val
+
+    # Add the folder `_static` if it exists
+    if Path(sourcedir).joinpath("_static").is_dir():
+        paths_static = config.get("html_static_path", [])
+        paths_static.append("_static")
+        config["html_static_path"] = paths_static
 
     # #LaTeX-specific configuration
     # TODO: if this is included we should ignore latex_documents
@@ -187,14 +193,14 @@ def build_sphinx(
                 if not path_toc.exists():
                     raise ValueError(
                         (
-                            f"You gave a Configuration file path"
-                            "that doesn't exist: {path_toc}"
+                            "You gave a Configuration file path"
+                            f"that doesn't exist: {path_toc}"
                         )
                     )
                 if path_toc.suffix not in [".yml", ".yaml"]:
                     raise ValueError(
-                        f"You gave a Configuration file path"
-                        "that is not a YAML file: {path_toc}"
+                        "You gave a Configuration file path"
+                        f"that is not a YAML file: {path_toc}"
                     )
             else:
                 path_toc = None

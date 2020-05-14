@@ -1,4 +1,4 @@
-# Contributing to Jupyter Book
+# Contribute to Jupyter Book
 
 Welcome to the `jupyter-book` repository! We're excited you're here and want to contribute.
 
@@ -10,6 +10,11 @@ Here are some [instructions][link_signupinstructions].
 
 Already know what you're looking for in this guide? Use the TOC to the right
 to navigate this page!
+
+## Develop Jupyter Book
+
+For information about the Jupyter Book codebase and instructions for how to get started,
+see {doc}`develop`.
 
 ## Joining the conversation
 
@@ -202,7 +207,7 @@ You can see a list of current contributors in the [contributors tab][link_contri
 
 You're awesome.
 
-<br>
+---
 
 *&mdash; Based on contributing guidelines from the [STEMMRoleModels][link_stemmrolemodels] project.*
 

@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Notebooks with pure-text
+# Notebooks written entirely in markdown
 
 It is possible to store Jupyter Notebooks in pure markdown. This allows you
 to define a notebook structure entirely using MyST Markdown. For more information
@@ -30,7 +30,7 @@ See its documentation for more information.
 
 To see an example of a MyST notebook, you can look at
 [many of the pages of this documentation](https://github.com/executablebooks/jupyter-book/tree/master/docs).
-For example, see {download}`../content/hiding.md` and {download}`../content/layout.md`.
+For example, see {download}`../interactive/hiding.md` and {download}`../content/layout.md`.
 
 ## Create a MyST notebook with Jupytext
 
@@ -55,7 +55,7 @@ If **both** an `.ipynb` and a `.md` file exist in your book's folders, then
 the `.md` file will take precedence!
 ```
 
-### The Jupyter Book MyST CLI
+### Convert a markdown file into Jupytext MyST markdown
 
 Jupyter Book has a small CLI to provide common functionality for manipulating and
 creating MyST markdown files that synchronize with Jupytext. To add Jupytext syntax
