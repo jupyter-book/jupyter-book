@@ -1,21 +1,16 @@
-# Table of Contents configuration
+# Table of Contents structure
 
 There are many ways in which you can control the table of contents for
 your book. Most of them involve adding syntax to your `_toc.yml` file.
 
-```{margin}
-Note that some TOC options may only trigger behavior in HTML or PDF outputs,
-respectively.
-```
-
 This page covers a few common options.
 
+## Basic Table of Contents structure
+
 ```{note}
-The {download}`conf.py file for this site <../_toc.yml>` has an entry for each
+The {download}`_toc.yml file for this site <../_toc.yml>` has an entry for each
 of the features described below for reference.
 ```
-
-## Basic Table of Contents structure
 
 Let's take a look at an example `_toc.yml` file
 for reference (it is a subset of this book's `_toc.yml` file):
@@ -113,3 +108,36 @@ your `_toc.yml` file, add the following key:
 ```
 
 All subsections of that page will now be expanded in the Navigation Bar.
+
+### Add section numbers to your book's pages
+
+To automatically add section numbers to your book's navigation bar, use
+the following configuration in your book's `_config.yml` file:
+
+```yaml
+navbar_number_sections: true
+```
+
+See {doc}`config` for more information on the `_config.yml` file.
+
+## Automatically generate your `_toc.yml` file
+
+You can use `jupyter-book` to *generate* a Table of Contents file from your book
+using the filenames of your book's content. To do so, run the following command
+
+```
+jupyter-book toc mybookpath/
+```
+
+Jupyter Book will search `mybookpath/` for any [content files](../content-types/index)
+and create a `_toc.yml` file out of them. There are a few considerations to keep in mind:
+
+* Each sub-folder must have at least one content file inside it
+* The ordering of files in `_toc.yml` will depend on the alpha-numeric order of
+  the filenames (e.g., `folder_01` comes before `folder_02`, and `apage` comes
+  before `b_page`)
+* If there is a file called `index.md` in any folder, it will be listed first.
+
+You may also **generate navigation bar *titles* from each file of your book**.
+If you do so, note that if the file name begins with `<integer>_filename.md`, then
+the `<integer>` part will be removed before it is inserted into `_toc.yml`.
