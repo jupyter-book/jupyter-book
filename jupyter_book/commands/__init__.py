@@ -22,7 +22,7 @@ def main():
     pass
 
 
-BUILDER_OPTIONS = ["html", "pdfhtml", "latex", "pdflatex"]
+BUILDER_OPTIONS = ["html", "pdfhtml", "linkcheck", "latex", "pdflatex"]
 
 
 @main.command()
@@ -46,6 +46,7 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
     book_config = {}
     builder_dict = {
         "html": "html",
+        "linkcheck": "linkcheck",
         "pdfhtml": "singlehtml",
         "latex": "latex",
         "pdflatex": "latex",
@@ -104,7 +105,7 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
 
     BUILD_PATH = path_output if path_output is not None else PATH_BOOK
     BUILD_PATH = Path(BUILD_PATH).joinpath("_build")
-    if builder in ["html", "pdfhtml"]:
+    if builder in ["html", "pdfhtml", "linkcheck"]:
         OUTPUT_PATH = BUILD_PATH.joinpath("html")
     elif builder in ["latex", "pdflatex"]:
         OUTPUT_PATH = BUILD_PATH.joinpath("latex")
@@ -122,10 +123,16 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
     )
 
     if exc:
-        _error(
-            "There was an error in building your book. "
-            "Look above for the error message."
-        )
+        if builder == "linkcheck":
+            _error(
+                "The link checker either didn't finish or found broken links.\n"
+                "See the report above."
+            )
+        else:
+            _error(
+                "There was an error in building your book. "
+                "Look above for the error message."
+            )
     else:
         # Builder-specific options
         if builder == "html":
@@ -145,6 +152,8 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
                 file://{path_index.resolve()}\
             """
             )
+        if builder == "linkcheck":
+            _message_box("All links in your book are valid. See above for details.")
         if builder == "pdfhtml":
             print("Finished generating HTML for book...")
             print("Converting book HTML into PDF...")

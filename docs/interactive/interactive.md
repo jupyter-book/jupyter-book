@@ -47,7 +47,7 @@ alt.Chart(data=data).mark_point().encode(
 ## Plotly
 
 Plotly is another interactive plotting library that provides a high-level API for
-visualization. See the [Plotly JupyterLab documentation](https://plotly.com/python/getting-started/#jupyterlab-support-python-35)
+visualization. See the [Plotly JupyterLab documentation](https://plotly.com/python/getting-started/#JupyterLab-Support-(Python-3.5+))
 to get started with Plotly in the notebook.
 
 ```{margin}

@@ -150,7 +150,7 @@ You're awesome.
 *&mdash; Based on contributing guidelines from the [STEMMRoleModels][link_stemmrolemodels] project.*
 
 [link_git]: https://git-scm.com
-[link_github]: https://github.com/https://github.com/jupyter/governance/blob/master/conduct/code_of_conduct.md
+[link_github]: https://github.com
 [link_jupyter-book]: https://github.com/executablebooks/jupyter-book
 [link_signupinstructions]: https://help.github.com/articles/signing-up-for-a-new-github-account
 
