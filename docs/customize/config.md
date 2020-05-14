@@ -45,6 +45,9 @@ binder:
   binderhub_url             : "https://mybinder.org"
 ```
 
+Look throughout this book's documentation for different ways that you can configure
+your book.
+
 ## Configuration reference
 
 For a reference example of *all* the possible Binder links and their default values, see the
