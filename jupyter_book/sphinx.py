@@ -94,6 +94,12 @@ def build_sphinx(
     for key, val in htmloverrides.items():
         config["html_context.%s" % key] = val
 
+    # Add the folder `_static` if it exists
+    if Path(sourcedir).joinpath("_static").is_dir():
+        paths_static = config.get("html_static_path", [])
+        paths_static.append("_static")
+        config["html_static_path"] = paths_static
+
     # #LaTeX-specific configuration
     # TODO: if this is included we should ignore latex_documents
     # if latexoverrides is None:

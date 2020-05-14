@@ -94,6 +94,38 @@ Simple is better than complex. 😵
 ```
 ````
 
+## Custom CSS or Javascript
+
+If you'd like to include custom CSS rules or Javascript scripts in your book,
+you can do so by adding them to a folder called `_static` in your book's folder.
+Any files that end in `.css` or `.js` in this folder will automatically be copied
+into your built book HTML and linked in the header of each page.
+
+For example, to include a custom CSS file `myfile.css` in a Jupyter Book folder with
+the following structure:
+
+```
+mybook/
+├── _config.yml
+├── _toc.yml
+└── page1.md
+```
+
+Add the static file here:
+
+```
+├── _config.yml
+├── _toc.yml
+├── page1.md
+└── _static
+    └── myfile.css
+```
+
+The rules should then automatically be applied to your site. In general, these
+CSS and JS files will be loaded *after* others are loaded on your page, so they
+should overwrite pre-existing rules and behavior.
+
+
 ## Manual sphinx configuration
 
 You may also directly override the key-value pairs that Sphinx normally has

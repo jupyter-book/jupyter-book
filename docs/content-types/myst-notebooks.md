@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# Notebooks with pure-text
+# Notebooks written entirely in markdown
 
 It is possible to store Jupyter Notebooks in pure markdown. This allows you
 to define a notebook structure entirely using MyST Markdown. For more information

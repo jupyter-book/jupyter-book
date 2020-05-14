@@ -1,4 +1,4 @@
-# Markdown pages
+# Markdown files
 
 You can write content in regular markdown files (e.g., files ending in `.md`).
 Jupyter Book supports any markdown syntax that is supported by Jupyter Notebooks.
