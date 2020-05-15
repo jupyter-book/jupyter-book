@@ -101,6 +101,7 @@ def yaml_to_sphinx(yaml, config):
 
     # Files that we wish to skip
     sphinx_config["exclude_patterns"].extend(yaml.get("exclude_patterns", []))
+    sphinx_config["exclude_patterns"].extend(config.exclude_patterns)
 
     # Now do simple top-level translations
     YAML_TRANSLATIONS = {

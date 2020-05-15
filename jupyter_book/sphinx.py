@@ -158,20 +158,20 @@ def build_sphinx(
     try:
         with patch_docutils(confdir), docutils_namespace():
             app = Sphinx(
-                sourcedir,
-                confdir,
-                outputdir,
-                doctreedir,
-                builder,
-                config,
-                status,
-                warning,
-                freshenv,
-                warningiserror,
-                tags,
-                verbosity,
-                jobs,
-                keep_going,
+                srcdir=sourcedir,
+                confdir=confdir,
+                outdir=outputdir,
+                doctreedir=doctreedir,
+                buildername=builder,
+                confoverrides=config,
+                status=status,
+                warning=warning,
+                freshenv=freshenv,
+                warningiserror=warningiserror,
+                tags=tags,
+                verbosity=verbosity,
+                parallel=jobs,
+                keep_going=keep_going,
             )
             # Apply Latex Overrides for latex_documents
             if (

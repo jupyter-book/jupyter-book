@@ -37,6 +37,7 @@ This website is built with Jupyter Book! You can browse its contents to the
 left to see what is possible.
 ```
 
+
 ## Get started
 
 To get started with Jupyter Book, you can either
