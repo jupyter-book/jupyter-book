@@ -47,6 +47,12 @@ To get started with Jupyter Book, you can either
 on a laptop), or
 * review the example project shown immediately below (if you like learning from examples).
 
+To install the `jupyter-book` pre-release from pip, run the following command:
+
+```
+pip install -U "jupyter-book>=0.7.0b"
+```
+
 (example-project)=
 ## A Small Example Project
 
