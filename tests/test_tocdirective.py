@@ -7,12 +7,12 @@ path_books = path_tests.joinpath("books")
 path_root = path_tests.parent
 
 
-def test_toc(tmpdir, file_regression):
+def test_toc_startwithlist(tmpdir, file_regression):
     """Testing a basic _toc.yml for tableofcontents directive"""
     path_output = Path(tmpdir).joinpath("mybook").absolute()
     # Regular TOC should work
     p_toc = path_books.joinpath("toc")
-    path_toc = p_toc.joinpath("_toc.yml")
+    path_toc = p_toc.joinpath("_toc_startwithlist.yml")
     run(
         f"jb build {p_toc} --path-output {path_output} --toc {path_toc} -W".split(),
         check=True,
@@ -48,7 +48,7 @@ def test_toc_withheaders(tmpdir, file_regression):
 
 
 def test_toc_urllink(tmpdir, file_regression):
-    """Testing with additional `url` key in _toc.yml"""
+    """Testing with additional `url` link key in _toc.yml"""
     path_output = Path(tmpdir).joinpath("mybook").absolute()
     # Regular TOC should work
     p_toc = path_books.joinpath("toc")
