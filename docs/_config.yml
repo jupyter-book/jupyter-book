@@ -17,6 +17,11 @@ html:
   use_edit_page_button: true
   baseurl: https://jupyterbook.org/
 
+latex:
+  latex_engine: xelatex
+  latex_documents:
+    theme: jupyterBook
+
 repository:
   url                       : https://github.com/executablebooks/jupyter-book
   path_to_book              : "docs"
