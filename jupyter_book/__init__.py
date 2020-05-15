@@ -3,6 +3,7 @@ from pathlib import Path
 
 from .toc import update_indexname, add_toctree
 from .yaml import add_yaml_config
+from .directive.toc import TableofContents
 
 
 __version__ = "0.7.0b2"
@@ -21,6 +22,7 @@ def add_static_files(app, config):
 
 # We connect this function to the step after the builder is initialized
 def setup(app):
+
     app.connect("config-inited", update_indexname)
     app.connect("source-read", add_toctree)
 
@@ -31,6 +33,8 @@ def setup(app):
 
     app.connect("config-inited", add_yaml_config)
     app.connect("config-inited", add_static_files)
+
+    app.add_directive("tableofcontents", TableofContents)
 
     return {
         "version": __version__,

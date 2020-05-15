@@ -4,6 +4,7 @@
 exclude: >
     (?x)^(
       \.vscode/settings\.json|
+      tests/test_tocdirective/.*
     )$
 
 repos:
