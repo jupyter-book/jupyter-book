@@ -52,7 +52,7 @@ def test_toc_url(tmpdir, file_regression):
     path_output = Path(tmpdir).joinpath("mybook").absolute()
     # Regular TOC should work
     p_toc = path_books.joinpath("toc")
-    path_toc = p_toc.joinpath("_toc_url.yml")
+    path_toc = p_toc.joinpath("_toc_urllink.yml")
     run(
         f"jb build {p_toc} --path-output {path_output} --toc {path_toc} -W".split(),
         check=True,

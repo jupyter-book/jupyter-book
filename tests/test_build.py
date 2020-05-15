@@ -62,6 +62,17 @@ def test_toc_builds(tmpdir):
     assert "Table of Contents must start with your first page" in err
 
     with pytest.raises(ValueError):
+        path_toc = p_toc.joinpath("_toc_url.yml")
+        out = run(
+            f"jb build {p_toc} --path-output {path_output} --toc {path_toc} -W".split(),
+            stderr=PIPE,
+        )
+        err = out.stderr.decode()
+        if "Warning, treated as error:" in err:
+            raise ValueError(err)
+    assert "Rename `url:` to `file:`" in err
+
+    with pytest.raises(ValueError):
         path_toc = p_toc.joinpath("_toc_urlwithouttitle.yml")
         out = run(
             f"jb build {p_toc} --path-output {path_output} --toc {path_toc} -W".split(),

@@ -312,12 +312,21 @@ def _check_toc_entries(sections):
         for key in section.keys():
             if key not in allowed_keys:
                 logger.warning(f"Unknown key in `_toc.yml`: {key}")
-        if "url" in section and "title" not in section:
-            logger.warning(
-                f"Found `url:` entry in `_toc.yml`: {section}. "
-                "`url:` link should have a title"
-            )
-            # section["file"] = section["url"].lstrip("/")
+        # Correct for old toc naming
+        # TODO: deprecate in a few release cycles
+        if "http" not in section["url"]:
+            if "url" in section and "path" not in section:
+                logger.warning(
+                    f"Found `url:` entry in `_toc.yml`: {section}. "
+                    "Rename `url:` to `file:`. This will raise an error in the future."
+                )
+                section["file"] = section["url"].lstrip("/")
+        else:
+            if "url" in section and "title" not in section:
+                logger.warning(
+                    f"Found `url:` entry in `_toc.yml`: {section}. "
+                    "`url:` link should have a title"
+                )
         # Recursive call
         if "sections" in section:
             _check_toc_entries(section["sections"])
