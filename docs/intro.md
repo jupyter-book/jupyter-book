@@ -9,6 +9,10 @@ testing and use. [Feedback](https://github.com/executablebooks/jupyter-book/issu
 For the old Jupyter Book documentation, see [legacy.jupyterbook.org](https://legacy.jupyterbook.org)
 ```
 
+
+```{tableofcontents}
+```
+
 Jupyter Book has the following main features:
 
 * **[Write publication-quality content in markdown](content-types/markdown)**. You can

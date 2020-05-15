@@ -33,7 +33,7 @@ def setup(app):
 
     app.connect("config-inited", add_yaml_config)
     app.connect("config-inited", add_static_files)
-    
+
     app.add_directive("tableofcontents", TableofContents)
 
     return {

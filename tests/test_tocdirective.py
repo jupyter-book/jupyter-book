@@ -47,7 +47,7 @@ def test_toc_withheaders(tmpdir, file_regression):
     file_regression.check(str(toc), extension=".html")
 
 
-def test_toc_url(tmpdir, file_regression):
+def test_toc_urllink(tmpdir, file_regression):
     """Testing with additional `url` key in _toc.yml"""
     path_output = Path(tmpdir).joinpath("mybook").absolute()
     # Regular TOC should work

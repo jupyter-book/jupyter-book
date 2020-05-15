@@ -314,15 +314,14 @@ def _check_toc_entries(sections):
                 logger.warning(f"Unknown key in `_toc.yml`: {key}")
         # Correct for old toc naming
         # TODO: deprecate in a few release cycles
-        if "http" not in section["url"]:
-            if "url" in section and "path" not in section:
+        if "url" in section:
+            if "http" not in section["url"] and "path" not in section:
                 logger.warning(
                     f"Found `url:` entry in `_toc.yml`: {section}. "
                     "Rename `url:` to `file:`. This will raise an error in the future."
                 )
                 section["file"] = section["url"].lstrip("/")
-        else:
-            if "url" in section and "title" not in section:
+            if "http" in section["url"] and "title" not in section:
                 logger.warning(
                     f"Found `url:` entry in `_toc.yml`: {section}. "
                     "`url:` link should have a title"

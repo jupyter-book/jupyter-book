@@ -1,6 +1,6 @@
 file: index
 title: Toc
 sections:
-- url: link/to/content1
+- url: http://somelink.com
   title: Content1
-- url: link/to/content2
+- url: http://someotherlink.com
