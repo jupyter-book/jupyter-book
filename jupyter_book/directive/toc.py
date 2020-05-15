@@ -15,7 +15,7 @@ class TableofContents(SphinxDirective):
         """ returns an array of nodes for the tableofcontents directive declaration
         """
         ret = []
-        wrappernode = nodes.compound(classes=["toctree-wrapper"])
+        wrappernode = nodes.compound(classes=["tableofcontents-wrapper"])
         self.add_name(wrappernode)
         depth = 0
 
@@ -80,7 +80,7 @@ class TableofContents(SphinxDirective):
                 )
                 para = addnodes.compact_paragraph("", "", reference)
                 item = nodes.list_item("", para)
-                item["classes"].append("toctree-l%d" % (depth))
+                item["classes"].append("tableofcontents-l%d" % (depth))
                 subnode.append(item)
             if key == "sections":
                 sectionlist = nodes.bullet_list().deepcopy()

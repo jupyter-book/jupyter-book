@@ -1,6 +1,6 @@
 from pathlib import Path
 from subprocess import run
-
+from bs4 import BeautifulSoup
 
 path_tests = Path(__file__).parent.resolve()
 path_books = path_tests.joinpath("books")
@@ -19,7 +19,12 @@ def test_toc(tmpdir, file_regression):
     )
 
     path_toc_directive = path_output.joinpath("_build", "html", "index.html")
-    file_regression.check(path_toc_directive.read_text(), extension=".html")
+
+    # get the tableofcontents markup
+    soup = BeautifulSoup(path_toc_directive.read_text(), "html.parser")
+    toc = soup.find_all("div", class_="tableofcontents-wrapper")[0]
+
+    file_regression.check(str(toc), extension=".html")
 
 
 def test_toc_withheaders(tmpdir, file_regression):
@@ -34,7 +39,12 @@ def test_toc_withheaders(tmpdir, file_regression):
     )
 
     path_toc_directive = path_output.joinpath("_build", "html", "index.html")
-    file_regression.check(path_toc_directive.read_text(), extension=".html")
+
+    # get the tableofcontents markup
+    soup = BeautifulSoup(path_toc_directive.read_text(), "html.parser")
+    toc = soup.find_all("div", class_="tableofcontents-wrapper")[0]
+
+    file_regression.check(str(toc), extension=".html")
 
 
 def test_toc_url(tmpdir, file_regression):
@@ -49,4 +59,8 @@ def test_toc_url(tmpdir, file_regression):
     )
 
     path_toc_directive = path_output.joinpath("_build", "html", "index.html")
-    file_regression.check(path_toc_directive.read_text(), extension=".html")
+
+    # get the tableofcontents markup
+    soup = BeautifulSoup(path_toc_directive.read_text(), "html.parser")
+    toc = soup.find_all("div", class_="tableofcontents-wrapper")[0]
+    file_regression.check(str(toc), extension=".html")
