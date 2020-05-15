@@ -5,7 +5,7 @@ These sections cover the major types of content, and how you can control
 their behavior in Jupyter Book. See the list of sections to the left for information
 about each type/
 
-## Overview of content types
+## Allowed content types
 
 In general, these are the types of content supported in Jupyter Book (along with
 links to their section in this book):
@@ -16,6 +16,9 @@ links to their section in this book):
   markdown cells with MyST Markdown.
 * [MyST markdown notebooks](myst-notebooks). These are markdown files (ending in `.md`)
   that will be *converted to a notebook and executed*.
+* [reStructuredText](restructuredtext). These are text files used by the Sphinx
+  documentation engine (which is used by Jupyter Book). It is recommended to use
+  MyST Markdown instead.
 
 ## Rules for all content types
 
@@ -23,7 +26,10 @@ There are a few things that are true for all content types. Here is a short list
 
 * **Files must have a title**. Generally this means that they must begin with
   a line that starts with a single `#`
-* **Sections should increase linearly**. If you're inside of a section with
+* **Use only one top-level header**. Because each page must have a clear
+  title, it must also only have one top-level header. You cannot have multiple
+  headers with single `#` tags in them.
+* **Headers should increase linearly**. If you're inside of a section with
   one `#`, then the next section lower should start with `##`. Avoid jumping straight
   from `#` to `###`.
 

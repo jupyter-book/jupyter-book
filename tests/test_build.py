@@ -158,8 +158,10 @@ def test_build_docs(tmpdir):
 def test_build_page(tmpdir):
     """Test building the documentation book."""
     path_output = Path(tmpdir).absolute()
-    path_page = path_root.joinpath("examples", "single_page.ipynb")
+    path_page = path_tests.joinpath("pages", "single_page.ipynb")
 
     run(f"jb page {path_page} --path-output {path_output}".split(), check=True)
     path_html = path_output.joinpath("_build", "html")
     assert path_html.joinpath("single_page.html").exists()
+    # The extra page shouldn't have been built with Sphinx (or run)
+    assert not path_html.joinpath("extra_page.html").exists()
