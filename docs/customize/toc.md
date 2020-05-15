@@ -115,7 +115,8 @@ To automatically add section numbers to your book's navigation bar, use
 the following configuration in your book's `_config.yml` file:
 
 ```yaml
-navbar_number_sections: true
+html:
+  navbar_number_sections: true
 ```
 
 See {doc}`config` for more information on the `_config.yml` file.
