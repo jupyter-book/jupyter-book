@@ -133,6 +133,19 @@ Here is a cool quotation.
 ```
 ````
 
+## Section Table of Contents
+
+If you've got a content file that has "sections" underneath it, then you can
+display a Table of Contents on the parent page by using the following syntax:
+
+````
+```{tableofcontents}
+```
+````
+
+It will display a list of all sub-pages underneath the current page. See
+{doc}`../content-types/index` for an example of its usage.
+
 ## Glossaries
 
 Glossaries allow you to define terms in a glossary, and then link back to the
