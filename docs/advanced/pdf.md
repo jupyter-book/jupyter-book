@@ -59,6 +59,14 @@ or
 jb build mybookname/ --builder pdfhtml
 ```
 
+```{warning}
+If you get a "MaxRetryError" and see mentions of SSL in the error message when
+when building the PDF, this could be due to a bug in `pyppeteer` as it downloads
+Chromium for the first time. See [this github comment](https://github.com/miyakogi/pyppeteer/issues/258#issuecomment-563075764)
+for a potential fix, and [this jupyter book issue](https://github.com/executablebooks/jupyter-book/issues/593)
+where we're tracking the issue.
+```
+
 (pdf-latex)=
 ## Build a PDF using Latex
 
