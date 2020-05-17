@@ -123,6 +123,49 @@ role syntax `` {doc}`../intro` `` will result in: {doc}`../intro`.
 For more information on writing roles, see the
 [MyST documentation](https://myst-parser.readthedocs.io/).
 
+(markdown/nexting)=
+## Nesting content blocks in markdown
+
+If you'd like to nest content blocks inside of one another with Markdown (for
+example, to put a `{note}` inside of a `{margin}`), you may do so by adding
+extra backticks (`` ` ``) to the outer-most block. This works for literal
+code blocks as well.
+
+For example, the following syntax:
+
+`````
+````
+```
+```
+````
+`````
+
+Yields:
+
+````
+```
+```
+````
+
+Thus, if you'd like to nest directives inside one another, you can take the same
+approach, for example, the following syntax:
+
+`````
+````{margin}
+```{note}
+Here's my note!
+```
+````
+`````
+
+produces:
+
+````{margin}
+```{note}
+Here's my note!
+```
+````
+
 ## Other MyST Markdown syntax
 
 In addition to roles and directives, there are several other kinds of syntax

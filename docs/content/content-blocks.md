@@ -36,6 +36,16 @@ read more about {ref}`using raw html in Markdown <raw-html-in-markdown>`.
 For a list of all of the options you can supply to `image`, see the
 [reStructured Text image documentation](https://docutils.sourceforge.io/docs/ref/rst/directives.html#image).
 
+````{margin} A note on nesting
+You can nest admonitions (and other content blocks) inside one another. For example:
+
+```{note}
+Here's a note block inside a margin block
+```
+
+See {ref}`markdown/nexting` for instructions to do this.
+````
+
 ## Notes and warnings
 
 Let's say you wish to highlight a particular block of
