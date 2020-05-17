@@ -10,8 +10,15 @@ about each type/
 In general, these are the types of content supported in Jupyter Book (along with
 links to their section in this book):
 
-```{tableofcontents}
-```
+* [Markdown files](markdown). These are text files written in either CommonMark
+  or in MyST Markdown.
+* [Jupyter Notebooks](notebooks). AKA, `.ipynb` files. These files can contain
+  markdown cells with MyST Markdown.
+* [MyST markdown notebooks](myst-notebooks). These are markdown files (ending in `.md`)
+  that will be *converted to a notebook and executed*.
+* [reStructuredText](restructuredtext). These are text files used by the Sphinx
+  documentation engine (which is used by Jupyter Book). It is recommended to use
+  MyST Markdown instead.
 
 ## Rules for all content types
 
