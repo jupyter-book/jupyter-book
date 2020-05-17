@@ -157,5 +157,10 @@ Jupyter Book is supported by
 [an open community of contributors](https://github.com/executablebooks/jupyter-book/graphs/contributors),
 many of whom come from [the Jupyter community](https://jupyter.org/community).
 Jupyter Book and many of the tools it uses are stewarded by
+<<<<<<< HEAD
 [the Executable Book Project](https://executablebooks.org), which is
 supported in part by [the Alfred P. Sloan foundation](https://sloan.org/grant-detail/9231).
+=======
+[the Executable Book Project](https://executablebooks.org), which is generously
+supported by [the Alfred P. Sloan foundation](https://sloan.org/).
+>>>>>>> ae8a12944cb222dcd55a8e170530acab090f3b28
