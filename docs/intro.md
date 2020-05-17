@@ -150,3 +150,12 @@ For more information about the project behind many of these tools, see
 
 Jupyter Book is an open project and we welcome your feedback and contributions!
 To contribute to Jupyter Book, see {doc}`contribute/intro`.
+
+## Acknowledgements
+
+Jupyter Book is supported by
+[an open community of contributors](https://github.com/executablebooks/jupyter-book/graphs/contributors),
+many of whom come from [the Jupyter community](https://jupyter.org/community).
+Jupyter Book and many of the tools it uses are stewarded by
+[the Executable Book Project](https://executablebooks.org), which is
+supported in part by [the Alfred P. Sloan foundation](https://sloan.org/grant-detail/9231).
