@@ -165,3 +165,38 @@ def test_build_page(tmpdir):
     assert path_html.joinpath("single_page.html").exists()
     # The extra page shouldn't have been built with Sphinx (or run)
     assert not path_html.joinpath("extra_page.html").exists()
+
+def test_build_page_execute(tmpdir):
+    """Test default execution of nb when building a single page."""
+    path_output = Path(tmpdir).absolute()
+    path_page = path_tests.joinpath("pages", "nb_test_page_execute.ipynb")
+
+    run(f"jb page {path_page} --path-output {path_output}".split(), check=True)
+    path_html = path_output.joinpath("_build", "html")
+    out_html = path_html.joinpath("nb_test_page_execute.html")
+    assert out_html.exists()
+    # The cell output div should be present in html generated from executed
+    # notebooks
+    with open(out_html, 'r') as fh:
+        html = fh.read()
+    cell_out_div = r'<div class="cell_output docutils container">'
+    assert cell_out_div in html
+
+def test_build_page_no_execute(tmpdir):
+    """Test single page building with --no-execute flag."""
+    path_output = Path(tmpdir).absolute()
+    path_page = path_tests.joinpath("pages", "nb_test_page_execute.ipynb")
+
+
+    run(
+        f"jb page {path_page} --path-output {path_output} --no-execute".split(),
+        check=True,
+    )
+    path_html = path_output.joinpath("_build", "html")
+    out_html = path_html.joinpath("nb_test_page_execute.html")
+    assert out_html.exists()
+    # No cell output div should be present in generated html
+    with open(out_html, 'r') as fh:
+        html = fh.read()
+    cell_out_div = r'<div class="cell_output docutils container">'
+    assert cell_out_div not in html
