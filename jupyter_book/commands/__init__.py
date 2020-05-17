@@ -210,10 +210,10 @@ def page(path_page, path_output, config, execute):
     PAGE_NAME = PATH_PAGE.with_suffix("").name
     if config is None:
         config = ""
-    if not execute:
-        execute = "off"
-    else:
+    if execute:
         execute = "force"
+    else:
+        execute = "off"
 
     OUTPUT_PATH = path_output if path_output is not None else PATH_PAGE_FOLDER
     OUTPUT_PATH = Path(OUTPUT_PATH).joinpath("_build/html")
