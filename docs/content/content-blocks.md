@@ -133,6 +133,29 @@ Here is a cool quotation.
 ```
 ````
 
+## Footnotes
+
+You can include footnotes in your book's content using a standard markdown syntax.
+This will include a numbered reference to the footnote in-line, and insert the footnote
+to a list of footnotes at the bottom of the page.
+
+To create a footnote, first insert a reference in-line with this syntax: `[^mylabel]`.
+The, define the text for that label like so:
+
+```
+[^mylabel]: My footnote text.
+```
+
+You can define `[^mylabel]` anywhere in the page, though its definition will always
+be placed at the bottom of your built page. For example, here's a footnote [^mynote]
+and here's another one [^mynote2]. You can click either of them to see the footnotes
+at the bottom of this page.
+
+[^mynote]: Here's the text of my first note.
+[^mynote2]: And the text of my second note.
+            Note that
+            [you can include markdown footnote definitions](https://executablebooks.org).
+
 ## Glossaries
 
 Glossaries allow you to define terms in a glossary, and then link back to the
