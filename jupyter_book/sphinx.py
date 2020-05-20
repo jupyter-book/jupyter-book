@@ -36,7 +36,7 @@ DEFAULT_CONFIG = dict(
     },
     html_add_permalinks="¶",
     numfig=True,
-    cli_overrides={}, # Store CLI options that override _config parameters
+    cli_overrides={},  # Store CLI options that override _config parameters
 )
 
 

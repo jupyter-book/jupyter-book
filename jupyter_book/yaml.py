@@ -114,7 +114,7 @@ def yaml_to_sphinx(yaml, config):
         if key in yaml:
             sphinx_config[newkey] = yaml.pop(key)
 
-    # Ensures any configuration items specified via the CLI are not 
+    # Ensures any configuration items specified via the CLI are not
     # subsequently overwritten by the configuration in _config.yml
     for key, val in config.cli_overrides.items():
         sphinx_config[key] = val
