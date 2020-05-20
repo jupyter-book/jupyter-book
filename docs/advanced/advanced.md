@@ -156,6 +156,42 @@ build directory manually. Note that MyST markdown gives you control over the
 {ref}`image appearance<content-blocks-images>` without having to resort
 to pure html.
 
+## Adding extra HTML to your book
+
+There are a few places in Jupyter Book where you can add arbitrary extra HTML.
+In all cases, this is done with a configuration value in your `_config.yml` file.
+
+### Extra HTML in your footer
+
+To add extra HTML in your book's footer, use the following configuration:
+
+```yaml
+html:
+    extra_footer: |
+        <div>
+            your html
+        </div>
+```
+
+The contents of `extra_footer` will be inserted into your page's HTML after
+all other footer content.
+
+### Extra HTML to your left navbar
+
+To add extra HTML in your book's left navbar, use the following configuration:
+
+```yaml
+html:
+    extra_navbar: |
+        <div>
+            your html
+        </div>
+```
+
+The contents of `extra_footer` will be inserted into your page's HTML after
+all other footer content.
+
+
 ## What if I have an issue or question?
 
 If you've got questions, concerns, or suggestions, please open an issue at
