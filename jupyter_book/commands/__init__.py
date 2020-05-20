@@ -233,8 +233,8 @@ def page(path_page, path_output, config, execute):
         "yaml_config_path": config,
         "globaltoc_path": "",
         "exclude_patterns": to_exclude,
-        "jupyter_execute_notebooks": execute,
         "html_theme_options": {"single_page": True},
+        "cli_overrides": {"jupyter_execute_notebooks": execute},
     }
 
     build_sphinx(

@@ -90,8 +90,6 @@ def yaml_to_sphinx(yaml, config):
         sphinx_config["jupyter_execute_notebooks"] = execute.get("execute_notebooks")
         sphinx_config["jupyter_cache"] = execute.get("cache")
         sphinx_config["execution_excludepatterns"] = execute.get("exclude_patterns")
-    if config.jupyter_execute_notebooks:
-        sphinx_config["jupyter_execute_notebooks"] = config.jupyter_execute_notebooks
 
     # Update the theme options in the main config
     sphinx_config["html_theme_options"] = theme_options
@@ -115,6 +113,11 @@ def yaml_to_sphinx(yaml, config):
     for key, newkey in YAML_TRANSLATIONS.items():
         if key in yaml:
             sphinx_config[newkey] = yaml.pop(key)
+
+    # Ensures any configuration items specified via the CLI are not 
+    # subsequently overwritten by the configuration in _config.yml
+    for key, val in config.cli_overrides.items():
+        sphinx_config[key] = val
 
     # Manual Sphinx over-rides will supercede other config
     sphinx_overrides = yaml.get("sphinx", {}).get("config")

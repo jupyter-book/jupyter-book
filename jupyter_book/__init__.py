@@ -31,6 +31,9 @@ def setup(app):
     # configuration for YAML metadata
     app.add_config_value("yaml_config_path", "", "html")
 
+    # configuration object for CLI overrides
+    app.add_config_value("cli_overrides", {}, "env")
+
     app.connect("config-inited", add_yaml_config)
     app.connect("config-inited", add_static_files)
 
