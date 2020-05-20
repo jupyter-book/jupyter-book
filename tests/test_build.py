@@ -180,18 +180,17 @@ class TestPageExecute:
             f"jb page {self.path_page} --path-output {path_output} {flags}".split(),
             check=True,
         )
-        with open(out_html, 'r') as fh:
+        with open(out_html, "r") as fh:
             self.html = fh.read()
 
     @property
     def has_cell_output(self):
         return self.cell_out_div in self.html
 
-    @pytest.mark.parametrize(('flag', 'expected'), (
-        ("", True),
-        ("--execute", True),
-        ("--no-execute", False),
-    ))
+    @pytest.mark.parametrize(
+        ("flag", "expected"),
+        (("", True), ("--execute", True), ("--no-execute", False),),
+    )
     def test_build_page_execute_flags(self, tmpdir, flag, expected):
         self._run(tmpdir, flags=flag)
         assert self.has_cell_output == expected
@@ -208,7 +207,7 @@ def test_build_page_execute(tmpdir):
     assert out_html.exists()
     # The cell output div should be present in html generated from executed
     # notebooks
-    with open(out_html, 'r') as fh:
+    with open(out_html, "r") as fh:
         html = fh.read()
     cell_out_div = r'<div class="cell_output docutils container">'
     assert cell_out_div in html
@@ -227,7 +226,7 @@ def test_build_page_no_execute(tmpdir):
     out_html = path_html.joinpath("nb_test_page_execute.html")
     assert out_html.exists()
     # No cell output div should be present in generated html
-    with open(out_html, 'r') as fh:
+    with open(out_html, "r") as fh:
         html = fh.read()
     cell_out_div = r'<div class="cell_output docutils container">'
     assert cell_out_div not in html

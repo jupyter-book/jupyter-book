@@ -54,7 +54,7 @@ jupyter-book page path/to/mypage.ipynb
 ```
 
 This will execute your content and output the proper HTML in a
-`_build/html` folder. 
+`_build/html` folder.
 If you'd like to generate HTML for a page *without* executing any
 code cells, you can use the `--no-execute` flag:
 
