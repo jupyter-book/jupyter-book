@@ -42,7 +42,7 @@ repository:
 
 # Configure your Binder links, such as the URL of the BinderHub.
 launch_buttons:
-  binderhub_url             : "https://mybinder.org"
+  binderhub_url             : https://mybinder.org
 ```
 
 Look throughout this book's documentation for different ways that you can configure
