@@ -41,12 +41,20 @@ repository:
   url                       : https://github.com/yourusername/yourbookrepo
 
 # Configure your Binder links, such as the URL of the BinderHub.
-binder:
-  binderhub_url             : "https://mybinder.org"
+launch_buttons:
+  binderhub_url             : https://mybinder.org
 ```
 
 Look throughout this book's documentation for different ways that you can configure
 your book.
+
+```{caution}
+YAML can be tricky when it comes to how it treats certain kinds of values. For example,
+when using strings in YAML it is usually fine to omit quotes around them. However,
+there are certain values that will be *converted* to boolean values if they do not have
+strings around them. For example, `false`, `true`, `off`, etc. In addition, pure
+numbers will be converted to `float` or `int` unless you put strings around them.
+```
 
 ## Configuration reference
 
