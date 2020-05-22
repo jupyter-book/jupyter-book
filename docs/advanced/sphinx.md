@@ -140,7 +140,7 @@ you configure in `conf.py`. To do so, use the following section of `_config.yml`
 
 ### Defining TeX Macros
 
-You can add TeX macros for the whole book by defining them under the `Macros` option of the `TeX` block. For example, the following two macros have been pre-defined in the Sphinx configuration
+You can add LaTeX macros for the whole book by defining them under the `Macros` option of the `TeX` block. For example, the following two macros have been pre-defined in the Sphinx configuration
 
 ```
 sphinx:
