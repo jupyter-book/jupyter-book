@@ -37,7 +37,12 @@ def main():
     pass
 
 
-BUILDER_OPTIONS = ["html", "pdfhtml", "linkcheck", "latex", "pdflatex"]
+BUILDER_OPTS = {
+    "html": "html",
+    "pdfhtml": "singlehtml",
+    "latex": "latex",
+    "pdflatex": "latex",
+}
 
 
 @main.command()
@@ -49,7 +54,8 @@ BUILDER_OPTIONS = ["html", "pdfhtml", "linkcheck", "latex", "pdflatex"]
 @click.option(
     "--builder",
     default="html",
-    help="Which builder to use. Must be one of {BUILDER_OPTIONS}",
+    help="Which builder to use.",
+    type=click.Choice(list(BUILDER_OPTS.keys())),
 )
 def build(path_book, path_output, config, toc, warningiserror, builder):
     """Convert your book's content to HTML or a PDF."""
@@ -125,7 +131,7 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
         noconfig=True,
         path_config=path_config,
         confoverrides=book_config,
-        builder=sphinx_builder,
+        builder=BUILDER_OPTS[builder],
         warningiserror=warningiserror,
         freshenv=freshenv,
     )

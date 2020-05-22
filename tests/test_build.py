@@ -1,12 +1,22 @@
 from pathlib import Path
 from subprocess import run, PIPE
+
 import pytest
 from bs4 import BeautifulSoup as bs
+from click.testing import CliRunner
+
+from jupyter_book.commands import build
 
 
 path_tests = Path(__file__).parent.resolve()
 path_books = path_tests.joinpath("books")
 path_root = path_tests.parent
+
+
+@pytest.fixture()
+def cli():
+    runner = CliRunner()
+    return runner
 
 
 def test_build_book(tmpdir):
@@ -121,7 +131,7 @@ def test_toc_builds(tmpdir):
     assert "Unknown key in `_toc.yml`: foo" in err
 
 
-def test_build_errors(tmpdir):
+def test_build_errors(tmpdir, cli):
     # Create the book from the template
     path = Path(tmpdir).joinpath("mybook").absolute()
     run(f"jb create {path}".split())
@@ -144,12 +154,8 @@ def test_build_errors(tmpdir):
     assert "Path to book isn't a directory" in err
 
     # Incorrect build
-    with pytest.raises(ValueError):
-        out = run(f"jb build {path} --builder blah".split(), stderr=PIPE)
-        err = out.stderr.decode()
-        if "ValueError" in err:
-            raise ValueError(err)
-    assert "Value for --builder must be one of" in err
+    result = cli.invoke(build, [path.as_posix(), "--builder", "blah"])
+    assert result.exit_code == 2
 
     # No table of contents message
     p_notoc = path_books.joinpath("notoc")
