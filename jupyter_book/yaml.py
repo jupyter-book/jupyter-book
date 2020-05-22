@@ -89,6 +89,9 @@ def yaml_to_sphinx(yaml, config):
 
     execute = yaml.get("execute")
     if execute:
+        if execute.get("execute_notebooks") is False:
+            # Special case because YAML treats `off` as "False".
+            execute["execute_notebooks"] = "off"
         sphinx_config["jupyter_execute_notebooks"] = execute.get("execute_notebooks")
         sphinx_config["jupyter_cache"] = execute.get("cache")
         sphinx_config["execution_excludepatterns"] = execute.get("exclude_patterns")
