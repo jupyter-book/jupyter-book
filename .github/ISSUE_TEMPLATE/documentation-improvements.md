@@ -1,5 +1,5 @@
 ---
-name: Documentation Improvements
+name: Documentation Improvements 📚
 about: Suggest improvements to the documentation
 title: ''
 labels: documentation
