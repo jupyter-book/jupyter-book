@@ -97,6 +97,7 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
             # over a top level title
             if (
                 latex_config is not None
+                and "latex_documents" in latex_config.keys()
                 and "title" not in latex_config["latex_documents"].keys()
             ):
                 latex_config["latex_documents"]["title"] = config_yaml["title"]
