@@ -137,3 +137,27 @@ you configure in `conf.py`. To do so, use the following section of `_config.yml`
       key1: value1
       key2: value2
   ```
+
+### Defining TeX Macros
+
+You can add TeX macros for the whole book by defining them under the `Macros` option of the `TeX` block. For example, the following two macros have been pre-defined in the Sphinx configuration
+
+```
+sphinx:
+  config:
+    mathjax_config:
+      TeX:
+        Macros:
+          "N": "\\mathbb{N}"
+          "floor": ["\\lfloor#1\\rfloor", 1]
+```
+
+You can also define TeX macros for a specific file by introducing them at the beginning of the file under a `math` directive. For example
+
+````
+```{math}
+
+\newcommand\N{\mathbb{N}}
+\newcommand\floor[1]{\lfloor#1\rfloor}
+```
+````
