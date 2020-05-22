@@ -96,8 +96,7 @@ mybookname/
 ├── intro.md
 ├── markdown.md
 ├── notebooks.ipynb
-├── references.bib
-└── syntax.md
+└── references.bib
 ```
 
 Here's a quick rundown of the files you can modify for yourself, and that
