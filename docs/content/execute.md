@@ -8,6 +8,12 @@ Cacheing behavior is controlled with the `execute:` section
 [in your `_config.yml` file](../customize/config). See
 the sections below for each configuration option and its effect.
 
+```{tip}
+If you'd like to execute code that is in your markdown files, you can use the
+`{code-cell}` directive in MyST markdown. See {doc}`../content-types/myst-notebooks`
+for more information.
+```
+
 ## Trigger notebook execution
 
 By default, Jupyter Book will execute any content files that have a notebook structure,
