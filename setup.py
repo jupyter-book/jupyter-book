@@ -20,6 +20,9 @@ test_reqs = [
     "matplotlib",
     "pytest-regressions",
     "jupytext",
+    "altair",
+    "spinx_click",
+    "sphinx_tabs"
 ] + doc_reqs
 setup(
     name="jupyter-book",
