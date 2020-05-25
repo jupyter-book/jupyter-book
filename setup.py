@@ -21,7 +21,7 @@ test_reqs = [
     "pytest-regressions",
     "jupytext",
     "altair",
-    "spinx_click",
+    "sphinx_click",
     "sphinx_tabs"
 ] + doc_reqs
 setup(
