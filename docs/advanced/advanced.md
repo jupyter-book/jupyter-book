@@ -188,8 +188,8 @@ html:
         </div>
 ```
 
-The contents of `extra_footer` will be inserted into your page's HTML after
-all other footer content.
+The contents of `extra_navbar` will be inserted into your page's HTML after
+all other html content.
 
 
 ## What if I have an issue or question?
