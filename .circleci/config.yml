@@ -97,13 +97,14 @@ jobs:
           command: pytest tests/test_pdf.py::test_pdflatex
 
       # Build Docs PDF as an artifact
-      - run:
-          name: PDF from LaTeX
-          command: jb build docs --builder pdflatex
+      # TODO: re-enable once gif, svg support is implemented for pdflatex
+      # - run:
+      #     name: PDF from LaTeX
+      #     command: jb build docs --builder pdflatex
 
-      - store_artifacts:
-          path: docs/_build/latex/python.pdf
-          destination: pdflatex
+      # - store_artifacts:
+      #     path: docs/_build/latex/python.pdf
+      #     destination: pdflatex
 
 workflows:
   version: 2
