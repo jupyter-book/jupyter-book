@@ -41,5 +41,6 @@
     - file: contribute/develop
 
 - header: Reference
+- file: reference/cheatsheet
 - file: reference/cli
 - file: reference/glossary
