@@ -20,6 +20,7 @@ test_reqs = [
     "matplotlib",
     "pytest-regressions",
     "jupytext",
+    "pyppeteer",
 ] + doc_reqs
 setup(
     name="jupyter-book",
