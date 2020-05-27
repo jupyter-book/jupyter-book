@@ -97,6 +97,7 @@ jobs:
           command: pytest tests/test_pdf.py::test_pdflatex
 
       # Build quantecon-mini-example project as a test case
+      # TODO: revert this to building docs/ when we've added support for svg, gif, etc
       - run:
           name: PDF from LaTeX
           command: |
