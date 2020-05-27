@@ -50,9 +50,7 @@ coverage.xml
 *.py,cover
 .hypothesis/
 .pytest_cache/
-tests/books/toc/_build/
-tests/books/clean_cache/_build/
-tests/books/config/_build/
+*/_build/
 tests/books/toc/_toc.yml
 
 
