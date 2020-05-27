@@ -20,6 +20,9 @@ test_reqs = [
     "matplotlib",
     "pytest-regressions",
     "jupytext",
+    "altair",
+    "sphinx_click",
+    "sphinx_tabs",
     "pyppeteer",
 ] + doc_reqs
 setup(
