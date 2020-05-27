@@ -23,6 +23,7 @@ test_reqs = [
     "altair",
     "sphinx_click",
     "sphinx_tabs",
+    "pyppeteer",
 ] + doc_reqs
 setup(
     name="jupyter-book",
