@@ -27,6 +27,14 @@ launch_buttons:
   thebelab                  : true
 
 sphinx:
+  config:
+    mathjax_config:
+      TeX:
+        Macros:
+          "N": "\\mathbb{N}"
+          "floor": ["\\lfloor#1\\rfloor", 1]
+          "bmat" : ["\\left[\\begin{array}"]
+          "emat" : ["\\end{array}\\right]"]
   extra_extensions:
     - sphinx_click.ext
     - sphinx_tabs.tabs
