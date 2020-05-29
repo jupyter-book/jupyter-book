@@ -107,7 +107,7 @@ jobs:
             jb build mini_book --builder pdflatex
 
       - store_artifacts:
-          path: quantecon-mini-example/mini_book/_build/latex/python.pdf
+          path: quantecon-mini-example/mini_book/_build/latex/book.pdf
           destination: pdflatex
 
 workflows:
