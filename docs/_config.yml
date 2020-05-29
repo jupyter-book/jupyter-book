@@ -1,6 +1,6 @@
 #######################################################################################
 # Book settings
-title:
+title: ""
 logo: images/logo.png
 author: The Jupyter Book Community
 email: choldgraf@berkeley.edu
@@ -19,7 +19,8 @@ html:
 
 repository:
   url                       : https://github.com/executablebooks/jupyter-book
-  path_to_book              : "docs"
+  branch                    : master
+  path_to_book              : docs
 
 launch_buttons:
   notebook_interface        : "jupyterlab"  # The interface interactive links will activate ["classic", "jupyterlab"]
