@@ -133,12 +133,14 @@ There are a few ways to reference your book's content, depending on what kind of
 content you'd like to reference. Here is a quick overview of some common options:
 
 * `{ref}` is used to reference section labels that you define or figures with a `name` value
-  * You can reference a section label through ``{ref}`label` `` or ``{ref}`some text <label>` ``
-  * To reference a section label in another document try ``{ref}`path/to/document/label` ``
 * `{numref}` is used to provide *numbered* references to figures
 * `{doc}` is used to reference other files in your book
-  * Documents can be referenced through ``{doc}`path/to/document` `` or ``{doc}`some text <path/to/document>` ``
 * `{eq}` is used to reference equations that have been given a `label` value
+
+```{tip}
+You can reference a section label through ``{ref}`label` `` or ``{ref}`some text <label>` ``.
+Documents can be referenced through ``{doc}`path/to/document` `` or ``{doc}`some text <path/to/document>` ``
+```
 
 (citations/bibliography)=
 ## Bibliography
