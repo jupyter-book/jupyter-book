@@ -150,6 +150,8 @@ sphinx:
         Macros:
           "N": "\\mathbb{N}"
           "floor": ["\\lfloor#1\\rfloor", 1]
+          "bmat" : ["\\left[\\begin{array}"]
+          "emat" : ["\\end{array}\\right]"]
 ```
 
 You can also define TeX macros for a specific file by introducing them at the beginning of the file under a `math` directive. For example
@@ -159,5 +161,19 @@ You can also define TeX macros for a specific file by introducing them at the be
 
 \newcommand\N{\mathbb{N}}
 \newcommand\floor[1]{\lfloor#1\rfloor}
+\newcommand{\bmat}{\left[\begin{array}}
+\newcommand{\emat}{\end{array}\right]}
 ```
 ````
+
+The commands can be used inside a `math` directive, `$$` or inline `$`, for example
+```md
+$$
+A = \bmat 1 & 1 \\ 2 & 1\\ 3 & 2 \emat,\ b=\bmat 2\\ 3 \\ 4\emat,\ \gamma = 0.5
+$$
+```
+will be rendered as
+
+$$
+A = \bmat 1 & 1 \\ 2 & 1\\ 3 & 2 \emat,\ b=\bmat 2\\ 3 \\ 4\emat,\ \gamma = 0.5
+$$
