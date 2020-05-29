@@ -6,7 +6,7 @@ from .yaml import add_yaml_config
 from .directive.toc import TableofContents
 
 
-__version__ = "0.7.0b4"
+__version__ = "0.7.0b5dev0"
 
 
 def add_static_files(app, config):
