@@ -30,21 +30,21 @@ def yaml_to_sphinx(yaml):
     theme_launch_buttons_config.update(launch_buttons_config)
     theme_options["launch_buttons"] = theme_launch_buttons_config
 
-    theme_options["path_to_docs"] = repository_config.get("path_to_book")
-    theme_options["repository_url"] = repository_config.get("url")
-    theme_options["repository_branch"] = repository_config.get("branch")
+    theme_options["path_to_docs"] = repository_config.get("path_to_book", "")
+    theme_options["repository_url"] = repository_config.get("url", "")
+    theme_options["repository_branch"] = repository_config.get("branch", "")
 
     # HTML
     html = yaml.get("html")
     if html:
-        sphinx_config["html_favicon"] = html.get("favicon")
-        sphinx_config["html_baseurl"] = html.get("baseurl")
+        sphinx_config["html_favicon"] = html.get("favicon", "")
+        sphinx_config["html_baseurl"] = html.get("baseurl", "")
 
-        theme_options["google_analytics_id"] = html.get("google_analytics_id")
+        theme_options["google_analytics_id"] = html.get("google_analytics_id", "")
         # Deprecate navbar_footer_text after a release cycle
-        theme_options["navbar_footer_text"] = html.get("navbar_footer_text")
-        theme_options["extra_navbar"] = html.get("extra_navbar")
-        theme_options["extra_footer"] = html.get("extra_footer")
+        theme_options["navbar_footer_text"] = html.get("navbar_footer_text", "")
+        theme_options["extra_navbar"] = html.get("extra_navbar", "")
+        theme_options["extra_footer"] = html.get("extra_footer", "")
         theme_options["number_toc_sections"] = html.get("navbar_number_sections")
         theme_options["home_page_in_toc"] = html.get("home_page_in_navbar")
 
@@ -76,7 +76,7 @@ def yaml_to_sphinx(yaml):
     # LaTeX
     latex = yaml.get("latex")
     if latex:
-        sphinx_config["latex_engine"] = latex.get("latex_engine")
+        sphinx_config["latex_engine"] = latex.get("latex_engine", "pdflatex")
 
     # Extra extensions
     extra_extensions = yaml.get("sphinx", {}).get("extra_extensions")
