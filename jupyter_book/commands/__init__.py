@@ -13,9 +13,24 @@ from ..sphinx import build_sphinx
 from ..toc import build_toc
 from ..pdf import html_to_pdf
 from ..utils import _message_box, _error, init_myst_file
+from .. import __version__ as jbv
+from sphinx_book_theme import __version__ as sbtv
+from myst_nb import __version__ as mnbv
+from myst_parser import __version__ as mpv
+from jupyter_cache import __version__ as jcv
+
+versions = {
+    "Jupyter Book": jbv,
+    "MyST-NB": mnbv,
+    "Sphinx Book Theme": sbtv,
+    "MyST-Parser": mpv,
+    "Jupyter-Cache": jcv,
+}
+versions_string = "\n".join(f"{tt}: {vv}" for tt, vv in versions.items())
 
 
 @click.group()
+@click.version_option(message=versions_string)
 def main():
     """Build and manage books with Jupyter."""
     pass
