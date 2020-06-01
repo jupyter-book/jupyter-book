@@ -20,8 +20,10 @@ Steps to reproduce the behavior:
 **Expected behavior**
 A clear and concise description of what you expected to happen.
 
+A link to your book's repository.
+
 If relevant, a minimal example of the input text should be supplied,
-together with a screen-shot of the output Sphinx document and/or command-line output, e.g.
+together with a screen-shot of the output book document and/or command-line output, e.g.
 
 ```markdown
 some text...
@@ -34,7 +36,7 @@ ERROR ...
 
 **Environment (please complete the following information):**
  - Python Version [e.g. 3.7.1]
- - Package Version [e.g. 0.1.0]
+ - Output of `jupyter-book --version`
 
 **Additional context**
 Add any other context about the problem here.
