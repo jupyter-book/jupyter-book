@@ -194,7 +194,11 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
 @click.argument("path-page")
 @click.option("--path-output", default=None, help="Path to the output artifacts")
 @click.option("--config", default=None, help="Path to the YAML configuration file")
-@click.option("--execute", default=None, help="Whether to execute the notebook first")
+@click.option(
+    "--execute/--no-execute",
+    default=True,
+    help="Whether to execute the notebook. Default is --execute",
+)
 def page(path_page, path_output, config, execute):
     """Convert a single content file to HTML or PDF.
     """
@@ -204,8 +208,12 @@ def page(path_page, path_output, config, execute):
     PAGE_NAME = PATH_PAGE.with_suffix("").name
     if config is None:
         config = ""
+
+    # Page command ignores book-level execution config options: page is either
+    # executed or not as dictated by command line option. Default is execute.
+    jupyter_execute_notebooks = "force"
     if not execute:
-        execute = "off"
+        jupyter_execute_notebooks = "off"
 
     OUTPUT_PATH = path_output if path_output is not None else PATH_PAGE_FOLDER
     OUTPUT_PATH = Path(OUTPUT_PATH).joinpath("_build/html")
@@ -225,7 +233,7 @@ def page(path_page, path_output, config, execute):
         "yaml_config_path": config,
         "globaltoc_path": "",
         "exclude_patterns": to_exclude,
-        "jupyter_execute_notebooks": execute,
+        "jupyter_execute_notebooks": jupyter_execute_notebooks,
         "html_theme_options": {"single_page": True},
     }
 
