@@ -49,7 +49,7 @@ setup(
         "pyyaml",
         "docutils>=0.15",
         "sphinx<3",
-        "myst-nb",
+        "myst-nb>=0.8.1",
         "click",
         "setuptools",
         "nbformat",
