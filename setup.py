@@ -49,7 +49,7 @@ setup(
         "pyyaml",
         "docutils>=0.15",
         "sphinx<3",
-        "myst-nb",
+        "myst-nb>=0.8.1",
         "click",
         "setuptools",
         "nbformat",
@@ -58,7 +58,7 @@ setup(
         "sphinx_togglebutton",
         "sphinx-copybutton",
         "sphinxcontrib-bibtex",
-        "sphinx_book_theme",
+        "sphinx_book_theme>=0.0.21",
     ],
     extras_require={
         "code_style": ["flake8<3.8.0,>=3.7.0", "black", "pre-commit==1.17.0"],

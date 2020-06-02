@@ -46,7 +46,7 @@ Here's a note block inside a margin block
 See {ref}`markdown/nexting` for instructions to do this.
 ````
 
-## Notes and warnings
+## Notes, warnings, and other admonitions
 
 Let's say you wish to highlight a particular block of
 text that exists slightly apart from the narrative of your page. You can
@@ -66,9 +66,22 @@ Results in the following output:
 Here is a note!
 ```
 
-Another common directive that result in similar output is **`{warning}`**.
+There are a number of similarly-styled blocks of text. For example, here is a `{warning}`
+block:
 
-Finally, you can choose the title of your message box by using the
+`````{warning}
+Here's a warning! It was created with:
+````
+```{warning}
+```
+````
+`````
+
+For a complete list of options, see [the `sphinx-book-theme` documentation](https://sphinx-book-theme.readthedocs.io/en/latest/reference/demo.html#admonitions).
+
+### Blocks of text with custom titles
+
+You can also choose the title of your message box by using the
 **`{admonition}`** directive. For example, the following text:
 
 ````
@@ -82,6 +95,20 @@ Results in the following output:
 ```{admonition} Here's your admonition
 Here's the admonition content
 ```
+
+If you'd like to **style these blocks**, then use the `:class:` option. For
+example:
+
+`````{admonition} This admonition was styled...
+:class: tip
+Using the following pattern:
+````
+```{admonition} My title
+:class: tip
+My content
+```
+````
+`````
 
 ## Quotations and epigraphs
 
