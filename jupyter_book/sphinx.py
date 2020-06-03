@@ -209,7 +209,8 @@ def build_sphinx(
                 parallel=jobs,
                 keep_going=keep_going,
             )
-            # Apply Latex Overrides for any individual latex_documents elements
+
+            # Apply individual Overrides for individual latex_documents elements
             if (
                 latexoverrides is not None
                 and "latex_documents" in latexoverrides.keys()
@@ -220,23 +221,16 @@ def build_sphinx(
                     app.config.latex_documents, latexoverrides
                 )
                 app.config.latex_documents = latex_documents
-            # Apply Latex Overrides for latex_singlepagepdf option
+
+            # Apply Latex Overrides for auto latex_singlepagepdf option
             if (
                 latexoverrides is not None
                 and "latex_singlepagepdf" in latexoverrides.keys()
             ):
-                from .pdf import build_singlepage_latexdocuments
+                from .pdf import autobuild_singlepage_latexdocuments
 
-                # TODO: What is the best way to get a list of files from TOC
-                # at this point?
-                import pdb
-
-                pdb.set_trace()
-                documents = sphinx_config["globaltoc_path"]
-
-                latex_documents = build_singlepage_latexdocuments(
-                    app.config.latex_documents, documents
-                )
+                latex_documents = autobuild_singlepage_latexdocuments(app)
+                app.config.latex_documents = latex_documents
 
             app.build(force_all, filenames)
 

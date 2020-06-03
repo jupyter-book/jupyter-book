@@ -1,8 +1,33 @@
 """Commands to facilitate conversion to PDF."""
 from pathlib import Path
 import asyncio
+import sphinx
+import copy
+import os
 
 from .utils import _error, _message_box
+
+# LaTeX Documents Tuple Spec
+if sphinx.__version__ >= "3.0.0":
+    # https://www.sphinx-doc.org/en/3.x/usage/configuration.html#confval-latex_documents
+    LATEX_DOCUMENTS = (
+        "startdocname",
+        "targetname",
+        "title",
+        "author",
+        "theme",
+        "toctree_only",
+    )
+else:
+    # https://www.sphinx-doc.org/en/2.0/usage/configuration.html#confval-latex_documents
+    LATEX_DOCUMENTS = (
+        "startdocname",
+        "targetname",
+        "title",
+        "author",
+        "documentclass",
+        "toctree_only",
+    )
 
 
 def html_to_pdf(html_file, pdf_file):
@@ -58,16 +83,8 @@ def update_latex_documents(latex_documents, latexoverrides):
         # Extract latex_documents tuple
         latex_documents = latex_documents[0]
     # Apply single overrides from _config.yml
-    latexdocs_tuple = (
-        "startdocname",
-        "targetname",
-        "title",
-        "author",
-        "theme",
-        "toctree_only",
-    )
     updated_latexdocs = []
-    for loc, item in enumerate(latexdocs_tuple):
+    for loc, item in enumerate(LATEX_DOCUMENTS):
         # the last element toctree_only seems optionally included
         if loc >= len(latex_documents):
             break
@@ -75,20 +92,70 @@ def update_latex_documents(latex_documents, latexoverrides):
             updated_latexdocs.append(latexoverrides["latex_documents"][item])
         else:
             updated_latexdocs.append(latex_documents[loc])
-    return list(tuple(updated_latexdocs))
+    return [tuple(updated_latexdocs)]
 
 
-def build_singlepage_latexdocuments(latex_documents, toc):
+def latex_document_components(latex_documents):
+    """ Return a dictionary of latex_document components by name """
+    latex_tuple_components = {}
+    for idx, item in enumerate(LATEX_DOCUMENTS):
+        # skip if latex_documents doesn't doesn't contain all elements
+        # of the LATEX_DOCUMENT specification tuple
+        if idx >= len(latex_documents):
+            continue
+        latex_tuple_components[item] = latex_documents[idx]
+    return latex_tuple_components
+
+
+def latex_document_tuple(components):
+    """ Return a tuple for latex_documents from named components dictionary """
+    latex_doc = []
+    for item in LATEX_DOCUMENTS:
+        if item not in components.keys():
+            continue
+        else:
+            latex_doc.append(components[item])
+    return tuple(latex_doc)
+
+
+def autobuild_singlepage_latexdocuments(app):
     """
     Build list of tuples for each document in the Project
+
     [((startdocname, targetname, title, author, theme, toctree_only))]
+
     https://www.sphinx-doc.org/en/3.x/usage/configuration.html#confval-latex_documents
-
-    TODO:
-    1. How best to get a list of documents?
-    2. How best to fetch titles for each document
-
     """
-    import pdb
+    latex_documents = app.config.latex_documents
+    if len(latex_documents) > 1:
+        _message_box(
+            "Latex documents has been specified as a multi element list in the _config",
+            "This suggests the user has made custom settings to their build",
+            "[Skipping] autobuild_singlepage_latexdocuments option",
+        )
+        return latex_documents
+    else:
+        # Extract latex_documents updated tuple
+        latex_documents = latex_documents[0]
 
-    pdb.set_trace()
+    titles = app.env.titles
+    # Infer any source folder containing source files
+    # TODO: can this be extracted from app.env?
+    master_doc = app.config.master_doc
+    if "/" in master_doc:
+        sourcedir = os.path.dirname(master_doc) + "/"
+    else:
+        sourcedir = ""
+
+    # Construct Tuples
+    DEFAULT_VALUES = latex_document_components(latex_documents)
+    latex_documents = []
+    for doc, title in titles.items():
+        latex_doc = copy.copy(DEFAULT_VALUES)
+        latex_doc["startdocname"] = doc
+        latex_doc["targetname"] = (doc + ".tex").replace(sourcedir, "")
+        latex_doc["title"] = title.astext()
+        latex_doc = latex_document_tuple(latex_doc)
+        latex_documents.append(latex_doc)
+
+    return latex_documents
