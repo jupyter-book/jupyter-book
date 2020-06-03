@@ -35,7 +35,12 @@ BUILDER_OPTIONS = ["html", "pdfhtml", "linkcheck", "latex", "pdflatex"]
     default="html",
     help="Which builder to use. Must be one of {BUILDER_OPTIONS}",
 )
-def build(path_book, path_output, config, toc, warningiserror, builder):
+@click.option(
+    "--singlepagepdf",
+    default=False,
+    help="[pdflatex option] Enable build of PDF files for each page",
+)
+def build(path_book, path_output, config, toc, warningiserror, builder, singlepagepdf):
     """Convert your book's content to HTML or a PDF."""
     # Paths for our notebooks
     PATH_BOOK = Path(path_book).absolute()
@@ -44,6 +49,7 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
 
     # `book_config` is manual over-rides, `config` is the path to a _config.yml file
     book_config = {}
+    latexoverrides = {}
 
     # Choose sphinx builder
     builder_dict = {
@@ -80,10 +86,24 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
         if not Path(path_config).exists():
             raise ValueError(f"Config file path given, but not found: {path_config}")
 
+    # Builder-specific configuration
+    if singlepagepdf:
+        if builder != "pdflatex":
+            _message_box(
+                """
+                [Warning] Specified option --singlepagepdf only works with the
+                following builders:
+
+                pdflatex
+                """
+            )
+        latexoverrides["latex_singlepagepdf"] = True
+
     # Builder-specific overrides
     if builder == "pdfhtml":
         book_config["html_theme_options"] = {"single_page": True}
 
+    # Setup output paths
     BUILD_PATH = path_output if path_output is not None else PATH_BOOK
     BUILD_PATH = Path(BUILD_PATH).joinpath("_build")
     if builder in ["html", "pdfhtml", "linkcheck"]:
@@ -98,6 +118,7 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
         noconfig=True,
         path_config=path_config,
         confoverrides=book_config,
+        latexoverrides=latexoverrides,
         builder=sphinx_builder,
         warningiserror=warningiserror,
     )

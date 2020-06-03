@@ -209,7 +209,7 @@ def build_sphinx(
                 parallel=jobs,
                 keep_going=keep_going,
             )
-            # Apply Latex Overrides for latex_documents
+            # Apply Latex Overrides for any individual latex_documents elements
             if (
                 latexoverrides is not None
                 and "latex_documents" in latexoverrides.keys()
@@ -217,9 +217,27 @@ def build_sphinx(
                 from .pdf import update_latex_documents
 
                 latex_documents = update_latex_documents(
-                    app.config.latex_documents[0], latexoverrides
+                    app.config.latex_documents, latexoverrides
                 )
-                app.config.latex_documents = [latex_documents]
+                app.config.latex_documents = latex_documents
+            # Apply Latex Overrides for latex_singlepagepdf option
+            if (
+                latexoverrides is not None
+                and "latex_singlepagepdf" in latexoverrides.keys()
+            ):
+                from .pdf import build_singlepage_latexdocuments
+
+                # TODO: What is the best way to get a list of files from TOC
+                # at this point?
+                import pdb
+
+                pdb.set_trace()
+                documents = sphinx_config["globaltoc_path"]
+
+                latex_documents = build_singlepage_latexdocuments(
+                    app.config.latex_documents, documents
+                )
+
             app.build(force_all, filenames)
 
             # Write an index.html file in the root to redirect to the first page

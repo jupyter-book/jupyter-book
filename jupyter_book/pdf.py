@@ -2,7 +2,7 @@
 from pathlib import Path
 import asyncio
 
-from .utils import _error
+from .utils import _error, _message_box
 
 
 def html_to_pdf(html_file, pdf_file):
@@ -47,6 +47,17 @@ def update_latex_documents(latex_documents, latexoverrides):
     """
     Apply latexoverrides from _config.yml to latex_documents tuple
     """
+    if len(latex_documents) > 1:
+        _message_box(
+            "Latex documents has been specified as a multi element list in the _config",
+            "This suggests the user has made custom settings to their build",
+            "[Skipping] update_latex_documents for specific latex overrides",
+        )
+        return latex_documents
+    else:
+        # Extract latex_documents tuple
+        latex_documents = latex_documents[0]
+    # Apply single overrides from _config.yml
     latexdocs_tuple = (
         "startdocname",
         "targetname",
@@ -64,4 +75,20 @@ def update_latex_documents(latex_documents, latexoverrides):
             updated_latexdocs.append(latexoverrides["latex_documents"][item])
         else:
             updated_latexdocs.append(latex_documents[loc])
-    return tuple(updated_latexdocs)
+    return list(tuple(updated_latexdocs))
+
+
+def build_singlepage_latexdocuments(latex_documents, toc):
+    """
+    Build list of tuples for each document in the Project
+    [((startdocname, targetname, title, author, theme, toctree_only))]
+    https://www.sphinx-doc.org/en/3.x/usage/configuration.html#confval-latex_documents
+
+    TODO:
+    1. How best to get a list of documents?
+    2. How best to fetch titles for each document
+
+    """
+    import pdb
+
+    pdb.set_trace()
