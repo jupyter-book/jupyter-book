@@ -27,6 +27,10 @@ data = px.data.iris()
 data.head()
 ```
 
+```{warning}
+Jupyter Book does not yet support ipywidgets, but it wants to do so!
+```
+
 ## Altair
 
 Interactive outputs will work under the assumption that the outputs they produce have
