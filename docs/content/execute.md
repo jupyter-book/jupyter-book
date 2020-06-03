@@ -1,3 +1,18 @@
+---
+jupytext:
+  cell_metadata_filter: -all
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: '0.8'
+    jupytext_version: 1.4.2
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
 # Execute and cache your pages
 
 Jupyter Book can automatically run and cache any notebook pages. Notebooks can either
@@ -106,3 +121,30 @@ The path should point to an **empty folder**, or a folder where a
 **jupyter cache already exists**.
 
 [jupyter-cache]: https://github.com/executablebooks/jupyter-cache "the Jupyter Cache Project"
+
+
+## Execution FAQs
+
+### How can I include code that raises errors?
+
+In some cases, you may want to intentionally show code that doesn't work (e.g., to show
+the error message). To do this, add a `raises-exception` tag to your code cell. This
+can be done via a Jupyter interface, or via the `{code-cell}` directive like so:
+
+````
+```{code-cell}
+---
+tags: [raises-exception]
+---
+print(thisvariabledoesntexist)
+```
+````
+
+Which produces:
+
+```{code-cell}
+---
+tags: [raises-exception]
+---
+print(thisvariabledoesntexist)
+```
