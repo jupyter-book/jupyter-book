@@ -236,19 +236,19 @@ Another alternative is to use markdown syntax:
 * - ```md
     1. First item
     2. Second item
-      1. First sub-item
+        1. First sub-item
     ```
   - 1. First item
     2. Second item
-      1. First sub-item
+        1. First sub-item
 * - ```md
     1. First item
     2. Second item
-      * First sub-item
+        * First sub-item
     ```
   - 1. First item
     2. Second item
-      * First subitem
+        * First subitem
 ``````
 
 ### Unordered List
