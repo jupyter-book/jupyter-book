@@ -173,10 +173,13 @@ def update_indexname(app, config):
         # Ensure that the first item in the list is not a header
         if "header" in toc[0]:
             _error("Table of Contents must start with your first page, not a header.")
+        # Convert to a dictionary where the top-level file is the first item of the list
         toc_updated = toc[0]
         if len(toc) > 1:
             subsections = toc[1:]
-            toc_updated["sections"] = subsections
+            first_sections = toc_updated.get("sections", [])
+            first_sections += subsections
+            toc_updated["sections"] = first_sections
         toc = toc_updated
 
     # Check for proper structure, naming, etc
