@@ -194,7 +194,7 @@ all other html content.
 (working-on-windows)=
 ## Working on Windows
 
-As of June 4, 2020, there are three open issues that require Windows-specific changes.
+As of June 5, 2020, there are three open issues that require Windows-specific changes.
 Work to complete windows compatibility is underway, in the meantime we provide these
 community tips, which are known to work for some users. Note that there is no
 guarantee that they will work on all windows installations.
@@ -208,33 +208,33 @@ guarantee that they will work on all windows installations.
     **Work-around:**  Beginning with
     [Python 3.7](https://docs.python.org/3/using/cmdline.html#envvar-PYTHONUTF8)
     cmd.exe or powershell enviroments that set PYTHONUTF8=1  override the native
-    locale encoding and use UTF8 for all input/output.  
-    
+    locale encoding and use UTF8 for all input/output.
+
     ```{tip}
     To make it easier to use
     this option, the EOAS/UBC notebook courseware project has created a conda package
-    [runjb](https://anaconda.org/eoas_ubc/runjb) which 
+    [runjb](https://anaconda.org/eoas_ubc/runjb) which
     [does this automatically for powershell](https://github.com/eoas-ubc/eoas_tlef/blob/master/converted_docs/wintools/binwin/runjb.ps1)
     ```
 
 2. A new windows event loop
 
-   The asyncio event loop [has been changed for Python 3.8](https://github.com/sphinx-doc/sphinx/issues/7310) 
+   The asyncio event loop [has been changed for Python 3.8](https://github.com/sphinx-doc/sphinx/issues/7310)
    causing sphinx-build to fail.
 
    **Workaround:**  Pin to Python 3.7.6.  This
-   [environment_win.yml](https://github.com/eoas-ubc/quantecon-mini-example/blob/windows/environment_win.yml) 
+   [environment_win.yml](https://github.com/eoas-ubc/quantecon-mini-example/blob/windows/environment_win.yml)
    file does that, and also installs runjb to fix issue 1.
 
 3. Nested tables of contents
 
    Currently, `_toc.yml` files that reference markdown files
    in subfolders are failing for some windows users.  That is, this
-   [original _toc.yml](https://github.com/eoas-ubc/quantecon-mini-example/blob/master/mini_book/_toc.yml) 
+   [original _toc.yml](https://github.com/eoas-ubc/quantecon-mini-example/blob/master/mini_book/_toc.yml)
    file will fail with a message saying jupyter-book "```cannot find index.md```"
 
    **Work-around**: Flatten the layout of the book to a single level, i.e.
-   [this _toc.yml](https://github.com/eoas-ubc/quantecon-mini-example/blob/windows/mini_book/docs/_toc.yml) 
+   [this _toc.yml](https://github.com/eoas-ubc/quantecon-mini-example/blob/windows/mini_book/docs/_toc.yml)
    file works with windows.
 
 **Summary**
