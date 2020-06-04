@@ -89,9 +89,9 @@ def build(path_book, path_output, config, toc, warningiserror, builder, singlepa
     # Builder-specific configuration
     if singlepagepdf:
         if builder != "pdflatex":
-            _message_box(
+            _error(
                 """
-                [Warning] Specified option --singlepagepdf only works with the
+                Specified option --singlepagepdf only works with the
                 following builders:
 
                 pdflatex

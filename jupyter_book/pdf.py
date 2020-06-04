@@ -153,7 +153,11 @@ def autobuild_singlepage_latexdocuments(app):
     for doc, title in titles.items():
         latex_doc = copy.copy(DEFAULT_VALUES)
         latex_doc["startdocname"] = doc
-        latex_doc["targetname"] = (doc + ".tex").replace(sourcedir, "")
+        if DEFAULT_VALUES["startdocname"] == doc:
+            targetdoc = DEFAULT_VALUES["targetname"]
+        else:
+            targetdoc = (doc + ".tex").replace(sourcedir, "")
+        latex_doc["targetname"] = targetdoc
         latex_doc["title"] = title.astext()
         latex_doc = latex_document_tuple(latex_doc)
         latex_documents.append(latex_doc)

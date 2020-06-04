@@ -75,8 +75,6 @@ def build_sphinx(
 
     if confoverrides is None:
         confoverrides = {}
-    if latexoverrides is None:
-        latexoverrides = {}
 
     #######################
     # Configuration updates
@@ -229,6 +227,8 @@ def build_sphinx(
             ):
                 from .pdf import autobuild_singlepage_latexdocuments
 
+                # Ask Builder to read the source files to fetch titles and documents
+                app.builder.read()
                 latex_documents = autobuild_singlepage_latexdocuments(app)
                 app.config.latex_documents = latex_documents
 
