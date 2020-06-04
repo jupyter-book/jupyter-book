@@ -191,6 +191,7 @@ html:
 The contents of `extra_navbar` will be inserted into your page's HTML after
 all other html content.
 
+(working-on-windows)=
 ## Working on Windows
 
 As of June 4, 2020, there are three open issues that require Windows-specific changes.
