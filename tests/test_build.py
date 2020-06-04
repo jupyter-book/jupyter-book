@@ -5,12 +5,13 @@ import pytest
 from bs4 import BeautifulSoup as bs
 from click.testing import CliRunner
 
-from jupyter_book.commands import build
+from jupyter_book import commands
 
 
 path_tests = Path(__file__).parent.resolve()
 path_books = path_tests.joinpath("books")
 path_root = path_tests.parent
+p_toc = path_books.joinpath("toc")
 
 
 @pytest.fixture()
@@ -19,116 +20,94 @@ def cli():
     return runner
 
 
-def test_build_book(tmpdir):
+def test_build_book(tmpdir, cli):
     """Test building the book template and a few test configs."""
     # Create the book from the template
-    path = Path(tmpdir).joinpath("mybook").absolute()
-    run(f"jb create {path}".split())
+    book_root = Path(tmpdir).joinpath("mybook")
+    create_result = cli.invoke(commands.create, str(book_root))
 
-    # Ensure the book is created properly
-    assert path.joinpath("_config.yml").exists()
+    assert create_result.exit_code == 0
+    assert book_root.joinpath("_config.yml").exists()
 
     # Build the book
-    run(f"jb build {path}".split(), check=True)
-    path_html = path.joinpath("_build", "html")
+    build_result = cli.invoke(commands.build, str(book_root))
+    assert build_result.exit_code == 0
+    path_html = book_root.joinpath("_build", "html")
     assert path_html.joinpath("index.html").exists()
     assert path_html.joinpath("intro.html").exists()
 
-    # Test custom config values
+
+def test_custom_config(cli):
     path_config = path_books.joinpath("config")
-    run(f"jb build {path_config}".split(), check=True)
-    html = path_config.joinpath("_build", "html", "index.html").read_text(
-        encoding="utf8"
-    )
+    result = cli.invoke(commands.build, str(path_config))
+    assert result.exit_code == 0
+    html = path_config.joinpath("_build", "html", "index.html").read_text()
     assert '<h1 class="site-logo" id="site-title">TEST PROJECT NAME</h1>' in html
     assert '<div class="sphinx-tabs docutils container">' in html
     assert '<link rel="stylesheet" type="text/css" href="_static/mycss.css" />' in html
     assert '<script src="_static/js/myjs.js"></script>' in html
 
 
-def test_toc_builds(tmpdir):
+@pytest.mark.parametrize("toc", ["_toc.yml", "_toc_startwithlist.yml"])
+def test_toc_builds(tmpdir, cli, toc):
     """Test building the book template with several different TOC files."""
-    path_output = Path(tmpdir).joinpath("mybook").absolute()
+    result = cli.invoke(commands.build, (f"{p_toc} --path-output {tmpdir} "
+                                         f"--toc {p_toc / toc} -W").split())
+    assert result.exit_code == 0
 
-    ###############################
-    # TOC Builds
+# <<<<<<< variant A
+#     ###############################
+#     # TOC Builds
 
-    # Regular TOC should work
-    p_toc = path_books.joinpath("toc")
-    path_toc = p_toc.joinpath("_toc.yml")
-    out = run(f"jb build {p_toc} --path-output {tmpdir} --toc {path_toc} -W".split())
+#     # Regular TOC should work
+#     p_toc = path_books.joinpath("toc")
+#     path_toc = p_toc.joinpath("_toc.yml")
+#     out = run(f"jb build {p_toc} --path-output {tmpdir} --toc {path_toc} -W".split())
 
-    # TOC with a single-item list should work
-    p_toc = path_books.joinpath("toc")
-    path_toc = p_toc.joinpath("_toc_startwithlist.yml")
-    out = run(f"jb build {p_toc} --path-output {tmpdir} --toc {path_toc} -W".split())
+#     # TOC with a single-item list should work
+#     p_toc = path_books.joinpath("toc")
+#     path_toc = p_toc.joinpath("_toc_startwithlist.yml")
+#     out = run(f"jb build {p_toc} --path-output {tmpdir} --toc {path_toc} -W".split())
 
-    # TOC should force a re-build of pages if it changes and no pages change
-    # Only difference between these is the relative ordering of content pages
-    toc_tmp = [
-        ("- file: index\n- file: content1\n- file: content2\n", "content1.html"),
-        ("- file: index\n- file: content2\n- file: content1\n", "content2.html"),
-    ]
-    for toc_tmp_text, first_page in toc_tmp:
-        path_toctmp = Path(tmpdir).joinpath("_toc_tmp.yml")
-        path_toctmp.write_text(toc_tmp_text)
-        # Not using -W because we expect warnings for pages not listed in TOC
-        out = run(
-            f"jb build {p_toc} --path-output {tmpdir} --toc {path_toctmp}".split()
-        )
-        path_index = Path(tmpdir).joinpath("_build", "html", "index.html")
-        index_html = bs(path_index.read_text(), "html.parser")
-        sidebar_links = index_html.select(".bd-sidebar a.internal")
-        # The first page should be different in each run bc of switched TOC order
-        assert sidebar_links[1].attrs["href"] == first_page
+#     # TOC should force a re-build of pages if it changes and no pages change
+#     # Only difference between these is the relative ordering of content pages
+#     toc_tmp = [
+#         ("- file: index\n- file: content1\n- file: content2\n", "content1.html"),
+#         ("- file: index\n- file: content2\n- file: content1\n", "content2.html"),
+#     ]
+#     for toc_tmp_text, first_page in toc_tmp:
+#         path_toctmp = Path(tmpdir).joinpath("_toc_tmp.yml")
+#         path_toctmp.write_text(toc_tmp_text)
+#         # Not using -W because we expect warnings for pages not listed in TOC
+#         out = run(
+#             f"jb build {p_toc} --path-output {tmpdir} --toc {path_toctmp}".split()
+#         )
+#         path_index = Path(tmpdir).joinpath("_build", "html", "index.html")
+#         index_html = bs(path_index.read_text(), "html.parser")
+#         sidebar_links = index_html.select(".bd-sidebar a.internal")
+#         # The first page should be different in each run bc of switched TOC order
+#         assert sidebar_links[1].attrs["href"] == first_page
 
-    ###############################
-    # TOC errors
-    p_toc = path_books.joinpath("toc")
+#     ###############################
+#     # TOC errors
+#     p_toc = path_books.joinpath("toc")
+# >>>>>>> variant B
+# ======= end
 
+@pytest.mark.parametrize("toc,msg",
+                         [("_toc_startswithheader.yml", "Table of Contents must start"),
+                          ("_toc_urlwithouttitle.yml", "`url:` link should"),
+                          ("_toc_url.yml", "Rename `url:` to `file:`"),
+                          ("_toc_wrongkey.yml", "Unknown key in `_toc.yml`")])
+def test_corrupt_toc(tmpdir, cli, toc, msg):
+    path_output = Path(tmpdir).joinpath("mybook")
     with pytest.raises(ValueError):
-        path_toc = p_toc.joinpath("_toc_startswithheader.yml")
-        out = run(
-            f"jb build {p_toc} --path-output {path_output} --toc {path_toc} -W".split(),
-            stderr=PIPE,
-        )
-        err = out.stderr.decode()
-        if "There was an error in building your book." in err:
-            raise ValueError(err)
-    assert "Table of Contents must start with your first page" in err
-
-    with pytest.raises(ValueError):
-        path_toc = p_toc.joinpath("_toc_url.yml")
-        out = run(
-            f"jb build {p_toc} --path-output {path_output} --toc {path_toc} -W".split(),
-            stderr=PIPE,
-        )
-        err = out.stderr.decode()
-        if "Warning, treated as error:" in err:
-            raise ValueError(err)
-    assert "Rename `url:` to `file:`" in err
-
-    with pytest.raises(ValueError):
-        path_toc = p_toc.joinpath("_toc_urlwithouttitle.yml")
-        out = run(
-            f"jb build {p_toc} --path-output {path_output} --toc {path_toc} -W".split(),
-            stderr=PIPE,
-        )
-        err = out.stderr.decode()
-        if "Warning, treated as error:" in err:
-            raise ValueError(err)
-    assert "`url:` link should" in err
-
-    with pytest.raises(ValueError):
-        path_toc = p_toc.joinpath("_toc_wrongkey.yml")
-        out = run(
-            f"jb build {p_toc} --path-output {path_output} --toc {path_toc} -W".split(),
-            stderr=PIPE,
-        )
-        err = out.stderr.decode()
-        if "Warning, treated as error:" in err:
-            raise ValueError(err)
-    assert "Unknown key in `_toc.yml`: foo" in err
+        result = cli.invoke(commands.build,
+                            (f"{p_toc} --path-output {path_output} "
+                             f" --toc {p_toc / toc} -W".split()))
+        assert result.exit_code == 1
+        raise result.exception
+        assert msg in result.output
 
 
 def test_build_errors(tmpdir, cli):
@@ -154,7 +133,7 @@ def test_build_errors(tmpdir, cli):
     assert "Path to book isn't a directory" in err
 
     # Incorrect build
-    result = cli.invoke(build, [path.as_posix(), "--builder", "blah"])
+    result = cli.invoke(commands.build, [path.as_posix(), "--builder", "blah"])
     assert result.exit_code == 2
 
     # No table of contents message
