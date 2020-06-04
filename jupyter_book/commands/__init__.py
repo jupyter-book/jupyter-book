@@ -286,7 +286,8 @@ def create(path_book):
     help="Whether to generate page titles from file names.",
 )
 def toc(path, filename_split_char, skip_text, output_folder, add_titles):
-    """Generate a _toc.yml file for your content folder (and sub-directories).
+    """Generate a _toc.yml file for your content folder.
+    It also generates a _toc.yml file for sub-directories.
     The alpha-numeric name of valid content files will be used to choose the
     order of pages/sections. If any file is called "index.{extension}", it will be
     chosen as the first file. Note that each folder must have at least one content file
@@ -307,7 +308,7 @@ def toc(path, filename_split_char, skip_text, output_folder, add_titles):
 @click.option("--html", is_flag=True, help="Remove html directory.")
 @click.option("--latex", is_flag=True, help="Remove latex directory.")
 def clean(path_book, all_, html, latex):
-    """By default this method empties the build directory except jupyter_cache.
+    """Empty the _build directory except jupyter_cache.
     If the all option has been flagged, it will remove the entire _build. If html/latex
     option is flagged, it will remove the html/latex subdirectories."""
 
