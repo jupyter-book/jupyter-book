@@ -222,7 +222,7 @@ guarantee that they will work on all windows installations.
    The asyncio event loop [has been changed for Python 3.8](https://github.com/sphinx-doc/sphinx/issues/7310)
    causing sphinx-build to fail.
 
-   **Workaround:**  Pin to Python 3.7.6.  This
+   **Work-around:**  Pin to Python 3.7.6.  This
    [environment_win.yml](https://github.com/eoas-ubc/quantecon-mini-example/blob/windows/environment_win.yml)
    file does that, and also installs runjb to fix issue 1.
 
