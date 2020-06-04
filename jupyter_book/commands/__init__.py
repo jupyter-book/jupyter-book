@@ -67,19 +67,6 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
     # `book_config` is manual over-rides, `config` is the path to a _config.yml file
     book_config = {}
 
-    # Choose sphinx builder
-    builder_dict = {
-        "html": "html",
-        "linkcheck": "linkcheck",
-        "pdfhtml": "singlehtml",
-        "latex": "latex",
-        "pdflatex": "latex",
-    }
-    if builder not in builder_dict.keys():
-        allowed_keys = tuple(builder_dict.keys())
-        _error(f"Value for --builder must be one of {allowed_keys}. Got '{builder}'")
-    sphinx_builder = builder_dict[builder]
-
     # Table of contents
     if toc is None:
         toc = PATH_BOOK.joinpath("_toc.yml")
