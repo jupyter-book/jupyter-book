@@ -110,6 +110,72 @@ My content
 ````
 `````
 
+(content/toggle-admonitions)=
+### Interactive admonitions with dropdowns
+
+You can also hide the body of your admonition blocks so that users must click
+a button to reveal their content. This is helpful if you'd like to make a point
+that isn't immediately visible to the user.
+
+To hide the body of admonition blocks, add a "dropdown" class to them, like so:
+
+````
+```{note}
+:class: dropdown
+The note body will be hidden!
+```
+````
+
+results in:
+
+```{note}
+:class: dropdown
+The note body will be hidden!
+```
+
+You can use this in conjunction with `{admonition}` directives to include your
+own titles and stylings. For example:
+
+````
+```{admonition} Click the + sign to see what's inside
+:class: dropdown, tip
+Here's what's inside!
+```
+````
+
+results in:
+
+```{admonition} Click the + sign to see what's inside
+:class: dropdown, tip
+Here's what's inside!
+```
+
+### Insert code cell outputs into admonitions
+
+If you'd like to insert the outputs of running code *inside* admonition
+blocks, we recommend using {doc}`Glue functionality <glue>`. For example,
+we'll insert one of the outputs that was glued into the book from the page
+{doc}`glue`.
+
+The below code:
+
+````
+```{note}
+Here's my figure:
+{glue:figure}`sorted_means_fig`
+```
+````
+
+generates:
+
+```{note}
+Here's my figure:
+{glue:}`sorted_means_fig`
+```
+
+See {doc}`glue` for more information on how to use Glue to insert your outputs
+directly into your content.
+
 ## Quotations and epigraphs
 
 Quotations and epigraphs provide ways to highlight information given by others.
