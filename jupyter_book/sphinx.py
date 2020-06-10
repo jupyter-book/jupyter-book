@@ -24,7 +24,6 @@ DEFAULT_CONFIG = dict(
         "jupyter_book",
         "sphinxcontrib.bibtex",
     ],
-    togglebutton_selector=".toggle, .secondtoggle",
     language=None,
     pygments_style="sphinx",
     html_theme="sphinx_book_theme",

@@ -33,30 +33,21 @@ We'll cover each below.
 
 ## Hide markdown using MyST markdown
 
-In order to hide markdown content, you can use the `{toggle}` directive.
-This allows you to wrap chunks of markdown in a button that lets users show
-and hide the content.
+There are two ways to hide markdown content
+
+* you can use the `{toggle}` directive to hide arbitrary blocks of content
+* you can use the `dropdown` class to admonitions to turn them into dropdowns
+
+Both allow you to wrap chunks of markdown in a button that lets users show
+and hide the content. We cover each below.
+
+### The `{toggle}` directive
 
 You can activate this behavior in markdown with the `{toggle}`
 directive like so:
 
 ````
 ```{toggle}
-This content will be toggled!
-```
-````
-
-This results in:
-
-```{toggle}
-This content will be toggled!
-```
-
-You can also include a title with your toggle section. The title will always be displayed,
-and the toggle button will reveal the section's content. Use this like so:
-
-````
-```{toggle} Click the button to reveal!
 Some hidden toggle content!
 
 ![](../images/cool.jpg)
@@ -65,7 +56,7 @@ Some hidden toggle content!
 
 This results in:
 
-```{toggle} Click the button to reveal!
+```{toggle}
 Some hidden toggle content!
 
 ![](../images/cool.jpg)
@@ -83,8 +74,32 @@ Some hidden toggle content!
 ```
 ````
 
-See the [`sphinx-togglebutton` documentation](https://sphinx-togglebutton.readthedocs.io/en/latest/)
-for more information about toggle functionality.
+### Toggle admonition content with dropdowns
+
+You can also **add toggle buttons to admonition blocks**, effectively making them
+dropdown blocks. Users will see the admonition title, but will need to click
+in order to reveal the content. To do so, add the `dropdown` class to any admonition.
+For example:
+
+````
+```{admonition} Click the button to reveal!
+:class: dropdown
+Some hidden toggle content!
+
+![](../images/cool.jpg)
+```
+````
+
+This results in:
+
+```{admonition} Click the button to reveal!
+:class: dropdown
+Some hidden toggle content!
+
+![](../images/cool.jpg)
+```
+
+See {ref}`content/toggle-admonitions` for more information on admonition dropdowns.
 
 ## Hide code cell content
 
