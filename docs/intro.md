@@ -50,7 +50,7 @@ on a laptop), or
 To install the `jupyter-book` pre-release from pip, run the following command:
 
 ```
-pip install -U "jupyter-book>=0.7.0b"
+pip install -U jupyter-book
 ```
 
 (example-project)=
@@ -88,7 +88,7 @@ You can build this book locally on the command line via the following steps:
     If you'd like to install Jupyter Book with `pip`, you can do so with:
 
     ```bash
-    pip install -U jupyter-book>=0.7.0b
+    pip install -U jupyter-book
     ```
     See [the getting started page](start/overview) for more information.
     ````

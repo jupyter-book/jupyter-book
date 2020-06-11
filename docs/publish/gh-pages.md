@@ -74,7 +74,7 @@ that builds a book with GitHub Actions.
 
 ```{note}
 Ensure that Jupyter Book's version in your `requirements.txt` file is at least
-`0.7.0b`. This line will do the trick: `jupyter-book>=0.7.0b`.
+`0.7.0`.
 ```
 
 Here is a simple YAML configuration
