@@ -178,7 +178,7 @@ directly into your content.
 
 ```{tip}
 To hide code input and output that generated the variable you are inserting, use the `remove_cell` tag.
-See {doc}`hiding` for more information and other tag options.
+See {doc}`../interactive/hiding` for more information and other tag options.
 ```
 
 ## Quotations and epigraphs
