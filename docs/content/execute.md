@@ -125,6 +125,17 @@ The path should point to an **empty folder**, or a folder where a
 
 ## Execution FAQs
 
+### How does execution deal with relative paths in my code?
+
+The behavior of relative paths in your code is slightly different depending on
+whether you're executing with `auto` or with `cache`.
+
+* **If executing with `auto`** notebooks will execute in the folder where they
+  exist and relative paths will work.
+* **If executing with `cache`** then the notebook will execute in a temporary
+  folder, and relative paths will not work. Support for relative paths is planned
+  for the future.
+
 ### How can I include code that raises errors?
 
 In some cases, you may want to intentionally show code that doesn't work (e.g., to show
