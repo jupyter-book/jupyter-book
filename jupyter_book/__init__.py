@@ -5,7 +5,7 @@ from .toc import update_indexname, add_toctree
 from .directive.toc import TableofContents
 
 
-__version__ = "0.7.0b5dev0"
+__version__ = "0.7.0b5"
 
 
 def add_static_files(app, config):
