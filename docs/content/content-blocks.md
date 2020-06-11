@@ -176,7 +176,10 @@ Here's my figure:
 See {doc}`glue` for more information on how to use Glue to insert your outputs
 directly into your content.
 
-To hide code input and output where the variable is glued use the `remove_cell` tag. See {doc}`hiding` for more information and other tag options.
+```{tip}
+To hide code input and output that generated the variable you are inserting, use the `remove_cell` tag.
+See {doc}`hiding` for more information and other tag options.
+```
 
 ## Quotations and epigraphs
 
