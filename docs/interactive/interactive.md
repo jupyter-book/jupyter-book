@@ -27,10 +27,6 @@ data = px.data.iris()
 data.head()
 ```
 
-```{warning}
-Jupyter Book does not yet support ipywidgets, but it wants to do so!
-```
-
 ## Altair
 
 Interactive outputs will work under the assumption that the outputs they produce have
@@ -67,8 +63,6 @@ import plotly.io as pio
 import plotly.express as px
 import plotly.offline as py
 
-pio.renderers.default = "notebook"
-
 df = px.data.iris()
 fig = px.scatter(df, x="sepal_width", y="sepal_length", color="species", size="sepal_length")
 fig
@@ -96,3 +90,48 @@ p = figure()
 p.circle(data["sepal_width"], data["sepal_length"], fill_color=data["species"], size=data["sepal_length"])
 show(p)
 ```
+
+
+## ipywidgets
+
+You may also run code for Jupyter Widgets in your document, and the interactive HTML
+outputs will embed themselves in your side. See [the ipywidgets documentation](https://ipywidgets.readthedocs.io/en/latest/user_install.html)
+for how to get set up in your own environment.
+
+```{admonition} Widgets often need a kernel
+Note that `ipywidgets` tend to behave differently from other interactive viz libraries. They
+interact both with Javascript, and with Python. Some functionality in `ipywidgets` may not
+work in default Jupyter Book pages (because no Python kernel is running). You may be able to
+get around this with [tools for remote kernels, like thebelab](https://thebelab.readthedocs.org).
+```
+
+Here are some simple widget elements rendered below.
+
+```{code-cell} ipython3
+import ipywidgets as widgets
+widgets.IntSlider(
+    value=7,
+    min=0,
+    max=10,
+    step=1,
+    description='Test:',
+    disabled=False,
+    continuous_update=False,
+    orientation='horizontal',
+    readout=True,
+    readout_format='d'
+)
+```
+
+```{code-cell} ipython3
+tab_contents = ['P0', 'P1', 'P2', 'P3', 'P4']
+children = [widgets.Text(description=name) for name in tab_contents]
+tab = widgets.Tab()
+tab.children = children
+for ii in range(len(children)):
+    tab.set_title(ii, f"tab_{ii}")
+tab
+```
+
+You can find [a list of possible Jupyter Widgets](https://ipywidgets.readthedocs.io/en/latest/examples/Widget%20List.html)
+in the jupyter-widgets documentation.
