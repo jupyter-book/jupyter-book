@@ -66,6 +66,7 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
     book_config = {}
 
     # Table of contents
+    # TODO Set TOC dynamically to default value and let Click handle this check
     if toc is None:
         toc = PATH_BOOK.joinpath("_toc.yml")
     else:

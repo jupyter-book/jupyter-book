@@ -1,5 +1,4 @@
 from pathlib import Path
-from subprocess import run, PIPE
 
 import pytest
 from bs4 import BeautifulSoup as bs
@@ -51,8 +50,10 @@ def test_custom_config(cli):
 @pytest.mark.parametrize("toc", ["_toc.yml", "_toc_startwithlist.yml"])
 def test_toc_builds(tmpdir, cli, toc):
     """Test building the book template with several different TOC files."""
-    result = cli.invoke(commands.build, (f"{p_toc} --path-output {tmpdir} "
-                                         f"--toc {p_toc / toc} -W").split())
+    result = cli.invoke(
+        commands.build,
+        (f"{p_toc} --path-output {tmpdir} " f"--toc {p_toc / toc} -W").split(),
+    )
     assert result.exit_code == 0
 
 # <<<<<<< variant A
@@ -94,17 +95,25 @@ def test_toc_builds(tmpdir, cli, toc):
 # >>>>>>> variant B
 # ======= end
 
-@pytest.mark.parametrize("toc,msg",
-                         [("_toc_startswithheader.yml", "Table of Contents must start"),
-                          ("_toc_urlwithouttitle.yml", "`url:` link should"),
-                          ("_toc_url.yml", "Rename `url:` to `file:`"),
-                          ("_toc_wrongkey.yml", "Unknown key in `_toc.yml`")])
+@pytest.mark.parametrize(
+    "toc,msg",
+    [
+        ("_toc_startswithheader.yml", "Table of Contents must start"),
+        ("_toc_urlwithouttitle.yml", "`url:` link should"),
+        ("_toc_url.yml", "Rename `url:` to `file:`"),
+        ("_toc_wrongkey.yml", "Unknown key in `_toc.yml`"),
+    ],
+)
 def test_corrupt_toc(tmpdir, cli, toc, msg):
     path_output = Path(tmpdir).joinpath("mybook")
     with pytest.raises(ValueError):
-        result = cli.invoke(commands.build,
-                            (f"{p_toc} --path-output {path_output} "
-                             f" --toc {p_toc / toc} -W".split()))
+        result = cli.invoke(
+            commands.build,
+            (
+                f"{p_toc} --path-output {path_output} "
+                f" --toc {p_toc / toc} -W".split()
+            ),
+        )
         assert result.exit_code == 1
         assert msg in result.output
         raise result.exception
@@ -120,40 +129,45 @@ def test_build_errors(tmpdir, cli):
     # No table of contents message
     p_notoc = path_books.joinpath("notoc")
     with pytest.raises(ValueError):
-        out = run(f"jb build {p_notoc}".split(), stderr=PIPE)
-        err = out.stderr.decode()
-        if "ValueError" in err:
-            raise ValueError(err)
-    assert "Couldn't find a Table of Contents file" in err
+        result = cli.invoke(commands.build, [p_notoc.as_posix()])
+        assert result.exit_code == 1
+        assert "Couldn't find a Table of Contents file" in str(result.exception)
+        raise result.exception
 
     # Test error on warnings and book error message
     p_syntax = path_books.joinpath("sphinx_syntaxerr")
     with pytest.raises(ValueError):
-        out = run(f"jb build {p_syntax} --path-output {path} -W".split(), stderr=PIPE)
-        err = out.stderr.decode()
-        if "Warning, treated as error:" in err:
-            raise ValueError(err)
-    assert "There was an error in building your book" in err
+        result = cli.invoke(
+            commands.build, [p_syntax.as_posix(), "--path-output", path, "-W"]
+        )
+        assert result.exit_code == 1
+        assert "There was an error in building your book" in str(result.exception)
+        raise result.exception
 
 
-def test_build_docs(tmpdir):
+def test_build_docs(tmpdir, cli):
     """Test building the documentation book."""
     path_output = Path(tmpdir).absolute()
     path_docs = path_root.joinpath("docs")
-    run(f"jb build {path_docs} --path-output {path_output}".split(), check=True)
     path_html = path_output.joinpath("_build", "html")
+    result = cli.invoke(
+        commands.build, [path_docs.as_posix(), "--path-output", path_output.as_posix()]
+    )
+    assert result.exit_code == 0
     assert path_html.joinpath("index.html").exists()
     assert path_html.joinpath("intro.html").exists()
     assert path_html.joinpath("content", "citations.html").exists()
 
 
-def test_build_page(tmpdir):
+def test_build_page(tmpdir, cli):
     """Test building the documentation book."""
     path_output = Path(tmpdir).absolute()
     path_page = path_tests.joinpath("pages", "single_page.ipynb")
-
-    run(f"jb page {path_page} --path-output {path_output}".split(), check=True)
     path_html = path_output.joinpath("_build", "html")
+    result = cli.invoke(
+        commands.page, [path_page.as_posix(), "--path-output", path_output]
+    )
+    assert result.exit_code == 0
     assert path_html.joinpath("single_page.html").exists()
     # The extra page shouldn't have been built with Sphinx (or run)
     assert not path_html.joinpath("extra_page.html").exists()
@@ -163,30 +177,22 @@ def test_build_page(tmpdir):
     assert 'url=single_page.html" />' in path_index.read_text()
 
 
-class TestPageExecute:
-
+@pytest.mark.parametrize(
+    ("flag", "expected"), (("", True), ("--execute", True), ("--no-execute", False))
+)
+def test_build_page_execute_flags(cli, tmpdir, flag, expected):
     basename = "nb_test_page_execute"
     cell_out_div = r'<div class="cell_output docutils container">'
     path_page = path_tests.joinpath("pages", f"{basename}.ipynb")
+    path_output = Path(tmpdir).absolute()
+    out_html = path_output.joinpath("_build", "html", f"{basename}.html")
 
-    def _run(self, tmpdir, flags=""):
-        path_output = Path(tmpdir).absolute()
-        out_html = path_output.joinpath("_build", "html", f"{self.basename}.html")
-        run(
-            f"jb page {self.path_page} --path-output {path_output} {flags}".split(),
-            check=True,
-        )
-        with open(out_html, "r") as fh:
-            self.html = fh.read()
+    opts = [path_page.as_posix(), "--path-output", path_output]
+    if flag:
+        opts.append(flag)
 
-    @property
-    def has_cell_output(self):
-        return self.cell_out_div in self.html
-
-    @pytest.mark.parametrize(
-        ("flag", "expected"),
-        (("", True), ("--execute", True), ("--no-execute", False),),
-    )
-    def test_build_page_execute_flags(self, tmpdir, flag, expected):
-        self._run(tmpdir, flags=flag)
-        assert self.has_cell_output == expected
+    result = cli.invoke(commands.page, opts)
+    assert result.exit_code == 0
+    with open(out_html, "r") as f:
+        html = f.read()
+        assert (cell_out_div in html) == expected
