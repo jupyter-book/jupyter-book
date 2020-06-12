@@ -106,8 +106,8 @@ def test_corrupt_toc(tmpdir, cli, toc, msg):
                             (f"{p_toc} --path-output {path_output} "
                              f" --toc {p_toc / toc} -W".split()))
         assert result.exit_code == 1
-        raise result.exception
         assert msg in result.output
+        raise result.exception
 
 
 def test_build_errors(tmpdir, cli):
