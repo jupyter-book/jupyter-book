@@ -50,9 +50,10 @@ def test_custom_config(cli):
 @pytest.mark.parametrize("toc", ["_toc.yml", "_toc_startwithlist.yml"])
 def test_toc_builds(tmpdir, cli, toc):
     """Test building the book template with several different TOC files."""
+    toc = p_toc / toc
     result = cli.invoke(
         commands.build,
-        (f"{p_toc} --path-output {tmpdir} " f"--toc {p_toc / toc} -W").split(),
+        [p_toc.as_posix(), "--path-output", tmpdir, "--toc", toc.as_posix(), "-W"],
     )
     assert result.exit_code == 0
 
