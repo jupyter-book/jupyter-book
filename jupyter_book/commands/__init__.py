@@ -46,7 +46,7 @@ BUILDER_OPTS = {
 
 
 @main.command()
-@click.argument("path-book")
+@click.argument("path-book", type=click.Path(exists=True, file_okay=False))
 @click.option("--path-output", default=None, help="Path to the output artifacts")
 @click.option("--config", default=None, help="Path to the YAML configuration file")
 @click.option("--toc", default=None, help="Path to the Table of Contents YAML file")
@@ -61,8 +61,6 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
     """Convert your book's content to HTML or a PDF."""
     # Paths for our notebooks
     PATH_BOOK = Path(path_book).absolute()
-    if not PATH_BOOK.is_dir():
-        _error(f"Path to book isn't a directory: {PATH_BOOK}")
 
     # `book_config` is manual over-rides, `config` is the path to a _config.yml file
     book_config = {}
@@ -272,13 +270,10 @@ def page(path_page, path_output, config, execute):
 
 
 @main.command()
-@click.argument("path-book")
+@click.argument("path-book", type=click.Path(exists=False))
 def create(path_book):
     """Create a simple Jupyter Book that you can customize."""
-
     PATH_OUTPUT = Path(path_book)
-    if PATH_OUTPUT.is_dir():
-        _error(f"The output book already exists. Delete {PATH_OUTPUT}{os.sep} first.")
     template_path = Path(__file__).parent.parent.joinpath("book_template")
     sh.copytree(template_path, PATH_OUTPUT)
     _message_box(f"Your book template can be found at\n\n    {PATH_OUTPUT}{os.sep}")

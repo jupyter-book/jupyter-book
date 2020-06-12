@@ -113,25 +113,6 @@ def test_corrupt_toc(tmpdir, cli, toc, msg):
 def test_build_errors(tmpdir, cli):
     # Create the book from the template
     path = Path(tmpdir).joinpath("mybook").absolute()
-    run(f"jb create {path}".split())
-
-    # === Expected errors ===
-    # Create pre-existing folder
-    with pytest.raises(ValueError):
-        out = run(f"jb create {path}".split(), stderr=PIPE)
-        err = out.stderr.decode()
-        if "ValueError" in err:
-            raise ValueError(err)
-    assert "The output book already exists" in err
-
-    # Non-existent folder
-    with pytest.raises(ValueError):
-        out = run("jb build doesnt/exist".split(), stderr=PIPE)
-        err = out.stderr.decode()
-        if "ValueError" in err:
-            raise ValueError(err)
-    assert "Path to book isn't a directory" in err
-
     # Incorrect build
     result = cli.invoke(commands.build, [path.as_posix(), "--builder", "blah"])
     assert result.exit_code == 2
