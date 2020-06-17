@@ -94,6 +94,12 @@ Will generate this:
 w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
 ```
 
+
+```{note}
+Integer equation labels cannot be referenced and
+will throw a warning message if referenced.
+```
+
 ### Linking to equations
 
 If you've created an equation with a label, you can link to it from within your text
