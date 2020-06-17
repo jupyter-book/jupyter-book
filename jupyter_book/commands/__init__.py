@@ -9,7 +9,7 @@ import shutil as sh
 import subprocess
 from sphinx.util.osutil import cd
 
-from ..jbsphinx import build_sphinx
+from ..sphinx import build_sphinx
 from ..toc import build_toc
 from ..pdf import html_to_pdf
 from ..utils import _message_box, _error, init_myst_file
