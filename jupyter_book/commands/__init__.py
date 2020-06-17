@@ -74,11 +74,9 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
     sphinx_builder = builder_dict[builder]
 
     # Table of contents
-    print(f"pha -- made it A {toc}")
     if toc is None:
         if PATH_BOOK.joinpath("_toc.yml").exists():
             toc = PATH_BOOK.joinpath("_toc.yml")
-            print(f"pha -- made it B {toc}")
         else:
             _error(
                 "Couldn't find a Table of Contents file. To auto-generate "
@@ -92,7 +90,6 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
         # Check if there's a `_config.yml` file in the source directory
         if PATH_BOOK.joinpath("_config.yml").exists():
             path_config = str(PATH_BOOK.joinpath("_config.yml"))
-    print(f"pha C {path_config}")
     if path_config:
         if not Path(path_config).exists():
             raise ValueError(f"Config file path given, but not found: {path_config}")

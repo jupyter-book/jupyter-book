@@ -115,7 +115,6 @@ def build_sphinx(
 
     # Manual configuration overrides from the CLI
     _recursive_update(sphinx_config, confoverrides)
-    print(f"pha D {sphinx_config}")
     # HTML-specific configuration from the CLI
     if htmloverrides is None:
         htmloverrides = {}
