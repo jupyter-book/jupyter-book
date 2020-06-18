@@ -96,7 +96,7 @@ w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
 
 
 ```{note}
-Integer equation labels and labels which start with an integer cannot be referenced and
+Labels cannot start with an integer, or they won't be able to be referenced and
 will throw a warning message if referenced. For example, `:label: 1` and `:label: 1eq` cannot
 be referenced.
 ```
