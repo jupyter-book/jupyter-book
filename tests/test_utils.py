@@ -13,7 +13,7 @@ def test_myst_init(tmpdir):
     init_myst_file(path, kernel="python3")
 
     # Make sure it runs properly. Default kernel should be python3
-    new_text = path.read_text()
+    new_text = path.read_text(encoding="utf8")
     assert "format_name: myst" in new_text
     assert "TEST" == new_text.strip().split("\n")[-1]
     assert "name: python3" in new_text

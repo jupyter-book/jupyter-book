@@ -21,7 +21,7 @@ def test_toc_startwithlist(tmpdir, file_regression):
     path_toc_directive = path_output.joinpath("_build", "html", "index.html")
 
     # get the tableofcontents markup
-    soup = BeautifulSoup(path_toc_directive.read_text(), "html.parser")
+    soup = BeautifulSoup(path_toc_directive.read_text(encoding="utf8"), "html.parser")
     toc = soup.find_all("div", class_="tableofcontents-wrapper")[0]
 
     file_regression.check(str(toc), extension=".html")
@@ -41,7 +41,7 @@ def test_toc_withheaders(tmpdir, file_regression):
     path_toc_directive = path_output.joinpath("_build", "html", "index.html")
 
     # get the tableofcontents markup
-    soup = BeautifulSoup(path_toc_directive.read_text(), "html.parser")
+    soup = BeautifulSoup(path_toc_directive.read_text(encoding="utf8"), "html.parser")
     toc = soup.find_all("div", class_="tableofcontents-wrapper")[0]
 
     file_regression.check(str(toc), extension=".html")
@@ -61,6 +61,6 @@ def test_toc_urllink(tmpdir, file_regression):
     path_toc_directive = path_output.joinpath("_build", "html", "index.html")
 
     # get the tableofcontents markup
-    soup = BeautifulSoup(path_toc_directive.read_text(), "html.parser")
+    soup = BeautifulSoup(path_toc_directive.read_text(encoding="utf8"), "html.parser")
     toc = soup.find_all("div", class_="tableofcontents-wrapper")[0]
     file_regression.check(str(toc), extension=".html")

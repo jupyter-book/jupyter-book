@@ -26,7 +26,9 @@ def test_build_book(tmpdir):
     # Test custom config values
     path_config = path_books.joinpath("config")
     run(f"jb build {path_config}".split(), check=True)
-    html = path_config.joinpath("_build", "html", "index.html").read_text()
+    html = path_config.joinpath("_build", "html", "index.html").read_text(
+        encoding="utf8"
+    )
     assert '<h1 class="site-logo" id="site-title">TEST PROJECT NAME</h1>' in html
     assert '<div class="sphinx-tabs docutils container">' in html
     assert '<link rel="stylesheet" type="text/css" href="_static/mycss.css" />' in html

@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 from pathlib import Path
 
-text = Path("./jupyter_book/__init__.py").read_text()
+text = Path("./jupyter_book/__init__.py").read_text(encoding="utf8")
 for line in text.split("\n"):
     if "__version__" in line:
         break
@@ -10,7 +10,9 @@ version = line.split("= ")[-1].strip('"')
 # Documentation requirements
 path_doc_reqs = Path(__file__).parent.joinpath("docs", "requirements.txt")
 doc_reqs = [
-    ii for ii in path_doc_reqs.read_text().split("\n") if not ii.startswith("#")
+    ii
+    for ii in path_doc_reqs.read_text(encoding="utf8").split("\n")
+    if not ii.startswith("#")
 ]
 test_reqs = [
     "coverage",
