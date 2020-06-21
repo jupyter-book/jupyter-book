@@ -20,14 +20,15 @@ html:
   baseurl: https://jupyterbook.org/
 
 repository:
-  url                       : https://github.com/executablebooks/jupyter-book
-  branch                    : master
-  path_to_book              : docs
+  url: https://github.com/executablebooks/jupyter-book
+  branch: master
+  path_to_book: docs
 
 launch_buttons:
-  notebook_interface        : "jupyterlab"  # The interface interactive links will activate ["classic", "jupyterlab"]
-  binderhub_url             : "https://mybinder.org"
-  thebelab                  : true
+  notebook_interface: "jupyterlab" # The interface interactive links will activate ["classic", "jupyterlab"]
+  binderhub_url: "https://mybinder.org"
+  colab_url: "https://colab.research.google.com"
+  thebelab: true
 
 sphinx:
   config:
@@ -36,8 +37,8 @@ sphinx:
         Macros:
           "N": "\\mathbb{N}"
           "floor": ["\\lfloor#1\\rfloor", 1]
-          "bmat" : ["\\left[\\begin{array}"]
-          "emat" : ["\\end{array}\\right]"]
+          "bmat": ["\\left[\\begin{array}"]
+          "emat": ["\\end{array}\\right]"]
   extra_extensions:
     - sphinx_click.ext
     - sphinx_tabs.tabs
