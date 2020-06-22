@@ -90,7 +90,6 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
         # Check if there's a `_config.yml` file in the source directory
         if PATH_BOOK.joinpath("_config.yml").exists():
             path_config = str(PATH_BOOK.joinpath("_config.yml"))
-
     if path_config:
         if not Path(path_config).exists():
             raise ValueError(f"Config file path given, but not found: {path_config}")
@@ -297,7 +296,7 @@ def toc(path, filename_split_char, skip_text, output_folder, add_titles):
     if output_folder is None:
         output_folder = path
     output_file = Path(output_folder).joinpath("_toc.yml")
-    output_file.write_text(out_yaml)
+    output_file.write_text(out_yaml, encoding="utf8")
 
     _message_box(f"Table of Contents written to {output_file}")
 

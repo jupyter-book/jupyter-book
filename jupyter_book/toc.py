@@ -166,7 +166,7 @@ def update_indexname(app, config):
         return
 
     # Load the TOC and update the env so we have it later
-    toc = yaml.safe_load(Path(app.config["globaltoc_path"]).read_text())
+    toc = yaml.safe_load(Path(app.config["globaltoc_path"]).read_text(encoding="utf8"))
 
     # If it's a flat list, treat the first page as the master doc
     if isinstance(toc, list):
