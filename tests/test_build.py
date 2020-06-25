@@ -167,6 +167,10 @@ def test_build_page(tmpdir):
     assert path_html.joinpath("single_page.html").exists()
     # The extra page shouldn't have been built with Sphinx (or run)
     assert not path_html.joinpath("extra_page.html").exists()
+    # An index file should be created
+    path_index = path_html.joinpath("index.html")
+    assert path_index.exists()
+    assert 'url=single_page.html" />' in path_index.read_text()
 
 
 class TestPageExecute:
