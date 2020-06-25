@@ -7,9 +7,10 @@ import click
 from glob import glob
 import shutil as sh
 import subprocess
+from textwrap import dedent
 from sphinx.util.osutil import cd
 
-from ..sphinx import build_sphinx
+from ..sphinx import build_sphinx, REDIRECT_TEXT
 from ..toc import build_toc
 from ..pdf import html_to_pdf
 from ..utils import _message_box, _error, init_myst_file
@@ -227,9 +228,8 @@ def page(path_page, path_output, config, execute):
     to_exclude.extend(["_build", "Thumbs.db", ".DS_Store", "**.ipynb_checkpoints"])
 
     # Now call the Sphinx commands to build
-    config = {
+    config_overrides = {
         "master_doc": PAGE_NAME,
-        "yaml_config_path": config,
         "globaltoc_path": "",
         "exclude_patterns": to_exclude,
         "jupyter_execute_notebooks": jupyter_execute_notebooks,
@@ -239,14 +239,30 @@ def page(path_page, path_output, config, execute):
     build_sphinx(
         PATH_PAGE_FOLDER,
         OUTPUT_PATH,
+        path_config=config,
         noconfig=True,
-        confoverrides=config,
+        confoverrides=config_overrides,
         builder="html",
     )
 
     path_output_rel = Path(op.relpath(OUTPUT_PATH, Path()))
     path_page = path_output_rel.joinpath(f"{PAGE_NAME}.html")
-    _message_box(f"Page build finished. Open your page at:\n\n    {path_page}")
+
+    # Write an index file if it doesn't exist so we get redirects
+    path_index = path_output_rel.joinpath("index.html")
+    if not path_index.exists():
+        path_index.write_text(REDIRECT_TEXT.format(first_page=path_page.name))
+
+    _message_box(
+        dedent(
+            f"""
+            Page build finished.
+
+                Your page folder is: {path_page.parent}{os.sep}
+                Open your page at: {path_page}
+            """
+        )
+    )
 
 
 @main.command()
