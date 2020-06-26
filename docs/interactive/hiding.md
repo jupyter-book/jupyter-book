@@ -104,7 +104,9 @@ See {ref}`content/toggle-admonitions` for more information on admonition dropdow
 ## Hide code cell content
 
 You can hide most cell elements of a page. The sections below describe how
-to hide each.
+to hide each using cell tags in MyST markdown.
+See [these instructions](https://jupyterbook.org/advanced/advanced.html#how-should-i-add-cell-tags-to-my-notebooks)
+to add tags in Jupyter Notebook or JupyterLab.
 
 If an element is hidden, Jupyter Book will display a small button to the right of the
 old location for the hidden element. If a user clicks the button,
