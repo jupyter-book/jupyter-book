@@ -1,4 +1,0 @@
-#!/bin/bash
-set -e
-
-jupyter labextension install jupyterlab-jupytext@1.1.1
