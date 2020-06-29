@@ -51,7 +51,6 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 *_build
-tests/books/toc/_toc.yml
 
 
 # Translations
