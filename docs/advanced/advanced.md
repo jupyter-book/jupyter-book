@@ -69,6 +69,8 @@ jupyter-book clean mybookname/ --all
 
 This will entirely remove the folders in the `_build/` directory.
 
+(jupyter-cell-tags)=
+
 ## How should I add cell tags to my notebooks?
 
 You can control the behavior of Jupyter Book by putting custom tags
