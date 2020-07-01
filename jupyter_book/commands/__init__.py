@@ -199,10 +199,9 @@ def page(path_page, path_output, config, warningiserror, builder):
     exc = build_sphinx(
         PATH_PAGE_FOLDER,
         OUTPUT_PATH,
-        path_config=config,
         noconfig=True,
         path_config=path_config,
-        confoverrides=config,
+        confoverrides=config_overrides,
         builder=sphinx_builder,
         warningiserror=warningiserror,
     )
@@ -362,6 +361,13 @@ def builder_specific_actions(exc, builder, output_path, cmd_type, page_name=None
             path_output_rel = Path(op.relpath(output_path, Path()))
             if cmd_type == "page":
                 path_page = path_output_rel.joinpath(f"{page_name}.html")
+                # Write an index file if it doesn't exist so we get redirects
+                path_index = path_output_rel.joinpath("index.html")
+                if not path_index.exists():
+                    path_index.write_text(
+                        REDIRECT_TEXT.format(first_page=path_page.name)
+                    )
+
                 _message_box(
                     f"Page build finished. Open your page at:\n\n    {path_page}"
                 )
