@@ -71,6 +71,7 @@ def yaml_to_sphinx(yaml):
         sphinx_config["jupyter_execute_notebooks"] = execute.get(
             "execute_notebooks", "auto"
         )
+        sphinx_config["execution_timeout"] = execute.get("timeout", 30)
         sphinx_config["jupyter_cache"] = execute.get("cache", "")
         _recursive_update(
             sphinx_config,
