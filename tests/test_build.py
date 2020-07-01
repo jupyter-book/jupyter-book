@@ -133,30 +133,25 @@ def test_build_docs(docs, cli):
 
 
 def test_build_page(pages, cli):
-    """Test building the documentation book."""
+    """Test building a page."""
     page = pages.joinpath("single_page.ipynb")
     html = pages.joinpath("_build", "html")
     index = html.joinpath("index.html")
-    result = cli.invoke(commands.page, [page.as_posix()])
+    result = cli.invoke(commands.build, [page.as_posix()])
     assert result.exit_code == 0
     assert html.joinpath("single_page.html").exists()
     assert not html.joinpath("extra_page.html").exists()
     assert 'url=single_page.html" />' in index.read_text()
 
 
-@pytest.mark.parametrize(
-    ("flag", "expected"), (("", True), ("--execute", True), ("--no-execute", False))
-)
-def test_build_page_execute_flags(pages, cli, flag, expected):
-    basename = "nb_test_page_execute"
-    cell_out_div = r'<div class="cell_output docutils container">'
-    path_page = pages.joinpath(f"{basename}.ipynb")
-    html = pages.joinpath("_build", "html", f"{basename}.html")
-    opts = [path_page.as_posix()]
-    if flag:
-        opts.append(flag)
-    result = cli.invoke(commands.page, opts)
-    assert result.exit_code == 0
-    with open(html) as f:
-        lines = f.read()
-        assert (cell_out_div in lines) == expected
+def test_execution_timeout(pages, build_resources, cli):
+    """Testing timeout execution for a page."""
+    books, _ = build_resources
+    path_page = pages.joinpath("complex_outputs_unrun.ipynb")
+    path_c = books.joinpath("config", "_config_timeout.yml")
+    path_html = pages.joinpath("_build", "html")
+    result = cli.invoke(
+        commands.build, [path_page.as_posix(), "--config", path_c.as_posix()]
+    )
+    assert "Execution Failed" in result.stdout
+    assert path_html.joinpath("reports", "complex_outputs_unrun.log").exists()
