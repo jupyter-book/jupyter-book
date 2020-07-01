@@ -7,6 +7,7 @@ path_tests = Path(__file__).parent.resolve()
 path_books = path_tests.joinpath("books")
 path_root = path_tests.parent
 
+
 def test_build_page(tmpdir):
     """Test building the documentation book."""
     path_output = Path(tmpdir).absolute()
@@ -18,15 +19,16 @@ def test_build_page(tmpdir):
     # The extra page shouldn't have been built with Sphinx (or run)
     assert not path_html.joinpath("extra_page.html").exists()
 
+
 def test_execution_timeout(tmpdir):
     """Test building the documentation book."""
     path_output = Path(tmpdir).absolute()
     path_page = path_tests.joinpath("pages", "complex_outputs_unrun.ipynb")
-    path_config = path_books.joinpath("config", "_config_timeout.yml")
+    path_c = path_books.joinpath("config", "_config_timeout.yml")
 
-    ## should fail as the value of timeout in the config file is 1
+    # should fail because of timeout value 1
     out = run(
-        f"jb page {path_page} --path-output {path_output} --config {path_config}".split(),
+        f"jb page {path_page} --path-output {path_output} --config {path_c}".split(),
         stderr=PIPE,
     )
     err = out.stderr.decode()
@@ -39,7 +41,6 @@ def test_execution_timeout(tmpdir):
 def test_page_errors(tmpdir):
 
     # === Expected errors ===
-    path_output = Path(tmpdir).absolute()
     path_page = path_tests.joinpath("pages", "single_page.ipynb")
 
     # Path should not be a folder
@@ -65,4 +66,4 @@ def test_page_errors(tmpdir):
         err = out.stderr.decode()
         if "Warning, treated as error:" in err:
             raise ValueError(err)
-    assert "There was an error in building your book" in err
+    assert "There was an error in building your page" in err

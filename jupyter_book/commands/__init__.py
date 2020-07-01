@@ -201,7 +201,7 @@ def page(path_page, path_output, config, warningiserror, builder):
         OUTPUT_PATH,
         path_config=config,
         noconfig=True,
-        path_config = path_config,
+        path_config=path_config,
         confoverrides=config,
         builder=sphinx_builder,
         warningiserror=warningiserror,
@@ -342,6 +342,7 @@ def init(path, kernel):
     for ipath in path:
         init_myst_file(ipath, kernel, verbose=True)
 
+
 # utility functions
 def builder_specific_actions(exc, builder, output_path, cmd_type, page_name=None):
     if exc:
@@ -361,7 +362,9 @@ def builder_specific_actions(exc, builder, output_path, cmd_type, page_name=None
             path_output_rel = Path(op.relpath(output_path, Path()))
             if cmd_type == "page":
                 path_page = path_output_rel.joinpath(f"{page_name}.html")
-                _message_box(f"Page build finished. Open your page at:\n\n    {path_page}")
+                _message_box(
+                    f"Page build finished. Open your page at:\n\n    {path_page}"
+                )
 
             elif cmd_type == "book":
                 path_output_rel = Path(op.relpath(output_path, Path()))
