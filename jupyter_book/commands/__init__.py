@@ -369,7 +369,13 @@ def builder_specific_actions(exc, builder, output_path, cmd_type, page_name=None
                     )
 
                 _message_box(
-                    f"Page build finished. Open your page at:\n\n    {path_page}"
+                    dedent(
+                        f"""
+                        Page build finished.
+                            Your page folder is: {path_page.parent}{os.sep}
+                            Open your page at: {path_page}
+                        """
+                    )
                 )
 
             elif cmd_type == "book":
