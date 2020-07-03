@@ -72,7 +72,7 @@ class TableofContents(SphinxDirective):
                         # since "file" key will be anyways for each "url" key
                         continue
                 else:
-                    val = "/" + val + self.env.app.builder.out_suffix
+                    val = val + self.env.app.builder.out_suffix
                     internal = True
                 reference = nodes.reference(
                     "",
