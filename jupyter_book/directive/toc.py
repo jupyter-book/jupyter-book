@@ -4,6 +4,7 @@ from sphinx import addnodes
 from sphinx.util import logging
 from sphinx.util.nodes import clean_astext
 from sphinx.util.docutils import SphinxDirective
+from pathlib import Path
 
 import copy
 
@@ -72,6 +73,12 @@ class TableofContents(SphinxDirective):
                         # since "file" key will be anyways for each "url" key
                         continue
                 else:
+                    if self.config.master_doc:
+                        subpath = str(Path(self.config.master_doc).parent)
+                    # taking paths relative to master_doc
+                    if subpath in val:
+                        val = str(Path(val).relative_to(subpath))
+
                     val = val + self.env.app.builder.out_suffix
                     internal = True
                 reference = nodes.reference(
