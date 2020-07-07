@@ -98,7 +98,7 @@ def test_corrupt_toc(build_resources, cli, toc, msg):
     books, tocs = build_resources
     toc = str(tocs / toc)
     with pytest.raises(ValueError):
-        result = cli.invoke(commands.build, [str(tocs), '--toc', toc, '-W'])
+        result = cli.invoke(commands.build, [str(tocs), "--toc", toc, "-W"])
         assert result.exit_code == 1
         assert msg in result.output
         raise result.exception
