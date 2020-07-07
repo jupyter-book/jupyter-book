@@ -19,21 +19,36 @@ def cli():
     return runner
 
 
-def test_build_book(tmpdir, cli):
+def test_create(tmpdir, cli):
+    # test with an empty dir that already exists
+    book = Path(tmpdir)
+    result = cli.invoke(commands.create, str(book))
+    assert result.exit_code == 0
+    assert book.joinpath("_config.yml").exists()
+    assert len(list(book.iterdir())) == 9
+
+    # test with a dir that doesn't exist
+    book = Path(tmpdir.join('non-existent'))
+    result = cli.invoke(commands.create, str(book))
+    assert result.exit_code == 0
+    assert book.joinpath("_config.yml").exists()
+    assert len(list(book.iterdir())) == 9
+
+    # test with a dir that exists but isn't empty
+    result = cli.invoke(commands.create, tmpdir.strpath)
+    assert result.exit_code == 2
+    assert "must be empty" in result.output
+
+
+def test_build_from_template(tmpdir, cli):
     """Test building the book template and a few test configs."""
     # Create the book from the template
-    book_root = Path(tmpdir).joinpath("mybook")
-    create_result = cli.invoke(commands.create, str(book_root))
-
-    assert create_result.exit_code == 0
-    assert book_root.joinpath("_config.yml").exists()
-
-    # Build the book
-    build_result = cli.invoke(commands.build, str(book_root))
+    _ = cli.invoke(commands.create, tmpdir.strpath)
+    build_result = cli.invoke(commands.build, tmpdir.strpath)
     assert build_result.exit_code == 0
-    path_html = book_root.joinpath("_build", "html")
-    assert path_html.joinpath("index.html").exists()
-    assert path_html.joinpath("intro.html").exists()
+    html = Path(tmpdir).joinpath("_build", "html")
+    assert html.joinpath("index.html").exists()
+    assert html.joinpath("intro.html").exists()
 
 
 def test_custom_config(cli):

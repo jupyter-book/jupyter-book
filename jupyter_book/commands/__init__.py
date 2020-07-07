@@ -271,13 +271,16 @@ def page(path_page, path_output, config, execute):
 
 
 @main.command()
-@click.argument("path-book", type=click.Path(exists=False))
+@click.argument("path-book", type=click.Path(file_okay=False))
 def create(path_book):
     """Create a simple Jupyter Book that you can customize."""
-    PATH_OUTPUT = Path(path_book)
+    book = Path(path_book)
+    if book.exists() and list(book.iterdir()):
+        from click.exceptions import BadArgumentUsage
+        raise BadArgumentUsage(f"{book} must be empty or not exist.")
     template_path = Path(__file__).parent.parent.joinpath("book_template")
-    sh.copytree(template_path, PATH_OUTPUT)
-    _message_box(f"Your book template can be found at\n\n    {PATH_OUTPUT}{os.sep}")
+    sh.copytree(template_path, book, dirs_exist_ok=True)
+    _message_box(f"Your book template can be found at\n\n    {book}{os.sep}")
 
 
 @main.command()
