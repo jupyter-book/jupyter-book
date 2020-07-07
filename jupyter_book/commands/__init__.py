@@ -277,7 +277,7 @@ def create(path_book):
     """Create a simple Jupyter Book that you can customize."""
     book = Path(path_book)
     template_path = Path(__file__).parent.parent.joinpath("book_template")
-    sh.copytree(template_path, book, dirs_exist_ok=True)
+    sh.copytree(template_path, book)
     _message_box(f"Your book template can be found at\n\n    {book}{os.sep}")
 
 
