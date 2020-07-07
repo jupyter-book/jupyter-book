@@ -8,24 +8,11 @@ from jupyter_book import commands
 
 
 def test_create(tmpdir, cli):
-    # test with an empty dir that already exists
     book = Path(tmpdir)
     result = cli.invoke(commands.create, str(book))
     assert result.exit_code == 0
     assert book.joinpath("_config.yml").exists()
     assert len(list(book.iterdir())) == 9
-
-    # test with a dir that doesn't exist
-    book = Path(tmpdir.join('non-existent'))
-    result = cli.invoke(commands.create, str(book))
-    assert result.exit_code == 0
-    assert book.joinpath("_config.yml").exists()
-    assert len(list(book.iterdir())) == 9
-
-    # test with a dir that exists but isn't empty
-    result = cli.invoke(commands.create, tmpdir.strpath)
-    assert result.exit_code == 2
-    assert "must be empty" in result.output
 
 
 def test_build_from_template(tmpdir, cli):
