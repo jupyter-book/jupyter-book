@@ -8,7 +8,7 @@ from jupyter_book import commands
 
 
 def test_create(tmpdir, cli):
-    book = Path(tmpdir)
+    book = Path(tmpdir) / "new_book"
     result = cli.invoke(commands.create, str(book))
     assert result.exit_code == 0
     assert book.joinpath("_config.yml").exists()
@@ -18,8 +18,9 @@ def test_create(tmpdir, cli):
 def test_build_from_template(tmpdir, cli):
     """Test building the book template and a few test configs."""
     # Create the book from the template
-    _ = cli.invoke(commands.create, tmpdir.strpath)
-    build_result = cli.invoke(commands.build, tmpdir.strpath)
+    book = Path(tmpdir) / "new_book"
+    _ = cli.invoke(commands.create, str(book))
+    build_result = cli.invoke(commands.build, str(book))
     assert build_result.exit_code == 0
     html = Path(tmpdir).joinpath("_build", "html")
     assert html.joinpath("index.html").exists()
