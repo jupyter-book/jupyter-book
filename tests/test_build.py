@@ -7,18 +7,6 @@ from click.testing import CliRunner
 from jupyter_book import commands
 
 
-path_tests = Path(__file__).parent.resolve()
-path_books = path_tests.joinpath("books")
-path_root = path_tests.parent
-p_toc = path_books.joinpath("toc")
-
-
-@pytest.fixture()
-def cli():
-    runner = CliRunner()
-    return runner
-
-
 def test_create(tmpdir, cli):
     # test with an empty dir that already exists
     book = Path(tmpdir)
@@ -51,11 +39,12 @@ def test_build_from_template(tmpdir, cli):
     assert html.joinpath("intro.html").exists()
 
 
-def test_custom_config(cli):
-    path_config = path_books.joinpath("config")
-    result = cli.invoke(commands.build, str(path_config))
+def test_custom_config(cli, build_resources):
+    books, _ = build_resources
+    config = books.joinpath("config")
+    result = cli.invoke(commands.build, str(config))
     assert result.exit_code == 0
-    html = path_config.joinpath("_build", "html", "index.html").read_text()
+    html = config.joinpath("_build", "html", "index.html").read_text()
     assert '<h1 class="site-logo" id="site-title">TEST PROJECT NAME</h1>' in html
     assert '<div class="sphinx-tabs docutils container">' in html
     assert '<link rel="stylesheet" type="text/css" href="_static/mycss.css" />' in html
@@ -63,13 +52,11 @@ def test_custom_config(cli):
 
 
 @pytest.mark.parametrize("toc", ["_toc.yml", "_toc_startwithlist.yml"])
-def test_toc_builds(tmpdir, cli, toc):
+def test_toc_builds(cli, build_resources, toc):
     """Test building the book template with several different TOC files."""
-    toc = p_toc / toc
-    result = cli.invoke(
-        commands.build,
-        [p_toc.as_posix(), "--path-output", tmpdir, "--toc", toc.as_posix(), "-W"],
-    )
+    books, tocs = build_resources
+    toc = str(tocs / toc)
+    result = cli.invoke(commands.build, [str(tocs), "--toc", toc, "-W"])
     assert result.exit_code == 0
 
 # <<<<<<< variant A
@@ -120,30 +107,25 @@ def test_toc_builds(tmpdir, cli, toc):
         ("_toc_wrongkey.yml", "Unknown key in `_toc.yml`"),
     ],
 )
-def test_corrupt_toc(tmpdir, cli, toc, msg):
-    path_output = Path(tmpdir).joinpath("mybook")
+def test_corrupt_toc(build_resources, cli, toc, msg):
+    books, tocs = build_resources
+    toc = str(tocs / toc)
     with pytest.raises(ValueError):
-        result = cli.invoke(
-            commands.build,
-            (
-                f"{p_toc} --path-output {path_output} "
-                f" --toc {p_toc / toc} -W".split()
-            ),
-        )
+        result = cli.invoke(commands.build, [str(tocs), '--toc', toc, '-W'])
         assert result.exit_code == 1
         assert msg in result.output
         raise result.exception
 
 
-def test_build_errors(tmpdir, cli):
-    # Create the book from the template
-    path = Path(tmpdir).joinpath("mybook").absolute()
-    # Incorrect build
+def test_build_errors(build_resources, cli):
+    books, tocs = build_resources
+    path = books.joinpath("mybook").absolute()
+    # Bad builder
     result = cli.invoke(commands.build, [path.as_posix(), "--builder", "blah"])
     assert result.exit_code == 2
 
     # No table of contents message
-    p_notoc = path_books.joinpath("notoc")
+    p_notoc = books.joinpath("notoc")
     with pytest.raises(ValueError):
         result = cli.invoke(commands.build, [p_notoc.as_posix()])
         assert result.exit_code == 1
@@ -151,64 +133,49 @@ def test_build_errors(tmpdir, cli):
         raise result.exception
 
     # Test error on warnings and book error message
-    p_syntax = path_books.joinpath("sphinx_syntaxerr")
+    p_syntax = books.joinpath("sphinx_syntaxerr")
     with pytest.raises(ValueError):
-        result = cli.invoke(
-            commands.build, [p_syntax.as_posix(), "--path-output", path, "-W"]
-        )
+        result = cli.invoke(commands.build, [p_syntax.as_posix(), "-W"])
         assert result.exit_code == 1
         assert "There was an error in building your book" in str(result.exception)
         raise result.exception
 
 
-def test_build_docs(tmpdir, cli):
+def test_build_docs(docs, cli):
     """Test building the documentation book."""
-    path_output = Path(tmpdir).absolute()
-    path_docs = path_root.joinpath("docs")
-    path_html = path_output.joinpath("_build", "html")
-    result = cli.invoke(
-        commands.build, [path_docs.as_posix(), "--path-output", path_output.as_posix()]
-    )
+    html = docs.joinpath("_build", "html")
+    result = cli.invoke(commands.build, [docs.as_posix()])
     assert result.exit_code == 0
-    assert path_html.joinpath("index.html").exists()
-    assert path_html.joinpath("intro.html").exists()
-    assert path_html.joinpath("content", "citations.html").exists()
+    assert html.joinpath("index.html").exists()
+    assert html.joinpath("intro.html").exists()
+    assert html.joinpath("content", "citations.html").exists()
 
 
-def test_build_page(tmpdir, cli):
+def test_build_page(pages, cli):
     """Test building the documentation book."""
-    path_output = Path(tmpdir).absolute()
-    path_page = path_tests.joinpath("pages", "single_page.ipynb")
-    path_html = path_output.joinpath("_build", "html")
-    result = cli.invoke(
-        commands.page, [path_page.as_posix(), "--path-output", path_output]
-    )
+    page = pages.joinpath("single_page.ipynb")
+    html = pages.joinpath("_build", "html")
+    index = html.joinpath("index.html")
+    result = cli.invoke(commands.page, [page.as_posix()])
     assert result.exit_code == 0
-    assert path_html.joinpath("single_page.html").exists()
-    # The extra page shouldn't have been built with Sphinx (or run)
-    assert not path_html.joinpath("extra_page.html").exists()
-    # An index file should be created
-    path_index = path_html.joinpath("index.html")
-    assert path_index.exists()
-    assert 'url=single_page.html" />' in path_index.read_text()
+    assert html.joinpath("single_page.html").exists()
+    assert not html.joinpath("extra_page.html").exists()
+    assert 'url=single_page.html" />' in index.read_text()
 
 
 @pytest.mark.parametrize(
     ("flag", "expected"), (("", True), ("--execute", True), ("--no-execute", False))
 )
-def test_build_page_execute_flags(cli, tmpdir, flag, expected):
+def test_build_page_execute_flags(pages, cli, flag, expected):
     basename = "nb_test_page_execute"
     cell_out_div = r'<div class="cell_output docutils container">'
-    path_page = path_tests.joinpath("pages", f"{basename}.ipynb")
-    path_output = Path(tmpdir).absolute()
-    out_html = path_output.joinpath("_build", "html", f"{basename}.html")
-
-    opts = [path_page.as_posix(), "--path-output", path_output]
+    path_page = pages.joinpath(f"{basename}.ipynb")
+    html = pages.joinpath("_build", "html", f"{basename}.html")
+    opts = [path_page.as_posix()]
     if flag:
         opts.append(flag)
-
     result = cli.invoke(commands.page, opts)
     assert result.exit_code == 0
-    with open(out_html, "r") as f:
-        html = f.read()
-        assert (cell_out_div in html) == expected
+    with open(html) as f:
+        lines = f.read()
+        assert (cell_out_div in lines) == expected
