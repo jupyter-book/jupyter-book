@@ -22,7 +22,7 @@ def test_build_from_template(tmpdir, cli):
     _ = cli.invoke(commands.create, str(book))
     build_result = cli.invoke(commands.build, str(book))
     assert build_result.exit_code == 0
-    html = Path(tmpdir).joinpath("_build", "html")
+    html = book.joinpath("_build", "html")
     assert html.joinpath("index.html").exists()
     assert html.joinpath("intro.html").exists()
 
