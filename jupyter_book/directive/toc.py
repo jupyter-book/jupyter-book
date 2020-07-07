@@ -27,21 +27,26 @@ class SwapTableOfContents(SphinxTransform):
     default_priority = 700
 
     def apply(self):
-        for tocnode in self.document.traverse(TableOfContentsNode):
-            # toctrees will have a compound just before them
-            toctrees = [
-                ii
-                for ii in self.document.traverse(compound)
-                if "toctree-wrapper" in ii.attributes["classes"]
-            ]
+        # toctrees will have a compound just before them
+        toctrees = [
+            ii
+            for ii in self.document.traverse(compound)
+            if "toctree-wrapper" in ii.attributes["classes"]
+        ]
+
+        # replacing all TableOfContentsNode with tocnode
+        for index, tocnode in enumerate(self.document.traverse(TableOfContentsNode)):
             if len(toctrees) == 0:
                 logger.warning(
                     "Found tableofcontents directive but this file has no descendents."
                 )
 
             # Replace the tableofcontents node with the page's toctree
+            tocarr = []
             for itoc in toctrees:
-                toctree = itoc.children[0]
+                toctree = itoc.children[0].deepcopy()
                 toctree.attributes["hidden"] = False
-                itoc.parent.remove(itoc)
-                tocnode.replace_self(itoc)
+                if index == len(self.document.traverse(TableOfContentsNode)):
+                    itoc.parent.remove(itoc)
+                tocarr.append(toctree)
+            tocnode.replace_self(tocarr)
