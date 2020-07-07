@@ -93,6 +93,7 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
     if builder == "pdfhtml":
         book_config["html_theme_options"] = {"single_page": True}
 
+    # TODO Use click to set value of path_output dynamically based on path_book
     BUILD_PATH = path_output if path_output is not None else PATH_BOOK
     BUILD_PATH = Path(BUILD_PATH).joinpath("_build")
     if builder in ["html", "pdfhtml", "linkcheck"]:
