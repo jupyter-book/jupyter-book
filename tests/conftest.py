@@ -22,7 +22,8 @@ def build_resources(tmpdir):
 
 @pytest.fixture()
 def pages(tmpdir):
-    """Copys ./pages to a temporary directory and yields the path as a `pathlib.Path` object.
+    """Copys ./pages to a temporary directory and yields the path as a `pathlib.Path`
+    object.
     """
     src = Path(__file__).parent.joinpath("pages").absolute()
     dst = tmpdir.join("pages")
@@ -34,7 +35,8 @@ def pages(tmpdir):
 
 @pytest.fixture()
 def docs(tmpdir):
-    """Copys ../docs to a temporary directory and yields the path as a `pathlib.Path` object.
+    """Copys ../docs to a temporary directory and yields the path as a `pathlib.Path`
+    object.
     """
     src = Path(__file__).parent.parent.joinpath("docs").absolute()
     dst = tmpdir.join("docs")
