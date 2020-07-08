@@ -137,6 +137,11 @@ content you'd like to reference. Here is a quick overview of some common options
 * `{doc}` is used to reference other files in your book
 * `{eq}` is used to reference equations that have been given a `label` value
 
+```{tip}
+You can reference a section label through ``{ref}`label` `` or ``{ref}`some text <label>` ``.
+Documents can be referenced through ``{doc}`path/to/document` `` or ``{doc}`some text <path/to/document>` ``
+```
+
 (citations/bibliography)=
 ## Bibliography
 

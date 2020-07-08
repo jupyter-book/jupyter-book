@@ -59,6 +59,14 @@ or
 jb build mybookname/ --builder pdfhtml
 ```
 
+```{warning}
+If you get a "MaxRetryError" and see mentions of SSL in the error message when
+when building the PDF, this could be due to a bug in `pyppeteer` as it downloads
+Chromium for the first time. See [this github comment](https://github.com/miyakogi/pyppeteer/issues/258#issuecomment-563075764)
+for a potential fix, and [this jupyter book issue](https://github.com/executablebooks/jupyter-book/issues/593)
+where we're tracking the issue.
+```
+
 (pdf-latex)=
 ## Build a PDF using Latex
 
@@ -67,18 +75,18 @@ operating system and setup. This section tries to recommend a few best-practices
 
 ### Installation
 
-For `Debian` based `Linux` platforms it is recommended to install the following packages.
+For `Debian` based `Linux` platforms it is recommended to install the following packages:
 
 ```bash
 sudo apt-get install texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra latexmk
 ```
 
-alternativey you can install [texlive](https://www.tug.org/texlive/quickinstall.html)
+alternatively you can install [texlive](https://www.tug.org/texlive/quickinstall.html)
 
 For `OSX` you may want to use [mactex](http://www.tug.org/mactex/) which is a more
-user friendly approach, alternatively you may use [texlive](https://www.tug.org/texlive/quickinstall.html)
+user friendly approach, alternatively you may use [texlive](https://www.tug.org/texlive/quickinstall.html).
 
-For `Windows` please install [texlive](https://www.tug.org/texlive/windows.html)
+For `Windows` please install [texlive](https://www.tug.org/texlive/windows.html).
 
 ### Build
 

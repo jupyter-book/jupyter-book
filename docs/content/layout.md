@@ -73,13 +73,21 @@ wider and it'll pop out to the right.
 
 To add within-content sidebars, use this syntax:
 
-```{sidebar} My sidebar title
-My sidebar content
+````{sidebar} Here is some sidebar content
+It spans a bit of your main content, as well as the margin, as seen by the
+note block below:
+```{note}
+Here's a note block within the sidebar!
 ```
+````
 
 The sidebar will stay in-line with your page's content, but will be
 placed to the right, allowing your content to wrap around it. This prevents
-the sidebar from brekaing up the flow of your content.
+the sidebar from breaking up the flow of your content. This is particularly
+useful if you've got tall-and-long blocks of content or images that you would
+like to provide context to throughout your content.
+
+To add a sidebar to your content, use the following pattern:
 
 ````
 ```{sidebar} My sidebar title

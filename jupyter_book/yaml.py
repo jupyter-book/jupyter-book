@@ -1,6 +1,5 @@
 """A small sphinx extension to let you configure a site with YAML metadata."""
 from pathlib import Path
-from yaml import safe_load
 
 
 # Transform a "Jupyter Book" YAML configuration file into a Sphinx configuration file.
@@ -10,39 +9,9 @@ from yaml import safe_load
 PATH_YAML_DEFAULT = Path(__file__).parent.joinpath("default_config.yml")
 
 
-def add_yaml_config(app, config):
-    """Load all of the key/vals in a config file into the Sphinx config"""
-    # First load the default YAML config
-    yaml_config = safe_load(PATH_YAML_DEFAULT.read_text())
-
-    # Update the default config with a provided one, if it exists
-    path_yaml = app.config["yaml_config_path"]
-    if len(path_yaml) > 0:
-        path_yaml = Path(path_yaml)
-        if not path_yaml.exists():
-            raise ValueError(
-                f"Path to a _config.yml file was given, but not found: {path_yaml}"
-            )
-
-        # Load the YAML and update its values to translate it into Sphinx keys
-        yaml_update = safe_load(path_yaml.read_text())
-        for key, val in yaml_update.items():
-            # If it's a dictionary, we should just updated the newly-given values
-            if isinstance(yaml_config.get(key), dict):
-                yaml_config[key].update(val)
-            else:
-                yaml_config[key] = val
-
-    # Now update our Sphinx build configuration
-    new_config = yaml_to_sphinx(yaml_config, config)
-    for key, val in new_config.items():
-        config[key] = val
-
-
-def yaml_to_sphinx(yaml, config):
-    """Convert a Jupyter Book style config structure into a Sphinx docs structure."""
+def yaml_to_sphinx(yaml):
+    """Convert a Jupyter Book style config structure into a Sphinx config dict."""
     sphinx_config = {
-        "html_theme_options": {},
         "exclude_patterns": [
             "_build",
             "Thumbs.db",
@@ -51,53 +20,75 @@ def yaml_to_sphinx(yaml, config):
         ],
     }
 
-    # Theme configuration updates
-    theme_options = config.html_theme_options
+    # Start with an empty options block
+    theme_options = {}
 
     # Launch button configuration
-    theme_launch_buttons_config = theme_options.get("launch_buttons", {})
     launch_buttons_config = yaml.get("launch_buttons", {})
     repository_config = yaml.get("repository", {})
 
-    theme_launch_buttons_config.update(launch_buttons_config)
-    theme_options["launch_buttons"] = theme_launch_buttons_config
+    theme_options["launch_buttons"] = launch_buttons_config
 
-    theme_options["path_to_docs"] = repository_config.get("path_to_book")
-    theme_options["repository_url"] = repository_config.get("url")
-    theme_options["repository_branch"] = repository_config.get("branch")
+    theme_options["path_to_docs"] = repository_config.get("path_to_book", "")
+    theme_options["repository_url"] = repository_config.get("url", "")
+    theme_options["repository_branch"] = repository_config.get("branch", "")
 
     # HTML
     html = yaml.get("html")
     if html:
-        sphinx_config["html_favicon"] = html.get("favicon")
-        sphinx_config["html_baseurl"] = html.get("baseurl")
+        sphinx_config["html_favicon"] = html.get("favicon", "")
+        sphinx_config["html_baseurl"] = html.get("baseurl", "")
 
-        theme_options["google_analytics_id"] = html.get("google_analytics_id")
-        theme_options["navbar_footer_text"] = html.get("navbar_footer_text")
+        theme_options["google_analytics_id"] = html.get("google_analytics_id", "")
+        # Deprecate navbar_footer_text after a release cycle
+        theme_options["navbar_footer_text"] = html.get("navbar_footer_text", "")
+        theme_options["extra_navbar"] = html.get("extra_navbar", "")
+        theme_options["extra_footer"] = html.get("extra_footer", "")
         theme_options["number_toc_sections"] = html.get("navbar_number_sections")
         theme_options["home_page_in_toc"] = html.get("home_page_in_navbar")
 
-        if html.get("use_edit_page_button"):
-            for key in ["url", "branch"]:
-                if not repository_config.get(key):
-                    raise ValueError(
-                        f"To use 'edit page' buttons, add repository key: {key}"
-                    )
-            theme_options["use_edit_page_button"] = html.get("use_edit_page_button")
-
-    execute = yaml.get("execute")
-    if execute:
-        sphinx_config["jupyter_execute_notebooks"] = execute.get("execute_notebooks")
-        sphinx_config["jupyter_cache"] = execute.get("cache")
-        sphinx_config["execution_excludepatterns"] = execute.get("exclude_patterns")
+        # Pass through the buttons
+        btns = ["use_repository_button", "use_edit_page_button", "use_issues_button"]
+        use_buttons = {btn: html.get(btn) for btn in btns if html.get(btn) is not None}
+        if any(use_buttons.values()):
+            if not repository_config.get("url"):
+                raise ValueError(
+                    "To use 'repository' buttons, you must specify the repository URL"
+                )
+        # Update our config
+        theme_options.update(use_buttons)
 
     # Update the theme options in the main config
     sphinx_config["html_theme_options"] = theme_options
 
+    execute = yaml.get("execute")
+    if execute:
+        if execute.get("execute_notebooks") is False:
+            # Special case because YAML treats `off` as "False".
+            execute["execute_notebooks"] = "off"
+        sphinx_config["jupyter_execute_notebooks"] = execute.get(
+            "execute_notebooks", "auto"
+        )
+        sphinx_config["jupyter_cache"] = execute.get("cache", "")
+        _recursive_update(
+            sphinx_config,
+            {"execution_excludepatterns": execute.get("exclude_patterns", [])},
+        )
+
     # LaTeX
     latex = yaml.get("latex")
     if latex:
-        sphinx_config["latex_engine"] = latex.get("latex_engine")
+        sphinx_config["latex_engine"] = latex.get("latex_engine", "pdflatex")
+
+    # Extra extensions
+    extra_extensions = yaml.get("sphinx", {}).get("extra_extensions")
+    if extra_extensions:
+        if not isinstance(extra_extensions, list):
+            extra_extensions = [extra_extensions]
+        extensions = sphinx_config.get("extensions", [])
+        for extra in extra_extensions:
+            extensions.append(extra)
+        sphinx_config["extensions"] = extensions
 
     # Files that we wish to skip
     sphinx_config["exclude_patterns"].extend(yaml.get("exclude_patterns", []))
@@ -107,14 +98,30 @@ def yaml_to_sphinx(yaml, config):
         "logo": "html_logo",
         "title": "html_title",
         "execute_notebooks": "jupyter_execute_notebooks",
+        "project": "project",
+        "author": "author",
         "copyright": "copyright",
     }
     for key, newkey in YAML_TRANSLATIONS.items():
         if key in yaml:
-            sphinx_config[newkey] = yaml.pop(key)
-
-    # Manual Sphinx over-rides will supercede other config
-    sphinx_overrides = yaml.get("sphinx", {}).get("config")
-    if sphinx_overrides:
-        sphinx_config.update(sphinx_overrides)
+            val = yaml.get(key)
+            if val is None:
+                val = ""
+            sphinx_config[newkey] = val
     return sphinx_config
+
+
+def _recursive_update(config, update):
+    """Update the dict `config` with `update` recursively.
+    This *updates* nested dicts / lists instead of replacing them.
+    """
+    for key, val in update.items():
+        if isinstance(config.get(key), dict):
+            config[key].update(val)
+        elif isinstance(config.get(key), list):
+            if isinstance(val, list):
+                config[key].extend(val)
+            else:
+                config[key] = val
+        else:
+            config[key] = val

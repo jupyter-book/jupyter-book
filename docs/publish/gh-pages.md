@@ -74,7 +74,7 @@ that builds a book with GitHub Actions.
 
 ```{note}
 Ensure that Jupyter Book's version in your `requirements.txt` file is at least
-`0.7.0b`. This line will do the trick: `jupyter-book>=0.7.0b`.
+`0.7.0`.
 ```
 
 Here is a simple YAML configuration
@@ -113,8 +113,10 @@ jobs:
 
     # Push the book's HTML to github-pages
     - name: GitHub Pages action
-      uses: peaceiris/actions-gh-pages@v3.5.9
+      uses: peaceiris/actions-gh-pages@v3.6.1
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./_build/html
 ```
+
+If you want to deploy your site to GitHub Pages at a User and Organization repository (`<username>.github.io`), check another example workflow and available options at the README of [peaceiris/actions-gh-pages](https://github.com/peaceiris/actions-gh-pages).

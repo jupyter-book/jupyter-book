@@ -41,12 +41,70 @@ repository:
   url                       : https://github.com/yourusername/yourbookrepo
 
 # Configure your Binder links, such as the URL of the BinderHub.
-binder:
-  binderhub_url             : "https://mybinder.org"
+launch_buttons:
+  binderhub_url             : https://mybinder.org
 ```
 
 Look throughout this book's documentation for different ways that you can configure
 your book.
+
+```{caution}
+YAML can be tricky when it comes to how it treats certain kinds of values. For example,
+when using strings in YAML it is usually fine to omit quotes around them. However,
+there are certain values that will be *converted* to boolean values if they do not have
+strings around them. For example, `false`, `true`, `off`, etc. In addition, pure
+numbers will be converted to `float` or `int` unless you put strings around them.
+```
+
+## Add source repository buttons
+
+There are a collection of buttons that you can use to link back to your source
+repository. This lets users browse the repository, or take actions like suggest
+an edit or open an issue. In each case, they require the following configuration
+to exist:
+
+```yaml
+repository:
+  url: https://github.com/{your-book-url}
+```
+
+### Add a link to your repository
+
+To add a link to your repository, add the following configuration:
+
+```yaml
+repository:
+  url: https://github.com/{your-book-url}
+html:
+  use_repository_button: true
+```
+
+### Add a button to open issues
+
+To add a button to open an issue about the current page, use the following
+configuration:
+
+```yaml
+repository:
+  url: https://github.com/{your-book-url}
+html:
+  use_issues_button: true
+```
+
+### Add a button to suggest edits
+
+You can add a button to each page that will allow users to edit the page text
+directly and submit a pull request to update the documentation. To include this
+button, use the following configuration:
+
+```yaml
+repository:
+  url: https://github.com/{your-book-url}
+  path_to_book: path/to/your/book  # An optional path to your book, defaults to repo root
+  branch: yourbranch  # An optional branch, defaults to `master`
+html:
+  use_edit_page_button: true
+```
 
 ## Configuration reference
 

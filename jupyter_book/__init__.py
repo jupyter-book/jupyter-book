@@ -2,10 +2,10 @@
 from pathlib import Path
 
 from .toc import update_indexname, add_toctree
-from .yaml import add_yaml_config
+from .directive.toc import TableofContents
 
 
-__version__ = "0.7.0b2"
+__version__ = "0.7.2dev0"
 
 
 def add_static_files(app, config):
@@ -21,16 +21,21 @@ def add_static_files(app, config):
 
 # We connect this function to the step after the builder is initialized
 def setup(app):
+
+    # Updates `master_doc` using the first item of `_toc.yml`
     app.connect("config-inited", update_indexname)
+
+    # Add toctrees to each content page using `_toc.yml`
     app.connect("source-read", add_toctree)
 
+    # Path for `_toc.yml`
     app.add_config_value("globaltoc_path", "toc.yml", "env")
 
-    # configuration for YAML metadata
-    app.add_config_value("yaml_config_path", "", "html")
-
-    app.connect("config-inited", add_yaml_config)
+    # Add custom static files to the sphinx build
     app.connect("config-inited", add_static_files)
+
+    # Directives
+    app.add_directive("tableofcontents", TableofContents)
 
     return {
         "version": __version__,

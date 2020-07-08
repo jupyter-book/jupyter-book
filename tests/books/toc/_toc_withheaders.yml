@@ -1,0 +1,14 @@
+file: index
+title: Toc
+sections:
+- header: A section
+- file: content1
+  title: Content1
+- file: content2
+  title: Content2
+- file: subfolder/index
+  title: Subfolder
+  sections:
+  - header: A subsection
+  - file: subfolder/asubpage
+    title: Asubpage

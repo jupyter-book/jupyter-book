@@ -8,7 +8,7 @@ def test_toc():
     path_book = Path(__file__).parent.joinpath("books", "toc")
     run(f"jb toc {path_book}".split(), check=True)
     toc_yaml = path_book.joinpath("_toc.yml")
-    _ = yaml.safe_load(toc_yaml.read_text())
+    _ = yaml.safe_load(toc_yaml.read_text(encoding="utf8"))
 
     # Folder with no content should return none
     p_empty = path_book.parent
@@ -24,14 +24,14 @@ def test_toc_add_titles():
     path_book = Path(__file__).parent.joinpath("books", "toc")
     run(f"jb toc {path_book}".split(), check=True)
     toc_yaml = path_book.joinpath("_toc.yml")
-    res = yaml.safe_load(toc_yaml.read_text())
+    res = yaml.safe_load(toc_yaml.read_text(encoding="utf8"))
     assert "title" not in res
     for section in res["sections"]:
         assert "title" not in section
 
     run(f"jb toc {path_book} --add-titles".split(), check=True)
     toc_yaml = path_book.joinpath("_toc.yml")
-    res = yaml.safe_load(toc_yaml.read_text())
+    res = yaml.safe_load(toc_yaml.read_text(encoding="utf8"))
     assert "title" in res
     for section in res["sections"]:
         assert "title" in section

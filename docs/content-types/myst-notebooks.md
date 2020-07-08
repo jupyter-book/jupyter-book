@@ -48,7 +48,7 @@ in your book.
 
 Jupytext can also **automatically synchronize an `.ipynb` file with your markdown**.
 To do so, use a Jupyter interface such as Jupyter Lab or the classic Notebook interface
-and follow the [Jupytext instructions for paired notebooks](https://jupytext.readthedocs.io/en/latest/using-server.html#paired-notebooks).
+and follow the [Jupytext instructions for paired notebooks](https://jupytext.readthedocs.io/en/latest/paired-notebooks.html).
 
 ```{margin} Markdown takes precedence
 If **both** an `.ipynb` and a `.md` file exist in your book's folders, then

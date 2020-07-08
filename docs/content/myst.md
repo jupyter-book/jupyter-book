@@ -75,16 +75,36 @@ Many directives allow you to control their behavior with extra pieces of
 information. In addition to the directive name and the directive content,
 directives allow two other configuration points:
 
-* **directive arguments** - are a list of words that come just after the
-  `{directivename}` is given.
-* **directive metadata** - is a collection of flags or key/value pairs
-  that come just underneath `{directivename}`. This has two forms: either
-  YAML metadata, or `:key: val` pairs.
+**directive arguments** - are a list of words that come just after the `{directivename}` is given.
 
-Here's what directives with all of their configuration points look like:
+Here's an example use of directive arguments:
 
 ````
-```{directivename} directive arguments
+```{directivename} arg1 arg2
+My directive content.
+```
+````
+
+**directive keywords** - is a collection of flags or key/value pairs
+that come just underneath `{directivename}`.
+
+There are two ways to write directive keywords, either as `:key: val` pairs, or
+as `key: val` pairs inside of `---` lines. They both work the same way:
+
+Here's an example of directive keywords using `:key: val` pairs:
+
+````
+```{directivename}
+:key1: metadata1
+:key2: metadata2
+My directive content.
+```
+````
+
+and here's an example of directive keywords using `---` lines:
+
+````
+```{directivename}
 ---
 metadata1: metadata2
 metadata3: metadata4
@@ -93,15 +113,12 @@ My directive content.
 ```
 ````
 
-or:
-
-````
-```{directivename} directive arguments
-:key1: metadata1
-:key2: metadata2
+```{tip}
+Remember, specifying directive keywords with `:key:` or `---` will both work the same.
+We recommend using `---` if you have many keywords you wish to specify, or if some values
+will span multiple lines. Use the `:key: val` syntax as a short-hand for just one or two
+keywords.
 ```
-My directive content.
-````
 
 For examples of how this is used, see the sections below.
 
@@ -122,6 +139,73 @@ role syntax `` {doc}`../intro` `` will result in: {doc}`../intro`.
 
 For more information on writing roles, see the
 [MyST documentation](https://myst-parser.readthedocs.io/).
+
+## What roles and directives are available?
+
+There is currently no single list of roles / directives to use as a refernece, but this
+section tries to give as much as information as possible. For those who are familiar
+with the Sphinx ecosystem, **you may use any directive / role that is available in Sphinx**.
+This is because Jupyter Book uses Sphinx to build your book, and MyST Markdown supports
+all syntax that Sphinx supports (think of it as a markdown version of reStructuredText).
+
+```{caution}
+If you search the internet (and the links below) for information about roles and directives,
+the documentation will generally be written with reStructuredText in mind. MyST markdown
+is different from reStructuredText, but all of the functionality should be the same. See
+[the MyST Sphinx parser documentation](https://myst-parser.readthedocs.io/en/latest/) for
+more information about MyST vs. rST.
+```
+
+For a list of directives that are available to you, there are three places to check:
+
+1. [The Sphinx directives page](https://www.sphinx-doc.org/en/2.0/usage/restructuredtext/directives.html)
+   has a list of directives that are available by default in Sphinx.
+2. [The reStructuredText directives page](https://docutils.sourceforge.io/docs/ref/rst/directives.html)
+   has a list of directives in the Python "docutils" module.
+3. This documentation has several directives that are specific to Jupyter Book in addition.
+
+(markdown/nexting)=
+## Nesting content blocks in markdown
+
+If you'd like to nest content blocks inside of one another with Markdown (for
+example, to put a `{note}` inside of a `{margin}`), you may do so by adding
+extra backticks (`` ` ``) to the outer-most block. This works for literal
+code blocks as well.
+
+For example, the following syntax:
+
+`````
+````
+```
+```
+````
+`````
+
+Yields:
+
+````
+```
+```
+````
+
+Thus, if you'd like to nest directives inside one another, you can take the same
+approach, for example, the following syntax:
+
+`````
+````{margin}
+```{note}
+Here's my note!
+```
+````
+`````
+
+produces:
+
+````{margin}
+```{note}
+Here's my note!
+```
+````
 
 ## Other MyST Markdown syntax
 

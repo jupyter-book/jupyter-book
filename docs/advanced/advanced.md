@@ -69,6 +69,8 @@ jupyter-book clean mybookname/ --all
 
 This will entirely remove the folders in the `_build/` directory.
 
+(jupyter-cell-tags)=
+
 ## How should I add cell tags to my notebooks?
 
 You can control the behavior of Jupyter Book by putting custom tags
@@ -155,6 +157,104 @@ You would have to copy the source file to the
 build directory manually. Note that MyST markdown gives you control over the
 {ref}`image appearance<content-blocks-images>` without having to resort
 to pure html.
+
+## Adding extra HTML to your book
+
+There are a few places in Jupyter Book where you can add arbitrary extra HTML.
+In all cases, this is done with a configuration value in your `_config.yml` file.
+
+### Extra HTML in your footer
+
+To add extra HTML in your book's footer, use the following configuration:
+
+```yaml
+html:
+    extra_footer: |
+        <div>
+            your html
+        </div>
+```
+
+The contents of `extra_footer` will be inserted into your page's HTML after
+all other footer content.
+
+### Extra HTML to your left navbar
+
+To add extra HTML in your book's left navbar, use the following configuration:
+
+```yaml
+html:
+    extra_navbar: |
+        <div>
+            your html
+        </div>
+```
+
+The contents of `extra_navbar` will be inserted into your page's HTML after
+all other html content.
+
+(working-on-windows)=
+## Working on Windows
+
+As of June 5, 2020, there are three open issues that require Windows-specific changes.
+Work to complete windows compatibility is underway, in the meantime we provide these
+community tips, which are known to work for some users. Note that there is no
+guarantee that they will work on all windows installations.
+
+1. Character encoding
+
+    Jupyter-book currently reads and writes files on windows in the native windows
+    encoding, which causes encoding errors for some characters in UTF-8 encoded
+    notebooks.
+
+    **Work-around:**  Beginning with
+    [Python 3.7](https://docs.python.org/3/using/cmdline.html#envvar-PYTHONUTF8)
+    cmd.exe or powershell enviroments that set PYTHONUTF8=1  override the native
+    locale encoding and use UTF8 for all input/output.
+
+    ```{tip}
+    To make it easier to use
+    this option, the EOAS/UBC notebook courseware project has created a conda package
+    [runjb](https://anaconda.org/eoas_ubc/runjb) which
+    [does this automatically for powershell](https://github.com/eoas-ubc/eoas_tlef/blob/master/converted_docs/wintools/binwin/runjb.ps1)
+    ```
+
+2. A new windows event loop
+
+   The asyncio event loop [has been changed for Python 3.8](https://github.com/sphinx-doc/sphinx/issues/7310)
+   causing sphinx-build to fail.
+
+   **Work-around:**  Pin to Python 3.7.6.  This
+   [environment_win.yml](https://github.com/eoas-ubc/quantecon-mini-example/blob/windows/environment_win.yml)
+   file does that, and also installs runjb to fix issue 1.
+
+3. Nested tables of contents
+
+   Currently, `_toc.yml` files that reference markdown files
+   in subfolders are failing for some windows users.  That is, this
+   [original _toc.yml](https://github.com/eoas-ubc/quantecon-mini-example/blob/master/mini_book/_toc.yml)
+   file will fail with a message saying jupyter-book "```cannot find index.md```"
+
+   **Work-around**: Flatten the layout of the book to a single level, i.e.
+   [this _toc.yml](https://github.com/eoas-ubc/quantecon-mini-example/blob/windows/mini_book/docs/_toc.yml)
+   file works with windows.
+
+**Summary**
+
+The following workflow should succeed using a miniconda powershell terminal on Windows 10:
+
+1. `conda install git`
+2. `git clone https://github.com/eoas-ubc/quantecon-mini-example.git`
+3. `cd quantecon-mini-example`
+4. `git checkout windows`
+5. `conda env create -f environment_win.yml`
+6. `conda activate wintest`
+7. `cd mini_book`
+8. `runjb docs`
+
+After the build, view the html with:
+
+`start docs\_build\html\index.html`
 
 ## What if I have an issue or question?
 

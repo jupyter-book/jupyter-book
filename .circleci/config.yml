@@ -96,13 +96,18 @@ jobs:
           name: Run pytest for pdflatex
           command: pytest tests/test_pdf.py::test_pdflatex
 
-      # Build Docs PDF as an artifact
+      # Build quantecon-mini-example project as a test case
+      # TODO: revert this to building docs/ when we've added support for svg, gif, etc
       - run:
           name: PDF from LaTeX
-          command: jb build docs --builder pdflatex
+          command: |
+            git clone https://github.com/executablebooks/quantecon-mini-example.git
+            cd quantecon-mini-example/
+            pip install -r requirements.txt
+            jb build mini_book --builder pdflatex
 
       - store_artifacts:
-          path: docs/_build/latex/python.pdf
+          path: quantecon-mini-example/mini_book/_build/latex/book.pdf
           destination: pdflatex
 
 workflows:

@@ -3,4 +3,3 @@
   sections:
     - file: markdown
     - file: notebooks
-- file: syntax

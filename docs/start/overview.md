@@ -12,7 +12,7 @@ The Jupyter-Book CLI allows you to build and control your
 Jupyter Book. You can install it via pip with the following command:
 
 ```bash
-pip install -U jupyter-book>=0.7.0b
+pip install -U jupyter-book
 ```
 
 ```{admonition} A note for windows users
@@ -96,8 +96,7 @@ mybookname/
 ├── intro.md
 ├── markdown.md
 ├── notebooks.ipynb
-├── references.bib
-└── syntax.md
+└── references.bib
 ```
 
 Here's a quick rundown of the files you can modify for yourself, and that

@@ -26,7 +26,9 @@ def test_build_book(tmpdir):
     # Test custom config values
     path_config = path_books.joinpath("config")
     run(f"jb build {path_config}".split(), check=True)
-    html = path_config.joinpath("_build", "html", "index.html").read_text()
+    html = path_config.joinpath("_build", "html", "index.html").read_text(
+        encoding="utf8"
+    )
     assert '<h1 class="site-logo" id="site-title">TEST PROJECT NAME</h1>' in html
     assert '<div class="sphinx-tabs docutils container">' in html
     assert '<link rel="stylesheet" type="text/css" href="_static/mycss.css" />' in html
@@ -71,6 +73,17 @@ def test_toc_builds(tmpdir):
         if "Warning, treated as error:" in err:
             raise ValueError(err)
     assert "Rename `url:` to `file:`" in err
+
+    with pytest.raises(ValueError):
+        path_toc = p_toc.joinpath("_toc_urlwithouttitle.yml")
+        out = run(
+            f"jb build {p_toc} --path-output {path_output} --toc {path_toc} -W".split(),
+            stderr=PIPE,
+        )
+        err = out.stderr.decode()
+        if "Warning, treated as error:" in err:
+            raise ValueError(err)
+    assert "`url:` link should" in err
 
     with pytest.raises(ValueError):
         path_toc = p_toc.joinpath("_toc_wrongkey.yml")
@@ -147,8 +160,43 @@ def test_build_docs(tmpdir):
 def test_build_page(tmpdir):
     """Test building the documentation book."""
     path_output = Path(tmpdir).absolute()
-    path_page = path_root.joinpath("examples", "single_page.ipynb")
+    path_page = path_tests.joinpath("pages", "single_page.ipynb")
 
     run(f"jb page {path_page} --path-output {path_output}".split(), check=True)
     path_html = path_output.joinpath("_build", "html")
     assert path_html.joinpath("single_page.html").exists()
+    # The extra page shouldn't have been built with Sphinx (or run)
+    assert not path_html.joinpath("extra_page.html").exists()
+    # An index file should be created
+    path_index = path_html.joinpath("index.html")
+    assert path_index.exists()
+    assert 'url=single_page.html" />' in path_index.read_text()
+
+
+class TestPageExecute:
+
+    basename = "nb_test_page_execute"
+    cell_out_div = r'<div class="cell_output docutils container">'
+    path_page = path_tests.joinpath("pages", f"{basename}.ipynb")
+
+    def _run(self, tmpdir, flags=""):
+        path_output = Path(tmpdir).absolute()
+        out_html = path_output.joinpath("_build", "html", f"{self.basename}.html")
+        run(
+            f"jb page {self.path_page} --path-output {path_output} {flags}".split(),
+            check=True,
+        )
+        with open(out_html, "r") as fh:
+            self.html = fh.read()
+
+    @property
+    def has_cell_output(self):
+        return self.cell_out_div in self.html
+
+    @pytest.mark.parametrize(
+        ("flag", "expected"),
+        (("", True), ("--execute", True), ("--no-execute", False),),
+    )
+    def test_build_page_execute_flags(self, tmpdir, flag, expected):
+        self._run(tmpdir, flags=flag)
+        assert self.has_cell_output == expected

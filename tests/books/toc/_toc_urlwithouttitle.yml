@@ -1,0 +1,6 @@
+file: index
+title: Toc
+sections:
+- url: http://somelink.com
+  title: Content1
+- url: http://someotherlink.com

@@ -1,0 +1,16 @@
+file: index
+title: Toc
+sections:
+- file: content1
+  title: Content1
+- file: content2
+  title: Content2
+- url: https://jupyterbook.org/start/build.html
+  title: Build your book
+- file: subfolder/index
+  title: Subfolder
+  sections:
+  - file: subfolder/asubpage
+    title: Asubpage
+  - url: https://jupyterbook.org/content-types/markdown.html
+    title: Markdown pages
