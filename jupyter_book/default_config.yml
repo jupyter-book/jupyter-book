@@ -22,7 +22,6 @@ execute:
 # HTML-specific settings
 html:
   favicon                   : ""  # A path to a favicon image
-  navbar_number_sections    : False  # Add a number to each section in your left navbar
   use_edit_page_button      : false  # Whether to add an "edit this page" button to pages. If `true`, repository information in repository: must be filled in
   use_repository_button     : false  # Whether to add a link to your repository button
   use_issues_button         : false  # Whether to add an "open an issue" button

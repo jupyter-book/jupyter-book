@@ -112,11 +112,12 @@ All subsections of that page will now be expanded in the Navigation Bar.
 ### Add section numbers to your book's pages
 
 To automatically add section numbers to your book's navigation bar, use
-the following configuration in your book's `_config.yml` file:
+add `numbered: true` to a parent page. This page and all of its children
+will now be numbered.
 
 ```yaml
-html:
-  navbar_number_sections: true
+- file: path/to/your/page
+  numbered: true
 ```
 
 See {doc}`config` for more information on the `_config.yml` file.

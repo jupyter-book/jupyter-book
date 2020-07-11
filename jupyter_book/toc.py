@@ -309,7 +309,15 @@ def build_toc(path, filename_split_char="_", skip_text=None, add_titles=True):
 
 def _check_toc_entries(sections):
     """Recursive function to check a TOC structure."""
-    allowed_keys = ["file", "url", "header", "sections", "title", "expand_sections"]
+    allowed_keys = [
+        "file",
+        "url",
+        "header",
+        "sections",
+        "title",
+        "expand_sections",
+        "numbered",
+    ]
     for section in sections:
         # Allowed keys
         for key in section.keys():
