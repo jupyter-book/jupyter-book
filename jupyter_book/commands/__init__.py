@@ -67,17 +67,19 @@ def build(path_src, path_output, config, toc, warningiserror, builder):
         "latex": "latex",
         "pdflatex": "latex",
     }
+
     if builder not in builder_dict.keys():
         allowed_keys = tuple(builder_dict.keys())
         _error(f"Value for --builder must be one of {allowed_keys}. Got '{builder}'")
     sphinx_builder = builder_dict[builder]
 
-    # Paths for our notebooks
+    # Paths for the notebooks
     PATH_SRC_FOLDER = Path(path_src).absolute()
-    # `book_config` is manual over-rides, `config` is the path to a _config.yml file
+
     config_overrides = {}
     if not PATH_SRC_FOLDER.is_dir():
-        # it is a single file then
+        # it is a single file
+        build_type = "page"
         PATH_SRC = Path(path_src)
         PATH_SRC_FOLDER = PATH_SRC.parent.absolute()
         PAGE_NAME = PATH_SRC.with_suffix("").name
@@ -99,7 +101,8 @@ def build(path_src, path_output, config, toc, warningiserror, builder):
         }
     else:
         # Table of contents
-        PATH_SRC = None
+        build_type = "book"
+        PAGE_NAME = None
         if toc is None:
             if PATH_SRC_FOLDER.joinpath("_toc.yml").exists():
                 toc = PATH_SRC_FOLDER.joinpath("_toc.yml")
@@ -109,7 +112,7 @@ def build(path_src, path_output, config, toc, warningiserror, builder):
                     f"one, run\n\n\tjupyter-book toc {path_src}"
                 )
         config_overrides["globaltoc_path"] = str(toc)
-        
+
         # Builder-specific overrides
         if builder == "pdfhtml":
             config_overrides["html_theme_options"] = {"single_page": True}
@@ -141,10 +144,8 @@ def build(path_src, path_output, config, toc, warningiserror, builder):
         builder=sphinx_builder,
         warningiserror=warningiserror,
     )
-    if not PATH_SRC:
-        builder_specific_actions(exc, builder, OUTPUT_PATH, "book")
-    else:
-        builder_specific_actions(exc, builder, OUTPUT_PATH, "page", PAGE_NAME)
+
+    builder_specific_actions(exc, builder, OUTPUT_PATH, build_type, PAGE_NAME)
 
 
 @main.command()
