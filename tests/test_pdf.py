@@ -22,7 +22,7 @@ def test_pdfhtml(tmpdir):
     path_page = path_tests.parent.joinpath("jupyter_book", "book_template").joinpath(
         "markdown.md"
     )
-    cmd = f"jb page {path_page} --path-output {path_output} --builder pdfhtml"
+    cmd = f"jb build {path_page} --path-output {path_output} --builder pdfhtml"
     run(cmd.split(), check=True)
     path_html = path_output.joinpath("_build", "html")
     path_pdf = path_output.joinpath("_build", "pdf")
@@ -45,7 +45,7 @@ def test_pdflatex(tmpdir):
     path_page = path_tests.parent.joinpath("jupyter_book", "book_template").joinpath(
         "markdown.md"
     )
-    cmd = f"jb page {path_page} --path-output {path_output} --builder pdflatex"
+    cmd = f"jb build {path_page} --path-output {path_output} --builder pdflatex"
     run(cmd.split(), check=True)
     path_pdf = path_output.joinpath("_build", "latex")
     assert path_pdf.joinpath("book.pdf").exists()
