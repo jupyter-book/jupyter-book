@@ -58,7 +58,7 @@ BUILDER_OPTS = {
     type=click.Choice(list(BUILDER_OPTS.keys())),
 )
 def build(path_src, path_output, config, toc, warningiserror, builder):
-    """Convert your book's or page's content to HTML or a PDF."""
+    """Convert your book's content to HTML or a PDF."""
     # Choose sphinx builder
     builder_dict = {
         "html": "html",
@@ -83,6 +83,7 @@ def build(path_src, path_output, config, toc, warningiserror, builder):
         PATH_SRC = Path(path_src)
         PATH_SRC_FOLDER = PATH_SRC.parent.absolute()
         PAGE_NAME = PATH_SRC.with_suffix("").name
+
         # Find all files that *aren't* the page we're building and exclude them
         to_exclude = glob(str(PATH_SRC_FOLDER.joinpath("**", "*")), recursive=True)
         to_exclude = [
