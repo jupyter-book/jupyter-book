@@ -82,6 +82,7 @@ def add_toctree(app, docname, source):
            {options}
 
            {sections}
+
         """
 
         if parent_suff in [".ipynb", ".md"]:
@@ -148,11 +149,6 @@ def add_toctree(app, docname, source):
         if title:
             this_section = f"{title} <{this_section}>"
         toc_sections.append(this_section)
-
-        option_flags = ["numbered"]
-        for option in option_flags:
-            if parent_page.get(option):
-                toc_options.append(f":{option}:")
 
     # Now create the final toctree for this page and prep to insert into page
     if toc_sections:

@@ -48,10 +48,11 @@ and **files**.
 
 #### Headers
 
-**Headers** (optional) define logical groups of files that follow, and give that group of files
-a title. You can think of headers as defining a **chapter** of pages in your book. If your `_toc.yml`
-has no `- header` entries in it, then all of the top-level files will be treated as a single chapter
-of pages.
+**Headers** (optional) define logical groups of files that follow, and give that group
+of files a title. You can think of headers as defining a **chapter** of pages in your
+book. If your `_toc.yml` has no `- header` entries in it, then all of the top-level
+files will be treated as a single chapter of pages. Note that you can only add headers
+to the **top-level** of your `_toc.yml` file.
 
 Here is an example header entry, with a few files that follow:
 

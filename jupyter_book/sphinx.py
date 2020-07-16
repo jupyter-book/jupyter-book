@@ -23,7 +23,7 @@ DEFAULT_CONFIG = dict(
         "myst_nb",
         "jupyter_book",
         "sphinxcontrib.bibtex",
-        "sphinx_thebelab",
+        "sphinx_thebe",
     ],
     language=None,
     pygments_style="sphinx",
