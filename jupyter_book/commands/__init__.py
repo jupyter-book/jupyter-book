@@ -46,7 +46,7 @@ BUILDER_OPTS = {
 
 
 @main.command()
-@click.argument("path-book", type=click.Path(exists=True, file_okay=False))
+@click.argument("path-source")
 @click.option("--path-output", default=None, help="Path to the output artifacts")
 @click.option("--config", default=None, help="Path to the YAML configuration file")
 @click.option("--toc", default=None, help="Path to the Table of Contents YAML file")
@@ -57,8 +57,8 @@ BUILDER_OPTS = {
     help="Which builder to use.",
     type=click.Choice(list(BUILDER_OPTS.keys())),
 )
-def build(path_src, path_output, config, toc, warningiserror, builder):
-    """Convert your book's content to HTML or a PDF."""
+def build(path_source, path_output, config, toc, warningiserror, builder):
+    """Convert your book's or page's content to HTML or a PDF."""
     # Choose sphinx builder
     builder_dict = {
         "html": "html",
@@ -74,13 +74,13 @@ def build(path_src, path_output, config, toc, warningiserror, builder):
     sphinx_builder = builder_dict[builder]
 
     # Paths for the notebooks
-    PATH_SRC_FOLDER = Path(path_src).absolute()
+    PATH_SRC_FOLDER = Path(path_source).absolute()
 
     config_overrides = {}
     if not PATH_SRC_FOLDER.is_dir():
         # it is a single file
         build_type = "page"
-        PATH_SRC = Path(path_src)
+        PATH_SRC = Path(path_source)
         PATH_SRC_FOLDER = PATH_SRC.parent.absolute()
         PAGE_NAME = PATH_SRC.with_suffix("").name
 
@@ -110,7 +110,7 @@ def build(path_src, path_output, config, toc, warningiserror, builder):
             else:
                 _error(
                     "Couldn't find a Table of Contents file. To auto-generate "
-                    f"one, run\n\n\tjupyter-book toc {path_src}"
+                    f"one, run\n\n\tjupyter-book toc {path_source}"
                 )
         config_overrides["globaltoc_path"] = str(toc)
 
