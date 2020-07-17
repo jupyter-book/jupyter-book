@@ -9,6 +9,5 @@ sections:
 - file: subfolder/index
   title: Subfolder
   sections:
-  - header: A subsection
   - file: subfolder/asubpage
     title: Asubpage

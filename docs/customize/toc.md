@@ -48,10 +48,11 @@ and **files**.
 
 #### Headers
 
-**Headers** (optional) define logical groups of files that follow, and give that group of files
-a title. You can think of headers as defining a **chapter** of pages in your book. If your `_toc.yml`
-has no `- header` entries in it, then all of the top-level files will be treated as a single chapter
-of pages.
+**Headers** (optional) define logical groups of files that follow, and give that group
+of files a title. You can think of headers as defining a **chapter** of pages in your
+book. If your `_toc.yml` has no `- header` entries in it, then all of the top-level
+files will be treated as a single chapter of pages. Note that you can only add headers
+to the **top-level** of your `_toc.yml` file.
 
 Here is an example header entry, with a few files that follow:
 
@@ -91,6 +92,33 @@ file to serve as an "introduction" for a collection of files underneath, like so
 
 We recommend nesting your sections no more than 3 layers deep (as shown above).
 
+## Number your book's sections
+
+You can automatically add numbers to each section of your book. To add numbers
+to any section or subsection of the book, add the `numbered: true` flag to its
+entry in your `_toc.yml` file. For example:
+
+```yaml
+- file: myfolder/mypage
+  numbered: true
+  sections:
+    - file: myfolder/asubpage
+```
+
+This will cause both `myfolder/mypage` as well as `myfolder/asubpage` to be
+numbered. They will follow a hierarchy according to the sub-sections structure
+defined in your `_toc.yml` file.
+
+To number *all* of the sections of your book, add the `numbered: true` flag to
+the first entry of your `_toc.yml` file.
+
+```{admonition} Numbering applies to _sections_ of your page
+Note that when you add numbering to a section, it will add numbers to *each header
+in a file*. This means that if you have headers in a top-level section, then its
+headers will become numbered as sub-sections, and any other _files_ underneath it
+will begin as third-level children.
+```
+
 ## Web-based Navigation Bar functionality
 
 The following sections apply to controlling the left navigation bar in
@@ -108,18 +136,6 @@ your `_toc.yml` file, add the following key:
 ```
 
 All subsections of that page will now be expanded in the Navigation Bar.
-
-### Add section numbers to your book's pages
-
-To automatically add section numbers to your book's navigation bar, use
-the following configuration in your book's `_config.yml` file:
-
-```yaml
-html:
-  navbar_number_sections: true
-```
-
-See {doc}`config` for more information on the `_config.yml` file.
 
 ### Add an external link to your navigation
 

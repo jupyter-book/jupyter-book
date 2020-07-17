@@ -3,6 +3,7 @@ from docutils import nodes
 from sphinx.util import logging
 from sphinx.util.docutils import SphinxDirective
 from sphinx.transforms import SphinxTransform
+from pathlib import Path
 
 from docutils.nodes import compound
 
