@@ -3,7 +3,6 @@ from docutils import nodes
 from sphinx.util import logging
 from sphinx.util.docutils import SphinxDirective
 from sphinx.transforms import SphinxTransform
-from pathlib import Path
 
 from docutils.nodes import compound
 
@@ -38,17 +37,14 @@ class SwapTableOfContents(SphinxTransform):
         # replacing all TableOfContentsNode with tocnode
         for index, tocnode in enumerate(self.document.traverse(TableOfContentsNode)):
             if len(toctrees) == 0:
-                logger.warning(
-                    f"Found tableofcontents directive in {self.env.docname}, but this file has no descendents."
-                )
+                warn = f"Found tableofcontents directive in {self.env.docname}, but this file has no descendents."  # noqa: E501
+                logger.warning(warn)
 
             # Replace the tableofcontents node with the page's toctree
-            tocarr = []
             wrappernode = compound(classes=["tableofcontents-wrapper"])
             for itoc in toctrees:
                 toctree = itoc.children[0].deepcopy()
                 toctree.attributes["hidden"] = False
-                toctree.attributes["maxdepth"] = 3
                 if index == len(self.document.traverse(TableOfContentsNode)):
                     itoc.parent.remove(itoc)
                 wrappernode.append(toctree)
