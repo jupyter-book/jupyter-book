@@ -88,6 +88,12 @@ on:
   push:
     branches:
     - master
+    # If your git repository has the Jupyter Book within some-subfolder next to
+    # unrelated files, you can make this run only if a file within that specific
+    # folder has been modified.
+    #
+    # paths:
+    # - some-subfolder/**
 
 # This job installs dependencies, build the book, and pushes it to `gh-pages`
 jobs:
