@@ -3,4 +3,3 @@
 
 \LoadClass{sphinxmanual}
 
-
