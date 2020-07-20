@@ -2,4 +2,3 @@
 \ProvidesClass{jupyterBook}
 
 \LoadClass{sphinxmanual}
-

@@ -43,8 +43,10 @@ async def _html_to_pdf(html_file, pdf_file):
     await page.pdf({"path": pdf_file, "margin": page_margins})
     await browser.close()
 
+
 def copy_themefile(app):
-    shutil.copy(app.srcdir + "/theme/jupyterBook.cls",app.outdir)
+    shutil.copy(app.srcdir + "/theme/jupyterBook.cls", app.outdir)
+
 
 def update_latex_documents(latex_documents, latexoverrides):
     """
