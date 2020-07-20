@@ -149,6 +149,19 @@ To do so, use the following pattern:
 The URL will be placed alongside the links to other pages above and below the
 entry.
 
+### Add a table of contents to a page's content
+
+If you'd like to add a table of contents for the sub-sections of a page
+*within the page content* (in-line with the other content on the page), you
+may do so by using the `{tableofcontents}` directive. You can use it like so:
+
+````
+```{tableofcontents}
+```
+````
+
+For an example, see the source of [the content types page](../content-types/index.md).
+
 ## Automatically generate your `_toc.yml` file
 
 You can use `jupyter-book` to *generate* a Table of Contents file from your book
