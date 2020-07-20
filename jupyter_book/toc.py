@@ -64,7 +64,6 @@ def add_toctree(app, docname, source):
         app.config.html_theme_options["expand_sections"] = expanded_sections
 
     def gen_toctree(options, subsections):
-
         # Generate the TOC from our options/pages
         toctree_text_md = """
         ```{{toctree}}
