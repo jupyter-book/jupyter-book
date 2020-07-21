@@ -48,10 +48,11 @@ and **files**.
 
 #### Headers
 
-**Headers** (optional) define logical groups of files that follow, and give that group of files
-a title. You can think of headers as defining a **chapter** of pages in your book. If your `_toc.yml`
-has no `- header` entries in it, then all of the top-level files will be treated as a single chapter
-of pages.
+**Headers** (optional) define logical groups of files that follow, and give that group
+of files a title. You can think of headers as defining a **chapter** of pages in your
+book. If your `_toc.yml` has no `- header` entries in it, then all of the top-level
+files will be treated as a single chapter of pages. Note that you can only add headers
+to the **top-level** of your `_toc.yml` file.
 
 Here is an example header entry, with a few files that follow:
 
@@ -108,6 +109,9 @@ This will cause both `myfolder/mypage` as well as `myfolder/asubpage` to be
 numbered. They will follow a hierarchy according to the sub-sections structure
 defined in your `_toc.yml` file.
 
+To number *all* of the sections of your book, add the `numbered: true` flag to
+the first entry of your `_toc.yml` file.
+
 ```{admonition} Numbering applies to _sections_ of your page
 Note that when you add numbering to a section, it will add numbers to *each header
 in a file*. This means that if you have headers in a top-level section, then its
@@ -144,6 +148,19 @@ To do so, use the following pattern:
 
 The URL will be placed alongside the links to other pages above and below the
 entry.
+
+### Add a table of contents to a page's content
+
+If you'd like to add a table of contents for the sub-sections of a page
+*within the page content* (in-line with the other content on the page), you
+may do so by using the `{tableofcontents}` directive. You can use it like so:
+
+````
+```{tableofcontents}
+```
+````
+
+For an example, see the source of [the content types page](../content-types/index.md).
 
 ## Automatically generate your `_toc.yml` file
 

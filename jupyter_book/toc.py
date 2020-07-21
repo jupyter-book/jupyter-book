@@ -64,7 +64,6 @@ def add_toctree(app, docname, source):
         app.config.html_theme_options["expand_sections"] = expanded_sections
 
     def gen_toctree(options, subsections):
-
         # Generate the TOC from our options/pages
         toctree_text_md = """
         ```{{toctree}}
@@ -82,6 +81,7 @@ def add_toctree(app, docname, source):
            {options}
 
            {sections}
+
         """
 
         if parent_suff in [".ipynb", ".md"]:
@@ -100,17 +100,35 @@ def add_toctree(app, docname, source):
     toc_sections = []
     toc_options = []
 
+    is_top_page = app.config.master_doc == docname
     for ipage in subsections:
-        # First handle special case of chapters
-        if "header" in ipage:
-            # If we already have some pages added, we need to make a new toctree
-            if toc_sections:
+        # We only worry about captions or numbering if we're on the top page
+        if is_top_page:
+            # Create a new TOCtree if we have a header specified (denoting new chapter)
+            if "header" in ipage:
+                # If we already have some pages added, we need to make a new toctree
+                if toc_sections:
+                    old_toctree = gen_toctree(toc_options, toc_sections)
+                    toctrees.append(old_toctree)
+                    toc_sections = []
+                    toc_options = []
+                toc_options.append(f":caption: {ipage.get('header')}")
+                continue
+
+            # Create a new TOCtree if we have a change in numbering specified
+            if ("numbered" in ipage) and (":numbered: true" not in toc_options):
+                # We need to create a new TOCtree because we're turning on numbering
                 old_toctree = gen_toctree(toc_options, toc_sections)
                 toctrees.append(old_toctree)
                 toc_sections = []
                 toc_options = []
-            toc_options.append(f":caption: {ipage.get('header')}")
-            continue
+                toc_options.append(":numbered: true")
+            if ("numbered" not in ipage) and (":numbered: true" in toc_options):
+                # We need to create a new TOCtree because we're no longer numbering
+                old_toctree = gen_toctree(toc_options, toc_sections)
+                toctrees.append(old_toctree)
+                toc_sections = []
+                toc_options = []
 
         # If not a special case, assume we have a "regular" page structure
         if ipage.get("file"):
@@ -130,11 +148,6 @@ def add_toctree(app, docname, source):
         if title:
             this_section = f"{title} <{this_section}>"
         toc_sections.append(this_section)
-
-        option_flags = ["numbered"]
-        for option in option_flags:
-            if parent_page.get(option):
-                toc_options.append(f":{option}:")
 
     # Now create the final toctree for this page and prep to insert into page
     if toc_sections:
@@ -309,7 +322,15 @@ def build_toc(path, filename_split_char="_", skip_text=None, add_titles=True):
 
 def _check_toc_entries(sections):
     """Recursive function to check a TOC structure."""
-    allowed_keys = ["file", "url", "header", "sections", "title", "expand_sections"]
+    allowed_keys = [
+        "file",
+        "url",
+        "header",
+        "sections",
+        "title",
+        "expand_sections",
+        "numbered",
+    ]
     for section in sections:
         # Allowed keys
         for key in section.keys():
