@@ -75,8 +75,11 @@ def build(path_source, path_output, config, toc, warningiserror, builder):
 
     # Paths for the notebooks
     PATH_SRC_FOLDER = Path(path_source).absolute()
+    BUILD_PATH = path_output if path_output is not None else PATH_SRC_FOLDER
+    BUILD_PATH = Path(BUILD_PATH).joinpath("_build")
 
     config_overrides = {}
+    freshenv = False
     if not PATH_SRC_FOLDER.is_dir():
         # it is a single file
         build_type = "page"
@@ -128,8 +131,6 @@ def build(path_source, path_output, config, toc, warningiserror, builder):
         if not Path(path_config).exists():
             raise ValueError(f"Config file path given, but not found: {path_config}")
 
-    BUILD_PATH = path_output if path_output is not None else PATH_SRC_FOLDER
-    BUILD_PATH = Path(BUILD_PATH).joinpath("_build")
     if builder in ["html", "pdfhtml", "linkcheck"]:
         OUTPUT_PATH = BUILD_PATH.joinpath("html")
     elif builder in ["latex", "pdflatex"]:
