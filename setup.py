@@ -26,6 +26,7 @@ test_reqs = [
     "sphinx_click",
     "sphinx_tabs",
     "pyppeteer",
+    "beautifulsoup4",
 ] + doc_reqs
 setup(
     name="jupyter-book",
