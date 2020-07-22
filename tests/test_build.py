@@ -1,6 +1,7 @@
 from pathlib import Path
 from subprocess import run, PIPE
 import pytest
+from bs4 import BeautifulSoup as bs
 
 
 path_tests = Path(__file__).parent.resolve()
@@ -39,6 +40,9 @@ def test_toc_builds(tmpdir):
     """Test building the book template with several different TOC files."""
     path_output = Path(tmpdir).joinpath("mybook").absolute()
 
+    ###############################
+    # TOC Builds
+
     # Regular TOC should work
     p_toc = path_books.joinpath("toc")
     path_toc = p_toc.joinpath("_toc.yml")
@@ -49,6 +53,26 @@ def test_toc_builds(tmpdir):
     path_toc = p_toc.joinpath("_toc_startwithlist.yml")
     out = run(f"jb build {p_toc} --path-output {tmpdir} --toc {path_toc} -W".split())
 
+    # TOC should force a re-build of pages if it changes and no pages change
+    # Only difference between these is the relative ordering of content pages
+    toc_tmp = [
+        ("- file: index\n- file: content1\n- file: content2\n", "content1.html"),
+        ("- file: index\n- file: content2\n- file: content1\n", "content2.html"),
+    ]
+    for toc_tmp_text, first_page in toc_tmp:
+        path_toctmp = Path(tmpdir).joinpath("_toc_tmp.yml")
+        path_toctmp.write_text(toc_tmp_text)
+        # Not using -W because we expect warnings for pages not listed in TOC
+        out = run(
+            f"jb build {p_toc} --path-output {tmpdir} --toc {path_toctmp}".split()
+        )
+        path_index = Path(tmpdir).joinpath("_build", "html", "index.html")
+        index_html = bs(path_index.read_text(), "html.parser")
+        sidebar_links = index_html.select(".bd-sidebar a.internal")
+        # The first page should be different in each run bc of switched TOC order
+        assert sidebar_links[1].attrs["href"] == first_page
+
+    ###############################
     # TOC errors
     p_toc = path_books.joinpath("toc")
 
