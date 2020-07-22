@@ -19,8 +19,8 @@ All that you need to do is to copy this ID and paste it into your
 configuration file:
 
 ```yaml
-google_analytics:
-  mytrackingcode: UA-XXXXXXXXX-X
+html:
+  google_analytics_id: UA-XXXXXXXXX-X
 ```
 
 ## Check external links in your book
@@ -68,6 +68,8 @@ jupyter-book clean mybookname/ --all
 ```
 
 This will entirely remove the folders in the `_build/` directory.
+
+(jupyter-cell-tags)=
 
 ## How should I add cell tags to my notebooks?
 

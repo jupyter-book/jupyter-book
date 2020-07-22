@@ -76,13 +76,15 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
 
     # Table of contents
     if toc is None:
-        if PATH_BOOK.joinpath("_toc.yml").exists():
-            toc = PATH_BOOK.joinpath("_toc.yml")
-        else:
-            _error(
-                "Couldn't find a Table of Contents file. To auto-generate "
-                f"one, run\n\n\tjupyter-book toc {path_book}"
-            )
+        toc = PATH_BOOK.joinpath("_toc.yml")
+    else:
+        toc = Path(toc)
+
+    if not toc.exists():
+        _error(
+            "Couldn't find a Table of Contents file. To auto-generate "
+            f"one, run\n\n\tjupyter-book toc {path_book}"
+        )
     book_config["globaltoc_path"] = str(toc)
 
     # Configuration file
@@ -106,6 +108,16 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
     elif builder in ["latex", "pdflatex"]:
         OUTPUT_PATH = BUILD_PATH.joinpath("latex")
 
+    # Check whether the table of contents has changed. If so we rebuild all
+    freshenv = False
+    if toc and BUILD_PATH.joinpath(".doctrees").exists():
+        toc_modified = toc.stat().st_mtime
+        build_files = BUILD_PATH.rglob(".doctrees/*")
+        build_modified = max([os.stat(ii).st_mtime for ii in build_files])
+
+        # If the toc file has been modified after the build we need to force rebuild
+        freshenv = toc_modified > build_modified
+
     # Now call the Sphinx commands to build
     exc = build_sphinx(
         PATH_BOOK,
@@ -115,6 +127,7 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
         confoverrides=book_config,
         builder=sphinx_builder,
         warningiserror=warningiserror,
+        freshenv=freshenv,
     )
 
     if exc:
