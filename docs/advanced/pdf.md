@@ -73,6 +73,10 @@ where we're tracking the issue.
 You can also use Latex to build a PDF of your book. This can behave differently depending on your
 operating system and setup. This section tries to recommend a few best-practices.
 
+The default is to build your project as a single PDF, however it is possible to build
+individual PDF files for each page of the project by enabling the
+`--singlepagepdf=True` option.
+
 ### Installation
 
 For `Debian` based `Linux` platforms it is recommended to install the following packages.
@@ -107,3 +111,7 @@ If you would just like to generate the **latex** file you may use:
 
 jb build mybookname/ --builder latex
 ```
+
+To build PDF files for each page of the project then you can specify the
+option `--singlepagepdf=True`. The individual PDF files will be available in the
+`latex` build folder.
