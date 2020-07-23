@@ -158,6 +158,25 @@ build directory manually. Note that MyST markdown gives you control over the
 {ref}`image appearance<content-blocks-images>` without having to resort
 to pure html.
 
+## Use Jupyter Book and Sphinx together
+
+There are situations that you still want to use both Jupyter Book and Sphinx. E.g. if API documentation or technical documentation should also be available on readthedocs.io. Or if you have a current manual created in Sphinx and want to be backwards compatible. 
+
+To do this: Override the Sphinx `master_doc` configuration setting as present in the `conf.py`. Remember: There is no need to adjust the `conf.py` file directly, just make use of the option that Jupyter Book offers to override default Sphinx setting using the `_config.yml` file.
+
+If a file `index.rst` is present in your Jupyter Book source directory you will get the default Sphinx TOC tree, since index.rst is automatically transformed to index.html. When you make use of Jupyter Book you can make a Table Of Content (`_toc.yml`) that differs from your Shpinx TOC documentation. E.g. with other content and another index.html file. 
+
+In the file `_config.yml` set another file to be the index.html file for your Jupyter Book. E.g. A file named introduction.md
+
+```
+sphinx:
+  config:
+    master_doc: 'introduction'
+```
+In this way you can still do a Sphinx `make html` to create html documentation using Shinx only. And you have the ability to create jupyter-book documentation with another index.html file.
+
+
+
 ## Adding extra HTML to your book
 
 There are a few places in Jupyter Book where you can add arbitrary extra HTML.
