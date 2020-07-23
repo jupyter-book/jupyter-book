@@ -11,9 +11,7 @@ PATH_YAML_DEFAULT = Path(__file__).parent.joinpath("default_config.yml")
 
 def yaml_to_sphinx(yaml):
     """Convert a Jupyter Book style config structure into a Sphinx config dict."""
-    theme_options = {}
     sphinx_config = {
-        "html_theme_options": {},
         "exclude_patterns": [
             "_build",
             "Thumbs.db",
@@ -22,13 +20,14 @@ def yaml_to_sphinx(yaml):
         ],
     }
 
+    # Start with an empty options block
+    theme_options = {}
+
     # Launch button configuration
-    theme_launch_buttons_config = theme_options.get("launch_buttons", {})
     launch_buttons_config = yaml.get("launch_buttons", {})
     repository_config = yaml.get("repository", {})
 
-    theme_launch_buttons_config.update(launch_buttons_config)
-    theme_options["launch_buttons"] = theme_launch_buttons_config
+    theme_options["launch_buttons"] = launch_buttons_config
 
     theme_options["path_to_docs"] = repository_config.get("path_to_book", "")
     theme_options["repository_url"] = repository_config.get("url", "")
@@ -45,16 +44,21 @@ def yaml_to_sphinx(yaml):
         theme_options["navbar_footer_text"] = html.get("navbar_footer_text", "")
         theme_options["extra_navbar"] = html.get("extra_navbar", "")
         theme_options["extra_footer"] = html.get("extra_footer", "")
-        theme_options["number_toc_sections"] = html.get("navbar_number_sections")
         theme_options["home_page_in_toc"] = html.get("home_page_in_navbar")
 
-        if html.get("use_edit_page_button"):
-            for key in ["url", "branch"]:
-                if not repository_config.get(key):
-                    raise ValueError(
-                        f"To use 'edit page' buttons, add repository key: {key}"
-                    )
-            theme_options["use_edit_page_button"] = html.get("use_edit_page_button")
+        # Pass through the buttons
+        btns = ["use_repository_button", "use_edit_page_button", "use_issues_button"]
+        use_buttons = {btn: html.get(btn) for btn in btns if html.get(btn) is not None}
+        if any(use_buttons.values()):
+            if not repository_config.get("url"):
+                raise ValueError(
+                    "To use 'repository' buttons, you must specify the repository URL"
+                )
+        # Update our config
+        theme_options.update(use_buttons)
+
+    # Update the theme options in the main config
+    sphinx_config["html_theme_options"] = theme_options
 
     execute = yaml.get("execute")
     if execute:
@@ -69,9 +73,6 @@ def yaml_to_sphinx(yaml):
             sphinx_config,
             {"execution_excludepatterns": execute.get("exclude_patterns", [])},
         )
-
-    # Update the theme options in the main config
-    sphinx_config["html_theme_options"] = theme_options
 
     # LaTeX
     latex = yaml.get("latex")

@@ -7,15 +7,31 @@ import click
 from glob import glob
 import shutil as sh
 import subprocess
+from textwrap import dedent
 from sphinx.util.osutil import cd
 
-from ..sphinx import build_sphinx
+from ..sphinx import build_sphinx, REDIRECT_TEXT
 from ..toc import build_toc
 from ..pdf import html_to_pdf
 from ..utils import _message_box, _error, init_myst_file
+from .. import __version__ as jbv
+from sphinx_book_theme import __version__ as sbtv
+from myst_nb import __version__ as mnbv
+from myst_parser import __version__ as mpv
+from jupyter_cache import __version__ as jcv
+
+versions = {
+    "Jupyter Book": jbv,
+    "MyST-NB": mnbv,
+    "Sphinx Book Theme": sbtv,
+    "MyST-Parser": mpv,
+    "Jupyter-Cache": jcv,
+}
+versions_string = "\n".join(f"{tt}: {vv}" for tt, vv in versions.items())
 
 
 @click.group()
+@click.version_option(message=versions_string)
 def main():
     """Build and manage books with Jupyter."""
     pass
@@ -66,13 +82,15 @@ def build(path_book, path_output, config, toc, warningiserror, builder, singlepa
 
     # Table of contents
     if toc is None:
-        if PATH_BOOK.joinpath("_toc.yml").exists():
-            toc = PATH_BOOK.joinpath("_toc.yml")
-        else:
-            _error(
-                "Couldn't find a Table of Contents file. To auto-generate "
-                f"one, run\n\n\tjupyter-book toc {path_book}"
-            )
+        toc = PATH_BOOK.joinpath("_toc.yml")
+    else:
+        toc = Path(toc)
+
+    if not toc.exists():
+        _error(
+            "Couldn't find a Table of Contents file. To auto-generate "
+            f"one, run\n\n\tjupyter-book toc {path_book}"
+        )
     book_config["globaltoc_path"] = str(toc)
 
     # Configuration file
@@ -81,7 +99,6 @@ def build(path_book, path_output, config, toc, warningiserror, builder, singlepa
         # Check if there's a `_config.yml` file in the source directory
         if PATH_BOOK.joinpath("_config.yml").exists():
             path_config = str(PATH_BOOK.joinpath("_config.yml"))
-
     if path_config:
         if not Path(path_config).exists():
             raise ValueError(f"Config file path given, but not found: {path_config}")
@@ -111,6 +128,16 @@ def build(path_book, path_output, config, toc, warningiserror, builder, singlepa
     elif builder in ["latex", "pdflatex"]:
         OUTPUT_PATH = BUILD_PATH.joinpath("latex")
 
+    # Check whether the table of contents has changed. If so we rebuild all
+    freshenv = False
+    if toc and BUILD_PATH.joinpath(".doctrees").exists():
+        toc_modified = toc.stat().st_mtime
+        build_files = BUILD_PATH.rglob(".doctrees/*")
+        build_modified = max([os.stat(ii).st_mtime for ii in build_files])
+
+        # If the toc file has been modified after the build we need to force rebuild
+        freshenv = toc_modified > build_modified
+
     # Now call the Sphinx commands to build
     exc = build_sphinx(
         PATH_BOOK,
@@ -121,6 +148,7 @@ def build(path_book, path_output, config, toc, warningiserror, builder, singlepa
         latexoverrides=latexoverrides,
         builder=sphinx_builder,
         warningiserror=warningiserror,
+        freshenv=freshenv,
     )
 
     if exc:
@@ -200,7 +228,11 @@ def build(path_book, path_output, config, toc, warningiserror, builder, singlepa
 @click.argument("path-page")
 @click.option("--path-output", default=None, help="Path to the output artifacts")
 @click.option("--config", default=None, help="Path to the YAML configuration file")
-@click.option("--execute", default=None, help="Whether to execute the notebook first")
+@click.option(
+    "--execute/--no-execute",
+    default=True,
+    help="Whether to execute the notebook. Default is --execute",
+)
 def page(path_page, path_output, config, execute):
     """Convert a single content file to HTML or PDF.
     """
@@ -210,8 +242,12 @@ def page(path_page, path_output, config, execute):
     PAGE_NAME = PATH_PAGE.with_suffix("").name
     if config is None:
         config = ""
+
+    # Page command ignores book-level execution config options: page is either
+    # executed or not as dictated by command line option. Default is execute.
+    jupyter_execute_notebooks = "force"
     if not execute:
-        execute = "off"
+        jupyter_execute_notebooks = "off"
 
     OUTPUT_PATH = path_output if path_output is not None else PATH_PAGE_FOLDER
     OUTPUT_PATH = Path(OUTPUT_PATH).joinpath("_build/html")
@@ -226,26 +262,41 @@ def page(path_page, path_output, config, execute):
     to_exclude.extend(["_build", "Thumbs.db", ".DS_Store", "**.ipynb_checkpoints"])
 
     # Now call the Sphinx commands to build
-    config = {
+    config_overrides = {
         "master_doc": PAGE_NAME,
-        "yaml_config_path": config,
         "globaltoc_path": "",
         "exclude_patterns": to_exclude,
-        "jupyter_execute_notebooks": execute,
+        "jupyter_execute_notebooks": jupyter_execute_notebooks,
         "html_theme_options": {"single_page": True},
     }
 
     build_sphinx(
         PATH_PAGE_FOLDER,
         OUTPUT_PATH,
+        path_config=config,
         noconfig=True,
-        confoverrides=config,
+        confoverrides=config_overrides,
         builder="html",
     )
 
     path_output_rel = Path(op.relpath(OUTPUT_PATH, Path()))
     path_page = path_output_rel.joinpath(f"{PAGE_NAME}.html")
-    _message_box(f"Page build finished. Open your page at:\n\n    {path_page}")
+
+    # Write an index file if it doesn't exist so we get redirects
+    path_index = path_output_rel.joinpath("index.html")
+    if not path_index.exists():
+        path_index.write_text(REDIRECT_TEXT.format(first_page=path_page.name))
+
+    _message_box(
+        dedent(
+            f"""
+            Page build finished.
+
+                Your page folder is: {path_page.parent}{os.sep}
+                Open your page at: {path_page}
+            """
+        )
+    )
 
 
 @main.command()
@@ -284,7 +335,8 @@ def create(path_book):
     help="Whether to generate page titles from file names.",
 )
 def toc(path, filename_split_char, skip_text, output_folder, add_titles):
-    """Generate a _toc.yml file for your content folder (and sub-directories).
+    """Generate a _toc.yml file for your content folder.
+    It also generates a _toc.yml file for sub-directories.
     The alpha-numeric name of valid content files will be used to choose the
     order of pages/sections. If any file is called "index.{extension}", it will be
     chosen as the first file. Note that each folder must have at least one content file
@@ -294,7 +346,7 @@ def toc(path, filename_split_char, skip_text, output_folder, add_titles):
     if output_folder is None:
         output_folder = path
     output_file = Path(output_folder).joinpath("_toc.yml")
-    output_file.write_text(out_yaml)
+    output_file.write_text(out_yaml, encoding="utf8")
 
     _message_box(f"Table of Contents written to {output_file}")
 
@@ -305,7 +357,7 @@ def toc(path, filename_split_char, skip_text, output_folder, add_titles):
 @click.option("--html", is_flag=True, help="Remove html directory.")
 @click.option("--latex", is_flag=True, help="Remove latex directory.")
 def clean(path_book, all_, html, latex):
-    """By default this method empties the build directory except jupyter_cache.
+    """Empty the _build directory except jupyter_cache.
     If the all option has been flagged, it will remove the entire _build. If html/latex
     option is flagged, it will remove the html/latex subdirectories."""
 

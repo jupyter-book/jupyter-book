@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 from pathlib import Path
 
-text = Path("./jupyter_book/__init__.py").read_text()
+text = Path("./jupyter_book/__init__.py").read_text(encoding="utf8")
 for line in text.split("\n"):
     if "__version__" in line:
         break
@@ -10,7 +10,9 @@ version = line.split("= ")[-1].strip('"')
 # Documentation requirements
 path_doc_reqs = Path(__file__).parent.joinpath("docs", "requirements.txt")
 doc_reqs = [
-    ii for ii in path_doc_reqs.read_text().split("\n") if not ii.startswith("#")
+    ii
+    for ii in path_doc_reqs.read_text(encoding="utf8").split("\n")
+    if not ii.startswith("#")
 ]
 test_reqs = [
     "coverage",
@@ -24,6 +26,7 @@ test_reqs = [
     "sphinx_click",
     "sphinx_tabs",
     "pyppeteer",
+    "beautifulsoup4",
 ] + doc_reqs
 setup(
     name="jupyter-book",
@@ -49,7 +52,7 @@ setup(
         "pyyaml",
         "docutils>=0.15",
         "sphinx<3",
-        "myst-nb",
+        "myst-nb~=0.8",
         "click",
         "setuptools",
         "nbformat",
@@ -58,7 +61,8 @@ setup(
         "sphinx_togglebutton",
         "sphinx-copybutton",
         "sphinxcontrib-bibtex",
-        "sphinx_book_theme",
+        "sphinx_book_theme~=0.0",
+        "sphinx-thebe",
     ],
     extras_require={
         "code_style": ["flake8<3.8.0,>=3.7.0", "black", "pre-commit==1.17.0"],

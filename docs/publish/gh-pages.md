@@ -74,7 +74,7 @@ that builds a book with GitHub Actions.
 
 ```{note}
 Ensure that Jupyter Book's version in your `requirements.txt` file is at least
-`0.7.0b`. This line will do the trick: `jupyter-book>=0.7.0b`.
+`0.7.0`.
 ```
 
 Here is a simple YAML configuration
@@ -88,6 +88,12 @@ on:
   push:
     branches:
     - master
+    # If your git repository has the Jupyter Book within some-subfolder next to
+    # unrelated files, you can make this run only if a file within that specific
+    # folder has been modified.
+    #
+    # paths:
+    # - some-subfolder/**
 
 # This job installs dependencies, build the book, and pushes it to `gh-pages`
 jobs:

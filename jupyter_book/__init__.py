@@ -2,10 +2,10 @@
 from pathlib import Path
 
 from .toc import update_indexname, add_toctree
-from .directive.toc import TableofContents
+from .directive.toc import TableofContents, SwapTableOfContents
 
 
-__version__ = "0.7.0b5dev0"
+__version__ = "0.7.2dev0"
 
 
 def add_static_files(app, config):
@@ -36,6 +36,9 @@ def setup(app):
 
     # Directives
     app.add_directive("tableofcontents", TableofContents)
+
+    # Transforms
+    app.add_post_transform(SwapTableOfContents)
 
     return {
         "version": __version__,

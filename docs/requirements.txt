@@ -11,3 +11,4 @@ bokeh
 altair
 sphinx-click
 sphinx_tabs
+jupytext[myst]

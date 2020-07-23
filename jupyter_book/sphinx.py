@@ -23,8 +23,8 @@ DEFAULT_CONFIG = dict(
         "myst_nb",
         "jupyter_book",
         "sphinxcontrib.bibtex",
+        "sphinx_thebe",
     ],
-    togglebutton_selector=".toggle, .secondtoggle",
     language=None,
     pygments_style="sphinx",
     html_theme="sphinx_book_theme",
@@ -83,14 +83,14 @@ def build_sphinx(
     sphinx_config = DEFAULT_CONFIG.copy()
 
     # Update with the *default* config.yml
-    default_yaml_config = yaml.safe_load(PATH_YAML_DEFAULT.read_text())
+    default_yaml_config = yaml.safe_load(PATH_YAML_DEFAULT.read_text(encoding="utf8"))
     new_config = yaml_to_sphinx(default_yaml_config)
     _recursive_update(sphinx_config, new_config)
 
     # Update with the given config file, if it exists
     if path_config:
         path_config = Path(path_config)
-        yaml_config = yaml.safe_load(path_config.read_text())
+        yaml_config = yaml.safe_load(path_config.read_text(encoding="utf8"))
 
         # Check for manual Sphinx over-rides which we'll apply later to take precedence
         sphinx_overrides = yaml_config.get("sphinx", {}).get("config")
@@ -254,7 +254,7 @@ def build_sphinx(
                 path_toc = None
 
             if not path_index.exists() and path_toc:
-                toc = yaml.safe_load(path_toc.read_text())
+                toc = yaml.safe_load(path_toc.read_text(encoding="utf8"))
                 if isinstance(toc, dict):
                     first_page = toc["file"]
                 else:

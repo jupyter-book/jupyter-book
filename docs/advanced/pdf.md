@@ -79,18 +79,18 @@ individual PDF files for each page of the project by enabling the
 
 ### Installation
 
-For `Debian` based `Linux` platforms it is recommended to install the following packages.
+For `Debian` based `Linux` platforms it is recommended to install the following packages:
 
 ```bash
 sudo apt-get install texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra latexmk
 ```
 
-alternativey you can install [texlive](https://www.tug.org/texlive/quickinstall.html)
+alternatively you can install [texlive](https://www.tug.org/texlive/quickinstall.html)
 
 For `OSX` you may want to use [mactex](http://www.tug.org/mactex/) which is a more
-user friendly approach, alternatively you may use [texlive](https://www.tug.org/texlive/quickinstall.html)
+user friendly approach, alternatively you may use [texlive](https://www.tug.org/texlive/quickinstall.html).
 
-For `Windows` please install [texlive](https://www.tug.org/texlive/windows.html)
+For `Windows` please install [texlive](https://www.tug.org/texlive/windows.html).
 
 ### Build
 

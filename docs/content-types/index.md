@@ -5,6 +5,11 @@ These sections cover the major types of content, and how you can control
 their behavior in Jupyter Book. See the list of sections to the left for information
 about each type/
 
+## Section table of contents
+
+```{tableofcontents}
+```
+
 ## Allowed content types
 
 In general, these are the types of content supported in Jupyter Book (along with

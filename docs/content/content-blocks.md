@@ -46,7 +46,7 @@ Here's a note block inside a margin block
 See {ref}`markdown/nexting` for instructions to do this.
 ````
 
-## Notes and warnings
+## Notes, warnings, and other admonitions
 
 Let's say you wish to highlight a particular block of
 text that exists slightly apart from the narrative of your page. You can
@@ -66,9 +66,22 @@ Results in the following output:
 Here is a note!
 ```
 
-Another common directive that result in similar output is **`{warning}`**.
+There are a number of similarly-styled blocks of text. For example, here is a `{warning}`
+block:
 
-Finally, you can choose the title of your message box by using the
+`````{warning}
+Here's a warning! It was created with:
+````
+```{warning}
+```
+````
+`````
+
+For a complete list of options, see [the `sphinx-book-theme` documentation](https://sphinx-book-theme.readthedocs.io/en/latest/reference/demo.html#admonitions).
+
+### Blocks of text with custom titles
+
+You can also choose the title of your message box by using the
 **`{admonition}`** directive. For example, the following text:
 
 ````
@@ -81,6 +94,91 @@ Results in the following output:
 
 ```{admonition} Here's your admonition
 Here's the admonition content
+```
+
+If you'd like to **style these blocks**, then use the `:class:` option. For
+example:
+
+`````{admonition} This admonition was styled...
+:class: tip
+Using the following pattern:
+````
+```{admonition} My title
+:class: tip
+My content
+```
+````
+`````
+
+(content/toggle-admonitions)=
+### Interactive admonitions with dropdowns
+
+You can also hide the body of your admonition blocks so that users must click
+a button to reveal their content. This is helpful if you'd like to make a point
+that isn't immediately visible to the user.
+
+To hide the body of admonition blocks, add a "dropdown" class to them, like so:
+
+````
+```{note}
+:class: dropdown
+The note body will be hidden!
+```
+````
+
+results in:
+
+```{note}
+:class: dropdown
+The note body will be hidden!
+```
+
+You can use this in conjunction with `{admonition}` directives to include your
+own titles and stylings. For example:
+
+````
+```{admonition} Click the + sign to see what's inside
+:class: dropdown, tip
+Here's what's inside!
+```
+````
+
+results in:
+
+```{admonition} Click the + sign to see what's inside
+:class: dropdown, tip
+Here's what's inside!
+```
+
+### Insert code cell outputs into admonitions
+
+If you'd like to insert the outputs of running code *inside* admonition
+blocks, we recommend using {doc}`Glue functionality <glue>`. For example,
+we'll insert one of the outputs that was glued into the book from the page
+{doc}`glue`.
+
+The below code:
+
+````
+```{note}
+Here's my figure:
+{glue:figure}`sorted_means_fig`
+```
+````
+
+generates:
+
+```{note}
+Here's my figure:
+{glue:}`sorted_means_fig`
+```
+
+See {doc}`glue` for more information on how to use Glue to insert your outputs
+directly into your content.
+
+```{tip}
+To hide code input and output that generated the variable you are inserting, use the `remove_cell` tag.
+See {doc}`../interactive/hiding` for more information and other tag options.
 ```
 
 ## Quotations and epigraphs

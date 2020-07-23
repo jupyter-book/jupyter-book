@@ -3,12 +3,6 @@
 Jupyter Book is an open source project for building beautiful,
 publication-quality books and documents from computational material.
 
-```{warning}
-This is an early-release of Jupyter Book. It may change but is ready for general
-testing and use. [Feedback](https://github.com/executablebooks/jupyter-book/issues/new) is very welcome!
-For the old Jupyter Book documentation, see [legacy.jupyterbook.org](https://legacy.jupyterbook.org)
-```
-
 Jupyter Book has the following main features:
 
 * **[Write publication-quality content in markdown](content-types/markdown)**. You can
@@ -32,11 +26,16 @@ Jupyter Book has the following main features:
 * **[A command-line interface](reference/cli)** to quickly generate your books with one
   command, like so: `jupyter-book build mybook/`
 
-```{tip}
 This website is built with Jupyter Book! You can browse its contents to the
 left to see what is possible.
-```
 
+```{warning}
+Jupyter Book `0.7` is a total re-write from `0.6`, and some things have changed.
+[Open an issue](https://github.com/executablebooks/jupyter-book/issues/new) with any feedback!
+See [the legacy upgrade guide](https://github.com/executablebooks/jupyter-book/wiki/The-Jupyter-Book-Wiki)
+for how to upgrade, and [legacy.jupyterbook.org](https://legacy.jupyterbook.org) for
+legacy documentation
+```
 
 ## Get started
 
@@ -50,7 +49,7 @@ on a laptop), or
 To install the `jupyter-book` pre-release from pip, run the following command:
 
 ```
-pip install -U "jupyter-book>=0.7.0b"
+pip install -U jupyter-book
 ```
 
 (example-project)=
@@ -88,7 +87,7 @@ You can build this book locally on the command line via the following steps:
     If you'd like to install Jupyter Book with `pip`, you can do so with:
 
     ```bash
-    pip install -U jupyter-book>=0.7.0b
+    pip install -U jupyter-book
     ```
     See [the getting started page](start/overview) for more information.
     ````
