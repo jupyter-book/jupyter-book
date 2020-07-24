@@ -176,7 +176,7 @@ sphinx:
     master_doc: 'introduction'
 ```
 
-In this way you can still do a Sphinx `make html` to create html documentation using Shinx only. And you have the ability to create jupyter-book documentation with another index.html file. 
+In this way you can still do a Sphinx `make html` to create html documentation using Sphinx only. And you have the ability to create jupyter-book documentation with another index.html file. 
 In case of trouble, make sure the default `index.rst` or `index.md` (the file that is mandatory for Sphinx html) is not present in your source directory. Rename it. A dirty trick is to replace the index.html by the file you want to function as index.html, so the file first listed in  `_toc.yml`. Note that ToC changes sometimes require a `jb clean`. 
 
 
