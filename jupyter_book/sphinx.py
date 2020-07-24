@@ -248,7 +248,7 @@ def build_sphinx(
                 else:
                     first_page = toc[0]["file"]
                 first_page = first_page.split(".")[0] + ".html"
-                with open(path_index, "w") as ff:
+                with open(path_index, "w", encoding='utf-8') as ff:
                     ff.write(REDIRECT_TEXT.format(first_page=first_page))
             return app.statuscode
     except (Exception, KeyboardInterrupt) as exc:
