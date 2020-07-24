@@ -1,7 +1,8 @@
 version: 2
 
 orbs:
-  wind: circleci/windows@2.2.0
+  win: circleci/windows@2.2.0
+
 jobs:
   tests:
     docker:
