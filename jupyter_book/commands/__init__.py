@@ -75,8 +75,6 @@ def build(path_source, path_output, config, toc, warningiserror, builder):
 
     # Paths for the notebooks
     PATH_SRC_FOLDER = Path(path_source).absolute()
-    BUILD_PATH = path_output if path_output is not None else PATH_SRC_FOLDER
-    BUILD_PATH = Path(BUILD_PATH).joinpath("_build")
 
     config_overrides = {}
     freshenv = False
@@ -86,6 +84,8 @@ def build(path_source, path_output, config, toc, warningiserror, builder):
         PATH_SRC = Path(path_source)
         PATH_SRC_FOLDER = PATH_SRC.parent.absolute()
         PAGE_NAME = PATH_SRC.with_suffix("").name
+        BUILD_PATH = path_output if path_output is not None else PATH_SRC_FOLDER
+        BUILD_PATH = Path(BUILD_PATH).joinpath("_build")
 
         # Find all files that *aren't* the page we're building and exclude them
         to_exclude = glob(str(PATH_SRC_FOLDER.joinpath("**", "*")), recursive=True)
@@ -107,6 +107,10 @@ def build(path_source, path_output, config, toc, warningiserror, builder):
         # Table of contents
         build_type = "book"
         PAGE_NAME = None
+        BUILD_PATH = path_output if path_output is not None else PATH_SRC_FOLDER
+        BUILD_PATH = Path(BUILD_PATH).joinpath("_build")
+
+        # Table of contents
         if toc is None:
             if PATH_SRC_FOLDER.joinpath("_toc.yml").exists():
                 toc = PATH_SRC_FOLDER.joinpath("_toc.yml")
