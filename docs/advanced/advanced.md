@@ -164,7 +164,7 @@ There are situations that you still want to use both Jupyter Book and Sphinx. E.
 
 To do this: Override the Sphinx `master_doc` configuration setting as present in the `conf.py`. Remember: There is no need to adjust the `conf.py` file directly, just make use of the option that Jupyter Book offers to override default Sphinx setting using the `_config.yml` file.
 
-If a file `index.rst` is present in your Jupyter Book source directory you will get the default Sphinx TOC tree, since index.rst is automatically transformed to index.html. When you make use of Jupyter Book you can make a Table Of Content (`_toc.yml`) that differs from your Shpinx TOC documentation. E.g. with other content and another index.html file. 
+If a file `index.rst` or `index.md` is present in your Jupyter Book source directory you will get the default Sphinx TOC tree, since index.rst is automatically transformed to index.html. When you make use of Jupyter Book you can make a Table Of Content (`_toc.yml`) that differs from your Shpinx TOC documentation. E.g. with other content and another index.html file. Jupyter Book is more flexible to create and change a ToC. This is done by the `_toc.yml` file.
 
 In the file `_config.yml` set another file to be the index.html file for your Jupyter Book. E.g. A file named introduction.md
 
@@ -173,7 +173,9 @@ sphinx:
   config:
     master_doc: 'introduction'
 ```
-In this way you can still do a Sphinx `make html` to create html documentation using Shinx only. And you have the ability to create jupyter-book documentation with another index.html file.
+
+In this way you can still do a Sphinx `make html` to create html documentation using Shinx only. And you have the ability to create jupyter-book documentation with another index.html file. 
+In case of trouble, make sure the default `index.rst` or `index.md` (the file that is mandatory for Sphinx html) is not present in your source directory. Rename it. A dirty trick is to replace the index.html by the file you want to function as index.html, so the file first listed in  `_toc.yml`. Note that ToC changes sometimes require a `jb clean`. 
 
 
 
