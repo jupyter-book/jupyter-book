@@ -118,7 +118,7 @@ jobs:
     executor: win/default
 
     steps:
-      - run: conda create -n wintestsenv pip
+      - run: conda create -n wintestenv pip
       - run: activate wintestenv
       - checkout
       - restore_cache:
