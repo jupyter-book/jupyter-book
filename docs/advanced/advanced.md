@@ -193,6 +193,28 @@ html:
 The contents of `extra_navbar` will be inserted into your page's HTML after
 all other html content.
 
+## Adding a license to your HTML footer
+
+If you'd like to add a more detailed license for your book, or would like to
+add a link to an external page for a license, the easiest way to do so is to
+use a custom footer for this. You can disable the "copyright" text that is
+automatically added to each footer, and add whatever footer HTML you'd like.
+
+For example, see this configuration:
+
+```yaml
+html:
+  extra_footer: |
+    <p>
+    ... Add license info here...
+    </p>
+sphinx:
+  config:
+    html_show_copyright: false
+```
+
+Note that this may not work in latex-generated PDF builds of your page.
+
 (working-on-windows)=
 ## Working on Windows
 
