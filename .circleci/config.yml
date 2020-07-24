@@ -128,9 +128,10 @@ jobs:
           key: cache-pip-win
           paths:
             - ~/.cache/pipwin
+      -run: $ENV:PATH="$ENV:PATH;C:\Users\circleci\AppData\Roaming\Python\Python37\Scripts"
       - run:
           name: Run pytest
-          command: pytest tests --ignore=tests/test_pdf.py
+          command: C:\Users\circleci\AppData\Roaming\Python\Python37\Scripts\pytest tests --ignore=tests/test_pdf.py
 
 workflows:
   version: 2.1
