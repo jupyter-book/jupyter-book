@@ -1,8 +1,4 @@
-version: 2.1
-
-orbs:
-  win: circleci/windows@2.2.0
-
+version: 2
 jobs:
   tests:
     docker:
@@ -115,10 +111,9 @@ jobs:
           destination: pdflatex
 
 workflows:
-  version: 2.1
+  version: 2
   default:
     jobs:
       - tests
-      - windowstests
       - pdfhtml
       - pdflatex
