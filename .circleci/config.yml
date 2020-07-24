@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 
 orbs:
   win: circleci/windows@2.2.0
@@ -133,7 +133,7 @@ jobs:
           command: pytest tests --ignore=tests/test_pdf.py
 
 workflows:
-  version: 2
+  version: 2.1
   default:
     jobs:
       - tests
