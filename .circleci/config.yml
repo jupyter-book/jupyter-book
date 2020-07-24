@@ -118,12 +118,13 @@ jobs:
     executor: win/default
 
     steps:
+      - run: conda create -n wintestsenv
+      - run: conda activate wintestenv
+      - run: conda install pip
       - checkout
       - restore_cache:
           keys:
             - cache-pip-win
-
-      - run: $ENV:PATH='$ENV:PATH;C:\Users\circleci\AppData\Roaming\Python\Python37\Scripts'
 
       - run: pip install --user .[testing]
       - save_cache:
@@ -132,7 +133,7 @@ jobs:
             - ~/.cache/pipwin
       - run:
           name: Run pytest
-          command: C:\Users\circleci\AppData\Roaming\Python\Python37\Scripts\pytest tests --ignore=tests/test_pdf.py
+          command: pytest tests --ignore=tests/test_pdf.py
 
 workflows:
   version: 2.1
