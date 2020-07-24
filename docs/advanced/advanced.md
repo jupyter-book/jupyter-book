@@ -160,6 +160,8 @@ to pure html.
 
 ## Use Jupyter Book and Sphinx together
 
+_Note: This is not an endorsed" practice! _
+
 There are situations that you still want to use both Jupyter Book and Sphinx. E.g. if API documentation or technical documentation should also be available on readthedocs.io. Or if you have a current manual created in Sphinx and want to be backwards compatible. 
 
 To do this: Override the Sphinx `master_doc` configuration setting as present in the `conf.py`. Remember: There is no need to adjust the `conf.py` file directly, just make use of the option that Jupyter Book offers to override default Sphinx setting using the `_config.yml` file.
