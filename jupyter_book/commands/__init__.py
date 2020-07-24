@@ -144,7 +144,7 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
     else:
         # Builder-specific options
         if builder == "html":
-            path_output_rel = Path(op.relpath(OUTPUT_PATH, Path()))
+            path_output_rel = Path(op.abspath(OUTPUT_PATH))
             path_index = path_output_rel.joinpath("index.html")
             _message_box(
                 f"""\
@@ -169,7 +169,7 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
             path_pdf_output.mkdir(exist_ok=True)
             path_pdf_output = path_pdf_output.joinpath("book.pdf")
             html_to_pdf(OUTPUT_PATH.joinpath("index.html"), path_pdf_output)
-            path_pdf_output_rel = Path(op.relpath(path_pdf_output, Path()))
+            path_pdf_output_rel = Path(op.abspath(path_pdf_output))
             _message_box(
                 f"""\
             Finished generating PDF via HTML for book. Your PDF is here:
