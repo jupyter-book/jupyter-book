@@ -258,11 +258,11 @@ def page(path_page, path_output, config, execute):
         builder="html",
     )
 
-    path_output_rel = Path(op.relpath(OUTPUT_PATH, Path()))
-    path_page = path_output_rel.joinpath(f"{PAGE_NAME}.html")
+    path_output = Path(op.abspath(OUTPUT_PATH))
+    path_page = path_output.joinpath(f"{PAGE_NAME}.html")
 
     # Write an index file if it doesn't exist so we get redirects
-    path_index = path_output_rel.joinpath("index.html")
+    path_index = path_output.joinpath("index.html")
     if not path_index.exists():
         path_index.write_text(REDIRECT_TEXT.format(first_page=path_page.name))
 
