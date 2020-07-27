@@ -248,7 +248,7 @@ This will include a numbered reference to the footnote in-line, and insert the f
 to a list of footnotes at the bottom of the page.
 
 To create a footnote, first insert a reference in-line with this syntax: `[^mylabel]`.
-The, define the text for that label like so:
+Then, define the text for that label like so:
 
 ```
 [^mylabel]: My footnote text.
