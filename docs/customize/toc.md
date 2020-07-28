@@ -43,7 +43,7 @@ The first entry (`- file: intro` above) defines the introductory page for your b
 It is also where you can control some behavior for the entire book (in the example
 above, we set `numbered: true` to number *all* sections of the book).
 
-Below the first entry, you can provide two types of top-level entries:
+Below the first entry, you have two options for defining the structure of your book.
 
 1. **A list of `- file:` entries.** Each file will be treated as a **chapter**.
    Below is an example `_toc.yml` file with this structure:
@@ -66,6 +66,9 @@ Below the first entry, you can provide two types of top-level entries:
      sections:
      - file: firstsection
      - file: secondsection
+   - chapter: My second chapter
+     sections:
+     - file: firstsection
    ```
 
 ```{admonition} Don't mix these two structures

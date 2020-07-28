@@ -145,9 +145,6 @@ def update_indexname(app, config):
 
     # If it's a flat list, treat the first page as the master doc
     if isinstance(toc, list):
-        # Ensure that the first item in the list is not a header
-        if "header" in toc[0]:
-            _error("Table of Contents must start with your first page, not a header.")
         # Convert to a dictionary where the top-level file is the first item of the list
         toc_updated = toc[0]
         if len(toc) > 1:
