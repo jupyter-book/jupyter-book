@@ -47,13 +47,15 @@ def add_toctree(app, docname, source):
     toc = app.config["globaltoc"]
 
     parent_page = find_name(toc, _no_suffix(path_parent))
-    parent_name = parent_page["file"]
-    path_parent_folder = Path(parent_page["file"]).parent
-    parent_suff = Path(path_parent).suffix
     # If we didn't find this page in the TOC, raise a warning
     if parent_page is None:
         logger.warning(f"Found a content page that is not in _toc.yml: {path_parent}.")
         return
+
+    # Collect some information about the parent we'll use later
+    parent_name = parent_page["file"]
+    path_parent_folder = Path(parent_page["file"]).parent
+    parent_suff = Path(path_parent).suffix
 
     # If we have no sections, then don't worry about a toctree
     sections = parent_page.get("sections")
@@ -67,7 +69,7 @@ def add_toctree(app, docname, source):
         app.config.html_theme_options["expand_sections"] = expanded_sections
 
     # Check if subsections are all individual files. If so, embed them in a section
-    are_files = ["file" in ii for ii in sections]
+    are_files = [("file" in ii) or ("url" in ii) for ii in sections]
     if all(are_files):
         sections = [{"chapter": "", "sections": sections}]
     elif any(are_files) and not all(are_files):
@@ -114,7 +116,7 @@ def add_toctree(app, docname, source):
 
         # Generate the TOCtree for this page
         toctrees.append(_gen_toctree(toc_options, toc_sections, parent_suff))
-    toctrees = "\n" + "\n".join(toctrees)
+    toctrees = "\n".join(toctrees)
 
     # Figure out what kind of text defines a toctree directive for this file
     # currently, assumed to be markdown
@@ -143,6 +145,9 @@ def update_indexname(app, config):
 
     # If it's a flat list, treat the first page as the master doc
     if isinstance(toc, list):
+        # Ensure that the first item in the list is not a header
+        if "header" in toc[0]:
+            _error("Table of Contents must start with your first page, not a header.")
         # Convert to a dictionary where the top-level file is the first item of the list
         toc_updated = toc[0]
         if len(toc) > 1:

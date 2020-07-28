@@ -120,6 +120,28 @@ def test_toc_builds(tmpdir):
             raise ValueError(err)
     assert "Unknown key in `_toc.yml`: foo" in err
 
+    with pytest.raises(ValueError):
+        path_toc = p_toc.joinpath("_toc_emptysections.yml")
+        out = run(
+            f"jb build {p_toc} --path-output {path_output} --toc {path_toc} -W".split(),
+            stderr=PIPE,
+        )
+        err = out.stderr.decode()
+        if "There was an error" in err:
+            raise ValueError(err)
+    assert "Found an empty section in" in err
+
+    with pytest.raises(ValueError):
+        path_toc = p_toc.joinpath("_toc_nofileorurl.yml")
+        out = run(
+            f"jb build {p_toc} --path-output {path_output} --toc {path_toc} -W".split(),
+            stderr=PIPE,
+        )
+        err = out.stderr.decode()
+        if "There was an error" in err:
+            raise ValueError(err)
+    assert "Found TOC entry without either `file:` or `url:`" in err
+
 
 def test_build_errors(tmpdir):
     # Create the book from the template
