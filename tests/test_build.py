@@ -77,7 +77,7 @@ def test_toc_builds(tmpdir):
     p_toc = path_books.joinpath("toc")
 
     with pytest.raises(ValueError):
-        path_toc = p_toc.joinpath("_toc_startswithheader.yml")
+        path_toc = p_toc.joinpath("_toc_mixedchaptersfiles.yml")
         out = run(
             f"jb build {p_toc} --path-output {path_output} --toc {path_toc} -W".split(),
             stderr=PIPE,
@@ -85,7 +85,7 @@ def test_toc_builds(tmpdir):
         err = out.stderr.decode()
         if "There was an error in building your book." in err:
             raise ValueError(err)
-    assert "Table of Contents must start with your first page" in err
+    assert "Mixed chapters and individual files" in err
 
     with pytest.raises(ValueError):
         path_toc = p_toc.joinpath("_toc_url.yml")

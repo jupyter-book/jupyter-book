@@ -72,7 +72,7 @@ def add_toctree(app, docname, source):
         sections = [{"chapter": "", "sections": sections}]
     elif any(are_files) and not all(are_files):
         raise ValueError(
-            f"Mixed sections and individual files in `_toc.yml` entry {parent_name}"
+            f"Mixed chapters and individual files in `_toc.yml` entry {parent_name}"
         )
 
     # Build toctrees for the page. One toctree per section.
@@ -114,7 +114,7 @@ def add_toctree(app, docname, source):
 
         # Generate the TOCtree for this page
         toctrees.append(_gen_toctree(toc_options, toc_sections, parent_suff))
-    toctrees = "\n".join(toctrees)
+    toctrees = "\n" + "\n".join(toctrees)
 
     # Figure out what kind of text defines a toctree directive for this file
     # currently, assumed to be markdown
@@ -143,9 +143,6 @@ def update_indexname(app, config):
 
     # If it's a flat list, treat the first page as the master doc
     if isinstance(toc, list):
-        # Ensure that the first item in the list is not a header
-        if "header" in toc[0]:
-            _error("Table of Contents must start with your first page, not a header.")
         # Convert to a dictionary where the top-level file is the first item of the list
         toc_updated = toc[0]
         if len(toc) > 1:
