@@ -5,6 +5,8 @@
     title: Content1
   - file: content2
     title: Content2
+  - file: content3
+    title: Content3
   - chapter: My chapter
     sections:
     - file: subfolder/index

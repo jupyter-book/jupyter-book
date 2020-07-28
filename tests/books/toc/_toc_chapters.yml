@@ -2,8 +2,6 @@
   title: Toc
 - chapter: A section
   sections:
-  - file: content1
-    title: Content1
   - file: subfolder/index
     title: Subfolder
     sections:
@@ -11,5 +9,19 @@
       title: Asubpage
 - chapter: Another section
   sections:
+  # Here we test that a parent page of all supported extension types works w/ sections
+  - file: content1
+    title: Content1
+    sections:
+    - file: subfolder/asubpage
+      title: Asubpage
   - file: content2
     title: Content2
+    sections:
+    - file: subfolder/asubpage
+      title: Asubpage
+  - file: content3
+    title: Content3
+    sections:
+    - file: subfolder/asubpage
+      title: Asubpage
