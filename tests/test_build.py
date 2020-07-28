@@ -1,8 +1,7 @@
 from pathlib import Path
 
 import pytest
-from bs4 import BeautifulSoup as bs
-from click.testing import CliRunner
+from bs4 import BeautifulSoup
 
 from jupyter_book import commands
 
@@ -47,44 +46,28 @@ def test_toc_builds(cli, build_resources, toc):
     result = cli.invoke(commands.build, [str(tocs), "--toc", toc, "-W"])
     assert result.exit_code == 0
 
-# <<<<<<< variant A
-#     ###############################
-#     # TOC Builds
 
-#     # Regular TOC should work
-#     p_toc = path_books.joinpath("toc")
-#     path_toc = p_toc.joinpath("_toc.yml")
-#     out = run(f"jb build {p_toc} --path-output {tmpdir} --toc {path_toc} -W".split())
+def test_toc_rebuild(cli, build_resources):
+    """Changes to the TOC should force a re-build of pages. Also tests for changes
+    to the relative ordering of content pages.
+    """
+    books, tocs = build_resources
+    toc = tocs / "_toc_simple.yml"
+    index_html = tocs.joinpath("_build", "html", "index.html")
 
-#     # TOC with a single-item list should work
-#     p_toc = path_books.joinpath("toc")
-#     path_toc = p_toc.joinpath("_toc_startwithlist.yml")
-#     out = run(f"jb build {p_toc} --path-output {tmpdir} --toc {path_toc} -W".split())
+    # Not using -W because we expect warnings for pages not listed in TOC
+    result = cli.invoke(commands.build, [str(tocs), "--toc", str(toc)])
+    html = BeautifulSoup(index_html.read_text(), "html.parser")
+    tag = html.find("a", "reference internal")
+    assert tag.attrs["href"] == "content1.html"
 
-#     # TOC should force a re-build of pages if it changes and no pages change
-#     # Only difference between these is the relative ordering of content pages
-#     toc_tmp = [
-#         ("- file: index\n- file: content1\n- file: content2\n", "content1.html"),
-#         ("- file: index\n- file: content2\n- file: content1\n", "content2.html"),
-#     ]
-#     for toc_tmp_text, first_page in toc_tmp:
-#         path_toctmp = Path(tmpdir).joinpath("_toc_tmp.yml")
-#         path_toctmp.write_text(toc_tmp_text)
-#         # Not using -W because we expect warnings for pages not listed in TOC
-#         out = run(
-#             f"jb build {p_toc} --path-output {tmpdir} --toc {path_toctmp}".split()
-#         )
-#         path_index = Path(tmpdir).joinpath("_build", "html", "index.html")
-#         index_html = bs(path_index.read_text(), "html.parser")
-#         sidebar_links = index_html.select(".bd-sidebar a.internal")
-#         # The first page should be different in each run bc of switched TOC order
-#         assert sidebar_links[1].attrs["href"] == first_page
+    toc.write_text("- file: index\n- file: content2\n- file: content1\n")
+    result = cli.invoke(commands.build, [str(tocs), "--toc", str(toc)])
+    html = BeautifulSoup(index_html.read_text(), "html.parser")
+    tag = html.find("a", "reference internal")
+    # The rendered TOC should reflect the order in the modified _toc.yml
+    assert tag.attrs["href"] == "content2.html"
 
-#     ###############################
-#     # TOC errors
-#     p_toc = path_books.joinpath("toc")
-# >>>>>>> variant B
-# ======= end
 
 @pytest.mark.parametrize(
     "toc,msg",
