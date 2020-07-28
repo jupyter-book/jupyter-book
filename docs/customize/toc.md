@@ -5,65 +5,77 @@ your book. Most of them involve adding syntax to your `_toc.yml` file.
 
 This page covers a few common options.
 
-## Basic Table of Contents structure
-
 ```{note}
 The {download}`_toc.yml file for this site <../_toc.yml>` has an entry for each
 of the features described below for reference.
 ```
 
-Let's take a look at an example `_toc.yml` file
-for reference (it is a subset of this book's `_toc.yml` file):
+For reference, here is an example from this book's `_toc.yml` file:
 
 ```yaml
 - file: intro
+  numbered: true
 
-- header: Get started
-- file: start/overview
-- file: start/build
-
-- header: Book pages and types
-- file: content/markdown
-- file: content/notebooks
-- file: content/myst-notebooks
-
-- header: Reference and test pages
-- file: test_pages/test
+- chapter: Get started
   sections:
-    - file: test_pages/layout_elements
-    - file: test_pages/equations
+  - file: start/overview
+  - file: start/build
+
+- chapter: Book pages and types
+  sections:
+  - file: content/markdown
+  - file: content/notebooks
+
+- chapter: Reference and test pages
+  sections:
+  - file: test_pages/test
+    sections:
+      - file: test_pages/layout_elements
+      - file: test_pages/equations
 ```
 
-```{warning}
-The Table of Contents file *must* start with your book's first page. It cannot
-start with a header
-```
+## The top-layer of `_toc.yml`
 
-### The top-layer of `_toc.yml`
+The top layer of entries in your Table of Contents is treated differently
+from everything underneath.
 
-The top layer of entries in your Table of Contents is treated differently from everything
-underneath. There are roughly two items to consider when building your Table of Contents: **headers**
-and **files**.
+The first entry (`- file: intro` above) defines the introductory page for your book.
+It is also where you can control some behavior for the entire book (in the example
+above, we set `numbered: true` to number *all* sections of the book).
 
+Below the first entry, you can provide two types of top-level entries:
 
-#### Headers
+1. **A list of `- file:` entries.** Each file will be treated as a **chapter**.
+   Below is an example `_toc.yml` file with this structure:
 
-**Headers** (optional) define logical groups of files that follow, and give that group
-of files a title. You can think of headers as defining a **chapter** of pages in your
-book. If your `_toc.yml` has no `- header` entries in it, then all of the top-level
-files will be treated as a single chapter of pages. Note that you can only add headers
-to the **top-level** of your `_toc.yml` file.
+   ```yaml
+   - file: intro
+   - file: firstchapter
+   - file: secondchapter
+   ```
 
-Here is an example header entry, with a few files that follow:
+2. **A list of `- chapter:` entries with sections.** If you provide a title for
+   the chapter (as above), then each file will become a *section* in that chapter.
+   If no title is given, each file will be its own chapter (this is useful if you
+   want to configure your files in groups). Below is an example `_toc.yml` file with
+   this structure:
 
-```yaml
-- header: My chapter name
-- file: filea
-- file: fileb
+   ```yaml
+   - file: intro
+   - chapter: My first chapter
+     sections:
+     - file: firstsection
+     - file: secondsection
+   ```
+
+```{admonition} Don't mix these two structures
+When designing the top-level sections of your `_toc.yml` file, you must
+pick *either* a list of files, or groups of files via `- chapter:` entries. You
+cannot intermix them both.
 ```
 
 (toc/files)=
-#### Files
+### Files
 
 **Files** point to a single file of content in your book's folder. They will
 become a section of content in your book (in the order that they are provided in
@@ -98,12 +110,27 @@ You can automatically add numbers to each section of your book. To add numbers
 to any section or subsection of the book, add the `numbered: true` flag to its
 entry in your `_toc.yml` file. For example:
 
-```yaml
-- file: myfolder/mypage
-  numbered: true
-  sections:
-    - file: myfolder/asubpage
-```
+````{list-table}
+:header-rows: 1
+
+* - Files
+  - Chapters
+* - ```yaml
+    - file: myfolder/mypage
+      numbered: true
+      sections:
+      - file: myfolder/mysubpage
+    ```
+  - ```yaml
+    - chapter: My chapter
+      numbered: true
+      sections:
+      - file: myfolder/mypage
+        numbered: true
+        sections:
+        - file: myfolder/mysubpage
+    ```
+````
 
 This will cause both `myfolder/mypage` as well as `myfolder/asubpage` to be
 numbered. They will follow a hierarchy according to the sub-sections structure
