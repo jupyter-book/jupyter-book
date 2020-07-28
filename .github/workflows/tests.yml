@@ -78,7 +78,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.6, 3.7]
+        python-version: [3.6, 3.7, 3.8]
 
     steps:
     - uses: actions/checkout@v2
@@ -86,6 +86,16 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
+  test-windows:
+    name: Tests on Windows
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -100,6 +110,7 @@ jobs:
     - name: Run pytest
       run: |
         pytest --durations=10 --ignore=tests/test_pdf.py
+
 
   # Build the book on OSX to make sure that building the docs works there too
   build-book-osx:
