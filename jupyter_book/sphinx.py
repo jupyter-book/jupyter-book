@@ -90,7 +90,6 @@ def build_sphinx(
     default_yaml_config = yaml.safe_load(PATH_YAML_DEFAULT.read_text(encoding="utf8"))
     new_config = yaml_to_sphinx(default_yaml_config)
     _recursive_update(sphinx_config, new_config)
-
     # Update with the given config file, if it exists
     if path_config:
         path_config = Path(path_config)
@@ -194,11 +193,16 @@ def build_sphinx(
     app = None  # In case we fail, this allows us to handle the exception
     try:
         # This patch is what Sphinx does, so we copy it blindly...
+        sourcedir_posix = sourcedir.as_posix()
+        outputdir_posix = outputdir.as_posix()
+        confdir_posix = confdir
+        if confdir:
+            confdir_posix = confdir.as_posix()
         with patch_docutils(confdir), docutils_namespace():
             app = Sphinx(
-                srcdir=sourcedir,
-                confdir=confdir,
-                outdir=outputdir,
+                srcdir=sourcedir_posix,
+                confdir=confdir_posix,
+                outdir=outputdir_posix,
                 doctreedir=doctreedir,
                 buildername=builder,
                 confoverrides=sphinx_config,
@@ -250,7 +254,7 @@ def build_sphinx(
                 else:
                     first_page = toc[0]["file"]
                 first_page = first_page.split(".")[0] + ".html"
-                with open(path_index, "w") as ff:
+                with open(path_index, "w", encoding="utf8") as ff:
                     ff.write(REDIRECT_TEXT.format(first_page=first_page))
             return app.statuscode
     except (Exception, KeyboardInterrupt) as exc:
