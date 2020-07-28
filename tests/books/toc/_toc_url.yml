@@ -5,6 +5,8 @@ sections:
   title: Content1
 - url: content2
   title: Content2
+- file: content3
+  title: Content3
 - url: subfolder/index
   title: Subfolder
   sections:

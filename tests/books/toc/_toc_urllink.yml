@@ -5,6 +5,8 @@ sections:
   title: Content1
 - file: content2
   title: Content2
+- file: content3
+  title: Content3
 - url: https://jupyterbook.org/start/build.html
   title: Build your book
 - file: subfolder/index

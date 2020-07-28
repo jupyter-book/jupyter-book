@@ -27,12 +27,12 @@ def test_toc_startwithlist(tmpdir, file_regression):
     file_regression.check(str(toc), extension=".html")
 
 
-def test_toc_withheaders(tmpdir, file_regression):
+def test_toc_chapters(tmpdir, file_regression):
     """Testing `header` in _toc.yml"""
     path_output = Path(tmpdir).joinpath("mybook").absolute()
     # Regular TOC should work
     p_toc = path_books.joinpath("toc")
-    path_toc = p_toc.joinpath("_toc_withheaders.yml")
+    path_toc = p_toc.joinpath("_toc_chapters.yml")
     run(
         f"jb build {p_toc} --path-output {path_output} --toc {path_toc} -W".split(),
         check=True,
