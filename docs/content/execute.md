@@ -67,6 +67,8 @@ above configuration value to:
 execute:
   execute_notebooks: 'off'
 ```
+(execute/exclude)=
+## Exclude files from execution
 
 **To exclude certain file patterns from execution**, use the following
 configuration:
@@ -79,7 +81,7 @@ execute:
     - '*pattern3withwildcard'
 ```
 
-Any file that matches one of the items in `execution_excludepatterns` will not be
+Any file that matches one of the items in `exclude_patterns` will not be
 executed.
 
 (execute/cache)=
