@@ -34,7 +34,9 @@ Jupyter Book `0.7` is a total re-write from `0.6`, and some things have changed.
 [Open an issue](https://github.com/executablebooks/jupyter-book/issues/new) with any feedback!
 See [the legacy upgrade guide](https://github.com/executablebooks/jupyter-book/wiki/The-Jupyter-Book-Wiki)
 for how to upgrade, and [legacy.jupyterbook.org](https://legacy.jupyterbook.org) for
-legacy documentation
+legacy documentation.
+
+In addition, note that Jupyter Book is pre-1.0. Its API may change!
 ```
 
 ## Get started
