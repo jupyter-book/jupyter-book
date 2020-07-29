@@ -61,8 +61,8 @@ setup(
         "sphinx_togglebutton",
         "sphinx-copybutton",
         "sphinxcontrib-bibtex",
-        "sphinx_book_theme~=0.0",
-        "sphinx-thebe",
+        "sphinx_book_theme>=0.0.33",
+        "sphinx-thebe>=0.0.6",
     ],
     extras_require={
         "code_style": ["flake8<3.8.0,>=3.7.0", "black", "pre-commit==1.17.0"],
