@@ -142,12 +142,37 @@ defined in your `_toc.yml` file.
 To number *all* of the sections of your book, add the `numbered: true` flag to
 the first entry of your `_toc.yml` file.
 
-```{admonition} Numbering applies to _sections_ of your page
-Note that when you add numbering to a section, it will add numbers to *each header
-in a file*. This means that if you have headers in a top-level section, then its
-headers will become numbered as sub-sections, and any other _files_ underneath it
-will begin as third-level children.
+### Numbering caveats and notes
+
+Jupyter Book relies on {term}`Sphinx` to apply section numbering, and this has a
+few quirks to it. Here are a few gotchas:
+
+* **Numbering applies to _sections_ of your page**.
+  Note that when you add numbering to a section, it will add numbers to *each header
+  in a file*. This means that if you have headers in a top-level section, then its
+  headers will become numbered as sub-sections, and any other _files_ underneath it
+  will begin as third-level children.
+* **Numbering re-starts across chapters**.
+  If you specify groups of sections via Chapters, then numbering will restart between
+  them. That means if you have two `- chapter:` entries with 2 pages each, you will
+  have two sets of `1.` and `2.` sections, one for each chapter.
+
+## Exclude some pages from your book's build
+
+By default, Jupyter Book will build all content files that are found in your book's
+folder, even if they are not specified in `_toc.yml` (and will raise a warning if
+it finds a file that isn't listed there).
+
+If you'd like Jupyter Book to skip a file entirely, you can do so with the following
+configuration in `_config.yml`:
+
 ```
+exclude_patterns: [pattern1/*, path/to/myfile.ipynb]
+```
+
+Any files that match the patterns described there will be excluded from the build.
+If you'd like to exclude files from being *executed* but still wish for them to be
+built by Jupyter Book, see [](execute/exclude).
 
 ## Web-based Navigation Bar functionality
 
