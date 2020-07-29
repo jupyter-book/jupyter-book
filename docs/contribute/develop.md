@@ -50,7 +50,7 @@ Jupyter Book follows [PEP8 style](https://www.python.org/dev/peps/pep-0008/) for
 code, which it enforces by running [**flake8**](https://pypi.org/project/flake8/) as a
 part of pre-commit hooks and tests.
 
-In addition, Jupyter Book [the `black` code formatter](https://black.readthedocs.io/en/stable/).
+In addition, Jupyter Book uses the [`black` code formatter](https://black.readthedocs.io/en/stable/).
 This defines the *structure* of the code, but does not change its function.
 
 (developer/tests)=
