@@ -71,7 +71,10 @@ def add_toctree(app, docname, source):
     # Check if subsections are all individual files. If so, embed them in a section
     are_files = [("file" in ii) or ("url" in ii) for ii in sections]
     if all(are_files):
-        sections = [{"chapter": "", "sections": sections}]
+        sections = {"chapter": "", "sections": sections}
+        if "numbered" in parent_page:
+            sections["numbered"] = True
+        sections = [sections]
     elif any(are_files) and not all(are_files):
         raise ValueError(
             f"Mixed chapters and individual files in `_toc.yml` entry {parent_name}"
