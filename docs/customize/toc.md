@@ -107,6 +107,7 @@ file to serve as an "introduction" for a collection of files underneath, like so
 
 We recommend nesting your sections no more than 3 layers deep (as shown above).
 
+(toc/numbering)=
 ## Number your book's sections
 
 You can automatically add numbers to each section of your book. To add numbers
@@ -158,6 +159,125 @@ few quirks to it. Here are a few gotchas:
   If you specify groups of sections via Chapters, then numbering will restart between
   them. That means if you have two `- chapter:` entries with 2 pages each, you will
   have two sets of `1.` and `2.` sections, one for each chapter.
+
+
+## How `_toc.yml` structure maps to book structure
+
+Jupyter Book uses the {term}`Sphinx` documentation engine under the hood, which has
+a particular way that it represents the structure of your book. Different choices
+about the structure of `_toc.yml` and the header structures within your pages will
+result in different outcomes for your overall book structure. Here are some general
+tips and best-practices.
+
+```{note}
+This is particularly important when you [number your book's sections](toc/numbering)
+or when you [build a PDF of your book through Latex](pdf/latex).
+```
+
+**Headers map onto sections**. Jupyter Book interprets your book as a collection of sections,
+and decides how those sections should be nested according to the hierarchy of
+`_toc.yml` and the hierarchy of headers in a page. Within a page, the first
+`## ` header it discovers will define a top-level section in Latex, and any subsequent
+`### ` headers underneath will be come sub-sections (until another `## ` section
+is encountered). This behavior is a bit different if the page is *nested* under
+another (see below).
+
+**Sections in `_toc.yml` are hierarchical**. One exception to the above rule pertains
+to *nested* files. In this case, the headers of any nested pages will begin
+*underneath* the headers of the parent page.
+
+For example, if your `_toc.yml` file looks like this:
+
+```yaml
+- file: page1
+  sections:
+  - file: page2
+```
+
+Then the sections of `page2` will begin **under** the sections of `page1`. Any headers
+in `page2` will be treated as a "next-header-deeper" section in `page1`.
+
+In other words, if `page1` and `page2` look like this:
+
+````{panels}
+`page1.md`
+^^^^^^^^^^
+```md
+# Page 1 title
+
+## Page 1 section 1
+```
+---
+`page2.md`
+^^^^^^^^^^
+
+```md
+# Page 2 title
+
+## Page 2 section 1
+```
+````
+Then your book will treat them like so:
+
+```md
+# Page 1 title
+
+## Page 1 section 1
+
+### Page 2 title
+
+#### Page 2 section 2
+```
+
+If however `page1.md` had an extra third-level header, like so:
+
+````{panels}
+`page1.md`
+^^^^^^^^^^
+```md
+# Page 1 title
+
+## Page 1 section 1
+
+### Page 1 section 1 subsection 1
+```
+---
+`page2.md`
+^^^^^^^^^^
+
+```md
+# Page 2 title
+
+## Page 2 section 1
+```
+````
+Then your book will treat them like so:
+
+```md
+# Page 1 title
+
+## Page 1 section 1
+
+### Page 1 section 1 subsection 1
+
+#### Page 2 title
+
+##### Page 2 section 2
+```
+
+Keep this in mind when you design the structure of your files.
+
+```{tip}
+A good rule of thumb is to take one of these two approaches:
+
+1. **don't put headers in your introduction pages**. This is
+   true for both the book's introduction, as well as for any chapter introductions.
+   Instead, leave the headers to pages that have more content in them, and use
+   **bolded text** where you would otherwise use headers.
+2. **Use a flat list of files instead of nested files**. This way the section
+   hierarchy is defined only in a single file within each section. However, this
+   means you will have longer files in general.
+```
 
 ## Exclude some pages from your book's build
 

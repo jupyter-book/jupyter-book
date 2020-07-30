@@ -78,7 +78,7 @@ the installation instructions at {ref}`pdf-html`. You should then be able to bui
 book's PDF through HTML.
 
 **To generate PDFs via Latex**, make sure you install a working latex distribution locally.
-Do so by following the instructions in {ref}`pdf-latex`.
+Do so by following the instructions in {ref}`pdf/latex`.
 
 If you have installed the requirements for both HTML and Latex generation, you should
 be able to run the full test suite with pytest.
