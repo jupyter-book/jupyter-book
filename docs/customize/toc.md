@@ -110,37 +110,39 @@ We recommend nesting your sections no more than 3 layers deep (as shown above).
 ## Number your book's sections
 
 You can automatically add numbers to each section of your book. To add numbers
-to any section or subsection of the book, add the `numbered: true` flag to its
-entry in your `_toc.yml` file. For example:
+to **all sections of your book**, add the `numbered: true` flag to
+your introduction page entry (the first entry in `_toc.yml`). For example:
 
-````{list-table}
-:header-rows: 1
+```yaml
+- file: home
+  numbered: true
+- file: page2
+- file: page3
+- file: page4
+```
 
-* - Files
-  - Chapters
-* - ```yaml
-    - file: myfolder/mypage
-      numbered: true
-      sections:
-      - file: myfolder/mysubpage
-    ```
-  - ```yaml
-    - chapter: My chapter
-      numbered: true
-      sections:
-      - file: myfolder/mypage
-        numbered: true
-        sections:
-        - file: myfolder/mysubpage
-    ```
-````
-
-This will cause both `myfolder/mypage` as well as `myfolder/asubpage` to be
+This will cause all sections of the book to be
 numbered. They will follow a hierarchy according to the sub-sections structure
 defined in your `_toc.yml` file.
 
-To number *all* of the sections of your book, add the `numbered: true` flag to
-the first entry of your `_toc.yml` file.
+If you'd like to number **subsets of sections**, group them into chapters and
+apply the `numbered: true` flag to the chapters that you wish to be numbered.
+For example:
+
+```yaml
+- file: home
+  numbered: true
+# This chapter will not be numbered
+- chapter: Introduction
+  sections:
+  - file: page2
+# This chapter will be numbered
+- chapter: Chapter 1
+  numbered: true
+  sections:
+  - file: page3
+  - file: page4
+```
 
 ### Numbering caveats and notes
 
