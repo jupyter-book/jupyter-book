@@ -7,7 +7,7 @@
     title: Content2
   - file: content3
     title: Content3
-  - chapter: My chapter
+  - part: My chapter
     sections:
     - file: subfolder/index
       title: Subfolder

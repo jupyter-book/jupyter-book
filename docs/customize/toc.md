@@ -16,17 +16,17 @@ For reference, here is an example from this book's `_toc.yml` file:
 - file: intro
   numbered: true
 
-- chapter: Get started
+- part: Get started
   sections:
   - file: start/overview
   - file: start/build
 
-- chapter: Book pages and types
+- part: Book pages and types
   sections:
   - file: content/markdown
   - file: content/notebooks
 
-- chapter: Reference and test pages
+- part: Reference and test pages
   sections:
   - file: test_pages/test
     sections:
@@ -46,6 +46,7 @@ above, we set `numbered: true` to number *all* sections of the book).
 Below the first entry, you have two options for defining the structure of your book.
 
 1. **A list of `- file:` entries.** Each file will be treated as a **chapter**.
+   The book will have a single "part" consisting of these chapters.
    Below is an example `_toc.yml` file with this structure:
 
    ```yaml
@@ -54,26 +55,29 @@ Below the first entry, you have two options for defining the structure of your b
    - file: secondchapter
    ```
 
-2. **A list of `- chapter:` entries with sections.** If you provide a title for
-   the chapter (as above), then each file will become a *section* in that chapter.
-   If no title is given, each file will be its own chapter (this is useful if you
-   want to configure your files in groups). Below is an example `_toc.yml` file with
+2. **A list of `- part:` entries with chapters.** In this case, your book will have
+   multiple parts, each with chapters defined by the files in `sections:`.
+   If you provide a title for the part (as above), then in HTML outputs it will be
+   displayed above each chunk of chapters. Below is an example `_toc.yml` file with
    this structure:
 
    ```yaml
    - file: intro
-   - chapter: My first chapter
+   - part: My first part
      sections:
-     - file: firstsection
-     - file: secondsection
-   - chapter: My second chapter
+     - file: firstchapterpart1
+     - file: secondchapterpart1
+   - part: My second part
      sections:
-     - file: firstsection
+     - file: firstchapterpart2
    ```
+
+   Note that **chapters do not continue between parts**. Think of each part as
+   a self-contained collection of chapters (e.g., for the purposes of numbering).
 
 ```{admonition} Don't mix these two structures
 When designing the top-level sections of your `_toc.yml` file, you must
-pick *either* a list of files, or groups of files via `- chapter:` entries. You
+pick *either* a list of files, or groups of files via `- part:` entries. You
 cannot intermix them both.
 ```
 
@@ -126,23 +130,23 @@ This will cause all sections of the book to be
 numbered. They will follow a hierarchy according to the sub-sections structure
 defined in your `_toc.yml` file.
 
-If you'd like to number **subsets of sections**, group them into chapters and
-apply the `numbered: true` flag to the chapters that you wish to be numbered.
+If you'd like to number **subsets of chapters**, group them into parts and
+apply the `numbered: true` flag to the parts whose chapters you wish to be numbered.
 For example:
 
 ```yaml
 - file: home
   numbered: true
-# This chapter will not be numbered
-- chapter: Introduction
+# Chapters in this part will not be numbered
+- part: Introduction
   sections:
   - file: page2
-# This chapter will be numbered
-- chapter: Chapter 1
+# Chapters in this part will be numbered
+- part: Part 1
   numbered: true
   sections:
-  - file: page3
-  - file: page4
+  - file: chapter1
+  - file: chapter2
 ```
 
 ### Numbering caveats and notes
@@ -155,12 +159,13 @@ few quirks to it. Here are a few gotchas:
   in a file*. This means that if you have headers in a top-level section, then its
   headers will become numbered as sub-sections, and any other _files_ underneath it
   will begin as third-level children.
-* **Numbering re-starts across chapters**.
-  If you specify groups of sections via Chapters, then numbering will restart between
-  them. That means if you have two `- chapter:` entries with 2 pages each, you will
-  have two sets of `1.` and `2.` sections, one for each chapter.
+* **Numbering re-starts across parts**.
+  If you specify groups of sections via Parts, then numbering will restart between
+  them. That means if you have two `- part:` entries with 2 pages each, you will
+  have two sets of `1.` and `2.` sections, one for each part.
 
 
+(toc/structure)=
 ## How `_toc.yml` structure maps to book structure
 
 Jupyter Book uses the {term}`Sphinx` documentation engine under the hood, which has
