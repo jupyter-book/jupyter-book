@@ -1,7 +1,7 @@
 - file: intro
 
 - part: Get started
-  sections:
+  chapters:
   - file: start/overview
   - file: start/build
   - file: start/publish
@@ -19,7 +19,7 @@
       - file: content-types/restructuredtext
 
 - part: Write book content
-  sections:
+  chapters:
   - file: content/myst
   - file: content/content-blocks
   - file: content/citations
@@ -31,13 +31,13 @@
 
 
 - part: Make your book interactive
-  sections:
+  chapters:
   - file: interactive/launchbuttons
   - file: interactive/hiding
   - file: interactive/interactive
 
 - part: Advanced and miscellaneous
-  sections:
+  chapters:
   - file: advanced/pdf
   - file: advanced/sphinx
   - file: advanced/advanced
@@ -46,7 +46,7 @@
       - file: contribute/develop
 
 - part: Reference
-  sections:
+  chapters:
   - file: reference/cheatsheet
   - file: reference/cli
   - file: reference/glossary

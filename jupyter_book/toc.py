@@ -152,8 +152,8 @@ def add_toctree(app, docname, source):
         _error("Only markdown, ipynb, and rst files are supported in the TOC.")
 
 
-def update_indexname(app, config):
-    """Update `master_doc` to be the first page defined in the TOC"""
+def add_toc_to_sphinx(app, config):
+    """Read _toc.yml, parse/validate it, and add to Sphinx for use later."""
     # If no globaltoc is given, we'll skip this part
     if not app.config["globaltoc_path"]:
         return
@@ -167,13 +167,20 @@ def update_indexname(app, config):
         toc_updated = toc[0]
         if len(toc) > 1:
             subsections = toc[1:]
+            # The first set of pages will be called *either* sections or chapters
             first_sections = toc_updated.get("sections", [])
+            first_sections += toc_updated.get("chapters", [])
             first_sections += subsections
             toc_updated["sections"] = first_sections
         toc = toc_updated
 
     # Check for proper structure, naming, etc
     _check_toc_entries([toc])
+
+    # Rename top-level `chapters` to `sections`
+    for isection in toc.get("sections", []):
+        if isection.get("chapters"):
+            isection["sections"] = isection.pop("chapters")
 
     # Update our global toc
     app.config["globaltoc"] = toc
@@ -340,6 +347,7 @@ def _check_toc_entries(sections):
         "header",
         "chapter",
         "part",
+        "chapters",
         "sections",
         "title",
         "expand_sections",
@@ -365,5 +373,6 @@ def _check_toc_entries(sections):
                     "`url:` link should have a title"
                 )
         # Recursive call
-        if "sections" in section:
-            _check_toc_entries(section["sections"])
+        for section_kind in ["sections", "chapters"]:
+            if section_kind in section:
+                _check_toc_entries(section[section_kind])

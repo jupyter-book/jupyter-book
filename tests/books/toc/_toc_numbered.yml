@@ -1,7 +1,7 @@
 - file: index
   title: Toc
   numbered: true
-  sections:
+  chapters:
   - file: content1
     title: Content1
   - file: subfolder/index

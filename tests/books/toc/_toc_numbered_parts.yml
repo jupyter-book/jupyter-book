@@ -2,7 +2,7 @@
   title: Toc
   numbered: true
 - part: Chapter 1
-  sections:
+  chapters:
   - file: content1
     title: Content1
   - file: subfolder/index
@@ -11,7 +11,7 @@
     - file: subfolder/asubpage
       title: Asubpage
 - part: Chapter 2
-  sections:
+  chapters:
   - file: content2
     title: Content2
   - file: content3

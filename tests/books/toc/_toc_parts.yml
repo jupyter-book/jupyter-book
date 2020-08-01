@@ -1,14 +1,14 @@
 - file: index
   title: Toc
 - part: A section
-  sections:
+  chapters:
   - file: subfolder/index
     title: Subfolder
     sections:
     - file: subfolder/asubpage
       title: Asubpage
 - part: Another section
-  sections:
+  chapters:
   # Here we test that a parent page of all supported extension types works w/ sections
   - file: content1
     title: Content1
