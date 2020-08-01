@@ -18,7 +18,6 @@
       - file: content-types/jupytext
       - file: content-types/restructuredtext
 
-- header: hi
 - part: Write book content
   sections:
   - file: content/myst
