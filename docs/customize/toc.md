@@ -25,7 +25,7 @@ The Table of Contents is broadly organized like so:
 * Throughout the `_toc.yml` file, `- file:` entries point to text files that make up
   your book's content. Their paths are relative to the book's root.
 
-For reference, here is an example from this book's `_toc.yml` file:
+For reference, here is an example similar to this book's `_toc.yml` file:
 
 ```yaml
 - file: myintro
