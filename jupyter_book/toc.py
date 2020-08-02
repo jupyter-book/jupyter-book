@@ -118,10 +118,9 @@ def add_toctree(app, docname, source):
         toctrees.append(_gen_toctree(toc_options, toc_sections, parent_suff))
     toctrees = "\n".join(toctrees)
 
-    # Figure out what kind of text defines a toctree directive for this file
-    # currently, assumed to be markdown
+    # Now modify the source file with the new toctree text
     if parent_suff in [".md", ".rst"]:
-        source[0] += toctrees + "\n"
+        source[0] += "\n\n" + toctrees + "\n"  # Add two \n to ensure no clash w/ text
     elif parent_suff == ".ipynb":
         # Lazy import nbformat because we only need it if we have an ipynb file
         import nbformat as nbf
