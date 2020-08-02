@@ -125,6 +125,34 @@ The rules should then automatically be applied to your site. In general, these
 CSS and JS files will be loaded *after* others are loaded on your page, so they
 should overwrite pre-existing rules and behavior.
 
+### An example: `superscripted citation`
+
+The default citation style of jupyter book is inline. For example:
+
+```{figure} ../images/inline-citation.png
+---
+align: left
+---
+```
+
+But sometimes, people prefer superscripted citation. Which can easily be done by
+adding the following CSS rule to your custom CSS file.
+
+```
+.footnote-reference, a.bibtex.internal {
+    font-size: 0.8em;
+    vertical-align: top;
+}
+```
+
+which results in:
+
+
+```{figure} ../images/superscript-citation.png
+---
+align: left
+---
+```
 
 ## Manual sphinx configuration
 
