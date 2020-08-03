@@ -1,19 +1,19 @@
 - file: index
   title: Toc
-- chapter: Chapter 1
+- part: Chapter 1
   numbered: true
-  sections:
+  chapters:
   - file: content1
     title: Content1
-- chapter: Chapter 2
-  sections:
+- part: Chapter 2
+  chapters:
   - file: content2
     title: Content2
   - file: content3
     title: Content3
-- chapter: Chapter 3
+- part: Chapter 3
   numbered: true
-  sections:
+  chapters:
   - file: subfolder/index
     title: Subfolder
     sections:

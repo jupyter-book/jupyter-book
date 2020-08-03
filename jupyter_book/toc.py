@@ -68,14 +68,32 @@ def add_toctree(app, docname, source):
         expanded_sections.append(docname)
         app.config.html_theme_options["expand_sections"] = expanded_sections
 
+    # Rename `chapter:` in sections to `part:`
+    # TODO: deprecate this after a release or two
+    for isection in sections:
+        if "chapter" in isection:
+            logger.warning(
+                (
+                    "Found `- chapter:` in `_toc.yml`. Renaming to `- part:`.\n\n"
+                    "`- chapter:` will be deprecated in release 0.7.5"
+                )
+            )
+            isection["part"] = isection.pop("chapter")
+        if "header" in isection:
+            _error(
+                (
+                    "Found a '- header:' key in `_toc.yml`. This is deprecated.\n\n"
+                    "Use `- part: Header name` syntax instead. See documentation for "
+                    "details."
+                )
+            )
+
     # Check if subsections are all individual files. If so, embed them in a section
     are_files = [("file" in ii) or ("url" in ii) for ii in sections]
     if all(are_files):
-        sections = [{"chapter": "", "sections": sections}]
+        sections = [{"part": "", "sections": sections}]
     elif any(are_files) and not all(are_files):
-        raise ValueError(
-            f"Mixed chapters and individual files in `_toc.yml` entry {parent_name}"
-        )
+        _error(f"Mixed parts and individual files in `_toc.yml` entry {parent_name}")
 
     # Build toctrees for the page. One toctree per section.
     toctrees = []
@@ -84,12 +102,12 @@ def add_toctree(app, docname, source):
         toc_options = {}
         if isection.get("numbered") or parent_page.get("numbered"):
             toc_options["numbered"] = ""  # Empty string will == a flag in the toctree
-        if isection.get("chapter"):
-            toc_options["caption"] = isection.get("chapter")
+        if isection.get("part"):
+            toc_options["caption"] = isection.get("part")
 
         # Iterate through sub-sections to generate the TOCtree
         if not isection.get("sections"):
-            raise ValueError(
+            _error(
                 f"Found an empty section in {parent_name}."
                 " Please add at least one file."
             )
@@ -102,7 +120,7 @@ def add_toctree(app, docname, source):
             elif ipage.get("url"):
                 path_sec = ipage.get("url")
             else:
-                raise ValueError(
+                _error(
                     "Found TOC entry without either `file:` or `url:`"
                     f"in page {parent_name}"
                 )
@@ -133,8 +151,8 @@ def add_toctree(app, docname, source):
         _error("Only markdown, ipynb, and rst files are supported in the TOC.")
 
 
-def update_indexname(app, config):
-    """Update `master_doc` to be the first page defined in the TOC"""
+def add_toc_to_sphinx(app, config):
+    """Read _toc.yml, parse/validate it, and add to Sphinx for use later."""
     # If no globaltoc is given, we'll skip this part
     if not app.config["globaltoc_path"]:
         return
@@ -148,13 +166,20 @@ def update_indexname(app, config):
         toc_updated = toc[0]
         if len(toc) > 1:
             subsections = toc[1:]
+            # The first set of pages will be called *either* sections or chapters
             first_sections = toc_updated.get("sections", [])
+            first_sections += toc_updated.get("chapters", [])
             first_sections += subsections
             toc_updated["sections"] = first_sections
         toc = toc_updated
 
     # Check for proper structure, naming, etc
     _check_toc_entries([toc])
+
+    # Rename top-level `chapters` to `sections`
+    for isection in toc.get("sections", []):
+        if isection.get("chapters"):
+            isection["sections"] = isection.pop("chapters")
 
     # Update our global toc
     app.config["globaltoc"] = toc
@@ -318,7 +343,10 @@ def _check_toc_entries(sections):
     allowed_keys = [
         "file",
         "url",
+        "header",
         "chapter",
+        "part",
+        "chapters",
         "sections",
         "title",
         "expand_sections",
@@ -344,5 +372,6 @@ def _check_toc_entries(sections):
                     "`url:` link should have a title"
                 )
         # Recursive call
-        if "sections" in section:
-            _check_toc_entries(section["sections"])
+        for section_kind in ["sections", "chapters"]:
+            if section_kind in section:
+                _check_toc_entries(section[section_kind])

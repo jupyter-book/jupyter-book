@@ -46,8 +46,8 @@ def test_toc_numbered(tmpdir, file_regression):
     path_output = Path(tmpdir).joinpath("mybook").absolute()
     toc_list = [
         "_toc_numbered.yml",  # Numbered in top-level title
-        "_toc_numbered_chapters.yml",  # Numbered in top-level title w/ chapters
-        "_toc_numbered_chapters_subset.yml",  # Only some sections numbered
+        "_toc_numbered_parts.yml",  # Numbered in top-level title w/ parts
+        "_toc_numbered_parts_subset.yml",  # Only some sections numbered
     ]
     for itoc in toc_list:
         # Numbering with files

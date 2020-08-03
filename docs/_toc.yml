@@ -1,7 +1,7 @@
 - file: intro
 
-- chapter: Get started
-  sections:
+- part: Get started
+  chapters:
   - file: start/overview
   - file: start/build
   - file: start/publish
@@ -18,8 +18,8 @@
       - file: content-types/jupytext
       - file: content-types/restructuredtext
 
-- chapter: Write book content
-  sections:
+- part: Write book content
+  chapters:
   - file: content/myst
   - file: content/content-blocks
   - file: content/citations
@@ -30,14 +30,14 @@
   - file: content/execute
 
 
-- chapter: Make your book interactive
-  sections:
+- part: Make your book interactive
+  chapters:
   - file: interactive/launchbuttons
   - file: interactive/hiding
   - file: interactive/interactive
 
-- chapter: Advanced and miscellaneous
-  sections:
+- part: Advanced and miscellaneous
+  chapters:
   - file: advanced/pdf
   - file: advanced/sphinx
   - file: advanced/advanced
@@ -45,8 +45,8 @@
     sections:
       - file: contribute/develop
 
-- chapter: Reference
-  sections:
+- part: Reference
+  chapters:
   - file: reference/cheatsheet
   - file: reference/cli
   - file: reference/glossary

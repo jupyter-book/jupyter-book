@@ -1,6 +1,6 @@
 - file: index
   title: Toc
-- chapter: A section
+- part: A section
   sections:
   - file: content1
     title: Content1
@@ -10,7 +10,7 @@
     - file: subfolder/asubpage
       title: Asubpage
   - title: My title without URL
-- chapter: Another section
+- part: Another section
   sections:
   - file: content2
     title: Content2

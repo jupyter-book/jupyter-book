@@ -1,7 +1,7 @@
 """Build a book with Jupyter Notebooks and Sphinx."""
 from pathlib import Path
 
-from .toc import update_indexname, add_toctree
+from .toc import add_toc_to_sphinx, add_toctree
 from .directive.toc import TableofContents, SwapTableOfContents
 
 
@@ -23,7 +23,7 @@ def add_static_files(app, config):
 def setup(app):
 
     # Updates `master_doc` using the first item of `_toc.yml`
-    app.connect("config-inited", update_indexname)
+    app.connect("config-inited", add_toc_to_sphinx)
 
     # Add toctrees to each content page using `_toc.yml`
     app.connect("source-read", add_toctree)
