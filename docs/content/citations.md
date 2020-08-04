@@ -81,9 +81,16 @@ with the `{bibliography}` directive.
    This will generate a bibliography for your entire bibtex file. See
    [the bibliography at the end of this page](citations/bibliography) for an example.
 
-   You can optionally customize the [style of your references](http://www.cs.stir.ac.uk/~kjt/software/latex/showbst.html).
+   You can also optionally customize the style of your references.
    By default, the references are displayed in the `alpha` style.
    Other currently supported styles include `plain`, `unsrt`, and `unsrtalpha`.
+   These styles create the following bibliography formatting:
+
+   * `alpha`: Use an alphanumeric reference labels, citations are sorted by author, year.
+   * `plain`: Use numeric reference labels, citations are sorted by author, year.
+   * `unsrt`: Use numberic reference labels, citations are sorted by order of appearance.
+   * `unsrtalpha`: Use alphanumeric reference labels, citations are sorted by order of appearance.
+
    To set your reference style, use the style directive:
 
    ````
