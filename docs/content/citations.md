@@ -81,25 +81,8 @@ with the `{bibliography}` directive.
    This will generate a bibliography for your entire bibtex file. See
    [the bibliography at the end of this page](citations/bibliography) for an example.
 
-   You can also optionally customize the style of your references.
-   By default, the references are displayed in the `alpha` style.
-   Other currently supported styles include `plain`, `unsrt`, and `unsrtalpha`.
-   These styles create the following bibliography formatting:
 
-   * `alpha`: Use an alphanumeric reference labels, citations are sorted by author, year.
-   * `plain`: Use numeric reference labels, citations are sorted by author, year.
-   * `unsrt`: Use numberic reference labels, citations are sorted by order of appearance.
-   * `unsrtalpha`: Use alphanumeric reference labels, citations are sorted by order of appearance.
-
-   To set your reference style, use the style directive:
-
-   ````
-   ```{bibliography} path/to/references.bib
-   :style: unsrt
-   ```
-   ````
-
-When your book is built, the bibliography and citations will now be included in your desired style.
+When your book is built, the bibliography and citations will now be included.
 
 `````{warning}
 If you are adding a bibliography to a *different* page from your references, then
@@ -115,6 +98,26 @@ under the hood, see its documentation for more information on how to use and con
 bibliographies in your book. Though note the documentation
 is written for rST and you'll need to adapt the directive/role syntax for your
 markdown content.
+
+### Selecting your reference style
+
+You can also optionally customize the style of your references.
+By default, the references are displayed in the `alpha` style.
+Other currently supported styles include `plain`, `unsrt`, and `unsrtalpha`.
+These styles create the following bibliography formatting:
+
+* `alpha`: Use alphanumeric reference labels, citations are sorted by author, year.
+* `plain`: Use numeric reference labels, citations are sorted by author, year.
+* `unsrt`: Use numeric reference labels, citations are sorted by order of appearance.
+* `unsrtalpha`: Use alphanumeric reference labels, citations are sorted by order of appearance.
+
+To set your reference style, use the style directive:
+
+````
+```{bibliography} path/to/references.bib
+:style: unsrt
+```
+````
 
 (labels-and-refs)=
 ## Cross-references and labels
