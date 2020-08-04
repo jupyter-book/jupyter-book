@@ -102,7 +102,7 @@ markdown content.
 ### Selecting your reference style
 
 You can also optionally customize the style of your references.
-By default, the references are displayed in the `alpha` style.
+By default, references are displayed in the `alpha` style.
 Other currently supported styles include `plain`, `unsrt`, and `unsrtalpha`.
 These styles create the following bibliography formatting:
 
@@ -111,7 +111,7 @@ These styles create the following bibliography formatting:
 * `unsrt`: Use numeric reference labels, citations are sorted by order of appearance.
 * `unsrtalpha`: Use alphanumeric reference labels, citations are sorted by order of appearance.
 
-To set your reference style, use the style directive:
+To set your reference style, use the style option:
 
 ````
 ```{bibliography} path/to/references.bib
