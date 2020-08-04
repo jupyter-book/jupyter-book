@@ -81,8 +81,18 @@ with the `{bibliography}` directive.
    This will generate a bibliography for your entire bibtex file. See
    [the bibliography at the end of this page](citations/bibliography) for an example.
 
+   You can optionally customize the [style of your references](http://www.cs.stir.ac.uk/~kjt/software/latex/showbst.html).
+   By default, the references are displayed in the `alpha` style.
+   Other currently supported styles include `plain`, `unsrt`, and `unsrtalpha`.
+   To set your reference style, use the style directive:
 
-When your book is built, the bibliography and citations will now be included.
+   ````
+   ```{bibliography} path/to/references.bib
+   :style: unsrt
+   ```
+   ````
+
+When your book is built, the bibliography and citations will now be included in your desired style.
 
 `````{warning}
 If you are adding a bibliography to a *different* page from your references, then
