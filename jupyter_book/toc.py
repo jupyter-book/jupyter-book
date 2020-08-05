@@ -125,6 +125,9 @@ def add_toctree(app, docname, source):
                     f"in page {parent_name}"
                 )
 
+            # Replace Windows path seperator
+            path_sec = path_sec.replace(os.sep, "/")
+
             # Decide whether we'll over-ride with a title in the toctree
             if ipage.get("title"):
                 this_section = f"{ipage.get('title')} <{path_sec}>"
