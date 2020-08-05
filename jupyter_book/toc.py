@@ -235,7 +235,7 @@ def _content_path_to_yaml(path, root_path, split_char="_", add_titles=True):
         title = _filename_to_title(path.name, split_char=split_char)
 
     path_rel_root = path.relative_to(root_path)
-    out = {"file": str(path_rel_root.with_suffix(""))}
+    out = {"file": str(path_rel_root.with_suffix("")).replace(os.sep, "/")}
     if add_titles:
         out["title"] = title
     return out
