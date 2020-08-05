@@ -16,8 +16,6 @@ The Table of Contents is broadly organized like so:
 
 * The first entry of your `_toc.yml` file is the *introduction* to your book.
   It is the landing page for the HTML of your book.
-  * By default, the landing page of your book will not appear in the navbar, but this can be enabled in your `_config.yml` file by setting the `home_page_in_navbar` option to `true` (under the [html section](https://jupyterbook.org/customize/config.html#configuration-reference)) 
-  * Currently, it is not possible to add nested sections to your landing page (see [#844](https://github.com/executablebooks/jupyter-book/issues/844))
 * Subsequent entries define either **parts** or **chapters** in your book.
   These make up the main structure of your book. See [](toc/chapters-parts)
   for more information.
@@ -26,6 +24,11 @@ The Table of Contents is broadly organized like so:
   for more information.
 * Throughout the `_toc.yml` file, `- file:` entries point to text files that make up
   your book's content. Their paths are relative to the book's root.
+  
+```{note}
+By default, the landing page of your book will not appear in the navbar, but this can be enabled in your `_config.yml` file by setting the `home_page_in_navbar` option to `true` (under the [html section](https://jupyterbook.org/customize/config.html#configuration-reference)).
+Currently, it is not possible to add nested sections to your landing page (see [#844](https://github.com/executablebooks/jupyter-book/issues/844))
+```
 
 For reference, here is an example similar to this book's `_toc.yml` file:
 
