@@ -61,7 +61,7 @@ setup(
         "sphinx_togglebutton",
         "sphinx-copybutton",
         "sphinxcontrib-bibtex",
-        "sphinx_book_theme>=0.0.33",
+        "sphinx_book_theme>=0.0.34",
         "sphinx-thebe>=0.0.6",
     ],
     extras_require={
