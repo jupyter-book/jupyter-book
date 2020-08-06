@@ -39,11 +39,11 @@ def test_custom_config(cli, build_resources):
 
 
 @pytest.mark.parametrize("toc", ["_toc.yml", "_toc_startwithlist.yml"])
-def test_toc_builds(cli, build_resources, toc):
+def test_toc_builds(cli, build_resources, toc, tmpdir):
     """Test building the book template with several different TOC files."""
     books, tocs = build_resources
     toc = str(tocs / toc)
-    result = cli.invoke(commands.build, [str(tocs), "--toc", toc])
+    result = cli.invoke(commands.build, [str(tocs), "--toc", toc, "-W"])
     assert result.exit_code == 0
 
 
