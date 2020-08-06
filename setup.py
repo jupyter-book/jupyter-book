@@ -18,6 +18,7 @@ test_reqs = [
     "coverage",
     "pytest>=3.6,<4",
     "pytest-cov",
+    "pytest-xdist",
     "beautifulsoup4",
     "matplotlib",
     "pytest-regressions",
