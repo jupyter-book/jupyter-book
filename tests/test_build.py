@@ -51,28 +51,30 @@ def test_toc_rebuild(cli, build_resources):
     """Changes to the TOC should force a re-build of pages. Also tests for changes
     to the relative ordering of content pages.
     """
-    books, tocs = build_resources
+    _, tocs = build_resources
     toc = tocs / "_toc_simple.yml"
     index_html = tocs.joinpath("_build", "html", "index.html")
 
     # Not using -W because we expect warnings for pages not listed in TOC
     result = cli.invoke(commands.build, [str(tocs), "--toc", str(toc)])
     html = BeautifulSoup(index_html.read_text(), "html.parser")
-    tag = html.find("a", "reference internal")
-    assert tag.attrs["href"] == "content1.html"
+    tags = html.find_all("a", "reference internal")
+    assert tags[1].attrs["href"] == "content1.html"
+    assert tags[2].attrs["href"] == "content2.html"
 
     toc.write_text("- file: index\n- file: content2\n- file: content1\n")
     result = cli.invoke(commands.build, [str(tocs), "--toc", str(toc)])
     html = BeautifulSoup(index_html.read_text(), "html.parser")
-    tag = html.find("a", "reference internal")
+    tags = html.find_all("a", "reference internal")
     # The rendered TOC should reflect the order in the modified _toc.yml
-    assert tag.attrs["href"] == "content2.html"
+    assert tags[1].attrs["href"] == "content2.html"
+    assert tags[2].attrs["href"] == "content1.html"
 
 
 @pytest.mark.parametrize(
     "toc,msg",
     [
-        ("_toc_startswithheader.yml", "Table of Contents must start"),
+        ("_toc_emptysections.yml", "Found an empty section"),
         ("_toc_urlwithouttitle.yml", "`url:` link should"),
         ("_toc_url.yml", "Rename `url:` to `file:`"),
         ("_toc_wrongkey.yml", "Unknown key in `_toc.yml`"),
