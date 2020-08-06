@@ -1,46 +1,52 @@
 - file: intro
 
-- header: Get started
-- file: start/overview
-- file: start/build
-- file: start/publish
-  sections:
-    - file: publish/gh-pages
-    - file: publish/netlify
-- file: customize/config
-- file: customize/toc
-- file: content-types/index
-  sections:
-    - file: content-types/markdown
-    - file: content-types/notebooks
-    - file: content-types/myst-notebooks
-    - file: content-types/jupytext
-    - file: content-types/restructuredtext
+- part: Get started
+  chapters:
+  - file: start/overview
+  - file: start/build
+  - file: start/publish
+    sections:
+      - file: publish/gh-pages
+      - file: publish/netlify
+  - file: customize/config
+  - file: customize/toc
+  - file: content-types/index
+    sections:
+      - file: content-types/markdown
+      - file: content-types/notebooks
+      - file: content-types/myst-notebooks
+      - file: content-types/jupytext
+      - file: content-types/restructuredtext
 
-- header: Write book content
-- file: content/myst
-- file: content/content-blocks
-- file: content/citations
-- file: content/math
-- file: content/figures
-- file: content/glue
-- file: content/layout
-- file: content/execute
+- part: Write book content
+  chapters:
+  - file: content/myst
+  - file: content/content-blocks
+  - file: content/citations
+  - file: content/math
+  - file: content/figures
+  - file: content/glue
+  - file: content/layout
+  - file: content/execute
 
-- header: Make your book interactive
-- file: interactive/launchbuttons
-- file: interactive/hiding
-- file: interactive/interactive
 
-- header: Advanced and miscellaneous
-- file: advanced/pdf
-- file: advanced/sphinx
-- file: advanced/advanced
-- file: contribute/intro
-  sections:
-    - file: contribute/develop
+- part: Make your book interactive
+  chapters:
+  - file: interactive/launchbuttons
+  - file: interactive/hiding
+  - file: interactive/interactive
 
-- header: Reference
-- file: reference/cheatsheet
-- file: reference/cli
-- file: reference/glossary
+- part: Advanced and miscellaneous
+  chapters:
+  - file: advanced/pdf
+  - file: advanced/sphinx
+  - file: advanced/advanced
+  - file: contribute/intro
+    sections:
+      - file: contribute/develop
+
+- part: Reference
+  chapters:
+  - file: reference/cheatsheet
+  - file: reference/cli
+  - file: reference/glossary

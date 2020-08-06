@@ -149,12 +149,11 @@ is inferred from the source files.
 This behavior is controlled by the `page_titles` setting in `_config.yml`
 (see {ref}`toc/files` for more details).
 Each chapter can have
-several sections (defined in `sections:`) and each section can have several sub-sections
-(which would be define with a deeper level of `sections:`). In addition, you can
-use a few extra YAML values to control the behavior of Jupyter-Book (for example,
-`not_numbered: true` will prevent Jupyter Book from numbering the pages in that chapter).
+several sections (defined in `sections:`) and each section can have several sub-sections.
+For more information about how section structure maps onto book structure,
+see [](toc/structure).
 
-Each item in the `_toc.yml` file points to a single content file. The links
+Each item in the `_toc.yml` file points to a single file. The links
 should be **relative to your book's folder and with no extension.**
 
 For example, in the example above there is a file in
