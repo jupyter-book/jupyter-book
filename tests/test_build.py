@@ -59,11 +59,13 @@ def test_toc_rebuild(cli, build_resources):
     result = cli.invoke(commands.build, [str(tocs), "--toc", str(toc)])
     html = BeautifulSoup(index_html.read_text(), "html.parser")
     tags = html.find_all("a", "reference internal")
+    assert result.exit_code == 0
     assert tags[1].attrs["href"] == "content1.html"
     assert tags[2].attrs["href"] == "content2.html"
 
     toc.write_text("- file: index\n- file: content2\n- file: content1\n")
     result = cli.invoke(commands.build, [str(tocs), "--toc", str(toc)])
+    assert result.exit_code == 0
     html = BeautifulSoup(index_html.read_text(), "html.parser")
     tags = html.find_all("a", "reference internal")
     # The rendered TOC should reflect the order in the modified _toc.yml
