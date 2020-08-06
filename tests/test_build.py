@@ -43,7 +43,7 @@ def test_toc_builds(cli, build_resources, toc):
     """Test building the book template with several different TOC files."""
     books, tocs = build_resources
     toc = str(tocs / toc)
-    result = cli.invoke(commands.build, [str(tocs), "--toc", toc, "-W"])
+    result = cli.invoke(commands.build, [str(tocs), "--toc", toc])
     assert result.exit_code == 0
 
 
