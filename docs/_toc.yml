@@ -42,8 +42,6 @@
   - file: advanced/sphinx
   - file: advanced/advanced
   - file: contribute/intro
-    sections:
-      - file: contribute/develop
 
 - part: Reference
   chapters:

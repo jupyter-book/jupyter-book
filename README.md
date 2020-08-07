@@ -27,9 +27,6 @@ Notice some inefficient CSS? A typo in the text? Want to add a cool feature so t
 can enjoy the improvements to Jupyter Books? Check out the [Jupyter Book Contributor's
 Guide](https://jupyterbook.org/contribute/intro.html). We'd love your help!
 
-We ask that all contributions to Jupyter Book respect the
-[Jupyter code of conduct](https://github.com/jupyter/governance/blob/master/conduct/code_of_conduct.md).
-
 ## Acknowledgements
 
 Jupyter Book is maintained and primarily developed by

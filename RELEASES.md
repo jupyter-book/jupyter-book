@@ -1,10 +1,9 @@
 # Instructions for creating a new release
 
 Jupyter-Book is [hosted on the pypi repository](https://pypi.org/project/jupyter-book/).
-A new release is automatically created via GitHub Actions
-when a new release is added to the GitHub repository.
+A new release is automatically created via GitHub Actions when a new release is added to the GitHub repository.
 
-To create a new release of Jupyter Book, you need to do these things:
+To create a new release of Jupyter Book, follow the [release instructions in the `executablebooks/` meta repository](https://github.com/executablebooks/.github/blob/master/CONTRIBUTING.md#the-process-of-creating-a-release)
 
 ## To create a release
 
