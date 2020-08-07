@@ -4,7 +4,7 @@ Welcome to the `jupyter-book` repository! We're excited you're here and want to 
 
 ## Development guidelines
 
-For information about development conventions, practices, and infrastructure, please see [the `executablebooks/` development guidelines](https://github.com/executablebooks/jupyter-book/blob/master/CONTRIBUTING.md).
+For information about development conventions, practices, and infrastructure, please see [the `executablebooks/` development guidelines](https://github.com/executablebooks/.github/blob/master/CONTRIBUTING.md).
 
 ## Getting started
 
