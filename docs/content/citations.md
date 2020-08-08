@@ -119,6 +119,23 @@ To set your reference style, use the style option:
 ```
 ````
 
+### Local Bibliographies
+
+You may wish to include a bibliography listing at the end of each document
+rather than having a single bibliography contained in a separate document.
+Having multiple bibliography directives, however, can cause `sphinx` to issue
+`duplicate citation warnings`.
+
+A common fix is to add a filter to the bibliography directives:
+
+````
+```{bibliography} path/to/references.bib
+:filter: docname in docnames
+```
+````
+
+See `sphinxcontrib-bibtex` documentation for [local bibliographies](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/usage.html#section-local-bibliographies)
+
 (labels-and-refs)=
 ## Cross-references and labels
 
