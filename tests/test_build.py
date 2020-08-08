@@ -143,6 +143,7 @@ def test_build_page(pages, cli):
     assert not html.joinpath("extra_page.html").exists()
     assert 'url=single_page.html" />' in index.read_text()
 
+
 def test_execution_timeout(pages, build_resources, cli):
     """Testing timeout execution for a page."""
     books, _ = build_resources

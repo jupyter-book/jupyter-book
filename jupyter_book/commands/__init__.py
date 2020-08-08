@@ -9,6 +9,7 @@ import shutil as sh
 import subprocess
 from textwrap import dedent
 from sphinx.util.osutil import cd
+from sphinx.util import logging
 
 from ..sphinx import build_sphinx, REDIRECT_TEXT
 from ..toc import build_toc
@@ -28,6 +29,7 @@ versions = {
     "Jupyter-Cache": jcv,
 }
 versions_string = "\n".join(f"{tt}: {vv}" for tt, vv in versions.items())
+logger = logging.getLogger(__name__)
 
 
 @click.group()
@@ -95,6 +97,11 @@ def build(path_source, path_output, config, toc, warningiserror, builder):
             if ifile != str(PATH_SRC.absolute())
         ]
         to_exclude.extend(["_build", "Thumbs.db", ".DS_Store", "**.ipynb_checkpoints"])
+
+        if toc:
+            logger.warning(
+                "Table of Contents file not necessary for single page builds",
+            )
 
         # Now call the Sphinx commands to build
         config_overrides = {
