@@ -118,7 +118,9 @@ def add_toctree(app, docname, source):
         for ipage in isection.get("sections"):
             if ipage.get("file"):
                 # Update path so it is relative to the root of the parent
-                path_sec = os.path.relpath(ipage.get("file"), path_parent_folder)
+                path_sec = Path(
+                    os.path.relpath(ipage.get("file"), path_parent_folder)
+                ).as_posix()
             elif ipage.get("url"):
                 path_sec = ipage.get("url")
             else:
@@ -137,7 +139,6 @@ def add_toctree(app, docname, source):
         # Generate the TOCtree for this page
         toctrees.append(_gen_toctree(toc_options, toc_sections, parent_suff))
     toctrees = "\n".join(toctrees)
-
     # Now modify the source file with the new toctree text
     if parent_suff in [".md", ".rst"]:
         source[0] += "\n\n" + toctrees + "\n"  # Add two \n to ensure no clash w/ text
@@ -176,7 +177,6 @@ def add_toc_to_sphinx(app, config):
 
     # Check for proper structure, naming, etc
     _check_toc_entries([toc])
-
     # Rename top-level `chapters` to `sections`
     for isection in toc.get("sections", []):
         if isection.get("chapters"):

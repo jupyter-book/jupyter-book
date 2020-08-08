@@ -193,16 +193,11 @@ def build_sphinx(
     app = None  # In case we fail, this allows us to handle the exception
     try:
         # This patch is what Sphinx does, so we copy it blindly...
-        sourcedir_posix = sourcedir.as_posix()
-        outputdir_posix = outputdir.as_posix()
-        confdir_posix = confdir
-        if confdir:
-            confdir_posix = confdir.as_posix()
         with patch_docutils(confdir), docutils_namespace():
             app = Sphinx(
-                srcdir=sourcedir_posix,
-                confdir=confdir_posix,
-                outdir=outputdir_posix,
+                srcdir=sourcedir,
+                confdir=confdir,
+                outdir=outputdir,
                 doctreedir=doctreedir,
                 buildername=builder,
                 confoverrides=sphinx_config,
@@ -215,6 +210,10 @@ def build_sphinx(
                 parallel=jobs,
                 keep_going=keep_going,
             )
+            app.srcdir = Path(app.srcdir).as_posix()
+            app.outdir = Path(app.outdir).as_posix()
+            app.confdir = Path(app.confdir).as_posix()
+            app.doctreedir = Path(app.doctreedir).as_posix()
             # Apply Latex Overrides for latex_documents
             if (
                 latexoverrides is not None
@@ -246,7 +245,6 @@ def build_sphinx(
                     )
             else:
                 path_toc = None
-
             if not path_index.exists() and path_toc:
                 toc = yaml.safe_load(path_toc.read_text(encoding="utf8"))
                 if isinstance(toc, dict):
