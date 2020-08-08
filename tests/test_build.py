@@ -11,7 +11,7 @@ def test_create(tmpdir, cli):
     result = cli.invoke(commands.create, str(book))
     assert result.exit_code == 0
     assert book.joinpath("_config.yml").exists()
-    assert len(list(book.iterdir())) == 10
+    assert len(list(book.iterdir())) == 9
 
 
 def test_build_from_template(tmpdir, cli):
