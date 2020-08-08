@@ -24,6 +24,7 @@ DEFAULT_CONFIG = dict(
         "jupyter_book",
         "sphinxcontrib.bibtex",
         "sphinx_thebe",
+        "sphinx.ext.intersphinx",
     ],
     language=None,
     pygments_style="sphinx",

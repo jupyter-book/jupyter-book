@@ -60,10 +60,7 @@ This will run the Jupyter Book test suite, *except for the PDF tests*. This is b
 running the PDF generation tests require a full Latex environment, which you may not have
 set up.
 
-```{note} Jupyter Book makes use of [pytest-xdist](https://github.com/pytest-dev/pytest-xdist) for
-running tests in parallel. You can take advantage of this by running tests with the `-n` argument
-followed by the number of CPUs you would like to use. For example: `pytest -n 4`. This makes the tests
-run much faster.
+```{note} Jupyter Book makes use of [pytest-xdist](https://github.com/pytest-dev/pytest-xdist) for running tests in parallel. You can take advantage of this by running tests with the `-n` argument followed by the number of CPUs you would like to use. For example: `pytest -n 4`. This makes the tests run much faster.
 ```
 
 ### To test PDF generation
