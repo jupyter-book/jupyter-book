@@ -5,28 +5,28 @@ publication-quality books and documents from computational material.
 
 Here are some of the features of Jupyter Book:
 
-{fa}`check,text-success,mr-1` **[Write publication-quality content in markdown](content-types/markdown)**<br />
+{fa}`check,text-success mr-1` **[Write publication-quality content in markdown](content-types/markdown)**<br />
 You can write in either Jupyter markdown, or an extended flavor of markdown with [publishing features](content/myst).
 This includes support for rich syntax such as [citations and cross-references](content/citations), [math and equations](content/math), and [figures](content/figures).
 
-{fa}`check,text-success,mr-1` **[Write content in Jupyter Notebooks](content-types/notebooks)**<br />
+{fa}`check,text-success mr-1` **[Write content in Jupyter Notebooks](content-types/notebooks)**<br />
 This allows you to include your code and outputs in your book.
 You can also write notebooks [entirely in markdown](content-types/myst-notebooks) to execute when you build your book.
 
-{fa}`check,text-success,mr-1` **[Execute and cache your book's content](content/execute)**<br />
+{fa}`check,text-success mr-1` **[Execute and cache your book's content](content/execute)**<br />
 For `.ipynb` and markdown notebooks, execute code and insert the latest outputs into your book.
 In addition, {ref}`cache and re-use<execute/cache>` outputs to be used later.
 
-{fa}`check,text-success,mr-1` **[Insert notebook outputs into your content](content/glue)**<br />
+{fa}`check,text-success mr-1` **[Insert notebook outputs into your content](content/glue)**<br />
 Generate outputs as you build your documentation, and insert them in-line with your content across pages.
 
-{fa}`check,text-success,mr-1` **[Add interactivity to your book](interactive/launchbuttons)**<br />
+{fa}`check,text-success mr-1` **[Add interactivity to your book](interactive/launchbuttons)**<br />
 You can [toggle cell visibility](interactive/hiding), include [interactive outputs](interactive/interactive) from Jupyter, and [connect with online services](interactive/launchbuttons) like Binder.
 
-{fa}`check,text-success,mr-1` **[Generate a variety of outputs](start/build)**<br />
+{fa}`check,text-success mr-1` **[Generate a variety of outputs](start/build)**<br />
 This includes single- and multi-page websites, as well as [PDF outputs](advanced/pdf).
 
-{fa}`check,text-success,mr-1` **[Build books with a simple command-line interface](reference/cli)**<br />
+{fa}`check,text-success mr-1` **[Build books with a simple command-line interface](reference/cli)**<br />
 You can quickly generate your books with one command, like so: `jupyter-book build mybook/`
 
 This website is built with Jupyter Book! You can browse its contents to the
