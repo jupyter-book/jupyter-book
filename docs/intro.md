@@ -21,7 +21,7 @@ In addition, {ref}`cache and re-use<execute/cache>` outputs to be used later.
 Generate outputs as you build your documentation, and insert them in-line with your content across pages.
 
 **[Add interactivity to your book](interactive/launchbuttons)**<br />
-You can [toggle visibility of cells](interactive/hiding), [connect with an online service](interactive/launchbuttons) like Binder, and include [interactive outputs](interactive/interactive) from Jupyter.
+You can [toggle cell visibility](interactive/hiding), include [interactive outputs](interactive/interactive) from Jupyter, and [connect with online services](interactive/launchbuttons) like Binder.
 
 **[Generate a variety of outputs](start/build)**<br />
 This includes single- and multi-page websites, as well as [PDF outputs](advanced/pdf).
