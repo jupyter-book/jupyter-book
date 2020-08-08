@@ -35,7 +35,7 @@ left to see what is possible.
 ```{admonition} Get involved with Jupyter Book!
 :class: tip
 Jupyter Book is an open community that welcomes your feedback, input, and contributions!
-[Open an issue](https://github.com/executablebooks/jupyter-book/issues/new) with any feedback. Give an issue a 👍 if you think it should be resolved and check out {ref}`our enhancement voting leaderboard <ebp:feature-note>` for the issues people want to see completed! If you'd like to contribute, [check out our contributing guide](contribute/intro.md).
+[Open an issue](https://github.com/executablebooks/jupyter-book/issues/new/choose) with any feedback. Give an issue a 👍 if you think it should be resolved and check out {ref}`our enhancement voting leaderboard <ebp:feature-note>` for the issues people want to see completed! If you'd like to contribute, [check out our contributing guide](contribute/intro.md).
 ```
 
 ## Get started
