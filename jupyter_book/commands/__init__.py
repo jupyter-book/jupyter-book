@@ -46,7 +46,7 @@ BUILDER_OPTS = {
 
 
 @main.command()
-@click.argument("path-source")
+@click.argument("path-source", type=click.Path(exists=True, file_okay=True))
 @click.option("--path-output", default=None, help="Path to the output artifacts")
 @click.option("--config", default=None, help="Path to the YAML configuration file")
 @click.option("--toc", default=None, help="Path to the Table of Contents YAML file")

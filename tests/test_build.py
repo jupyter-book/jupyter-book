@@ -11,7 +11,7 @@ def test_create(tmpdir, cli):
     result = cli.invoke(commands.create, str(book))
     assert result.exit_code == 0
     assert book.joinpath("_config.yml").exists()
-    assert len(list(book.iterdir())) == 9
+    assert len(list(book.iterdir())) == 10
 
 
 def test_build_from_template(tmpdir, cli):
@@ -142,7 +142,6 @@ def test_build_page(pages, cli):
     assert html.joinpath("single_page.html").exists()
     assert not html.joinpath("extra_page.html").exists()
     assert 'url=single_page.html" />' in index.read_text()
-
 
 def test_execution_timeout(pages, build_resources, cli):
     """Testing timeout execution for a page."""
