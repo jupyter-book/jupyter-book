@@ -61,19 +61,6 @@ BUILDER_OPTS = {
 )
 def build(path_source, path_output, config, toc, warningiserror, builder):
     """Convert your book's or page's content to HTML or a PDF."""
-    # Choose sphinx builder
-    builder_dict = {
-        "html": "html",
-        "linkcheck": "linkcheck",
-        "pdfhtml": "singlehtml",
-        "latex": "latex",
-        "pdflatex": "latex",
-    }
-
-    if builder not in builder_dict.keys():
-        allowed_keys = tuple(builder_dict.keys())
-        _error(f"Value for --builder must be one of {allowed_keys}. Got '{builder}'")
-    sphinx_builder = builder_dict[builder]
 
     # Paths for the notebooks
     PATH_SRC_FOLDER = Path(path_source).absolute()
@@ -98,11 +85,6 @@ def build(path_source, path_output, config, toc, warningiserror, builder):
         ]
         to_exclude.extend(["_build", "Thumbs.db", ".DS_Store", "**.ipynb_checkpoints"])
 
-        if toc:
-            logger.warning(
-                "Table of Contents file not necessary for single page builds",
-            )
-
         # Now call the Sphinx commands to build
         config_overrides = {
             "master_doc": PAGE_NAME,
@@ -111,7 +93,6 @@ def build(path_source, path_output, config, toc, warningiserror, builder):
             "html_theme_options": {"single_page": True},
         }
     else:
-        # Table of contents
         build_type = "book"
         PAGE_NAME = None
         BUILD_PATH = path_output if path_output is not None else PATH_SRC_FOLDER
@@ -119,13 +100,25 @@ def build(path_source, path_output, config, toc, warningiserror, builder):
 
         # Table of contents
         if toc is None:
-            if PATH_SRC_FOLDER.joinpath("_toc.yml").exists():
-                toc = PATH_SRC_FOLDER.joinpath("_toc.yml")
-            else:
-                _error(
-                    "Couldn't find a Table of Contents file. To auto-generate "
-                    f"one, run\n\n\tjupyter-book toc {path_source}"
-                )
+            toc = PATH_SRC_FOLDER.joinpath("_toc.yml")
+        else:
+            toc = Path(toc)
+
+        if not toc.exists():
+            _error(
+                "Couldn't find a Table of Contents file. To auto-generate "
+                f"one, run\n\n\tjupyter-book toc {path_source}"
+            )
+
+        # Check whether the table of contents has changed. If so we rebuild all
+        if toc and BUILD_PATH.joinpath(".doctrees").exists():
+            toc_modified = toc.stat().st_mtime
+            build_files = BUILD_PATH.rglob(".doctrees/*")
+            build_modified = max([os.stat(ii).st_mtime for ii in build_files])
+
+            # If the toc file has been modified after the build we need to force rebuild
+            freshenv = toc_modified > build_modified
+
         config_overrides["globaltoc_path"] = str(toc)
 
         # Builder-specific overrides
@@ -154,8 +147,9 @@ def build(path_source, path_output, config, toc, warningiserror, builder):
         noconfig=True,
         path_config=path_config,
         confoverrides=config_overrides,
-        builder=sphinx_builder,
+        builder=BUILDER_OPTS[builder],
         warningiserror=warningiserror,
+        freshenv=freshenv,
     )
 
     builder_specific_actions(exc, builder, OUTPUT_PATH, build_type, PAGE_NAME)
@@ -336,13 +330,10 @@ def builder_specific_actions(exc, builder, output_path, cmd_type, page_name=None
                 _message_box(
                     f"""\
                 Finished generating HTML for {cmd_type}.
-
                 Your book's HTML pages are here:
                     {path_output_rel}{os.sep}
-
                 You can look at your book by opening this file in a browser:
                     {path_index}
-
                 Or paste this line directly into your browser bar:
                     file://{path_index.resolve()}\
                 """
@@ -364,7 +355,6 @@ def builder_specific_actions(exc, builder, output_path, cmd_type, page_name=None
             _message_box(
                 f"""\
             Finished generating PDF via HTML for {cmd_type}. Your PDF is here:
-
                 {path_pdf_output_rel}\
             """
             )
@@ -385,7 +375,6 @@ def builder_specific_actions(exc, builder, output_path, cmd_type, page_name=None
                 _message_box(
                     f"""\
                 A PDF of your {cmd_type} can be found at:
-
                     {output_path}
                 """
                 )
