@@ -5,25 +5,28 @@ publication-quality books and documents from computational material.
 
 Here are some of the features of Jupyter Book:
 
-**[Write publication-quality content in markdown](content-types/markdown)**<br />
-You can write in either Jupyter markdown, or an [extended flavor of markdown with publishing features](content/myst). This includes support for rich syntax such as [citations and cross-references](content/citations), [math and equations](content/math), and [figures](content/figures).
+{fa}`check,text-success mr-1` **[Write publication-quality content in markdown](content-types/markdown)**<br />
+You can write in either Jupyter markdown, or an extended flavor of markdown with [publishing features](content/myst).
+This includes support for rich syntax such as [citations and cross-references](content/citations), [math and equations](content/math), and [figures](content/figures).
 
-**[Write content in Jupyter Notebooks](content-types/notebooks)**<br />
-This allows you to include your code and outputs in your book. You can also write   [notebooks entirely in markdown](content-types/myst-notebooks) to execute when you build your book.
+{fa}`check,text-success mr-1` **[Write content in Jupyter Notebooks](content-types/notebooks)**<br />
+This allows you to include your code and outputs in your book.
+You can also write notebooks [entirely in markdown](content-types/myst-notebooks) to execute when you build your book.
 
-**[Execute and cache your book's content](content/execute)**<br />
-For `.ipynb` and markdown notebooks, execute code and insert the latest outputs into your book. In addition, {ref}`cache and re-use<execute/cache>` outputs to be used later.
+{fa}`check,text-success mr-1` **[Execute and cache your book's content](content/execute)**<br />
+For `.ipynb` and markdown notebooks, execute code and insert the latest outputs into your book.
+In addition, {ref}`cache and re-use<execute/cache>` outputs to be used later.
 
-**[Insert notebook outputs into your content](content/glue)**<br />
+{fa}`check,text-success mr-1` **[Insert notebook outputs into your content](content/glue)**<br />
 Generate outputs as you build your documentation, and insert them in-line with your content across pages.
 
-**[Add interactivity to your book](interactive/launchbuttons)**<br />
-You can [toggle visibility of cells](interactive/hiding), [connect with an online service like Binder](interactive/launchbuttons), and include [interactive outputs from Jupyter](interactive/interactive).
+{fa}`check,text-success mr-1` **[Add interactivity to your book](interactive/launchbuttons)**<br />
+You can [toggle cell visibility](interactive/hiding), include [interactive outputs](interactive/interactive) from Jupyter, and [connect with online services](interactive/launchbuttons) like Binder.
 
-**[Generate a variety of outputs](start/build)**<br />
-This includes single- and multi-page websites, as well [as PDF outputs](advanced/pdf).
+{fa}`check,text-success mr-1` **[Generate a variety of outputs](start/build)**<br />
+This includes single- and multi-page websites, as well as [PDF outputs](advanced/pdf).
 
-**[Build books with a simple command-line interface](reference/cli)**<br />
+{fa}`check,text-success mr-1` **[Build books with a simple command-line interface](reference/cli)**<br />
 You can quickly generate your books with one command, like so: `jupyter-book build mybook/`
 
 This website is built with Jupyter Book! You can browse its contents to the
@@ -32,7 +35,7 @@ left to see what is possible.
 ```{admonition} Get involved with Jupyter Book!
 :class: tip
 Jupyter Book is an open community that welcomes your feedback, input, and contributions!
-[Open an issue](https://github.com/executablebooks/jupyter-book/issues/new) with any feedback. Give an issue a 👍 if you think it should be resolved and check out {ref}`our enhancement voting leaderboard <ebp:feature-note>` for the issues people want to see completed! If you'd like to contribute, [check out our contributing guide](contribute/intro.md).
+[Open an issue](https://github.com/executablebooks/jupyter-book/issues/new/choose) with any feedback. Give an issue a 👍 if you think it should be resolved and check out {ref}`our enhancement voting leaderboard <ebp:feature-note>` for the issues people want to see completed! If you'd like to contribute, [check out our contributing guide](contribute/intro.md).
 ```
 
 ## Get started
@@ -159,9 +162,5 @@ To contribute to Jupyter Book, see {doc}`contribute/intro`.
 
 ## Acknowledgements
 
-Jupyter Book is supported by
-[an open community of contributors](https://github.com/executablebooks/jupyter-book/graphs/contributors),
-many of whom come from [the Jupyter community](https://jupyter.org/community).
-Jupyter Book and many of the tools it uses are stewarded by
-[the Executable Book Project](https://executablebooks.org), which is
-supported in part by [the Alfred P. Sloan foundation](https://sloan.org/grant-detail/9231).
+Jupyter Book is supported by an [open community of contributors](https://github.com/executablebooks/jupyter-book/graphs/contributors), many of whom come from [the Jupyter community](https://jupyter.org/community).
+Jupyter Book and many of the tools it uses are stewarded by [the Executable Book Project](https://executablebooks.org), which is supported in part by [the Alfred P. Sloan foundation](https://sloan.org/grant-detail/9231).
