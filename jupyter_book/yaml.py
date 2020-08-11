@@ -46,6 +46,9 @@ def yaml_to_sphinx(yaml):
         theme_options["extra_footer"] = html.get("extra_footer", "")
         theme_options["home_page_in_toc"] = html.get("home_page_in_navbar")
 
+        # Comments config
+        sphinx_config["comments_config"] = html.get("comments", {})
+
         # Pass through the buttons
         btns = ["use_repository_button", "use_edit_page_button", "use_issues_button"]
         use_buttons = {btn: html.get(btn) for btn in btns if html.get(btn) is not None}

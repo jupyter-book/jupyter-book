@@ -35,6 +35,12 @@
   - file: interactive/launchbuttons
   - file: interactive/hiding
   - file: interactive/interactive
+  - file: interactive/comments
+    sections:
+    - file: interactive/comments/dokieli
+    - file: interactive/comments/hypothesis
+    - file: interactive/comments/utterances
+
 
 - part: Advanced and miscellaneous
   chapters:
