@@ -52,7 +52,7 @@ setup(
     install_requires=[
         "pyyaml",
         "docutils>=0.15",
-        "sphinx<3",
+        "sphinx<4",
         "myst-nb~=0.8",
         "click",
         "setuptools",
