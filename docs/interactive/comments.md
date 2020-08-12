@@ -13,6 +13,10 @@ Currently, these commenting engines are supported:
 - [Hypothes.is](https://hypothes.is/) provides a web overlay that allows you to annotate and comment collaboratively.
 - [utteranc.es](https://utteranc.es/) is a web commenting system that uses GitHub Issues to store and manage comments.
 
+```{note}
+Jupyter Book uses the [`sphinx-comments`](https://sphinx-comments.readthedocs.io/) Sphinx extension for this functionality.
+```
+
 **Documentation for supported services**
 
 For examples of each service, as well as instructions for how to activate it, click on the links for each service in the left navigation bar or below.
