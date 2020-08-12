@@ -61,6 +61,7 @@ setup(
         "nbclient",
         "sphinx_togglebutton",
         "sphinx-copybutton",
+        "sphinx-comments",
         "sphinxcontrib-bibtex",
         "sphinx_book_theme>=0.0.34",
         "sphinx-thebe>=0.0.6",
