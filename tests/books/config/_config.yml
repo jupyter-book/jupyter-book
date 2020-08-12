@@ -1,4 +1,10 @@
 # Book settings
+html:
+  comments:
+    hypothesis: true
+    utterances:
+      repo:
+        executablebooks/jupyter-book
 sphinx:
   config:
     html_title: TEST PROJECT NAME

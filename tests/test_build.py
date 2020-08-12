@@ -27,15 +27,21 @@ def test_build_from_template(tmpdir, cli):
 
 
 def test_custom_config(cli, build_resources):
+    """Test a variety of custom configuration values."""
     books, _ = build_resources
     config = books.joinpath("config")
     result = cli.invoke(commands.build, str(config))
     assert result.exit_code == 0
     html = config.joinpath("_build", "html", "index.html").read_text()
+    soup = BeautifulSoup(html, "html.parser")
     assert '<h1 class="site-logo" id="site-title">TEST PROJECT NAME</h1>' in html
     assert '<div class="sphinx-tabs docutils container">' in html
     assert '<link rel="stylesheet" type="text/css" href="_static/mycss.css" />' in html
     assert '<script src="_static/js/myjs.js"></script>' in html
+
+    # Check that our comments engines were correctly added
+    assert soup.find("script", attrs={"kind": "hypothesis"})
+    assert soup.find("script", attrs={"kind": "utterances"})
 
 
 @pytest.mark.parametrize("toc", ["_toc.yml", "_toc_startwithlist.yml"])
