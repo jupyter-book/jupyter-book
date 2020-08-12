@@ -32,7 +32,6 @@ html:
   baseurl                   : ""  # The base URL where your book will be hosted. Used for creating image previews and social links. e.g.: https://mypage.com/mybook/
   comments:
     hypothesis              : false
-    dokieli                 : false
     utterances              : false
 
 #######################################################################################

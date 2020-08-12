@@ -4,7 +4,7 @@
 <script async="async" src="https://hypothes.is/embed.js"></script>
 ```
 
-Hypothesis is a centralized web services that allows you to comment and annotate arbitrary web pages across the web.
+Hypothesis is a centralized web service that allows you to comment and annotate arbitrary web pages across the web.
 
 Hypothesis is activated on this page. You can see the web overlay by clicking on the `<` button in the upper-right corner of this page.
 
