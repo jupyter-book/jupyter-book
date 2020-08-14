@@ -37,11 +37,16 @@ def main():
     pass
 
 
-BUILDER_OPTIONS = ["html", "pdfhtml", "linkcheck", "latex", "pdflatex"]
+BUILDER_OPTS = {
+    "html": "html",
+    "pdfhtml": "singlehtml",
+    "latex": "latex",
+    "pdflatex": "latex",
+}
 
 
 @main.command()
-@click.argument("path-book")
+@click.argument("path-book", type=click.Path(exists=True, file_okay=False))
 @click.option("--path-output", default=None, help="Path to the output artifacts")
 @click.option("--config", default=None, help="Path to the YAML configuration file")
 @click.option("--toc", default=None, help="Path to the Table of Contents YAML file")
@@ -49,7 +54,8 @@ BUILDER_OPTIONS = ["html", "pdfhtml", "linkcheck", "latex", "pdflatex"]
 @click.option(
     "--builder",
     default="html",
-    help="Which builder to use. Must be one of {BUILDER_OPTIONS}",
+    help="Which builder to use.",
+    type=click.Choice(list(BUILDER_OPTS.keys())),
 )
 @click.option(
     "--singlepagepdf",
@@ -60,27 +66,13 @@ def build(path_book, path_output, config, toc, warningiserror, builder, singlepa
     """Convert your book's content to HTML or a PDF."""
     # Paths for our notebooks
     PATH_BOOK = Path(path_book).absolute()
-    if not PATH_BOOK.is_dir():
-        _error(f"Path to book isn't a directory: {PATH_BOOK}")
 
     # `book_config` is manual over-rides, `config` is the path to a _config.yml file
     book_config = {}
     latexoverrides = {}
 
-    # Choose sphinx builder
-    builder_dict = {
-        "html": "html",
-        "linkcheck": "linkcheck",
-        "pdfhtml": "singlehtml",
-        "latex": "latex",
-        "pdflatex": "latex",
-    }
-    if builder not in builder_dict.keys():
-        allowed_keys = tuple(builder_dict.keys())
-        _error(f"Value for --builder must be one of {allowed_keys}. Got '{builder}'")
-    sphinx_builder = builder_dict[builder]
-
     # Table of contents
+    # TODO Set TOC dynamically to default value and let Click handle this check
     if toc is None:
         toc = PATH_BOOK.joinpath("_toc.yml")
     else:
@@ -120,7 +112,7 @@ def build(path_book, path_output, config, toc, warningiserror, builder, singlepa
     if builder == "pdfhtml":
         book_config["html_theme_options"] = {"single_page": True}
 
-    # Setup output paths
+    # TODO Use click to set value of path_output dynamically based on path_book
     BUILD_PATH = path_output if path_output is not None else PATH_BOOK
     BUILD_PATH = Path(BUILD_PATH).joinpath("_build")
     if builder in ["html", "pdfhtml", "linkcheck"]:
@@ -145,8 +137,7 @@ def build(path_book, path_output, config, toc, warningiserror, builder, singlepa
         noconfig=True,
         path_config=path_config,
         confoverrides=book_config,
-        latexoverrides=latexoverrides,
-        builder=sphinx_builder,
+        builder=BUILDER_OPTS[builder],
         warningiserror=warningiserror,
         freshenv=freshenv,
     )
@@ -300,16 +291,13 @@ def page(path_page, path_output, config, execute):
 
 
 @main.command()
-@click.argument("path-book")
+@click.argument("path-book", type=click.Path(file_okay=False, exists=False))
 def create(path_book):
     """Create a simple Jupyter Book that you can customize."""
-
-    PATH_OUTPUT = Path(path_book)
-    if PATH_OUTPUT.is_dir():
-        _error(f"The output book already exists. Delete {PATH_OUTPUT}{os.sep} first.")
+    book = Path(path_book)
     template_path = Path(__file__).parent.parent.joinpath("book_template")
-    sh.copytree(template_path, PATH_OUTPUT)
-    _message_box(f"Your book template can be found at\n\n    {PATH_OUTPUT}{os.sep}")
+    sh.copytree(template_path, book)
+    _message_box(f"Your book template can be found at\n\n    {book}{os.sep}")
 
 
 @main.command()

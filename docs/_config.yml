@@ -39,6 +39,13 @@ sphinx:
           "floor": ["\\lfloor#1\\rfloor", 1]
           "bmat": ["\\left[\\begin{array}"]
           "emat": ["\\end{array}\\right]"]
+    panels_add_boostrap_css: False
+    intersphinx_mapping:
+      ebp:
+        - "https://executablebooks.org/en/latest/"
+        - null
+
   extra_extensions:
     - sphinx_click.ext
     - sphinx_tabs.tabs
+    - sphinx_panels

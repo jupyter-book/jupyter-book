@@ -1,5 +1,7 @@
 - file: index
   title: Toc
+- part: Empty chapter
+- part: A section
   sections:
   - file: content1
     title: Content1
@@ -8,7 +10,9 @@
     sections:
     - file: subfolder/asubpage
       title: Asubpage
-- file: content2
-  title: Content2
-- file: content3
-  title: Content3
+- part: Another section
+  sections:
+  - file: content2
+    title: Content2
+  - file: content3
+    title: Content3

@@ -99,6 +99,43 @@ bibliographies in your book. Though note the documentation
 is written for rST and you'll need to adapt the directive/role syntax for your
 markdown content.
 
+### Selecting your reference style
+
+You can also optionally customize the style of your references.
+By default, references are displayed in the `alpha` style.
+Other currently supported styles include `plain`, `unsrt`, and `unsrtalpha`.
+These styles create the following bibliography formatting:
+
+* `alpha`: Use alphanumeric reference labels, citations are sorted by author, year.
+* `plain`: Use numeric reference labels, citations are sorted by author, year.
+* `unsrt`: Use numeric reference labels, citations are sorted by order of appearance.
+* `unsrtalpha`: Use alphanumeric reference labels, citations are sorted by order of appearance.
+
+To set your reference style, use the style option:
+
+````
+```{bibliography} path/to/references.bib
+:style: unsrt
+```
+````
+
+### Local Bibliographies
+
+You may wish to include a bibliography listing at the end of each document
+rather than having a single bibliography contained in a separate document.
+Having multiple bibliography directives, however, can cause `sphinx` to issue
+`duplicate citation warnings`.
+
+A common fix is to add a filter to the bibliography directives:
+
+````
+```{bibliography} path/to/references.bib
+:filter: docname in docnames
+```
+````
+
+See `sphinxcontrib-bibtex` documentation for [local bibliographies](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/usage.html#section-local-bibliographies)
+
 (labels-and-refs)=
 ## Cross-references and labels
 

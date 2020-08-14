@@ -45,16 +45,21 @@ def add_toctree(app, docname, source):
     # If so, then we'll manually add them as a toctree object
     path_parent = app.env.doc2path(docname, base=None)
     toc = app.config["globaltoc"]
+
     parent_page = find_name(toc, _no_suffix(path_parent))
-    parent_suff = Path(path_parent).suffix
     # If we didn't find this page in the TOC, raise a warning
     if parent_page is None:
         logger.warning(f"Found a content page that is not in _toc.yml: {path_parent}.")
         return
 
+    # Collect some information about the parent we'll use later
+    parent_name = parent_page["file"]
+    path_parent_folder = Path(parent_page["file"]).parent
+    parent_suff = Path(path_parent).suffix
+
     # If we have no sections, then don't worry about a toctree
-    subsections = parent_page.get("sections")
-    if not subsections:
+    sections = parent_page.get("sections")
+    if not sections:
         return
 
     # Look for expand_sections and add to html config
@@ -63,103 +68,77 @@ def add_toctree(app, docname, source):
         expanded_sections.append(docname)
         app.config.html_theme_options["expand_sections"] = expanded_sections
 
-    def gen_toctree(options, subsections):
-        # Generate the TOC from our options/pages
-        toctree_text_md = """
-        ```{{toctree}}
-        :hidden:
-        :titlesonly:
-        {options}
+    # Rename `chapter:` in sections to `part:`
+    # TODO: deprecate this after a release or two
+    for isection in sections:
+        if "chapter" in isection:
+            logger.warning(
+                (
+                    "Found `- chapter:` in `_toc.yml`. Renaming to `- part:`.\n\n"
+                    "`- chapter:` will be deprecated in release 0.7.5"
+                )
+            )
+            isection["part"] = isection.pop("chapter")
+        if "header" in isection:
+            _error(
+                (
+                    "Found a '- header:' key in `_toc.yml`. This is deprecated.\n\n"
+                    "Use `- part: Header name` syntax instead. See documentation for "
+                    "details."
+                )
+            )
 
-        {sections}
-        ```
-        """
-        toctree_text_rst = """
-        .. toctree::
-           :hidden:
-           :titlesonly:
-           {options}
+    # Check if subsections are all individual files. If so, embed them in a section
+    are_files = [("file" in ii) or ("url" in ii) for ii in sections]
+    if all(are_files):
+        sections = [{"part": "", "sections": sections}]
+    elif any(are_files) and not all(are_files):
+        _error(f"Mixed parts and individual files in `_toc.yml` entry {parent_name}")
 
-           {sections}
-
-        """
-
-        if parent_suff in [".ipynb", ".md"]:
-            toctree_template = toctree_text_md
-        elif parent_suff == ".rst":
-            toctree_template = toctree_text_rst
-
-        # Create the markdown directive for our toctree
-        toctree = dedent(toctree_template).format(
-            options="\n".join(options), sections="\n".join(subsections)
-        )
-        return toctree
-
-    # Build toctrees for the page. We may need more than one
+    # Build toctrees for the page. One toctree per section.
     toctrees = []
-    toc_sections = []
-    toc_options = []
+    for isection in sections:
+        # Check for TOC options (that generally only change behavior on top-level page)
+        toc_options = {}
+        if isection.get("numbered") or parent_page.get("numbered"):
+            toc_options["numbered"] = ""  # Empty string will == a flag in the toctree
+        if isection.get("part"):
+            toc_options["caption"] = isection.get("part")
 
-    is_top_page = app.config.master_doc == docname
-    for ipage in subsections:
-        # We only worry about captions or numbering if we're on the top page
-        if is_top_page:
-            # Create a new TOCtree if we have a header specified (denoting new chapter)
-            if "header" in ipage:
-                # If we already have some pages added, we need to make a new toctree
-                if toc_sections:
-                    old_toctree = gen_toctree(toc_options, toc_sections)
-                    toctrees.append(old_toctree)
-                    toc_sections = []
-                    toc_options = []
-                toc_options.append(f":caption: {ipage.get('header')}")
-                continue
+        # Iterate through sub-sections to generate the TOCtree
+        if not isection.get("sections"):
+            _error(
+                f"Found an empty section in {parent_name}."
+                " Please add at least one file."
+            )
 
-            # Create a new TOCtree if we have a change in numbering specified
-            if ("numbered" in ipage) and (":numbered: true" not in toc_options):
-                # We need to create a new TOCtree because we're turning on numbering
-                old_toctree = gen_toctree(toc_options, toc_sections)
-                toctrees.append(old_toctree)
-                toc_sections = []
-                toc_options = []
-                toc_options.append(":numbered: true")
-            if ("numbered" not in ipage) and (":numbered: true" in toc_options):
-                # We need to create a new TOCtree because we're no longer numbering
-                old_toctree = gen_toctree(toc_options, toc_sections)
-                toctrees.append(old_toctree)
-                toc_sections = []
-                toc_options = []
+        toc_sections = []
+        for ipage in isection.get("sections"):
+            if ipage.get("file"):
+                # Update path so it is relative to the root of the parent
+                path_sec = os.path.relpath(ipage.get("file"), path_parent_folder)
+            elif ipage.get("url"):
+                path_sec = ipage.get("url")
+            else:
+                _error(
+                    "Found TOC entry without either `file:` or `url:`"
+                    f"in page {parent_name}"
+                )
 
-        # If not a special case, assume we have a "regular" page structure
-        if ipage.get("file"):
-            path_sec = ipage.get("file")
+            # Decide whether we'll over-ride with a title in the toctree
+            if ipage.get("title"):
+                this_section = f"{ipage.get('title')} <{path_sec}>"
+            else:
+                this_section = f"{path_sec}"
+            toc_sections.append(this_section)
 
-            # Update path so it is relative to the root of the parent
-            path_parent_folder = Path(parent_page["file"]).parent
-            path_sec = os.path.relpath(path_sec, path_parent_folder)
-
-        if ipage.get("url"):
-            path_sec = ipage.get("url")
-
-        title = ipage.get("title")
-
-        # Decide whether we'll over-ride with a title in the toctree
-        this_section = f"{path_sec}"
-        if title:
-            this_section = f"{title} <{this_section}>"
-        toc_sections.append(this_section)
-
-    # Now create the final toctree for this page and prep to insert into page
-    if toc_sections:
-        final_toctree = gen_toctree(toc_options, toc_sections)
-        toctrees.append(final_toctree)
+        # Generate the TOCtree for this page
+        toctrees.append(_gen_toctree(toc_options, toc_sections, parent_suff))
     toctrees = "\n".join(toctrees)
 
-    # Figure out what kind of text defines a toctree directive for this file
-    # currently, assumed to be markdown
+    # Now modify the source file with the new toctree text
     if parent_suff in [".md", ".rst"]:
-        source[0] += toctrees + "\n"
-
+        source[0] += "\n\n" + toctrees + "\n"  # Add two \n to ensure no clash w/ text
     elif parent_suff == ".ipynb":
         # Lazy import nbformat because we only need it if we have an ipynb file
         import nbformat as nbf
@@ -172,8 +151,8 @@ def add_toctree(app, docname, source):
         _error("Only markdown, ipynb, and rst files are supported in the TOC.")
 
 
-def update_indexname(app, config):
-    """Update `master_doc` to be the first page defined in the TOC"""
+def add_toc_to_sphinx(app, config):
+    """Read _toc.yml, parse/validate it, and add to Sphinx for use later."""
     # If no globaltoc is given, we'll skip this part
     if not app.config["globaltoc_path"]:
         return
@@ -183,14 +162,13 @@ def update_indexname(app, config):
 
     # If it's a flat list, treat the first page as the master doc
     if isinstance(toc, list):
-        # Ensure that the first item in the list is not a header
-        if "header" in toc[0]:
-            _error("Table of Contents must start with your first page, not a header.")
         # Convert to a dictionary where the top-level file is the first item of the list
         toc_updated = toc[0]
         if len(toc) > 1:
             subsections = toc[1:]
+            # The first set of pages will be called *either* sections or chapters
             first_sections = toc_updated.get("sections", [])
+            first_sections += toc_updated.get("chapters", [])
             first_sections += subsections
             toc_updated["sections"] = first_sections
         toc = toc_updated
@@ -198,11 +176,51 @@ def update_indexname(app, config):
     # Check for proper structure, naming, etc
     _check_toc_entries([toc])
 
+    # Rename top-level `chapters` to `sections`
+    for isection in toc.get("sections", []):
+        if isection.get("chapters"):
+            isection["sections"] = isection.pop("chapters")
+
     # Update our global toc
     app.config["globaltoc"] = toc
 
     # Update the main toctree file for whatever the first file here is
     app.config["master_doc"] = _no_suffix(toc["file"])
+
+
+def _gen_toctree(options, subsections, parent_suff):
+    options = "\n".join([f":{key}: {val}" for key, val in options.items()])
+
+    # Generate the TOC from our options/pages
+    toctree_text_md = """
+    ```{{toctree}}
+    :hidden:
+    :titlesonly:
+    {options}
+
+    {sections}
+    ```
+    """
+    toctree_text_rst = """
+    .. toctree::
+        :hidden:
+        :titlesonly:
+        {options}
+
+        {sections}
+
+    """
+
+    if parent_suff in [".ipynb", ".md"]:
+        toctree_template = toctree_text_md
+    elif parent_suff == ".rst":
+        toctree_template = toctree_text_rst
+
+    # Create the markdown directive for our toctree
+    toctree = dedent(toctree_template).format(
+        options=options, sections="\n".join(subsections)
+    )
+    return toctree
 
 
 def _content_path_to_yaml(path, root_path, split_char="_", add_titles=True):
@@ -326,6 +344,9 @@ def _check_toc_entries(sections):
         "file",
         "url",
         "header",
+        "chapter",
+        "part",
+        "chapters",
         "sections",
         "title",
         "expand_sections",
@@ -351,5 +372,6 @@ def _check_toc_entries(sections):
                     "`url:` link should have a title"
                 )
         # Recursive call
-        if "sections" in section:
-            _check_toc_entries(section["sections"])
+        for section_kind in ["sections", "chapters"]:
+            if section_kind in section:
+                _check_toc_entries(section[section_kind])

@@ -67,7 +67,7 @@ for a potential fix, and [this jupyter book issue](https://github.com/executable
 where we're tracking the issue.
 ```
 
-(pdf-latex)=
+(pdf/latex)=
 ## Build a PDF using Latex
 
 You can also use Latex to build a PDF of your book. This can behave differently depending on your
