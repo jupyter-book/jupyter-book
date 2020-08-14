@@ -3,3 +3,4 @@
   sections:
     - file: markdown
     - file: notebooks
+- file: start/build

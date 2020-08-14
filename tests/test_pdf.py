@@ -38,5 +38,6 @@ def test_pdflatex_singlepagepdf(tmpdir):
     assert path_pdf.joinpath("content.pdf").exists()
     assert path_pdf.joinpath("markdown.pdf").exists()
     assert path_pdf.joinpath("notebooks.pdf").exists()
+    assert path_pdf.joinpath("start-build.pdf").exists()
     # removing as intro is startdoc for book
     # assert path_pdf.joinpath("intro.pdf").exists()
