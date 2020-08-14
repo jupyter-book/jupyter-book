@@ -4,7 +4,6 @@ import asyncio
 import sphinx
 import copy
 import os
-from sphinx.util.osutil import ensuredir
 
 from .utils import _error, _message_box
 
@@ -144,7 +143,7 @@ def autobuild_singlepage_latexdocuments(app):
     # TODO: can this be extracted from app.env?
     master_doc = app.config.master_doc
     if "/" in master_doc:
-        sourcedir = os.path.dirname(master_doc) + "/"
+        sourcedir = os.path.dirname(master_doc) + "-"
     else:
         sourcedir = ""
 
@@ -155,14 +154,16 @@ def autobuild_singlepage_latexdocuments(app):
         latex_doc = copy.copy(DEFAULT_VALUES)
 
         # if doc has a subdir relative to src dir
-        subdir = str(Path(doc).parent.relative_to(sourcedir))
-        ensuredir(app.outdir + "/" + subdir)
+        docname = None
+        parts = Path(doc).parts
+        docname = "-".join(parts)
 
         latex_doc["startdocname"] = doc
         if DEFAULT_VALUES["startdocname"] == doc:
             targetdoc = DEFAULT_VALUES["targetname"]
         else:
-            targetdoc = (doc + ".tex").replace(sourcedir, "")
+            targetdoc = (docname + ".tex").replace(sourcedir, "")
+
         latex_doc["targetname"] = targetdoc
         latex_doc["title"] = title.astext()
         latex_doc = latex_document_tuple(latex_doc)
