@@ -137,6 +137,7 @@ def build(path_book, path_output, config, toc, warningiserror, builder, singlepa
         noconfig=True,
         path_config=path_config,
         confoverrides=book_config,
+        latexoverrides=latexoverrides,
         builder=BUILDER_OPTS[builder],
         warningiserror=warningiserror,
         freshenv=freshenv,

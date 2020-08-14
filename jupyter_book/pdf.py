@@ -4,6 +4,7 @@ import asyncio
 import sphinx
 import copy
 import os
+from sphinx.util.osutil import ensuredir
 
 from .utils import _error, _message_box
 
@@ -152,6 +153,11 @@ def autobuild_singlepage_latexdocuments(app):
     latex_documents = []
     for doc, title in titles.items():
         latex_doc = copy.copy(DEFAULT_VALUES)
+
+        # if doc has a subdir relative to src dir
+        subdir = str(Path(doc).parent.relative_to(sourcedir))
+        ensuredir(app.outdir + "/" + subdir)
+
         latex_doc["startdocname"] = doc
         if DEFAULT_VALUES["startdocname"] == doc:
             targetdoc = DEFAULT_VALUES["targetname"]
