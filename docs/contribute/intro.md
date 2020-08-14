@@ -60,7 +60,8 @@ This will run the Jupyter Book test suite, *except for the PDF tests*. This is b
 running the PDF generation tests require a full Latex environment, which you may not have
 set up.
 
-```{note} Jupyter Book makes use of [pytest-xdist](https://github.com/pytest-dev/pytest-xdist) for running tests in parallel. You can take advantage of this by running tests with the `-n` argument followed by the number of CPUs you would like to use. For example: `pytest -n 4`. This makes the tests run much faster.
+```{note}
+Jupyter Book makes use of [pytest-xdist](https://github.com/pytest-dev/pytest-xdist) for running tests in parallel. You can take advantage of this by running tests with the `-n` argument followed by the number of CPUs you would like to use. For example: `pytest -n 4`. This makes the tests run much faster.
 ```
 
 ### To test PDF generation
@@ -142,3 +143,33 @@ what kinds of functionality they support:
   build time. It is controlled by {term}`MyST-NB`.
 * The {term}`Sphinx-Book-Theme` defines the look and feel of Jupyter Book, and is
   where most of the CSS rules are defined.
+
+## Tips for Developing Sphinx Applications
+
+Getting access to the `xml` representation of the abstract syntax tree (AST) is a very
+important step in understanding how Sphinx has organised the document.
+
+One way to get this information is available in the `.doctree` directory
+contained in a project `_build` directory.
+
+One you have built a sample project you can get access to this information by:
+
+```python
+import pickle
+doc = pickle.load(open("_build/.doctrees/<file>", "rb"))
+```
+
+to get the pseudo-xml representation used for test purposes
+
+```python
+pseudoxml = doc.pformat()
+```
+
+and to get a full `xml`
+
+```python
+xml = doc.asdom().toprettyxml()
+```
+
+The [sphinx development guide](https://www.sphinx-doc.org/en/master/develop.html) is also a useful
+resource.
