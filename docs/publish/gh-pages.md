@@ -26,7 +26,7 @@ files in your book's `_build/html` folder.
    ```
    pip install ghp-import
    ```
-2. From the `master` branch of your book's root directory (which should contain the `_build/html` folder) call `ghp-import` and point it to your HTML files, like so:
+2. From the `master` branch of your local repository (which should contain the `mylocalbook/_build/html` folder) call `ghp-import` and point it to your HTML files, like so:
 
    ```
    ghp-import -n -p -f mylocalbook/_build/html
@@ -47,6 +47,7 @@ Note this warning from the [`ghp-import` GitHub repository](https://github.com/d
 "...*`ghp-import` will DESTROY your gh-pages branch...and assumes that the `gh-pages` branch is 100% derivative. You should never edit files in your `gh-pages` branch by hand if you're using this script...*"
 ```
 
+(publish/gh-pages)=
 ## Automatically host your book with GitHub Actions
 
 [GitHub Actions](https://docs.github.com/en/actions) is a tool that allows you to automate things on GitHub.
@@ -80,6 +81,20 @@ that builds a book with GitHub Actions.
 Ensure that Jupyter Book's version in your `requirements.txt` file is at least
 `0.7.0`.
 ```
+
+````{tip}
+You can use the [Jupyter Book cookiecutter](https://github.com/executablebooks/cookiecutter-jupyter-book) to quickly create a book template that already includes the GitHub Actions workflow file needed to automatically deploy your book to GitHub Pages:
+
+```bash
+`jupyter-book create mybookpath/ --cookiecutter`
+```
+
+For more help, see the [Jupyter Book cookiecutter GitHub repository](https://github.com/executablebooks/cookiecutter-jupyter-book), or run:
+
+```bash
+jupyter-book create --help
+```
+````
 
 Here is a simple YAML configuration
 for a github action that will publish your book to a `gh-pages` branch.
