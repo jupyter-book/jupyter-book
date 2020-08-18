@@ -49,7 +49,12 @@ Note this warning from the [`ghp-import` GitHub repository](https://github.com/d
 
 ## Automatically host your book with GitHub Actions
 
-[GitHub Actions](https://docs.github.com/en/actions) is a tool that allows you to automate things on GitHub. It is used for a variety of things, such as testing, publishing packages, and continuous integration.
+[GitHub Actions](https://docs.github.com/en/actions) is a tool that allows you to automate things on GitHub.
+It is used for a variety of things, such as testing, publishing packages, and continuous integration.
+
+Note that if you're not hosting your book on GitHub,
+or if you'd like another, user-friendly service to build it automatically,
+see the {doc}`guide to publishing your book on Netlify <../netlify>`.
 
 ```{note}
 You should be familiar with GitHub Actions before using them
