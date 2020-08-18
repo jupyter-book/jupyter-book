@@ -14,6 +14,18 @@ def test_create(tmpdir, cli):
     assert len(list(book.iterdir())) == 9
 
 
+def test_create_from_cookiecutter(tmpdir, cli):
+    book = Path(tmpdir)
+    result = cli.invoke(commands.create, [str(book), "--cookiecutter"])
+    assert result.exit_code == 0
+    # this test uses default cookiecutter prompt values
+    # note that default cookiecutter book name is "my_book"
+    assert book.joinpath("my_book/my_book/_config.yml").exists()
+    assert len(list(book.joinpath("my_book/").iterdir())) == 7
+    assert len(list(book.joinpath("my_book/.github/workflows/").iterdir())) == 1
+    assert len(list(book.joinpath("my_book/my_book/").iterdir())) == 8
+
+
 def test_build_from_template(tmpdir, cli):
     """Test building the book template and a few test configs."""
     # Create the book from the template
