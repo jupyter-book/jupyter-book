@@ -4,6 +4,11 @@
 **automatically build an updated copy of your Jupyter Book** as you push new content.
 It can be used across git clients including GitHub, GitLab, and Bitbucket.
 
+Note that these instructions assume you're keeping your source files under version-control,
+rather than the built Jupyter Book HTML.
+If you're pushing your HTML to GitHub,
+you'll want to {doc}`host your book on GitHub Pages <../gh-pages>` instead.
+
 Although Netlify has both free and paid tiers, the build process is the same across both.
 Importantly, the free tier only allows for 100GB of bandwidth usage per month across all of your Netlify built projects.
 
@@ -49,6 +54,7 @@ Authorizing access will take you to the next step of the build process, where yo
 If your book content is not in the root of your repository, make sure you point to it
 in the `jupyter-book build` command.
 ```
+
 Once you've selected the correct repository, you'll need to supply build instructions.
 This is a command that Netlify runs before hosting your site. We'll use it to do the
 following:
