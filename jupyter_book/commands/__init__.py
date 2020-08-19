@@ -333,9 +333,6 @@ def builder_specific_actions(exc, builder, output_path, cmd_type, page_name=None
                 """
                 )
         if builder == "pdfhtml":
-            import pdb
-
-            pdb.set_trace()
             print(f"Finished generating HTML for {cmd_type}...")
             print(f"Converting {cmd_type} HTML into PDF...")
             path_pdf_output = output_path.parent.joinpath("pdf")
