@@ -42,6 +42,7 @@ def test_pdflatex_singlepagepdf(tmpdir):
     # removing as intro is startdoc for book
     # assert path_pdf.joinpath("intro.pdf").exists()
 
+
 def test_pdflatex_singlepagepdf_nested(tmpdir):
     path_output = Path(tmpdir).absolute()
     path_template = path_tests.joinpath("books", "nested")

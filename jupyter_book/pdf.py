@@ -5,18 +5,29 @@ import sphinx
 import copy
 import os
 
-from .utils import _error, _message_box
+from .utils import _error
 
 # LaTeX Documents Tuple Spec
-# https://www.sphinx-doc.org/en/3.x/usage/configuration.html#confval-latex_documents
-LATEX_DOCUMENTS = (
-    "startdocname",
-    "targetname",
-    "title",
-    "author",
-    "theme",
-    "toctree_only",
-)
+if sphinx.__version__ >= "3.0.0":
+    # https://www.sphinx-doc.org/en/3.x/usage/configuration.html#confval-latex_documents
+    LATEX_DOCUMENTS = (
+        "startdocname",
+        "targetname",
+        "title",
+        "author",
+        "theme",
+        "toctree_only",
+    )
+else:
+    # https://www.sphinx-doc.org/en/2.0/usage/configuration.html#confval-latex_documents
+    LATEX_DOCUMENTS = (
+        "startdocname",
+        "targetname",
+        "title",
+        "author",
+        "documentclass",
+        "toctree_only",
+    )
 
 
 def html_to_pdf(html_file, pdf_file):
@@ -64,7 +75,7 @@ def update_latex_documents(latex_documents, latexoverrides):
     # Commenting this for now, as not able to replicate in tests
     # if len(latex_documents) > 1:
     #     _message_box(
-    #         "Latex documents has been specified as a multi element list in the _config",
+    #         "Latex documents specified as a multi element list in the _config",
     #         "This suggests the user has made custom settings to their build",
     #         "[Skipping] update_latex_documents for specific latex overrides",
     #     )
@@ -120,7 +131,7 @@ def autobuild_singlepage_latexdocuments(app):
     # Commenting this for now, as not able to replicate in tests
     # if len(latex_documents) > 1:
     #     _message_box(
-    #         "Latex documents has been specified as a multi element list in the _config",
+    #         "Latex documents specified as a multi element list in the _config",
     #         "This suggests the user has made custom settings to their build",
     #         "[Skipping] autobuild_singlepage_latexdocuments option",
     #     )

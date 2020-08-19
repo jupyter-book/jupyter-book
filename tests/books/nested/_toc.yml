@@ -1,5 +1,5 @@
 - file: files/index
 - file: files/content
-  sections: 
+  sections:
   - file: files/more_files/file1
   - file: files/more_files/file2
