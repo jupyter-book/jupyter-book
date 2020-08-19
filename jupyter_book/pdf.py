@@ -8,26 +8,15 @@ import os
 from .utils import _error, _message_box
 
 # LaTeX Documents Tuple Spec
-if sphinx.__version__ >= "3.0.0":
-    # https://www.sphinx-doc.org/en/3.x/usage/configuration.html#confval-latex_documents
-    LATEX_DOCUMENTS = (
-        "startdocname",
-        "targetname",
-        "title",
-        "author",
-        "theme",
-        "toctree_only",
-    )
-else:
-    # https://www.sphinx-doc.org/en/2.0/usage/configuration.html#confval-latex_documents
-    LATEX_DOCUMENTS = (
-        "startdocname",
-        "targetname",
-        "title",
-        "author",
-        "documentclass",
-        "toctree_only",
-    )
+# https://www.sphinx-doc.org/en/3.x/usage/configuration.html#confval-latex_documents
+LATEX_DOCUMENTS = (
+    "startdocname",
+    "targetname",
+    "title",
+    "author",
+    "theme",
+    "toctree_only",
+)
 
 
 def html_to_pdf(html_file, pdf_file):
@@ -72,16 +61,17 @@ def update_latex_documents(latex_documents, latexoverrides):
     """
     Apply latexoverrides from _config.yml to latex_documents tuple
     """
-    if len(latex_documents) > 1:
-        _message_box(
-            "Latex documents has been specified as a multi element list in the _config",
-            "This suggests the user has made custom settings to their build",
-            "[Skipping] update_latex_documents for specific latex overrides",
-        )
-        return latex_documents
-    else:
-        # Extract latex_documents tuple
-        latex_documents = latex_documents[0]
+    # Commenting this for now, as not able to replicate in tests
+    # if len(latex_documents) > 1:
+    #     _message_box(
+    #         "Latex documents has been specified as a multi element list in the _config",
+    #         "This suggests the user has made custom settings to their build",
+    #         "[Skipping] update_latex_documents for specific latex overrides",
+    #     )
+    #     return latex_documents
+
+    # Extract latex_documents tuple
+    latex_documents = latex_documents[0]
     # Apply single overrides from _config.yml
     updated_latexdocs = []
     for loc, item in enumerate(LATEX_DOCUMENTS):
@@ -127,16 +117,17 @@ def autobuild_singlepage_latexdocuments(app):
     https://www.sphinx-doc.org/en/3.x/usage/configuration.html#confval-latex_documents
     """
     latex_documents = app.config.latex_documents
-    if len(latex_documents) > 1:
-        _message_box(
-            "Latex documents has been specified as a multi element list in the _config",
-            "This suggests the user has made custom settings to their build",
-            "[Skipping] autobuild_singlepage_latexdocuments option",
-        )
-        return latex_documents
-    else:
-        # Extract latex_documents updated tuple
-        latex_documents = latex_documents[0]
+    # Commenting this for now, as not able to replicate in tests
+    # if len(latex_documents) > 1:
+    #     _message_box(
+    #         "Latex documents has been specified as a multi element list in the _config",
+    #         "This suggests the user has made custom settings to their build",
+    #         "[Skipping] autobuild_singlepage_latexdocuments option",
+    #     )
+    #     return latex_documents
+
+    # Extract latex_documents updated tuple
+    latex_documents = latex_documents[0]
 
     titles = app.env.titles
     # Infer any source folder containing source files

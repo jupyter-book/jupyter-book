@@ -41,3 +41,15 @@ def test_pdflatex_singlepagepdf(tmpdir):
     assert path_pdf.joinpath("start-build.pdf").exists()
     # removing as intro is startdoc for book
     # assert path_pdf.joinpath("intro.pdf").exists()
+
+def test_pdflatex_singlepagepdf_nested(tmpdir):
+    path_output = Path(tmpdir).absolute()
+    path_template = path_tests.joinpath("books", "nested")
+    cmd = f"jb build {path_template} --path-output {path_output} \
+            --builder pdflatex --singlepagepdf True"
+    run(cmd.split(), check=True)
+    path_pdf = path_output.joinpath("_build", "latex")
+    assert path_pdf.joinpath("book.pdf").exists()
+    assert path_pdf.joinpath("content.pdf").exists()
+    assert path_pdf.joinpath("file1.pdf").exists()
+    assert path_pdf.joinpath("file2.pdf").exists()
