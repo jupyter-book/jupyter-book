@@ -285,7 +285,7 @@ def create(path_book, cookiecutter):
         template_path = Path(__file__).parent.parent.joinpath("book_template")
         sh.copytree(template_path, book)
     else:
-        cc_url = "git@github.com:executablebooks/cookiecutter-jupyter-book.git"
+        cc_url = "gh:executablebooks/cookiecutter-jupyter-book"
         try:
             from cookiecutter.main import cookiecutter
         except ImportError as ex:

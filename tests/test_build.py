@@ -20,10 +20,10 @@ def test_create_from_cookiecutter(tmpdir, cli):
     assert result.exit_code == 0
     # this test uses default cookiecutter prompt values
     # note that default cookiecutter book name is "my_book"
-    assert book.joinpath("my_book/my_book/_config.yml").exists()
-    assert len(list(book.joinpath("my_book/").iterdir())) == 7
-    assert len(list(book.joinpath("my_book/.github/workflows/").iterdir())) == 1
-    assert len(list(book.joinpath("my_book/my_book/").iterdir())) == 8
+    assert book.joinpath("my_book", "my_book", "_config.yml").exists()
+    assert len(list(book.joinpath("my_book").iterdir())) == 7
+    assert len(list(book.joinpath("my_book", ".github", "workflows").iterdir())) == 1
+    assert len(list(book.joinpath("my_book", "my_book").iterdir())) == 8
 
 
 def test_build_from_template(tmpdir, cli):
