@@ -276,7 +276,7 @@ def page(path_page, path_output, config, execute):
 @click.option(
     "--cookiecutter",
     is_flag=True,
-    help="Use the Jupyter Book cookiecutter to interactively create a book template.",
+    help="Use cookiecutter to interactively create Jupyter Book template.",
 )
 def create(path_book, cookiecutter):
     """Create a Jupyter Book template that you can customize."""
@@ -288,14 +288,10 @@ def create(path_book, cookiecutter):
         cc_url = "gh:executablebooks/cookiecutter-jupyter-book"
         try:
             from cookiecutter.main import cookiecutter
-        except ImportError as ex:
+        except Exception as e:
             _error(
-                f"Error: {ex}. To install, see the docs at \n"
-                "https://cookiecutter.readthedocs.io/en/latest/installation.html "
-                "or run \n\n\tpip install cookiecutter",
-                kind=ImportError,
+                f"{e}. To install, run\n\n\tpip install cookiecutter", kind=e.__class__,
             )
-        # User will now go through cookiecutter prompts
         book = cookiecutter(cc_url, output_dir=Path(path_book))
     _message_box(f"Your book template can be found at\n\n    {book}{os.sep}")
 
