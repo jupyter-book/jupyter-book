@@ -46,31 +46,43 @@ BUILDER_OPTS = {
 
 
 @main.command()
-@click.argument("path-book", type=click.Path(exists=True, file_okay=False))
-@click.option("--path-output", default=None, help="Path to the output artifacts")
+@click.argument(
+    "path-book",
+    type=click.Path(exists=True, file_okay=False),
+    callback=lambda ctx, arg, val: Path(val).absolute().resolve(),
+)
+@click.option(
+    "--path-output",
+    default=None,
+    help="Path to the output artifacts",
+    callback=(
+        lambda ctx, opt, val: (
+            ctx.params["path_book"] if val is None else Path(val)
+        ).joinpath("_build")
+    ),
+)
 @click.option("--config", default=None, help="Path to the YAML configuration file")
-@click.option("--toc", default=None, help="Path to the Table of Contents YAML file")
+@click.option(
+    "--toc",
+    default=None,
+    help="Path to the Table of Contents YAML file",
+    callback=lambda ctx, opt, val: (
+        ctx.params["path_book"].joinpath("_toc.yml") if val is None else Path(val)
+    ),
+)
 @click.option("-W", "--warningiserror", is_flag=True, help="Error on warnings.")
 @click.option(
     "--builder",
     default="html",
+    show_default=True,
     help="Which builder to use.",
     type=click.Choice(list(BUILDER_OPTS.keys())),
 )
 def build(path_book, path_output, config, toc, warningiserror, builder):
     """Convert your book's content to HTML or a PDF."""
-    # Paths for our notebooks
-    PATH_BOOK = Path(path_book).absolute()
 
     # `book_config` is manual over-rides, `config` is the path to a _config.yml file
     book_config = {}
-
-    # Table of contents
-    # TODO Set TOC dynamically to default value and let Click handle this check
-    if toc is None:
-        toc = PATH_BOOK.joinpath("_toc.yml")
-    else:
-        toc = Path(toc)
 
     if not toc.exists():
         _error(
@@ -83,8 +95,8 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
     path_config = config
     if path_config is None:
         # Check if there's a `_config.yml` file in the source directory
-        if PATH_BOOK.joinpath("_config.yml").exists():
-            path_config = str(PATH_BOOK.joinpath("_config.yml"))
+        if path_book.joinpath("_config.yml").exists():
+            path_config = str(path_book.joinpath("_config.yml"))
     if path_config:
         if not Path(path_config).exists():
             raise ValueError(f"Config file path given, but not found: {path_config}")
@@ -93,19 +105,16 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
     if builder == "pdfhtml":
         book_config["html_theme_options"] = {"single_page": True}
 
-    # TODO Use click to set value of path_output dynamically based on path_book
-    BUILD_PATH = path_output if path_output is not None else PATH_BOOK
-    BUILD_PATH = Path(BUILD_PATH).joinpath("_build")
     if builder in ["html", "pdfhtml", "linkcheck"]:
-        OUTPUT_PATH = BUILD_PATH.joinpath("html")
+        OUTPUT_PATH = path_output.joinpath("html")
     elif builder in ["latex", "pdflatex"]:
-        OUTPUT_PATH = BUILD_PATH.joinpath("latex")
+        OUTPUT_PATH = path_output.joinpath("latex")
 
     # Check whether the table of contents has changed. If so we rebuild all
     freshenv = False
-    if toc and BUILD_PATH.joinpath(".doctrees").exists():
+    if toc and path_output.joinpath(".doctrees").exists():
         toc_modified = toc.stat().st_mtime
-        build_files = BUILD_PATH.rglob(".doctrees/*")
+        build_files = path_output.rglob(".doctrees/*")
         build_modified = max([os.stat(ii).st_mtime for ii in build_files])
 
         # If the toc file has been modified after the build we need to force rebuild
@@ -113,7 +122,7 @@ def build(path_book, path_output, config, toc, warningiserror, builder):
 
     # Now call the Sphinx commands to build
     exc = build_sphinx(
-        PATH_BOOK,
+        path_book,
         OUTPUT_PATH,
         noconfig=True,
         path_config=path_config,
