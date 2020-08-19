@@ -135,7 +135,7 @@ def build(path_source, path_output, config, toc, warningiserror, builder):
         if not Path(path_config).exists():
             raise ValueError(f"Config file path given, but not found: {path_config}")
 
-    if builder in ["html", "pdfhtml", "linkcheck"]:
+    if builder in ["html", "pdfhtml"]:
         OUTPUT_PATH = BUILD_PATH.joinpath("html")
     elif builder in ["latex", "pdflatex"]:
         OUTPUT_PATH = BUILD_PATH.joinpath("latex")
@@ -291,16 +291,10 @@ def init(path, kernel):
 # utility functions
 def builder_specific_actions(exc, builder, output_path, cmd_type, page_name=None):
     if exc:
-        if builder == "linkcheck":
-            _error(
-                "The link checker either didn't finish or found broken links.\n"
-                "See the report above."
-            )
-        else:
-            _error(
-                f"There was an error in building your {cmd_type}. "
-                "Look above for the error message."
-            )
+        _error(
+            f"There was an error in building your {cmd_type}. "
+            "Look above for the error message."
+        )
     else:
         # Builder-specific options
         if builder == "html":
@@ -338,9 +332,10 @@ def builder_specific_actions(exc, builder, output_path, cmd_type, page_name=None
                     file://{path_index.resolve()}\
                 """
                 )
-        if builder == "linkcheck":
-            _message_box("All links in your book are valid. See above for details.")
         if builder == "pdfhtml":
+            import pdb
+
+            pdb.set_trace()
             print(f"Finished generating HTML for {cmd_type}...")
             print(f"Converting {cmd_type} HTML into PDF...")
             path_pdf_output = output_path.parent.joinpath("pdf")

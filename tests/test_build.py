@@ -121,6 +121,15 @@ def test_build_errors(build_resources, cli):
         assert "There was an error in building your book" in str(result.exception)
         raise result.exception
 
+    # Config file path does not exist
+    with pytest.raises(ValueError):
+        result = cli.invoke(
+            commands.build, [p_syntax.as_posix(), "--config", "non_existent_path"]
+        )
+        assert result.exit_code == 1
+        assert "Config file path given, but not found" in str(result.exception)
+        raise result.exception
+
 
 def test_build_docs(docs, cli):
     """Test building the documentation book."""
