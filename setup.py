@@ -14,6 +14,7 @@ doc_reqs = [
     for ii in path_doc_reqs.read_text(encoding="utf8").split("\n")
     if not ii.startswith("#")
 ]
+# Test requirements
 test_reqs = [
     "coverage",
     "pytest>=3.6,<4",
@@ -29,6 +30,16 @@ test_reqs = [
     "pyppeteer",
     "beautifulsoup4",
 ] + doc_reqs
+# Define all extras
+extras = {
+    "code_style": ["flake8<3.8.0,>=3.7.0", "black", "pre-commit==1.17.0"],
+    "sphinx": doc_reqs,
+    "testing": test_reqs,
+    "pdfhtml": ["pyppeteer"],
+}
+# Set alias for all extras with "all"
+extras["all"] = set(ii for jj in extras.values() for ii in jj)
+
 setup(
     name="jupyter-book",
     version=version,
@@ -66,12 +77,7 @@ setup(
         "sphinx_book_theme>=0.0.34",
         "sphinx-thebe>=0.0.6",
     ],
-    extras_require={
-        "code_style": ["flake8<3.8.0,>=3.7.0", "black", "pre-commit==1.17.0"],
-        "sphinx": doc_reqs,
-        "testing": test_reqs,
-        "pdfhtml": "pyppeteer",
-    },
+    extras_require=extras,
     entry_points={
         "console_scripts": [
             "jb = jupyter_book.commands:main",
