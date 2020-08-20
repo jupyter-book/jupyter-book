@@ -21,6 +21,8 @@ jobs:
         python-version: 3.8
     - uses: pre-commit/action@v2.0.0
 
+  # for speed, we run a test matrix against all the tests that do not require TeX,
+  # then test-with-cov for all tests, for a single environment
 
   tests:
 
