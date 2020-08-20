@@ -6,7 +6,8 @@ Utterances is a commenting engine built on top of GitHub issues. It embeds a com
 Utterances is activated on this page. You can see the comment box at the bottom of this page's content. Click the "log in" button and you'll be able to post comments!
 ```
 
-To enable comments using Utterances you need to do the following: 
+To enable comments using Utterances you need to do the following:
+
 1. Make repository is public so that others can comment. 
 1. Install the [utterances app](https://github.com/apps/utterances) on the repo. 
 1. Add the following snippet at the bottom of the page. This HTML activates utteranc.es on a specific page. 
