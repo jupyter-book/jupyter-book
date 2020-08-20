@@ -288,7 +288,7 @@ def create(path_book, cookiecutter):
         cc_url = "gh:executablebooks/cookiecutter-jupyter-book"
         try:
             from cookiecutter.main import cookiecutter
-        except Exception as e:
+        except ModuleNotFoundError as e:
             _error(
                 f"{e}. To install, run\n\n\tpip install cookiecutter", kind=e.__class__,
             )
