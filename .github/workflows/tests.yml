@@ -9,7 +9,48 @@ on:
 
 jobs:
 
+  pre-commit:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+    - uses: pre-commit/action@v2.0.0
+
+
   tests:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .[testing]
+
+    - name: Install Headless Chrome dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -yq $(cat .github/workflows/pyppeteer_reqs.txt)
+
+    # Tests
+    - name: Run pytest
+      run: |
+        pytest --durations=10 --ignore=tests/test_pdf.py
+
+  test-with-cov:
 
     runs-on: ubuntu-latest
     strategy:
@@ -46,100 +87,57 @@ jobs:
       run: |
         pytest --durations=10 --cov=jupyter_book --cov-report=xml --cov-report=term-missing
         coverage xml
+      # for some reason the tests/conftest.py::check_nbs fixture breaks pytest-cov's cov-report outputting
+      # this is why we run `coverage xml` afterwards (required by codecov)
 
-#   pre-commit:
+    - name: Upload to Codecov
+      if: github.repository == 'executablebooks/jupyter-book'
+      uses: codecov/codecov-action@v1
+      with:
+        name: ebp-jupyter-book-pytests-py3.8
+        flags: pytests
+        file: ./coverage.xml
+        fail_ci_if_error: true
 
-#     runs-on: ubuntu-latest
+  # Build the book on OSX to make sure that building the docs works there too
+  build-book-osx:
+    name: Build docs on OSX
+    runs-on: macos-latest
 
-#     steps:
-#     - uses: actions/checkout@v2
-#     - name: Set up Python 3.8
-#       uses: actions/setup-python@v1
-#       with:
-#         python-version: 3.8
-#     - uses: pre-commit/action@v2.0.0
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .[sphinx]
 
+    - name: Build the book
+      run: |
+        jb build docs/
 
-  # tests:
+  publish:
 
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     matrix:
-  #       python-version: [3.6, 3.7, 3.8]
-
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #   - name: Set up Python ${{ matrix.python-version }}
-  #     uses: actions/setup-python@v1
-  #     with:
-  #       python-version: ${{ matrix.python-version }}
-  #   - name: Install dependencies
-  #     run: |
-  #       python -m pip install --upgrade pip
-  #       pip install -e .[testing]
-
-  #   - name: Install Headless Chrome dependencies
-  #     run: |
-  #       sudo apt-get update
-  #       sudo apt-get install -yq $(cat .github/workflows/pyppeteer_reqs.txt)
-
-  #   # Tests
-  #   - name: Run pytest
-  #     run: |
-  #       pytest --durations=10 --cov=jupyter_book --cov-report=xml --cov-report=term-missing --ignore=tests/test_pdf.py
-  #       coverage xml
-  #     # for some reason the tests/conftest.py::check_nbs fixture breaks pytest-cov's cov-report outputting
-  #     # this is why we run `coverage xml` afterwards (required by codecov)
-  #   - name: Upload to Codecov
-  #     if: matrix.python-version == 3.7 && github.repository == 'executablebooks/jupyter-book'
-  #     uses: codecov/codecov-action@v1
-  #     with:
-  #       name: ebp-jupyter-book-pytests-py3.7
-  #       flags: pytests
-  #       file: ./coverage.xml
-  #       fail_ci_if_error: true
-
-
-  # # Build the book on OSX to make sure that building the docs works there too
-  # build-book-osx:
-  #   name: Build docs on OSX
-  #   runs-on: macOS-latest
-
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #   - name: Set up Python 3.7
-  #     uses: actions/setup-python@v1
-  #     with:
-  #       python-version: 3.7
-  #   - name: Install dependencies
-  #     run: |
-  #       python -m pip install --upgrade pip
-  #       pip install -e .[sphinx]
-
-  #   - name: Build the book
-  #     run: |
-  #       jb build docs/
-
-
-  # publish:
-
-  #   name: Publish to PyPi
-  #   needs: [pre-commit, tests]
-  #   if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout source
-  #       uses: actions/checkout@v2
-  #     - name: Set up Python 3.7
-  #       uses: actions/setup-python@v1
-  #       with:
-  #         python-version: 3.7
-  #     - name: Build package
-  #       run: |
-  #         pip install wheel
-  #         python setup.py sdist bdist_wheel
-  #     - name: Publish
-  #       uses: pypa/gh-action-pypi-publish@v1.1.0
-  #       with:
-  #         user: __token__
-  #         password: ${{ secrets.PYPI_KEY }}
+    name: Publish to PyPi
+    needs: [pre-commit, tests, test-with-cov]
+    if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+      - name: Build package
+        run: |
+          pip install wheel
+          python setup.py sdist bdist_wheel
+      - name: Publish
+        uses: pypa/gh-action-pypi-publish@v1.1.0
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_KEY }}
