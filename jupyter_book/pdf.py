@@ -145,7 +145,7 @@ def autobuild_singlepage_latexdocuments(app):
     # TODO: can this be extracted from app.env?
     master_doc = app.config.master_doc
     if "/" in master_doc:
-        sourcedir = os.path.dirname(master_doc) + "-"
+        sourcedir = os.path.dirname(master_doc)
     else:
         sourcedir = ""
 
@@ -158,13 +158,17 @@ def autobuild_singlepage_latexdocuments(app):
         # if doc has a subdir relative to src dir
         docname = None
         parts = Path(doc).parts
-        docname = "-".join(parts)
 
         latex_doc["startdocname"] = doc
         if DEFAULT_VALUES["startdocname"] == doc:
             targetdoc = DEFAULT_VALUES["targetname"]
         else:
-            targetdoc = (docname + ".tex").replace(sourcedir, "")
+            if sourcedir in parts:
+                parts = list(parts)
+                # assuming we need to remove onlt the first instance
+                parts.remove(sourcedir)
+            docname = "-".join(parts)
+            targetdoc = docname + ".tex"
 
         latex_doc["targetname"] = targetdoc
         latex_doc["title"] = title.astext()
