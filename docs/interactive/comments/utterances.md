@@ -10,7 +10,8 @@ To enable comments using Utterances you need to do the following:
 
 1. Make sure the repository is public, so that others can comment. 
 2. Install the [utterances app](https://github.com/apps/utterances) on the repo. 
-1. Add the following snippet at the bottom of the page. This HTML activates utteranc.es on a specific page. 
+3. Add the following snippet at the bottom of the page.
+   This HTML activates utteranc.es on a specific page. 
 
 ```html
 <script src="https://utteranc.es/client.js"
