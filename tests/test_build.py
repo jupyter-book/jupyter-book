@@ -144,7 +144,7 @@ def test_build_docs(docs, cli):
 def test_build_page(pages, cli):
     """Test building a page."""
     page = pages.joinpath("single_page.ipynb")
-    html = pages.joinpath("_build", "html")
+    html = pages.joinpath("_build", "_page", "single_page", "html")
     index = html.joinpath("index.html")
     result = cli.invoke(commands.build, [page.as_posix()])
     assert result.exit_code == 0
@@ -158,7 +158,7 @@ def test_execution_timeout(pages, build_resources, cli):
     books, _ = build_resources
     path_page = pages.joinpath("complex_outputs_unrun.ipynb")
     path_c = books.joinpath("config", "_config_timeout.yml")
-    path_html = pages.joinpath("_build", "html")
+    path_html = pages.joinpath("_build", "_page", "complex_outputs_unrun", "html")
     result = cli.invoke(
         commands.build, [path_page.as_posix(), "--config", path_c.as_posix()]
     )

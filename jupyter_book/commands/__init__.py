@@ -67,14 +67,16 @@ def build(path_source, path_output, config, toc, warningiserror, builder):
 
     config_overrides = {}
     freshenv = False
+    BUILD_PATH = (
+        path_output if path_output is not None else find_config_path(PATH_SRC_FOLDER)
+    )
     if not PATH_SRC_FOLDER.is_dir():
         # it is a single file
         build_type = "page"
         PATH_SRC = Path(path_source)
         PATH_SRC_FOLDER = PATH_SRC.parent.absolute()
         PAGE_NAME = PATH_SRC.with_suffix("").name
-        BUILD_PATH = path_output if path_output is not None else PATH_SRC_FOLDER
-        BUILD_PATH = Path(BUILD_PATH).joinpath("_build")
+        BUILD_PATH = Path(BUILD_PATH).joinpath("_build", "_page", PAGE_NAME)
 
         # Find all files that *aren't* the page we're building and exclude them
         to_exclude = glob(str(PATH_SRC_FOLDER.joinpath("**", "*")), recursive=True)
@@ -95,7 +97,6 @@ def build(path_source, path_output, config, toc, warningiserror, builder):
     else:
         build_type = "book"
         PAGE_NAME = None
-        BUILD_PATH = path_output if path_output is not None else PATH_SRC_FOLDER
         BUILD_PATH = Path(BUILD_PATH).joinpath("_build")
 
         # Table of contents
@@ -289,6 +290,25 @@ def init(path, kernel):
 
 
 # utility functions
+
+
+def find_config_path(path):
+    if path.is_dir():
+        current_dir = path
+    else:
+        current_dir = path.parent
+
+    root_dir = current_dir.root
+    while str(current_dir) != root_dir:
+        config_file = str(current_dir) + "/_config.yml"
+        if os.path.isfile(config_file):
+            return current_dir
+        current_dir = current_dir.parent
+    if not path.is_dir():
+        return path.parent
+    return path
+
+
 def builder_specific_actions(exc, builder, output_path, cmd_type, page_name=None):
     if exc:
         _error(
