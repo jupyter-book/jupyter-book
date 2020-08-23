@@ -293,6 +293,9 @@ def init(path, kernel):
 
 
 def find_config_path(path):
+    """ checks for any _config.yml file in current/parent dirs.
+    if found then returns the path which has _config.yml.
+    else returns the present dir as the path."""
     if path.is_dir():
         current_dir = path
     else:
