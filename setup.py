@@ -53,10 +53,6 @@ setup(
         "pyyaml",
         "docutils>=0.15",
         "sphinx<3",
-        "myst-nb~=0.8.0",
-        # this is required by the current markdow-it-py
-        # but can be remove when moving to myst-nb 0.9
-        "attrs~=19.3",
         "click",
         "setuptools",
         "nbformat",
@@ -68,6 +64,7 @@ setup(
         "sphinx_book_theme>=0.0.34",
         "sphinx-thebe>=0.0.6",
         "jupyter-sphinx @ git+https://github.com/jupyter/jupyter-sphinx@master",
+        "myst-nb @ git+git://github.com/foster999/MyST-NB@master",
     ],
     extras_require={
         "code_style": ["flake8<3.8.0,>=3.7.0", "black", "pre-commit==1.17.0"],
