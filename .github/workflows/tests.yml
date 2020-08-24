@@ -101,11 +101,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -e .[testing]
 
-    - name: Install Headless Chrome dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -yq $(cat .github/workflows/pyppeteer_reqs.txt)
-
     # Tests
     - name: Run pytest
       run: |
