@@ -27,11 +27,11 @@ def test_pdflatex(tmpdir):
     assert path_pdf.joinpath("book.pdf").exists()
 
 
-def test_pdflatex_singlepagepdf(tmpdir):
+def test_pdflatex_individualfiles(tmpdir):
     path_output = Path(tmpdir).absolute()
     path_template = path_tests.parent.joinpath("jupyter_book", "book_template")
     cmd = f"jb build {path_template} --path-output {path_output} \
-            --builder pdflatex --singlepagepdf True"
+            --builder pdflatex --individualfiles"
     run(cmd.split(), check=True)
     path_pdf = path_output.joinpath("_build", "latex")
     assert path_pdf.joinpath("book.pdf").exists()
@@ -42,11 +42,11 @@ def test_pdflatex_singlepagepdf(tmpdir):
     # assert path_pdf.joinpath("intro.pdf").exists()
 
 
-def test_pdflatex_singlepagepdf_nested(tmpdir):
+def test_pdflatex_individualfiles_nested(tmpdir):
     path_output = Path(tmpdir).absolute()
     path_template = path_tests.joinpath("books", "nested")
     cmd = f"jb build {path_template} --path-output {path_output} \
-            --builder pdflatex --singlepagepdf True"
+            --builder pdflatex --individualfiles"
     run(cmd.split(), check=True)
     path_pdf = path_output.joinpath("_build", "latex")
     assert path_pdf.joinpath("index.pdf").exists()

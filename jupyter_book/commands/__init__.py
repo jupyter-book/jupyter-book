@@ -58,11 +58,14 @@ BUILDER_OPTS = {
     type=click.Choice(list(BUILDER_OPTS.keys())),
 )
 @click.option(
-    "--singlepagepdf",
+    "--individualfiles",
+    is_flag=True,
     default=False,
-    help="[pdflatex option] Enable build of PDF files for each page",
+    help="[pdflatex option] Enable build of PDF files for each individual page",
 )
-def build(path_book, path_output, config, toc, warningiserror, builder, singlepagepdf):
+def build(
+    path_book, path_output, config, toc, warningiserror, builder, individualfiles
+):
     """Convert your book's content to HTML or a PDF."""
     # Paths for our notebooks
     PATH_BOOK = Path(path_book).absolute()
@@ -96,17 +99,17 @@ def build(path_book, path_output, config, toc, warningiserror, builder, singlepa
             raise ValueError(f"Config file path given, but not found: {path_config}")
 
     # Builder-specific configuration
-    if singlepagepdf:
+    if individualfiles:
         if builder != "pdflatex":
             _error(
                 """
-                Specified option --singlepagepdf only works with the
+                Specified option --individualfiles only works with the
                 following builders:
 
                 pdflatex
                 """
             )
-        latexoverrides["latex_singlepagepdf"] = True
+        latexoverrides["latex_individualfiles"] = True
 
     # Builder-specific overrides
     if builder == "pdfhtml":

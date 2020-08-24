@@ -222,10 +222,10 @@ def build_sphinx(
                 )
                 app.config.latex_documents = latex_documents
 
-            # Apply Latex Overrides for auto latex_singlepagepdf option
+            # Apply Latex Overrides for auto latex_individualfiles option
             if (
                 latexoverrides is not None
-                and "latex_singlepagepdf" in latexoverrides.keys()
+                and "latex_individualfiles" in latexoverrides.keys()
             ):
                 from .pdf import autobuild_singlepage_latexdocuments
 
