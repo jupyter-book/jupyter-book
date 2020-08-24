@@ -40,6 +40,25 @@ async def _html_to_pdf(html_file, pdf_file):
     # Give it *some* margins to make it look a little prettier
     # I just made these up
     page_margins = {"left": "0in", "right": "0in", "top": ".5in", "bottom": ".5in"}
+    await page.addStyleTag(
+        {
+            "content": """
+                #notebook-container {
+                    box-shadow: none;
+                    padding: unset
+                }
+                div.cell {
+                    page-break-inside: avoid;
+                }
+                div.output_wrapper {
+                    page-break-inside: avoid;
+                }
+                div.output {
+                    page-break-inside: avoid;
+                }
+         """
+        }
+    )
     await page.pdf({"path": pdf_file, "margin": page_margins})
     await browser.close()
 
