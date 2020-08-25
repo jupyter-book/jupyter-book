@@ -80,7 +80,7 @@ def build(path_source, path_output, config, toc, warningiserror, builder):
 
         # checking if the page is inside a sub directory
         # then changing the build_path accordingly
-        if str(PATH_SRC_FOLDER) in str(BUILD_PATH):
+        if str(BUILD_PATH) in str(PATH_SRC_FOLDER):
             subdir = str(PATH_SRC_FOLDER.relative_to(BUILD_PATH))
         if subdir and subdir != ".":
             subdir = subdir.replace("/", "-")
