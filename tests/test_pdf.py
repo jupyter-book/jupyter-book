@@ -24,8 +24,8 @@ def test_pdfhtml(tmpdir):
     )
     cmd = f"jb build {path_page} --path-output {path_output} --builder pdfhtml"
     run(cmd.split(), check=True)
-    path_html = path_output.joinpath("_build", "html")
-    path_pdf = path_output.joinpath("_build", "pdf")
+    path_html = path_output.joinpath("_build", "_page", "markdown", "html")
+    path_pdf = path_output.joinpath("_build", "_page", "markdown", "pdf")
     assert path_html.joinpath("markdown.html").exists()
     assert path_pdf.joinpath("markdown.pdf").exists()
 
@@ -47,5 +47,5 @@ def test_pdflatex(tmpdir):
     )
     cmd = f"jb build {path_page} --path-output {path_output} --builder pdflatex"
     run(cmd.split(), check=True)
-    path_pdf = path_output.joinpath("_build", "latex")
+    path_pdf = path_output.joinpath("_build", "_page", "markdown", "latex")
     assert path_pdf.joinpath("book.pdf").exists()
