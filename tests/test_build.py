@@ -153,6 +153,20 @@ def test_build_page(pages, cli):
     assert 'url=single_page.html" />' in index.read_text()
 
 
+def test_build_page_nested(build_resources, cli):
+    """Test building a page."""
+    books, _ = build_resources
+    src = books.joinpath("nested")
+    page = src.joinpath("contents", "markdown.md")
+    html = src.joinpath("_build", "_page", "contents-markdown", "html")
+    index = html.joinpath("index.html")
+    result = cli.invoke(commands.build, [page.as_posix()])
+    assert result.exit_code == 0
+    assert html.joinpath("markdown.html").exists()
+    assert not html.joinpath("extra_page.html").exists()
+    assert 'url=markdown.html" />' in index.read_text()
+
+
 def test_execution_timeout(pages, build_resources, cli):
     """Testing timeout execution for a page."""
     books, _ = build_resources

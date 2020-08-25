@@ -73,10 +73,21 @@ def build(path_source, path_output, config, toc, warningiserror, builder):
     if not PATH_SRC_FOLDER.is_dir():
         # it is a single file
         build_type = "page"
+        subdir = None
         PATH_SRC = Path(path_source)
         PATH_SRC_FOLDER = PATH_SRC.parent.absolute()
         PAGE_NAME = PATH_SRC.with_suffix("").name
-        BUILD_PATH = Path(BUILD_PATH).joinpath("_build", "_page", PAGE_NAME)
+
+        # checking if the page is inside a sub directory
+        # then changing the build_path accordingly
+        if str(PATH_SRC_FOLDER) in str(BUILD_PATH):
+            subdir = str(PATH_SRC_FOLDER.relative_to(BUILD_PATH))
+        if subdir and subdir != ".":
+            subdir = subdir.replace("/", "-")
+            subdir = subdir + "-" + PAGE_NAME
+            BUILD_PATH = Path(BUILD_PATH).joinpath("_build", "_page", subdir)
+        else:
+            BUILD_PATH = Path(BUILD_PATH).joinpath("_build", "_page", PAGE_NAME)
 
         # Find all files that *aren't* the page we're building and exclude them
         to_exclude = glob(str(PATH_SRC_FOLDER.joinpath("**", "*")), recursive=True)
