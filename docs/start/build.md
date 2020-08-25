@@ -60,8 +60,8 @@ for any {doc}`content source file <../content-types/index>` that is supported by
 
 ```{note}
 Users should note that building **single pages** in the context of a larger project,
-can trigger warnings and incomplete links. For example, building `docs/start/overview.md` will 
-issue a bunch of `unknown document`,`term not in glossary`, and `undefined links` warnings. 
+can trigger warnings and incomplete links. For example, building `docs/start/overview.md` will
+issue a bunch of `unknown document`,`term not in glossary`, and `undefined links` warnings.
 ```
 
 ## Page caching
