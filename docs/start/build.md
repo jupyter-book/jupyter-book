@@ -59,9 +59,9 @@ Your page will be called `mypage.html`. This will work
 for any {doc}`content source file <../content-types/index>` that is supported by Jupyter Book.
 
 ```{note}
-Users be aware that single page builds can cause build warnings and incomplete links.
-For example, building `docs/start/overview.md` will issue a bunch of `unknown document`,
-`term not in glossary`, and `undefined links` warnings. This is expected behaviour.
+Users should note that building **single pages** in the context of a larger project,
+can trigger warnings and incomplete links. For example, building `docs/start/overview.md` will 
+issue a bunch of `unknown document`,`term not in glossary`, and `undefined links` warnings. 
 ```
 
 ## Page caching
