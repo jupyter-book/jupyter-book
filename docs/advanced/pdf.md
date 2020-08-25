@@ -74,7 +74,7 @@ You can also use Latex to build a PDF of your book. This can behave differently 
 operating system and setup. This section tries to recommend a few best-practices.
 
 The default is to build your project as a single PDF file, however it is possible to build
-individual PDF files for each page of the project by enabling the `--individualfiles` option
+individual PDF files for each page of the project by enabling the `--individualpages` option
 when using the `pdflatex` builder.
 
 ### Installation
@@ -113,5 +113,5 @@ jb build mybookname/ --builder latex
 ```
 
 To build PDF files for each page of the project then you can specify the
-option `--individualfiles`. The individual PDF files will be available in the
+option `--individualpages`. The individual PDF files will be available in the
 `latex` build folder and will have the same document name as the source file.
