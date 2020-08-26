@@ -124,7 +124,7 @@ jobs:
 
     - name: Build the book
       run: |
-        jb build docs/
+        jb build -W -n --keep-going --builder html docs/
 
   publish:
 

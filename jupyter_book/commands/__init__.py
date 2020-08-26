@@ -50,23 +50,59 @@ BUILDER_OPTS = {
 @main.command()
 @click.argument("path-source", type=click.Path(exists=True, file_okay=True))
 @click.option("--path-output", default=None, help="Path to the output artifacts")
-@click.option("--config", default=None, help="Path to the YAML configuration file")
-@click.option("--toc", default=None, help="Path to the Table of Contents YAML file")
+@click.option(
+    "--config",
+    default=None,
+    help="Path to the YAML configuration file (default: PATH_SOURCE/_config.yml)",
+)
+@click.option(
+    "--toc",
+    default=None,
+    help="Path to the Table of Contents YAML file (default: PATH_SOURCE/_toc.yml)",
+)
 @click.option("-W", "--warningiserror", is_flag=True, help="Error on warnings.")
+@click.option(
+    "-n",
+    "--nitpick",
+    is_flag=True,
+    help="Run in nit-picky mode, to generates warnings for all missing references.",
+)
+@click.option(
+    "--keep-going",
+    is_flag=True,
+    help="With -W, do not stop the build on the first warning, "
+    "instead error on build completion",
+)
+@click.option(
+    "--all",
+    "freshenv",
+    is_flag=True,
+    help="Re-build all pages. "
+    "The default is to only re-build pages that are new/changed since the last run.",
+)
 @click.option(
     "--builder",
     default="html",
     help="Which builder to use.",
     type=click.Choice(list(BUILDER_OPTS.keys())),
 )
-def build(path_source, path_output, config, toc, warningiserror, builder):
+def build(
+    path_source,
+    path_output,
+    config,
+    toc,
+    warningiserror,
+    nitpick,
+    keep_going,
+    freshenv,
+    builder,
+):
     """Convert your book's or page's content to HTML or a PDF."""
 
     # Paths for the notebooks
     PATH_SRC_FOLDER = Path(path_source).absolute()
 
     config_overrides = {}
-    freshenv = False
     BUILD_PATH = (
         path_output if path_output is not None else find_config_path(PATH_SRC_FOLDER)
     )
@@ -161,6 +197,8 @@ def build(path_source, path_output, config, toc, warningiserror, builder):
         confoverrides=config_overrides,
         builder=BUILDER_OPTS[builder],
         warningiserror=warningiserror,
+        nitpicky=nitpick,
+        keep_going=keep_going,
         freshenv=freshenv,
     )
 

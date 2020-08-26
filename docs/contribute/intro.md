@@ -44,19 +44,20 @@ code looks correct according to a few checks.
 
 ### Run the tests
 
-For information about running tests, see {ref}`developer/tests`.
+For code tests, jupyter-book uses [pytest](https://docs.pytest.org)).
+You may run the tests with the following command:
 
-(developer/tests)=
-## Testing infrastructure
-
-Jupyter Book uses [**`pytest`**](https://docs.pytest.org/en/latest/) for its testing
-infrastructure. You may run the tests with the following command:
-
-```bash
-pytest --ignore=tests/test_pdf.py
+```shell
+>> pytest --ignore=tests/test_pdf.py
 ```
 
-This will run the Jupyter Book test suite, *except for the PDF tests*. This is because
+You can alternatively use [tox](https://tox.readthedocs.io), to run the tests in multiple isolated environments, and also without the need for the initial dependencies install (see the `tox.ini` file for available test environments and further explanation):
+
+```shell
+>> tox -e py38-sphinx3 --  --ignore=tests/test_pdf.py
+```
+
+Either will both run the Jupyter Book test suite, *except for the PDF tests*. This is because
 running the PDF generation tests require a full Latex environment, which you may not have
 set up.
 
@@ -113,8 +114,8 @@ module docstrings for more information.
 ### The template Jupyter Book
 
 Jupyter Book comes bundled with a small template book to show off content. This can
-be immediately built with `jupyter-book build`. It can be found at
-[`jupyter_book/book_template`](https://github.com/executablebooks/jupyter-book/tree/master/jupyter_book/book_template).
+be immediately built with `jupyter-book build`.
+It can be found at [`jupyter_book/book_template`](https://github.com/executablebooks/jupyter-book/tree/master/jupyter_book/book_template).
 
 ### An example
 
