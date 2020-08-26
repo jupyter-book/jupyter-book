@@ -32,6 +32,7 @@ launch_buttons:
 
 sphinx:
   config:
+    myst_override_mathjax: false
     mathjax_config:
       TeX:
         Macros:
