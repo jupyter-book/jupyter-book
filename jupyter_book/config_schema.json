@@ -20,6 +20,35 @@
                 "type": "string"
             }
         },
+        "parse": {
+            "type": "object",
+            "properties": {
+                "myst_extended_syntax": {
+                    "type": "boolean"
+                },
+                "myst_url_schemes": {
+                    "type": [
+                        "null",
+                        "array"
+                    ],
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "stderr_outputs": {
+                    "type": "string",
+                    "enum": [
+                        "show",
+                        "remove",
+                        "remove-warn",
+                        "warn",
+                        "error",
+                        "severe"
+                    ],
+                    "default": "show"
+                }
+            }
+        },
         "execute": {
             "type": "object",
             "properties": {
@@ -43,6 +72,14 @@
                     "type": "number",
                     "minimum": 0,
                     "default": 30
+                },
+                "allow_errors": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "run_in_temp": {
+                    "type": "boolean",
+                    "default": false
                 },
                 "exclude_patterns": {
                     "type": "array",
@@ -87,10 +124,16 @@
                     "type": "object",
                     "properties": {
                         "hypothesis": {
-                            "type": ["boolean", "object"]
+                            "type": [
+                                "boolean",
+                                "object"
+                            ]
                         },
                         "utterances": {
-                            "type": ["boolean", "object"]
+                            "type": [
+                                "boolean",
+                                "object"
+                            ]
                         }
                     },
                     "required": []

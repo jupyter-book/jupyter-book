@@ -99,6 +99,20 @@ def yaml_to_sphinx(yaml: dict):
     # Update the theme options in the main config
     sphinx_config["html_theme_options"] = theme_options
 
+    # parse and rendering
+    parse = yaml.get("parse")
+    if parse:
+        if parse.get("myst_extended_syntax") is True:
+            sphinx_config["myst_dmath_enable"] = True
+            sphinx_config["myst_amsmath_enable"] = True
+            sphinx_config["myst_deflist_enable"] = True
+            sphinx_config["myst_admonition_enable"] = True
+            sphinx_config["myst_html_img_enable"] = True
+        if parse.get("myst_url_schemes"):
+            sphinx_config["myst_url_schemes"] = parse.get("myst_url_schemes")
+        if parse.get("stderr_outputs"):
+            sphinx_config["nb_output_stderr"] = parse.get("stderr_outputs")
+
     execute = yaml.get("execute")
     if execute:
         if execute.get("execute_notebooks") is False:
@@ -113,6 +127,8 @@ def yaml_to_sphinx(yaml: dict):
             sphinx_config,
             {"execution_excludepatterns": execute.get("exclude_patterns", [])},
         )
+        sphinx_config["execution_allow_errors"] = execute.get("allow_errors", False)
+        sphinx_config["execution_in_temp"] = execute.get("run_in_temp", False)
 
     # LaTeX
     latex = yaml.get("latex")

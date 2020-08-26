@@ -15,8 +15,20 @@ exclude_patterns            : []  # Patterns to skip when building the book. Can
 # Execution settings
 execute:
   execute_notebooks         : auto  # Whether to execute notebooks at build time. Must be one of ("auto", "force", "cache", "off")
-  cache                     : ""  # A path to the jupyter cache that will be used to store execution artifacs. Defaults to `_build/.jupyter_cache/`
-  exclude_patterns          : []  # A list of patterns to *skip* in execution (e.g. a notebook that takes a really long time)
+  cache                     : ""    # A path to the jupyter cache that will be used to store execution artifacs. Defaults to `_build/.jupyter_cache/`
+  exclude_patterns          : []    # A list of patterns to *skip* in execution (e.g. a notebook that takes a really long time)
+  timeout                   : 30    # The maximum time (in seconds) each notebook cell is allowed to run.
+  allow_errors              : false # If `False`, when a code cell raises an error the execution is stopped, otherwise all cells are always run.
+  run_in_temp               : false # If `True`, then a temporary directory will be created and used as the command working directory (cwd),
+                                    # otherwise the notebook's parent directory will be the cwd.
+
+#######################################################################################
+# Parse and render settings
+parse:
+  myst_extended_syntax      : false  # enable MyST extended syntax support (see documents for details)
+  myst_url_schemes          : [mailto, http, https]  # URI schemes that will be recognised as external URLs in Markdown links
+  stderr_outputs            : show # Default handling of code cell stderr outputs:
+                                   # One of 'show', 'remove', 'remove-warn', 'warn', 'error' or 'severe'
 
 #######################################################################################
 # HTML-specific settings
@@ -33,6 +45,11 @@ html:
   comments:
     hypothesis              : false
     utterances              : false
+
+#######################################################################################
+# LaTeX-specific settings
+latex:
+  latex_engine              : pdflatex
 
 #######################################################################################
 # Launch button settings

@@ -5,38 +5,37 @@ publication-quality books and documents from computational material.
 
 Here are some of the features of Jupyter Book:
 
-{fa}`check,text-success mr-1` **[Write publication-quality content in markdown](content-types/markdown)**<br />
-You can write in either Jupyter markdown, or an extended flavor of markdown with [publishing features](content/myst).
-This includes support for rich syntax such as [citations and cross-references](content/citations), [math and equations](content/math), and [figures](content/figures).
+{fa}`check,text-success mr-1` [Write publication-quality content in markdown](content-types/markdown)
+: You can write in either Jupyter markdown, or an extended flavor of markdown with [publishing features](content/myst).
+  This includes support for rich syntax such as [citations and cross-references](content/citations), [math and equations](content/math), and [figures](content/figures).
 
-{fa}`check,text-success mr-1` **[Write content in Jupyter Notebooks](content-types/notebooks)**<br />
-This allows you to include your code and outputs in your book.
-You can also write notebooks [entirely in markdown](content-types/myst-notebooks) to execute when you build your book.
+{fa}`check,text-success mr-1` [Write content in Jupyter Notebooks](content-types/notebooks)
+: This allows you to include your code and outputs in your book.
+  You can also write notebooks [entirely in markdown](content-types/myst-notebooks) to execute when you build your book.
 
-{fa}`check,text-success mr-1` **[Execute and cache your book's content](content/execute)**<br />
-For `.ipynb` and markdown notebooks, execute code and insert the latest outputs into your book.
-In addition, {ref}`cache and re-use<execute/cache>` outputs to be used later.
+{fa}`check,text-success mr-1` [Execute and cache your book's content](content/execute)
+: For `.ipynb` and markdown notebooks, execute code and insert the latest outputs into your book.
+  In addition, {ref}`cache and re-use<execute/cache>` outputs to be used later.
 
-{fa}`check,text-success mr-1` **[Insert notebook outputs into your content](content/glue)**<br />
-Generate outputs as you build your documentation, and insert them in-line with your content across pages.
+{fa}`check,text-success mr-1` [Insert notebook outputs into your content](content/glue)
+: Generate outputs as you build your documentation, and insert them in-line with your content across pages.
 
-{fa}`check,text-success mr-1` **[Add interactivity to your book](interactive/launchbuttons)**<br />
-You can [toggle cell visibility](interactive/hiding), include [interactive outputs](interactive/interactive) from Jupyter, and [connect with online services](interactive/launchbuttons) like Binder.
+{fa}`check,text-success mr-1` [Add interactivity to your book](interactive/launchbuttons)
+: You can [toggle cell visibility](interactive/hiding), include [interactive outputs](interactive/interactive) from Jupyter, and [connect with online services](interactive/launchbuttons) like Binder.
 
-{fa}`check,text-success mr-1` **[Generate a variety of outputs](start/build)**<br />
-This includes single- and multi-page websites, as well as [PDF outputs](advanced/pdf).
+{fa}`check,text-success mr-1` [Generate a variety of outputs](start/build)
+: This includes single- and multi-page websites, as well as [PDF outputs](advanced/pdf).
 
-{fa}`check,text-success mr-1` **[Build books with a simple command-line interface](reference/cli)**<br />
-You can quickly generate your books with one command, like so: `jupyter-book build mybook/`
+{fa}`check,text-success mr-1` [Build books with a simple command-line interface](reference/cli)
+: You can quickly generate your books with one command, like so: `jupyter-book build mybook/`
 
 This website is built with Jupyter Book! You can browse its contents to the
 left to see what is possible.
 
-```{admonition} Get involved with Jupyter Book!
-:class: tip
+:::{admonition,tip} Get involved with Jupyter Book!
 Jupyter Book is an open community that welcomes your feedback, input, and contributions!
 [Open an issue](https://github.com/executablebooks/jupyter-book/issues/new/choose) with any feedback. Give an issue a 👍 if you think it should be resolved and check out {ref}`our enhancement voting leaderboard <ebp:feature-note>` for the issues people want to see completed! If you'd like to contribute, [check out our contributing guide](contribute/intro.md).
-```
+:::
 
 ## Get started
 
@@ -47,19 +46,19 @@ To get started with Jupyter Book, you can either
 on a laptop), or
 * review the example project shown immediately below (if you like learning from examples).
 
-```{warning}
+:::{warning}
 Jupyter Book `0.7` is a total re-write from `0.6`, and some things have changed.
 See [the legacy upgrade guide](https://github.com/executablebooks/jupyter-book/wiki/The-Jupyter-Book-Wiki)
 for how to upgrade, and [legacy.jupyterbook.org](https://legacy.jupyterbook.org) for
 legacy documentation.
 
 In addition, note that Jupyter Book is pre-1.0. Its API may change!
-```
+:::
 
 To install the `jupyter-book` pre-release from pip, run the following command:
 
-```
-pip install -U jupyter-book
+```console
+$ pip install -U jupyter-book
 ```
 
 (example-project)=
@@ -80,7 +79,7 @@ These files are written in [MyST markdown](content/myst), an
 extension of Jupyter notebook markdown that allows for additional scientific markup.
 They could alternatively have been written directly as Jupyter notebooks.
 
-**Build the demo book**
+### Build the demo book
 
 You can build this book locally on the command line via the following steps:
 
@@ -128,7 +127,7 @@ You can build this book locally on the command line via the following steps:
 Now you might like to try editing the files in ``mini_book/docs`` and then
 rebuilding.
 
-**Further Reading**
+### Further Reading
 
 See [the full QuantEcon example](https://executablebooks.github.io/quantecon-example/docs/index.html)
 for a longer Jupyter Book use case, drawn from the same source material.
@@ -138,7 +137,8 @@ For more information on how to use Jupyter Book, see {doc}`start/overview`.
 ## Under the hood - the components of Jupyter Book
 
 Jupyter Book is a wrapper around a collection of tools in the Python
-ecosystem that make it easier to publish computational documents. Here are
+ecosystem that make it easier to publish computational documents.
+Here are
 a few key pieces:
 
 * It uses {term}`the MyST markdown language<MyST>` in
@@ -152,8 +152,7 @@ a few key pieces:
   for beautiful HTML output.
 * It uses a collection of Sphinx plugins and tools to add new functionality.
 
-For more information about the project behind many of these tools, see
-[The Executable Book Project](https://ebp.jupyterbook.org/) documentation.
+For more information about the project behind many of these tools, see [The Executable Book Project](https://ebp.jupyterbook.org/) documentation.
 
 ## Contribute to Jupyter Book
 

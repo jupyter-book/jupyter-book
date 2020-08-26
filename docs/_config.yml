@@ -10,6 +10,9 @@ description: >- # this means to ignore newlines until "baseurl:"
 execute:
   execute_notebooks: cache
 
+parse:
+  myst_extended_syntax: true
+
 html:
   favicon: images/favicon.ico
   google_analytics_id: UA-52617120-7
