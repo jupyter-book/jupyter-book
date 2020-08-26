@@ -2,8 +2,15 @@ from pathlib import Path
 
 import pytest
 from bs4 import BeautifulSoup
+from click.testing import CliRunner
 
 from jupyter_book import commands
+
+
+def test_version(cli: CliRunner):
+    result = cli.invoke(commands.main, "--version")
+    assert result.exit_code == 0, result.output
+    assert "Jupyter Book" in result.output, result.output
 
 
 def test_create(tmpdir, cli):
