@@ -205,7 +205,7 @@ def build(
         OUTPUT_PATH = BUILD_PATH.joinpath("latex")
 
     # Now call the Sphinx commands to build
-    exc = build_sphinx(
+    result = build_sphinx(
         PATH_SRC_FOLDER,
         OUTPUT_PATH,
         noconfig=True,
@@ -218,7 +218,9 @@ def build(
         freshenv=freshenv,
     )
 
-    builder_specific_actions(exc, builder, OUTPUT_PATH, build_type, PAGE_NAME)
+    builder_specific_actions(
+        result, builder, OUTPUT_PATH, build_type, PAGE_NAME, click.echo
+    )
 
 
 @main.command()
@@ -381,93 +383,105 @@ def find_config_path(path):
     return path
 
 
-def builder_specific_actions(exc, builder, output_path, cmd_type, page_name=None):
+def builder_specific_actions(
+    result, builder, output_path, cmd_type, page_name=None, print_func=print
+):
+    """Run post-sphinx-build actions.
+
+    :param result: the result of the build execution; a status code or and exception
+    """
 
     from sphinx.util.osutil import cd
 
     from ..pdf import html_to_pdf
     from ..sphinx import REDIRECT_TEXT
 
-    if exc:
-        _error(
+    if isinstance(result, Exception):
+        msg = (
             f"There was an error in building your {cmd_type}. "
-            "Look above for the error message."
+            "Look above for the cause."
         )
-    else:
-        # Builder-specific options
-        if builder == "html":
+        raise RuntimeError(_message_box(msg, color="red", doprint=False)) from result
+    elif result:
+        msg = (
+            f"Building your {cmd_type}, return a non-zero exit code ({result}). "
+            "Look above for the cause."
+        )
+        _message_box(msg, color="red", print_func=click.echo)
+        sys.exit(result)
+
+    # Builder-specific options
+    if builder == "html":
+        path_output_rel = Path(op.relpath(output_path, Path()))
+        if cmd_type == "page":
+            path_page = path_output_rel.joinpath(f"{page_name}.html")
+            # Write an index file if it doesn't exist so we get redirects
+            path_index = path_output_rel.joinpath("index.html")
+            if not path_index.exists():
+                path_index.write_text(REDIRECT_TEXT.format(first_page=path_page.name))
+
+            _message_box(
+                dedent(
+                    f"""
+                    Page build finished.
+                        Your page folder is: {path_page.parent}{os.sep}
+                        Open your page at: {path_page}
+                    """
+                )
+            )
+
+        elif cmd_type == "book":
             path_output_rel = Path(op.relpath(output_path, Path()))
-            if cmd_type == "page":
-                path_page = path_output_rel.joinpath(f"{page_name}.html")
-                # Write an index file if it doesn't exist so we get redirects
-                path_index = path_output_rel.joinpath("index.html")
-                if not path_index.exists():
-                    path_index.write_text(
-                        REDIRECT_TEXT.format(first_page=path_page.name)
-                    )
-
-                _message_box(
-                    dedent(
-                        f"""
-                        Page build finished.
-                            Your page folder is: {path_page.parent}{os.sep}
-                            Open your page at: {path_page}
-                        """
-                    )
-                )
-
-            elif cmd_type == "book":
-                path_output_rel = Path(op.relpath(output_path, Path()))
-                path_index = path_output_rel.joinpath("index.html")
-                _message_box(
-                    f"""\
-                Finished generating HTML for {cmd_type}.
-                Your book's HTML pages are here:
-                    {path_output_rel}{os.sep}
-                You can look at your book by opening this file in a browser:
-                    {path_index}
-                Or paste this line directly into your browser bar:
-                    file://{path_index.resolve()}\
-                """
-                )
-        if builder == "pdfhtml":
-            print(f"Finished generating HTML for {cmd_type}...")
-            print(f"Converting {cmd_type} HTML into PDF...")
-            path_pdf_output = output_path.parent.joinpath("pdf")
-            path_pdf_output.mkdir(exist_ok=True)
-            if cmd_type == "book":
-                path_pdf_output = path_pdf_output.joinpath("book.pdf")
-                html_to_pdf(output_path.joinpath("index.html"), path_pdf_output)
-            elif cmd_type == "page":
-                path_pdf_output = path_pdf_output.joinpath(page_name + ".pdf")
-                html_to_pdf(output_path.joinpath(page_name + ".html"), path_pdf_output)
-            path_pdf_output_rel = Path(op.relpath(path_pdf_output, Path()))
+            path_index = path_output_rel.joinpath("index.html")
             _message_box(
                 f"""\
-            Finished generating PDF via HTML for {cmd_type}. Your PDF is here:
-                {path_pdf_output_rel}\
+            Finished generating HTML for {cmd_type}.
+            Your book's HTML pages are here:
+                {path_output_rel}{os.sep}
+            You can look at your book by opening this file in a browser:
+                {path_index}
+            Or paste this line directly into your browser bar:
+                file://{path_index.resolve()}\
             """
             )
-        if builder == "pdflatex":
-            print(f"Finished generating latex for {cmd_type}...")
-            print(f"Converting {cmd_type} latex into PDF...")
-            # Convert to PDF via tex and template built Makefile and make.bat
-            if sys.platform == "win32":
-                makecmd = os.environ.get("MAKE", "make.bat")
-            else:
-                makecmd = os.environ.get("MAKE", "make")
-            try:
-                with cd(output_path):
-                    output = subprocess.run([makecmd, "all-pdf"])
-                    if output.returncode != 0:
-                        _error("Error: Failed to build pdf")
-                        return output.returncode
-                _message_box(
-                    f"""\
-                A PDF of your {cmd_type} can be found at:
-                    {output_path}
-                """
-                )
-            except OSError:
-                _error("Error: Failed to run: %s" % makecmd)
-                return 1
+    if builder == "pdfhtml":
+        print_func(f"Finished generating HTML for {cmd_type}...")
+        print_func(f"Converting {cmd_type} HTML into PDF...")
+        path_pdf_output = output_path.parent.joinpath("pdf")
+        path_pdf_output.mkdir(exist_ok=True)
+        if cmd_type == "book":
+            path_pdf_output = path_pdf_output.joinpath("book.pdf")
+            html_to_pdf(output_path.joinpath("index.html"), path_pdf_output)
+        elif cmd_type == "page":
+            path_pdf_output = path_pdf_output.joinpath(page_name + ".pdf")
+            html_to_pdf(output_path.joinpath(page_name + ".html"), path_pdf_output)
+        path_pdf_output_rel = Path(op.relpath(path_pdf_output, Path()))
+        _message_box(
+            f"""\
+        Finished generating PDF via HTML for {cmd_type}. Your PDF is here:
+            {path_pdf_output_rel}\
+        """
+        )
+    if builder == "pdflatex":
+        print_func(f"Finished generating latex for {cmd_type}...")
+        print_func(f"Converting {cmd_type} latex into PDF...")
+        # Convert to PDF via tex and template built Makefile and make.bat
+        if sys.platform == "win32":
+            makecmd = os.environ.get("MAKE", "make.bat")
+        else:
+            makecmd = os.environ.get("MAKE", "make")
+        try:
+            with cd(output_path):
+                output = subprocess.run([makecmd, "all-pdf"])
+                if output.returncode != 0:
+                    _error("Error: Failed to build pdf")
+                    return output.returncode
+            _message_box(
+                f"""\
+            A PDF of your {cmd_type} can be found at:
+                {output_path}
+            """
+            )
+        except OSError:
+            _error("Error: Failed to run: %s" % makecmd)
+            return 1
