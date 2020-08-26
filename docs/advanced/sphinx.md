@@ -169,11 +169,11 @@ You can also define TeX macros for a specific file by introducing them at the be
 The commands can be used inside a `math` directive, `$$` or inline `$`, for example
 ```md
 $$
-A = \bmat 1 & 1 \\ 2 & 1\\ 3 & 2 \emat,\ b=\bmat 2\\ 3 \\ 4\emat,\ \gamma = 0.5
+A = \bmat{} 1 & 1 \\ 2 & 1\\ 3 & 2 \emat{},\ b=\bmat{} 2\\ 3 \\ 4\emat{},\ \gamma = 0.5
 $$
 ```
 will be rendered as
 
 $$
-A = \bmat 1 & 1 \\ 2 & 1\\ 3 & 2 \emat,\ b=\bmat 2\\ 3 \\ 4\emat,\ \gamma = 0.5
+A = \bmat{} 1 & 1 \\ 2 & 1\\ 3 & 2 \emat{},\ b=\bmat{} 2\\ 3 \\ 4\emat{},\ \gamma = 0.5
 $$
