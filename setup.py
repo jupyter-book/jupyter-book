@@ -52,11 +52,8 @@ setup(
     install_requires=[
         "pyyaml",
         "docutils>=0.15",
-        "sphinx<3",
-        "myst-nb~=0.8.0",
-        # this is required by the current markdow-it-py
-        # but can be remove when moving to myst-nb 0.9
-        "attrs~=19.3",
+        "sphinx>=2,<4",
+        "myst-nb~=0.9.1",
         "click",
         "setuptools",
         "nbformat",
@@ -65,7 +62,7 @@ setup(
         "sphinx-copybutton",
         "sphinx-comments",
         "sphinxcontrib-bibtex",
-        "sphinx_book_theme>=0.0.34",
+        "sphinx_book_theme>=0.0.36",
         "sphinx-thebe>=0.0.6",
     ],
     extras_require={
