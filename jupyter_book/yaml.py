@@ -1,5 +1,10 @@
 """A small sphinx extension to let you configure a site with YAML metadata."""
 from pathlib import Path
+from functools import lru_cache
+import json
+import jsonschema
+
+from .utils import _message_box
 
 
 # Transform a "Jupyter Book" YAML configuration file into a Sphinx configuration file.
@@ -7,9 +12,40 @@ from pathlib import Path
 # e.g., 'logo' instead of 'html_logo'.
 # Note that this should only be used for **top level** keys.
 PATH_YAML_DEFAULT = Path(__file__).parent.joinpath("default_config.yml")
+PATH_JSON_SCHEMA = Path(__file__).parent.joinpath("config_schema.json")
 
 
-def yaml_to_sphinx(yaml):
+@lru_cache(1)
+def get_validator():
+    schema = json.loads(PATH_JSON_SCHEMA.read_text("utf8"))
+    validator_cls = jsonschema.validators.validator_for(schema)
+    validator_cls.check_schema(schema)
+    return validator_cls(schema=schema)
+
+
+def validate_yaml(yaml: dict, raise_on_errors=False, print_func=print):
+    """Validate the YAML configuration against a JSON schema."""
+    errors = sorted(get_validator().iter_errors(yaml), key=lambda e: e.path)
+    error_msg = "\n".join(
+        [
+            "- {} [key path: '{}']".format(
+                error.message, "/".join([str(p) for p in error.path])
+            )
+            for error in errors
+        ]
+    )
+    if not errors:
+        return
+    if raise_on_errors:
+        raise jsonschema.ValidationError(error_msg)
+    return _message_box(
+        f"Warning: Validation errors in config:\n{error_msg}",
+        color="orange",
+        print_func=print_func,
+    )
+
+
+def yaml_to_sphinx(yaml: dict):
     """Convert a Jupyter Book style config structure into a Sphinx config dict."""
     sphinx_config = {
         "exclude_patterns": [

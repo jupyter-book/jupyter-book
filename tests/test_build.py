@@ -3,8 +3,10 @@ from pathlib import Path
 import pytest
 from bs4 import BeautifulSoup
 from click.testing import CliRunner
+import jsonschema
 
 from jupyter_book import commands
+from jupyter_book.yaml import validate_yaml
 
 
 def test_version(cli: CliRunner):
@@ -19,6 +21,13 @@ def test_create(tmpdir, cli):
     assert result.exit_code == 0
     assert book.joinpath("_config.yml").exists()
     assert len(list(book.iterdir())) == 9
+
+
+def test_validate_yaml():
+    with pytest.raises(jsonschema.ValidationError):
+        validate_yaml({"title": 1}, raise_on_errors=True)
+    assert "Warning" in validate_yaml({"title": 1}, raise_on_errors=False)
+    assert validate_yaml({"title": ""}, raise_on_errors=False) is None
 
 
 def test_build_from_template(tmpdir, cli):

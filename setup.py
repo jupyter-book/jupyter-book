@@ -58,6 +58,7 @@ setup(
         "setuptools",
         "nbformat",
         "nbconvert",
+        "jsonschema",
         "sphinx_togglebutton",
         "sphinx-copybutton",
         "sphinx-comments",

@@ -24,4 +24,5 @@ include docs/requirements.txt
 recursive-include examples *
 
 include jupyter_book/default_config.yml
+include jupyter_book/config_schema.json
 recursive-include jupyter_book/book_template *

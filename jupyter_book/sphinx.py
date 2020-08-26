@@ -9,7 +9,7 @@ from sphinx.util.docutils import docutils_namespace, patch_docutils
 from sphinx.application import Sphinx
 from sphinx.cmd.build import handle_exception
 
-from .yaml import PATH_YAML_DEFAULT, yaml_to_sphinx, _recursive_update
+from .yaml import PATH_YAML_DEFAULT, yaml_to_sphinx, _recursive_update, validate_yaml
 
 
 REDIRECT_TEXT = """
@@ -100,6 +100,7 @@ def build_sphinx(
     if path_config:
         path_config = Path(path_config)
         yaml_config = yaml.safe_load(path_config.read_text(encoding="utf8"))
+        validate_yaml(yaml_config)
 
         # Check for manual Sphinx over-rides which we'll apply later to take precedence
         sphinx_overrides = yaml_config.get("sphinx", {}).get("config")
