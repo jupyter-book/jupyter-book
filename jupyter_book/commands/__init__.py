@@ -1,39 +1,53 @@
-"""Defines the commands that the CLI will use."""
+"""Defines the commands that the CLI will use.
+
+IMPORTANT: Top-level imports should be minimised here, to improve CLI responsiveness
+"""
 import sys
 import os
 import os.path as op
 from pathlib import Path
-import click
 from glob import glob
 import shutil as sh
 import subprocess
 from textwrap import dedent
-from sphinx.util.osutil import cd
-from sphinx.util import logging
 
-from ..sphinx import build_sphinx, REDIRECT_TEXT
-from ..toc import build_toc
-from ..pdf import html_to_pdf
-from ..utils import _message_box, _error, init_myst_file
-from .. import __version__ as jbv
-from sphinx_book_theme import __version__ as sbtv
-from myst_nb import __version__ as mnbv
-from myst_parser import __version__ as mpv
-from jupyter_cache import __version__ as jcv
+import click
 
-versions = {
-    "Jupyter Book": jbv,
-    "MyST-NB": mnbv,
-    "Sphinx Book Theme": sbtv,
-    "MyST-Parser": mpv,
-    "Jupyter-Cache": jcv,
-}
-versions_string = "\n".join(f"{tt}: {vv}" for tt, vv in versions.items())
-logger = logging.getLogger(__name__)
+from ..utils import _message_box, _error
 
 
-@click.group()
-@click.version_option(message=versions_string)
+def version_callback(ctx, param, value):
+    """Callback for supplying version information"""
+    if not value or ctx.resilient_parsing:
+        return
+
+    from .. import __version__ as jbv
+    from sphinx_book_theme import __version__ as sbtv
+    from myst_nb import __version__ as mnbv
+    from myst_parser import __version__ as mpv
+    from jupyter_cache import __version__ as jcv
+
+    versions = {
+        "Jupyter Book": jbv,
+        "MyST-NB": mnbv,
+        "Sphinx Book Theme": sbtv,
+        "MyST-Parser": mpv,
+        "Jupyter-Cache": jcv,
+    }
+    versions_string = "\n".join(f"{tt}: {vv}" for tt, vv in versions.items())
+    click.echo(versions_string)
+    ctx.exit()
+
+
+@click.group(context_settings={"help_option_names": ["-h", "--help"]})
+@click.option(
+    "--version",
+    is_flag=True,
+    expose_value=False,
+    is_eager=True,
+    help="Show the version and exit.",
+    callback=version_callback,
+)
 def main():
     """Build and manage books with Jupyter."""
     pass
@@ -98,6 +112,8 @@ def build(
     builder,
 ):
     """Convert your book's or page's content to HTML or a PDF."""
+
+    from ..sphinx import build_sphinx
 
     # Paths for the notebooks
     PATH_SRC_FOLDER = Path(path_source).absolute()
@@ -245,6 +261,8 @@ def toc(path, filename_split_char, skip_text, output_folder, add_titles):
     chosen as the first file. Note that each folder must have at least one content file
     in it.
     """
+    from ..toc import build_toc
+
     out_yaml = build_toc(path, filename_split_char, skip_text, add_titles)
     if output_folder is None:
         output_folder = path
@@ -334,6 +352,8 @@ def myst():
 def init(path, kernel):
     """Add Jupytext metadata for your markdown file(s), with optional Kernel name.
     """
+    from ..utils import init_myst_file
+
     for ipath in path:
         init_myst_file(ipath, kernel, verbose=True)
 
@@ -362,6 +382,12 @@ def find_config_path(path):
 
 
 def builder_specific_actions(exc, builder, output_path, cmd_type, page_name=None):
+
+    from sphinx.util.osutil import cd
+
+    from ..pdf import html_to_pdf
+    from ..sphinx import REDIRECT_TEXT
+
     if exc:
         _error(
             f"There was an error in building your {cmd_type}. "
