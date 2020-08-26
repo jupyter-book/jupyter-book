@@ -15,26 +15,29 @@ REDIRECT_TEXT = """
 """
 
 ROOT = Path(__file__)
-# Some configuration values that are really sphinx-specific
-DEFAULT_CONFIG = dict(
-    extensions=[
-        "sphinx_togglebutton",
-        "sphinx_copybutton",
-        "myst_nb",
-        "jupyter_book",
-        "sphinxcontrib.bibtex",
-        "sphinx_thebe",
-        "sphinx_comments",
-        "sphinx.ext.intersphinx",
-    ],
-    language=None,
-    pygments_style="sphinx",
-    html_theme="sphinx_book_theme",
-    html_theme_options={"search_bar_text": "Search this book..."},
-    html_add_permalinks="¶",
-    html_sourcelink_suffix="",
-    numfig=True,
-)
+
+
+def get_default_config():
+    """Some configuration values that are really sphinx-specific."""
+    return dict(
+        extensions=[
+            "sphinx_togglebutton",
+            "sphinx_copybutton",
+            "myst_nb",
+            "jupyter_book",
+            "sphinxcontrib.bibtex",
+            "sphinx_thebe",
+            "sphinx_comments",
+            "sphinx.ext.intersphinx",
+        ],
+        language=None,
+        pygments_style="sphinx",
+        html_theme="sphinx_book_theme",
+        html_theme_options={"search_bar_text": "Search this book..."},
+        html_add_permalinks="¶",
+        html_sourcelink_suffix="",
+        numfig=True,
+    )
 
 
 def build_sphinx(
@@ -84,7 +87,7 @@ def build_sphinx(
     # Configuration updates
 
     # Start with the default Sphinx config
-    sphinx_config = DEFAULT_CONFIG.copy()
+    sphinx_config = get_default_config()
 
     # Update with the *default* config.yml
     default_yaml_config = yaml.safe_load(PATH_YAML_DEFAULT.read_text(encoding="utf8"))
