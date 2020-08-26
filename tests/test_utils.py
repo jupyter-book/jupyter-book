@@ -1,10 +1,13 @@
 from pathlib import Path
-from subprocess import run, PIPE
+
+from click.testing import CliRunner
 import pytest
+
+from jupyter_book.commands import init as myst_init
 from jupyter_book.utils import init_myst_file
 
 
-def test_myst_init(tmpdir):
+def test_myst_init(cli: CliRunner, tmpdir):
     """Test adding myst metadata to text files."""
     path = Path(tmpdir).joinpath("tmp.md").absolute()
     text = "TEST"
@@ -19,7 +22,8 @@ def test_myst_init(tmpdir):
     assert "name: python3" in new_text
 
     # Make sure the CLI works too
-    run(f"jb myst init {path} --kernel python3".split(), check=True, stdout=PIPE)
+    result = cli.invoke(myst_init, f"{path} --kernel python3".split())
+    assert result.exit_code == 0
 
     # Non-existent kernel
     with pytest.raises(Exception) as err:

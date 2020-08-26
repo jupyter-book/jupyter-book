@@ -1,9 +1,10 @@
 """Testing clean functionality of the CLI."""
-
-from pathlib import Path
-from subprocess import run, PIPE
-import pytest
 import os
+from pathlib import Path
+
+from click.testing import CliRunner
+
+from jupyter_book.commands import build, clean
 
 
 path_tests = Path(__file__).parent.resolve()
@@ -11,10 +12,11 @@ path_books = path_tests.joinpath("books")
 path_root = path_tests.parent
 
 
-def test_clean_book(tmpdir):
+def test_clean_book(cli: CliRunner, tmpdir):
     path = path_books.joinpath("clean_cache")
     build_path = path.joinpath("_build")
-    run(f"jb build {path}".split())
+    result = cli.invoke(build, str(path))
+    assert result.exit_code == 0
 
     # Ensure _build exists
     assert build_path.exists()
@@ -23,30 +25,31 @@ def test_clean_book(tmpdir):
     assert build_path.joinpath(".jupyter_cache").exists()
 
     # Empty _build except .jupyter_cache
-    run(f"jb clean {path}".split())
+    result = cli.invoke(clean, str(path))
+    assert result.exit_code == 0
 
     # Ensure _build and .jupyter_cache exist
     assert build_path.exists()
     assert build_path.joinpath(".jupyter_cache").exists()
 
-    run(f"jb clean --all {path}".split())
+    result = cli.invoke(clean, ("--all", str(path)))
+    assert result.exit_code == 0
     # Ensure _build is removed
     assert not path.joinpath("_build").exists()
 
     # === Excepted errors ===
     # Non-existent folder
-    with pytest.raises(ValueError):
-        out = run("jb clean doesnt/exist".split(), stderr=PIPE)
-        err = out.stderr.decode()
-        if "ValueError" in err:
-            raise ValueError(err)
-    assert "Path to book isn't a directory" in err
+    result = cli.invoke(clean, "doesnt/exist")
+    assert result.exit_code != 0
+    assert isinstance(result.exception, RuntimeError)
+    assert "Path to book isn't a directory" in str(result.exception)
 
 
-def test_clean_html(tmpdir):
+def test_clean_html(cli, tmpdir):
     path = path_books.joinpath("clean_cache")
     build_path = path.joinpath("_build")
-    run(f"jb build {path}".split())
+    result = cli.invoke(build, str(path))
+    assert result.exit_code == 0
 
     # Ensure _build exists
     assert build_path.exists()
@@ -54,7 +57,8 @@ def test_clean_html(tmpdir):
     assert build_path.joinpath("html").exists()
 
     # Remove html
-    run(f"jb clean --html {path}".split())
+    result = cli.invoke(clean, ("--html", str(path)))
+    assert result.exit_code == 0
 
     # Ensure _build  exists
     assert build_path.exists()
@@ -63,9 +67,10 @@ def test_clean_html(tmpdir):
     assert not build_path.joinpath("html").exists()
 
 
-def test_clean_latex(tmpdir):
+def test_clean_latex(cli, tmpdir):
     path = path_books.joinpath("clean_cache")
-    run(f"jb build {path}".split())
+    result = cli.invoke(build, str(path))
+    assert result.exit_code == 0
 
     build_path = path.joinpath("_build")
     # Ensure _build exists
@@ -77,7 +82,8 @@ def test_clean_latex(tmpdir):
     assert build_path.joinpath("latex").exists()
 
     # Remove html
-    run(f"jb clean --latex {path}".split())
+    result = cli.invoke(clean, ("--latex", str(path)))
+    assert result.exit_code == 0
 
     # Ensure _build exists
     assert build_path.exists()
@@ -86,9 +92,10 @@ def test_clean_latex(tmpdir):
     assert not build_path.joinpath("latex").exists()
 
 
-def test_clean_html_latex(tmpdir):
+def test_clean_html_latex(cli, tmpdir):
     path = path_books.joinpath("clean_cache")
-    run(f"jb build {path}".split())
+    result = cli.invoke(build, str(path))
+    assert result.exit_code == 0
 
     build_path = path.joinpath("_build")
 
@@ -103,7 +110,8 @@ def test_clean_html_latex(tmpdir):
     assert build_path.joinpath("html").exists()
 
     # Remove html
-    run(f"jb clean --html --latex {path}".split())
+    result = cli.invoke(clean, ("--html", "--latex", str(path)))
+    assert result.exit_code == 0
 
     # Ensure _build exists
     assert build_path.exists()

@@ -1,18 +1,22 @@
 """Testing PDF functionality of the CLI."""
 
 from pathlib import Path
-from subprocess import run
+
+from click.testing import CliRunner
+
+from jupyter_book.commands import build
 
 path_tests = Path(__file__).parent
 
 
-def test_pdfhtml(tmpdir):
+def test_pdfhtml(cli: CliRunner, tmpdir):
     path_output = Path(tmpdir).absolute()
 
     # test for build
     path_template = path_tests.parent.joinpath("jupyter_book", "book_template")
-    cmd = f"jb build {path_template} --path-output {path_output} --builder pdfhtml"
-    run(cmd.split(), check=True)
+    cmd = f"{path_template} --path-output {path_output} --builder pdfhtml"
+    result = cli.invoke(build, cmd.split())
+    assert result.exit_code == 0
     path_html = path_output.joinpath("_build", "html")
     path_pdf = path_output.joinpath("_build", "pdf")
     assert path_html.joinpath("index.html").exists()
@@ -22,8 +26,9 @@ def test_pdfhtml(tmpdir):
     path_page = path_tests.parent.joinpath("jupyter_book", "book_template").joinpath(
         "markdown.md"
     )
-    cmd = f"jb build {path_page} --path-output {path_output} --builder pdfhtml"
-    run(cmd.split(), check=True)
+    cmd = f"{path_page} --path-output {path_output} --builder pdfhtml"
+    result = cli.invoke(build, cmd.split())
+    assert result.exit_code == 0
     path_html = path_output.joinpath("_build", "_page", "markdown", "html")
     path_pdf = path_output.joinpath("_build", "_page", "markdown", "pdf")
     assert path_html.joinpath("markdown.html").exists()
@@ -31,13 +36,14 @@ def test_pdfhtml(tmpdir):
 
 
 # TODO: Update to include more detailed tests for pdflatex build chain
-def test_pdflatex(tmpdir):
+def test_pdflatex(cli: CliRunner, tmpdir):
     path_output = Path(tmpdir).absolute()
 
     # test for build
     path_template = path_tests.parent.joinpath("jupyter_book", "book_template")
-    cmd = f"jb build {path_template} --path-output {path_output} --builder pdflatex"
-    run(cmd.split(), check=True)
+    cmd = f"{path_template} --path-output {path_output} --builder pdflatex"
+    result = cli.invoke(build, cmd.split())
+    assert result.exit_code == 0
     path_pdf = path_output.joinpath("_build", "latex")
     assert path_pdf.joinpath("book.pdf").exists()
 
@@ -45,7 +51,8 @@ def test_pdflatex(tmpdir):
     path_page = path_tests.parent.joinpath("jupyter_book", "book_template").joinpath(
         "markdown.md"
     )
-    cmd = f"jb build {path_page} --path-output {path_output} --builder pdflatex"
-    run(cmd.split(), check=True)
+    cmd = f"{path_page} --path-output {path_output} --builder pdflatex"
+    result = cli.invoke(build, cmd.split())
+    assert result.exit_code == 0
     path_pdf = path_output.joinpath("_build", "_page", "markdown", "latex")
     assert path_pdf.joinpath("book.pdf").exists()

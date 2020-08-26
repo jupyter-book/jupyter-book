@@ -197,7 +197,7 @@ def build(
             path_config = str(PATH_SRC_FOLDER.joinpath("_config.yml"))
     if path_config:
         if not Path(path_config).exists():
-            raise ValueError(f"Config file path given, but not found: {path_config}")
+            raise IOError(f"Config file path given, but not found: {path_config}")
 
     if builder in ["html", "pdfhtml"]:
         OUTPUT_PATH = BUILD_PATH.joinpath("html")

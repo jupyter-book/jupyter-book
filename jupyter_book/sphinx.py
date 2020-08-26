@@ -1,8 +1,10 @@
 """Tools for interacting with Sphinx."""
-import sys
 import os.path as op
-import yaml
 from pathlib import Path
+import sys
+from typing import Union
+
+import yaml
 from sphinx.util.docutils import docutils_namespace, patch_docutils
 from sphinx.application import Sphinx
 from sphinx.cmd.build import handle_exception
@@ -63,7 +65,7 @@ def build_sphinx(
     verbosity=0,
     jobs=None,
     keep_going=False,
-):
+) -> Union[int, Exception]:
     """Sphinx build "main" command-line entry.
 
     This is a slightly modified version of
@@ -170,7 +172,7 @@ def build_sphinx(
         if not op.isfile(filename):
             missing_files.append(filename)
     if missing_files:
-        raise ValueError("cannot find files %r" % missing_files)
+        raise IOError("cannot find files %r" % missing_files)
 
     if force_all and filenames:
         raise ValueError("cannot combine -a option and filenames")
@@ -196,7 +198,9 @@ def build_sphinx(
     # Build with Sphinx
     app = None  # In case we fail, this allows us to handle the exception
     try:
-        # This patch is what Sphinx does, so we copy it blindly...
+        # These patches temporarily override docutils global variables,
+        # such as the dictionaries of directives, roles and nodes
+        # NOTE: this action is not thread-safe and not suitable for asynchronous use!
         with patch_docutils(confdir), docutils_namespace():
             app = Sphinx(
                 srcdir=sourcedir,
@@ -232,14 +236,14 @@ def build_sphinx(
             if sphinx_config["globaltoc_path"]:
                 path_toc = Path(sphinx_config["globaltoc_path"])
                 if not path_toc.exists():
-                    raise ValueError(
+                    raise IOError(
                         (
                             "You gave a Configuration file path"
                             f"that doesn't exist: {path_toc}"
                         )
                     )
                 if path_toc.suffix not in [".yml", ".yaml"]:
-                    raise ValueError(
+                    raise IOError(
                         "You gave a Configuration file path"
                         f"that is not a YAML file: {path_toc}"
                     )

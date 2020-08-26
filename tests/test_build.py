@@ -98,7 +98,7 @@ def test_toc_rebuild(cli, build_resources):
 def test_corrupt_toc(build_resources, cli, toc, msg):
     books, tocs = build_resources
     toc = str(tocs / toc)
-    with pytest.raises(ValueError):
+    with pytest.raises(RuntimeError):
         result = cli.invoke(commands.build, [str(tocs), "--toc", toc, "-W"])
         assert result.exit_code == 1
         assert msg in result.output
@@ -114,7 +114,7 @@ def test_build_errors(build_resources, cli):
 
     # No table of contents message
     p_notoc = books.joinpath("notoc")
-    with pytest.raises(ValueError):
+    with pytest.raises(RuntimeError):
         result = cli.invoke(commands.build, [p_notoc.as_posix()])
         assert result.exit_code == 1
         assert "Couldn't find a Table of Contents file" in str(result.exception)
@@ -122,14 +122,14 @@ def test_build_errors(build_resources, cli):
 
     # Test error on warnings and book error message
     p_syntax = books.joinpath("sphinx_syntaxerr")
-    with pytest.raises(ValueError):
+    with pytest.raises(RuntimeError):
         result = cli.invoke(commands.build, [p_syntax.as_posix(), "-W"])
         assert result.exit_code == 1
         assert "There was an error in building your book" in str(result.exception)
         raise result.exception
 
     # Config file path does not exist
-    with pytest.raises(ValueError):
+    with pytest.raises(IOError):
         result = cli.invoke(
             commands.build, [p_syntax.as_posix(), "--config", "non_existent_path"]
         )
