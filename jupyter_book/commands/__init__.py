@@ -9,6 +9,7 @@ import shutil as sh
 import subprocess
 from textwrap import dedent
 from sphinx.util.osutil import cd
+from sphinx.util import logging
 
 from ..sphinx import build_sphinx, REDIRECT_TEXT
 from ..toc import build_toc
@@ -28,6 +29,7 @@ versions = {
     "Jupyter-Cache": jcv,
 }
 versions_string = "\n".join(f"{tt}: {vv}" for tt, vv in versions.items())
+logger = logging.getLogger(__name__)
 
 
 @click.group()
@@ -46,7 +48,7 @@ BUILDER_OPTS = {
 
 
 @main.command()
-@click.argument("path-book", type=click.Path(exists=True, file_okay=False))
+@click.argument("path-source", type=click.Path(exists=True, file_okay=True))
 @click.option("--path-output", default=None, help="Path to the output artifacts")
 @click.option("--config", default=None, help="Path to the YAML configuration file")
 @click.option("--toc", default=None, help="Path to the Table of Contents YAML file")
@@ -57,218 +59,112 @@ BUILDER_OPTS = {
     help="Which builder to use.",
     type=click.Choice(list(BUILDER_OPTS.keys())),
 )
-def build(path_book, path_output, config, toc, warningiserror, builder):
-    """Convert your book's content to HTML or a PDF."""
-    # Paths for our notebooks
-    PATH_BOOK = Path(path_book).absolute()
+def build(path_source, path_output, config, toc, warningiserror, builder):
+    """Convert your book's or page's content to HTML or a PDF."""
 
-    # `book_config` is manual over-rides, `config` is the path to a _config.yml file
-    book_config = {}
+    # Paths for the notebooks
+    PATH_SRC_FOLDER = Path(path_source).absolute()
 
-    # Table of contents
-    # TODO Set TOC dynamically to default value and let Click handle this check
-    if toc is None:
-        toc = PATH_BOOK.joinpath("_toc.yml")
+    config_overrides = {}
+    freshenv = False
+    BUILD_PATH = (
+        path_output if path_output is not None else find_config_path(PATH_SRC_FOLDER)
+    )
+    if not PATH_SRC_FOLDER.is_dir():
+        # it is a single file
+        build_type = "page"
+        subdir = None
+        PATH_SRC = Path(path_source)
+        PATH_SRC_FOLDER = PATH_SRC.parent.absolute()
+        PAGE_NAME = PATH_SRC.with_suffix("").name
+
+        # checking if the page is inside a sub directory
+        # then changing the build_path accordingly
+        if str(BUILD_PATH) in str(PATH_SRC_FOLDER):
+            subdir = str(PATH_SRC_FOLDER.relative_to(BUILD_PATH))
+        if subdir and subdir != ".":
+            subdir = subdir.replace("/", "-")
+            subdir = subdir + "-" + PAGE_NAME
+            BUILD_PATH = Path(BUILD_PATH).joinpath("_build", "_page", subdir)
+        else:
+            BUILD_PATH = Path(BUILD_PATH).joinpath("_build", "_page", PAGE_NAME)
+
+        # Find all files that *aren't* the page we're building and exclude them
+        to_exclude = glob(str(PATH_SRC_FOLDER.joinpath("**", "*")), recursive=True)
+        to_exclude = [
+            op.relpath(ifile, PATH_SRC_FOLDER)
+            for ifile in to_exclude
+            if ifile != str(PATH_SRC.absolute())
+        ]
+        to_exclude.extend(["_build", "Thumbs.db", ".DS_Store", "**.ipynb_checkpoints"])
+
+        # Now call the Sphinx commands to build
+        config_overrides = {
+            "master_doc": PAGE_NAME,
+            "globaltoc_path": "",
+            "exclude_patterns": to_exclude,
+            "html_theme_options": {"single_page": True},
+        }
     else:
-        toc = Path(toc)
+        build_type = "book"
+        PAGE_NAME = None
+        BUILD_PATH = Path(BUILD_PATH).joinpath("_build")
 
-    if not toc.exists():
-        _error(
-            "Couldn't find a Table of Contents file. To auto-generate "
-            f"one, run\n\n\tjupyter-book toc {path_book}"
-        )
-    book_config["globaltoc_path"] = str(toc)
+        # Table of contents
+        if toc is None:
+            toc = PATH_SRC_FOLDER.joinpath("_toc.yml")
+        else:
+            toc = Path(toc)
+
+        if not toc.exists():
+            _error(
+                "Couldn't find a Table of Contents file. To auto-generate "
+                f"one, run\n\n\tjupyter-book toc {path_source}"
+            )
+
+        # Check whether the table of contents has changed. If so we rebuild all
+        if toc and BUILD_PATH.joinpath(".doctrees").exists():
+            toc_modified = toc.stat().st_mtime
+            build_files = BUILD_PATH.rglob(".doctrees/*")
+            build_modified = max([os.stat(ii).st_mtime for ii in build_files])
+
+            # If the toc file has been modified after the build we need to force rebuild
+            freshenv = toc_modified > build_modified
+
+        config_overrides["globaltoc_path"] = str(toc)
+
+        # Builder-specific overrides
+        if builder == "pdfhtml":
+            config_overrides["html_theme_options"] = {"single_page": True}
 
     # Configuration file
     path_config = config
     if path_config is None:
         # Check if there's a `_config.yml` file in the source directory
-        if PATH_BOOK.joinpath("_config.yml").exists():
-            path_config = str(PATH_BOOK.joinpath("_config.yml"))
+        if PATH_SRC_FOLDER.joinpath("_config.yml").exists():
+            path_config = str(PATH_SRC_FOLDER.joinpath("_config.yml"))
     if path_config:
         if not Path(path_config).exists():
             raise ValueError(f"Config file path given, but not found: {path_config}")
 
-    # Builder-specific overrides
-    if builder == "pdfhtml":
-        book_config["html_theme_options"] = {"single_page": True}
-
-    # TODO Use click to set value of path_output dynamically based on path_book
-    BUILD_PATH = path_output if path_output is not None else PATH_BOOK
-    BUILD_PATH = Path(BUILD_PATH).joinpath("_build")
-    if builder in ["html", "pdfhtml", "linkcheck"]:
+    if builder in ["html", "pdfhtml"]:
         OUTPUT_PATH = BUILD_PATH.joinpath("html")
     elif builder in ["latex", "pdflatex"]:
         OUTPUT_PATH = BUILD_PATH.joinpath("latex")
 
-    # Check whether the table of contents has changed. If so we rebuild all
-    freshenv = False
-    if toc and BUILD_PATH.joinpath(".doctrees").exists():
-        toc_modified = toc.stat().st_mtime
-        build_files = BUILD_PATH.rglob(".doctrees/*")
-        build_modified = max([os.stat(ii).st_mtime for ii in build_files])
-
-        # If the toc file has been modified after the build we need to force rebuild
-        freshenv = toc_modified > build_modified
-
     # Now call the Sphinx commands to build
     exc = build_sphinx(
-        PATH_BOOK,
+        PATH_SRC_FOLDER,
         OUTPUT_PATH,
         noconfig=True,
         path_config=path_config,
-        confoverrides=book_config,
+        confoverrides=config_overrides,
         builder=BUILDER_OPTS[builder],
         warningiserror=warningiserror,
         freshenv=freshenv,
     )
 
-    if exc:
-        if builder == "linkcheck":
-            _error(
-                "The link checker either didn't finish or found broken links.\n"
-                "See the report above."
-            )
-        else:
-            _error(
-                "There was an error in building your book. "
-                "Look above for the error message."
-            )
-    else:
-        # Builder-specific options
-        if builder == "html":
-            path_output_rel = Path(op.relpath(OUTPUT_PATH, Path()))
-            path_index = path_output_rel.joinpath("index.html")
-            _message_box(
-                f"""\
-            Finished generating HTML for book.
-
-            Your book's HTML pages are here:
-                {path_output_rel}{os.sep}
-
-            You can look at your book by opening this file in a browser:
-                {path_index}
-
-            Or paste this line directly into your browser bar:
-                file://{path_index.resolve()}\
-            """
-            )
-        if builder == "linkcheck":
-            _message_box("All links in your book are valid. See above for details.")
-        if builder == "pdfhtml":
-            print("Finished generating HTML for book...")
-            print("Converting book HTML into PDF...")
-            path_pdf_output = OUTPUT_PATH.parent.joinpath("pdf")
-            path_pdf_output.mkdir(exist_ok=True)
-            path_pdf_output = path_pdf_output.joinpath("book.pdf")
-            html_to_pdf(OUTPUT_PATH.joinpath("index.html"), path_pdf_output)
-            path_pdf_output_rel = Path(op.relpath(path_pdf_output, Path()))
-            _message_box(
-                f"""\
-            Finished generating PDF via HTML for book. Your PDF is here:
-
-                {path_pdf_output_rel}\
-            """
-            )
-        if builder == "pdflatex":
-            print("Finished generating latex for book...")
-            print("Converting book latex into PDF...")
-            # Convert to PDF via tex and template built Makefile and make.bat
-            if sys.platform == "win32":
-                makecmd = os.environ.get("MAKE", "make.bat")
-            else:
-                makecmd = os.environ.get("MAKE", "make")
-            try:
-                with cd(OUTPUT_PATH):
-                    output = subprocess.run([makecmd, "all-pdf"])
-                    if output.returncode != 0:
-                        _error("Error: Failed to build pdf")
-                        return output.returncode
-                _message_box(
-                    f"""\
-                A PDF of your book can be found at:
-
-                    {OUTPUT_PATH}
-                """
-                )
-            except OSError:
-                _error("Error: Failed to run: %s" % makecmd)
-                return 1
-
-
-@main.command()
-@click.argument("path-page")
-@click.option("--path-output", default=None, help="Path to the output artifacts")
-@click.option("--config", default=None, help="Path to the YAML configuration file")
-@click.option(
-    "--execute/--no-execute",
-    default=True,
-    help="Whether to execute the notebook. Default is --execute",
-)
-def page(path_page, path_output, config, execute):
-    """Convert a single content file to HTML or PDF.
-    """
-    # Paths for our notebooks
-    PATH_PAGE = Path(path_page)
-    PATH_PAGE_FOLDER = PATH_PAGE.parent.absolute()
-    PAGE_NAME = PATH_PAGE.with_suffix("").name
-    if config is None:
-        config = ""
-
-    # Page command ignores book-level execution config options: page is either
-    # executed or not as dictated by command line option. Default is execute.
-    jupyter_execute_notebooks = "force"
-    if not execute:
-        jupyter_execute_notebooks = "off"
-
-    OUTPUT_PATH = path_output if path_output is not None else PATH_PAGE_FOLDER
-    OUTPUT_PATH = Path(OUTPUT_PATH).joinpath("_build/html")
-
-    # Find all files that *aren't* the page we're building and exclude them
-    to_exclude = glob(str(PATH_PAGE_FOLDER.joinpath("**", "*")), recursive=True)
-    to_exclude = [
-        op.relpath(ifile, PATH_PAGE_FOLDER)
-        for ifile in to_exclude
-        if ifile != str(PATH_PAGE.absolute())
-    ]
-    to_exclude.extend(["_build", "Thumbs.db", ".DS_Store", "**.ipynb_checkpoints"])
-
-    # Now call the Sphinx commands to build
-    config_overrides = {
-        "master_doc": PAGE_NAME,
-        "globaltoc_path": "",
-        "exclude_patterns": to_exclude,
-        "jupyter_execute_notebooks": jupyter_execute_notebooks,
-        "html_theme_options": {"single_page": True},
-    }
-
-    build_sphinx(
-        PATH_PAGE_FOLDER,
-        OUTPUT_PATH,
-        path_config=config,
-        noconfig=True,
-        confoverrides=config_overrides,
-        builder="html",
-    )
-
-    path_output_rel = Path(op.relpath(OUTPUT_PATH, Path()))
-    path_page = path_output_rel.joinpath(f"{PAGE_NAME}.html")
-
-    # Write an index file if it doesn't exist so we get redirects
-    path_index = path_output_rel.joinpath("index.html")
-    if not path_index.exists():
-        path_index.write_text(REDIRECT_TEXT.format(first_page=path_page.name))
-
-    _message_box(
-        dedent(
-            f"""
-            Page build finished.
-
-                Your page folder is: {path_page.parent}{os.sep}
-                Open your page at: {path_page}
-            """
-        )
-    )
+    builder_specific_actions(exc, builder, OUTPUT_PATH, build_type, PAGE_NAME)
 
 
 @main.command()
@@ -402,3 +298,112 @@ def init(path, kernel):
     """
     for ipath in path:
         init_myst_file(ipath, kernel, verbose=True)
+
+
+# utility functions
+
+
+def find_config_path(path):
+    """ checks for any _config.yml file in current/parent dirs.
+    if found then returns the path which has _config.yml.
+    else returns the present dir as the path."""
+    if path.is_dir():
+        current_dir = path
+    else:
+        current_dir = path.parent
+
+    root_dir = current_dir.root
+    while str(current_dir) != root_dir:
+        config_file = str(current_dir) + "/_config.yml"
+        if os.path.isfile(config_file):
+            return current_dir
+        current_dir = current_dir.parent
+    if not path.is_dir():
+        return path.parent
+    return path
+
+
+def builder_specific_actions(exc, builder, output_path, cmd_type, page_name=None):
+    if exc:
+        _error(
+            f"There was an error in building your {cmd_type}. "
+            "Look above for the error message."
+        )
+    else:
+        # Builder-specific options
+        if builder == "html":
+            path_output_rel = Path(op.relpath(output_path, Path()))
+            if cmd_type == "page":
+                path_page = path_output_rel.joinpath(f"{page_name}.html")
+                # Write an index file if it doesn't exist so we get redirects
+                path_index = path_output_rel.joinpath("index.html")
+                if not path_index.exists():
+                    path_index.write_text(
+                        REDIRECT_TEXT.format(first_page=path_page.name)
+                    )
+
+                _message_box(
+                    dedent(
+                        f"""
+                        Page build finished.
+                            Your page folder is: {path_page.parent}{os.sep}
+                            Open your page at: {path_page}
+                        """
+                    )
+                )
+
+            elif cmd_type == "book":
+                path_output_rel = Path(op.relpath(output_path, Path()))
+                path_index = path_output_rel.joinpath("index.html")
+                _message_box(
+                    f"""\
+                Finished generating HTML for {cmd_type}.
+                Your book's HTML pages are here:
+                    {path_output_rel}{os.sep}
+                You can look at your book by opening this file in a browser:
+                    {path_index}
+                Or paste this line directly into your browser bar:
+                    file://{path_index.resolve()}\
+                """
+                )
+        if builder == "pdfhtml":
+            print(f"Finished generating HTML for {cmd_type}...")
+            print(f"Converting {cmd_type} HTML into PDF...")
+            path_pdf_output = output_path.parent.joinpath("pdf")
+            path_pdf_output.mkdir(exist_ok=True)
+            if cmd_type == "book":
+                path_pdf_output = path_pdf_output.joinpath("book.pdf")
+                html_to_pdf(output_path.joinpath("index.html"), path_pdf_output)
+            elif cmd_type == "page":
+                path_pdf_output = path_pdf_output.joinpath(page_name + ".pdf")
+                html_to_pdf(output_path.joinpath(page_name + ".html"), path_pdf_output)
+            path_pdf_output_rel = Path(op.relpath(path_pdf_output, Path()))
+            _message_box(
+                f"""\
+            Finished generating PDF via HTML for {cmd_type}. Your PDF is here:
+                {path_pdf_output_rel}\
+            """
+            )
+        if builder == "pdflatex":
+            print(f"Finished generating latex for {cmd_type}...")
+            print(f"Converting {cmd_type} latex into PDF...")
+            # Convert to PDF via tex and template built Makefile and make.bat
+            if sys.platform == "win32":
+                makecmd = os.environ.get("MAKE", "make.bat")
+            else:
+                makecmd = os.environ.get("MAKE", "make")
+            try:
+                with cd(output_path):
+                    output = subprocess.run([makecmd, "all-pdf"])
+                    if output.returncode != 0:
+                        _error("Error: Failed to build pdf")
+                        return output.returncode
+                _message_box(
+                    f"""\
+                A PDF of your {cmd_type} can be found at:
+                    {output_path}
+                """
+                )
+            except OSError:
+                _error("Error: Failed to run: %s" % makecmd)
+                return 1

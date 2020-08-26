@@ -46,24 +46,23 @@ Sometimes you'd like to build a single page of content rather than an
 entire book. For example, if you'd like to generate a web-friendly HTML
 page from a Jupyter Notebook for a report or publication.
 
-You can generate a standalone HTML file for a single page of Jupyter Book
-content by running the following command:
+You can generate a standalone HTML file for a single page of the Jupyter Book using the same command :
 
 ```
-jupyter-book page path/to/mypage.ipynb
+jupyter-book build path/to/mypage.ipynb
 ```
 
 This will execute your content and output the proper HTML in a
 `_build/html` folder.
-If you'd like to generate HTML for a page *without* executing any code cells,
-you can use the `--no-execute` flag:
-
-```
-jupyter-book page --no-execute path/to/mypage.ipynb
-```
 
 Your page will be called `mypage.html`. This will work
 for any {doc}`content source file <../content-types/index>` that is supported by Jupyter Book.
+
+```{note}
+Users should note that building **single pages** in the context of a larger project,
+can trigger warnings and incomplete links. For example, building `docs/start/overview.md` will
+issue a bunch of `unknown document`,`term not in glossary`, and `undefined links` warnings.
+```
 
 ## Page caching
 

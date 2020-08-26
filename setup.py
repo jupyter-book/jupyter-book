@@ -64,12 +64,14 @@ setup(
         "pyyaml",
         "docutils>=0.15",
         "sphinx<3",
-        "myst-nb~=0.8",
+        "myst-nb~=0.8.0",
+        # this is required by the current markdow-it-py
+        # but can be remove when moving to myst-nb 0.9
+        "attrs~=19.3",
         "click",
         "setuptools",
         "nbformat",
         "nbconvert",
-        "nbclient",
         "sphinx_togglebutton",
         "sphinx-copybutton",
         "sphinx-comments",

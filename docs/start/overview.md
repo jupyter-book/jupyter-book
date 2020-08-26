@@ -28,13 +28,13 @@ If you'd like to help with adding Windows support, please [say hello in this iss
 
 Building a Jupyter Book broadly consists of two steps:
 
-1. **Put your book content in a folder**. Jupyter Book needs the following
+1. **Put your book content in a folder or a file**. Jupyter Book needs the following
    pieces in order to build your book:
 
-   * Your content files (the pages of your book) in either markdown or Jupyter
+   * Your content file(s) (the pages of your book) in either markdown or Jupyter
      Notebooks.
    * A Table of Contents `YAML` file (`_toc.yml`) that defines
-     the structure of your book.
+     the structure of your book. Mandatory when building a folder.
    * (optional) A configuration file (`_config.yml`) to control the behavior
      of Jupyter Book.
 2. **Build your book**. Using Jupyter Book's command-line interface you can
