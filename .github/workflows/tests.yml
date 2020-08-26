@@ -79,6 +79,10 @@ jobs:
     strategy:
       matrix:
         python-version: [3.6, 3.7]
+        sphinx: [">=3,<4"]
+        include:
+          - python-version: 3.8
+            sphinx: ">=2,<3"
 
     steps:
     - uses: actions/checkout@v2
@@ -89,6 +93,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
+        pip install "sphinx${{ matrix.sphinx }}"
         pip install -e .[testing]
 
     - name: Install Headless Chrome dependencies
@@ -124,7 +129,7 @@ jobs:
   publish:
 
     name: Publish to PyPi
-    needs: [pre-commit, tests, test-with-cov]
+    needs: [pre-commit, tests, test-with-cov, build-book-osx]
     if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
     runs-on: ubuntu-latest
     steps:
