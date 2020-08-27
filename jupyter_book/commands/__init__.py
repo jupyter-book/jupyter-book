@@ -2,14 +2,15 @@
 
 IMPORTANT: Top-level imports should be minimised here, to improve CLI responsiveness
 """
-import sys
+from glob import glob
 import os
 import os.path as op
 from pathlib import Path
-from glob import glob
 import shutil as sh
 import subprocess
+import sys
 from textwrap import dedent
+from typing import Tuple
 
 import click
 
@@ -113,15 +114,17 @@ def build(
 ):
     """Convert your book's or page's content to HTML or a PDF."""
 
+    from .. import __version__ as jbv
     from ..sphinx import build_sphinx
+
+    click.secho(f"Running Jupyter-Book v{jbv}", bold=True, fg="green")
 
     # Paths for the notebooks
     PATH_SRC_FOLDER = Path(path_source).absolute()
 
     config_overrides = {}
-    BUILD_PATH = (
-        path_output if path_output is not None else find_config_path(PATH_SRC_FOLDER)
-    )
+    found_config = find_config_path(PATH_SRC_FOLDER)
+    BUILD_PATH = path_output if path_output is not None else found_config[0]
     if not PATH_SRC_FOLDER.is_dir():
         # it is a single file
         build_type = "page"
@@ -189,20 +192,24 @@ def build(
         if builder == "pdfhtml":
             config_overrides["html_theme_options"] = {"single_page": True}
 
-    # Configuration file
-    path_config = config
-    if path_config is None:
-        # Check if there's a `_config.yml` file in the source directory
-        if PATH_SRC_FOLDER.joinpath("_config.yml").exists():
-            path_config = str(PATH_SRC_FOLDER.joinpath("_config.yml"))
-    if path_config:
-        if not Path(path_config).exists():
-            raise IOError(f"Config file path given, but not found: {path_config}")
+    # Use the specified configuration file, or one found in the root directory
+    path_config = config or (
+        found_config[0].joinpath("_config.yml") if found_config[1] else None
+    )
+    if path_config and not Path(path_config).exists():
+        raise IOError(f"Config file path given, but not found: {path_config}")
 
     if builder in ["html", "pdfhtml"]:
         OUTPUT_PATH = BUILD_PATH.joinpath("html")
     elif builder in ["latex", "pdflatex"]:
         OUTPUT_PATH = BUILD_PATH.joinpath("latex")
+
+    # print information about the build
+    click.echo(
+        click.style("Source Folder: ", bold=True, fg="blue") + f"{PATH_SRC_FOLDER}"
+    )
+    click.echo(click.style("Config Path: ", bold=True, fg="blue") + f"{path_config}")
+    click.echo(click.style("Output Path: ", bold=True, fg="blue") + f"{OUTPUT_PATH}")
 
     # Now call the Sphinx commands to build
     result = build_sphinx(
@@ -363,10 +370,11 @@ def init(path, kernel):
 # utility functions
 
 
-def find_config_path(path):
+def find_config_path(path: Path) -> Tuple[Path, bool]:
     """ checks for any _config.yml file in current/parent dirs.
-    if found then returns the path which has _config.yml.
-    else returns the present dir as the path."""
+    if found then returns the path which has _config.yml,
+    else returns the present dir as the path.
+    """
     if path.is_dir():
         current_dir = path
     else:
@@ -374,13 +382,13 @@ def find_config_path(path):
 
     root_dir = current_dir.root
     while str(current_dir) != root_dir:
-        config_file = str(current_dir) + "/_config.yml"
+        config_file = os.path.join(str(current_dir), "_config.yml")
         if os.path.isfile(config_file):
-            return current_dir
+            return (current_dir, True)
         current_dir = current_dir.parent
     if not path.is_dir():
-        return path.parent
-    return path
+        return (path.parent, False)
+    return (path, False)
 
 
 def builder_specific_actions(
