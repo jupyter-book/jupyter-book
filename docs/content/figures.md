@@ -48,7 +48,7 @@ parse:
 
 Now you can add:
 
-```md
+```html
 <img src="../images/fun-fish.png" alt="fishy" class="bg-primary" width="200px">
 ```
 
@@ -169,32 +169,25 @@ Here is my figure caption!
 
 The following options are supported:
 
-* `scale` : _integer percentage_
+`scale` : _integer percentage_
+:  Uniformly scale the figure. The default is "100" which indicates no scaling. The symbol "%" is optional.
 
-  Uniformly scale the figure. The default is "100" which indicates no scaling. The symbol "%" is optional.
+`width` : _length or percentage_
+:  You can set the figure width in the following units: "em", "ex", "px","in" ,"cm", "mm", "pt", "pc", "%".
 
-* `width` : _length or percentage_
+`height` : _length_
+:  You can set the figure height in the following units: "em", "ex", "px", "in", "cm", "mm", "pt", "pc", "".
 
-  You can set the figure width in the following units: "em", "ex", "px","in" ,"cm", "mm", "pt", "pc", "%".
+`alt` : _text_
+:  Text to be displayed if the figure cannot display, or if the reader is using assistive technologies. Generally entails a short description of the figure.
 
-* `height` : _length_
+`align` : _"left", "center", or "right"_
+:  Align the figure left, center, or right. Default alignment is center.
 
-  You can set the figure height in the following units: "em", "ex", "px", "in", "cm", "mm", "pt", "pc", "".
+`name` : _text_
+:  A unique identifier for your figure that you can use to reference it with `{ref}` or `{numref}`. Cannot contain spaces or special characters.
 
-* `alt` : _text_
-
-  Text to be displayed if the figure cannot display, or if the reader is using assistive technologies. Generally entails a short description of the figure.
-
-* `align` : _"left", "center", or "right"_
-
-  Align the figure left, center, or right. Default alignment is center.
-
-* `name` : _text_
-
-  A unique identifier for your figure that you can use to reference it with `{ref}` or `{numref}`. Cannot contain spaces or special characters.
-
-* `figclass` : _text_
-
-  Value of the figure's class attribute which can be used to add custom CSS or JavaScript. Predefined options include:
+`figclass` : _text_
+:  Value of the figure's class attribute which can be used to add custom CSS or JavaScript. Predefined options include:
   * _"margin"_ : Display figure on the margin
   * _"margin-caption"_ : Display figure caption on the margin

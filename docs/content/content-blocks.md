@@ -77,6 +77,69 @@ My content
 ````
 `````
 
+### New Style Admonitions
+
+The admonition syntax above utilises the general [directives syntax](content:myst/directives).
+This is has the advantage of making it consistent with every other directive.
+However, a big disadvantage is that, when working in any standard Markdown editor (or the Jupyter Notebook interfaces),
+the text they contain will not render nicely as standard Markdown.
+
+By enabling extended syntax in your `_config.yml`, you will gain access to an alternative syntax for admonitions:
+
+```yaml
+parse:
+  myst_extended_syntax: true
+```
+
+The key differences is that, instead of back-ticks (`` ` ``), colons (`:`) are used,
+and thus **the content renders as regular Markdown**.
+
+For example:
+
+```md
+:::{note}
+This text is **standard** _Markdown_
+:::
+```
+
+:::{note}
+This text is **standard** _Markdown_
+:::
+
+Similar to normal directives, these admonitions can also be nested:
+
+```md
+::::{important}
+:::{note}
+This text is **standard** _Markdown_
+:::
+::::
+```
+
+::::{important}
+:::{note}
+This text is **standard** _Markdown_
+:::
+::::
+
+This syntax only supports a select subset of directives:
+
+> admonition, attention, caution, danger, error, important, hint, note, seealso, tip and warning.
+
+These directives do **not** currently allow for parameters to be set, but you can add additional CSS classes to the admonition as comma-delimited arguments after the directive name.
+Also, `admonition` can have a custom title.
+For example:
+
+```md
+:::{admonition,warning} This *is* also **Markdown**
+This text is **standard** _Markdown_
+:::
+```
+
+:::{admonition,warning} This *is* also **Markdown**
+This text is **standard** _Markdown_
+:::
+
 (content/toggle-admonitions)=
 ### Interactive admonitions with dropdowns
 
@@ -115,6 +178,90 @@ results in:
 ```{admonition} Click the + sign to see what's inside
 :class: dropdown, tip
 Here's what's inside!
+```
+
+(content/definition-lists)=
+
+## Definition Lists
+
+Definition lists are enabled by setting in your `_config.yml`:
+
+```yaml
+parse:
+  myst_extended_syntax: true
+```
+
+Definition lists utilise the [markdown-it-py deflist plugin](https://markdown-it-py.readthedocs.io/en/latest/plugins.html), which itself is based on the [Pandoc definition list specification](http://johnmacfarlane.net/pandoc/README.html#definition-lists).
+
+This syntax can be useful, for example, as an alternative to nested bullet-lists:
+
+- Term 1
+  - Definition
+- Term 2
+  - Definition
+
+Using instead:
+
+```md
+Term 1
+: Definition
+
+Term 2
+: Definition
+```
+
+Term 1
+: Definition
+
+Term 2
+: Definition
+
+From the Pandoc documentation:
+
+> Each term must fit on one line, which may optionally be followed by a blank line, and must be followed by one or more definitions.
+> A definition begins with a colon or tilde, which may be indented one or two spaces.
+
+> A term may have multiple definitions, and each definition may consist of one or more block elements (paragraph, code block, list, etc.)
+
+Here is a more complex example, demonstrating some of these features:
+
+Term *with Markdown*
+: Definition [with reference](content/definition-lists)
+
+  A second paragraph
+: A second definition
+
+Term 2
+  ~ Definition 2a
+  ~ Definition 2b
+
+Term 3
+:     A code block
+: > A quote
+: A final definition, that can even include images:
+
+  <img src="../images/fun-fish.png" alt="fishy" width="200px">
+
+This was created from:
+
+```md
+Term *with Markdown*
+: Definition [with reference](ontent/definition-lists)
+
+  A second paragraph
+
+Term 2
+  ~ Definition 2a
+  ~ Definition 2b
+
+Term 3
+:     A code block
+
+: > A quote
+
+: A final definition, that can even include images:
+
+  <img src="../images/fun-fish.png" alt="fishy" width="200px">
 ```
 
 ### Insert code cell outputs into admonitions
@@ -208,29 +355,6 @@ Here is a cool quotation.
 ```
 ````
 
-## Footnotes
-
-You can include footnotes in your book's content using a standard markdown syntax.
-This will include a numbered reference to the footnote in-line, and insert the footnote
-to a list of footnotes at the bottom of the page.
-
-To create a footnote, first insert a reference in-line with this syntax: `[^mylabel]`.
-Then, define the text for that label like so:
-
-```md
-[^mylabel]: My footnote text.
-```
-
-You can define `[^mylabel]` anywhere in the page, though its definition will always
-be placed at the bottom of your built page. For example, here's a footnote [^mynote]
-and here's another one [^mynote2]. You can click either of them to see the footnotes
-at the bottom of this page.
-
-[^mynote]: Here's the text of my first note.
-[^mynote2]: And the text of my second note.
-            Note that
-            [you can include markdown footnote definitions](https://executablebooks.org).
-
 ## Glossaries
 
 Glossaries allow you to define terms in a glossary, and then link back to the
@@ -275,3 +399,26 @@ more information.
 
 You can also use MyST to control various aspects of the page layout. For more
 information on this, see {doc}`layout`.
+
+## Footnotes
+
+You can include footnotes in your book's content using a standard markdown syntax.
+This will include a numbered reference to the footnote in-line, and insert the footnote
+to a list of footnotes at the bottom of the page.
+
+To create a footnote, first insert a reference in-line with this syntax: `[^mylabel]`.
+Then, define the text for that label like so:
+
+```md
+[^mylabel]: My footnote text.
+```
+
+You can define `[^mylabel]` anywhere in the page, though its definition will always
+be placed at the bottom of your built page. For example, here's a footnote [^mynote]
+and here's another one [^mynote2]. You can click either of them to see the footnotes
+at the bottom of this page.
+
+[^mynote]: Here's the text of my first note.
+[^mynote2]: And the text of my second note.
+            Note that
+            [you can include markdown footnote definitions](https://executablebooks.org).
