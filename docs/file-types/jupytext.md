@@ -7,7 +7,7 @@ You can designate additional file types to be converted to Notebooks, and then e
 sphinx:
   config:
     nb_custom_formats:
-        .mysuffix: mylibrary.converter_functio
+        .mysuffix: mylibrary.converter_function
 ```
 
 - The string should be a Python function that will be loaded by `import mylibrary.converter_function`

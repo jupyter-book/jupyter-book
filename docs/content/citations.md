@@ -86,6 +86,14 @@ This actually has an advantage, in that you can used nested syntax, ror example:
 
 [A reference to a header](content:references)
 
+Leaving the title empty, will mean the reference uses the target as text, for example the title of a section:
+
+```md
+[](./myst.md)
+```
+
+[](./myst.md)
+
 :::{tip}
 You can control how MyST-Markdown distinguishes between internal references and external URLs in your `_config.yml`.
 For example:

@@ -121,6 +121,13 @@ The path should point to an **empty folder**, or a folder where a **jupyter cach
 
 ## Execution Configuration
 
+You can control notebook execution, and how output content is handled at a project level (using your `_config.yml`) or also, in some cases, at a notebook and code cell level.
+Below are detailed a number of ways to achieve this.
+
+:::{seealso}
+[](jupyter-cell-tags) and [](./code-outputs.md).
+:::
+
 ### The execution working directory
 
 :::{important}
@@ -131,7 +138,7 @@ This is a change from the from `v0.7`.
 By default, the command working directory (cwd) that a notebook runs in will be the directory it is located in (for both `auto` and `cache`). This means that notebooks requiring access to assets in relative paths will work.
 
 Alternatively, if you wish for your notebooks to isolate your notebook execution, in a temporary folder,
-you can use the `_config.yaml` setting:
+you can use the `_config.yml` setting:
 
 ```yaml
 execute:
@@ -145,7 +152,7 @@ If the execution takes longer an exception will be raised.
 The default is 30 seconds, so in cases of long-running cells you may want to specify an higher value.
 The timeout option can also be set to `None` or -1 to remove any restriction on execution time.
 
-You can set the timeout for all notebook execution in your `_config.yaml`:
+You can set the timeout for all notebook execution in your `_config.yml`:
 
 ```yaml
 execute:
@@ -168,7 +175,7 @@ This global value can also be overridden per notebook by adding this to you note
 In some cases, you may want to intentionally show code that doesn't work
 (e.g., to show the error message).
 
-You can allow errors for all notebooks in your `_config.yaml`:
+You can allow errors for all notebooks in your `_config.yml`:
 
 ```yaml
 execute:
@@ -215,7 +222,7 @@ You may also wish to control how stderr outputs are dealt with.
 Alternatively, you can configure how stdout is dealt with at a global configuration level, using the `nb_output_stderr` configuration value.
 This can be set to:
 
-You can configure the default behaviour for all notebooks in your `_config.yaml`:
+You can configure the default behaviour for all notebooks in your `_config.yml`:
 
 ```yaml
 execute:

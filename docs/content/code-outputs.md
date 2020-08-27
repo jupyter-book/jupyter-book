@@ -77,6 +77,10 @@ Image("../images/fun-fish.png")
 
 Now we can link to the image from anywhere in our documentation: [swim to the fish](fun-fish)
 
+:::{seealso}
+[](jupyter-cell-tags)
+:::
+
 (content:code-outputs:markdown)=
 ## Markdown
 
@@ -151,7 +155,7 @@ This is currently not supported, but we hope to introduce it at a later date
 
 When Jupyter executes a code cell it can produce multiple outputs, and each of these outputs can contain multiple [MIME media types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types), for use by different output formats (like HTML or LaTeX).
 
-MyST-NB stores a default priority dictionary for most of the common [output builders](https://www.sphinx-doc.org/en/master/usage/builders/index.html), which you can be also update in your `_config.yaml`.
+MyST-NB stores a default priority dictionary for most of the common [output builders](https://www.sphinx-doc.org/en/master/usage/builders/index.html), which you can be also update in your `_config.yml`.
 For example, this is the default priority list for HTML:
 
 ```yaml

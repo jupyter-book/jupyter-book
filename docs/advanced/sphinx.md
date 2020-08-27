@@ -142,7 +142,7 @@ you configure in `conf.py`. To do so, use the following section of `_config.yml`
 
 ### Fine control of parsing and execution
 
-As discussed in [the components of Jupyter Book](intro/jupyter-book-components), two of the principe components of Jupyter Book are sphinx extensions;
+As discussed in [the components of Jupyter Book](intro/jupyter-book-components), two of the principle components of Jupyter Book are sphinx extensions;
 MyST-Parser, for Markdown parsing, and MyST-NB, for notebook execution and output rendering.
 
 These two extensions are highly customisable *via* Sphinx configuration.
@@ -199,7 +199,7 @@ and the [Math and Equations](myst-content/math) section.
 :::
 
 :::{important}
-To have "bare" LaTeX rendered in HTML, you must either set in your `_config.yaml`:
+To have "bare" LaTeX rendered in HTML, you must either set in your `_config.yml`:
 
 ```yaml
 parse:

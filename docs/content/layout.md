@@ -141,6 +141,10 @@ make_fig(figsize=(10, 5))
 
 This can be combined with other tags like `remove-input` to **only display the figure**.
 
+:::{seealso}
+[](jupyter-cell-tags)
+:::
+
 +++
 
 ## Scrolling cell outputs

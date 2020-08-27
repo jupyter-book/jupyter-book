@@ -15,8 +15,8 @@ kernelspec:
 
 It's possible to control which content shows up in your book. For example,
 you may want to display a complex visualization to illustrate an idea, but don't
-want the page to be cluttered with a large code cell that generated the viz. In other
-cases, you may want to remove a code cell entirely.
+want the page to be cluttered with a large code cell that generated the viz.
+In other cases, you may want to remove a code cell entirely.
 
 In this case, you have two options:
 
@@ -30,6 +30,10 @@ There are two ways to hide content:
 * To hide or remove code cells or their outputs, use **notebook cell tags**.
 
 We'll cover each below.
+
+:::{seealso}
+[](jupyter-cell-tags)
+:::
 
 ## Hide markdown using MyST markdown
 

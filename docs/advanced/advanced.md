@@ -71,7 +71,7 @@ This will entirely remove the folders in the `_build/` directory.
 
 (jupyter-cell-tags)=
 
-## How should I add cell tags to my notebooks?
+## How should I add cell tags and metadata to my notebooks?
 
 You can control the behaviour of Jupyter Book by putting custom tags
 in the metadata of your cells. This allows you to do things like
@@ -96,6 +96,15 @@ There are two straightforward ways to add metadata to cells:
    Here's what the tags UI in JupyterLab looks like.
 
    ![tags_jupyterlab](../images/tags_jupyterlab.png)
+
+Tags are actually just a special section of cell level metadata.
+There are three levels of metadata:
+
+* For notebook level: in the Jupyter Notebook Toolbar go to `Edit -> Edit Notebook Metadata`
+* For cell level: in the Jupyter Notebook Toolbar go to `View -> Cell Toolbar -> Edit Metadata` and a button will appear above each cell.
+* For output level: using e.g. `IPython.display.display(obj,metadata={"tags": [])`, you can set metadata specific to a certain output (but jupyter-book does not utilise this just yet).
+
+![NB Metadata GIF](../images/metadata_edit.gif)
 
 ### Add tags to notebook cells based on their content
 

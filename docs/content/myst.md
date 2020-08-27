@@ -8,7 +8,7 @@ It is a superset of [CommonMark markdown](https://commonmark.org/) and draws hea
 
 ```{margin}
 For those who are familiar with Sphinx, MyST markdown is basically
-CommonMark + MArkdown Extensions + Sphinx roles and directives
+CommonMark + Markdown Extensions + Sphinx roles and directives
 ```
 
 Whether you write your book's content in Jupyter Notebooks (`.ipynb`) or in regular markdown files (`.md`),

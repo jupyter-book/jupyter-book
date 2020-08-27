@@ -82,7 +82,7 @@ My content
 The admonition syntax above utilises the general [directives syntax](content:myst/directives).
 This is has the advantage of making it consistent with every other directive.
 However, a big disadvantage is that, when working in any standard Markdown editor (or the Jupyter Notebook interfaces),
-the text they contain will not render nicely as standard Markdown.
+the text they contain will not render nicely as standard Markdown (for Markdown previews).
 
 By enabling extended syntax in your `_config.yml`, you will gain access to an alternative syntax for admonitions:
 
@@ -122,9 +122,11 @@ This text is **standard** _Markdown_
 :::
 ::::
 
+:::{note}
 This syntax only supports a select subset of directives:
 
 > admonition, attention, caution, danger, error, important, hint, note, seealso, tip and warning.
+:::
 
 These directives do **not** currently allow for parameters to be set, but you can add additional CSS classes to the admonition as comma-delimited arguments after the directive name.
 Also, `admonition` can have a custom title.

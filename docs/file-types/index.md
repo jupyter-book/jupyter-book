@@ -19,6 +19,8 @@ links to their section in this book):
 
 [Jupyter Notebooks](notebooks)
 : AKA, `.ipynb` files. These files can contain markdown cells with MyST Markdown.
+: A Jupyter Notebook can utilise any program kernel that implements the [Jupyter messaging protocol](http://jupyter-client.readthedocs.io/en/latest/messaging.html) for executing code.
+  There are kernels available for [Python](http://ipython.org/notebook.html), [Julia](https://github.com/JuliaLang/IJulia.jl), [Ruby](https://github.com/minad/iruby), [Haskell](https://github.com/gibiansky/IHaskell) and [many other languages](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels).
 
 [MyST markdown notebooks](myst-notebooks)
 : These are markdown files (ending in `.md`) that will be *converted to a notebook and executed*.

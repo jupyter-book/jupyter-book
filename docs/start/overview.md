@@ -189,7 +189,6 @@ You can store these files in whatever collection of folders you'd like, note tha
 the *structure* of your book when it is built will depend solely on the order of
 items in your `_toc.yml` file (see below section)
 
-()
 ### Book bibliography for citations
 
 If you'd like to build a bibliography for your book, you can do so by including
