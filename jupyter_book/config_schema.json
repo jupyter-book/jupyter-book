@@ -77,6 +77,17 @@
                     "type": "boolean",
                     "default": false
                 },
+                "stderr_output": {
+                    "type": "string",
+                    "enum": [
+                        "show",
+                        "remove",
+                        "remove-warn",
+                        "warn",
+                        "error",
+                        "severe"
+                    ]
+                },
                 "run_in_temp": {
                     "type": "boolean",
                     "default": false

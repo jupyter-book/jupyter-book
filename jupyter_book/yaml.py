@@ -129,6 +129,7 @@ def yaml_to_sphinx(yaml: dict):
         )
         sphinx_config["execution_allow_errors"] = execute.get("allow_errors", False)
         sphinx_config["execution_in_temp"] = execute.get("run_in_temp", False)
+        sphinx_config["nb_output_stderr"] = execute.get("stderr_output", "show")
 
     # LaTeX
     latex = yaml.get("latex")

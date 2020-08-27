@@ -12,7 +12,7 @@ kernelspec:
   name: python3
 ---
 
-# Citations and cross-references
+# References and citations
 
 Because `jupyter-book` is built on top of {term}`Sphinx`,
 there are many ways of referencing content, including use of the excellent
@@ -74,15 +74,15 @@ Documents can be referenced through ``{doc}`path/to/document` `` or ``{doc}`some
 
 If you with to use Markdown style syntax, then MyST-Markdown will try to find a reference,
 from any of the above reference types (and more!).
-For example:
+This actually has an advantage, in that you can used nested syntax, ror example:
 
 ```md
-[A reference to a page](./myst.md)
+[A **_reference_** to a page](./myst.md)
 
 [A reference to a header](content:references)
 ```
 
-[A reference to a page](./myst.md)
+[A **_reference_** to a page](./myst.md)
 
 [A reference to a header](content:references)
 
