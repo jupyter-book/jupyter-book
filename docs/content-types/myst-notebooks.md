@@ -70,7 +70,6 @@ If you do not specify `--kernel`, then the default kernel will be used *if there
 only one available*. If there are multiple kernels available, you must specify one
 manually.
 
-
 ## Structure of MyST notebooks
 
 Let's take a look at the structure that Jupytext creates, which you may also use
@@ -140,7 +139,7 @@ Remember that Jupyter always defines one, and only one, kernel per notebook.
 
 Code blocks in MyST Notebooks are defined with the following MyST directive:
 
-````
+````md
 ```{code-cell}
 your-code
 ```
@@ -150,7 +149,7 @@ You can optionally add extra metadata to the code cell, which will be converted
 into cell metadata in the `.ipynb` file. For example, you can add tags to your code
 cell like so:
 
-````
+````md
 ```{code-cell}
 :tags: tag1, tag2, tag3
 your-code
@@ -160,7 +159,7 @@ your-code
 You may also explicitly pass the kernel name after `{code-cell}` to make it clear which
 kernel you are running. For example:
 
-````
+````md
 ```{code-cell} python3
 your-code
 ```
@@ -177,7 +176,7 @@ more information about MyST markdown.
 To explicitly split up markdown content into two markdown cells, use the following
 pattern:
 
-````
+````md
 ```md
 Content in one markdown cell
 
@@ -190,7 +189,7 @@ Content in another markdown cell
 You may also attach metadata to the cell by adding a Python dictionary after the `+++`.
 For example, to add tags to the second cell above:
 
-````
+````md
 ```md
 Content in one markdown cell
 

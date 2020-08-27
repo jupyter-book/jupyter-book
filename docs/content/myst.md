@@ -1,7 +1,7 @@
 # MyST Markdown Overview
 
 In addition to [Jupyter Notebook markdown](../content-types/notebooks), Jupyter Book also supports
-a special flavor of markdown called **MyST (or
+a special flavour of markdown called **MyST (or
 Markedly Structured Text)**. It was designed to make it easier to create
 publishable computational documents in Markdown. It is a superset of
 [CommonMark markdown](https://commonmark.org/) and draws heavy inspiration
@@ -13,12 +13,12 @@ CommonMark + Sphinx roles and directives
 ```
 
 Whether you write your book's content in Jupyter Notebooks (`.ipynb`) or
-in regular markdown files (`.md`), you'll write in the same flavor of
+in regular markdown files (`.md`), you'll write in the same flavour of
 **MyST Markdown**. Jupyter Book will know how to parse both of them.
 
 This page contains a few pieces of information about MyST markdown and how it
 relates to Jupyter Book. You can
-find much more information about this flavor of markdown at
+find much more information about this flavour of markdown at
 [The Myst Parser documentation][myst-parser].
 
 [myst-parser]: https://myst-parser.readthedocs.io/en/latest/
@@ -34,13 +34,13 @@ that is being called.
 
 ### Directives
 
-Directives customize the look, feel, and behavior of your book. They are
+Directives customize the look, feel, and behaviour of your book. They are
 kind of like *functions*, and come in a variety of names
-with different behavior. This section covers how to structure and use them.
+with different behaviour. This section covers how to structure and use them.
 
 At its simplest, you can insert a directive into your book's content like so:
 
-````
+````md
 ```{mydirectivename}
 My directive content
 ```
@@ -71,7 +71,7 @@ For more information on writing directives, see the
 (directive-arguments)=
 #### More arguments and metadata in directives
 
-Many directives allow you to control their behavior with extra pieces of
+Many directives allow you to control their behaviour with extra pieces of
 information. In addition to the directive name and the directive content,
 directives allow two other configuration points:
 
@@ -79,7 +79,7 @@ directives allow two other configuration points:
 
 Here's an example use of directive arguments:
 
-````
+````md
 ```{directivename} arg1 arg2
 My directive content.
 ```
@@ -93,7 +93,7 @@ as `key: val` pairs inside of `---` lines. They both work the same way:
 
 Here's an example of directive keywords using `:key: val` pairs:
 
-````
+````md
 ```{directivename}
 :key1: metadata1
 :key2: metadata2
@@ -103,7 +103,7 @@ My directive content.
 
 and here's an example of directive keywords using `---` lines:
 
-````
+````md
 ```{directivename}
 ---
 metadata1: metadata2
@@ -128,7 +128,7 @@ Roles are very similar to directives, but they are less-complex and written
 entirely on one line. You can insert a role into your book's content with
 this pattern:
 
-```
+```md
 Some content {rolename}`and here is my role's content!`
 ```
 
@@ -142,7 +142,7 @@ For more information on writing roles, see the
 
 ## What roles and directives are available?
 
-There is currently no single list of roles / directives to use as a refernece, but this
+There is currently no single list of roles / directives to use as a reference, but this
 section tries to give as much as information as possible. For those who are familiar
 with the Sphinx ecosystem, **you may use any directive / role that is available in Sphinx**.
 This is because Jupyter Book uses Sphinx to build your book, and MyST Markdown supports
@@ -174,7 +174,7 @@ code blocks as well.
 
 For example, the following syntax:
 
-`````
+`````md
 ````
 ```
 ```
@@ -183,7 +183,7 @@ For example, the following syntax:
 
 Yields:
 
-````
+````md
 ```
 ```
 ````
@@ -191,7 +191,7 @@ Yields:
 Thus, if you'd like to nest directives inside one another, you can take the same
 approach, for example, the following syntax:
 
-`````
+`````md
 ````{margin}
 ```{note}
 Here's my note!

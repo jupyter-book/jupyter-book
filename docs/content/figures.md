@@ -5,7 +5,7 @@ like images, except that they are easier to reference elsewhere in your
 book, and they include things like captions. To include a figure, use this
 pattern:
 
-````
+````md
 ```{figure} ../images/C-3PO_droid.png
 ---
 height: 150px
@@ -31,12 +31,9 @@ To do so, see {doc}`glue`.
 ## Referencing figures
 
 You can then refer to this figure using the `{ref}` role like:
-`` {ref}`my-figure` ``, which will replace the reference with the figure
-caption like so: {ref}`my-figure`.
-Another convenient way to create cross-references is with the `{numref}` role,
-which automatically numbers the labelled objects.
-For example, `` {numref}`my-figure` `` will produce a reference like:
-{numref}`my-figure`.
+`` {ref}`my-figure` ``, which will replace the reference with the figure caption like so: {ref}`my-figure`.
+Another convenient way to create cross-references is with the `{numref}` role, which automatically numbers the labelled objects.
+For example, `` {numref}`my-figure` `` will produce a reference like: {numref}`my-figure`.
 
 If an explicit text is provided, this caption will serve as the title of the reference. The characters "%s" and "{number}" will be replaced with a figure number, while "{name}" will be replaced with a figure caption. For example, ``{numref}`Figure {number}: {name} <my-figure>` `` will produce: {numref}`Figure {number}: {name} <my-figure>`.
 
@@ -68,7 +65,7 @@ Here is my figure caption!
 
 Figures can also be aligned by using the option `:align: right` or `:align: left`. By default, figures are aligned to the center (see {numref}`my-figure`).
 
-````
+````md
 ```{figure} ../images/cool.jpg
 ---
 scale: 50%
@@ -86,7 +83,7 @@ align: left
 Here is my figure caption!
 ```
 
-````
+````md
 ```{figure} ../images/cool.jpg
 ---
 scale: 50%

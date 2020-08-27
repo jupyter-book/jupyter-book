@@ -7,7 +7,7 @@ another markup language that is common in the Python documentation community.
 ```{warning}
 Writing content in reStructuredText is only recommended for users who are already
 familiar with it. For others, we recommend using {doc}`MyST markdown<../content/myst>`,
-which has all of the same features of rST and Sphinx, but with a markdown flavor.
+which has all of the same features of rST and Sphinx, but with a markdown flavour.
 ```
 
 Because Jupyter Book uses Sphinx under the hood, any document that is written in rST

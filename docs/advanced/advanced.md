@@ -8,7 +8,7 @@ This page contains more advanced and complete information about the
 If you have a Google Account, you can use Google Analytics to collect some
 information on the traffic to your Jupyter Book. With this tool, you can find
 out how many people are using your book, where they come from and how they
-access it, wether they are using the Desktop or the mobile version etc.
+access it, whether they are using the Desktop or the mobile version etc.
 
 To add Google Analytics to your Jupyter Book, navigate to
 [Google Analytics](https://analytics.google.com/analytics/web/), create a new
@@ -36,7 +36,7 @@ the *right* target, the link checker will only ensure that it resolves.
 
 To run the link checker, use the following command:
 
-```
+```bash
 jupyter-book build mybookname/ --builder linkcheck
 ```
 
@@ -73,7 +73,7 @@ This will entirely remove the folders in the `_build/` directory.
 
 ## How should I add cell tags to my notebooks?
 
-You can control the behavior of Jupyter Book by putting custom tags
+You can control the behaviour of Jupyter Book by putting custom tags
 in the metadata of your cells. This allows you to do things like
 {doc}`automatically hide code cells <../interactive/hiding>`) as well as
 {ref}`adding interactive widgets to cells <launch/thebelab>`.
@@ -86,7 +86,7 @@ There are two straightforward ways to add metadata to cells:
    To enable the cell tag editor, go click `View -> Cell Toolbar -> Tags`. This
    will enable the tags UI. Here's what the menu looks like.
 
-   ![](../images/tags_notebook.png)
+   ![tags_notebook](../images/tags_notebook.png)
 
 2. **Use the JupyterLab Cell Tags plugin**. JupyterLab is an IDE-like Jupyter
    environment that runs in your browser. It has a "cell tags" plugin built-in,
@@ -95,7 +95,7 @@ There are two straightforward ways to add metadata to cells:
    You'll find tags under the "wrench" menu section.
    Here's what the tags UI in JupyterLab looks like.
 
-   ![](../images/tags_jupyterlab.png)
+   ![tags_jupyterlab](../images/tags_jupyterlab.png)
 
 ### Add tags to notebook cells based on their content
 
@@ -147,7 +147,7 @@ This is strongly discouraged and not guaranteed to work in all cases.
 
 If, for instance, you use
 
-```
+```html
 <img src="images/some/file.png" alt="Some image" style="width: 200px;"/>
 ```
 
@@ -253,7 +253,7 @@ guarantee that they will work on all windows installations.
 3. Nested tables of contents
 
    Currently, `_toc.yml` files that reference markdown files
-   in subfolders are failing for some windows users.  That is, this
+   in sub-folders are failing for some windows users.  That is, this
    [original _toc.yml](https://github.com/eoas-ubc/quantecon-mini-example/blob/master/mini_book/_toc.yml)
    file will fail with a message saying jupyter-book "```cannot find index.md```"
 

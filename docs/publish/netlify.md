@@ -47,7 +47,7 @@ For the purposes of this tutorial, we'll assume that your book is hosted on GitH
 When you select the "GitHub" option, you'll be asked to grant permission for Netlify to access your GitHub account.
 Authorizing access will take you to the next step of the build process, where you can select your Jupyter Book repository.
 
-![Netlify continous deployment](../images/netlify-cd.png)
+![Netlify continuous deployment](../images/netlify-cd.png)
 
 ## Step 2: Add the command to install and build your book
 

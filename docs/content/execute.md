@@ -67,6 +67,7 @@ above configuration value to:
 execute:
   execute_notebooks: 'off'
 ```
+
 (execute/exclude)=
 ## Exclude files from execution
 
@@ -85,7 +86,7 @@ Any file that matches one of the items in `exclude_patterns` will not be
 executed.
 
 (execute/cache)=
-## Cacheing the notebook execution
+## Caching the notebook execution
 
 You may also **cache the results of executing a notebook page** using [jupyter-cache]. In
 this case, when a page is executed, its outputs will be stored in a local database.
@@ -102,7 +103,7 @@ When you re-build your site, the following will happen:
 * Notebooks that **have any change to their code cells** will be re-executed, and the
   cache will be updated with the new outputs.
 
-To enable cacheing of notebook outputs, use the following configuration:
+To enable caching of notebook outputs, use the following configuration:
 
 ```yaml
 execute:
@@ -124,7 +125,6 @@ The path should point to an **empty folder**, or a folder where a
 
 [jupyter-cache]: https://github.com/executablebooks/jupyter-cache "the Jupyter Cache Project"
 
-
 ## Execution FAQs
 
 ### How does execution deal with relative paths in my code?
@@ -144,7 +144,7 @@ In some cases, you may want to intentionally show code that doesn't work (e.g., 
 the error message). To do this, add a `raises-exception` tag to your code cell. This
 can be done via a Jupyter interface, or via the `{code-cell}` directive like so:
 
-````
+````md
 ```{code-cell}
 ---
 tags: [raises-exception]

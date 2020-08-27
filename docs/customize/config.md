@@ -13,7 +13,6 @@ pages in this section describe more detail for specific features.
 Here is a very simple `_config.yml` configuration (it is taken from
 {download}`the demo book config file <../../jupyter_book/book_template/_config.yml>`):
 
-
 ```yaml
 # Book settings
 title: My sample book
@@ -108,8 +107,7 @@ html:
 
 ## Configuration reference
 
-For a reference example of *all* the possible Binder links and their default values, see the
-section below:
+For a reference example of *all* the possible Binder links and their default values, see the section below:
 
 ```{literalinclude} ../../jupyter_book/default_config.yml
    :language: yaml

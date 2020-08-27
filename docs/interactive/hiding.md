@@ -46,7 +46,7 @@ and hide the content. We cover each below.
 You can activate this behavior in markdown with the `{toggle}`
 directive like so:
 
-````
+````md
 ```{toggle}
 Some hidden toggle content!
 
@@ -65,7 +65,7 @@ Some hidden toggle content!
 Note that if you'd like to **show the toggle content by default**, you can
 add the `:show:` flag when you call `{toggle}`, like so:
 
-````
+````md
 ```{toggle} Click the button to reveal!
 :show:
 Some hidden toggle content!
@@ -81,7 +81,7 @@ dropdown blocks. Users will see the admonition title, but will need to click
 in order to reveal the content. To do so, add the `dropdown` class to any admonition.
 For example:
 
-````
+````md
 ```{admonition} Click the button to reveal!
 :class: dropdown
 Some hidden toggle content!
@@ -111,7 +111,6 @@ on adding cell tags to notebooks in Jupyter Notebook or JupyterLab.
 If an element is hidden, Jupyter Book will display a small button to the right of the
 old location for the hidden element. If a user clicks the button,
 the element will be displayed.
-
 
 ### Hide cell inputs
 

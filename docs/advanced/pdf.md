@@ -30,7 +30,7 @@ conversion to PDF.
 If you wish to build a PDF from your book's HTML, you will need the `pyppeteer` package.
 You can install it like so:
 
-```
+```bash
 pip install pyppeteer
 ```
 
@@ -49,13 +49,13 @@ to see if that fixes it. We warned you it was an experimental feature :-)
 
 To build a single PDF from your book's HTML, use the following command:
 
-```
+```bash
 jupyter-book build mybookname/ --builder pdfhtml
 ```
 
 or
 
-```
+```bash
 jb build mybookname/ --builder pdfhtml
 ```
 
@@ -92,18 +92,20 @@ For `Windows` please install [texlive](https://www.tug.org/texlive/windows.html)
 
 To build a single PDF using LaTeX, use the following command:
 
-```
+```bash
 jupyter-book build mybookname/ --builder pdflatex
 ```
 
 or
 
-```
+```bash
 jb build mybookname/ --builder pdflatex
 ```
 
-```{note}
+````{note}
 If you would just like to generate the **latex** file you may use:
 
+```bash
 jb build mybookname/ --builder latex
 ```
+````

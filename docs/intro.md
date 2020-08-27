@@ -57,8 +57,8 @@ In addition, note that Jupyter Book is pre-1.0. Its API may change!
 
 To install the `jupyter-book` pre-release from pip, run the following command:
 
-```console
-$ pip install -U jupyter-book
+```bash
+pip install -U jupyter-book
 ```
 
 (example-project)=
@@ -87,7 +87,7 @@ You can build this book locally on the command line via the following steps:
 
 2. Clone the repository containing the demo book source files
 
-    ```
+    ```bash
     git clone https://github.com/executablebooks/quantecon-mini-example
     cd quantecon-mini-example
     ```
@@ -100,25 +100,26 @@ You can build this book locally on the command line via the following steps:
     ```
     See [the getting started page](start/overview) for more information.
     ````
+
 3. Install the Python libraries needed to run the code in this particular example
    from [the `environment.yml` file](https://github.com/executablebooks/quantecon-mini-example/blob/master/environment.yml).
    This includes the latest version of Jupyter Book:
 
-    ```
+    ```bash
     conda env create -f environment.yml
     conda activate qe-mini-example
     ```
 
 4. Run Jupyter Book over the source files
 
-    ```
+    ```bash
     jupyter-book build ./mini_book
     ```
 
 5. View the result through a browser --- try (with, say, firefox)
 
 
-    ```
+    ```bash
     firefox mini_book/_build/html/index.html
     ```
 

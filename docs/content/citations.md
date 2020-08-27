@@ -29,7 +29,7 @@ with the `{bibliography}` directive.
 
 1. **Create a references bibtex file**.
 
-   ```
+   ```bash
    touch references.bib
    ```
 
@@ -37,7 +37,7 @@ with the `{bibliography}` directive.
    [the BibTex documentation](http://www.bibtex.org/Using/) for information about
    the BibTex reference style. Here's an example citation:
 
-   ```
+   ```latex
    @article{perez2011python
    ,	title	= {Python: an ecosystem for scientific computing}
    ,	author	= {Perez, Fernando and Granger, Brian E and Hunter, John D}
@@ -49,15 +49,16 @@ with the `{bibliography}` directive.
    ,	publisher	= {AIP Publishing}
    }
    ```
+
 3. **Add a citation**. In your content, add the following text to include a citation
 
-   ```
+   ```md
    {cite}`mybibtexcitation`
    ```
 
    For example, this text
 
-   ```
+   ```md
    {cite}`perez2011python`
    ```
 
@@ -65,7 +66,7 @@ with the `{bibliography}` directive.
 
    You can also include multiple citations in one go, like so:
 
-   ```
+   ```md
    {cite}`perez2011python,holdgraf_rapid_2016,RePEc:the:publsh:1367,caporaso2010qiime`
    ```
 
@@ -73,14 +74,13 @@ with the `{bibliography}` directive.
 
 4. **Add a bibliography**. Use the following directive to do so:
 
-   ````
+   ````md
    ```{bibliography} path/to/references.bib
    ```
    ````
 
    This will generate a bibliography for your entire bibtex file. See
    [the bibliography at the end of this page](citations/bibliography) for an example.
-
 
 When your book is built, the bibliography and citations will now be included.
 
@@ -113,7 +113,7 @@ These styles create the following bibliography formatting:
 
 To set your reference style, use the style option:
 
-````
+````md
 ```{bibliography} path/to/references.bib
 :style: unsrt
 ```
@@ -128,7 +128,7 @@ Having multiple bibliography directives, however, can cause `sphinx` to issue
 
 A common fix is to add a filter to the bibliography directives:
 
-````
+````md
 ```{bibliography} path/to/references.bib
 :filter: docname in docnames
 ```
@@ -147,7 +147,7 @@ such as titles or figures.
 To add a label, use the following pattern **before** the element you wish
 to label:
 
-```
+```md
 (my-label)=
 # The thing to label
 ```

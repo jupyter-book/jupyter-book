@@ -42,6 +42,7 @@ it, we'll do the following:
   ```bash
   pip install sphinx-tabs
   ```
+
 * **Add `sphinx-tabs` content to your book**. Here's an example with MyST markdown:
 
   `````md
@@ -61,6 +62,7 @@ it, we'll do the following:
   ```
   ````
   `````
+
 * **Activate `sphinx-tabs` in `_config.yml`**. [The `sphinx-tabs` documentation](https://github.com/djungelorm/sphinx-tabs#installation)
   says we activate it in sphinx by adding `extensions = ["sphinx_tabs.tabs"]`, so we'll
   add it to our Jupyter Book like so:
@@ -123,8 +125,7 @@ Add the static file here:
 
 The rules should then automatically be applied to your site. In general, these
 CSS and JS files will be loaded *after* others are loaded on your page, so they
-should overwrite pre-existing rules and behavior.
-
+should overwrite pre-existing rules and behaviour.
 
 ## Manual sphinx configuration
 
@@ -142,7 +143,7 @@ you configure in `conf.py`. To do so, use the following section of `_config.yml`
 
 You can add LaTeX macros for the whole book by defining them under the `Macros` option of the `TeX` block. For example, the following two macros have been pre-defined in the Sphinx configuration
 
-```
+```yaml
 sphinx:
   config:
     mathjax_config:
@@ -156,7 +157,7 @@ sphinx:
 
 You can also define TeX macros for a specific file by introducing them at the beginning of the file under a `math` directive. For example
 
-````
+````md
 ```{math}
 
 \newcommand\N{\mathbb{N}}
@@ -166,13 +167,15 @@ You can also define TeX macros for a specific file by introducing them at the be
 ```
 ````
 
-The commands can be used inside a `math` directive, `$$` or inline `$`, for example
+The commands can be used inside a `math` directive, `$$` or inline `$`, for example:
+
 ```md
 $$
 A = \bmat{} 1 & 1 \\ 2 & 1\\ 3 & 2 \emat{},\ b=\bmat{} 2\\ 3 \\ 4\emat{},\ \gamma = 0.5
 $$
 ```
-will be rendered as
+
+will be rendered as:
 
 $$
 A = \bmat{} 1 & 1 \\ 2 & 1\\ 3 & 2 \emat{},\ b=\bmat{} 2\\ 3 \\ 4\emat{},\ \gamma = 0.5

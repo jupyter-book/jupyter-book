@@ -409,10 +409,11 @@ def builder_specific_actions(
             f"There was an error in building your {cmd_type}. "
             "Look above for the cause."
         )
+        # TODO ideally we probably only want the original traceback here
         raise RuntimeError(_message_box(msg, color="red", doprint=False)) from result
     elif result:
         msg = (
-            f"Building your {cmd_type}, return a non-zero exit code ({result}). "
+            f"Building your {cmd_type}, returns a non-zero exit code ({result}). "
             "Look above for the cause."
         )
         _message_box(msg, color="red", print_func=click.echo)

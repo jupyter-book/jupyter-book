@@ -184,7 +184,6 @@ Here's how it looks:
 
 Or we can paste inline objects like so:
 
-
 ```md
 Inline text; {glue:}`boot_mean`, and figure; {glue:}`boot_fig`.
 ```
@@ -222,7 +221,7 @@ generic command that doesn't make many assumptions about what you are gluing.
 The `glue:text` role, is specific to text outputs.
 For example, the following text:
 
-```
+```md
 The mean of the bootstrapped distribution was {glue:text}`boot_mean` (95% confidence interval {glue:text}`boot_clo`/{glue:text}`boot_chi`).
 ```
 
@@ -283,6 +282,7 @@ A caption for a pandas table.
 ```
 
 ````
+
 ```{glue:figure} df_tbl
 :figwidth: 300px
 :name: "tbl:df"

@@ -40,7 +40,8 @@ For example,
   \int_0^\infty \frac{x^3}{e^x-1}\,dx = \frac{\pi^4}{15}
 \end{equation}
 ```
-results in
+
+results in:
 
 \begin{equation}
   \int_0^\infty \frac{x^3}{e^x-1}\,dx = \frac{\pi^4}{15}
@@ -69,7 +70,7 @@ $$
 If you'd like to number equations so that you can refer to them later, use the **math directive**.
 It looks like this:
 
-````
+````md
 ```{math}
 :label: my_label
 my_math
@@ -79,7 +80,7 @@ my_math
 For example, the following code:
 
 
-````
+````md
 ```{math}
 :label: my_label
 w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
@@ -88,12 +89,10 @@ w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
 
 Will generate this:
 
-
 ```{math}
 :label: my_label
 w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
 ```
-
 
 ```{note}
 Labels cannot start with an integer, or they won't be able to be referenced and

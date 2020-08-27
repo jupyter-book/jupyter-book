@@ -89,7 +89,7 @@ like to provide context to throughout your content.
 
 To add a sidebar to your content, use the following pattern:
 
-````
+````md
 ```{sidebar} My sidebar title
 My sidebar content
 ```
@@ -99,7 +99,7 @@ My sidebar content
 
 To add margin content with myst markdown, use this syntax:
 
-````
+````md
 ```{margin} An optional title
 My margin content
 ```
@@ -151,7 +151,6 @@ the entire page.
 
 You can trigger this behavior in Jupyter Book by adding the following
 tag to a cell's metadata:
-
 
 ```json
 {

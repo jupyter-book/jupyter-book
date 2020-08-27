@@ -33,7 +33,7 @@ kernelspec:
     ###### Heading level 6
     ```
   - ```md
-  	# MyST Cheat Sheet
+    # MyST Cheat Sheet
     ```
   - Level 1-6 headings, denoted by number of `#`
 ``````
@@ -61,14 +61,19 @@ kernelspec:
 ### Referencing Target Headers
 
 Targets can be referenced with the [ref inline role](https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-ref) which by default uses the section title:
+
 ```md
 {ref}`myst_cheatsheet`
 ```
+
 You can specify the text of the target:
+
 ```md
 {ref}`MyST syntax lecture <myst_cheatsheet>`
 ```
+
 Another alternative is to use markdown syntax:
+
 ```md
 [MyST syntax lecture](myst_cheatsheet)
 ```
@@ -276,7 +281,6 @@ Another alternative is to use markdown syntax:
       1. First subitem
       2. Second subitem
 ``````
-
 
 ## Tables
 
@@ -764,6 +768,7 @@ See {doc}`../content/math` for more information.
 ### Inline Code
 
 **Example**:
+
 ```md
 Wrap inline code blocks in backticks: `boolean example = true;`.
 ```
@@ -775,13 +780,16 @@ Wrap inline code blocks in backticks: `boolean example = true;`.
 ### Code and Syntax Highlighting
 
 **Example**:
+
 ````md
 ```python
 note = "Python syntax highlighting"
 print(node)
 ```
 ````
+
 or
+
 ````md
 ```
 No syntax highlighting if no language
@@ -790,11 +798,14 @@ is indicated.
 ````
 
 **Result**:
+
 ```python
 note = "Python syntax highlighting"
 print(node)
 ```
+
 or
+
 ```
 No syntax highlighting if no language
 is indicated.
@@ -822,6 +833,7 @@ kernelspec:
 ````
 
 **Example**:
+
 ````md
 ```{code-cell} ipython3
 note = "Python syntax highlighting"
@@ -830,6 +842,7 @@ print(note)
 ````
 
 **Result**:
+
 ```{code-cell} ipython3
 note = "Python syntax highlighting"
 print(note)
@@ -934,6 +947,7 @@ The following `tags` can be applied to code cells by introducing them as options
 ### Gluing Variables
 
 **Example**:
+
 ``````md
 ```{code-cell} ipython3
 from myst_nb import glue
@@ -945,6 +959,7 @@ Here is an example of how to glue text: {glue:}`glued_text`
 ``````
 
 **Result**:
+
 ```{code-cell} ipython3
 from myst_nb import glue
 my_variable = "here is some text!"
@@ -952,13 +967,13 @@ glue("glued_text", my_variable)
 ```
 
 Here is an example of how to glue text: {glue:}`glued_text`
-
 
 See {ref}`glue/gluing` for more information.
 
 ### Gluing Numbers
 
 **Example**:
+
 ``````md
 ```{code-cell} ipython3
 from myst_nb import glue
@@ -976,6 +991,7 @@ Here is an example of how to glue numbers: {glue:}`ss_mean` and {glue:}`ns_mean`
 ``````
 
 **Result**:
+
 ```{code-cell} ipython3
 from myst_nb import glue
 import numpy as np
@@ -990,12 +1006,12 @@ glue("ns_mean", ns.mean(), display=False)
 
 Here is an example of how to glue numbers: {glue:}`ss_mean` and {glue:}`ns_mean`.
 
-
 See {ref}`glue/gluing` for more information.
 
 ### Gluing Visualizations
 
 **Example**:
+
 ``````md
 ```{code-cell} ipython3
 from myst_nb import glue
@@ -1017,6 +1033,7 @@ This is an example of pasting a glued output as a block:
 ``````
 
 **Result**:
+
 ```{code-cell} ipython3
 from myst_nb import glue
 import matplotlib.pyplot as plt
@@ -1032,6 +1049,7 @@ glue("glued_fig", fig, display=False)
 
 This is an inline glue example of a figure: {glue:}`glued_fig`.
 This is an example of pasting a glued output as a block:
+
 ```{glue:} glued_fig
 ```
 
@@ -1040,6 +1058,7 @@ See {ref}`glue/gluing` for more information.
 ### Gluing Math
 
 **Example**:
+
 ``````md
 ```{code-cell} ipython3
 import sympy as sym
@@ -1056,6 +1075,7 @@ To glue a math equation try
 ``````
 
 **Result**:
+
 ```{code-cell} ipython3
 import sympy as sym
 x, y = sym.symbols('x y')
@@ -1064,7 +1084,8 @@ z = sym.sqrt(x**2+y**2)
 glue("example_eq", z, display=False)
 ```
 
-To glue a math equation try
+To glue a math equation try:
+
 ```{glue:math} example_eq
 :label: glue-eq-example
 ```
@@ -1161,6 +1182,7 @@ or view a {download}`references.bib <../references.bib>` example.
 ``````
 
 To include a list of citations mentioned in the document, introduce the `bibliography` directive
+
 ``````md
 ```{bibliography} ../references.bib
 :filter: docname in docnames

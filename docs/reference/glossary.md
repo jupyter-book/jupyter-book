@@ -5,14 +5,14 @@ A glossary of common terms used throughout Jupyter Book.
 ```{glossary}
 [CommonMark](https://commonmark.org/)
     A standard syntax of markdown that is used across many communities and projects.
-    It is the base flavor of markdown for Jupyter Notebooks, and the base flavor
+    It is the base flavour of markdown for Jupyter Notebooks, and the base flavour
     for {term}`MyST Markdown <MyST>` and Jupyter Book.
 
 [ExecutableBookProject](https://executablebooks.org/en/latest/)
     The project that supports and develops many of the core tools used by Jupyter Book.
 
 [MyST](https://myst-parser.readthedocs.io/en/latest/using/syntax.html)
-    A flavor of markdown that was designed for use with the {term}`Sphinx` project.
+    A flavour of markdown that was designed for use with the {term}`Sphinx` project.
     It is a combination of {term}`CommonMark Markdown <CommonMark>` and a few extra
     syntax pieces to support features of Sphinx, so that you can write Sphinx
     documentation in 100% markdown. It is one of the

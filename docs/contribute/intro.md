@@ -57,9 +57,8 @@ You can alternatively use [tox](https://tox.readthedocs.io), to run the tests in
 >> tox -e py38-sphinx3 --  --ignore=tests/test_pdf.py
 ```
 
-Either will both run the Jupyter Book test suite, *except for the PDF tests*. This is because
-running the PDF generation tests require a full Latex environment, which you may not have
-set up.
+Either will both run the Jupyter Book test suite, *except for the PDF tests*.
+This is because running the PDF generation tests require a full Latex environment, which you may not have set up.
 
 ```{note}
 Jupyter Book makes use of [pytest-xdist](https://github.com/pytest-dev/pytest-xdist) for running tests in parallel.
@@ -82,7 +81,6 @@ Do so by following the instructions in {ref}`pdf/latex`.
 
 If you have installed the requirements for both HTML and Latex generation, you should
 be able to run the full test suite with pytest.
-
 
 ## Repository Structure of Jupyter Book
 

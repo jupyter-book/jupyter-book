@@ -20,7 +20,7 @@ For example:
 If you'd like more control over an image, use the following
 MyST markdown syntax:
 
-````
+````md
 ```{image} ../images/cool.jpg
 :alt: cool!
 :height: 100px
@@ -54,7 +54,7 @@ use the **`{note}`** directive for this.
 
 For example, the following text:
 
-````
+````md
 ```{note}
 Here is a note!
 ```
@@ -84,7 +84,7 @@ For a complete list of options, see [the `sphinx-book-theme` documentation](http
 You can also choose the title of your message box by using the
 **`{admonition}`** directive. For example, the following text:
 
-````
+````md
 ```{admonition} Here's your admonition
 Here's the admonition content
 ```
@@ -119,7 +119,7 @@ that isn't immediately visible to the user.
 
 To hide the body of admonition blocks, add a "dropdown" class to them, like so:
 
-````
+````md
 ```{note}
 :class: dropdown
 The note body will be hidden!
@@ -136,7 +136,7 @@ The note body will be hidden!
 You can use this in conjunction with `{admonition}` directives to include your
 own titles and stylings. For example:
 
-````
+````md
 ```{admonition} Click the + sign to see what's inside
 :class: dropdown, tip
 Here's what's inside!
@@ -159,7 +159,7 @@ we'll insert one of the outputs that was glued into the book from the page
 
 The below code:
 
-````
+````md
 ```{note}
 Here's my figure:
 {glue:figure}`sorted_means_fig`
@@ -196,7 +196,7 @@ the following quotation:
 
 Was created with this text:
 
-```
+```md
 > Here is a cool quotation.
 >
 > From me, Jo the Jovyan
@@ -214,7 +214,7 @@ From me, Jo the Jovyan
 
 Was generated with this markdown:
 
-````
+````md
 ```{epigraph}
 Here is a cool quotation.
 
@@ -233,7 +233,7 @@ Here is a cool quotation.
 
 Was generated with this markdown:
 
-````
+````md
 ```{epigraph}
 Here is a cool quotation.
 
@@ -250,7 +250,7 @@ to a list of footnotes at the bottom of the page.
 To create a footnote, first insert a reference in-line with this syntax: `[^mylabel]`.
 Then, define the text for that label like so:
 
-```
+```md
 [^mylabel]: My footnote text.
 ```
 
@@ -270,7 +270,7 @@ Glossaries allow you to define terms in a glossary, and then link back to the
 glossary throughout your content. You can create a glossary with the following
 syntax:
 
-````
+````md
 ```{glossary}
 term one
   An indented explanation of term 1
@@ -308,6 +308,5 @@ more information.
 
 You can also use MyST to control various aspects of the page layout. For more
 information on this, see {doc}`layout`.
-
 
 [myst-parser]: https://myst-parser.readthedocs.io/en/latest/
