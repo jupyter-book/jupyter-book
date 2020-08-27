@@ -25,9 +25,9 @@
   - file: content/citations
   - file: content/math
   - file: content/figures
-  - file: content/glue
   - file: content/layout
   - file: content/execute
+  - file: content/code-outputs
 
 
 - part: Make your book interactive

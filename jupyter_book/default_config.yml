@@ -28,8 +28,6 @@ execute:
 parse:
   myst_extended_syntax      : false  # enable MyST extended syntax support (see documents for details)
   myst_url_schemes          : [mailto, http, https]  # URI schemes that will be recognised as external URLs in Markdown links
-  stderr_outputs            : show # Default handling of code cell stderr outputs:
-                                   # One of 'show', 'remove', 'remove-warn', 'warn', 'error' or 'severe'
 
 #######################################################################################
 # HTML-specific settings

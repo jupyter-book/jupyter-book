@@ -34,18 +34,6 @@
                     "items": {
                         "type": "string"
                     }
-                },
-                "stderr_outputs": {
-                    "type": "string",
-                    "enum": [
-                        "show",
-                        "remove",
-                        "remove-warn",
-                        "warn",
-                        "error",
-                        "severe"
-                    ],
-                    "default": "show"
                 }
             }
         },
@@ -86,7 +74,8 @@
                         "warn",
                         "error",
                         "severe"
-                    ]
+                    ],
+                    "default": "show"
                 },
                 "run_in_temp": {
                     "type": "boolean",

@@ -1090,7 +1090,7 @@ To glue a math equation try:
 :label: glue-eq-example
 ```
 
-See {doc}`../content/glue` for more information.
+See [](content:code-outputs:glue) for more information.
 
 ## Reference Documents
 

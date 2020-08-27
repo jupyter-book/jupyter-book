@@ -138,8 +138,8 @@ what kinds of functionality they support:
 * {term}`MyST markdown<MyST>` is parsed into Sphinx by
   {term}`the MyST Parser<MyST-Parser>`.
 * {term}`The MyST-NB package<MyST-NB>` parses Jupyter Notebooks into Sphinx and also
-  controls some parts of notebook execution. It also provdes
-  {doc}`inserting code outputs into content <../content/glue>`.
+  controls some parts of notebook execution.
+  It also provdes [inserting code outputs into content](content:code-outputs:glue).
 * {term}`Jupyter-Cache` manages the execution and cacheing of notebook content at
   build time. It is controlled by {term}`MyST-NB`.
 * The {term}`Sphinx-Book-Theme` defines the look and feel of Jupyter Book, and is

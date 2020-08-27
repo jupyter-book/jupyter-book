@@ -267,9 +267,8 @@ Term 3
 ### Insert code cell outputs into admonitions
 
 If you'd like to insert the outputs of running code *inside* admonition
-blocks, we recommend using {doc}`Glue functionality <glue>`. For example,
-we'll insert one of the outputs that was glued into the book from the page
-{doc}`glue`.
+blocks, we recommend using [Glue functionality](content:code-outputs:glue).
+For example, we'll insert one of the outputs that was glued into the book from the [code outputs page](./code-outputs.md).
 
 The below code:
 
@@ -287,13 +286,12 @@ Here's my figure:
 {glue:}`sorted_means_fig`
 ```
 
-See {doc}`glue` for more information on how to use Glue to insert your outputs
-directly into your content.
+See [](content:code-outputs:glue) for more information on how to use Glue to insert your outputs directly into your content.
 
-```{tip}
+:::{tip}
 To hide code input and output that generated the variable you are inserting, use the `remove_cell` tag.
-See {doc}`../interactive/hiding` for more information and other tag options.
-```
+See [](../interactive/hiding.md) for more information and other tag options.
+:::
 
 ## Quotations and epigraphs
 

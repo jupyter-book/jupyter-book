@@ -88,7 +88,7 @@ Here is my figure caption!
 
 ```{note}
 You can also include figures that were generated from your code in notebooks.
-To do so, see {doc}`glue`.
+To do so, see [](content:code-outputs:glue).
 ```
 
 ## Referencing figures

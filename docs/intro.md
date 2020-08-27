@@ -17,7 +17,7 @@ Here are some of the features of Jupyter Book:
 : For `.ipynb` and markdown notebooks, execute code and insert the latest outputs into your book.
   In addition, {ref}`cache and re-use<execute/cache>` outputs to be used later.
 
-{fa}`check,text-success mr-1` [Insert notebook outputs into your content](content/glue)
+{fa}`check,text-success mr-1` [Insert notebook outputs into your content](content:code-outputs)
 : Generate outputs as you build your documentation, and insert them in-line with your content across pages.
 
 {fa}`check,text-success mr-1` [Add interactivity to your book](interactive/launchbuttons)

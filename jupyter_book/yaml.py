@@ -110,8 +110,6 @@ def yaml_to_sphinx(yaml: dict):
             sphinx_config["myst_html_img_enable"] = True
         if parse.get("myst_url_schemes"):
             sphinx_config["myst_url_schemes"] = parse.get("myst_url_schemes")
-        if parse.get("stderr_outputs"):
-            sphinx_config["nb_output_stderr"] = parse.get("stderr_outputs")
 
     execute = yaml.get("execute")
     if execute:
