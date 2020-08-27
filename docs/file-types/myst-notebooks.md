@@ -17,16 +17,13 @@ It is possible to store Jupyter Notebooks in pure markdown. This allows you
 to define a notebook structure entirely using MyST Markdown. For more information
 about MyST Markdown, see {doc}`../content/myst`.
 
-Notebooks with markdown can be read in, executed, and cached by Jupyter Book (see {doc}`../content/execute`
-for information on how to cache pages). This allows you to store all of your
-notebook content in a text format that is much friendlier to version control,
-while still having all the functionality of a Jupyter Notebook.
+Notebooks with markdown can be read in, executed, and cached by Jupyter Book (see {doc}`../content/execute` for information on how to cache pages).
+This allows you to store all of your notebook content in a text format that is much friendlier to version control, while still having all the functionality of a Jupyter Notebook.
 
-```{note}
-MyST notebooks use
-[jupytext to convert between ipynb and text files][jupytext].
+:::{note}
+MyST notebooks uses [MyST-NB to convert between ipynb and text files][myst-nb:index].
 See its documentation for more information.
-```
+:::
 
 To see an example of a MyST notebook, you can look at
 [many of the pages of this documentation](https://github.com/executablebooks/jupyter-book/tree/master/docs).
@@ -34,7 +31,7 @@ For example, see {download}`../interactive/hiding.md` and {download}`../content/
 
 ## Create a MyST notebook with Jupytext
 
-The easiest way to create a MyST notebook is to use [Jupytext][jupytext], a tool
+The easiest way to create a MyST notebook is to use [Jupytext](https://jupytext.readthedocs.io), a tool
 that allows for two-way conversion between `.ipynb` and a variety of text files.
 
 You can convert an `.ipynb` file to a MyST notebook with the following command:
@@ -43,8 +40,12 @@ You can convert an `.ipynb` file to a MyST notebook with the following command:
 jupytext mynotebook.ipynb --to myst
 ```
 
-A resulting `mynotebook.md` file will be created. This can then be used as a page
-in your book.
+A resulting `mynotebook.md` file will be created.
+This can then be used as a page in your book.
+
+:::{important}
+It is necessary to use `jupytext<=1.4.0,>=1.5.0`, due to an incompatibility with the `myst-parser` version in `jupytext=1.4`.
+:::
 
 Jupytext can also **automatically synchronize an `.ipynb` file with your markdown**.
 To do so, use a Jupyter interface such as Jupyter Lab or the classic Notebook interface
@@ -198,5 +199,3 @@ Content in one markdown cell
 Content in another markdown cell
 ```
 ````
-
-[jupytext]: https://jupytext.readthedocs.io/

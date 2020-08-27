@@ -1,9 +1,8 @@
 # Types of content source files
 
 Jupyter Book supports many kinds of source files for your book's content.
-These sections cover the major types of content, and how you can control
-their behavior in Jupyter Book. See the list of sections to the left for information
-about each type/
+These sections cover the major types of content, and how you can control their behavior in Jupyter Book.
+See the list of sections to the left for information about each type.
 
 ## Section table of contents
 
@@ -15,15 +14,21 @@ about each type/
 In general, these are the types of content supported in Jupyter Book (along with
 links to their section in this book):
 
-* [Markdown files](markdown). These are text files written in either CommonMark
-  or in MyST Markdown.
-* [Jupyter Notebooks](notebooks). AKA, `.ipynb` files. These files can contain
-  markdown cells with MyST Markdown.
-* [MyST markdown notebooks](myst-notebooks). These are markdown files (ending in `.md`)
-  that will be *converted to a notebook and executed*.
-* [reStructuredText](restructuredtext). These are text files used by the Sphinx
-  documentation engine (which is used by Jupyter Book). It is recommended to use
-  MyST Markdown instead.
+[Markdown files](markdown)
+: These are text files written in either CommonMark or in MyST Markdown.
+
+[Jupyter Notebooks](notebooks)
+: AKA, `.ipynb` files. These files can contain markdown cells with MyST Markdown.
+
+[MyST markdown notebooks](myst-notebooks)
+: These are markdown files (ending in `.md`) that will be *converted to a notebook and executed*.
+
+[reStructuredText](restructuredtext).
+: These are text files used by the Sphinx documentation engine (which is used by Jupyter Book).
+  It is recommended to use MyST Markdown instead.
+
+[Custom Notebook Formats](file-types:custom)
+: Any other file type can be *auto-converted* before execution, by assigning it a custom Python function, for example those provided by the Jupytext conversion tool.
 
 ## Rules for all content types
 
@@ -41,4 +46,4 @@ There are a few things that are true for all content types. Here is a short list
 ## Two-way conversion between text-files and `.ipynb` files
 
 For information about how to convert between text files and `.ipynb` files for use
-with Jupyter Book, see {doc}`jupytext`.
+with Jupyter Book, see [](file-types:custom:jupytext).

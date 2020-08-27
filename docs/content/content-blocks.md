@@ -1,56 +1,13 @@
-# Special content blocks with MyST
+# Special content blocks
 
-A common use of directives and roles is to designate "special blocks" of your
-content. This allows your to include more complex information such as warnings
-and notes, citations, and figures. This section covers a few common ones.
-
-(content-blocks-images)=
-## Images
-
-You can add images with more control using MyST markdown.
-
-````{margin}
-Note that the traditional way to add images with CommonMark will still work.
-For example:
-```
-![cool!](../images/cool.jpg)
-```
-````
-
-If you'd like more control over an image, use the following
-MyST markdown syntax:
-
-````md
-```{image} ../images/cool.jpg
-:alt: cool!
-:height: 100px
-```
-````
-
-This allows you to control aspects of the image with
-{ref}`directive arguments <directive-arguments>`. For example, here we have
-controlled both the *alternative text* as well as the *height* of the image.
-Using html to control your image appearance is discouraged. If you insist,
-read more about {ref}`using raw html in Markdown <raw-html-in-markdown>`.
-
-For a list of all of the options you can supply to `image`, see the
-[reStructured Text image documentation](https://docutils.sourceforge.io/docs/ref/rst/directives.html#image).
-
-````{margin} A note on nesting
-You can nest admonitions (and other content blocks) inside one another. For example:
-
-```{note}
-Here's a note block inside a margin block
-```
-
-See {ref}`markdown/nexting` for instructions to do this.
-````
+A common use of directives and roles is to designate "special blocks" of your content.
+This allows your to include more complex information such as warnings and notes, citations, and figures.
+This section covers a few common ones.
 
 ## Notes, warnings, and other admonitions
 
-Let's say you wish to highlight a particular block of
-text that exists slightly apart from the narrative of your page. You can
-use the **`{note}`** directive for this.
+Let's say you wish to highlight a particular block of text that exists slightly apart from the narrative of your page.
+You can use the **`{note}`** directive for this.
 
 For example, the following text:
 
@@ -65,6 +22,16 @@ Results in the following output:
 ```{note}
 Here is a note!
 ```
+
+````{margin} A note on nesting
+You can nest admonitions (and other content blocks) inside one another. For example:
+
+:::{note}
+Here's a note block inside a margin block
+:::
+
+See {ref}`markdown/nexting` for instructions to do this.
+````
 
 There are a number of similarly-styled blocks of text. For example, here is a `{warning}`
 block:
@@ -308,5 +275,3 @@ more information.
 
 You can also use MyST to control various aspects of the page layout. For more
 information on this, see {doc}`layout`.
-
-[myst-parser]: https://myst-parser.readthedocs.io/en/latest/

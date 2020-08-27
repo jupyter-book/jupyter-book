@@ -616,7 +616,7 @@ Content is not permitted in image directive.
     ```
 ``````
 
-See {doc}`../content/figures` and {doc}`../content-types/markdown` for more information.
+See {doc}`../content/figures` and {doc}`../file-types/markdown` for more information.
 
 ### Referencing Figures
 
@@ -848,7 +848,7 @@ note = "Python syntax highlighting"
 print(note)
 ```
 
-See {doc}`../content-types/myst-notebooks` for more information.
+See {doc}`../file-types/myst-notebooks` for more information.
 
 #### Tags
 

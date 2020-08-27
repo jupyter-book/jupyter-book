@@ -25,7 +25,7 @@ the sections below for each configuration option and its effect.
 
 ```{tip}
 If you'd like to execute code that is in your markdown files, you can use the
-`{code-cell}` directive in MyST markdown. See {doc}`../content-types/myst-notebooks`
+`{code-cell}` directive in MyST markdown. See {doc}`../file-types/myst-notebooks`
 for more information.
 ```
 

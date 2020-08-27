@@ -11,6 +11,7 @@ kernelspec:
   name: python3
 ---
 
+(myst-content/math)=
 # Math and Equations
 
 Jupyter Book uses [MathJax](http://docs.mathjax.org/) for typesetting math in your

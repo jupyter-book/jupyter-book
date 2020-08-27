@@ -15,14 +15,15 @@ Jupyter Book. You can install it via pip with the following command:
 pip install -U jupyter-book
 ```
 
-```{admonition} A note for windows users
-:name: warning
+:::{admonition,warning} A note for windows users
+
 Currently, Jupyter Book is tested in a unix-like environment, and it is highly
-recommended that you use a unix environment to build your books. If you're running
-a recent version of Windows 10, we recommend
+recommended that you use a unix environment to build your books.
+If you're running a recent version of Windows 10, we recommend
 [installing Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
 If you'd like to help with adding Windows support, please [say hello in this issue](https://github.com/executablebooks/jupyter-book/issues/575).
-```
+
+:::
 
 ## The book building process
 
@@ -51,10 +52,10 @@ the pieces that you'll modify for your own book.
 Running the following command will create a new Jupyter Book with a few
 content pages and a Table of Contents to get you started:
 
-```{note}
+:::{note}
 Jupyter Book uses a command-line interface to generate books. For more complete
-information about the CLI, see {doc}`../reference/cli`.
-```
+information about the CLI, see [](../reference/cli.md).
+:::
 
 ### Create a template Jupyter Book
 
@@ -188,7 +189,7 @@ You can store these files in whatever collection of folders you'd like, note tha
 the *structure* of your book when it is built will depend solely on the order of
 items in your `_toc.yml` file (see below section)
 
-
+()
 ### Book bibliography for citations
 
 If you'd like to build a bibliography for your book, you can do so by including
@@ -200,8 +201,7 @@ mybookname/
 ```
 
 This BiBTex file can be used to insert citations into your book's pages. For more information,
-see {doc}`../content/citations`.
-
+see [](../content/citations.md).
 
 ## Next step: build your book
 

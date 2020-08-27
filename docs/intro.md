@@ -5,13 +5,13 @@ publication-quality books and documents from computational material.
 
 Here are some of the features of Jupyter Book:
 
-{fa}`check,text-success mr-1` [Write publication-quality content in markdown](content-types/markdown)
+{fa}`check,text-success mr-1` [Write publication-quality content in markdown](file-types/markdown)
 : You can write in either Jupyter markdown, or an extended flavor of markdown with [publishing features](content/myst).
   This includes support for rich syntax such as [citations and cross-references](content/citations), [math and equations](content/math), and [figures](content/figures).
 
-{fa}`check,text-success mr-1` [Write content in Jupyter Notebooks](content-types/notebooks)
+{fa}`check,text-success mr-1` [Write content in Jupyter Notebooks](file-types/notebooks)
 : This allows you to include your code and outputs in your book.
-  You can also write notebooks [entirely in markdown](content-types/myst-notebooks) to execute when you build your book.
+  You can also write notebooks [entirely in markdown](file-types/myst-notebooks) to execute when you build your book.
 
 {fa}`check,text-success mr-1` [Execute and cache your book's content](content/execute)
 : For `.ipynb` and markdown notebooks, execute code and insert the latest outputs into your book.
@@ -33,8 +33,12 @@ This website is built with Jupyter Book! You can browse its contents to the
 left to see what is possible.
 
 :::{admonition,tip} Get involved with Jupyter Book!
+
 Jupyter Book is an open community that welcomes your feedback, input, and contributions!
-[Open an issue](https://github.com/executablebooks/jupyter-book/issues/new/choose) with any feedback. Give an issue a 👍 if you think it should be resolved and check out {ref}`our enhancement voting leaderboard <ebp:feature-note>` for the issues people want to see completed! If you'd like to contribute, [check out our contributing guide](contribute/intro.md).
+[Open an issue](https://github.com/executablebooks/jupyter-book/issues/new/choose) with any feedback.
+Give an issue a 👍 if you think it should be resolved and check out {ref}`our enhancement voting leaderboard <ebp:feature-note>` for the issues people want to see completed!
+If you'd like to contribute, [check out our contributing guide](contribute/intro.md).
+
 :::
 
 ## Get started
@@ -118,7 +122,6 @@ You can build this book locally on the command line via the following steps:
 
 5. View the result through a browser --- try (with, say, firefox)
 
-
     ```bash
     firefox mini_book/_build/html/index.html
     ```
@@ -135,6 +138,7 @@ for a longer Jupyter Book use case, drawn from the same source material.
 
 For more information on how to use Jupyter Book, see {doc}`start/overview`.
 
+(intro/jupyter-book-components)=
 ## Under the hood - the components of Jupyter Book
 
 Jupyter Book is a wrapper around a collection of tools in the Python
@@ -143,14 +147,13 @@ Here are
 a few key pieces:
 
 * It uses {term}`the MyST markdown language<MyST>` in
-  markdown and notebook documents. This allows users to write rich,
-  publication-quality markup in their documents.
+  markdown and notebook documents.
+  This allows users to write rich, publication-quality markup in their documents.
 * It uses {term}`the MyST-NB package<MyST-NB>` to parse and
   read-in notebooks so they are built into your book.
 * It uses {term}`the Sphinx documentation engine<Sphinx>`
   to build outputs from your book's content.
-* It uses a slightly modified version of the [PyData Sphinx theme](https://pydata-sphinx-theme.readthedocs.io/en/latest/)
-  for beautiful HTML output.
+* It uses a slightly modified version of the [PyData Sphinx theme](https://pydata-sphinx-theme.readthedocs.io/en/latest/) for beautiful HTML output.
 * It uses a collection of Sphinx plugins and tools to add new functionality.
 
 For more information about the project behind many of these tools, see [The Executable Book Project](https://ebp.jupyterbook.org/) documentation.

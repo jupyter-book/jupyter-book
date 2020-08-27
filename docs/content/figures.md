@@ -1,4 +1,67 @@
-# Figures
+# Images and Figures
+
+(content-blocks-images)=
+## Images
+
+MyST Markdown provides a few different syntaxes for including images in your documentation, as explained below.
+
+The first is the standard Markdown syntax:
+
+```md
+![fishy](../images/fun-fish.png)
+```
+
+![fishy](../images/fun-fish.png)
+
+This will correctly copy the image to the build folder and will render it in all output formats (HTML, TeX, etc).
+However, it is limited in the configuration that can be applied, for example setting a width.
+
+As discussed in [this section](content:myst/directives), MyST allow for directives to be used such as `image` and `figure` (see [the sphinx documentation](sphinx:rst-primer) for available options):
+
+````md
+```{image} ../images/fun-fish.png
+:alt: fishy
+:class: bg-primary
+:width: 200px
+:align: center
+```
+````
+
+```{image} ../images/fun-fish.png
+:alt: fishy
+:class: bg-primary mb-1
+:width: 200px
+```
+
+This allows you to control aspects of the image with [directive arguments](directive-arguments).
+
+In one way, this is an improvement on the Markdown syntax, however, the drawback is that this syntax will not show the image in common Markdown viewers (for example when the files are viewed on GitHub).
+The final option then is directly using HTML, which can also parsed by MyST Markdown.
+U
+sing raw HTML is usually a bad choice (see [this explanation](raw-html-in-markdown)),
+but enabling extended syntax in your `_config` enables MySt-Parser to properly handle isolated `img` tags:
+
+```yaml
+parse:
+  myst_extended_syntax: true
+```
+
+Now you can add:
+
+```md
+<img src="../images/fun-fish.png" alt="fishy" class="bg-primary" width="200px">
+```
+
+and we correctly render:
+
+<img src="../images/fun-fish.png" alt="fishy" class="bg-primary mb-1" width="200px">
+
+This will also be output in PDF LaTeX builds!
+
+Allowed attributes are equivalent to the `image` directive: `src`, `alt`, `class`, `width` and `height`.
+Any other attributes will be dropped.
+
+## Figures
 
 MyST Markdown also lets you include **figures** in your page. Figures are
 like images, except that they are easier to reference elsewhere in your

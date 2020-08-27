@@ -1,15 +1,16 @@
 # Custom Sphinx configuration
 
-Jupyter Book uses the excellent documentation tool [Sphinx](http://www.sphinx-doc.org/)
-to build your book and manage citations, cross-references, and extensability.
+Jupyter Book uses the excellent documentation tool [Sphinx](http://www.sphinx-doc.org/),
+to build your book and manage citations, cross-references, and extensibility.
 
-While Jupyter Book comes pre-configured with several Sphinx extensions, power-users may
-wish to add their own extensions and configuration. This page describes how to do so.
+While Jupyter Book comes pre-configured with several Sphinx extensions,
+power-users may wish to add their own extensions and configuration.
+This page describes how to do so.
 
-```{warning}
+:::{warning}
 Adding your own Sphinx configuration and extensions may cause Jupyter Book to behave
 unpredictably. Use at your own risk!
-```
+:::
 
 ## Custom Sphinx extensions
 
@@ -26,16 +27,16 @@ sphinx:
 Any extensions that are listed will be appended to the list of Sphinx extensions at
 build time.
 
-```{note}
+:::{note}
 Make sure that you have your extension installed on your machine, or Sphinx won't know
 how to build the extensions.
-```
+:::
 
 ### An example: `sphinx-tabs`
 
-For example, let's say you'd like to include **tabbed content** in your book. There
-is [a sphinx-extension for that](https://github.com/djungelorm/sphinx-tabs). To enable
-it, we'll do the following:
+For example, let's say you'd like to include **tabbed content** in your book.
+There is [a sphinx-extension for that](https://github.com/djungelorm/sphinx-tabs).
+To enable it, we'll do the following:
 
 * **Install `sphinx-tabs`**. Here's the command to do so:
 
@@ -73,8 +74,8 @@ it, we'll do the following:
     - sphinx_tabs.tabs
   ```
 
-Now, Jupyter Book will know how to interpret the `{tabs}` directive (and any other
-directives that `sphinx-tabs` supports).
+Now, Jupyter Book will know how to interpret the `{tabs}` directive
+(and any other directives that `sphinx-tabs` supports).
 
 For example, here is a rendered version of the tab code pasted above:
 
@@ -139,6 +140,17 @@ you configure in `conf.py`. To do so, use the following section of `_config.yml`
       key2: value2
   ```
 
+### Fine control of parsing and execution
+
+As discussed in [the components of Jupyter Book](intro/jupyter-book-components), two of the principe components of Jupyter Book are sphinx extensions;
+MyST-Parser, for Markdown parsing, and MyST-NB, for notebook execution and output rendering.
+
+These two extensions are highly customisable *via* Sphinx configuration.
+Some their configuration is already exposed in the `_config.yml`, but you can also directly set configuration, see:
+
+* The [MyST-Parser configuration options](myst-parser:intro/config-options)
+* The [MyST-NB configuration options](myst-nb:start/config-options)
+
 ### Defining TeX Macros
 
 You can add LaTeX macros for the whole book by defining them under the `Macros` option of the `TeX` block. For example, the following two macros have been pre-defined in the Sphinx configuration
@@ -180,3 +192,38 @@ will be rendered as:
 $$
 A = \bmat{} 1 & 1 \\ 2 & 1\\ 3 & 2 \emat{},\ b=\bmat{} 2\\ 3 \\ 4\emat{},\ \gamma = 0.5
 $$
+
+:::{seealso}
+[How MyST-Parser works with MathJax](myst-parser:syntax/mathjax),
+and the [Math and Equations](myst-content/math) section.
+:::
+
+:::{important}
+To have "bare" LaTeX rendered in HTML, you must either set in your `_config.yaml`:
+
+```yaml
+parse:
+  myst_extended_syntax: true
+```
+
+or more specifically:
+
+```yaml
+sphinx:
+  config:
+    myst_amsmath_enable: true
+```
+
+Then you can include:
+
+```latex
+\begin{equation}
+  \int_0^\infty \frac{x^3}{e^x-1}\,dx = \frac{\pi^4}{15}
+\end{equation}
+```
+
+\begin{equation}
+  \int_0^\infty \frac{x^3}{e^x-1}\,dx = \frac{\pi^4}{15}
+\end{equation}
+
+:::

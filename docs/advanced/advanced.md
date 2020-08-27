@@ -140,23 +140,42 @@ for ipath in notebooks:
 ```
 
 (raw-html-in-markdown)=
-## Use raw html in Markdown
+## Use raw HTML in Markdown
 
 Jupyter notebook markdown allows you to use pure HTML in markdown cells.
-This is strongly discouraged and not guaranteed to work in all cases.
+This is discouraged in most cases,
+because it will usually just be passed through the build process as raw text, and so will not be subject to processes like:
 
-If, for instance, you use
+- Relative path corrections
+- Copying of assets to the build folder
+- Multiple output type formatting (e.g. it will not show in PDFs!).
 
-```html
-<img src="images/some/file.png" alt="Some image" style="width: 200px;"/>
+So, for instance, below we add, and you will find that the HTML link is broken:
+
+```md
+ <a href="../intro.md">Go Home HTML!</a>
+
+ [Go Home Markdown!](../intro.md)
 ```
 
-in your Markdown texts, the source file `images/some/file.png` will not
-be copied to the build directory when you run `jupyter-book build`.
-You would have to copy the source file to the
-build directory manually. Note that MyST markdown gives you control over the
-{ref}`image appearance<content-blocks-images>` without having to resort
-to pure html.
+ <a href="../intro.md">Go Home HTML!</a>
+
+ [Go Home Markdown!](../intro.md)
+
+:::{tip}
+Note that MyST markdown now has some extended syntax features,
+which can allow you to use certain HTML elements in the correct manner.
+
+Such as:
+
+```html
+<img src="../images/fun-fish.png" alt="the fun fish!" width="200px"/>
+```
+
+<img src="../images/fun-fish.png" alt="the fun fish!" width="200px"/>
+
+See the [image appearance section](content-blocks-images) for details.
+:::
 
 ## Adding extra HTML to your book
 
@@ -234,12 +253,10 @@ guarantee that they will work on all windows installations.
     cmd.exe or powershell enviroments that set PYTHONUTF8=1  override the native
     locale encoding and use UTF8 for all input/output.
 
-    ```{tip}
-    To make it easier to use
-    this option, the EOAS/UBC notebook courseware project has created a conda package
-    [runjb](https://anaconda.org/eoas_ubc/runjb) which
-    [does this automatically for powershell](https://github.com/eoas-ubc/eoas_tlef/blob/master/converted_docs/wintools/binwin/runjb.ps1)
-    ```
+    :::{tip}
+    To make it easier to use this option,
+    the EOAS/UBC notebook courseware project has created a Conda package [runjb](https://anaconda.org/eoas_ubc/runjb) which [does this automatically for powershell](https://github.com/eoas-ubc/eoas_tlef/blob/master/converted_docs/wintools/binwin/runjb.ps1)
+    :::
 
 2. A new windows event loop
 

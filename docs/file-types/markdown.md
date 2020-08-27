@@ -2,9 +2,9 @@
 
 You can write content in regular markdown files (e.g., files ending in `.md`).
 Jupyter Book supports any markdown syntax that is supported by Jupyter Notebooks.
-Jupyter Notebook markdown is a slight extension of a flavour of markdown called
-[CommonMark Markdown](https://commonmark.org/). It has many elements
-for standard text processing, though it lacks a lot of features used for
+Jupyter Notebook markdown is an extension of a flavour of markdown called
+[CommonMark Markdown](https://commonmark.org/).
+It has many elements for standard text processing, though it lacks a lot of features used for
 publishing and documentation.
 
 ```{note}
@@ -41,6 +41,10 @@ It was generated with this code:
 ![C-3PO_droid](../images/C-3PO_droid.png)
 ```
 
+:::{seealso}
+[](../content/figures.md) for more information
+:::
+
 ### Adding movies
 
 You can even embed references to movies on the web! For example, here's a little gif for you!
@@ -51,9 +55,8 @@ This will be included in your book when it is built.
 
 ## Mathematics
 
-Jupyter Book uses the excellent [MathJax](http://docs.mathjax.org/en/latest/) library,
-along with the default Jupyter Notebook configuration, for rendering mathematics from
-latex-style syntax.
+For HTML outputs, Jupyter Book uses the excellent [MathJax](http://docs.mathjax.org/en/latest/) library,
+along with the default Jupyter Notebook configuration, for rendering mathematics from latex-style syntax.
 
 For example, here's a mathematical expression rendered with MathJax:
 
@@ -66,6 +69,10 @@ $$
     &= \sum_{i=1}^3 P(A_i) - \mathop{\sum \sum}_{1 \le i < j \le 3} P(A_iA_j) + P(A_1A_2A_3)
 \end{align}
 $$
+
+:::{seealso}
+[](../content/math.md) for more information
+:::
 
 ### Block-level math
 
@@ -84,7 +91,8 @@ $$
 wow = its^{math}
 $$
 
-You can also include math blocks by using latex-style syntax using `\begin{align*}`. For example, the following block:
+You can also include math blocks by using latex-style syntax using `\begin{align*}`.
+For example, the following block:
 
 ```latex
 \begin{align*}
@@ -98,10 +106,18 @@ Results in:
 yep = its_more^math
 \end{align*}
 
-For more information about math with Jupyter Book, see {doc}`../content/math`.
+:::{important}
+This requires the MyST extended syntax enabled in your `_config.yml`:
+
+```yaml
+parse:
+  myst_extended_syntax: true
+```
+
+:::
 
 ## Extended markdown with MyST Markdown
 
 In addition to CommonMark markdown, Jupyter Book also supports a more fully-featured version of markdown called **MyST Markdown**.
 This is a slight addition to CommonMark that includes syntactic pieces that are useful for publishing computational narratives.
-For more information about MyST Markdown, see {doc}`../content/myst`.
+For more information about MyST Markdown, see [](../content/myst.md).

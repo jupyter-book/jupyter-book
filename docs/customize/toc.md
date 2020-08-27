@@ -94,11 +94,11 @@ Below the first entry, you have two options for defining the structure of your b
    Note that **chapters do not continue between parts**. Think of each part as
    a self-contained collection of chapters (e.g., for the purposes of numbering).
 
-```{admonition} Don't mix these two structures
+:::{admonition,warning} Don't mix these two structures!
 When designing the top-level sections of your `_toc.yml` file, you must
 pick *either* a list of chapters via `- file:` entries, or a list of parts
 via `- part:` entries with chapters inside of them. You cannot intermix them both.
-```
+:::
 
 (toc/files)=
 ### Files
@@ -381,7 +381,7 @@ may do so by using the `{tableofcontents}` directive. You can use it like so:
 ```
 ````
 
-For an example, see the source of [the content types page](../content-types/index.md).
+For an example, see the source of [the content types page](../file-types/index.md).
 
 ## Automatically generate your `_toc.yml` file
 
@@ -392,7 +392,7 @@ using the filenames of your book's content. To do so, run the following command
 jupyter-book toc mybookpath/
 ```
 
-Jupyter Book will search `mybookpath/` for any [content files](../content-types/index)
+Jupyter Book will search `mybookpath/` for any [content files](../file-types/index)
 and create a `_toc.yml` file out of them. There are a few considerations to keep in mind:
 
 * Each sub-folder must have at least one content file inside it

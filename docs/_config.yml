@@ -7,6 +7,8 @@ email: choldgraf@berkeley.edu
 description: >- # this means to ignore newlines until "baseurl:"
   This is an example book built with Jupyter Books.
 
+exclude_patterns: [file-types/include-rst.rst]
+
 execute:
   execute_notebooks: cache
 
@@ -46,6 +48,18 @@ sphinx:
     intersphinx_mapping:
       ebp:
         - "https://executablebooks.org/en/latest/"
+        - null
+      myst-parser:
+        - "https://myst-parser.readthedocs.io/en/latest/"
+        - null
+      myst-nb:
+        - "https://myst-nb.readthedocs.io/en/latest/"
+        - null
+      sphinx:
+        - "https://www.sphinx-doc.org/en/master"
+        - null
+      nbformat:
+        - "https://nbformat.readthedocs.io/en/latest"
         - null
 
   extra_extensions:
