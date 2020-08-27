@@ -161,3 +161,22 @@ tags: [raises-exception]
 ---
 print(thisvariabledoesntexist)
 ```
+
+## Execution statistics
+
+As notebooks are executed, certain statistics are stored in the environment by MyST-NB.
+The simplest way to access and visualise this data is using the `nb-exec-table` directive.
+
+:::{seealso}
+The [MyST-NB documentation](myst-nb:execute/statistics), for creating you own directives to manipulate this.
+:::
+
+````md
+```{nb-exec-table}
+```
+````
+
+produces:
+
+```{nb-exec-table}
+```
