@@ -19,6 +19,7 @@ test_reqs = [
     "pytest>=3.6,<4",
     "pytest-cov",
     "pytest-xdist",
+    "pytest-timeout",
     "beautifulsoup4",
     "matplotlib",
     "pytest-regressions",

@@ -1,5 +1,3 @@
-from pathlib import Path
-
 from click.testing import CliRunner
 import pytest
 
@@ -7,9 +5,9 @@ from jupyter_book.commands import init as myst_init
 from jupyter_book.utils import init_myst_file
 
 
-def test_myst_init(cli: CliRunner, tmpdir):
+def test_myst_init(cli: CliRunner, temp_with_override):
     """Test adding myst metadata to text files."""
-    path = Path(tmpdir).joinpath("tmp.md").absolute()
+    path = temp_with_override.joinpath("tmp.md").absolute()
     text = "TEST"
     with open(path, "w") as ff:
         ff.write(text)

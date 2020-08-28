@@ -12,7 +12,7 @@ path_books = Path(__file__).parent.joinpath("books")
 def test_toc_basic(cli: CliRunner, build_resources):
     books, tocs = build_resources
     # run(f"jb toc {tocs}".split(), check=True)
-    result = cli.invoke(toc, str(tocs))
+    result = cli.invoke(toc, tocs.as_posix())
     assert result.exit_code == 0
 
     toc_yaml = tocs.joinpath("_toc.yml")
@@ -23,7 +23,7 @@ def test_toc_fail(cli: CliRunner, build_resources):
     """Folder with no content should return none"""
     books, tocs = build_resources
     p_empty = tocs.parent
-    result = cli.invoke(toc, str(p_empty))
+    result = cli.invoke(toc, p_empty.as_posix())
     assert result.exit_code != 0
     assert isinstance(result.exception, RuntimeError)
     assert "No content files were found in" in str(result.exception)
@@ -31,7 +31,7 @@ def test_toc_fail(cli: CliRunner, build_resources):
 
 def test_toc_add_titles(cli: CliRunner, build_resources):
     books, tocs = build_resources
-    result = cli.invoke(toc, str(tocs))
+    result = cli.invoke(toc, tocs.as_posix())
     assert result.exit_code == 0
     toc_yaml = tocs.joinpath("_toc.yml")
     res = yaml.safe_load(toc_yaml.read_text(encoding="utf8"))
@@ -39,7 +39,7 @@ def test_toc_add_titles(cli: CliRunner, build_resources):
     for section in res["sections"]:
         assert "title" not in section
 
-    result = cli.invoke(toc, (str(tocs), "--add-titles"))
+    result = cli.invoke(toc, (tocs.as_posix(), "--add-titles"))
     assert result.exit_code == 0
     toc_yaml = tocs.joinpath("_toc.yml")
     res = yaml.safe_load(toc_yaml.read_text(encoding="utf8"))
@@ -48,9 +48,9 @@ def test_toc_add_titles(cli: CliRunner, build_resources):
         assert "title" in section
 
 
-def test_toc_numbered(cli: CliRunner, tmpdir, file_regression):
+def test_toc_numbered(cli: CliRunner, temp_with_override, file_regression):
     """Testing that numbers make it into the sidebar"""
-    path_output = Path(tmpdir).joinpath("mybook").absolute()
+    path_output = temp_with_override.joinpath("mybook").absolute()
     toc_list = [
         "_toc_numbered.yml",  # Numbered in top-level title
         "_toc_numbered_parts.yml",  # Numbered in top-level title w/ parts
@@ -61,7 +61,15 @@ def test_toc_numbered(cli: CliRunner, tmpdir, file_regression):
         p_toc = path_books.joinpath("toc")
         path_toc = p_toc.joinpath(itoc)
         result = cli.invoke(
-            build, f"{p_toc} --path-output {path_output} --toc {path_toc} -W".split()
+            build,
+            [
+                p_toc.as_posix(),
+                "--path-output",
+                path_output.as_posix(),
+                "--toc",
+                path_toc.as_posix(),
+                "-W",
+            ],
         )
         assert result.exit_code == 0
 

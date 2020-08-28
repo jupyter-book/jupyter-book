@@ -17,6 +17,7 @@ exclude .flake8
 exclude tox.ini
 exclude codecov.yml
 exclude RELEASES.md
+exclude conftest.py
 
 include LICENSE
 include CHANGELOG.md

@@ -1,21 +1,16 @@
 """Testing clean functionality of the CLI."""
 import os
-from pathlib import Path
 
 from click.testing import CliRunner
 
 from jupyter_book.commands import build, clean
 
 
-path_tests = Path(__file__).parent.resolve()
-path_books = path_tests.joinpath("books")
-path_root = path_tests.parent
-
-
-def test_clean_book(cli: CliRunner, tmpdir):
-    path = path_books.joinpath("clean_cache")
+def test_clean_book(cli: CliRunner, build_resources):
+    books, tocs = build_resources
+    path = books.joinpath("clean_cache")
     build_path = path.joinpath("_build")
-    result = cli.invoke(build, str(path))
+    result = cli.invoke(build, path.as_posix())
     assert result.exit_code == 0
 
     # Ensure _build exists
@@ -25,14 +20,14 @@ def test_clean_book(cli: CliRunner, tmpdir):
     assert build_path.joinpath(".jupyter_cache").exists()
 
     # Empty _build except .jupyter_cache
-    result = cli.invoke(clean, str(path))
+    result = cli.invoke(clean, path.as_posix())
     assert result.exit_code == 0
 
     # Ensure _build and .jupyter_cache exist
     assert build_path.exists()
     assert build_path.joinpath(".jupyter_cache").exists()
 
-    result = cli.invoke(clean, ("--all", str(path)))
+    result = cli.invoke(clean, ("--all", path.as_posix()))
     assert result.exit_code == 0
     # Ensure _build is removed
     assert not path.joinpath("_build").exists()
@@ -45,10 +40,11 @@ def test_clean_book(cli: CliRunner, tmpdir):
     assert "Path to book isn't a directory" in str(result.exception)
 
 
-def test_clean_html(cli, tmpdir):
-    path = path_books.joinpath("clean_cache")
+def test_clean_html(cli, build_resources):
+    books, tocs = build_resources
+    path = books.joinpath("clean_cache")
     build_path = path.joinpath("_build")
-    result = cli.invoke(build, str(path))
+    result = cli.invoke(build, path.as_posix())
     assert result.exit_code == 0
 
     # Ensure _build exists
@@ -57,7 +53,7 @@ def test_clean_html(cli, tmpdir):
     assert build_path.joinpath("html").exists()
 
     # Remove html
-    result = cli.invoke(clean, ("--html", str(path)))
+    result = cli.invoke(clean, ("--html", path.as_posix()))
     assert result.exit_code == 0
 
     # Ensure _build  exists
@@ -67,9 +63,10 @@ def test_clean_html(cli, tmpdir):
     assert not build_path.joinpath("html").exists()
 
 
-def test_clean_latex(cli, tmpdir):
-    path = path_books.joinpath("clean_cache")
-    result = cli.invoke(build, str(path))
+def test_clean_latex(cli, build_resources):
+    books, tocs = build_resources
+    path = books.joinpath("clean_cache")
+    result = cli.invoke(build, path.as_posix())
     assert result.exit_code == 0
 
     build_path = path.joinpath("_build")
@@ -82,7 +79,7 @@ def test_clean_latex(cli, tmpdir):
     assert build_path.joinpath("latex").exists()
 
     # Remove html
-    result = cli.invoke(clean, ("--latex", str(path)))
+    result = cli.invoke(clean, ("--latex", path.as_posix()))
     assert result.exit_code == 0
 
     # Ensure _build exists
@@ -92,9 +89,10 @@ def test_clean_latex(cli, tmpdir):
     assert not build_path.joinpath("latex").exists()
 
 
-def test_clean_html_latex(cli, tmpdir):
-    path = path_books.joinpath("clean_cache")
-    result = cli.invoke(build, str(path))
+def test_clean_html_latex(cli, build_resources):
+    books, tocs = build_resources
+    path = books.joinpath("clean_cache")
+    result = cli.invoke(build, path.as_posix())
     assert result.exit_code == 0
 
     build_path = path.joinpath("_build")
@@ -110,7 +108,7 @@ def test_clean_html_latex(cli, tmpdir):
     assert build_path.joinpath("html").exists()
 
     # Remove html
-    result = cli.invoke(clean, ("--html", "--latex", str(path)))
+    result = cli.invoke(clean, ("--html", "--latex", path.as_posix()))
     assert result.exit_code == 0
 
     # Ensure _build exists

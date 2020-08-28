@@ -11,8 +11,8 @@ path_tests = Path(__file__).parent
 
 
 @pytest.mark.requires_chrome
-def test_pdfhtml(cli: CliRunner, tmpdir):
-    path_output = Path(tmpdir).absolute()
+def test_pdfhtml(cli: CliRunner, temp_with_override: Path):
+    path_output = temp_with_override.absolute()
 
     # test for build
     path_template = path_tests.parent.joinpath("jupyter_book", "book_template")
@@ -39,8 +39,8 @@ def test_pdfhtml(cli: CliRunner, tmpdir):
 
 # TODO: Update to include more detailed tests for pdflatex build chain
 @pytest.mark.requires_tex
-def test_pdflatex(cli: CliRunner, tmpdir):
-    path_output = Path(tmpdir).absolute()
+def test_pdflatex(cli: CliRunner, temp_with_override: Path):
+    path_output = temp_with_override.absolute()
 
     # test for build
     path_template = path_tests.parent.joinpath("jupyter_book", "book_template")

@@ -385,12 +385,14 @@ def find_config_path(path: Path) -> Tuple[Path, bool]:
     else:
         current_dir = path.parent
 
-    root_dir = current_dir.root
-    while str(current_dir) != root_dir:
-        config_file = os.path.join(str(current_dir), "_config.yml")
-        if os.path.isfile(config_file):
+    if (current_dir / "_config.yml").is_file():
+        return (current_dir, True)
+
+    while current_dir != current_dir.parent:
+        if (current_dir / "_config.yml").is_file():
             return (current_dir, True)
         current_dir = current_dir.parent
+
     if not path.is_dir():
         return (path.parent, False)
     return (path, False)
