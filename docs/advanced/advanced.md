@@ -278,6 +278,40 @@ After the build, view the html with:
 
 `start docs\_build\html\index.html`
 
+(sphinx:manual-assets)=
+## Manually specify extra files/folders to be included in a website
+
+Jupyter Book will copy over any files that are linked from within its pages so that the links work in the built website. However, sometimes you'd like to manually ensure that files and folders are included in your built website. For example, if you'd like to link to them from _outside_ your built documentation, but not from within your built documentation.
+
+To manually specify items to copy over, use the [`html_extra pash` Sphinx configuration](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_extra_path). You can configure this with Jupyter Book liks so:
+
+```yaml
+sphinx:
+  config:
+    html_extra_path: ['folder1', 'folder2']
+```
+
+When you build your book's HTML, Jupyter Book will ensure that all files and folders _inside_ the folders specified in `html_extra_path` will be copied over to your built website.
+
+For example, if you have a folder structure in your book like so:
+
+```bash
+assets
+└── data
+    └── mydataset.csv
+```
+
+and the following Jupyter Book configuration:
+
+```yaml
+sphinx:
+  config:
+    html_extra_path: ['assets']
+```
+
+Then the dataset will be accessible at `yourwebsite.com/data/mydataset.csv`.
+
+
 ## What if I have an issue or question?
 
 If you've got questions, concerns, or suggestions, please open an issue at
