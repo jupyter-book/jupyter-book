@@ -48,6 +48,8 @@ jupyter-book build -W -n --keep-going docs/
 This will check for missing references (`-n`), turning them into errors (`-W`),
 but will still attempt to run the full build (`--keep-going`),
 so that you can see all errors in one run.
+
+You can also use `-v` or `-vvv` to increase verbosity.
 :::
 
 ## Build a standalone page

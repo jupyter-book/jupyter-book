@@ -101,6 +101,9 @@ BUILDER_OPTS = {
     help="Which builder to use.",
     type=click.Choice(list(BUILDER_OPTS.keys())),
 )
+@click.option(
+    "-v", "--verbose", count=True, help="increase verbosity (can be repeated)"
+)
 def build(
     path_source,
     path_output,
@@ -111,6 +114,7 @@ def build(
     keep_going,
     freshenv,
     builder,
+    verbose,
 ):
     """Convert your book's or page's content to HTML or a PDF."""
 
@@ -223,6 +227,7 @@ def build(
         nitpicky=nitpick,
         keep_going=keep_going,
         freshenv=freshenv,
+        verbosity=verbose,
     )
 
     builder_specific_actions(
