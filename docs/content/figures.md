@@ -72,7 +72,7 @@ pattern:
 ```{figure} ../images/C-3PO_droid.png
 ---
 height: 150px
-name: my-figure
+name: directive-fig
 ---
 Here is my figure caption!
 ```
@@ -81,7 +81,7 @@ Here is my figure caption!
 ```{figure} ../images/C-3PO_droid.png
 ---
 height: 150px
-name: my-figure
+name: directive-fig
 ---
 Here is my figure caption!
 ```
@@ -91,14 +91,76 @@ You can also include figures that were generated from your code in notebooks.
 To do so, see [](content:code-outputs:glue).
 ```
 
+## Markdown Figures
+
+Markdown figures combine [colon style admonitions](admonitions:colons) and [HTML image parsing](content-blocks-images), to produce a "Markdown friendly" syntax for figures,
+with equivalent behaviour to the `figure` directive above.
+
+To enable them, add in your `_config.yml`:
+
+```yaml
+parse:
+  myst_extended_syntax: true
+```
+
+The figure block must contain **only** two components; an image, in either Markdown or HTML syntax, and a single paragraph for the caption.
+
+As with admonitions, the figure can have additional classes set on it, but the title is now taken as the reference target of the figure:
+
+```md
+:::{figure,myclass} markdown-fig
+<img src="../images/fun-fish.png" alt="fishy" class="bg-primary mb-1" width="200px">
+
+This is a caption in **Markdown**!
+:::
+```
+
+:::{figure,myclass} markdown-fig
+<img src="../images/fun-fish.png" alt="fishy" class="bg-primary mb-1" width="200px">
+
+This is a caption in **Markdown**!
+:::
+
+As we see here, the target we set can be referenced:
+
+```md
+[Go to the fish!](markdown-fig)
+```
+
+[Go to the fish!](markdown-fig)
+
 ## Referencing figures
 
-You can then refer to this figure using the `{ref}` role like:
-`` {ref}`my-figure` ``, which will replace the reference with the figure caption like so: {ref}`my-figure`.
-Another convenient way to create cross-references is with the `{numref}` role, which automatically numbers the labelled objects.
-For example, `` {numref}`my-figure` `` will produce a reference like: {numref}`my-figure`.
+You can then refer to your figures using the `{ref}` role or Markdown style references like:
 
-If an explicit text is provided, this caption will serve as the title of the reference. The characters "%s" and "{number}" will be replaced with a figure number, while "{name}" will be replaced with a figure caption. For example, ``{numref}`Figure {number}: {name} <my-figure>` `` will produce: {numref}`Figure {number}: {name} <my-figure>`.
+```md
+- {ref}`directive-fig`
+- [](markdown-fig)
+```
+
+which will replace the reference with the figure caption like so:
+
+- {ref}`directive-fig`
+- [](markdown-fig)
+
+Another convenient way to create cross-references is with the `{numref}` role,
+which automatically numbers the labelled objects.
+For example, `` {numref}`directive-fig` `` will produce a reference like: {numref}`directive-fig`.
+
+If an explicit text is provided, this caption will serve as the title of the reference.
+
+```md
+- {ref}`Fly to the droid <directive-fig>`
+- [Swim to the fish](markdown-fig)
+```
+
+- {ref}`Fly to the droid <directive-fig>`
+- [Swim to the fish](markdown-fig)
+
+With `numref`, you can also access the figure number and caption individually:
+the characters "%s" and "{number}" will be replaced with a figure number, while "{name}" will be replaced with a figure caption.
+
+For example, ``{numref}`Figure {number}: {name} <directive-fig>` `` will produce: {numref}`Figure {number}: {name} <directive-fig>`.
 
 ## Margin captions and figures
 
@@ -126,7 +188,7 @@ Here is my figure caption!
 
 ## Figure scaling and alignment
 
-Figures can also be aligned by using the option `:align: right` or `:align: left`. By default, figures are aligned to the center (see {numref}`my-figure`).
+Figures can also be aligned by using the option `:align: right` or `:align: left`. By default, figures are aligned to the center (see {numref}`directive-fig`).
 
 ````md
 ```{figure} ../images/cool.jpg

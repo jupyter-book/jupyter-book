@@ -77,6 +77,7 @@ My content
 ````
 `````
 
+(admonitions:colons)=
 ### New Style Admonitions
 
 The admonition syntax above utilises the general [directives syntax](content:myst/directives).

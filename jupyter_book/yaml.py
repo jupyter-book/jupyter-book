@@ -108,6 +108,7 @@ def yaml_to_sphinx(yaml: dict):
             sphinx_config["myst_deflist_enable"] = True
             sphinx_config["myst_admonition_enable"] = True
             sphinx_config["myst_html_img_enable"] = True
+            sphinx_config["myst_figure_enable"] = True
         if parse.get("myst_url_schemes"):
             sphinx_config["myst_url_schemes"] = parse.get("myst_url_schemes")
 

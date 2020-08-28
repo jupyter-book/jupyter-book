@@ -54,6 +54,8 @@ setup(
         "docutils>=0.15",
         "sphinx>=2,<4",
         "myst-nb~=0.10.0",
+        # required for Markdown figures, but can be removed when myst-nb updates
+        "myst-parser~=0.12.6",
         "click",
         "setuptools",
         "nbformat",
