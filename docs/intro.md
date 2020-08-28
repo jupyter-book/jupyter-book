@@ -83,7 +83,7 @@ These files are written in [MyST markdown](content/myst), an
 extension of Jupyter notebook markdown that allows for additional scientific markup.
 They could alternatively have been written directly as Jupyter notebooks.
 
-### Build the demo book
+**Build the demo book**
 
 You can build this book locally on the command line via the following steps:
 

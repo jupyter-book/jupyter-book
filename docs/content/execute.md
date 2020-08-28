@@ -135,7 +135,7 @@ The default behaviour of `cache` is now to run in the local directory.
 This is a change from the from `v0.7`.
 :::
 
-By default, the command working directory (cwd) that a notebook runs in will be the directory it is located in (for both `auto` and `cache`). This means that notebooks requiring access to assets in relative paths will work.
+By default, the command working directory (cwd) in which a notebook runs will be the directory in which it is located (for both `auto` and `cache`). This means that notebooks requiring access to assets in relative paths will work.
 
 Alternatively, if you wish for your notebooks to isolate your notebook execution, in a temporary folder,
 you can use the `_config.yml` setting:
@@ -281,7 +281,7 @@ print("this is some stderr", file=sys.stderr)
 ## Execution statistics
 
 As notebooks are executed, certain statistics are stored on the build environment by MyST-NB.
-The simplest way to access and visualise this data is using the `nb-exec-table` directive.
+The simplest way to access and visualise this data is using the **`{nb-exec-table}`** directive.
 
 :::{seealso}
 The [MyST-NB documentation](myst-nb:execute/statistics), for creating you own directives to manipulate this data.

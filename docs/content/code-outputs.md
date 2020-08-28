@@ -366,7 +366,7 @@ control over how the outputs look in your pages.
 
 +++
 
-### Controling the pasted outputs
+### Controlling the pasted outputs
 
 You can control the pasted outputs by using a sub-command of `{glue:}`. These are called like so:
 `` {glue:subcommand}`key` ``. These subcommands allow you to control more of the look, feel, and

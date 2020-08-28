@@ -16,7 +16,7 @@ The first is the standard Markdown syntax:
 This will correctly copy the image to the build folder and will render it in all output formats (HTML, TeX, etc).
 However, it is limited in the configuration that can be applied, for example setting a width.
 
-As discussed in [this section](content:myst/directives), MyST allow for directives to be used such as `image` and `figure` (see [the sphinx documentation](sphinx:rst-primer) for available options):
+As discussed in [this section](content:myst/directives), MyST allows for directives to be used such as `image` and `figure` (see [the sphinx documentation](sphinx:rst-primer) for available options):
 
 ````md
 ```{image} ../images/fun-fish.png
@@ -36,9 +36,8 @@ As discussed in [this section](content:myst/directives), MyST allow for directiv
 This allows you to control aspects of the image with [directive arguments](directive-arguments).
 
 In one way, this is an improvement on the Markdown syntax, however, the drawback is that this syntax will not show the image in common Markdown viewers (for example when the files are viewed on GitHub).
-The final option then is directly using HTML, which can also parsed by MyST Markdown.
-U
-sing raw HTML is usually a bad choice (see [this explanation](raw-html-in-markdown)),
+The final option then is directly using HTML, which can also be parsed by MyST Markdown.
+Using raw HTML is usually a bad choice (see [this explanation](raw-html-in-markdown)),
 but enabling extended syntax in your `_config` enables MySt-Parser to properly handle isolated `img` tags:
 
 ```yaml

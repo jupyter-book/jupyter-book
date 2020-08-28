@@ -81,7 +81,7 @@ My content
 ### New Style Admonitions
 
 The admonition syntax above utilises the general [directives syntax](content:myst/directives).
-This is has the advantage of making it consistent with every other directive.
+This has the advantage of making it consistent with every other directive.
 However, a big disadvantage is that, when working in any standard Markdown editor (or the Jupyter Notebook interfaces),
 the text they contain will not render nicely as standard Markdown (for Markdown previews).
 
@@ -219,7 +219,7 @@ Term 1
 Term 2
 : Definition
 
-From the Pandoc documentation:
+From the [Pandoc documentation](https://pandoc.org/MANUAL.html#definition-lists):
 
 > Each term must fit on one line, which may optionally be followed by a blank line, and must be followed by one or more definitions.
 > A definition begins with a colon or tilde, which may be indented one or two spaces.
