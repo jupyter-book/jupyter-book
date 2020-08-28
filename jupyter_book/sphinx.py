@@ -219,6 +219,10 @@ def build_sphinx(
                 parallel=jobs,
                 keep_going=keep_going,
             )
+            app.srcdir = Path(app.srcdir).as_posix()
+            app.outdir = Path(app.outdir).as_posix()
+            app.confdir = Path(app.confdir).as_posix()
+            app.doctreedir = Path(app.doctreedir).as_posix()
             # Apply Latex Overrides for latex_documents
             if (
                 latexoverrides is not None
@@ -258,7 +262,7 @@ def build_sphinx(
                 else:
                     first_page = toc[0]["file"]
                 first_page = first_page.split(".")[0] + ".html"
-                with open(path_index, "w") as ff:
+                with open(path_index, "w", encoding="utf8") as ff:
                     ff.write(REDIRECT_TEXT.format(first_page=first_page))
             return app.statuscode
     except (Exception, KeyboardInterrupt) as exc:
