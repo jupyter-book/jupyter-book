@@ -4,6 +4,7 @@ import pytest
 from bs4 import BeautifulSoup
 from click.testing import CliRunner
 import jsonschema
+import sphinx
 
 from jupyter_book import commands
 from jupyter_book.yaml import validate_yaml
@@ -183,6 +184,7 @@ def test_build_page_nested(build_resources, cli):
     assert 'url=markdown.html" />' in index.read_text()
 
 
+@pytest.mark.skipif(sphinx.version_info[0] == 2, reason="randomly fails on CI")
 def test_execution_timeout(pages, build_resources, cli):
     """Testing timeout execution for a page."""
     books, _ = build_resources
