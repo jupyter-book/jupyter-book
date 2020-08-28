@@ -3,12 +3,14 @@
 from pathlib import Path
 
 from click.testing import CliRunner
+import pytest
 
 from jupyter_book.commands import build
 
 path_tests = Path(__file__).parent
 
 
+@pytest.mark.requires_chrome
 def test_pdfhtml(cli: CliRunner, tmpdir):
     path_output = Path(tmpdir).absolute()
 
@@ -36,6 +38,7 @@ def test_pdfhtml(cli: CliRunner, tmpdir):
 
 
 # TODO: Update to include more detailed tests for pdflatex build chain
+@pytest.mark.requires_tex
 def test_pdflatex(cli: CliRunner, tmpdir):
     path_output = Path(tmpdir).absolute()
 

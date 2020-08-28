@@ -45,26 +45,26 @@ code looks correct according to a few checks.
 ### Run the tests
 
 For code tests, jupyter-book uses [pytest](https://docs.pytest.org)).
-You may run the tests with the following command:
+You may run all the tests, or only ones that do not require additional installations, with the following command:
 
 ```shell
->> pytest --ignore=tests/test_pdf.py
+>> pytest -m 'not requires_chrome and not requires_tex'
 ```
 
 You can alternatively use [tox](https://tox.readthedocs.io), to run the tests in multiple isolated environments, and also without the need for the initial dependencies install (see the `tox.ini` file for available test environments and further explanation):
 
 ```shell
->> tox -e py38-sphinx3 --  --ignore=tests/test_pdf.py
+>> tox -e py38-sphinx3 -- -m 'not requires_chrome and not requires_tex'
 ```
 
 Either will both run the Jupyter Book test suite, *except for the PDF tests*.
 This is because running the PDF generation tests require a full Latex environment, which you may not have set up.
 
-```{note}
+:::{note}
 Jupyter Book makes use of [pytest-xdist](https://github.com/pytest-dev/pytest-xdist) for running tests in parallel.
 You can take advantage of this by running tests with the `-n` argument followed by the number of CPUs you would like to use.
 For example: `pytest -n 4`. This makes the tests run much faster.
-```
+:::
 
 ### To test PDF generation
 

@@ -20,5 +20,5 @@ For example: `jupyter-book build mybook/` is equivalent to ``jb build mybook/``.
 ```{eval-rst}
 .. click:: jupyter_book.commands:main
    :prog: jupyter-book
-   :show-nested:
+   :nested: full
 ```

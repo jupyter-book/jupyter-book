@@ -104,7 +104,7 @@ jobs:
     # Tests
     - name: Run pytest
       run: |
-        pytest --durations=10 --ignore=tests/test_pdf.py
+        pytest --durations=10 -m 'not requires_tex'
 
   # Build the book on OSX to make sure that building the docs works there too
   build-book-osx:
