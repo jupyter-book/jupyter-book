@@ -42,7 +42,7 @@ You can also use the short-hand `jb` for `jupyter-book`. E.g.,:
 When debugging your book build, the following options can be helpful:
 
 ```bash
-jupyter-book build -W -n --keep-going docs/
+jupyter-book build -W -n --keep-going mybookname/
 ```
 
 This will check for missing references (`-n`), turning them into errors (`-W`),
@@ -97,4 +97,5 @@ path to the file in your browser navigation bar adding `file://` at the beginnin
 
 ## Next step: publish your book
 
-Now that you've created the HTML for your book, it's time to publish it online. That's covered in the next section.
+Now that you've created the HTML for your book, it's time to publish it online.
+That's covered in the [next section](./publish.md).

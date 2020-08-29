@@ -27,6 +27,7 @@ def version_callback(ctx, param, value):
     from myst_nb import __version__ as mnbv
     from myst_parser import __version__ as mpv
     from jupyter_cache import __version__ as jcv
+    from nbclient import __version__ as ncv
 
     versions = {
         "Jupyter Book": jbv,
@@ -34,6 +35,7 @@ def version_callback(ctx, param, value):
         "Sphinx Book Theme": sbtv,
         "MyST-Parser": mpv,
         "Jupyter-Cache": jcv,
+        "NbClient": ncv,
     }
     versions_string = "\n".join(f"{tt}: {vv}" for tt, vv in versions.items())
     click.echo(versions_string)
@@ -104,6 +106,12 @@ BUILDER_OPTS = {
 @click.option(
     "-v", "--verbose", count=True, help="increase verbosity (can be repeated)"
 )
+@click.option(
+    "-q",
+    "--quiet",
+    count=True,
+    help="-q means no sphinx status, -qq also turns off warnings ",
+)
 def build(
     path_source,
     path_output,
@@ -115,13 +123,16 @@ def build(
     freshenv,
     builder,
     verbose,
+    quiet,
+    get_config_only=False,
 ):
     """Convert your book's or page's content to HTML or a PDF."""
 
     from .. import __version__ as jbv
     from ..sphinx import build_sphinx
 
-    click.secho(f"Running Jupyter-Book v{jbv}", bold=True, fg="green")
+    if not get_config_only:
+        click.secho(f"Running Jupyter-Book v{jbv}", bold=True, fg="green")
 
     # Paths for the notebooks
     PATH_SRC_FOLDER = Path(path_source).absolute()
@@ -190,7 +201,7 @@ def build(
             # If the toc file has been modified after the build we need to force rebuild
             freshenv = toc_modified > build_modified
 
-        config_overrides["globaltoc_path"] = str(toc)
+        config_overrides["globaltoc_path"] = toc.as_posix()
 
         # Builder-specific overrides
         if builder == "pdfhtml":
@@ -208,12 +219,26 @@ def build(
     elif builder in ["latex", "pdflatex"]:
         OUTPUT_PATH = BUILD_PATH.joinpath("latex")
 
+    if nitpick:
+        config_overrides["nitpicky"] = True
+
+    # If we only wan config (e.g. for printing/validation), stop here
+    if get_config_only:
+        return (path_config, PATH_SRC_FOLDER, config_overrides)
+
     # print information about the build
     click.echo(
-        click.style("Source Folder: ", bold=True, fg="blue") + f"{PATH_SRC_FOLDER}"
+        click.style("Source Folder: ", bold=True, fg="blue")
+        + click.format_filename(f"{PATH_SRC_FOLDER}")
     )
-    click.echo(click.style("Config Path: ", bold=True, fg="blue") + f"{path_config}")
-    click.echo(click.style("Output Path: ", bold=True, fg="blue") + f"{OUTPUT_PATH}")
+    click.echo(
+        click.style("Config Path: ", bold=True, fg="blue")
+        + click.format_filename(f"{path_config}")
+    )
+    click.echo(
+        click.style("Output Path: ", bold=True, fg="blue")
+        + click.format_filename(f"{OUTPUT_PATH}")
+    )
 
     # Now call the Sphinx commands to build
     result = build_sphinx(
@@ -224,10 +249,11 @@ def build(
         confoverrides=config_overrides,
         builder=BUILDER_OPTS[builder],
         warningiserror=warningiserror,
-        nitpicky=nitpick,
         keep_going=keep_going,
         freshenv=freshenv,
         verbosity=verbose,
+        quiet=quiet > 0,
+        really_quiet=quiet > 1,
     )
 
     builder_specific_actions(
@@ -370,6 +396,45 @@ def init(path, kernel):
 
     for ipath in path:
         init_myst_file(ipath, kernel, verbose=True)
+
+
+@main.group()
+def config():
+    """Inspect your _config.yml file."""
+    pass
+
+
+@config.command()
+@click.argument("path-source", type=click.Path(exists=True, file_okay=True))
+@click.option(
+    "--config",
+    default=None,
+    help="Path to the YAML configuration file (default: PATH_SOURCE/_config.yml)",
+)
+@click.option(
+    "--toc",
+    default=None,
+    help="Path to the Table of Contents YAML file (default: PATH_SOURCE/_toc.yml)",
+)
+@click.pass_context
+def sphinx(ctx, path_source, config, toc):
+    """Generate a Sphinx conf.py representation of the build configuration."""
+    from ..config import get_final_config
+
+    path_config, path_src, config_overrides = ctx.invoke(
+        build, path_source=path_source, config=config, toc=toc, get_config_only=True
+    )
+
+    sphinx_config, config_meta = get_final_config(
+        user_yaml=Path(path_config) if path_config else None,
+        sourcedir=Path(path_src),
+        cli_config=config_overrides,
+    )
+    lines = []
+    for key in sorted(sphinx_config):
+        lines.append(f"{key} = {sphinx_config[key]!r}")
+
+    click.echo("\n".join(lines))
 
 
 # utility functions

@@ -3,11 +3,10 @@ from pathlib import Path
 import pytest
 from bs4 import BeautifulSoup
 from click.testing import CliRunner
-import jsonschema
+
 import sphinx
 
 from jupyter_book import commands
-from jupyter_book.yaml import validate_yaml
 
 
 def test_version(cli: CliRunner):
@@ -22,13 +21,6 @@ def test_create(temp_with_override: Path, cli):
     assert result.exit_code == 0
     assert book.joinpath("_config.yml").exists()
     assert len(list(book.iterdir())) == 9
-
-
-def test_validate_yaml():
-    with pytest.raises(jsonschema.ValidationError):
-        validate_yaml({"title": 1}, raise_on_errors=True)
-    assert "Warning" in validate_yaml({"title": 1}, raise_on_errors=False)
-    assert validate_yaml({"title": ""}, raise_on_errors=False) is None
 
 
 def test_build_from_template(temp_with_override, cli):
@@ -68,7 +60,7 @@ def test_toc_builds(cli, build_resources, toc):
     result = cli.invoke(
         commands.build, [tocs.as_posix(), "--toc", (tocs / toc).as_posix(), "-W"]
     )
-    assert result.exit_code == 0
+    assert result.exit_code == 0, result.output
 
 
 def test_toc_rebuild(cli, build_resources):

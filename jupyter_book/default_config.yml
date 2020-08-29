@@ -9,7 +9,8 @@ title                       : My Jupyter Book  # The title of the book. Will be 
 author                      : The Jupyter Book community  # The author of the book
 copyright                   : "2020"  # Copyright year to be placed in the footer
 logo                        : ""  # A path to the book logo
-exclude_patterns            : []  # Patterns to skip when building the book. Can be glob-style (e.g. "*skip.ipynb")
+# Patterns to skip when building the book. Can be glob-style (e.g. "*skip.ipynb")
+exclude_patterns            : [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints"]
 
 #######################################################################################
 # Execution settings
@@ -67,5 +68,5 @@ repository:
 #######################################################################################
 # Advanced and power-user settings
 sphinx:
-  extra_extensions          :   # A list of extra extensions to load by Sphinx.
+  extra_extensions          :   # A list of extra extensions to load by Sphinx (added to those already used by JB).
   config                    :   # key-value pairs to directly over-ride the Sphinx configuration
