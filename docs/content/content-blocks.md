@@ -144,7 +144,7 @@ This text is **standard** _Markdown_
 :::
 
 (content/toggle-admonitions)=
-### Interactive admonitions with dropdowns
+### Hiding the content of admonitions
 
 You can also hide the body of your admonition blocks so that users must click
 a button to reveal their content. This is helpful if you'd like to make a point
@@ -170,18 +170,77 @@ You can use this in conjunction with `{admonition}` directives to include your
 own titles and stylings. For example:
 
 ````md
-```{admonition} Click the + sign to see what's inside
-:class: dropdown, tip
+:::{admonition,dropdown,tip} Click the + sign to see what's inside
 Here's what's inside!
-```
+:::
 ````
 
 results in:
 
-```{admonition} Click the + sign to see what's inside
-:class: dropdown, tip
+:::{admonition,dropdown,tip} Click the + sign to see what's inside
 Here's what's inside!
+:::
+
+:::{important}
+Admonition dropdowns require JavaScript to be enabled on the browser which they are viewed.
+By contrast, the [dropdown directive](content/panels) below works purely *via* HTML+CSS.
+:::
+
+(content/panels)=
+## Panels and Dropdowns
+
+Jupyter Book now also integrates the [sphinx-panels](https://sphinx-panels.readthedocs.io) extension.
+This allows you to add special blocks to your online content, for example:
+
+````{panels}
+Content of the left panel.
+
+{badge}`example-badge,badge-primary`
+
+---
+
+```{link-button} content/panels
+:text: Clickable right panel
+:type: ref
+:classes: stretched-link
 ```
+
+````
+
+```{dropdown} Click on me to see my content!
+I'm the content which can be **anything** {fa}`check,text-success ml-1`
+
+:::{note}
+Even other blocks.
+:::
+```
+
+Which was created from:
+
+`````md
+````{panels}
+Content of the left panel.
+
+{badge}`example-badge,badge-primary`
+
+---
+
+```{link-button} content/panels
+:text: Clickable right panel
+:type: ref
+:classes: stretched-link
+```
+
+````
+
+```{dropdown} Click on me to see my content!
+I'm the content which can be **anything** {fa}`check,text-success ml-1`
+
+:::{note}
+Even other blocks.
+:::
+```
+`````
 
 (content/definition-lists)=
 

@@ -14,12 +14,29 @@ kernelspec:
 (myst-content/math)=
 # Math and Equations
 
-Jupyter Book uses [MathJax](http://docs.mathjax.org/) for typesetting math in your
-book. This allows you to have LaTeX-style mathematics in your online content.
+Jupyter Book uses [MathJax](http://docs.mathjax.org/) for typesetting math in your HTML book build.
+This allows you to have LaTeX-style mathematics in your online content.
 This page shows you a few ways to control this.
 
-For more information about equation numbering, see the
-[MathJax equation numbering documentation](http://docs.mathjax.org/en/v2.7-latest/tex.html#automatic-equation-numbering).
+:::{seealso}
+For more information about equation numbering,
+see the [MathJax equation numbering documentation](http://docs.mathjax.org/en/v2.7-latest/tex.html#automatic-equation-numbering).
+:::
+
+:::{tip}
+
+By default MathJax version 2 is currently used.
+If you are using a lot of math, you may want to try using version 3, which claims to improve load speeds by 60 - 80%:
+
+```yaml
+sphinx:
+  config:
+    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+```
+
+See the [sphinx documentation](sphinx:sphinx.ext.mathjax) for details.
+
+:::
 
 ## In-line math
 
@@ -113,3 +130,7 @@ result in this: {eq}`my_label`.
 ```{code-cell} ipython3
 
 ```
+
+:::{seealso}
+How to [define MathJax TeX Macros](sphinx/tex-macros)
+:::

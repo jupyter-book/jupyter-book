@@ -30,6 +30,7 @@ def get_default_sphinx_config():
             "sphinx_thebe",
             "sphinx_comments",
             "sphinx.ext.intersphinx",
+            "sphinx_panels",
         ],
         language=None,
         pygments_style="sphinx",
@@ -38,6 +39,7 @@ def get_default_sphinx_config():
         html_add_permalinks="¶",
         html_sourcelink_suffix="",
         numfig=True,
+        panels_add_boostrap_css=False,
     )
 
 

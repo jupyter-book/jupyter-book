@@ -106,7 +106,7 @@ html:
 ```
 
 (config:sphinx)=
-## Advance configuration (with sphinx)
+### Advance configuration (with sphinx)
 
 Users who are familiar with [Sphinx configuration](sphinx:build-config), may wish to directly add extensions or set options to parse to the underlying sphinx application.
 
@@ -129,25 +129,19 @@ sphinx:
 
 :::{warning}
 Any options set in this section will **override** default configurations set by Jupyter Book.
-For example, setting:
-
-```yaml
-sphinx:
-  config:
-    extensions: []
-```
-
-Will remove all extensions set by Jupyter Book, causing the build to fail.
 Use at your own risk!
-
 :::
 
 If you wish to inspect a `conf.py` representation of the generated configuration,
-which Jupyter Book will pass to the `sphinx-build`, you can use from the command-line:
+which Jupyter Book will pass to Sphinx, you can run from the command-line:
 
 ```bash
 jb config sphinx mybookname/
 ```
+
+:::{seealso}
+The advanced section on [sphinx configuration](advanced/sphinx-config).
+:::
 
 (config:defaults)=
 ## Configuration Defaults

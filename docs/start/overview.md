@@ -15,13 +15,13 @@ Jupyter Book. You can install it via pip with the following command:
 pip install -U jupyter-book
 ```
 
-:::{admonition,warning} A note for windows users
+:::{admonition,warning} A note for Windows users
 
-Currently, Jupyter Book is tested in a unix-like environment, and it is highly
-recommended that you use a unix environment to build your books.
-If you're running a recent version of Windows 10, we recommend
-[installing Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
-If you'd like to help with adding Windows support, please [say hello in this issue](https://github.com/executablebooks/jupyter-book/issues/575).
+Jupyter Book is now also tested against Windows OS 😀
+
+However, there is a known incompatibility for notebook execution, when using Python 3.8.
+
+See [](working-on-windows)
 
 :::
 

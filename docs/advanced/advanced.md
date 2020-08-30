@@ -246,10 +246,20 @@ Note that this may not work in latex-generated PDF builds of your page.
 (working-on-windows)=
 ## Working on Windows
 
-As of June 5, 2020, there are three open issues that require Windows-specific changes.
-Work to complete windows compatibility is underway, in the meantime we provide these
-community tips, which are known to work for some users. Note that there is no
-guarantee that they will work on all windows installations.
+Jupyter Book is now also tested against a Windows environment on Python 3.7 😀
+
+For its specification, see the [`windows-latest` runner](https://docs.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners#supported-runners-and-hardware-resources) used by GitHub CI.
+
+However, there is a known incompatibility for notebook execution, when using Python 3.8
+(see issue [#906](https://github.com/executablebooks/jupyter-book/issues/906)).
+
+If you're running a recent version of Windows 10 and encounter any issues, you may also wish to try
+[installing Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
+
+As of June 5, 2020, there were three open issues that required Windows-specific changes.
+We hope these are now fixed in jupyter-book version 0.8 but, in case any issues still arise,
+leave these community tips, which are known to work for some users.
+Note that there is no guarantee that they will work on all windows installations.
 
 1. Character encoding
 

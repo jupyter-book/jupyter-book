@@ -25,6 +25,7 @@ final:
   - sphinx_thebe
   - sphinx_comments
   - sphinx.ext.intersphinx
+  - sphinx_panels
   html_add_permalinks: ¶
   html_baseurl: ''
   html_favicon: ''
@@ -60,6 +61,7 @@ final:
   - https
   nb_output_stderr: show
   numfig: true
+  panels_add_boostrap_css: false
   pygments_style: sphinx
 metadata:
   latex_doc_overrides:

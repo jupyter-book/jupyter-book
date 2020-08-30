@@ -37,6 +37,9 @@ launch_buttons:
 
 sphinx:
   config:
+    # TODO: #917 this path will be the default in sphinx v4
+    # mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+    # However, it is incompatible with the mathjax config below for macros
     mathjax_config:
       TeX:
         Macros:
@@ -44,7 +47,6 @@ sphinx:
           "floor": ["\\lfloor#1\\rfloor", 1]
           "bmat": ["\\left[\\begin{array}"]
           "emat": ["\\end{array}\\right]"]
-    panels_add_boostrap_css: False
     intersphinx_mapping:
       ebp:
         - "https://executablebooks.org/en/latest/"
@@ -65,4 +67,3 @@ sphinx:
   extra_extensions:
     - sphinx_click.ext
     - sphinx_tabs.tabs
-    - sphinx_panels

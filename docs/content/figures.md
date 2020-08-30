@@ -85,10 +85,10 @@ name: directive-fig
 Here is my figure caption!
 ```
 
-```{note}
+:::{note}
 You can also include figures that were generated from your code in notebooks.
 To do so, see [](content:code-outputs:glue).
-```
+:::
 
 ## Markdown Figures
 
@@ -141,6 +141,8 @@ which will replace the reference with the figure caption like so:
 
 - {ref}`directive-fig`
 - [](markdown-fig)
+
+### Numbered references
 
 Another convenient way to create cross-references is with the `{numref}` role,
 which automatically numbers the labelled objects.

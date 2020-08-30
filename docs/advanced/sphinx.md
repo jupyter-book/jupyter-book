@@ -1,3 +1,5 @@
+(advanced/sphinx-config)=
+
 # Custom Sphinx configuration
 
 Jupyter Book uses the excellent documentation tool [Sphinx](http://www.sphinx-doc.org/),
@@ -9,7 +11,8 @@ This page describes how to do so.
 
 :::{warning}
 Adding your own Sphinx configuration and extensions may cause Jupyter Book to behave
-unpredictably. Use at your own risk!
+unpredictably.
+Use at your own risk!
 :::
 
 ## Custom Sphinx extensions
@@ -140,6 +143,21 @@ you configure in `conf.py`. To do so, use the following section of `_config.yml`
       key2: value2
   ```
 
+:::{warning}
+Any options set in this section will **override** default configurations set by Jupyter Book.
+Use at your own risk!
+:::
+
+:::{tip}
+If you wish to inspect a `conf.py` representation of the generated configuration,
+which Jupyter Book will pass to Sphinx, you can run from the command-line:
+
+```bash
+jb config sphinx mybookname/
+```
+
+:::
+
 ### Fine control of parsing and execution
 
 As discussed in [the components of Jupyter Book](intro/jupyter-book-components), two of the principle components of Jupyter Book are sphinx extensions;
@@ -151,6 +169,7 @@ Some their configuration is already exposed in the `_config.yml`, but you can al
 * The [MyST-Parser configuration options](myst-parser:intro/config-options)
 * The [MyST-NB configuration options](myst-nb:start/config-options)
 
+(sphinx/tex-macros)=
 ### Defining TeX Macros
 
 You can add LaTeX macros for the whole book by defining them under the `Macros` option of the `TeX` block. For example, the following two macros have been pre-defined in the Sphinx configuration
