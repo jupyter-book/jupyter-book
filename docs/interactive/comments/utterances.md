@@ -10,19 +10,7 @@ Utterances is activated on this page. You can see the comment box at the bottom 
 
 First, [install](https://github.com/apps/utterances) the `utteranc.es` app to your github repo (or organization) - make sure the repository is public and has GH issues turned on.
 
-Once you install the app, you will get taken to a page that lets you configure the app on your repo. Once the configuration is complete, you will see a code snippet that you need to copy to each file you want to enable commenting on. The code snippet will look something like:
-
-```
-<script src="https://utteranc.es/client.js"
-        repo="[ENTER REPO HERE]"
-        issue-term="pathname"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-</script>
-```
-
-Finally, you can activate `utteranc.es` by adding the following to your `_config.yml` file:
+Then, you can activate `utteranc.es` by adding the following to your `_config.yml` file:
 
 ```yaml
 html:
