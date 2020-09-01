@@ -1,0 +1,62 @@
+_user_config:
+  sphinx:
+    config:
+      html_theme: other
+      html_theme_options:
+        launch_buttons:
+          binderhub_url: other
+      new: value
+    extra_extensions:
+    - other
+final:
+  author: The Jupyter Book community
+  comments_config:
+    hypothesis: false
+    utterances: false
+  copyright: '2020'
+  exclude_patterns:
+  - '**.ipynb_checkpoints'
+  - .DS_Store
+  - Thumbs.db
+  - _build
+  execution_allow_errors: false
+  execution_excludepatterns: []
+  execution_in_temp: false
+  execution_timeout: 30
+  extensions:
+  - sphinx_togglebutton
+  - sphinx_copybutton
+  - myst_nb
+  - jupyter_book
+  - sphinxcontrib.bibtex
+  - sphinx_thebe
+  - sphinx_comments
+  - sphinx.ext.intersphinx
+  - sphinx_panels
+  - other
+  html_add_permalinks: ¶
+  html_baseurl: ''
+  html_favicon: ''
+  html_logo: ''
+  html_sourcelink_suffix: ''
+  html_theme: other
+  html_theme_options:
+    launch_buttons:
+      binderhub_url: other
+  html_title: My Jupyter Book
+  jupyter_cache: ''
+  jupyter_execute_notebooks: auto
+  language: null
+  latex_engine: pdflatex
+  myst_url_schemes:
+  - mailto
+  - http
+  - https
+  nb_output_stderr: show
+  new: value
+  numfig: true
+  panels_add_boostrap_css: false
+  pygments_style: sphinx
+metadata:
+  latex_doc_overrides:
+    title: My Jupyter Book
