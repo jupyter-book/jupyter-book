@@ -1,1 +1,29 @@
-include requirements.txt
+exclude docs
+recursive-exclude docs *
+exclude tests
+recursive-exclude tests *
+exclude .binder
+recursive-exclude .binder *
+exclude .github
+recursive-exclude .github *
+exclude .circleci
+recursive-exclude .circleci *
+exclude scripts
+recursive-exclude scripts *
+
+exclude .pre-commit-config.yaml
+exclude .readthedocs.yml
+exclude .flake8
+exclude tox.ini
+exclude codecov.yml
+exclude RELEASES.md
+exclude conftest.py
+
+include LICENSE
+include CHANGELOG.md
+include docs/requirements.txt
+recursive-include examples *
+
+include jupyter_book/default_config.yml
+include jupyter_book/config_schema.json
+recursive-include jupyter_book/book_template *

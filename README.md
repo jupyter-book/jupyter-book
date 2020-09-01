@@ -1,8 +1,9 @@
 # <img src="https://raw.githubusercontent.com/executablebooks/jupyter-book/master/docs/images/logo.png" width=40 /> Jupyter Book
 
 [![CircleCI](https://circleci.com/gh/executablebooks/jupyter-book.svg?style=svg)](https://circleci.com/gh/executablebooks/jupyter-book)
-[![codecov](https://codecov.io/gh/ExecutableBookProject/jupyter-book/branch/master/graph/badge.svg)](https://codecov.io/gh/ExecutableBookProject/jupyter-book)
+[![codecov](https://codecov.io/gh/executablebooks/jupyter-book/branch/master/graph/badge.svg)](https://codecov.io/gh/executablebooks/jupyter-book)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2799972.svg)](https://doi.org/10.5281/zenodo.2799972)
+[![PyPI][pypi-badge]][pypi-link]
 
 Jupyter Book is an open-source tool for building publication-quality books and documents from computational material.
 
@@ -31,3 +32,6 @@ Guide](https://jupyterbook.org/contribute/intro.html). We'd love your help!
 
 Jupyter Book is maintained and primarily developed by
 the [Executable Book Project](https://executablebooks.org).
+
+[pypi-badge]: https://img.shields.io/pypi/v/jupyter-book.svg
+[pypi-link]: https://pypi.org/project/jupyter-book

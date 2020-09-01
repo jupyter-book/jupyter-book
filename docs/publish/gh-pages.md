@@ -1,3 +1,4 @@
+(publish/gh-pages)=
 # GitHub Pages and Actions
 
 Once your content is on GitHub, you can easily host it as a [GitHub Pages](https://docs.github.com/en/github/working-with-github-pages) website. This is a service where GitHub hosts your static files as if they were a standalone website.
@@ -23,12 +24,13 @@ files in your book's `_build/html` folder.
 
 1. Install `ghp-import`
 
-   ```
+   ```bash
    pip install ghp-import
    ```
-2. From the `master` branch of your local repository (which should contain the `mylocalbook/_build/html` folder) call `ghp-import` and point it to your HTML files, like so:
 
-   ```
+2. From the `master` branch of your book's root directory (which should contain the `_build/html` folder) call `ghp-import` and point it to your HTML files, like so:
+
+   ```bash
    ghp-import -n -p -f mylocalbook/_build/html
    ```
 
@@ -55,7 +57,7 @@ It is used for a variety of things, such as testing, publishing packages, and co
 
 Note that if you're not hosting your book on GitHub,
 or if you'd like another, user-friendly service to build it automatically,
-see the {doc}`guide to publishing your book on Netlify <../netlify>`.
+see the [guide to publishing your book on Netlify](publish/netlify).
 
 ```{note}
 You should be familiar with GitHub Actions before using them

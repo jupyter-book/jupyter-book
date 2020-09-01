@@ -1,0 +1,4 @@
+# Book settings
+sphinx:
+  config:
+    html_title: NESTED FOLDER
