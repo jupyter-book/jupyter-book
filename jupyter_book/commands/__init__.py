@@ -266,7 +266,7 @@ def build(
 @click.option(
     "--cookiecutter",
     is_flag=True,
-    help="Use cookiecutter to interactively create Jupyter Book template.",
+    help="Use cookiecutter to interactively create a Jupyter Book template.",
 )
 def create(path_book, cookiecutter):
     """Create a Jupyter Book template that you can customize."""
@@ -280,7 +280,8 @@ def create(path_book, cookiecutter):
             from cookiecutter.main import cookiecutter
         except ModuleNotFoundError as e:
             _error(
-                f"{e}. To install, run\n\n\tpip install cookiecutter", kind=e.__class__,
+                f"{e}. To install, run\n\n\tpip install cookiecutter",
+                kind=e.__class__,
             )
         book = cookiecutter(cc_url, output_dir=Path(path_book))
     _message_box(f"Your book template can be found at\n\n    {book}{os.sep}")
@@ -405,8 +406,7 @@ def myst():
     "--kernel", help="The name of the Jupyter kernel to attach to this markdown file."
 )
 def init(path, kernel):
-    """Add Jupytext metadata for your markdown file(s), with optional Kernel name.
-    """
+    """Add Jupytext metadata for your markdown file(s), with optional Kernel name."""
     from ..utils import init_myst_file
 
     for ipath in path:
@@ -456,7 +456,7 @@ def sphinx(ctx, path_source, config, toc):
 
 
 def find_config_path(path: Path) -> Tuple[Path, bool]:
-    """ checks for any _config.yml file in current/parent dirs.
+    """checks for any _config.yml file in current/parent dirs.
     if found then returns the path which has _config.yml,
     else returns the present dir as the path.
     """
