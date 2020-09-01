@@ -44,9 +44,13 @@ async def _html_to_pdf(html_file, pdf_file):
         {
             "content": """
                 div.cell_input {
+                    -webkit-column-break-inside: avoid;
+                    page-break-inside: avoid;
                     break-inside: avoid;
                 }
                 div.cell_output {
+                    -webkit-column-break-inside: avoid;
+                    page-break-inside: avoid;
                     break-inside: avoid;
                 }
          """
