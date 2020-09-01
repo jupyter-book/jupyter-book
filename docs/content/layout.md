@@ -3,8 +3,6 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
-    format_version: '0.8'
-    jupytext_version: 1.4.1+dev
 kernelspec:
   display_name: Python 3
   language: python
@@ -89,7 +87,7 @@ like to provide context to throughout your content.
 
 To add a sidebar to your content, use the following pattern:
 
-````
+````md
 ```{sidebar} My sidebar title
 My sidebar content
 ```
@@ -99,7 +97,7 @@ My sidebar content
 
 To add margin content with myst markdown, use this syntax:
 
-````
+````md
 ```{margin} An optional title
 My margin content
 ```
@@ -141,6 +139,10 @@ make_fig(figsize=(10, 5))
 
 This can be combined with other tags like `remove-input` to **only display the figure**.
 
+:::{seealso}
+[](jupyter-cell-tags)
+:::
+
 +++
 
 ## Scrolling cell outputs
@@ -151,7 +153,6 @@ the entire page.
 
 You can trigger this behavior in Jupyter Book by adding the following
 tag to a cell's metadata:
-
 
 ```json
 {
