@@ -82,7 +82,7 @@ The configuration looks like:
 sphinx:
   config:
     nb_custom_formats:
-        .ipynb:
+        .Rmd:
             - jupytext.read
             - fmt: Rmd
 ```
