@@ -92,7 +92,7 @@ Build options and error reporting
   See the [command-line interface documentation](docs/reference/cli.md) for more details.
 
 sphinx-panels integration
-: The [sphinx-panels](https://sphinx-panels.readthedocs.io) package is not provided directly in the Jupyter Book distribution.
+: The [sphinx-panels](https://sphinx-panels.readthedocs.io) package is now provided directly in the Jupyter Book distribution.
   This adds additional functionality for creating web based elements, such as gridded panels and dropdown boxes.
   See the [Panels and Dropdowns](docs/content/content-blocks.md) section for details.
 
