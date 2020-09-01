@@ -21,7 +21,7 @@ jobs:
       # Make sure tests build in CircleCI (so we can preview w/ SSH if we wish)
       - run:
           name: Run pytest
-          command: pytest --ignore=tests/test_pdf.py
+          command: pytest -m 'not requires_chrome and not requires_tex'
 
   pdfhtml:
     docker:
@@ -51,7 +51,7 @@ jobs:
 
       - run:
           name: Run pytest for pdfhtml
-          command: pytest tests/test_pdf.py::test_pdfhtml
+          command: pytest -m 'requires_chrome'
 
       # Build a PDF of the book to view as an artifact
       - run:
@@ -94,7 +94,7 @@ jobs:
 
       - run:
           name: Run pytest for pdflatex
-          command: pytest tests/test_pdf.py::test_pdflatex
+          command: pytest -m 'requires_tex'
 
       # Build quantecon-mini-example project as a test case
       # TODO: revert this to building docs/ when we've added support for svg, gif, etc

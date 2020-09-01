@@ -1,36 +1,159 @@
 # Change Log
 
-# v0.7.0...v0.7.4
-([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.7.0...v0.7.4))
+## v0.8.0 2020-09-01
+
+([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.7.5...v0.8.0))
+
+> **You spoke, we listened!**
+
+Version 0.8.0 of Jupyter Book, incorporates a bottom-up refresh of the entire Executable Books Project (EBP) stack,
+with tonnes of bugs fixes, improvements and new features 🎉
+
+The documentation describes all this new functionality in full detail, but below we shall try to outline the major changes and additions.
+
+### Breaking ‼️
+
+The `jupyter-book`/`jb` executable should work almost identically to in v0.7.5, and all existing books will generally build as before (open an issue if not!).
+
+The key change is that `jupyter-book page` is no longer available.
+Instead you can now pass a single file path to `jupyter-book build`, as opposed to a directory, and it will build your single page (thanks to [@AakashGfude](https://github.com/AakashGfude)).
+See [Build a standalone page](docs/start/build.md).
+
+Another thing to note, is that if you are using "bare" LaTeX math in your documentation,
+then this will only render if you activate in your `_config.yml`:
+
+```yaml
+parse:
+  myst_extended_syntax: true
+```
+
+See [the math documentation](docs/content/math.md) for details.
+
+### New and Improved ✨👌
+
+Jupyter Book v0.8 incorporates all the great new features available by moving from:
+
+* MyST-Parser v0.9 to v0.12 (see its [CHANGELOG.md](https://github.com/executablebooks/MyST-Parser/blob/master/CHANGELOG.md))
+* MyST-NB v0.8 to v0.10 (see its [CHANGELOG.md](https://github.com/executablebooks/MyST-NB/blob/master/CHANGELOG.md))
+* This also enabled, Sphinx v2 to v3
+
+Here's the headlines:
+
+Windows support
+: Continuous Integration (CI) testing is now run against Windows OS throughout the EBP stack.
+  The fixes this entailed, mean that Jupyter Book can now be run on Windows with minimal issue (see [Working on Windows](docs/advanced/advanced.md))
+
+Extended "Markdown friendly" syntaxes
+: MyST Markdown directives offer a high degree of extensibility, to add all the features we might need to create a scientific document.
+  However, they are not (yet) very well integrated with external editors, like the Jupyter Notebook interface.
+  Extended syntax parsing to the rescue!
+
+  By enabling in your `_config.yaml`:
+
+  ```yaml
+  parse:
+    myst_extended_syntax: true
+  ```
+
+  You can access to a number of *Markdown friendly* syntaxes, which extend the [CommonMark specification](https://commonmark.org/):
+
+  * `:::` fenced admonitions render Markdown as standard (see [new style admonitions](docs/content/content-blocks.md)).
+  * HTML images are correctly handled, allowing for control of size and style attributes,
+    and Markdown style figures extend this for captions and referencing (see [images and figures](docs/content/figures.md)).
+  * Definition lists are what you see here and provide a simple format for writing term/definition blocks (see [definition lists](docs/content/content-blocks.md)).
+  * LaTeX math is now intrinsically supported,
+    meaning that it will rendered correctly in both HTML and LaTeX/PDF outputs (see [math and equations](docs/content/math.md)).
+
+Custom Notebook Formats
+: Want to write your notebooks as RMarkdown, Python files, ....?
+  Jupyter Book now supports linking any file extension to a custom conversion function,
+  run before notebook execution and parsing.
+  See the [custom notebook formats and Jupytext](docs/file-types/jupytext.Rmd) documentation, which itself is written in RMarkdown!
+
+Execution Configuration
+: Execution and caching of notebook outputs has been improved, to make it more consistent across `auto` and `cache` methods (`cache` execution is now also run in the notebook directory) and provide numerous configuration options, including:
+
+  * Running the execution in the local directory or in a temporary directory.
+  * Setting the execution timeout limit, at a global or notebook level.
+  * Allowing errors across all notebooks, or at a notebook or cell level.
+  * Removing stderr/stdout outputs or logging warnings when they are encountered
+  * A directive for displaying execution statistics for all notebooks in the book (status, run time, etc)
+
+  See the [execution documentation](docs/content/execute.md) for more details.
+
+Code Output Formatting
+: More cell outputs are handled, including Markdown and ANSI outputs,
+  and you can use cell metadata to set image size, style, captions and references.
+  See [formatting code outputs](docs/content/code-outputs.md).
+
+Build options and error reporting
+: The `jupyter-book build` command includes additional options/flags for controlling the build behaviour,
+  such as verbose (`-v`), quiet (`-q`) and nitpick mode for checking references (`-n`).
+  See the [command-line interface documentation](docs/reference/cli.md) for more details.
+
+sphinx-panels integration
+: The [sphinx-panels](https://sphinx-panels.readthedocs.io) package is not provided directly in the Jupyter Book distribution.
+  This adds additional functionality for creating web based elements, such as gridded panels and dropdown boxes.
+  See the [Panels and Dropdowns](docs/content/content-blocks.md) section for details.
+
+### Fixes 🐛
+
+Among the numerous fixes:
+
+* Code cell syntax highlighting now works for all Jupyter kernels.
+* User configuration is now recursively merged with the default configuration, and no longer overwrites an entire nested section.
+  You can also use `jb config sphinx mybookname/` to inspect the sphinx `conf.py` which will be parsed to the builder.
+
+### More to come 👀
+
+We have many more improvements planned, check back in this change log for future improvements.
+
+Also please continue to provide us feedback on what you would like to see next.
+See our [voting for new features](https://executablebooks.org/en/latest/feature-vote.html) page.
+
+## v0.7.5 2020-08-26
+
+✨ NEW: This release introduces the new "Comments and Annotations" feature, powered by [sphinx-comments](https://github.com/executablebooks/sphinx-comments). See [this documentation section](https://jupyterbook.org/interactive/comments.html) for further details.
+
+**Important:** this version also pins the `myst-nb` dependency to v0.8.
+Previous versions erroneously allow for the new v0.9, which is not yet strictly compatible with jupyter-book (coming very soon!)
+
+## v0.7.0...v0.7.4
+
+([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.7.5...v0.8.0))
 
 
-## Enhancements made
+### Enhancements made
 * ✨ NEW: Adding - chapter entries to _toc.yml [#817](https://github.com/executablebooks/jupyter-book/pull/817) ([@choldgraf](https://github.com/choldgraf))
 * checking for toc modification time [#772](https://github.com/executablebooks/jupyter-book/pull/772) ([@choldgraf](https://github.com/choldgraf))
 * first pass toc directive [#757](https://github.com/executablebooks/jupyter-book/pull/757) ([@choldgraf](https://github.com/choldgraf))
 
-## Bugs fixed
-* Fix typo in content-blocks.md documentation [#811](https://github.com/executablebooks/jupyter-book/pull/811) ([@MaxGhenis](https://github.com/MaxGhenis))
-* [BUG] Using relative instead of absolute links [#747](https://github.com/executablebooks/jupyter-book/pull/747) ([@AakashGfude](https://github.com/AakashGfude))
-* 🐛 FIX: fixing jupytext install/UI links [#737](https://github.com/executablebooks/jupyter-book/pull/737) ([@chrisjsewell](https://github.com/chrisjsewell))
+### Bugs fixed 🐛
 
-## Documentation improvements
-* 📚 DOC: note about licenses [#806](https://github.com/executablebooks/jupyter-book/pull/806) ([@choldgraf](https://github.com/choldgraf))
-* 📖 DOCS: Fix google analytics instructions [#799](https://github.com/executablebooks/jupyter-book/pull/799) ([@tobydriscoll](https://github.com/tobydriscoll))
+* Fix typo in content-blocks.md documentation [#811](https://github.com/executablebooks/jupyter-book/pull/811) ([@MaxGhenis](https://github.com/MaxGhenis))
+* Using relative instead of absolute links [#747](https://github.com/executablebooks/jupyter-book/pull/747) ([@AakashGfude](https://github.com/AakashGfude))
+* Fixing jupytext install/UI links [#737](https://github.com/executablebooks/jupyter-book/pull/737) ([@chrisjsewell](https://github.com/chrisjsewell))
+
+### Documentation improvements 📚
+
+* Note about licenses [#806](https://github.com/executablebooks/jupyter-book/pull/806) ([@choldgraf](https://github.com/choldgraf))
+* Fix google analytics instructions [#799](https://github.com/executablebooks/jupyter-book/pull/799) ([@tobydriscoll](https://github.com/tobydriscoll))
 * Change book_path to path_to_book [#773](https://github.com/executablebooks/jupyter-book/pull/773) ([@MaxGhenis](https://github.com/MaxGhenis))
 * GitHub actions example: note about selective build [#771](https://github.com/executablebooks/jupyter-book/pull/771) ([@consideRatio](https://github.com/consideRatio))
 * getting sphinx thebelab to work [#749](https://github.com/executablebooks/jupyter-book/pull/749) ([@choldgraf](https://github.com/choldgraf))
 * Link documentation for adding cell tags in Jupyter from "Hide or remove content" documentation section [#734](https://github.com/executablebooks/jupyter-book/pull/734) ([@MaxGhenis](https://github.com/MaxGhenis))
-* typo fix [#731](https://github.com/executablebooks/jupyter-book/pull/731) ([@MaxGhenis](https://github.com/MaxGhenis))
+* Typo fix [#731](https://github.com/executablebooks/jupyter-book/pull/731) ([@MaxGhenis](https://github.com/MaxGhenis))
 * reworking interactive docs [#725](https://github.com/executablebooks/jupyter-book/pull/725) ([@choldgraf](https://github.com/choldgraf))
-* [DOC] Add documentation for Google Colab launch buttons [#721](https://github.com/executablebooks/jupyter-book/pull/721) ([@lewtun](https://github.com/lewtun))
-* [DOC] Add note about int eq labels in math directive [#720](https://github.com/executablebooks/jupyter-book/pull/720) ([@najuzilu](https://github.com/najuzilu))
+* Add documentation for Google Colab launch buttons [#721](https://github.com/executablebooks/jupyter-book/pull/721) ([@lewtun](https://github.com/lewtun))
+* Add note about int eq labels in math directive [#720](https://github.com/executablebooks/jupyter-book/pull/720) ([@najuzilu](https://github.com/najuzilu))
 
-## API Changes
+### API Changes
+
 * ✨ NEW: Adding - chapter entries to _toc.yml [#817](https://github.com/executablebooks/jupyter-book/pull/817) ([@choldgraf](https://github.com/choldgraf))
 * removing config file numbered sections to use toc file instead [#768](https://github.com/executablebooks/jupyter-book/pull/768) ([@choldgraf](https://github.com/choldgraf))
 
-## Other merged PRs
+### Other merged PRs
+
 * 📚 DOCS: Remove Issue Templates [#849](https://github.com/executablebooks/jupyter-book/pull/849) ([@chrisjsewell](https://github.com/chrisjsewell))
 * 📚 DOC: document available bib styles [#845](https://github.com/executablebooks/jupyter-book/pull/845) ([@emdupre](https://github.com/emdupre))
 * 🐛 FIX: fixing toctree spacing bug [#836](https://github.com/executablebooks/jupyter-book/pull/836) ([@choldgraf](https://github.com/choldgraf))
@@ -42,17 +165,17 @@
 * page index [#728](https://github.com/executablebooks/jupyter-book/pull/728) ([@choldgraf](https://github.com/choldgraf))
 * fix windows utf8 encoding  1/3 [#719](https://github.com/executablebooks/jupyter-book/pull/719) ([@phaustin](https://github.com/phaustin))
 
-## Contributors to this release
+### Contributors to this release
 ([GitHub contributors page for this release](https://github.com/executablebooks/jupyter-book/graphs/contributors?from=2020-06-11&to=2020-08-05&type=c))
 
 [@AakashGfude](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3AAakashGfude+updated%3A2020-06-11..2020-08-05&type=Issues) | [@amueller](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aamueller+updated%3A2020-06-11..2020-08-05&type=Issues) | [@bmcfee](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Abmcfee+updated%3A2020-06-11..2020-08-05&type=Issues) | [@brian-rose](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Abrian-rose+updated%3A2020-06-11..2020-08-05&type=Issues) | [@cedeerwe](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Acedeerwe+updated%3A2020-06-11..2020-08-05&type=Issues) | [@choldgraf](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Acholdgraf+updated%3A2020-06-11..2020-08-05&type=Issues) | [@chrisjsewell](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Achrisjsewell+updated%3A2020-06-11..2020-08-05&type=Issues) | [@codecov](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Acodecov+updated%3A2020-06-11..2020-08-05&type=Issues) | [@consideRatio](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3AconsideRatio+updated%3A2020-06-11..2020-08-05&type=Issues) | [@cpjobling](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Acpjobling+updated%3A2020-06-11..2020-08-05&type=Issues) | [@drscotthawley](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Adrscotthawley+updated%3A2020-06-11..2020-08-05&type=Issues) | [@emdupre](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aemdupre+updated%3A2020-06-11..2020-08-05&type=Issues) | [@firasm](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Afirasm+updated%3A2020-06-11..2020-08-05&type=Issues) | [@jni](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Ajni+updated%3A2020-06-11..2020-08-05&type=Issues) | [@jstac](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Ajstac+updated%3A2020-06-11..2020-08-05&type=Issues) | [@lewtun](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Alewtun+updated%3A2020-06-11..2020-08-05&type=Issues) | [@MaxGhenis](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3AMaxGhenis+updated%3A2020-06-11..2020-08-05&type=Issues) | [@mmcky](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Ammcky+updated%3A2020-06-11..2020-08-05&type=Issues) | [@najuzilu](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Anajuzilu+updated%3A2020-06-11..2020-08-05&type=Issues) | [@nathancarter](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Anathancarter+updated%3A2020-06-11..2020-08-05&type=Issues) | [@phaustin](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aphaustin+updated%3A2020-06-11..2020-08-05&type=Issues) | [@ptcane](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aptcane+updated%3A2020-06-11..2020-08-05&type=Issues) | [@samteplitzky](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Asamteplitzky+updated%3A2020-06-11..2020-08-05&type=Issues) | [@tobydriscoll](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Atobydriscoll+updated%3A2020-06-11..2020-08-05&type=Issues) | [@TomasBeuzen](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3ATomasBeuzen+updated%3A2020-06-11..2020-08-05&type=Issues) | [@welcome](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Awelcome+updated%3A2020-06-11..2020-08-05&type=Issues)
 
 
-# v0.6.4...v0.7.0
+## v0.6.4...v0.7.0
 ([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.6.4...v0.7.0))
 
 
-## Merged PRs
+### Merged PRs
 * Release prep [#711](https://github.com/executablebooks/jupyter-book/pull/711) ([@choldgraf](https://github.com/choldgraf))
 * fixing topbar repo buttons [#710](https://github.com/executablebooks/jupyter-book/pull/710) ([@choldgraf](https://github.com/choldgraf))
 * [DOC] Add info about 'remove_cell' tag [#708](https://github.com/executablebooks/jupyter-book/pull/708) ([@najuzilu](https://github.com/najuzilu))
@@ -130,16 +253,16 @@
 * Intronetlify [#454](https://github.com/executablebooks/jupyter-book/pull/454) ([@choldgraf](https://github.com/choldgraf))
 * [DOC] Minor changes to documentation [#452](https://github.com/executablebooks/jupyter-book/pull/452) ([@rossbar](https://github.com/rossbar))
 
-## Contributors to this release
+### Contributors to this release
 ([GitHub contributors page for this release](https://github.com/executablebooks/jupyter-book/graphs/contributors?from=2019-12-06&to=2020-06-11&type=c))
 
 [@AakashGfude](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3AAakashGfude+updated%3A2019-12-06..2020-06-11&type=Issues) | [@akhmerov](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aakhmerov+updated%3A2019-12-06..2020-06-11&type=Issues) | [@alejandroschuler](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aalejandroschuler+updated%3A2019-12-06..2020-06-11&type=Issues) | [@alexnakagawa](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aalexnakagawa+updated%3A2019-12-06..2020-06-11&type=Issues) | [@amueller](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aamueller+updated%3A2019-12-06..2020-06-11&type=Issues) | [@andrewsanchez](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aandrewsanchez+updated%3A2019-12-06..2020-06-11&type=Issues) | [@asteppke](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aasteppke+updated%3A2019-12-06..2020-06-11&type=Issues) | [@betatim](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Abetatim+updated%3A2019-12-06..2020-06-11&type=Issues) | [@boazbk](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aboazbk+updated%3A2019-12-06..2020-06-11&type=Issues) | [@brian-rose](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Abrian-rose+updated%3A2019-12-06..2020-06-11&type=Issues) | [@cedeerwe](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Acedeerwe+updated%3A2019-12-06..2020-06-11&type=Issues) | [@choldgraf](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Acholdgraf+updated%3A2019-12-06..2020-06-11&type=Issues) | [@chrisjsewell](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Achrisjsewell+updated%3A2019-12-06..2020-06-11&type=Issues) | [@consideRatio](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3AconsideRatio+updated%3A2019-12-06..2020-06-11&type=Issues) | [@cpjobling](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Acpjobling+updated%3A2019-12-06..2020-06-11&type=Issues) | [@Cyb3rWard0g](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3ACyb3rWard0g+updated%3A2019-12-06..2020-06-11&type=Issues) | [@dafriedman97](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Adafriedman97+updated%3A2019-12-06..2020-06-11&type=Issues) | [@DavidPowell](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3ADavidPowell+updated%3A2019-12-06..2020-06-11&type=Issues) | [@dhruvbalwada](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Adhruvbalwada+updated%3A2019-12-06..2020-06-11&type=Issues) | [@emdupre](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aemdupre+updated%3A2019-12-06..2020-06-11&type=Issues) | [@epacuit](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aepacuit+updated%3A2019-12-06..2020-06-11&type=Issues) | [@firasm](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Afirasm+updated%3A2019-12-06..2020-06-11&type=Issues) | [@flying-sheep](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aflying-sheep+updated%3A2019-12-06..2020-06-11&type=Issues) | [@foster999](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Afoster999+updated%3A2019-12-06..2020-06-11&type=Issues) | [@gharp](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Agharp+updated%3A2019-12-06..2020-06-11&type=Issues) | [@goanpeca](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Agoanpeca+updated%3A2019-12-06..2020-06-11&type=Issues) | [@grst](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Agrst+updated%3A2019-12-06..2020-06-11&type=Issues) | [@hamelsmu](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Ahamelsmu+updated%3A2019-12-06..2020-06-11&type=Issues) | [@jasmainak](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Ajasmainak+updated%3A2019-12-06..2020-06-11&type=Issues) | [@jgm](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Ajgm+updated%3A2019-12-06..2020-06-11&type=Issues) | [@jmason86](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Ajmason86+updated%3A2019-12-06..2020-06-11&type=Issues) | [@jni](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Ajni+updated%3A2019-12-06..2020-06-11&type=Issues) | [@joergbrech](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Ajoergbrech+updated%3A2019-12-06..2020-06-11&type=Issues) | [@johngage](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Ajohngage+updated%3A2019-12-06..2020-06-11&type=Issues) | [@jpivarski](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Ajpivarski+updated%3A2019-12-06..2020-06-11&type=Issues) | [@jstac](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Ajstac+updated%3A2019-12-06..2020-06-11&type=Issues) | [@kyleniemeyer](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Akyleniemeyer+updated%3A2019-12-06..2020-06-11&type=Issues) | [@malvikasharan](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Amalvikasharan+updated%3A2019-12-06..2020-06-11&type=Issues) | [@martinagvilas](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Amartinagvilas+updated%3A2019-12-06..2020-06-11&type=Issues) | [@MasterScrat](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3AMasterScrat+updated%3A2019-12-06..2020-06-11&type=Issues) | [@mathieuboudreau](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Amathieuboudreau+updated%3A2019-12-06..2020-06-11&type=Issues) | [@matteoacrossi](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Amatteoacrossi+updated%3A2019-12-06..2020-06-11&type=Issues) | [@mgeier](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Amgeier+updated%3A2019-12-06..2020-06-11&type=Issues) | [@mikdale](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Amikdale+updated%3A2019-12-06..2020-06-11&type=Issues) | [@mmcky](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Ammcky+updated%3A2019-12-06..2020-06-11&type=Issues) | [@mwcraig](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Amwcraig+updated%3A2019-12-06..2020-06-11&type=Issues) | [@mwouts](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Amwouts+updated%3A2019-12-06..2020-06-11&type=Issues) | [@najuzilu](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Anajuzilu+updated%3A2019-12-06..2020-06-11&type=Issues) | [@NatalieThurlby](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3ANatalieThurlby+updated%3A2019-12-06..2020-06-11&type=Issues) | [@ofajardo](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aofajardo+updated%3A2019-12-06..2020-06-11&type=Issues) | [@oscarys](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aoscarys+updated%3A2019-12-06..2020-06-11&type=Issues) | [@parmentelat](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aparmentelat+updated%3A2019-12-06..2020-06-11&type=Issues) | [@peaceiris](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Apeaceiris+updated%3A2019-12-06..2020-06-11&type=Issues) | [@pgadige](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Apgadige+updated%3A2019-12-06..2020-06-11&type=Issues) | [@phaustin](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aphaustin+updated%3A2019-12-06..2020-06-11&type=Issues) | [@prabhasyadav](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aprabhasyadav+updated%3A2019-12-06..2020-06-11&type=Issues) | [@psychemedia](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Apsychemedia+updated%3A2019-12-06..2020-06-11&type=Issues) | [@Racooneer](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3ARacooneer+updated%3A2019-12-06..2020-06-11&type=Issues) | [@rahuldave](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Arahuldave+updated%3A2019-12-06..2020-06-11&type=Issues) | [@rossbar](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Arossbar+updated%3A2019-12-06..2020-06-11&type=Issues) | [@roualdes](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aroualdes+updated%3A2019-12-06..2020-06-11&type=Issues) | [@saulomaia](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Asaulomaia+updated%3A2019-12-06..2020-06-11&type=Issues) | [@TomasBeuzen](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3ATomasBeuzen+updated%3A2019-12-06..2020-06-11&type=Issues) | [@trallard](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Atrallard+updated%3A2019-12-06..2020-06-11&type=Issues) | [@xldrkp](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Axldrkp+updated%3A2019-12-06..2020-06-11&type=Issues) | [@yuvipanda](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Ayuvipanda+updated%3A2019-12-06..2020-06-11&type=Issues)
 
 
-# v0.6.3...v0.6.4
+## v0.6.3...v0.6.4
 ([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.6.3...v0.6.4))
 
-## Enhancements made
+### Enhancements made
 * improving the upgrade functionality [#449](https://github.com/executablebooks/jupyter-book/pull/449) ([@choldgraf](https://github.com/choldgraf))
 * scrolling outputs [#444](https://github.com/executablebooks/jupyter-book/pull/444) ([@choldgraf](https://github.com/choldgraf))
 * adding a page for math instructions [#432](https://github.com/executablebooks/jupyter-book/pull/432) ([@choldgraf](https://github.com/choldgraf))
@@ -151,7 +274,7 @@
 * improving search functionality [#374](https://github.com/executablebooks/jupyter-book/pull/374) ([@choldgraf](https://github.com/choldgraf))
 * Add kernel path for thebelab [#189](https://github.com/executablebooks/jupyter-book/pull/189) ([@joergbrech](https://github.com/joergbrech))
 
-## Bugs fixed
+### Bugs fixed
 * Add installation module and fix circle [#450](https://github.com/executablebooks/jupyter-book/pull/450) ([@choldgraf](https://github.com/choldgraf))
 * fixing thebelab highlighting [#446](https://github.com/executablebooks/jupyter-book/pull/446) ([@choldgraf](https://github.com/choldgraf))
 * fixing full width content and some formatting bugs [#417](https://github.com/executablebooks/jupyter-book/pull/417) ([@choldgraf](https://github.com/choldgraf))
@@ -162,7 +285,7 @@
 * [FIX] Fix for path separator issue on Windows [#398](https://github.com/executablebooks/jupyter-book/pull/398) ([@GasperPaul](https://github.com/GasperPaul))
 * fixing issue template [#393](https://github.com/executablebooks/jupyter-book/pull/393) ([@choldgraf](https://github.com/choldgraf))
 
-## Other merged PRs
+### Other merged PRs
 * moving thebelab config to within the page instead of head [#448](https://github.com/executablebooks/jupyter-book/pull/448) ([@choldgraf](https://github.com/choldgraf))
 * only show TOC if there are headers for it [#441](https://github.com/executablebooks/jupyter-book/pull/441) ([@choldgraf](https://github.com/choldgraf))
 * Update README.md [#425](https://github.com/executablebooks/jupyter-book/pull/425) ([@choldgraf](https://github.com/choldgraf))
@@ -174,17 +297,17 @@
 * version bump [#389](https://github.com/executablebooks/jupyter-book/pull/389) ([@choldgraf](https://github.com/choldgraf))
 * new release and updating instructions [#387](https://github.com/executablebooks/jupyter-book/pull/387) ([@choldgraf](https://github.com/choldgraf))
 
-## Contributors to this release
+### Contributors to this release
 ([GitHub contributors page for this release](https://github.com/executablebooks/jupyter-book/graphs/contributors?from=2019-10-07&to=2019-12-06&type=c))
 
 [@choldgraf](https://github.com/search?q=repo%3Ajupyter%2Fjupyter-book+involves%3Acholdgraf+updated%3A2019-10-07..2019-12-06&type=Issues) | [@emdupre](https://github.com/search?q=repo%3Ajupyter%2Fjupyter-book+involves%3Aemdupre+updated%3A2019-10-07..2019-12-06&type=Issues) | [@GasperPaul](https://github.com/search?q=repo%3Ajupyter%2Fjupyter-book+involves%3AGasperPaul+updated%3A2019-10-07..2019-12-06&type=Issues) | [@javag97](https://github.com/search?q=repo%3Ajupyter%2Fjupyter-book+involves%3Ajavag97+updated%3A2019-10-07..2019-12-06&type=Issues) | [@joergbrech](https://github.com/search?q=repo%3Ajupyter%2Fjupyter-book+involves%3Ajoergbrech+updated%3A2019-10-07..2019-12-06&type=Issues) | [@melaniewalsh](https://github.com/search?q=repo%3Ajupyter%2Fjupyter-book+involves%3Amelaniewalsh+updated%3A2019-10-07..2019-12-06&type=Issues) | [@psychemedia](https://github.com/search?q=repo%3Ajupyter%2Fjupyter-book+involves%3Apsychemedia+updated%3A2019-10-07..2019-12-06&type=Issues)
 
 
-# v0.6.0...v0.6.3
+## v0.6.0...v0.6.3
 ([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.6.0...v0.6.3))
 
 
-## Enhancements made
+### Enhancements made
 * adding anchors above headers [#366](https://github.com/executablebooks/jupyter-book/pull/366) ([@choldgraf](https://github.com/choldgraf))
 * adding CSS rules for epigraphs [#365](https://github.com/executablebooks/jupyter-book/pull/365) ([@choldgraf](https://github.com/choldgraf))
 * netlify config [#359](https://github.com/executablebooks/jupyter-book/pull/359) ([@choldgraf](https://github.com/choldgraf))
@@ -192,7 +315,7 @@
 * [WIP] Add option to clear outputs in build command [#349](https://github.com/executablebooks/jupyter-book/pull/349) ([@akhilputhiry](https://github.com/akhilputhiry))
 * [ENH] Netlify Continuous Deployment [#342](https://github.com/executablebooks/jupyter-book/pull/342) ([@emdupre](https://github.com/emdupre))
 
-## Bugs fixed
+### Bugs fixed
 * css for thebelab z-order [#386](https://github.com/executablebooks/jupyter-book/pull/386) ([@choldgraf](https://github.com/choldgraf))
 * fixing TOC auto gen bug [#375](https://github.com/executablebooks/jupyter-book/pull/375) ([@choldgraf](https://github.com/choldgraf))
 * fixing page path link [#368](https://github.com/executablebooks/jupyter-book/pull/368) ([@choldgraf](https://github.com/choldgraf))
@@ -201,7 +324,7 @@
 * fix: fuzzy matching of jupyter book versions [#346](https://github.com/executablebooks/jupyter-book/pull/346) ([@emdupre](https://github.com/emdupre))
 * fixing scrolling [#336](https://github.com/executablebooks/jupyter-book/pull/336) ([@choldgraf](https://github.com/choldgraf))
 
-## Maintenance and upkeep improvements
+### Maintenance and upkeep improvements
 * fixing load ntbk function [#385](https://github.com/executablebooks/jupyter-book/pull/385) ([@choldgraf](https://github.com/choldgraf))
 * load ntbk function [#384](https://github.com/executablebooks/jupyter-book/pull/384) ([@choldgraf](https://github.com/choldgraf))
 * moving CSS and JS generation to their own function [#381](https://github.com/executablebooks/jupyter-book/pull/381) ([@choldgraf](https://github.com/choldgraf))
@@ -218,10 +341,10 @@
 * removing unnecessary clean_lines function [#345](https://github.com/executablebooks/jupyter-book/pull/345) ([@choldgraf](https://github.com/choldgraf))
 * modularizing the bage building and beefing up single page building [#344](https://github.com/executablebooks/jupyter-book/pull/344) ([@choldgraf](https://github.com/choldgraf))
 
-## Documentation improvements
+### Documentation improvements
 * DOC: intro.md: Jupyter Books -> Jupyter Book [#383](https://github.com/executablebooks/jupyter-book/pull/383) ([@westurner](https://github.com/westurner))
 
-## Other merged PRs
+### Other merged PRs
 * Update executing.ipynb [#350](https://github.com/executablebooks/jupyter-book/pull/350) ([@psychemedia](https://github.com/psychemedia))
 * adding better circle instructions [#341](https://github.com/executablebooks/jupyter-book/pull/341) ([@choldgraf](https://github.com/choldgraf))
 * cleaning up circle [#340](https://github.com/executablebooks/jupyter-book/pull/340) ([@choldgraf](https://github.com/choldgraf))
@@ -232,7 +355,7 @@
 * updating changelog [#334](https://github.com/executablebooks/jupyter-book/pull/334) ([@choldgraf](https://github.com/choldgraf))
 * fixing releases info [#333](https://github.com/executablebooks/jupyter-book/pull/333) ([@choldgraf](https://github.com/choldgraf))
 
-# [v0.6.0](https://github.com/executablebooks/jupyter-book/tree/v0.6.0) (2019-09-17)
+## [v0.6.0](https://github.com/executablebooks/jupyter-book/tree/v0.6.0) (2019-09-17)
 [Full Changelog](https://github.com/executablebooks/jupyter-book/compare/v0.5.2...v0.6.0)
 
 **Implemented enhancements:**
@@ -317,7 +440,7 @@
 - updating changelog [\#245](https://github.com/executablebooks/jupyter-book/pull/245) ([choldgraf](https://github.com/choldgraf))
 - version bump to dev [\#243](https://github.com/executablebooks/jupyter-book/pull/243) ([choldgraf](https://github.com/choldgraf))
 
-# [v0.5.2](https://github.com/executablebooks/jupyter-book/tree/v0.5.2) (2019-07-26)
+## [v0.5.2](https://github.com/executablebooks/jupyter-book/tree/v0.5.2) (2019-07-26)
 [Full Changelog](https://github.com/executablebooks/jupyter-book/compare/v0.5...v0.5.2)
 
 **Implemented enhancements:**
@@ -366,7 +489,7 @@
 - Ask if kernelspec exists in metadata [\#197](https://github.com/executablebooks/jupyter-book/pull/197) ([joergbrech](https://github.com/joergbrech))
 - changelog and version bump [\#194](https://github.com/executablebooks/jupyter-book/pull/194) ([choldgraf](https://github.com/choldgraf))
 
-# [v0.5](https://github.com/executablebooks/jupyter-book/tree/v0.5) (2019-05-13)
+## [v0.5](https://github.com/executablebooks/jupyter-book/tree/v0.5) (2019-05-13)
 [Full Changelog](https://github.com/executablebooks/jupyter-book/compare/v0.4.1...v0.5)
 
 **Implemented enhancements:**
@@ -445,7 +568,7 @@
 - Adding download links for the notebook files [\#104](https://github.com/executablebooks/jupyter-book/pull/104) ([choldgraf](https://github.com/choldgraf))
 - fixing thebelab keyboard shortcuts behavior [\#103](https://github.com/executablebooks/jupyter-book/pull/103) ([choldgraf](https://github.com/choldgraf))
 
-# [v0.4.1](https://github.com/executablebooks/jupyter-book/tree/v0.4.1) (2019-02-09)
+## [v0.4.1](https://github.com/executablebooks/jupyter-book/tree/v0.4.1) (2019-02-09)
 [Full Changelog](https://github.com/executablebooks/jupyter-book/compare/v0.2...v0.4.1)
 
 **Closed issues:**
@@ -510,7 +633,7 @@
 - Refactor textbook generator to check redirects [\#27](https://github.com/executablebooks/jupyter-book/pull/27) ([matthew-brett](https://github.com/matthew-brett))
 - A blank target URL here would be nice. [\#15](https://github.com/executablebooks/jupyter-book/pull/15) ([arokem](https://github.com/arokem))
 
-# [v0.2](https://github.com/executablebooks/jupyter-book/tree/v0.2) (2018-10-23)
+## [v0.2](https://github.com/executablebooks/jupyter-book/tree/v0.2) (2018-10-23)
 [Full Changelog](https://github.com/executablebooks/jupyter-book/compare/v0.1...v0.2)
 
 **Closed issues:**
@@ -521,7 +644,7 @@
 
 - Update to new build system [\#30](https://github.com/executablebooks/jupyter-book/pull/30) ([choldgraf](https://github.com/choldgraf))
 
-# [v0.1](https://github.com/executablebooks/jupyter-book/tree/v0.1) (2018-10-20)
+## [v0.1](https://github.com/executablebooks/jupyter-book/tree/v0.1) (2018-10-20)
 **Closed issues:**
 
 - Calling newer version of nbclean than is available on pypi [\#21](https://github.com/executablebooks/jupyter-book/issues/21)

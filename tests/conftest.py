@@ -7,42 +7,38 @@ from click.testing import CliRunner
 
 
 @pytest.fixture()
-def build_resources(tmpdir):
+def build_resources(temp_with_override):
     """Copys ./books and ./books/tocs to a temporary directory and yields the paths
     as `pathlib.Path` objects.
     """
     src = Path(__file__).parent.resolve().joinpath("books").absolute()
-    dst = tmpdir.join("books")
+    dst = temp_with_override / "books"
     shutil.copytree(src, dst)
-    books = Path(dst)
-    tocs = books / "toc"
-    yield books, tocs
+    yield Path(dst), Path(dst) / "toc"
     shutil.rmtree(dst)
 
 
 @pytest.fixture()
-def pages(tmpdir):
+def pages(temp_with_override):
     """Copys ./pages to a temporary directory and yields the path as a `pathlib.Path`
     object.
     """
     src = Path(__file__).parent.joinpath("pages").absolute()
-    dst = tmpdir.join("pages")
+    dst = temp_with_override / "pages"
     shutil.copytree(src, dst)
-    pages = Path(dst)
-    yield pages
+    yield Path(dst)
     shutil.rmtree(dst)
 
 
 @pytest.fixture()
-def docs(tmpdir):
+def docs(temp_with_override):
     """Copys ../docs to a temporary directory and yields the path as a `pathlib.Path`
     object.
     """
     src = Path(__file__).parent.parent.joinpath("docs").absolute()
-    dst = tmpdir.join("docs")
+    dst = temp_with_override / "docs"
     shutil.copytree(src, dst)
-    docs = Path(dst)
-    yield docs
+    yield Path(dst)
     shutil.rmtree(dst)
 
 

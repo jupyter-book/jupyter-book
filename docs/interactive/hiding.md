@@ -3,8 +3,6 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
-    format_version: '0.8'
-    jupytext_version: 1.4.1+dev
 kernelspec:
   display_name: Python 3
   language: python
@@ -15,8 +13,8 @@ kernelspec:
 
 It's possible to control which content shows up in your book. For example,
 you may want to display a complex visualization to illustrate an idea, but don't
-want the page to be cluttered with a large code cell that generated the viz. In other
-cases, you may want to remove a code cell entirely.
+want the page to be cluttered with a large code cell that generated the viz.
+In other cases, you may want to remove a code cell entirely.
 
 In this case, you have two options:
 
@@ -30,6 +28,10 @@ There are two ways to hide content:
 * To hide or remove code cells or their outputs, use **notebook cell tags**.
 
 We'll cover each below.
+
+:::{seealso}
+[](jupyter-cell-tags)
+:::
 
 ## Hide markdown using MyST markdown
 
@@ -46,7 +48,7 @@ and hide the content. We cover each below.
 You can activate this behavior in markdown with the `{toggle}`
 directive like so:
 
-````
+````md
 ```{toggle}
 Some hidden toggle content!
 
@@ -65,7 +67,7 @@ Some hidden toggle content!
 Note that if you'd like to **show the toggle content by default**, you can
 add the `:show:` flag when you call `{toggle}`, like so:
 
-````
+````md
 ```{toggle} Click the button to reveal!
 :show:
 Some hidden toggle content!
@@ -81,7 +83,7 @@ dropdown blocks. Users will see the admonition title, but will need to click
 in order to reveal the content. To do so, add the `dropdown` class to any admonition.
 For example:
 
-````
+````md
 ```{admonition} Click the button to reveal!
 :class: dropdown
 Some hidden toggle content!
@@ -111,7 +113,6 @@ on adding cell tags to notebooks in Jupyter Notebook or JupyterLab.
 If an element is hidden, Jupyter Book will display a small button to the right of the
 old location for the hidden element. If a user clicks the button,
 the element will be displayed.
-
 
 ### Hide cell inputs
 

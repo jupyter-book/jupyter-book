@@ -7,8 +7,13 @@ email: choldgraf@berkeley.edu
 description: >- # this means to ignore newlines until "baseurl:"
   This is an example book built with Jupyter Books.
 
+exclude_patterns: [file-types/include-rst.rst]
+
 execute:
   execute_notebooks: cache
+
+parse:
+  myst_extended_syntax: true
 
 html:
   favicon: images/favicon.ico
@@ -32,6 +37,13 @@ launch_buttons:
 
 sphinx:
   config:
+    nb_custom_formats:
+      .Rmd:
+        - jupytext.reads
+        - fmt: Rmd
+    # TODO: #917 this path will be the default in sphinx v4
+    # mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+    # However, it is incompatible with the mathjax config below for macros
     mathjax_config:
       TeX:
         Macros:
@@ -39,13 +51,32 @@ sphinx:
           "floor": ["\\lfloor#1\\rfloor", 1]
           "bmat": ["\\left[\\begin{array}"]
           "emat": ["\\end{array}\\right]"]
-    panels_add_boostrap_css: False
     intersphinx_mapping:
       ebp:
         - "https://executablebooks.org/en/latest/"
         - null
+      myst-parser:
+        - "https://myst-parser.readthedocs.io/en/latest/"
+        - null
+      myst-nb:
+        - "https://myst-nb.readthedocs.io/en/latest/"
+        - null
+      sphinx:
+        - "https://www.sphinx-doc.org/en/master"
+        - null
+      nbformat:
+        - "https://nbformat.readthedocs.io/en/latest"
+        - null
+    rediraffe_branch: 'master'
+    rediraffe_redirects:
+      content-types/index.md: file-types/index.md
+      content-types/markdown.md: file-types/markdown.md
+      content-types/notebooks.ipynb: file-types/notebooks.ipynb
+      content-types/myst-notebooks.md: file-types/myst-notebooks.md
+      content-types/jupytext.md: file-types/jupytext.Rmd
+      content-types/restructuredtext.md: file-types/restructuredtext.md
 
   extra_extensions:
     - sphinx_click.ext
     - sphinx_tabs.tabs
-    - sphinx_panels
+    - sphinxext.rediraffe
