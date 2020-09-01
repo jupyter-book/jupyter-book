@@ -39,7 +39,7 @@ def _color_message(msg, style):
     return bcolors[style] + msg + endc
 
 
-def _message_box(msg, color="green", doprint=True):
+def _message_box(msg, color="green", doprint=True, print_func=print):
     # Prepare the message so the indentation is the same as the box
     msg = dedent(msg)
 
@@ -54,13 +54,13 @@ def _message_box(msg, color="green", doprint=True):
     """
     box = dedent(box).format(msg=msg, border_colored=border_colored)
     if doprint is True:
-        print(box)
+        print_func(box)
     return box
 
 
 def _error(msg, kind=None):
     if kind is None:
-        kind = ValueError
+        kind = RuntimeError
     box = _message_box(msg, color="red", doprint=False)
     raise kind(box)
 

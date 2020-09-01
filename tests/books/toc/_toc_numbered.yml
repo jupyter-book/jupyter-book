@@ -1,0 +1,15 @@
+- file: index
+  title: Toc
+  numbered: true
+  chapters:
+  - file: content1
+    title: Content1
+  - file: subfolder/index
+    title: Subfolder
+    sections:
+    - file: subfolder/asubpage
+      title: Asubpage
+- file: content2
+  title: Content2
+- file: content3
+  title: Content3

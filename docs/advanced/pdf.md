@@ -3,9 +3,9 @@
 It is possible to build a single PDF that contains all of your book's content. This
 page describes a few ways to do so.
 
-```{warning}
+:::{warning}
 PDF building is experimental, and may change or have bugs.
-```
+:::
 
 There are two approaches to building PDF files:
 
@@ -30,7 +30,7 @@ conversion to PDF.
 If you wish to build a PDF from your book's HTML, you will need the `pyppeteer` package.
 You can install it like so:
 
-```
+```bash
 pip install pyppeteer
 ```
 
@@ -49,25 +49,25 @@ to see if that fixes it. We warned you it was an experimental feature :-)
 
 To build a single PDF from your book's HTML, use the following command:
 
-```
+```bash
 jupyter-book build mybookname/ --builder pdfhtml
 ```
 
 or
 
-```
+```bash
 jb build mybookname/ --builder pdfhtml
 ```
 
-```{warning}
-If you get a "MaxRetryError" and see mentions of SSL in the error message when
-when building the PDF, this could be due to a bug in `pyppeteer` as it downloads
-Chromium for the first time. See [this github comment](https://github.com/miyakogi/pyppeteer/issues/258#issuecomment-563075764)
+:::{warning}
+If you get a "MaxRetryError" and see mentions of SSL in the error message when building the PDF,
+this could be due to a bug in `pyppeteer` as it downloads Chromium for the first time.
+See [this github comment](https://github.com/miyakogi/pyppeteer/issues/258#issuecomment-563075764)
 for a potential fix, and [this jupyter book issue](https://github.com/executablebooks/jupyter-book/issues/593)
 where we're tracking the issue.
-```
+:::
 
-(pdf-latex)=
+(pdf/latex)=
 ## Build a PDF using Latex
 
 You can also use Latex to build a PDF of your book. This can behave differently depending on your
@@ -92,18 +92,21 @@ For `Windows` please install [texlive](https://www.tug.org/texlive/windows.html)
 
 To build a single PDF using LaTeX, use the following command:
 
-```
+```bash
 jupyter-book build mybookname/ --builder pdflatex
 ```
 
 or
 
-```
+```bash
 jb build mybookname/ --builder pdflatex
 ```
 
-```{note}
+::::{note}
 If you would just like to generate the **latex** file you may use:
 
+```bash
 jb build mybookname/ --builder latex
 ```
+
+::::

@@ -5,79 +5,116 @@ your book. Most of them involve adding syntax to your `_toc.yml` file.
 
 This page covers a few common options.
 
-## Basic Table of Contents structure
-
 ```{note}
 The {download}`_toc.yml file for this site <../_toc.yml>` has an entry for each
 of the features described below for reference.
 ```
 
-Let's take a look at an example `_toc.yml` file
-for reference (it is a subset of this book's `_toc.yml` file):
+## General TOC structure
+
+The Table of Contents is broadly organized like so:
+
+* The first entry of your `_toc.yml` file is the *introduction* to your book.
+  It is the landing page for the HTML of your book.
+* Subsequent entries define either **parts** or **chapters** in your book.
+  These make up the main structure of your book. See [](toc/chapters-parts)
+  for more information.
+* Each chapter can optionally have **sections** that are defined by separate
+  files. These are nested underneath the top page of the chapter. See [](toc/structure)
+  for more information.
+* Throughout the `_toc.yml` file, `- file:` entries point to text files that make up
+  your book's content. Their paths are relative to the book's root.
+
+```{note}
+By default, the landing page of your book will not appear in the navbar, but this can be enabled in your `_config.yml` file by setting the `home_page_in_navbar` option to `true` (under the [html section](https://jupyterbook.org/customize/config.html#configuration-reference)).
+Currently, it is not possible to add nested sections to your landing page (see [#844](https://github.com/executablebooks/jupyter-book/issues/844))
+```
+
+For reference, here is an example similar to this book's `_toc.yml` file:
 
 ```yaml
-- file: intro
+- file: myintro
+  numbered: true
 
-- header: Get started
-- file: start/overview
-- file: start/build
+- part: Get started
+  chapters:
+  - file: start/overview
+  - file: start/build
 
-- header: Book pages and types
-- file: content/markdown
-- file: content/notebooks
-- file: content/myst-notebooks
-
-- header: Reference and test pages
-- file: test_pages/test
-  sections:
-    - file: test_pages/layout_elements
-    - file: test_pages/equations
+- part: Reference and test pages
+  chapters:
+  - file: test_pages/test
+    sections:
+      - file: test_pages/layout_elements
+      - file: test_pages/equations
 ```
 
-```{warning}
-The Table of Contents file *must* start with your book's first page. It cannot
-start with a header
-```
+The sections below cover this information in more depth.
 
-### The top-layer of `_toc.yml`
+(toc/chapters-parts)=
+## Defining chapters and parts in `_toc.yml`
 
-The top layer of entries in your Table of Contents is treated differently from everything
-underneath. There are roughly two items to consider when building your Table of Contents: **headers**
-and **files**.
+The top layer of entries in your Table of Contents allows you to define
+**chapters** and (optionally) **parts** of your book.
 
+The first entry (`- file: myintro` above) defines the introductory page for your book.
+It is also where you can control some behavior for the entire book (in the example
+above, we set `numbered: true` to number *all* sections of the book).
 
-#### Headers
+Below the first entry, you have two options for defining the structure of your book.
 
-**Headers** (optional) define logical groups of files that follow, and give that group
-of files a title. You can think of headers as defining a **chapter** of pages in your
-book. If your `_toc.yml` has no `- header` entries in it, then all of the top-level
-files will be treated as a single chapter of pages. Note that you can only add headers
-to the **top-level** of your `_toc.yml` file.
+1. **A list of chapters.** You can specify each chapter with a `- file:` entry.
+   Below is an example `_toc.yml` file with this structure:
 
-Here is an example header entry, with a few files that follow:
+   ```yaml
+   - file: myintro
 
-```yaml
-- header: My chapter name
-- file: filea
-- file: fileb
-```
+   - file: firstchapter
+   - file: secondchapter
+   ```
+
+2. **A list of parts with chapters.** If you'd like to separate chapters into groups,
+   do so by using `- part:` entries in the top level of `_toc.yml`. Each part should have
+   a `chapters:` section that contains a list of `- file:` entries, each one pointing
+   to the file for a chapter. Below is an example `_toc.yml` file with
+   this structure:
+
+   ```yaml
+   - file: myintro
+
+   - part: My first part
+     chapters:
+     - file: part1_firstchapter
+     - file: part1_secondchapter
+   - part: My second part
+     chapters:
+     - file: part2_firstchapter
+   ```
+
+   Note that **chapters do not continue between parts**. Think of each part as
+   a self-contained collection of chapters (e.g., for the purposes of numbering).
+
+:::{admonition,warning} Don't mix these two structures!
+When designing the top-level sections of your `_toc.yml` file, you must
+pick *either* a list of chapters via `- file:` entries, or a list of parts
+via `- part:` entries with chapters inside of them. You cannot intermix them both.
+:::
 
 (toc/files)=
-#### Files
+### Files
 
-**Files** point to a single file of content in your book's folder. They will
-become a section of content in your book (in the order that they are provided in
-the `_toc.yml` file). Files may also have a title that will be used in the Table of Contents
-for HTML outputs (though it will *not* change the title of the page itself).
+**Files** point to a single file of content in your book's folder. If these files
+are at the top level of your `_toc.yml` file, they will denote **chapters**. If they
+are nested within another file (via the `sections:` key) then they will denote
+**sections** within a chapter.
 
 Here is an example file entry:
 
 ```yaml
 - file: path/to/myfile
-  title: My alternate page title
 ```
 
-Additionally, **files can have subsections of pages**. These subsections allow you
+Additionally, **files can have nested sections in other files**. These subsections allow you
 to define hierarchical structure in your book. For example, you may wish for the top-level
 file to serve as an "introduction" for a collection of files underneath, like so:
 
@@ -92,32 +129,216 @@ file to serve as an "introduction" for a collection of files underneath, like so
 
 We recommend nesting your sections no more than 3 layers deep (as shown above).
 
-## Number your book's sections
+#### Specifying alternate titles
 
-You can automatically add numbers to each section of your book. To add numbers
-to any section or subsection of the book, add the `numbered: true` flag to its
-entry in your `_toc.yml` file. For example:
+If you'd like to specify an alternate title from the one defined within a file,
+you may do so with the `title:` key. For example:
 
 ```yaml
-- file: myfolder/mypage
-  numbered: true
-  sections:
-    - file: myfolder/asubpage
+- file: path/to/myfile
+  title: My alternate page title
 ```
 
-This will cause both `myfolder/mypage` as well as `myfolder/asubpage` to be
+Note that this only applies to the sidebar
+in the table of contents, it does not change the actual chapter/section title.
+
+(toc/numbering)=
+## Number your book's chapters and sections
+
+You can automatically add numbers to each chapter of your book. To add numbers
+to **all chapters of your book**, add the `numbered: true` flag to
+your introduction page entry (the first entry in `_toc.yml`). For example:
+
+```yaml
+- file: intro
+  numbered: true
+
+- file: chapter1
+- file: chapter2
+- file: chapter3
+```
+
+This will cause all chapters of the book to be
 numbered. They will follow a hierarchy according to the sub-sections structure
 defined in your `_toc.yml` file.
 
-To number *all* of the sections of your book, add the `numbered: true` flag to
-the first entry of your `_toc.yml` file.
+If you'd like to number **subsets of chapters**, group them into parts and
+apply the `numbered: true` flag to the parts whose chapters you wish to be numbered.
+For example:
 
-```{admonition} Numbering applies to _sections_ of your page
-Note that when you add numbering to a section, it will add numbers to *each header
-in a file*. This means that if you have headers in a top-level section, then its
-headers will become numbered as sub-sections, and any other _files_ underneath it
-will begin as third-level children.
+```yaml
+- file: home
+
+# Chapters in this part will not be numbered
+- part: Introduction
+  chapters:
+  - file: page2
+
+# Chapters in this part will be numbered
+- part: Part 1
+  numbered: true
+  chapters:
+  - file: chapter1
+  - file: chapter2
 ```
+
+### Numbering caveats and notes
+
+Jupyter Book relies on {term}`Sphinx` to apply section numbering, and this has a
+few quirks to it. Here are a few gotchas:
+
+* **Numbering applies to _sections_ of your page**.
+  Note that when you add numbering to a section, it will add numbers to *each header
+  in a file*. This means that if you have headers in a top-level section, then its
+  headers will become numbered as sub-sections, and any other _files_ underneath it
+  will begin as third-level children. See [](toc/structure) for more information.
+* **Numbering re-starts across parts**.
+  If you specify groups of sections via Parts, then numbering will restart between
+  them. That means if you have two `- part:` entries with 2 pages each, you will
+  have two sets of `1.` and `2.` sections, one for each part.
+
+(toc/structure)=
+## How headers and sections map onto to book structure
+
+Jupyter Book uses the {term}`Sphinx` documentation engine under the hood, which has
+a particular way that it represents the structure of your book. Different choices
+about the structure of `_toc.yml` and the header structures within your pages will
+result in different outcomes for your overall book structure. Here are some general
+tips and best-practices.
+
+```{note}
+This is particularly important when you [number your book's sections](toc/numbering)
+or when you [build a PDF of your book through Latex](pdf/latex).
+```
+
+**Chapters are the top-most book structure**. The top level of your `_toc.yml` contains
+a list of chapters. The title of each file will be the chapter's title.
+
+**Headers map onto sections**. Jupyter Book interprets your book as a collection of sections,
+and decides how those sections should be nested according to the hierarchy of
+`_toc.yml` and the hierarchy of headers in a page. Within a file, the first
+`## ` header it discovers will define the top-most section in the file, and any subsequent
+`### ` headers underneath will be come sub-sections (until another `## ` section
+is encountered). This behavior is a bit different if the page is *nested* under
+another (see below).
+
+**Nested files define sections _underneath_ the last section of their parent**.
+If you specify sections that are *nested* under a file (with the `sections:` key)
+then those sections will begin will begin *underneath* the last headers of the parent page.
+
+For example, if your `_toc.yml` file looks like this:
+
+```yaml
+- file: myintro
+
+- file: chapter1
+  sections:
+  - file: chapter1section
+```
+
+Then the sections of `chapter1section` will begin **under** the sections of `chapter1`.
+Any headers in `chapter1section` will be treated as a "next-header-deeper" section in
+`chapter1`.
+
+In other words, if `chapter1` and `chapter1section` look like this:
+
+````{panels}
+`chapter1.md`
+^^^^^^^^^^^^^
+```md
+# Chapter 1 title
+
+## Chapter 1 second header
+```
+---
+`chapter1section.md`
+^^^^^^^^^^^^^^^^^^^^
+
+```md
+# Chapter 1 section title
+
+## Chapter 1 section second header
+```
+````
+Then your book will treat them like so:
+
+```md
+# Chapter 1 title
+
+## Chapter 1 second header
+
+### Chapter 1 section title
+
+#### Chapter 1 section second header
+```
+
+If however `chapter1.md` had an extra third-level header, like so:
+
+````{panels}
+`chapter1.md`
+^^^^^^^^^^^^^
+```md
+# Chapter 1 title
+
+## Chapter 1 second header
+
+### Chapter 1 third header
+```
+---
+`chapter1section.md`
+^^^^^^^^^^^^^^^^^^^^
+
+```md
+# Chapter 1 section title
+
+## Chapter 1 section second header
+```
+````
+
+Then your book will treat them like so:
+
+```md
+# Chapter 1 title
+
+## Chapter 1 second header
+
+### Chapter 1 third header
+
+#### Chapter 1 section title
+
+##### Chapter 1 section second header
+```
+
+Keep this in mind when you design the structure of your files.
+
+```{tip}
+A good rule of thumb is to take one of these two approaches:
+
+1. **don't put headers in your introduction pages**. This is
+   true for both the book's introduction, as well as for any chapter introductions.
+   Instead, leave the headers to pages that have more content in them, and use
+   **bolded text** where you would otherwise use headers.
+2. **Use a flat list of files instead of nested files**. This way the section
+   hierarchy is defined only in a single file within each section. However, this
+   means you will have longer files in general.
+```
+
+## Exclude some pages from your book's build
+
+By default, Jupyter Book will build all content files that are found in your book's
+folder, even if they are not specified in `_toc.yml` (and will raise a warning if
+it finds a file that isn't listed there).
+
+If you'd like Jupyter Book to skip a file entirely, you can do so with the following
+configuration in `_config.yml`:
+
+```yaml
+exclude_patterns: [pattern1/*, path/to/myfile.ipynb]
+```
+
+Any files that match the patterns described there will be excluded from the build.
+If you'd like to exclude files from being *executed* but still wish for them to be
+built by Jupyter Book, see [](execute/exclude).
 
 ## Web-based Navigation Bar functionality
 
@@ -155,23 +376,23 @@ If you'd like to add a table of contents for the sub-sections of a page
 *within the page content* (in-line with the other content on the page), you
 may do so by using the `{tableofcontents}` directive. You can use it like so:
 
-````
+````md
 ```{tableofcontents}
 ```
 ````
 
-For an example, see the source of [the content types page](../content-types/index.md).
+For an example, see the source of [the content types page](../file-types/index.md).
 
 ## Automatically generate your `_toc.yml` file
 
 You can use `jupyter-book` to *generate* a Table of Contents file from your book
 using the filenames of your book's content. To do so, run the following command
 
-```
+```bash
 jupyter-book toc mybookpath/
 ```
 
-Jupyter Book will search `mybookpath/` for any [content files](../content-types/index)
+Jupyter Book will search `mybookpath/` for any [content files](../file-types/index)
 and create a `_toc.yml` file out of them. There are a few considerations to keep in mind:
 
 * Each sub-folder must have at least one content file inside it

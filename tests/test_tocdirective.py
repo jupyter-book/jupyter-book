@@ -1,22 +1,35 @@
+import os
 from pathlib import Path
-from subprocess import run
+
+from click.testing import CliRunner
 from bs4 import BeautifulSoup
+import pytest
+
+from jupyter_book.commands import build
 
 path_tests = Path(__file__).parent.resolve()
 path_books = path_tests.joinpath("books")
 path_root = path_tests.parent
 
 
-def test_toc_startwithlist(tmpdir, file_regression):
+def test_toc_startwithlist(cli: CliRunner, temp_with_override, file_regression):
     """Testing a basic _toc.yml for tableofcontents directive"""
-    path_output = Path(tmpdir).joinpath("mybook").absolute()
+    path_output = temp_with_override.joinpath("mybook").absolute()
     # Regular TOC should work
     p_toc = path_books.joinpath("toc")
     path_toc = p_toc.joinpath("_toc_startwithlist.yml")
-    run(
-        f"jb build {p_toc} --path-output {path_output} --toc {path_toc} -W".split(),
-        check=True,
+    result = cli.invoke(
+        build,
+        [
+            p_toc.as_posix(),
+            "--path-output",
+            path_output.as_posix(),
+            "--toc",
+            path_toc.as_posix(),
+            "-W",
+        ],
     )
+    assert result.exit_code == 0
 
     path_toc_directive = path_output.joinpath("_build", "html", "index.html")
 
@@ -24,43 +37,101 @@ def test_toc_startwithlist(tmpdir, file_regression):
     soup = BeautifulSoup(path_toc_directive.read_text(encoding="utf8"), "html.parser")
     toc = soup.find_all("div", class_="tableofcontents-wrapper")[0]
 
-    file_regression.check(str(toc), extension=".html")
+    file_regression.check(str(toc), extension=".html", encoding="utf8")
 
 
-def test_toc_withheaders(tmpdir, file_regression):
+def test_toc_parts(cli: CliRunner, temp_with_override, file_regression):
     """Testing `header` in _toc.yml"""
-    path_output = Path(tmpdir).joinpath("mybook").absolute()
+    path_output = temp_with_override.joinpath("mybook").absolute()
     # Regular TOC should work
     p_toc = path_books.joinpath("toc")
-    path_toc = p_toc.joinpath("_toc_withheaders.yml")
-    run(
-        f"jb build {p_toc} --path-output {path_output} --toc {path_toc} -W".split(),
-        check=True,
+    path_toc = p_toc.joinpath("_toc_parts.yml")
+    result = cli.invoke(
+        build,
+        [
+            p_toc.as_posix(),
+            "--path-output",
+            path_output.as_posix(),
+            "--toc",
+            path_toc.as_posix(),
+            "-W",
+        ],
     )
+    assert result.exit_code == 0
 
-    path_toc_directive = path_output.joinpath("_build", "html", "index.html")
+    path_index = path_output.joinpath("_build", "html", "index.html")
 
     # get the tableofcontents markup
-    soup = BeautifulSoup(path_toc_directive.read_text(encoding="utf8"), "html.parser")
+    soup = BeautifulSoup(path_index.read_text(encoding="utf8"), "html.parser")
     toc = soup.find_all("div", class_="tableofcontents-wrapper")[0]
 
-    file_regression.check(str(toc), extension=".html")
+    file_regression.check(
+        str(toc),
+        basename="test_toc_parts_directive",
+        extension=".html",
+        encoding="utf8",
+    )
+
+    # check the sidebar structure is correct
+    file_regression.check(
+        soup.select(".bd-links")[0].prettify(),
+        basename="test_toc_parts_sidebar",
+        extension=".html",
+        encoding="utf8",
+    )
+
+    # TODO: remove these tests in 0.7.5 when chapters: is deprecated
+    # check that using `chapter:` raises a warning but outputs the same thing
+    path_toc = p_toc.joinpath("_toc_chapters.yml")
+    result = cli.invoke(
+        build,
+        [
+            p_toc.as_posix(),
+            "--path-output",
+            path_output.as_posix(),
+            "--toc",
+            path_toc.as_posix(),
+        ],
+    )
+    assert result.exit_code == 0
+
+    assert "Found `- chapter:` in `_toc.yml`." in result.output
+    soup = BeautifulSoup(path_index.read_text(encoding="utf8"), "html.parser")
+    file_regression.check(
+        soup.select(".bd-links")[0].prettify(),
+        basename="test_toc_parts_sidebar",
+        extension=".html",
+        encoding="utf8",
+    )
 
 
-def test_toc_urllink(tmpdir, file_regression):
+@pytest.mark.skipif(
+    os.name == "nt",
+    reason="Theme error writing content1: "
+    "filename, directory name, or volume label syntax is incorrect",
+)
+def test_toc_urllink(cli: CliRunner, temp_with_override, file_regression):
     """Testing with additional `url` link key in _toc.yml"""
-    path_output = Path(tmpdir).joinpath("mybook").absolute()
+    path_output = temp_with_override.joinpath("mybook").absolute()
     # Regular TOC should work
     p_toc = path_books.joinpath("toc")
     path_toc = p_toc.joinpath("_toc_urllink.yml")
-    run(
-        f"jb build {p_toc} --path-output {path_output} --toc {path_toc} -W".split(),
-        check=True,
+    result = cli.invoke(
+        build,
+        [
+            p_toc.as_posix(),
+            "--path-output",
+            path_output.as_posix(),
+            "--toc",
+            path_toc.as_posix(),
+            "-W",
+        ],
     )
+    assert result.exit_code == 0, result.output
 
     path_toc_directive = path_output.joinpath("_build", "html", "index.html")
 
     # get the tableofcontents markup
     soup = BeautifulSoup(path_toc_directive.read_text(encoding="utf8"), "html.parser")
     toc = soup.find_all("div", class_="tableofcontents-wrapper")[0]
-    file_regression.check(str(toc), extension=".html")
+    file_regression.check(str(toc), extension=".html", encoding="utf8")

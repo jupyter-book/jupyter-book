@@ -15,26 +15,27 @@ Jupyter Book. You can install it via pip with the following command:
 pip install -U jupyter-book
 ```
 
-```{admonition} A note for windows users
-:name: warning
-Currently, Jupyter Book is tested in a unix-like environment, and it is highly
-recommended that you use a unix environment to build your books. If you're running
-a recent version of Windows 10, we recommend
-[installing Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
-If you'd like to help with adding Windows support, please [say hello in this issue](https://github.com/executablebooks/jupyter-book/issues/575).
-```
+:::{admonition,warning} A note for Windows users
+
+Jupyter Book is now also tested against Windows OS 😀
+
+However, there is a known incompatibility for notebook execution, when using Python 3.8.
+
+See [](working-on-windows)
+
+:::
 
 ## The book building process
 
 Building a Jupyter Book broadly consists of two steps:
 
-1. **Put your book content in a folder**. Jupyter Book needs the following
+1. **Put your book content in a folder or a file**. Jupyter Book needs the following
    pieces in order to build your book:
 
-   * Your content files (the pages of your book) in either markdown or Jupyter
+   * Your content file(s) (the pages of your book) in either markdown or Jupyter
      Notebooks.
    * A Table of Contents `YAML` file (`_toc.yml`) that defines
-     the structure of your book.
+     the structure of your book. Mandatory when building a folder.
    * (optional) A configuration file (`_config.yml`) to control the behavior
      of Jupyter Book.
 2. **Build your book**. Using Jupyter Book's command-line interface you can
@@ -51,10 +52,10 @@ the pieces that you'll modify for your own book.
 Running the following command will create a new Jupyter Book with a few
 content pages and a Table of Contents to get you started:
 
-```{note}
+:::{note}
 Jupyter Book uses a command-line interface to generate books. For more complete
-information about the CLI, see {doc}`../reference/cli`.
-```
+information about the CLI, see [](../reference/cli.md).
+:::
 
 ### Create a template Jupyter Book
 
@@ -149,12 +150,11 @@ is inferred from the source files.
 This behavior is controlled by the `page_titles` setting in `_config.yml`
 (see {ref}`toc/files` for more details).
 Each chapter can have
-several sections (defined in `sections:`) and each section can have several sub-sections
-(which would be define with a deeper level of `sections:`). In addition, you can
-use a few extra YAML values to control the behavior of Jupyter-Book (for example,
-`not_numbered: true` will prevent Jupyter Book from numbering the pages in that chapter).
+several sections (defined in `sections:`) and each section can have several sub-sections.
+For more information about how section structure maps onto book structure,
+see [](toc/structure).
 
-Each item in the `_toc.yml` file points to a single content file. The links
+Each item in the `_toc.yml` file points to a single file. The links
 should be **relative to your book's folder and with no extension.**
 
 For example, in the example above there is a file in
@@ -189,7 +189,6 @@ You can store these files in whatever collection of folders you'd like, note tha
 the *structure* of your book when it is built will depend solely on the order of
 items in your `_toc.yml` file (see below section)
 
-
 ### Book bibliography for citations
 
 If you'd like to build a bibliography for your book, you can do so by including
@@ -201,8 +200,7 @@ mybookname/
 ```
 
 This BiBTex file can be used to insert citations into your book's pages. For more information,
-see {doc}`../content/citations`.
-
+see [](../content/citations.md).
 
 ## Next step: build your book
 

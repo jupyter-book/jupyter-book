@@ -5,6 +5,8 @@ sections:
   title: Content1
 - file: content2
   title: Content2
+- file: content3
+  title: Content3
 - url: https://jupyterbook.org/start/build.html
   title: Build your book
 - file: subfolder/index
@@ -12,5 +14,5 @@ sections:
   sections:
   - file: subfolder/asubpage
     title: Asubpage
-  - url: https://jupyterbook.org/content-types/markdown.html
+  - url: https://jupyterbook.org/file-types/markdown.html
     title: Markdown pages

@@ -1,8 +1,8 @@
 # Build your book
 
 Once you've added content and configured your book, it's time to
-build outputs for your book. We'll use the
-`jupyter-book build` command-line tool for this.
+build outputs for your book.
+We'll use the `jupyter-book build` command-line tool for this.
 
 Currently, there are two kinds of supported outputs: an HTML website for your
 book, and a PDF that contains all of the pages of your book that is built
@@ -11,16 +11,14 @@ from the book HTML.
 ## Prerequisites
 
 In order to build the HTML for each page, you should have followed the steps
-in {doc}`creating your Jupyter Book structure <overview>`. You should have
-a collection of notebook/markdown files in your `mybookname/` folder, a `_toc.yml` file
+in [creating your Jupyter Book structure](./overview.md).
+You should have a collection of notebook/markdown files in your `mybookname/` folder, a `_toc.yml` file
 that defines the structure of your book, and any configuration you'd like
 in the `_config.yml` file.
 
 ## Build your book's HTML
 
-Now that your book's content is in your book folder and you've
-defined your book's structure in `_toc.yml`, you can build
-the HTML for your book.
+Now that your book's content is in your book folder and you've defined your book's structure in `_toc.yml`, you can build the HTML for your book.
 
 **Note:** HTML is the default builder.
 
@@ -35,44 +33,60 @@ The site will be placed in the `_build/html` folder. You can then open the pages
 in the site by entering that folder and opening the `html` files with your
 web browser.
 
-```{note}
+:::{note}
 You can also use the short-hand `jb` for `jupyter-book`. E.g.,:
 `jb build mybookname/`.
+:::
+
+:::{tip}
+When debugging your book build, the following options can be helpful:
+
+```bash
+jupyter-book build -W -n --keep-going mybookname/
 ```
+
+This will check for missing references (`-n`), turning them into errors (`-W`),
+but will still attempt to run the full build (`--keep-going`),
+so that you can see all errors in one run.
+
+You can also use `-v` or `-vvv` to increase verbosity.
+:::
 
 ## Build a standalone page
 
-Sometimes you'd like to build a single page of content rather than an
-entire book. For example, if you'd like to generate a web-friendly HTML
-page from a Jupyter Notebook for a report or publication.
+Sometimes you'd like to build a single page of content rather than an entire book.
+For example, if you'd like to generate a web-friendly HTML page from a Jupyter Notebook for a report or publication.
 
-You can generate a standalone HTML file for a single page of Jupyter Book
-content by running the following command:
+You can generate a standalone HTML file for a single page of the Jupyter Book using the same command:
 
-```
-jupyter-book page path/to/mypage.ipynb
+```bash
+jupyter-book build path/to/mypage.ipynb
 ```
 
-This will execute your content and output the proper HTML in a
-`_build/html` folder.
-If you'd like to generate HTML for a page *without* executing any code cells,
-you can use the `--no-execute` flag:
+This will execute your content and output the proper HTML in a `_build/_page/html/<mypage>` folder.
+If the file is in a subdirectory relative to the `_build` folder, the HTML  will be in a `_build/_page/html/<subdirectory-mypage>` folder.
 
-```
-jupyter-book page --no-execute path/to/mypage.ipynb
-```
+Your page will be called `mypage.html`.
+This will work for any [content source file](../file-types/index.md) that is supported by Jupyter Book.
 
-Your page will be called `mypage.html`. This will work
-for any {doc}`content source file <../content-types/index>` that is supported by Jupyter Book.
+:::{note}
+Users should note that building **single pages** in the context of a larger project, can trigger warnings and incomplete links.
+For example, building `docs/start/overview.md` will issue a number of `unknown document`,`term not in glossary`, and `undefined links` warnings.
+:::
 
 ## Page caching
 
 By default, Jupyter Book will only build the HTML for pages that have
-been updated since the last time you built the book. This helps reduce the
-amount of unnecessary time needed to build your book. If you'd like to
-force Jupyter Book to re-build a particular page, you can either edit the
-corresponding file in your book's folder, or delete that page's HTML
-in the `_build/html` folder.
+been updated since the last time you built the book.
+This helps reduce the amount of unnecessary time needed to build your book.
+If you'd like to force Jupyter Book to re-build a particular page, you can either edit the
+corresponding file in your book's folder, or delete that page's HTML in the `_build/html` folder.
+
+You can also signal a full re-build using the `--all` option:
+
+```bash
+jupyter-book build --all mybookname/
+```
 
 ## Local preview
 
@@ -83,5 +97,5 @@ path to the file in your browser navigation bar adding `file://` at the beginnin
 
 ## Next step: publish your book
 
-Now that you've created the HTML for your book, it's time
-to publish it online. That's covered in the next section.
+Now that you've created the HTML for your book, it's time to publish it online.
+That's covered in the [next section](./publish.md).

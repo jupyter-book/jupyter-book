@@ -1,4 +1,5 @@
 """Commands to facilitate conversion to PDF."""
+from copy import copy
 from pathlib import Path
 import asyncio
 
@@ -43,11 +44,9 @@ async def _html_to_pdf(html_file, pdf_file):
     await browser.close()
 
 
-def update_latex_documents(latex_documents, latexoverrides):
-    """
-    Apply latexoverrides from _config.yml to latex_documents tuple
-    """
-    latexdocs_tuple = (
+def update_latex_document(latex_document: tuple, updates: dict):
+    """Apply updates from _config.yml to a latex_document tuple"""
+    names = (
         "startdocname",
         "targetname",
         "title",
@@ -55,13 +54,8 @@ def update_latex_documents(latex_documents, latexoverrides):
         "theme",
         "toctree_only",
     )
-    updated_latexdocs = []
-    for loc, item in enumerate(latexdocs_tuple):
-        # the last element toctree_only seems optionally included
-        if loc >= len(latex_documents):
-            break
-        if item in latexoverrides["latex_documents"].keys():
-            updated_latexdocs.append(latexoverrides["latex_documents"][item])
-        else:
-            updated_latexdocs.append(latex_documents[loc])
-    return tuple(updated_latexdocs)
+    updated = list(copy(latex_document))
+    for i, (_, name) in enumerate(zip(latex_document, names)):
+        if name in updates:
+            updated[i] = updates[name]
+    return tuple(updated)

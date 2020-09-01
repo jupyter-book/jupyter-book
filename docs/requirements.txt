@@ -11,4 +11,5 @@ bokeh
 altair
 sphinx-click
 sphinx_tabs
-jupytext[myst]
+jupytext==1.6.0rc0
+sphinxext-rediraffe~=0.2.1
