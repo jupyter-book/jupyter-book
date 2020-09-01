@@ -52,32 +52,61 @@ equation, wrap the equation in either `$$` or `\begin` statements.
 For example,
 
 ```latex
-\begin{equation}
+$$
   \int_0^\infty \frac{x^3}{e^x-1}\,dx = \frac{\pi^4}{15}
-\end{equation}
+$$
 ```
 
 results in:
 
-\begin{equation}
+$$
   \int_0^\infty \frac{x^3}{e^x-1}\,dx = \frac{\pi^4}{15}
-\end{equation}
+$$
 
 +++
 
-and
+or, by adding to your `_config.yml`:
 
-```latex
-$$
-  \int_0^\infty \frac{x^3}{e^x-1}\,dx = \frac{\pi^4}{15}
-$$
+```yaml
+parse:
+  myst_extended_syntax: true
 ```
 
-results in
+you can use:
 
-$$
-  \int_0^\infty \frac{x^3}{e^x-1}\,dx = \frac{\pi^4}{15}
-$$
+```latex
+\begin{gather*}
+a_1=b_1+c_1\\
+a_2=b_2+c_2-d_2+e_2
+\end{gather*}
+
+\begin{align}
+a_{11}& =b_{11}&
+  a_{12}& =b_{12}\\
+a_{21}& =b_{21}&
+  a_{22}& =b_{22}+c_{22}
+\end{align}
+```
+
+which results in:
+
+\begin{gather*}
+a_1=b_1+c_1\\
+a_2=b_2+c_2-d_2+e_2
+\end{gather*}
+
+\begin{align}
+a_{11}& =b_{11}&
+  a_{12}& =b_{12}\\
+a_{21}& =b_{21}&
+  a_{22}& =b_{22}+c_{22}
+\end{align}
+
+:::{seealso}
+The myst-parser guides to [dollar math syntax](myst-parser:syntax/math), [LaTeX math syntax](myst-parser:syntax/amsmath), and [how MyST-Parser works with MathJax](myst-parser:syntax/mathjax).
+
+For advanced use, also see how to [define MathJax TeX Macros](sphinx/tex-macros).
+:::
 
 +++
 
@@ -95,7 +124,6 @@ my_math
 
 For example, the following code:
 
-
 ````md
 ```{math}
 :label: my_label
@@ -110,11 +138,23 @@ Will generate this:
 w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
 ```
 
-```{note}
+or you can use the dollar math syntax with a prefixed label:
+
+```md
+$$
+  w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
+$$ (my_other_label)
+```
+
+$$
+  w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
+$$ (my_other_label)
+
+:::{note}
 Labels cannot start with an integer, or they won't be able to be referenced and
 will throw a warning message if referenced. For example, `:label: 1` and `:label: 1eq` cannot
 be referenced.
-```
+:::
 
 ### Linking to equations
 
@@ -122,13 +162,17 @@ If you've created an equation with a label, you can link to it from within your 
 (and across pages!).
 
 You can refer to the equation using the label that you've provided by using
-the **`{eq}` role**. For example, putting `` {eq}`my_label` `` in-line will
-result in this: {eq}`my_label`.
+the **`{eq}` role**. For example:
 
-```{code-cell} ipython3
-
+```md
+- A link to an equation directive: {eq}`my_label`
+- A link to a dollar math block: {eq}`my_other_label`
 ```
 
-:::{seealso}
-How to [define MathJax TeX Macros](sphinx/tex-macros)
+- A link to an equation directive: {eq}`my_label`
+- A link to a dollar math block: {eq}`my_other_label`
+
+:::{note}
+`\labels` inside LaTeX environment are not currently identified, and so cannot be referenced.
+We hope to implement this in a future update (see [executablebooks/MyST-Parser#202](https://github.com/executablebooks/MyST-Parser/issues/202))!
 :::

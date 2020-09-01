@@ -60,6 +60,30 @@ This will also be output in PDF LaTeX builds!
 Allowed attributes are equivalent to the `image` directive: `src`, `alt`, `class`, `width` and `height`.
 Any other attributes will be dropped.
 
+(content-blocks-images/formats)=
+### Supported image formats
+
+Standard rasterized image formats, such as `.png`, `jpg`, are supported for both HTML and LaTeX.PDF output formats.
+Vector formats, such as `.svg`, `.pdf` and `.eps`, by contrast are normally builder specific.
+See the `supported_image_types` specification for [each sphinx builder here](sphinx:builders).
+
+To support multiple builders, Jupyter Book allows you to use a `*` asterisk as the extension:
+
+```html
+<img src="../images/fun-fish.*" alt="fishy" class="bg-primary mb-1" width="200px">
+```
+
+All images matching the provided pattern will then be searched for and each builder chooses the best image out of these candidates.
+
+<img src="../images/fun-fish.*" alt="fishy" class="bg-primary mb-1" width="200px">
+
+You can use a tool such as [imagemagick](https://imagemagick.org), to pre-convert your images into multiple formats.
+
+Alternatively, you may wish to check out these sphinx extensions:
+
+- [sphinx.ext.imgconverter](sphinx:sphinx.ext.imgconverter)
+- [sphinxcontrib-svg2pdfconverter](https://github.com/missinglinkelectronics/sphinxcontrib-svg2pdfconverter)
+
 ## Figures
 
 MyST Markdown also lets you include **figures** in your page. Figures are
