@@ -268,6 +268,12 @@ For working between Jupyter notebook and markdown files, we recommend [jupytext]
 an open source tool for two-way conversion between `.ipynb` and text files.
 Jupytext [supports the MyST markdown format](https://jupytext.readthedocs.io/en/latest/formats.html#myst-markdown).
 
+:::{note}
+For full compatibility with `myst-parser`, it is necessary to use `jupytext==1.6.0rc0` or later.
+
+See also [](file-types:custom:jupytext).
+:::
+
 ### VSCode
 
 If editing the markdown files using VS Code, the

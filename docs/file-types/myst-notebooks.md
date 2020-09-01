@@ -3,8 +3,6 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
-    format_version: '0.8'
-    jupytext_version: 1.4.1+dev
 kernelspec:
   display_name: Python 3
   language: python
@@ -44,7 +42,7 @@ A resulting `mynotebook.md` file will be created.
 This can then be used as a page in your book.
 
 :::{important}
-It is necessary to use `jupytext<=1.4.0,>=1.5.0`, due to an incompatibility with the `myst-parser` version in `jupytext=1.4`.
+For full compatibility with `myst-parser`, it is necessary to use `jupytext==1.6.0rc0` or later.
 :::
 
 Jupytext can also **automatically synchronize an `.ipynb` file with your markdown**.
@@ -83,8 +81,6 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
-    format_version: '0.8'
-    jupytext_version: 1.4.1+dev
 kernelspec:
   display_name: Python 3
   language: python
@@ -120,8 +116,6 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
-    format_version: '0.8'
-    jupytext_version: 1.4.1+dev
 kernelspec:
   display_name: Python 3
   language: python

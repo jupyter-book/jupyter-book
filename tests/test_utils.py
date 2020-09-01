@@ -11,6 +11,7 @@ def test_myst_init(cli: CliRunner, temp_with_override):
     text = "TEST"
     with open(path, "w") as ff:
         ff.write(text)
+
     init_myst_file(path, kernel="python3")
 
     # Make sure it runs properly. Default kernel should be python3
@@ -20,7 +21,10 @@ def test_myst_init(cli: CliRunner, temp_with_override):
     assert "name: python3" in new_text
 
     # Make sure the CLI works too
-    result = cli.invoke(myst_init, f"{path} --kernel python3".split())
+    with pytest.warns(None) as records:
+        result = cli.invoke(myst_init, f"{path} --kernel python3".split())
+    # old versions of jupytext give: UserWarning: myst-parse failed unexpectedly
+    assert len(records) == 0, records
     assert result.exit_code == 0
 
     # Non-existent kernel

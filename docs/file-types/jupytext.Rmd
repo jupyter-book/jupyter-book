@@ -1,7 +1,19 @@
+---
+jupyter:
+  kernelspec:
+    display_name: Python
+    language: python
+    name: python3
+---
+
 (file-types:custom)=
 # Custom notebook formats and Jupytext
 
 You can designate additional file types to be converted to Notebooks, and then executed / parsed in the same manner as regular Notebooks.
+
+:::{tip}
+This page itself is written as an [RMarkdown](https://rmarkdown.rstudio.com/) notebook!
+:::
 
 ```yaml
 sphinx:
@@ -75,8 +87,18 @@ sphinx:
             - fmt: Rmd
 ```
 
+Now you can use RMarkdown blocks:
+
+    ```{python echo=TRUE}
+    print("Hallo I'm an RMarkdown block!")
+    ```
+
+```{python echo=TRUE}
+print("Hallo I'm an RMarkdown block!")
+```
+
 :::{important}
-It is necessary to use `jupytext<=1.4.0,>=1.5.0`, due to an incompatibility with the `myst-parser` version in `jupytext=1.4`.
+For full compatibility with `myst-parser`, it is necessary to use `jupytext==1.6.0rc0` or later.
 :::
 
 (file-types:custom:jupytext)=

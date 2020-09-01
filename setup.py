@@ -23,7 +23,7 @@ test_reqs = [
     "beautifulsoup4",
     "matplotlib",
     "pytest-regressions",
-    "jupytext",
+    "jupytext==1.6.0rc0",
     "altair",
     "sphinx_click",
     "sphinx_tabs",
