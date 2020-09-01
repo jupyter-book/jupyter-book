@@ -53,3 +53,5 @@
   - file: reference/cheatsheet
   - file: reference/cli
   - file: reference/glossary
+  - file: reference/_changelog
+    title: Change Log

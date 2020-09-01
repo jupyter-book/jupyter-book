@@ -216,7 +216,6 @@ print(thisvariabledoesntexist)
 
 You may also wish to control how stderr outputs are dealt with.
 
-
 Alternatively, you can configure how stdout is dealt with at a global configuration level, using the `nb_output_stderr` configuration value.
 This can be set to:
 

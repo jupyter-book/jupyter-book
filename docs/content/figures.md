@@ -63,7 +63,7 @@ Any other attributes will be dropped.
 (content-blocks-images/formats)=
 ### Supported image formats
 
-Standard rasterized image formats, such as `.png`, `jpg`, are supported for both HTML and LaTeX.PDF output formats.
+Standard rasterized image formats, such as `.png`, `jpg`, are supported for both HTML and LaTeX/PDF output formats.
 Vector formats, such as `.svg`, `.pdf` and `.eps`, by contrast are normally builder specific.
 See the `supported_image_types` specification for [each sphinx builder here](sphinx:builders).
 
