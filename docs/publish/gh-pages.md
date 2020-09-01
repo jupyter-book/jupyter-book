@@ -49,7 +49,7 @@ Note this warning from the [`ghp-import` GitHub repository](https://github.com/d
 "...*`ghp-import` will DESTROY your gh-pages branch...and assumes that the `gh-pages` branch is 100% derivative. You should never edit files in your `gh-pages` branch by hand if you're using this script...*"
 ```
 
-(publish/gh-pages)=
+(publish/gh-actions)=
 ## Automatically host your book with GitHub Actions
 
 [GitHub Actions](https://docs.github.com/en/actions) is a tool that allows you to automate things on GitHub.

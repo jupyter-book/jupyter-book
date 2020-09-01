@@ -86,7 +86,7 @@ file in each folder in order for any sub-folders to be parsed.
 ````
 
 ````{tip}
-Jupyter Book also provides a [cookiecutter](https://github.com/executablebooks/cookiecutter-jupyter-book) that can be used to interactively create a book directory structure. The cookiecutter is suitable for more advanced users that want to create a ready-to-go repository to host their book that includes metafiles such as README, LICENSE, CONDUCT, CONTRIBUTING, etc., as well as GitHub Actions workflow files to {ref}`publish/gh-pages`. Files are also pre-populated with metadata acquired through a simple interactive prompt sequence. To try the cookiecutter template, run the following command:
+Jupyter Book also provides a [cookiecutter](https://github.com/executablebooks/cookiecutter-jupyter-book) that can be used to interactively create a book directory structure. The cookiecutter is suitable for more advanced users that want to create a ready-to-go repository to host their book that includes metafiles such as README, LICENSE, CONDUCT, CONTRIBUTING, etc., as well as GitHub Actions workflow files to {ref}`publish/gh-actions`. Files are also pre-populated with metadata acquired through a simple interactive prompt sequence. To try the cookiecutter template, run the following command:
 
 ```bash
 jupyter-book create mybookpath/ --cookiecutter
