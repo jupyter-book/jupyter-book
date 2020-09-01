@@ -67,7 +67,16 @@ sphinx:
       nbformat:
         - "https://nbformat.readthedocs.io/en/latest"
         - null
+    rediraffe_branch: 'master'
+    rediraffe_redirects:
+      content-types/index.md: file-types/index.md
+      content-types/markdown.md: file-types/markdown.md
+      content-types/notebooks.ipynb: file-types/notebooks.ipynb
+      content-types/myst-notebooks.md: file-types/myst-notebooks.md
+      content-types/jupytext.md: file-types/jupytext.Rmd
+      content-types/restructuredtext.md: file-types/restructuredtext.md
 
   extra_extensions:
     - sphinx_click.ext
     - sphinx_tabs.tabs
+    - sphinxext.rediraffe
