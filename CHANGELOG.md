@@ -41,7 +41,7 @@ Here's the headlines:
 
 Windows support
 : Continuous Integration (CI) testing is now run against Windows OS throughout the EBP stack.
-  The fixes this entailed, mean that Jupyter Book can now be run on Windows with minimal issue (see [Working on Windows](docs/advanced/advanced.md))
+  The fixes this entailed, mean that Jupyter Book can now be run on Windows with minimal issue (see [Working on Windows](docs/advanced/advanced.md#working-on-windows))
 
 Extended "Markdown friendly" syntaxes
 : MyST Markdown directives offer a high degree of extensibility, to add all the features we might need to create a scientific document.
