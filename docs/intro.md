@@ -35,9 +35,12 @@ left to see what is possible.
 :::{admonition,tip} Get involved with Jupyter Book!
 
 Jupyter Book is an open community that welcomes your feedback, input, and contributions!
-[Open an issue](https://github.com/executablebooks/jupyter-book/issues/new/choose) with any feedback.
-Give an issue a 👍 if you think it should be resolved and check out {ref}`our enhancement voting leaderboard <ebp:feature-note>` for the issues people want to see completed!
-If you'd like to contribute, [check out our contributing guide](contribute/intro.md).
+[Open an issue](https://github.com/executablebooks/jupyter-book/issues/new/choose)
+: to provide feedback and new ideas, and to help others.
+{ref}`Vote for new features <ebp:feature-note>`
+: by adding a 👍 to issues you'd like to see completed.
+[Contribute to Jupyter Book](contribute/intro.md)
+: by following our contributing guidelines and finding an issue to work on. See {ref}`the feature voting leaderboard <ebp:feature-note>` for inspiration.
 
 :::
 
