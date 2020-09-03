@@ -35,6 +35,7 @@ left to see what is possible.
 :::{admonition,tip} Get involved with Jupyter Book!
 
 Jupyter Book is an open community that welcomes your feedback, input, and contributions!
+
 [Open an issue](https://github.com/executablebooks/jupyter-book/issues/new/choose)
 : to provide feedback and new ideas, and to help others.
 
