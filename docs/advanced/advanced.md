@@ -8,7 +8,7 @@ This page contains more advanced and complete information about the
 If you have a Google Account, you can use Google Analytics to collect some
 information on the traffic to your Jupyter Book. With this tool, you can find
 out how many people are using your book, where they come from and how they
-access it, wether they are using the Desktop or the mobile version etc.
+access it, whether they are using the Desktop or the mobile version etc.
 
 To add Google Analytics to your Jupyter Book, navigate to
 [Google Analytics](https://analytics.google.com/analytics/web/), create a new
@@ -36,7 +36,7 @@ the *right* target, the link checker will only ensure that it resolves.
 
 To run the link checker, use the following command:
 
-```
+```bash
 jupyter-book build mybookname/ --builder linkcheck
 ```
 
@@ -71,9 +71,9 @@ This will entirely remove the folders in the `_build/` directory.
 
 (jupyter-cell-tags)=
 
-## How should I add cell tags to my notebooks?
+## How should I add cell tags and metadata to my notebooks?
 
-You can control the behavior of Jupyter Book by putting custom tags
+You can control the behaviour of Jupyter Book by putting custom tags
 in the metadata of your cells. This allows you to do things like
 {doc}`automatically hide code cells <../interactive/hiding>`) as well as
 {ref}`adding interactive widgets to cells <launch/thebelab>`.
@@ -86,7 +86,7 @@ There are two straightforward ways to add metadata to cells:
    To enable the cell tag editor, go click `View -> Cell Toolbar -> Tags`. This
    will enable the tags UI. Here's what the menu looks like.
 
-   ![](../images/tags_notebook.png)
+   ![tags_notebook](../images/tags_notebook.png)
 
 2. **Use the JupyterLab Cell Tags plugin**. JupyterLab is an IDE-like Jupyter
    environment that runs in your browser. It has a "cell tags" plugin built-in,
@@ -95,7 +95,16 @@ There are two straightforward ways to add metadata to cells:
    You'll find tags under the "wrench" menu section.
    Here's what the tags UI in JupyterLab looks like.
 
-   ![](../images/tags_jupyterlab.png)
+   ![tags_jupyterlab](../images/tags_jupyterlab.png)
+
+Tags are actually just a special section of cell level metadata.
+There are three levels of metadata:
+
+* For notebook level: in the Jupyter Notebook Toolbar go to `Edit -> Edit Notebook Metadata`
+* For cell level: in the Jupyter Notebook Toolbar go to `View -> Cell Toolbar -> Edit Metadata` and a button will appear above each cell.
+* For output level: using e.g. `IPython.display.display(obj,metadata={"tags": [])`, you can set metadata specific to a certain output (but jupyter-book does not utilise this just yet).
+
+![NB Metadata GIF](../images/metadata_edit.gif)
 
 ### Add tags to notebook cells based on their content
 
@@ -140,23 +149,42 @@ for ipath in notebooks:
 ```
 
 (raw-html-in-markdown)=
-## Use raw html in Markdown
+## Use raw HTML in Markdown
 
 Jupyter notebook markdown allows you to use pure HTML in markdown cells.
-This is strongly discouraged and not guaranteed to work in all cases.
+This is discouraged in most cases,
+because it will usually just be passed through the build process as raw text, and so will not be subject to processes like:
 
-If, for instance, you use
+- Relative path corrections
+- Copying of assets to the build folder
+- Multiple output type formatting (e.g. it will not show in PDFs!).
 
+So, for instance, below we add, and you will find that the HTML link is broken:
+
+```md
+ <a href="../intro.md">Go Home HTML!</a>
+
+ [Go Home Markdown!](../intro.md)
 ```
-<img src="images/some/file.png" alt="Some image" style="width: 200px;"/>
+
+ <a href="../intro.md">Go Home HTML!</a>
+
+ [Go Home Markdown!](../intro.md)
+
+:::{tip}
+Note that MyST markdown now has some extended syntax features,
+which can allow you to use certain HTML elements in the correct manner.
+
+Such as:
+
+```html
+<img src="../images/fun-fish.png" alt="the fun fish!" width="200px"/>
 ```
 
-in your Markdown texts, the source file `images/some/file.png` will not
-be copied to the build directory when you run `jupyter-book build`.
-You would have to copy the source file to the
-build directory manually. Note that MyST markdown gives you control over the
-{ref}`image appearance<content-blocks-images>` without having to resort
-to pure html.
+<img src="../images/fun-fish.png" alt="the fun fish!" width="200px"/>
+
+See the [image appearance section](content-blocks-images) for details.
+:::
 
 ## Adding extra HTML to your book
 
@@ -218,10 +246,20 @@ Note that this may not work in latex-generated PDF builds of your page.
 (working-on-windows)=
 ## Working on Windows
 
-As of June 5, 2020, there are three open issues that require Windows-specific changes.
-Work to complete windows compatibility is underway, in the meantime we provide these
-community tips, which are known to work for some users. Note that there is no
-guarantee that they will work on all windows installations.
+Jupyter Book is now also tested against a Windows environment on Python 3.7 😀
+
+For its specification, see the [`windows-latest` runner](https://docs.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners#supported-runners-and-hardware-resources) used by GitHub CI.
+
+However, there is a known incompatibility for notebook execution, when using Python 3.8
+(see issue [#906](https://github.com/executablebooks/jupyter-book/issues/906)).
+
+If you're running a recent version of Windows 10 and encounter any issues, you may also wish to try
+[installing Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
+
+As of June 5, 2020, there were three open issues that required Windows-specific changes.
+We hope these are now fixed in jupyter-book version 0.8 but, in case any issues still arise,
+leave these community tips, which are known to work for some users.
+Note that there is no guarantee that they will work on all windows installations.
 
 1. Character encoding
 
@@ -234,12 +272,10 @@ guarantee that they will work on all windows installations.
     cmd.exe or powershell enviroments that set PYTHONUTF8=1  override the native
     locale encoding and use UTF8 for all input/output.
 
-    ```{tip}
-    To make it easier to use
-    this option, the EOAS/UBC notebook courseware project has created a conda package
-    [runjb](https://anaconda.org/eoas_ubc/runjb) which
-    [does this automatically for powershell](https://github.com/eoas-ubc/eoas_tlef/blob/master/converted_docs/wintools/binwin/runjb.ps1)
-    ```
+    :::{tip}
+    To make it easier to use this option,
+    the EOAS/UBC notebook courseware project has created a Conda package [runjb](https://anaconda.org/eoas_ubc/runjb) which [does this automatically for powershell](https://github.com/eoas-ubc/eoas_tlef/blob/master/converted_docs/wintools/binwin/runjb.ps1)
+    :::
 
 2. A new windows event loop
 
@@ -253,7 +289,7 @@ guarantee that they will work on all windows installations.
 3. Nested tables of contents
 
    Currently, `_toc.yml` files that reference markdown files
-   in subfolders are failing for some windows users.  That is, this
+   in sub-folders are failing for some windows users.  That is, this
    [original _toc.yml](https://github.com/eoas-ubc/quantecon-mini-example/blob/master/mini_book/_toc.yml)
    file will fail with a message saying jupyter-book "```cannot find index.md```"
 

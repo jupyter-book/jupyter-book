@@ -10,13 +10,13 @@
       - file: publish/netlify
   - file: customize/config
   - file: customize/toc
-  - file: content-types/index
+  - file: file-types/index
     sections:
-      - file: content-types/markdown
-      - file: content-types/notebooks
-      - file: content-types/myst-notebooks
-      - file: content-types/jupytext
-      - file: content-types/restructuredtext
+      - file: file-types/markdown
+      - file: file-types/notebooks
+      - file: file-types/myst-notebooks
+      - file: file-types/jupytext
+      - file: file-types/restructuredtext
 
 - part: Write book content
   chapters:
@@ -25,9 +25,9 @@
   - file: content/citations
   - file: content/math
   - file: content/figures
-  - file: content/glue
   - file: content/layout
   - file: content/execute
+  - file: content/code-outputs
 
 
 - part: Make your book interactive
@@ -53,3 +53,5 @@
   - file: reference/cheatsheet
   - file: reference/cli
   - file: reference/glossary
+  - file: reference/_changelog
+    title: Change Log

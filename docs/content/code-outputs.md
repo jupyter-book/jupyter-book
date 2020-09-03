@@ -3,17 +3,178 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
-    format_version: '0.8'
-    jupytext_version: '1.4.1'
 kernelspec:
   display_name: Python 3
   language: python
   name: python3
 ---
 
-(glue)=
+(content:code-outputs)=
 
-# Insert code outputs into page content
+# Formatting code outputs
+
+The formatting of code outputs is highly configurable.
+Below give examples of how to format particular outputs, and even insert outputs into other locations in the document.
+
+:::{seealso}
+The [MyST-NB documentation](myst-nb:use/format/cutomise), for how to fully customise the output renderer.
+:::
+
+(content:code-outputs:images)=
+## Images
+
+For any image types output by the code, we can apply formatting *via* cell metadata.
+Then for the image we can apply all the variables of the standard [image directive](https://docutils.sourceforge.io/docs/ref/rst/directives.html#image):
+
+```{margin}
+Units of length are: 'em', 'ex', 'px', 'in', 'cm', 'mm', 'pt', 'pc'
+```
+
+- **width**: length or percentage (%) of the current line width
+- **height**: length
+- **scale**: integer percentage (the "%" symbol is optional)
+- **align**: "top", "middle", "bottom", "left", "center", or "right"
+- **classes**: space separated strings
+- **alt**: string
+
+We can also set a caption (which is rendered as [CommonMark](https://commonmark.org/)) and name, by which to reference the figure:
+
+````md
+```{code-cell} ipython3
+---
+render:
+  image:
+    width: 200px
+    alt: fun-fish
+    classes: shadow bg-primary
+  figure:
+    caption: |
+      Hey everyone its **party** time!
+    name: fun-fish
+---
+from IPython.display import Image
+Image("../images/fun-fish.png")
+```
+````
+
+```{code-cell} ipython3
+---
+render:
+  image:
+    width: 300px
+    alt: fun-fish
+    classes: shadow bg-primary
+  figure:
+    caption: |
+      Hey everyone its **party** time!
+    name: fun-fish
+---
+from IPython.display import Image
+Image("../images/fun-fish.png")
+```
+
+Now we can link to the image from anywhere in our documentation: [swim to the fish](fun-fish)
+
+:::{seealso}
+[](jupyter-cell-tags)
+:::
+
+(content:code-outputs:markdown)=
+## Markdown
+
+Markdown output is parsed by MyST-Parser, currently with the parsing set to strictly [CommonMark](https://commonmark.org/).
+
+The parsed Markdown is integrated into the wider documentation, and so it is possible, for example, to include internal references:
+
+```{code-cell} ipython3
+from IPython.display import display, Markdown
+display(Markdown('**_some_ markdown** and an [internal reference](use/format/markdown)!'))
+```
+
+and even internal images can be rendered!
+
+```{code-cell} ipython3
+display(Markdown('![figure](../images/logo.png)'))
+```
+
+(content:code-outputs:ansi)=
+## ANSI Outputs
+
+By default, the standard output/error streams and text/plain MIME outputs may contain ANSI escape sequences to change the text and background colors.
+
+```{code-cell} ipython3
+import sys
+print("BEWARE: \x1b[1;33;41mugly colors\x1b[m!", file=sys.stderr)
+print("AB\x1b[43mCD\x1b[35mEF\x1b[1mGH\x1b[4mIJ\x1b[7m"
+      "KL\x1b[49mMN\x1b[39mOP\x1b[22mQR\x1b[24mST\x1b[27mUV")
+```
+
+This uses the built-in {py:class}`~myst-nb:myst_nb.ansi_lexer.AnsiColorLexer` [pygments lexer](https://pygments.org/).
+You can change the lexer used in the `_config.yml`, for example to turn off lexing:
+
+```yaml
+sphinx:
+  config:
+    nb_render_text_lexer: "none"
+```
+
+The following code shows the 8 basic ANSI colors it is based on.
+Each of the 8 colors has an “intense” variation, which is used for bold text.
+
+```{code-cell} ipython3
+text = " XYZ "
+formatstring = "\x1b[{}m" + text + "\x1b[m"
+
+print(
+    " " * 6
+    + " " * len(text)
+    + "".join("{:^{}}".format(bg, len(text)) for bg in range(40, 48))
+)
+for fg in range(30, 38):
+    for bold in False, True:
+        fg_code = ("1;" if bold else "") + str(fg)
+        print(
+            " {:>4} ".format(fg_code)
+            + formatstring.format(fg_code)
+            + "".join(
+                formatstring.format(fg_code + ";" + str(bg)) for bg in range(40, 48)
+            )
+        )
+```
+
+:::{note}
+ANSI also supports a set of 256 indexed colors.
+This is currently not supported, but we hope to introduce it at a later date
+(raise an issue on the repository if you require it!).
+:::
+
+(content:code-outputs:priority)=
+## Render priority
+
+When Jupyter executes a code cell it can produce multiple outputs, and each of these outputs can contain multiple [MIME media types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types), for use by different output formats (like HTML or LaTeX).
+
+MyST-NB stores a default priority dictionary for most of the common [output builders](https://www.sphinx-doc.org/en/master/usage/builders/index.html), which you can be also update in your `_config.yml`.
+For example, this is the default priority list for HTML:
+
+```yaml
+sphinx:
+  config:
+    nb_render_priority:
+      html:
+      - "application/vnd.jupyter.widget-view+json"
+      - "application/javascript"
+      - "text/html"
+      - "image/svg+xml"
+      - "image/png"
+      - "image/jpeg"
+      - "text/markdown"
+      - "text/latex"
+      - "text/plain"
+```
+
+(content:code-outputs:glue)=
+
+## Insert code outputs into page content
 
 You often wish to run analyses in one notebook and insert them into your
 documents text elsewhere. For example, if you'd like to include a figure,
@@ -46,7 +207,7 @@ For more information about roles, see {doc}`myst`.
 
 (glue/gluing)=
 
-## Gluing variables in your notebook
+### Gluing variables in your notebook
 
 You can use `myst_nb.glue()` to assign value of a variable to
 a key of your choice. `glue` will store all of the information that is normally used to **display**
@@ -65,7 +226,7 @@ You can then insert it into your text like. Adding
 `` {glue:}`cool_text` `` to your content results in the
 following: {glue:}`cool_text`.
 
-### Gluing numbers, plots, and tables
+#### Gluing numbers, plots, and tables
 
 You can glue anything in your notebook and display it later with `{glue:}`. Here
 we'll show how to glue and paste **numbers and images**. We'll simulate some
@@ -150,7 +311,7 @@ you may wish to remove the output here, using the `remove-output` tag
 
 (glue/pasting)=
 
-## Pasting glued variables into your page
+### Pasting glued variables into your page
 
 Once you have glued variables into a notebook, you can then **paste**
 those variables into your text in your book anywhere you like (even on other pages).
@@ -158,7 +319,7 @@ These variables can be pasted using one of the roles or directives in the `glue:
 
 +++
 
-### The `glue` role/directive
+#### The `glue` role/directive
 
 The simplest role and directive are `glue:any`,
 which paste the glued output inline or as a block respectively,
@@ -184,7 +345,6 @@ Here's how it looks:
 
 Or we can paste inline objects like so:
 
-
 ```md
 Inline text; {glue:}`boot_mean`, and figure; {glue:}`boot_fig`.
 ```
@@ -204,7 +364,7 @@ control over how the outputs look in your pages.
 
 +++
 
-## Controling the pasted outputs
+### Controlling the pasted outputs
 
 You can control the pasted outputs by using a sub-command of `{glue:}`. These are called like so:
 `` {glue:subcommand}`key` ``. These subcommands allow you to control more of the look, feel, and
@@ -217,12 +377,12 @@ generic command that doesn't make many assumptions about what you are gluing.
 
 +++
 
-### The `glue:text` role
+#### The `glue:text` role
 
 The `glue:text` role, is specific to text outputs.
 For example, the following text:
 
-```
+```md
 The mean of the bootstrapped distribution was {glue:text}`boot_mean` (95% confidence interval {glue:text}`boot_clo`/{glue:text}`boot_chi`).
 ```
 
@@ -243,7 +403,7 @@ For example, the following: ``My rounded mean: {glue:text}`boot_mean:.2f` `` wil
 
 +++
 
-### The `glue:figure` directive
+#### The `glue:figure` directive
 
 With `glue:figure` you can apply more formatting to figure like objects,
 such as giving them a caption and referencable label:
@@ -283,6 +443,7 @@ A caption for a pandas table.
 ```
 
 ````
+
 ```{glue:figure} df_tbl
 :figwidth: 300px
 :name: "tbl:df"
@@ -292,7 +453,7 @@ A caption for a pandas table.
 
 +++
 
-### The `glue:math` directive
+#### The `glue:math` directive
 
 The `glue:math` directive, is specific to latex math outputs
 (glued variables that contain a `text/latex` mimetype),
@@ -333,11 +494,11 @@ Insert the equation here:
 
 +++
 
-## Advanced glue usecases
+### Advanced glue use-cases
 
 Here are a few more specific and advanced uses of the `glue` submodule.
 
-### Pasting into tables
+#### Pasting into tables
 
 In addition to pasting blocks of outputs, or in-line with text, you can also paste directly
 into tables. This allows you to compose complex collections of structured data using outputs

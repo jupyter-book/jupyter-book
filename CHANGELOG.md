@@ -1,15 +1,126 @@
 # Change Log
 
+## v0.8.0 2020-09-01
+
+([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.7.5...v0.8.0))
+
+> **You spoke, we listened!**
+
+Version 0.8.0 of Jupyter Book, incorporates a bottom-up refresh of the entire Executable Books Project (EBP) stack,
+with tonnes of bugs fixes, improvements and new features 🎉
+
+The documentation describes all this new functionality in full detail, but below we shall try to outline the major changes and additions.
+
+### Breaking ‼️
+
+The `jupyter-book`/`jb` executable should work almost identically to in v0.7.5, and all existing books will generally build as before (open an issue if not!).
+
+The key change is that `jupyter-book page` is no longer available.
+Instead you can now pass a single file path to `jupyter-book build`, as opposed to a directory, and it will build your single page (thanks to [@AakashGfude](https://github.com/AakashGfude)).
+See [Build a standalone page](docs/start/build.md).
+
+Another thing to note, is that if you are using "bare" LaTeX math in your documentation,
+then this will only render if you activate in your `_config.yml`:
+
+```yaml
+parse:
+  myst_extended_syntax: true
+```
+
+See [the math documentation](docs/content/math.md) for details.
+
+### New and Improved ✨👌
+
+Jupyter Book v0.8 incorporates all the great new features available by moving from:
+
+* MyST-Parser v0.9 to v0.12 (see its [CHANGELOG.md](https://github.com/executablebooks/MyST-Parser/blob/master/CHANGELOG.md))
+* MyST-NB v0.8 to v0.10 (see its [CHANGELOG.md](https://github.com/executablebooks/MyST-NB/blob/master/CHANGELOG.md))
+* This also enabled, Sphinx v2 to v3
+
+Here's the headlines:
+
+Windows support
+: Continuous Integration (CI) testing is now run against Windows OS throughout the EBP stack.
+  The fixes this entailed, mean that Jupyter Book can now be run on Windows with minimal issue (see [Working on Windows](docs/advanced/advanced.md))
+
+Extended "Markdown friendly" syntaxes
+: MyST Markdown directives offer a high degree of extensibility, to add all the features we might need to create a scientific document.
+  However, they are not (yet) very well integrated with external editors, like the Jupyter Notebook interface.
+  Extended syntax parsing to the rescue!
+
+  By enabling in your `_config.yaml`:
+
+  ```yaml
+  parse:
+    myst_extended_syntax: true
+  ```
+
+  You can access to a number of *Markdown friendly* syntaxes, which extend the [CommonMark specification](https://commonmark.org/):
+
+  * `:::` fenced admonitions render Markdown as standard (see [new style admonitions](docs/content/content-blocks.md)).
+  * HTML images are correctly handled, allowing for control of size and style attributes,
+    and Markdown style figures extend this for captions and referencing (see [images and figures](docs/content/figures.md)).
+  * Definition lists are what you see here and provide a simple format for writing term/definition blocks (see [definition lists](docs/content/content-blocks.md)).
+  * LaTeX math is now intrinsically supported,
+    meaning that it will rendered correctly in both HTML and LaTeX/PDF outputs (see [math and equations](docs/content/math.md)).
+
+Custom Notebook Formats
+: Want to write your notebooks as RMarkdown, Python files, ....?
+  Jupyter Book now supports linking any file extension to a custom conversion function,
+  run before notebook execution and parsing.
+  See the [custom notebook formats and Jupytext](docs/file-types/jupytext.Rmd) documentation, which itself is written in RMarkdown!
+
+Execution Configuration
+: Execution and caching of notebook outputs has been improved, to make it more consistent across `auto` and `cache` methods (`cache` execution is now also run in the notebook directory) and provide numerous configuration options, including:
+
+  * Running the execution in the local directory or in a temporary directory.
+  * Setting the execution timeout limit, at a global or notebook level.
+  * Allowing errors across all notebooks, or at a notebook or cell level.
+  * Removing stderr/stdout outputs or logging warnings when they are encountered
+  * A directive for displaying execution statistics for all notebooks in the book (status, run time, etc)
+
+  See the [execution documentation](docs/content/execute.md) for more details.
+
+Code Output Formatting
+: More cell outputs are handled, including Markdown and ANSI outputs,
+  and you can use cell metadata to set image size, style, captions and references.
+  See [formatting code outputs](docs/content/code-outputs.md).
+
+Build options and error reporting
+: The `jupyter-book build` command includes additional options/flags for controlling the build behaviour,
+  such as verbose (`-v`), quiet (`-q`) and nitpick mode for checking references (`-n`).
+  See the [command-line interface documentation](docs/reference/cli.md) for more details.
+
+sphinx-panels integration
+: The [sphinx-panels](https://sphinx-panels.readthedocs.io) package is now provided directly in the Jupyter Book distribution.
+  This adds additional functionality for creating web based elements, such as gridded panels and dropdown boxes.
+  See the [Panels and Dropdowns](docs/content/content-blocks.md) section for details.
+
+### Fixes 🐛
+
+Among the numerous fixes:
+
+* Code cell syntax highlighting now works for all Jupyter kernels.
+* User configuration is now recursively merged with the default configuration, and no longer overwrites an entire nested section.
+  You can also use `jb config sphinx mybookname/` to inspect the sphinx `conf.py` which will be parsed to the builder.
+
+### More to come 👀
+
+We have many more improvements planned, check back in this change log for future improvements.
+
+Also please continue to provide us feedback on what you would like to see next.
+See our [voting for new features](https://executablebooks.org/en/latest/feature-vote.html) page.
+
 ## v0.7.5 2020-08-26
 
-✨ NEW: This release introduces the new "Comments and Annotations" feature, powered by [sphinx-comments](https://github.com/executablebooks/sphinx-comments). See [this documetation section](https://jupyterbook.org/interactive/comments.html) for further details.
+✨ NEW: This release introduces the new "Comments and Annotations" feature, powered by [sphinx-comments](https://github.com/executablebooks/sphinx-comments). See [this documentation section](https://jupyterbook.org/interactive/comments.html) for further details.
 
 **Important:** this version also pins the `myst-nb` dependency to v0.8.
 Previous versions erroneously allow for the new v0.9, which is not yet strictly compatible with jupyter-book (coming very soon!)
 
 ## v0.7.0...v0.7.4
 
-([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.7.0...v0.7.4))
+([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.7.5...v0.8.0))
 
 
 ### Enhancements made
@@ -17,28 +128,32 @@ Previous versions erroneously allow for the new v0.9, which is not yet strictly 
 * checking for toc modification time [#772](https://github.com/executablebooks/jupyter-book/pull/772) ([@choldgraf](https://github.com/choldgraf))
 * first pass toc directive [#757](https://github.com/executablebooks/jupyter-book/pull/757) ([@choldgraf](https://github.com/choldgraf))
 
-### Bugs fixed
-* Fix typo in content-blocks.md documentation [#811](https://github.com/executablebooks/jupyter-book/pull/811) ([@MaxGhenis](https://github.com/MaxGhenis))
-* [BUG] Using relative instead of absolute links [#747](https://github.com/executablebooks/jupyter-book/pull/747) ([@AakashGfude](https://github.com/AakashGfude))
-* 🐛 FIX: fixing jupytext install/UI links [#737](https://github.com/executablebooks/jupyter-book/pull/737) ([@chrisjsewell](https://github.com/chrisjsewell))
+### Bugs fixed 🐛
 
-### Documentation improvements
-* 📚 DOC: note about licenses [#806](https://github.com/executablebooks/jupyter-book/pull/806) ([@choldgraf](https://github.com/choldgraf))
-* 📖 DOCS: Fix google analytics instructions [#799](https://github.com/executablebooks/jupyter-book/pull/799) ([@tobydriscoll](https://github.com/tobydriscoll))
+* Fix typo in content-blocks.md documentation [#811](https://github.com/executablebooks/jupyter-book/pull/811) ([@MaxGhenis](https://github.com/MaxGhenis))
+* Using relative instead of absolute links [#747](https://github.com/executablebooks/jupyter-book/pull/747) ([@AakashGfude](https://github.com/AakashGfude))
+* Fixing jupytext install/UI links [#737](https://github.com/executablebooks/jupyter-book/pull/737) ([@chrisjsewell](https://github.com/chrisjsewell))
+
+### Documentation improvements 📚
+
+* Note about licenses [#806](https://github.com/executablebooks/jupyter-book/pull/806) ([@choldgraf](https://github.com/choldgraf))
+* Fix google analytics instructions [#799](https://github.com/executablebooks/jupyter-book/pull/799) ([@tobydriscoll](https://github.com/tobydriscoll))
 * Change book_path to path_to_book [#773](https://github.com/executablebooks/jupyter-book/pull/773) ([@MaxGhenis](https://github.com/MaxGhenis))
 * GitHub actions example: note about selective build [#771](https://github.com/executablebooks/jupyter-book/pull/771) ([@consideRatio](https://github.com/consideRatio))
 * getting sphinx thebelab to work [#749](https://github.com/executablebooks/jupyter-book/pull/749) ([@choldgraf](https://github.com/choldgraf))
 * Link documentation for adding cell tags in Jupyter from "Hide or remove content" documentation section [#734](https://github.com/executablebooks/jupyter-book/pull/734) ([@MaxGhenis](https://github.com/MaxGhenis))
-* typo fix [#731](https://github.com/executablebooks/jupyter-book/pull/731) ([@MaxGhenis](https://github.com/MaxGhenis))
+* Typo fix [#731](https://github.com/executablebooks/jupyter-book/pull/731) ([@MaxGhenis](https://github.com/MaxGhenis))
 * reworking interactive docs [#725](https://github.com/executablebooks/jupyter-book/pull/725) ([@choldgraf](https://github.com/choldgraf))
-* [DOC] Add documentation for Google Colab launch buttons [#721](https://github.com/executablebooks/jupyter-book/pull/721) ([@lewtun](https://github.com/lewtun))
-* [DOC] Add note about int eq labels in math directive [#720](https://github.com/executablebooks/jupyter-book/pull/720) ([@najuzilu](https://github.com/najuzilu))
+* Add documentation for Google Colab launch buttons [#721](https://github.com/executablebooks/jupyter-book/pull/721) ([@lewtun](https://github.com/lewtun))
+* Add note about int eq labels in math directive [#720](https://github.com/executablebooks/jupyter-book/pull/720) ([@najuzilu](https://github.com/najuzilu))
 
 ### API Changes
+
 * ✨ NEW: Adding - chapter entries to _toc.yml [#817](https://github.com/executablebooks/jupyter-book/pull/817) ([@choldgraf](https://github.com/choldgraf))
 * removing config file numbered sections to use toc file instead [#768](https://github.com/executablebooks/jupyter-book/pull/768) ([@choldgraf](https://github.com/choldgraf))
 
 ### Other merged PRs
+
 * 📚 DOCS: Remove Issue Templates [#849](https://github.com/executablebooks/jupyter-book/pull/849) ([@chrisjsewell](https://github.com/chrisjsewell))
 * 📚 DOC: document available bib styles [#845](https://github.com/executablebooks/jupyter-book/pull/845) ([@emdupre](https://github.com/emdupre))
 * 🐛 FIX: fixing toctree spacing bug [#836](https://github.com/executablebooks/jupyter-book/pull/836) ([@choldgraf](https://github.com/choldgraf))
