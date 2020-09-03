@@ -317,7 +317,9 @@ After the build, view the html with:
 (sphinx:manual-assets)=
 ## Manually specify extra files/folders to be included in a website
 
-Jupyter Book will copy over any files that are linked from within its pages so that the links work in the built website. However, sometimes you'd like to manually ensure that files and folders are included in your built website. For example, if you'd like to link to them from _outside_ your built documentation, but not from within your built documentation.
+Jupyter Book will copy over any files that are linked from within its pages so that the links work in the built website.
+However, sometimes you'd like to manually ensure that files and folders are included in your built website.
+For example, if you'd like to link to them from *outside* your built documentation, but not from within your built documentation.
 
 To manually specify items to copy over, use the [`html_extra_path` Sphinx configuration](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_extra_path).
 You can configure this with Jupyter Book like so:
