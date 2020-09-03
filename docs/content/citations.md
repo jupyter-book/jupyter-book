@@ -70,7 +70,7 @@ You can reference a section label through ``{ref}`label` `` or ``{ref}`some text
 Documents can be referenced through ``{doc}`path/to/document` `` or ``{doc}`some text <path/to/document>` ``
 :::
 
-If you with to use Markdown style syntax, then MyST-Markdown will try to find a reference,
+If you wish to use Markdown style syntax, then MyST-Markdown will try to find a reference,
 from any of the above reference types (and more!).
 This actually has an advantage, in that you can used nested syntax, ror example:
 
