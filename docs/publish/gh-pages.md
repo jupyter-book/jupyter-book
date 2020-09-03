@@ -84,11 +84,11 @@ Ensure that Jupyter Book's version in your `requirements.txt` file is at least
 `0.7.0`.
 ```
 
-````{tip}
-You can use the [Jupyter Book cookiecutter](https://github.com/executablebooks/cookiecutter-jupyter-book) to quickly create a book template that already includes the GitHub Actions workflow file needed to automatically deploy your book to GitHub Pages:
+:::{tip}
+You can use the [Jupyter Book cookiecutter](https://github.com/executablebooks/cookiecutter-jupyter-book), to quickly create a book template that already includes the GitHub Actions workflow file needed to automatically deploy your book to GitHub Pages:
 
 ```bash
-`jupyter-book create mybookpath/ --cookiecutter`
+jupyter-book create --cookiecutter mybookpath/
 ```
 
 For more help, see the [Jupyter Book cookiecutter GitHub repository](https://github.com/executablebooks/cookiecutter-jupyter-book), or run:
@@ -96,7 +96,7 @@ For more help, see the [Jupyter Book cookiecutter GitHub repository](https://git
 ```bash
 jupyter-book create --help
 ```
-````
+:::
 
 Here is a simple YAML configuration
 for a github action that will publish your book to a `gh-pages` branch.
