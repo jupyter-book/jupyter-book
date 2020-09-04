@@ -182,11 +182,11 @@ def test_build_page_nested(build_resources, cli):
 def test_execution_timeout(pages, build_resources, cli):
     """Testing timeout execution for a page."""
     books, _ = build_resources
-    path_page = pages.joinpath("complex_outputs_unrun.ipynb")
+    path_page = pages.joinpath("loop_unrun.ipynb")
     path_c = books.joinpath("config", "_config_timeout.yml")
-    path_html = pages.joinpath("_build", "_page", "complex_outputs_unrun", "html")
+    path_html = pages.joinpath("_build", "_page", "loop_unrun", "html")
     result = cli.invoke(
         commands.build, [path_page.as_posix(), "--config", path_c.as_posix()]
     )
     assert "Execution Failed" in result.stdout
-    assert path_html.joinpath("reports", "complex_outputs_unrun.log").exists()
+    assert path_html.joinpath("reports", "loop_unrun.log").exists()
