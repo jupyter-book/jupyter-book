@@ -73,6 +73,10 @@ where we're tracking the issue.
 You can also use Latex to build a PDF of your book. This can behave differently depending on your
 operating system and setup. This section tries to recommend a few best-practices.
 
+The default is to build your project as a single PDF file, however it is possible to build
+individual PDF files for each page of the project by enabling the `--individualpages` option
+when using the `pdflatex` builder.
+
 ### Installation
 
 For `Debian` based `Linux` platforms it is recommended to install the following packages:
@@ -110,3 +114,22 @@ jb build mybookname/ --builder latex
 ```
 
 ::::
+
+
+**Individual PDF Files:**
+
+To build PDF files for each page of the project then you can specify the
+option `--individualpages` for `--builder=pdflatex`.
+
+The individual PDF files will be available in the
+`latex` build folder. These files will have the same name as the source
+file, or if nested in folders, will have `{folder}-{filename}.pdf`.
+
+:::{note}
+When specifying a page using the `build` command the `--individualpages`
+will automatically be set to `True`.
+
+When [Issue #904](https://github.com/executablebooks/jupyter-book/issues/904)
+is implemented then this will produce latex documents more suitable to
+single pages
+:::
