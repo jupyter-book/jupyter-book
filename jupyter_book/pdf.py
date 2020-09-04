@@ -167,7 +167,7 @@ def autobuild_singlepage_latexdocs(app):
     DEFAULT_VALUES = latex_document_components(latex_documents)
     latex_documents = []
     for doc, title in titles.items():
-        latex_doc = copy.copy(DEFAULT_VALUES)
+        latex_doc = copy(DEFAULT_VALUES)
 
         # if doc has a subdir relative to src dir
         docname = None
