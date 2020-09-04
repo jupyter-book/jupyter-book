@@ -65,3 +65,4 @@ final:
 metadata:
   latex_doc_overrides:
     title: hallo
+  latex_individualpages: false
