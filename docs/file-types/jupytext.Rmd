@@ -98,7 +98,7 @@ print("Hallo I'm an RMarkdown block!")
 ```
 
 :::{important}
-For full compatibility with `myst-parser`, it is necessary to use `jupytext==1.6.0rc0` or later.
+For full compatibility with `myst-parser`, it is necessary to use `jupytext>=1.6.0`.
 :::
 
 (file-types:custom:jupytext)=

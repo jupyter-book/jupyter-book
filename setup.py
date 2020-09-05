@@ -23,14 +23,14 @@ test_reqs = [
     "beautifulsoup4",
     "matplotlib",
     "pytest-regressions",
-    "jupytext==1.6.0rc0",
+    "jupytext~=1.6.0",
     "altair",
     "sphinx_click",
     "sphinx_tabs",
     "pyppeteer",
     "beautifulsoup4",
     "cookiecutter",
-] + doc_reqs
+]
 setup(
     name="jupyter-book",
     version=version,

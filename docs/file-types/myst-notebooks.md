@@ -42,7 +42,7 @@ A resulting `mynotebook.md` file will be created.
 This can then be used as a page in your book.
 
 :::{important}
-For full compatibility with `myst-parser`, it is necessary to use `jupytext==1.6.0rc0` or later.
+For full compatibility with `myst-parser`, it is necessary to use `jupytext>=1.6.0`.
 :::
 
 Jupytext can also **automatically synchronize an `.ipynb` file with your markdown**.

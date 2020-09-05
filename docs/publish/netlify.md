@@ -8,7 +8,7 @@ It can be used across git clients including GitHub, GitLab, and Bitbucket.
 Note that these instructions assume you're keeping your source files under version-control,
 rather than the built Jupyter Book HTML.
 If you're pushing your HTML to GitHub,
-you'll want to [host your book on GitHub Pages](publish/gh-pages) instead.
+you'll want to [host your book on GitHub Pages](./gh-pages.md) instead.
 
 Although Netlify has both free and paid tiers, the build process is the same across both
 Importantly, the free tier only allows for 100GB of bandwidth usage per month across all of your Netlify built projects.

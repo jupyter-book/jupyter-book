@@ -269,7 +269,7 @@ an open source tool for two-way conversion between `.ipynb` and text files.
 Jupytext [supports the MyST markdown format](https://jupytext.readthedocs.io/en/latest/formats.html#myst-markdown).
 
 :::{note}
-For full compatibility with `myst-parser`, it is necessary to use `jupytext==1.6.0rc0` or later.
+For full compatibility with `myst-parser`, it is necessary to use `jupytext>=1.6.0`.
 
 See also [](file-types:custom:jupytext).
 :::
