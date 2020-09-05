@@ -23,6 +23,18 @@ def test_create(temp_with_override: Path, cli):
     assert len(list(book.iterdir())) == 9
 
 
+def test_create_from_cookiecutter(temp_with_override: Path, cli):
+    book = temp_with_override / "new_book"
+    result = cli.invoke(commands.create, [book.as_posix(), "--cookiecutter"])
+    assert result.exit_code == 0
+    # this test uses default cookiecutter prompt values
+    # note that default cookiecutter book name is "my_book"
+    assert book.joinpath("my_book", "my_book", "_config.yml").exists()
+    assert len(list(book.joinpath("my_book").iterdir())) == 7
+    assert len(list(book.joinpath("my_book", ".github", "workflows").iterdir())) == 1
+    assert len(list(book.joinpath("my_book", "my_book").iterdir())) == 8
+
+
 def test_build_from_template(temp_with_override, cli):
     """Test building the book template and a few test configs."""
     # Create the book from the template

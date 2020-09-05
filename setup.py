@@ -29,6 +29,7 @@ test_reqs = [
     "sphinx_tabs",
     "pyppeteer",
     "beautifulsoup4",
+    "cookiecutter",
 ] + doc_reqs
 setup(
     name="jupyter-book",
