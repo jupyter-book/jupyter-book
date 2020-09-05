@@ -31,6 +31,7 @@ def get_default_sphinx_config():
             "sphinx_comments",
             "sphinx.ext.intersphinx",
             "sphinx_panels",
+            "sphinx_book_theme",
         ],
         language=None,
         pygments_style="sphinx",
