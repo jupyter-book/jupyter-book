@@ -121,9 +121,8 @@ jb build mybookname/ --builder latex
 To build PDF files for each page of the project,
 you can specify the option `--individualpages` for `--builder=pdflatex`.
 
-The individual PDF files will be available in the
-`latex` build folder. These files will have the same name as the source
-file, or if nested in folders, will have `{folder}-{filename}.pdf`.
+The individual PDF files will be available in the `latex` build folder.
+These files will have the same name as the source file or, if nested in folders, will be named `{folder}-{filename}.pdf`.
 
 :::{note}
 When specifying a page using the `build` command the `--individualpages`
