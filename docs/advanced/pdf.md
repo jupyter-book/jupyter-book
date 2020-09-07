@@ -125,8 +125,8 @@ The individual PDF files will be available in the `latex` build folder.
 These files will have the same name as the source file or, if nested in folders, will be named `{folder}-{filename}.pdf`.
 
 :::{note}
-When specifying a page using the `build` command the `--individualpages`
-will automatically be set to `True`.
+When specifying a page using the `build` command,
+the `--individualpages` will automatically be set to `True`.
 
 When [Issue #904](https://github.com/executablebooks/jupyter-book/issues/904)
 is implemented then this will produce latex documents more suitable to
