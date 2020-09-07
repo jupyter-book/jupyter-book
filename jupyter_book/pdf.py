@@ -141,10 +141,7 @@ def autobuild_singlepage_latexdocs(app):
 
     titles = app.env.titles
     master_doc = app.config.master_doc
-    if "/" in master_doc:
-        sourcedir = os.path.dirname(master_doc)
-    else:
-        sourcedir = ""
+    sourcedir = os.path.dirname(master_doc)
 
     # Construct Tuples
     DEFAULT_VALUES = latex_document_components(latex_documents)
