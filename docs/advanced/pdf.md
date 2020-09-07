@@ -128,7 +128,6 @@ These files will have the same name as the source file or, if nested in folders,
 When specifying a page using the `build` command,
 the `--individualpages` will automatically be set to `True`.
 
-When [Issue #904](https://github.com/executablebooks/jupyter-book/issues/904)
-is implemented then this will produce latex documents more suitable to
-single pages
+In the future we intend for this to produce latex documents more suitable to single pages
+(see [issue #904](https://github.com/executablebooks/jupyter-book/issues/904)).
 :::
