@@ -186,6 +186,35 @@ Admonition dropdowns require JavaScript to be enabled on the browser which they 
 By contrast, the [dropdown directive](content/panels) below works purely *via* HTML+CSS.
 :::
 
+### Insert code cell outputs into admonitions
+
+If you'd like to insert the outputs of running code *inside* admonition
+blocks, we recommend using [Glue functionality](content:code-outputs:glue).
+For example, we'll insert one of the outputs that was glued into the book from the [code outputs page](./code-outputs.md).
+
+The below code:
+
+````md
+```{note}
+Here's my figure:
+{glue:figure}`sorted_means_fig`
+```
+````
+
+generates:
+
+```{note}
+Here's my figure:
+{glue:}`sorted_means_fig`
+```
+
+See [](content:code-outputs:glue) for more information on how to use Glue to insert your outputs directly into your content.
+
+:::{tip}
+To hide code input and output that generated the variable you are inserting, use the `remove_cell` tag.
+See [](../interactive/hiding.md) for more information and other tag options.
+:::
+
 (content/panels)=
 ## Panels and Dropdowns
 
@@ -325,35 +354,6 @@ Term 3
 
   <img src="../images/fun-fish.png" alt="fishy" width="200px">
 ```
-
-### Insert code cell outputs into admonitions
-
-If you'd like to insert the outputs of running code *inside* admonition
-blocks, we recommend using [Glue functionality](content:code-outputs:glue).
-For example, we'll insert one of the outputs that was glued into the book from the [code outputs page](./code-outputs.md).
-
-The below code:
-
-````md
-```{note}
-Here's my figure:
-{glue:figure}`sorted_means_fig`
-```
-````
-
-generates:
-
-```{note}
-Here's my figure:
-{glue:}`sorted_means_fig`
-```
-
-See [](content:code-outputs:glue) for more information on how to use Glue to insert your outputs directly into your content.
-
-:::{tip}
-To hide code input and output that generated the variable you are inserting, use the `remove_cell` tag.
-See [](../interactive/hiding.md) for more information and other tag options.
-:::
 
 ## Quotations and epigraphs
 

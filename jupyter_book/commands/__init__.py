@@ -290,11 +290,26 @@ def build(
 
 @main.command()
 @click.argument("path-book", type=click.Path(file_okay=False, exists=False))
-def create(path_book):
-    """Create a simple Jupyter Book that you can customize."""
+@click.option(
+    "--cookiecutter",
+    is_flag=True,
+    help="Use cookiecutter to interactively create a Jupyter Book template.",
+)
+def create(path_book, cookiecutter):
+    """Create a Jupyter Book template that you can customize."""
     book = Path(path_book)
-    template_path = Path(__file__).parent.parent.joinpath("book_template")
-    sh.copytree(template_path, book)
+    if not cookiecutter:  # this will be the more common option
+        template_path = Path(__file__).parent.parent.joinpath("book_template")
+        sh.copytree(template_path, book)
+    else:
+        cc_url = "gh:executablebooks/cookiecutter-jupyter-book"
+        try:
+            from cookiecutter.main import cookiecutter
+        except ModuleNotFoundError as e:
+            _error(
+                f"{e}. To install, run\n\n\tpip install cookiecutter", kind=e.__class__,
+            )
+        book = cookiecutter(cc_url, output_dir=Path(path_book))
     _message_box(f"Your book template can be found at\n\n    {book}{os.sep}")
 
 

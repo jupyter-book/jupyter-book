@@ -23,6 +23,18 @@ def test_create(temp_with_override: Path, cli):
     assert len(list(book.iterdir())) == 9
 
 
+def test_create_from_cookiecutter(temp_with_override: Path, cli):
+    book = temp_with_override / "new_book"
+    result = cli.invoke(commands.create, [book.as_posix(), "--cookiecutter"])
+    assert result.exit_code == 0
+    # this test uses default cookiecutter prompt values
+    # note that default cookiecutter book name is "my_book"
+    assert book.joinpath("my_book", "my_book", "_config.yml").exists()
+    assert len(list(book.joinpath("my_book").iterdir())) == 7
+    assert len(list(book.joinpath("my_book", ".github", "workflows").iterdir())) == 1
+    assert len(list(book.joinpath("my_book", "my_book").iterdir())) == 8
+
+
 def test_build_from_template(temp_with_override, cli):
     """Test building the book template and a few test configs."""
     # Create the book from the template
@@ -182,11 +194,11 @@ def test_build_page_nested(build_resources, cli):
 def test_execution_timeout(pages, build_resources, cli):
     """Testing timeout execution for a page."""
     books, _ = build_resources
-    path_page = pages.joinpath("complex_outputs_unrun.ipynb")
+    path_page = pages.joinpath("loop_unrun.ipynb")
     path_c = books.joinpath("config", "_config_timeout.yml")
-    path_html = pages.joinpath("_build", "_page", "complex_outputs_unrun", "html")
+    path_html = pages.joinpath("_build", "_page", "loop_unrun", "html")
     result = cli.invoke(
         commands.build, [path_page.as_posix(), "--config", path_c.as_posix()]
     )
     assert "Execution Failed" in result.stdout
-    assert path_html.joinpath("reports", "complex_outputs_unrun.log").exists()
+    assert path_html.joinpath("reports", "loop_unrun.log").exists()
