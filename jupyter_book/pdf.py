@@ -68,23 +68,6 @@ async def _html_to_pdf(html_file, pdf_file):
     await browser.close()
 
 
-# def update_latex_document(latex_document: tuple, updates: dict):
-#     """Apply updates from _config.yml to a latex_document tuple"""
-#     names = (
-#         "startdocname",
-#         "targetname",
-#         "title",
-#         "author",
-#         "theme",
-#         "toctree_only",
-#     )
-#     updated = list(copy(latex_document))
-#     for i, (_, name) in enumerate(zip(latex_document, names)):
-#         if name in updates:
-#             updated[i] = updates[name]
-#     return tuple(updated)
-
-
 def update_latex_documents(latex_documents, latexoverrides):
     """
     Apply latexoverrides from _config.yml to latex_documents tuple
