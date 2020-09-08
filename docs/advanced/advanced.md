@@ -188,7 +188,9 @@ See the [image appearance section](content-blocks-images) for details.
 
 ## Use Jupyter Book and Sphinx together
 
-_Note: This is not an endorsed" practice! _
+:::{warning}
+This is not an endorsed" practice!
+:::
 
 There are situations that you still want to use both Jupyter Book and Sphinx. E.g. if API documentation or technical documentation should also be available on readthedocs.io. Or if you have a current manual created in Sphinx and want to be backwards compatible. 
 
