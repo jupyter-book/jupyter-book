@@ -35,6 +35,9 @@ launch_buttons:
   colab_url: "https://colab.research.google.com"
   thebe: true
 
+latex:
+  latex_engine: xelatex
+
 sphinx:
   config:
     nb_custom_formats:
@@ -51,6 +54,12 @@ sphinx:
           "floor": ["\\lfloor#1\\rfloor", 1]
           "bmat": ["\\left[\\begin{array}"]
           "emat": ["\\end{array}\\right]"]
+    latex_elements:
+        preamble: |
+          \newcommand\N{\mathbb{N}}
+          \newcommand\floor[1]{\lfloor#1\rfloor}
+          \newcommand{\bmat}{\left[\begin{array}}
+          \newcommand{\emat}{\end{array}\right]}
     intersphinx_mapping:
       ebp:
         - "https://executablebooks.org/en/latest/"

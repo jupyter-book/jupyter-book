@@ -28,6 +28,7 @@ final:
   - sphinx_comments
   - sphinx.ext.intersphinx
   - sphinx_panels
+  - sphinx_book_theme
   html_add_permalinks: ¶
   html_baseurl: ''
   html_favicon: ''

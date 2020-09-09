@@ -208,9 +208,11 @@ $$
 
 will be rendered as:
 
+```{only} html
 $$
 A = \bmat{} 1 & 1 \\ 2 & 1\\ 3 & 2 \emat{},\ b=\bmat{} 2\\ 3 \\ 4\emat{},\ \gamma = 0.5
 $$
+```
 
 :::{seealso}
 [How MyST-Parser works with MathJax](myst-parser:syntax/mathjax),

@@ -1,5 +1,5 @@
 {
-    "$schema": "http://json-schema.org/schema#",
+    "$schema": "http://json-schema.org/draft-07/schema",
     "type": "object",
     "properties": {
         "title": {
@@ -41,15 +41,12 @@
             "type": "object",
             "properties": {
                 "execute_notebooks": {
-                    "type": [
-                        "string",
-                        "boolean"
-                    ],
                     "enum": [
                         "auto",
                         "cache",
                         "force",
-                        "off"
+                        "off",
+                        false
                     ],
                     "default": "auto"
                 },
@@ -87,8 +84,7 @@
                         "type": "string"
                     }
                 }
-            },
-            "required": []
+            }
         },
         "html": {
             "type": "object",
@@ -135,11 +131,9 @@
                                 "object"
                             ]
                         }
-                    },
-                    "required": []
+                    }
                 }
-            },
-            "required": []
+            }
         },
         "latex": {
             "type": "object",
@@ -168,8 +162,7 @@
                 "colab_url": {
                     "type": "string"
                 }
-            },
-            "required": []
+            }
         },
         "repository": {
             "type": "object",
@@ -183,8 +176,7 @@
                 "branch": {
                     "type": "string"
                 }
-            },
-            "required": []
+            }
         },
         "sphinx": {
             "type": "object",
@@ -204,9 +196,7 @@
                         "object"
                     ]
                 }
-            },
-            "required": []
+            }
         }
-    },
-    "required": []
+    }
 }

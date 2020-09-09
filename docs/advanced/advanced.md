@@ -104,7 +104,7 @@ There are three levels of metadata:
 * For cell level: in the Jupyter Notebook Toolbar go to `View -> Cell Toolbar -> Edit Metadata` and a button will appear above each cell.
 * For output level: using e.g. `IPython.display.display(obj,metadata={"tags": [])`, you can set metadata specific to a certain output (but jupyter-book does not utilise this just yet).
 
-![NB Metadata GIF](../images/metadata_edit.gif)
+![NB Metadata GIF](../images/metadata_edit.*)
 
 ### Add tags to notebook cells based on their content
 

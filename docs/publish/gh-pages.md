@@ -57,7 +57,7 @@ It is used for a variety of things, such as testing, publishing packages, and co
 
 Note that if you're not hosting your book on GitHub,
 or if you'd like another, user-friendly service to build it automatically,
-see the [guide to publishing your book on Netlify](publish/netlify).
+see the [guide to publishing your book on Netlify](./netlify.md).
 
 ```{note}
 You should be familiar with GitHub Actions before using them
