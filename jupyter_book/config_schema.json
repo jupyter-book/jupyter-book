@@ -84,8 +84,7 @@
                         "type": "string"
                     }
                 }
-            },
-            "required": []
+            }
         },
         "html": {
             "type": "object",
@@ -132,11 +131,9 @@
                                 "object"
                             ]
                         }
-                    },
-                    "required": []
+                    }
                 }
-            },
-            "required": []
+            }
         },
         "latex": {
             "type": "object",
@@ -165,8 +162,7 @@
                 "colab_url": {
                     "type": "string"
                 }
-            },
-            "required": []
+            }
         },
         "repository": {
             "type": "object",
@@ -180,8 +176,7 @@
                 "branch": {
                     "type": "string"
                 }
-            },
-            "required": []
+            }
         },
         "sphinx": {
             "type": "object",
@@ -201,9 +196,7 @@
                         "object"
                     ]
                 }
-            },
-            "required": []
+            }
         }
-    },
-    "required": []
+    }
 }

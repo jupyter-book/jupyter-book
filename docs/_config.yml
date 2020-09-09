@@ -35,6 +35,9 @@ launch_buttons:
   colab_url: "https://colab.research.google.com"
   thebe: true
 
+latex:
+  latex_engine: xelatex
+
 sphinx:
   config:
     nb_custom_formats:
