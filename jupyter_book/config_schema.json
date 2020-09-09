@@ -55,7 +55,7 @@
                 },
                 "timeout": {
                     "type": "number",
-                    "minimum": 0,
+                    "minimum": -1,
                     "default": 30
                 },
                 "allow_errors": {

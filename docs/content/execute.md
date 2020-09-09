@@ -148,7 +148,7 @@ execute:
 Execution timeout defines the maximum time (in seconds) each notebook cell is allowed to run.
 If the execution takes longer an exception will be raised.
 The default is 30 seconds, so in cases of long-running cells you may want to specify an higher value.
-The timeout option can also be set to `None` or -1 to remove any restriction on execution time.
+The timeout option can also be set to -1, to remove any restriction on execution time.
 
 You can set the timeout for all notebook execution in your `_config.yml`:
 
