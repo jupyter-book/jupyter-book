@@ -1,5 +1,22 @@
 # Change Log
 
+## v0.8.1 2020-09-09
+
+### New ✨
+
+Add `jupyter-book create --cookiecutter` (thanks to [@TomasBeuzen](https://github.com/TomasBeuzen))
+: This adds a `--cookiecutter` option to `jb create`, to allow users to use the [Jupyter Book cookiecutter](https://github.com/executablebooks/cookiecutter-jupyter-book) to create a book template.
+
+  The cookiecutter is suitable for more advanced users that want to create a ready-to-go repository to host their book that includes pre-populated metafiles such as README, LICENSE, CONDUCT, CONTRIBUTING, etc., as well as GitHub Actions workflow files.
+
+### Fixes 🐛
+
+This release contains numerous improvements, to the documentation and code, to address issues noted by you guys:
+
+- Fix issues with single document builds (e.g. pdflatex) and relative path resolutions
+- Ensure `sphinx-book-theme` is loaded on PDF builds (to allow the use of the `margin` directive)
+- Allow execution `timeout: -1` and `execute_notebooks: off` to be valid in the `_config.yml`
+
 ## v0.8.0 2020-09-01
 
 ([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.7.5...v0.8.0))
