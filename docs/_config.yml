@@ -77,7 +77,7 @@ sphinx:
         - "https://nbformat.readthedocs.io/en/latest"
         - null
       sphinx-panels:
-        - https://sphinx-panels.readthedocs.io/en/latest/
+        - https://sphinx-panels.readthedocs.io/en/sphinx-book-theme/
         - null
     rediraffe_branch: 'master'
     rediraffe_redirects:
