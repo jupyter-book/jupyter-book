@@ -76,6 +76,9 @@ sphinx:
       nbformat:
         - "https://nbformat.readthedocs.io/en/latest"
         - null
+      sphinx-panels:
+        - https://sphinx-panels.readthedocs.io/en/latest/
+        - null
     rediraffe_branch: 'master'
     rediraffe_redirects:
       content-types/index.md: file-types/index.md
