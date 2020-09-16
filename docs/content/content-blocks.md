@@ -447,7 +447,7 @@ becomes {term}`A second term`.
 
 ## Tabbed content
 
-You can also use [`sphinx-panels`](https://sphinx-panels.readthedocs.io/en/latest) to produced [**tabbed content**](https://sphinx-panels.readthedocs.io/en/latest/#tabbed-content). This allows you to display a variety of tabbed content blocks that users can click between.
+You can also use [`sphinx-panels`](sphinx-panels:panels/usage) to produced [**tabbed content**](sphinx-panels:components-tabbed). This allows you to display a variety of tabbed content blocks that users can click between.
 
 For example, here's a group of tabs showing off code in a few different languages:
 
@@ -523,7 +523,7 @@ My first tab
 My second tab with `some code`!
 ```
 
-See the [`sphinx-tabs`](https://sphinx-panels.readthedocs.io/en/latest/#tabbed-content) documentation for more information about how to use this.
+See the [`sphinx-panels` tabbed](sphinx-panels:components-tabbed) documentation for more information about how to use this.
 
 
 ## Citations and cross-references

@@ -59,7 +59,7 @@ setup(
         "click",
         "setuptools",
         "nbformat",
-        "nbconvert",
+        "nbconvert<6",
         "jsonschema",
         "sphinx_togglebutton",
         "sphinx-copybutton",
