@@ -28,7 +28,7 @@ See [](../file-types/myst-notebooks.md) for more information.
 
 ## Trigger notebook execution
 
-By default, Jupyter Book will execute any content files that have a notebook structure,
+By default, Jupyter Book will execute any content files that have a notebook structure
 and that are missing at least one output. This is equivalent to the following configuration in _config.yml`:
 
 ```yaml
@@ -56,7 +56,7 @@ execute:
 
 See {ref}`execute/cache` for more information.
 
-**To turn off notebook execution**,change the above configuration value to:
+**To turn off notebook execution**, change the above configuration value to:
 
 ```yaml
 execute:
@@ -130,7 +130,7 @@ Below are detailed a number of ways to achieve this.
 
 :::{important}
 The default behaviour of `cache` is now to run in the local directory.
-This is a change from the from `v0.7`.
+This is a change from `v0.7`.
 :::
 
 By default, the command working directory (cwd) in which a notebook runs will be the directory in which it is located (for both `auto` and `cache`). This means that notebooks requiring access to assets in relative paths will work.
@@ -145,9 +145,9 @@ execute:
 
 ### Setting execution timeout
 
-Execution timeout defines the maximum time (in seconds) each notebook cell is allowed to run.
+Execution timeout defines the maximum time (in seconds) each notebook cell is allowed to run for.
 If the execution takes longer an exception will be raised.
-The default is 30 seconds, so in cases of long-running cells you may want to specify an higher value.
+The default is 30 seconds, so in cases of long-running cells you may want to specify a higher value.
 The timeout option can also be set to -1, to remove any restriction on execution time.
 
 You can set the timeout for all notebook execution in your `_config.yml`:
@@ -157,7 +157,7 @@ execute:
   timeout: 100
 ```
 
-This global value can also be overridden per notebook by adding this to you notebooks metadata:
+This global value can also be overridden per notebook by adding this to your notebooks metadata:
 
 ```json
 {
@@ -180,7 +180,7 @@ execute:
   allow_errors: true
 ```
 
-This global value can also be overridden per notebook by adding this to you notebooks metadata:
+This global value can also be overridden per notebook by adding this to your notebooks metadata:
 
 ```json
 {
@@ -281,7 +281,7 @@ As notebooks are executed, certain statistics are stored on the build environmen
 The simplest way to access and visualise this data is using the **`{nb-exec-table}`** directive.
 
 :::{seealso}
-The [MyST-NB documentation](myst-nb:execute/statistics), for creating you own directives to manipulate this data.
+The [MyST-NB documentation](myst-nb:execute/statistics), for creating your own directives to manipulate this data.
 :::
 
 ````md
