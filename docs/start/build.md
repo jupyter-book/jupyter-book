@@ -2,7 +2,7 @@
 
 Once you've added content and configured your book, it's time to
 build outputs for your book.
-We'll use the `jupyter-book build` command-line tool for this.
+We'll use the `jupyter-book build` command line tool for this.
 
 Currently, there are two kinds of supported outputs: an HTML website for your
 book, and a PDF that contains all of the pages of your book that is built
@@ -13,7 +13,7 @@ from the book HTML.
 In order to build the HTML for each page, you should have followed the steps
 in [creating your Jupyter Book structure](./overview.md).
 You should have a collection of notebook/markdown files in your `mybookname/` folder, a `_toc.yml` file
-that defines the structure of your book, and any configuration you'd like
+that defines the structure of your book and any configuration you'd like
 in the `_config.yml` file.
 
 ## Build your book's HTML
@@ -30,7 +30,7 @@ jupyter-book build mybookname/
 
 This will generate a fully-functioning HTML site using a **static site generator**.
 The site will be placed in the `_build/html` folder. You can then open the pages
-in the site by entering that folder and opening the `html` files with your
+in the site by navigating to that folder and opening the `html` files with your
 web browser.
 
 :::{note}
@@ -55,7 +55,7 @@ You can also use `-v` or `-vvv` to increase verbosity.
 ## Build a standalone page
 
 Sometimes you'd like to build a single page of content rather than an entire book.
-For example, if you'd like to generate a web-friendly HTML page from a Jupyter Notebook for a report or publication.
+For example, if you'd like to generate a web-friendly HTML page from a Jupyter notebook for a report or publication.
 
 You can generate a standalone HTML file for a single page of the Jupyter Book using the same command:
 
@@ -64,21 +64,21 @@ jupyter-book build path/to/mypage.ipynb
 ```
 
 This will execute your content and output the proper HTML in a `_build/_page/html/<mypage>` folder.
-If the file is in a subdirectory relative to the `_build` folder, the HTML  will be in a `_build/_page/html/<subdirectory-mypage>` folder.
+If the file is in a subdirectory relative to the `_build` folder, the HTML will be in a `_build/_page/html/<subdirectory-mypage>` folder.
 
 Your page will be called `mypage.html`.
 This will work for any [content source file](../file-types/index.md) that is supported by Jupyter Book.
 
 :::{note}
-Users should note that building **single pages** in the context of a larger project, can trigger warnings and incomplete links.
-For example, building `docs/start/overview.md` will issue a number of `unknown document`,`term not in glossary`, and `undefined links` warnings.
+Users should note that building **single pages** in the context of a larger project can trigger warnings and incomplete links.
+For example, building `docs/start/overview.md` will issue a number of `unknown document`, `term not in glossary`, and `undefined links` warnings.
 :::
 
 ## Page caching
 
 By default, Jupyter Book will only build the HTML for pages that have
 been updated since the last time you built the book.
-This helps reduce the amount of unnecessary time needed to build your book.
+This helps reduce the amount of time needed to build your book.
 If you'd like to force Jupyter Book to re-build a particular page, you can either edit the
 corresponding file in your book's folder, or delete that page's HTML in the `_build/html` folder.
 

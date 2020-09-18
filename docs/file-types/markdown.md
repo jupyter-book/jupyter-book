@@ -1,8 +1,8 @@
 # Markdown files
 
 You can write content in regular markdown files (e.g., files ending in `.md`).
-Jupyter Book supports any markdown syntax that is supported by Jupyter Notebooks.
-Jupyter Notebook markdown is an extension of a flavour of markdown called
+Jupyter Book supports any markdown syntax that is supported by Jupyter notebooks.
+Jupyter notebook markdown is an extension of a flavour of markdown called
 [CommonMark Markdown](https://commonmark.org/).
 It has many elements for standard text processing, though it lacks a lot of features used for
 publishing and documentation.
@@ -12,12 +12,12 @@ If you'd like a more in-depth overview and guide to CommonMark markdown, see
 [the CommonMark markdown tutorial](https://commonmark.org/help/tutorial/).
 ```
 
-This page describes some basic features of Jupyter Notebook markdown, and how to
+This page describes some basic features of Jupyter notebook markdown, and how to
 include them with your book.
 
 ```{margin}
 Jupyter Book also supports a fancier version of markdown called **MyST Markdown**. This
-is a slightly extended flavour of Jupyter Notebook markdown. It
+is a slightly extended flavour of Jupyter notebook markdown. It
 allows you to include citations and cross-references, and control more complex
 functionality like adding content to the margin. For more
 information, check out {doc}`../content/myst`.
@@ -42,12 +42,12 @@ It was generated with this code:
 ```
 
 :::{seealso}
-[](../content/figures.md) for more information
+[](../content/figures.md) for more information.
 :::
 
 ### Adding movies
 
-You can even embed references to movies on the web! For example, here's a little gif for you!
+You can even embed references to movies on the web! For example, here's a little GIF for you!
 
 ![giphy](https://media.giphy.com/media/yoJC2A59OCZHs1LXvW/giphy.gif)
 
@@ -56,7 +56,7 @@ This will be included in your book when it is built.
 ## Mathematics
 
 For HTML outputs, Jupyter Book uses the excellent [MathJax](http://docs.mathjax.org/en/latest/) library,
-along with the default Jupyter Notebook configuration, for rendering mathematics from latex-style syntax.
+along with the default Jupyter notebook configuration, for rendering mathematics from LaTeX-style syntax.
 
 For example, here's a mathematical expression rendered with MathJax:
 
@@ -71,12 +71,12 @@ $$
 $$
 
 :::{seealso}
-[](../content/math.md) for more information
+[](../content/math.md) for more information.
 :::
 
-### Block-level math
+### Block-level mathematics
 
-You can include block-level math by wrapping your math in `$$` characters.
+You can include block-level mathematics by wrapping your formulas in `$$` characters.
 For example, the following block:
 
 ```md
@@ -91,19 +91,19 @@ $$
 wow = its^{math}
 $$
 
-You can also include math blocks by using latex-style syntax using `\begin{align*}`.
+You can also include math blocks by using LaTeX-style syntax using `\begin{align*}`.
 For example, the following block:
 
 ```latex
 \begin{align*}
-yep = its_more^math
+yep = its_{more}^{math}
 \end{align*}
 ```
 
 Results in:
 
 \begin{align*}
-yep = its_more^math
+yep = its_{more}^{math}
 \end{align*}
 
 :::{important}
@@ -119,5 +119,5 @@ parse:
 ## Extended markdown with MyST Markdown
 
 In addition to CommonMark markdown, Jupyter Book also supports a more fully-featured version of markdown called **MyST Markdown**.
-This is a slight addition to CommonMark that includes syntactic pieces that are useful for publishing computational narratives.
+This is a superset of CommonMark that includes syntactic pieces that are useful for publishing computational narratives.
 For more information about MyST Markdown, see [](../content/myst.md).

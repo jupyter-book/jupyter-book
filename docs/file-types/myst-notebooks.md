@@ -11,12 +11,12 @@ kernelspec:
 
 # Notebooks written entirely in markdown
 
-It is possible to store Jupyter Notebooks in pure markdown. This allows you
+It is possible to store Jupyter notebooks in pure markdown. This allows you
 to define a notebook structure entirely using MyST Markdown. For more information
 about MyST Markdown, see {doc}`../content/myst`.
 
 Notebooks with markdown can be read in, executed, and cached by Jupyter Book (see {doc}`../content/execute` for information on how to cache pages).
-This allows you to store all of your notebook content in a text format that is much friendlier to version control, while still having all the functionality of a Jupyter Notebook.
+This allows you to store all of your notebook content in a text format that is much nicer for version control software, while still having all the functionality of a Jupyter notebook.
 
 :::{note}
 MyST notebooks uses [MyST-NB to convert between ipynb and text files][myst-nb:index].
@@ -46,7 +46,7 @@ For full compatibility with `myst-parser`, it is necessary to use `jupytext>=1.6
 :::
 
 Jupytext can also **automatically synchronize an `.ipynb` file with your markdown**.
-To do so, use a Jupyter interface such as Jupyter Lab or the classic Notebook interface
+To do so, use a Jupyter interface such as Jupyter Lab or the classic notebook interface
 and follow the [Jupytext instructions for paired notebooks](https://jupytext.readthedocs.io/en/latest/paired-notebooks.html).
 
 ```{margin} Markdown takes precedence
@@ -104,10 +104,10 @@ And some more markdown...
 
 There are three main sections to notice:
 
-### Front-matter YAML
+### Frontmatter YAML
 
-MyST notebooks need special front-matter YAML to tell Jupytext that they
-can be converted to `.ipynb` files. The front-matter YAML block above:
+MyST notebooks need special frontmatter YAML to tell Jupytext that they
+can be converted to `.ipynb` files. The frontmatter YAML block
 
 ```yaml
 ---
@@ -123,8 +123,8 @@ kernelspec:
 ---
 ```
 
-Tells Jupytext that the file is in `myst` format, and that its code should
-be run with a Python3 kernel.
+tells Jupytext that the file is in `myst` format, and that its code should
+be run with a Python 3 kernel.
 
 ```{margin}
 Remember that Jupyter always defines one, and only one, kernel per notebook.
@@ -132,7 +132,7 @@ Remember that Jupyter always defines one, and only one, kernel per notebook.
 
 ### Code cells
 
-Code blocks in MyST Notebooks are defined with the following MyST directive:
+Code blocks in MyST notebooks are defined with the following MyST directive:
 
 ````md
 ```{code-cell}

@@ -19,9 +19,9 @@ and you'd like to try it out with Jupyter Book.
 For more information on writing content with reStructuredText, we recommend
 reading [the Sphinx rST documentation](https://www.sphinx-doc.org/es/stable/rest.html).
 
-## Including reStructuredText in Markdown
+## Including reStructuredText in markdown
 
-To include rST into Markdown, you can use the [eval-rst directive](myst-parser:syntax/directives/parsing):
+To insert rST into markdown, you can use the [eval-rst directive](myst-parser:syntax/directives/parsing):
 
 ````md
 ```{eval-rst}

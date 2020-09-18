@@ -1,14 +1,14 @@
 # Overview and installation
 
 This is a guide for creating your own book using Jupyter Book.
-Book content is written in markdown and Jupyter Notebooks, and
+Book content is written in markdown files and Jupyter notebooks, and
 `jupyter-book` converts these into a book fit for hosting on the web or a
 publishable PDF.
 
-## Install the command-line interface
+## Install the command line interface
 
 First off, make sure you have the CLI installed so that you can work with Jupyter Book.
-The Jupyter-Book CLI allows you to build and control your
+The Jupyter Book CLI allows you to build and control your
 Jupyter Book. You can install it via pip with the following command:
 
 ```bash
@@ -19,7 +19,7 @@ pip install -U jupyter-book
 
 Jupyter Book is now also tested against Windows OS 😀
 
-However, there is a known incompatibility for notebook execution, when using Python 3.8.
+However, there is a known incompatibility for notebook execution when using Python 3.8.
 
 See [](working-on-windows)
 
@@ -32,35 +32,35 @@ Building a Jupyter Book broadly consists of two steps:
 1. **Put your book content in a folder or a file**. Jupyter Book needs the following
    pieces in order to build your book:
 
-   * Your content file(s) (the pages of your book) in either markdown or Jupyter
-     Notebooks.
+   * Your content file(s) (the pages of your book) in either markdown files or Jupyter
+     notebooks.
    * A Table of Contents `YAML` file (`_toc.yml`) that defines
      the structure of your book. Mandatory when building a folder.
    * (optional) A configuration file (`_config.yml`) to control the behavior
      of Jupyter Book.
-2. **Build your book**. Using Jupyter Book's command-line interface you can
+2. **Build your book**. Using Jupyter Book's command line interface you can
    convert your pages into either an HTML or a PDF book.
 3. **Host your book's HTML online**. Once your book's HTML is built, you can host
    it online as a public website. See {doc}`publish` for more information.
 
 ## Anatomy of a Jupyter Book
 
-Jupyter-Book comes with a demo book so that you can see how the content files
+Jupyter Book comes with a demo book so that you can see how the content files
 are used in the book. We'll begin with a quick tour of these files, as they are
 the pieces that you'll modify for your own book.
 
 Running the following command will create a new Jupyter Book with a few
-content pages and a Table of Contents to get you started:
+content pages and a table of contents to get you started:
 
 :::{note}
-Jupyter Book uses a command-line interface to generate books. For more complete
+Jupyter Book uses a command line interface to generate books. For more complete
 information about the CLI, see [](../reference/cli.md).
 :::
 
 ### Create a template Jupyter Book
 
 We'll use a small template book to show what kinds of files you might put inside your own.
-To create a new Jupyter Book, type the following at the command-line:
+To create a new Jupyter Book, type the following at the command line:
 
 ```{margin}
 You can also use the short-hand `jb` for `jupyter-book`. E.g.,:
@@ -137,12 +137,12 @@ For more information about your book's configuration file, see
 {doc}`../customize/config`.
 ```
 
-### Table of Contents
+### Table of contents
 
-Jupyter Book uses your Table of Contents to define the structure of your book.
+Jupyter Book uses your table of contents to define the structure of your book.
 For example, your chapters, sub-chapters, etc.
 
-The Table of Contents lives at this location:
+The table of contents lives at this location:
 
 ```bash
 mybookname/
@@ -188,7 +188,7 @@ For more information about your book's table of contents file, see
 
 ## Book content
 
-The markdown and ipynb files in your folder is your book's content. Some content
+The markdown and ipynb files in your folder make up your book's content. Some content
 files for the demo book are shown below:
 
 ```bash
@@ -198,7 +198,7 @@ mybookname/
 └── notebooks.ipynb
 ```
 
-Note that the content files are either **Jupyter Notebooks** or **Markdown**
+Note that the content files are either **Jupyter notebooks** or **markdown**
 files. These are the files that define "sections" in your book.
 
 You can store these files in whatever collection of folders you'd like, note that
@@ -220,6 +220,6 @@ see [](../content/citations.md).
 
 ## Next step: build your book
 
-Now that you've got a Jupyter Book folder structure, we can create
+Now that you've got a Jupyter Book folder structure, you can create
 the HTML (or PDF) for each of your book's pages. That's covered in the next
 section.
