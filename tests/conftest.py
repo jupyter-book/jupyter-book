@@ -32,7 +32,6 @@ def pages(temp_with_override):
 
 @pytest.fixture()
 def cli():
-    """Provides a click.testing CliRunner object for invoking CLI commands.
-    """
+    """Provides a click.testing CliRunner object for invoking CLI commands."""
     runner = CliRunner()
     return runner

@@ -445,6 +445,87 @@ To reference terms in your glossary, use the `{term}` role. For example,
 `` {term}`term one` `` becomes {term}`term one`. And `` {term}`A second term` ``
 becomes {term}`A second term`.
 
+## Tabbed content
+
+You can also use [`sphinx-panels`](sphinx-panels:panels/usage) to produced [**tabbed content**](sphinx-panels:components-tabbed). This allows you to display a variety of tabbed content blocks that users can click between.
+
+For example, here's a group of tabs showing off code in a few different languages:
+
+````{tabbed} c++
+
+```{code-block} c++
+
+int main(const int argc, const char **argv) {
+  return 0;
+}
+```
+````
+
+````{tabbed} python
+
+```{code-block} python
+
+def main():
+    return
+```
+````
+
+````{tabbed} java
+
+```{code-block} java
+
+class Main {
+    public static void main(String[] args) {
+    }
+}
+```
+````
+
+````{tabbed} julia
+
+```{code-block} julia
+
+function main()
+end
+```
+````
+
+````{tabbed} fortran
+
+```{code-block} fortran
+
+PROGRAM main
+END PROGRAM main
+```
+````
+
+You can use this functionality with the `{tabbed}` directive. You can provide a sequence of `{tabbed}` directives, and each one will be used to generate a new tab (unless the `:new-group:` option is added to a `{tabbed}` directive.)
+
+For example, the following code:
+
+````
+```{tabbed} Tab 1 title
+My first tab
+```
+
+```{tabbed} Tab 2 title
+My second tab with `some code`!
+```
+````
+
+Produces:
+
+```{tabbed} Tab 1 title
+My first tab
+```
+
+```{tabbed} Tab 2 title
+My second tab with `some code`!
+```
+
+See the [`sphinx-panels` tabbed](sphinx-panels:components-tabbed) documentation for more information about how to use this.
+
+
 ## Citations and cross-references
 
 You can add citations and cross-references to your book's content. See
