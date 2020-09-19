@@ -523,6 +523,52 @@ My first tab
 My second tab with `some code`!
 ```
 
+**Insert code outputs into your tabs** with [Glue functionality](glue/gluing).
+
+For example, see the following tabs:
+
+````{tabbed} A histogram
+```{glue:figure} boot_fig
+:figwidth: 300px
+:name: "fig-boot-tab"
+
+This is a **caption**, with an embedded `{glue:text}` element: {glue:text}`boot_mean:.2f`!
+```
+````
+````{tabbed} A table
+```{glue:figure} df_tbl
+:figwidth: 300px
+:name: "tbl:df-tab"
+
+A caption for a pandas table.
+```
+````
+``````{tabbed} Code to generate this
+`````
+````{tabbed} A histogram
+```{glue:figure} boot_fig
+:figwidth: 300px
+:name: "fig-boot-tab"
+
+This is a **caption**, with an embedded `{glue:text}` element: {glue:text}`boot_mean:.2f`!
+```
+````
+
+````{tabbed} A table
+```{glue:figure} df_tbl
+:figwidth: 300px
+:name: "tbl:df-tab"
+
+A caption for a pandas table.
+```
+````
+
+````{tabbed} Code to generate this
+`{ code block here }`
+````
+`````
+``````
+
 See the [`sphinx-panels` tabbed](sphinx-panels:components-tabbed) documentation for more information about how to use this.
 
 
