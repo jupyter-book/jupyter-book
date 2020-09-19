@@ -1,5 +1,15 @@
 # Change Log
 
+## v0.8.2 2020-09-19
+
+([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.8.1...879a2d4133db58a636655e08323cd98609cefcb4))
+
+### Improved
+
+`sphinx-panels` version bump to v0.5, which adds several new content blocks
+including `{tabbed}` content. [#972](https://github.com/executablebooks/jupyter-book/pull/972)
+
+
 ## v0.8.1 2020-09-09
 
 ### New ✨
