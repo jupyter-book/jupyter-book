@@ -31,7 +31,7 @@ files in your book's `_build/html` folder.
 2. From the `master` branch of your book's root directory (which should contain the `_build/html` folder) call `ghp-import` and point it to your HTML files, like so:
 
    ```bash
-   ghp-import -n -p -f mylocalbook/_build/html
+   ghp-import -n -p -f _build/html
    ```
 
 ```{warning}
