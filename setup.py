@@ -19,16 +19,18 @@ test_reqs = [
     "pytest>=3.6,<4",
     "pytest-cov",
     "pytest-xdist",
+    "pytest-timeout",
     "beautifulsoup4",
     "matplotlib",
     "pytest-regressions",
-    "jupytext",
+    "jupytext~=1.6.0",
     "altair",
     "sphinx_click",
     "sphinx_tabs",
     "pyppeteer",
     "beautifulsoup4",
-] + doc_reqs
+    "cookiecutter",
+]
 setup(
     name="jupyter-book",
     version=version,
@@ -52,21 +54,20 @@ setup(
     install_requires=[
         "pyyaml",
         "docutils>=0.15",
-        "sphinx<3",
-        "myst-nb~=0.8.0",
-        # this is required by the current markdow-it-py
-        # but can be remove when moving to myst-nb 0.9
-        "attrs~=19.3",
+        "sphinx>=2,<4",
+        "myst-nb~=0.10.1",
         "click",
         "setuptools",
         "nbformat",
-        "nbconvert",
+        "nbconvert<6",
+        "jsonschema",
         "sphinx_togglebutton",
         "sphinx-copybutton",
         "sphinx-comments",
         "sphinxcontrib-bibtex",
-        "sphinx_book_theme>=0.0.34",
+        "sphinx_book_theme>=0.0.36",
         "sphinx-thebe>=0.0.6",
+        "sphinx-panels~=0.5.0",
     ],
     extras_require={
         "code_style": ["flake8<3.8.0,>=3.7.0", "black", "pre-commit==1.17.0"],

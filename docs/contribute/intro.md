@@ -44,27 +44,27 @@ code looks correct according to a few checks.
 
 ### Run the tests
 
-For information about running tests, see {ref}`developer/tests`.
+For code tests, jupyter-book uses [pytest](https://docs.pytest.org)).
+You may run all the tests, or only ones that do not require additional installations, with the following command:
 
-(developer/tests)=
-## Testing infrastructure
-
-Jupyter Book uses [**`pytest`**](https://docs.pytest.org/en/latest/) for its testing
-infrastructure. You may run the tests with the following command:
-
-```bash
-pytest --ignore=tests/test_pdf.py
+```shell
+>> pytest -m 'not requires_chrome and not requires_tex'
 ```
 
-This will run the Jupyter Book test suite, *except for the PDF tests*. This is because
-running the PDF generation tests require a full Latex environment, which you may not have
-set up.
+You can alternatively use [tox](https://tox.readthedocs.io), to run the tests in multiple isolated environments, and also without the need for the initial dependencies install (see the `tox.ini` file for available test environments and further explanation):
 
-```{note}
+```shell
+>> tox -e py38-sphinx3 -- -m 'not requires_chrome and not requires_tex'
+```
+
+Either will both run the Jupyter Book test suite, *except for the PDF tests*.
+This is because running the PDF generation tests require a full Latex environment, which you may not have set up.
+
+:::{note}
 Jupyter Book makes use of [pytest-xdist](https://github.com/pytest-dev/pytest-xdist) for running tests in parallel.
 You can take advantage of this by running tests with the `-n` argument followed by the number of CPUs you would like to use.
 For example: `pytest -n 4`. This makes the tests run much faster.
-```
+:::
 
 ### To test PDF generation
 
@@ -81,7 +81,6 @@ Do so by following the instructions in {ref}`pdf/latex`.
 
 If you have installed the requirements for both HTML and Latex generation, you should
 be able to run the full test suite with pytest.
-
 
 ## Repository Structure of Jupyter Book
 
@@ -113,8 +112,8 @@ module docstrings for more information.
 ### The template Jupyter Book
 
 Jupyter Book comes bundled with a small template book to show off content. This can
-be immediately built with `jupyter-book build`. It can be found at
-[`jupyter_book/book_template`](https://github.com/executablebooks/jupyter-book/tree/master/jupyter_book/book_template).
+be immediately built with `jupyter-book build`.
+It can be found at [`jupyter_book/book_template`](https://github.com/executablebooks/jupyter-book/tree/master/jupyter_book/book_template).
 
 ### An example
 
@@ -139,8 +138,8 @@ what kinds of functionality they support:
 * {term}`MyST markdown<MyST>` is parsed into Sphinx by
   {term}`the MyST Parser<MyST-Parser>`.
 * {term}`The MyST-NB package<MyST-NB>` parses Jupyter Notebooks into Sphinx and also
-  controls some parts of notebook execution. It also provdes
-  {doc}`inserting code outputs into content <../content/glue>`.
+  controls some parts of notebook execution.
+  It also provides [inserting code outputs into content](content:code-outputs:glue).
 * {term}`Jupyter-Cache` manages the execution and cacheing of notebook content at
   build time. It is controlled by {term}`MyST-NB`.
 * The {term}`Sphinx-Book-Theme` defines the look and feel of Jupyter Book, and is

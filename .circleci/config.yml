@@ -1,27 +1,5 @@
 version: 2
 jobs:
-  tests:
-    docker:
-      - image: circleci/python:3.6-stretch
-    steps:
-      # Get our data and merge with upstream
-      - run: sudo apt-get update
-      - checkout
-
-      - restore_cache:
-          keys:
-            - cache-pip
-
-      - run: pip install --user .[testing]
-      - save_cache:
-          key: cache-pip
-          paths:
-            - ~/.cache/pip
-
-      # Make sure tests build in CircleCI (so we can preview w/ SSH if we wish)
-      - run:
-          name: Run pytest
-          command: pytest --ignore=tests/test_pdf.py
 
   pdfhtml:
     docker:
@@ -34,7 +12,7 @@ jobs:
           keys:
             - cache-pip
 
-      - run: pip install --user .[testing,pdfhtml]
+      - run: pip install --user .[sphinx,pdfhtml]
       - save_cache:
           key: cache-pip
           paths:
@@ -49,18 +27,14 @@ jobs:
           name: Install chromium
           command: pyppeteer-install
 
-      - run:
-          name: Run pytest for pdfhtml
-          command: pytest tests/test_pdf.py::test_pdfhtml
-
       # Build a PDF of the book to view as an artifact
       - run:
           name: PDF from HTML
-          command: jb build docs --builder pdfhtml
+          command: jb build docs --builder pdfhtml -n -W --keep-going
 
       - store_artifacts:
           path: docs/_build/pdf/book.pdf
-          destination: pdf
+          destination: pdfhtml
 
   pdflatex:
     docker:
@@ -72,7 +46,7 @@ jobs:
       - restore_cache:
           keys:
             - cache-pip
-      - run: pip install --user .[testing,pdflatex]
+      - run: pip install --user .[sphinx,pdflatex]
       - save_cache:
           key: cache-pip
           paths:
@@ -91,29 +65,17 @@ jobs:
           key: texlive
           paths:
             - /tmp/texlive
-
-      - run:
-          name: Run pytest for pdflatex
-          command: pytest tests/test_pdf.py::test_pdflatex
-
-      # Build quantecon-mini-example project as a test case
-      # TODO: revert this to building docs/ when we've added support for svg, gif, etc
       - run:
           name: PDF from LaTeX
-          command: |
-            git clone https://github.com/executablebooks/quantecon-mini-example.git
-            cd quantecon-mini-example/
-            pip install -r requirements.txt
-            jb build mini_book --builder pdflatex
+          command: jb build docs --builder pdflatex -n -W --keep-going
 
       - store_artifacts:
-          path: quantecon-mini-example/mini_book/_build/latex/book.pdf
+          path: docs/_build/latex/book.pdf
           destination: pdflatex
 
 workflows:
   version: 2
   default:
     jobs:
-      - tests
       - pdfhtml
       - pdflatex

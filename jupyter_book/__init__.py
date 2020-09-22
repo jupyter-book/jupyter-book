@@ -5,7 +5,7 @@ from .toc import add_toc_to_sphinx, add_toctree
 from .directive.toc import TableofContents, SwapTableOfContents
 
 
-__version__ = "0.7.5"
+__version__ = "0.8.2"
 
 
 def add_static_files(app, config):
@@ -14,9 +14,9 @@ def add_static_files(app, config):
     for path in static_paths:
         path = Path(app.confdir).joinpath(path)
         for path_css in path.rglob("*.css"):
-            app.add_css_file(str(path_css.relative_to(path)))
+            app.add_css_file((path_css.relative_to(path)).as_posix())
         for path_js in path.rglob("*.js"):
-            app.add_js_file(str(path_js.relative_to(path)))
+            app.add_js_file((path_js.relative_to(path)).as_posix())
 
 
 # We connect this function to the step after the builder is initialized

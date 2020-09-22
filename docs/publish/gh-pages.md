@@ -1,3 +1,4 @@
+(publish/gh-pages)=
 # GitHub Pages and Actions
 
 Once your content is on GitHub, you can easily host it as a [GitHub Pages](https://docs.github.com/en/github/working-with-github-pages) website. This is a service where GitHub hosts your static files as if they were a standalone website.
@@ -23,12 +24,13 @@ files in your book's `_build/html` folder.
 
 1. Install `ghp-import`
 
-   ```
+   ```bash
    pip install ghp-import
    ```
+
 2. From the `master` branch of your book's root directory (which should contain the `_build/html` folder) call `ghp-import` and point it to your HTML files, like so:
 
-   ```
+   ```bash
    ghp-import -n -p -f mylocalbook/_build/html
    ```
 
@@ -47,6 +49,7 @@ Note this warning from the [`ghp-import` GitHub repository](https://github.com/d
 "...*`ghp-import` will DESTROY your gh-pages branch...and assumes that the `gh-pages` branch is 100% derivative. You should never edit files in your `gh-pages` branch by hand if you're using this script...*"
 ```
 
+(publish/gh-actions)=
 ## Automatically host your book with GitHub Actions
 
 [GitHub Actions](https://docs.github.com/en/actions) is a tool that allows you to automate things on GitHub.
@@ -54,7 +57,7 @@ It is used for a variety of things, such as testing, publishing packages, and co
 
 Note that if you're not hosting your book on GitHub,
 or if you'd like another, user-friendly service to build it automatically,
-see the {doc}`guide to publishing your book on Netlify <../netlify>`.
+see the [guide to publishing your book on Netlify](./netlify.md).
 
 ```{note}
 You should be familiar with GitHub Actions before using them
@@ -80,6 +83,20 @@ that builds a book with GitHub Actions.
 Ensure that Jupyter Book's version in your `requirements.txt` file is at least
 `0.7.0`.
 ```
+
+:::{tip}
+You can use the [Jupyter Book cookiecutter](https://github.com/executablebooks/cookiecutter-jupyter-book), to quickly create a book template that already includes the GitHub Actions workflow file needed to automatically deploy your book to GitHub Pages:
+
+```bash
+jupyter-book create --cookiecutter mybookpath/
+```
+
+For more help, see the [Jupyter Book cookiecutter GitHub repository](https://github.com/executablebooks/cookiecutter-jupyter-book), or run:
+
+```bash
+jupyter-book create --help
+```
+:::
 
 Here is a simple YAML configuration
 for a github action that will publish your book to a `gh-pages` branch.

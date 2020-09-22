@@ -94,11 +94,11 @@ Below the first entry, you have two options for defining the structure of your b
    Note that **chapters do not continue between parts**. Think of each part as
    a self-contained collection of chapters (e.g., for the purposes of numbering).
 
-```{admonition} Don't mix these two structures
+:::{admonition,warning} Don't mix these two structures!
 When designing the top-level sections of your `_toc.yml` file, you must
 pick *either* a list of chapters via `- file:` entries, or a list of parts
 via `- part:` entries with chapters inside of them. You cannot intermix them both.
-```
+:::
 
 (toc/files)=
 ### Files
@@ -141,7 +141,6 @@ you may do so with the `title:` key. For example:
 
 Note that this only applies to the sidebar
 in the table of contents, it does not change the actual chapter/section title.
-
 
 (toc/numbering)=
 ## Number your book's chapters and sections
@@ -197,7 +196,6 @@ few quirks to it. Here are a few gotchas:
   If you specify groups of sections via Parts, then numbering will restart between
   them. That means if you have two `- part:` entries with 2 pages each, you will
   have two sets of `1.` and `2.` sections, one for each part.
-
 
 (toc/structure)=
 ## How headers and sections map onto to book structure
@@ -296,6 +294,7 @@ If however `chapter1.md` had an extra third-level header, like so:
 ## Chapter 1 section second header
 ```
 ````
+
 Then your book will treat them like so:
 
 ```md
@@ -333,7 +332,7 @@ it finds a file that isn't listed there).
 If you'd like Jupyter Book to skip a file entirely, you can do so with the following
 configuration in `_config.yml`:
 
-```
+```yaml
 exclude_patterns: [pattern1/*, path/to/myfile.ipynb]
 ```
 
@@ -377,23 +376,23 @@ If you'd like to add a table of contents for the sub-sections of a page
 *within the page content* (in-line with the other content on the page), you
 may do so by using the `{tableofcontents}` directive. You can use it like so:
 
-````
+````md
 ```{tableofcontents}
 ```
 ````
 
-For an example, see the source of [the content types page](../content-types/index.md).
+For an example, see the source of [the content types page](../file-types/index.md).
 
 ## Automatically generate your `_toc.yml` file
 
 You can use `jupyter-book` to *generate* a Table of Contents file from your book
 using the filenames of your book's content. To do so, run the following command
 
-```
+```bash
 jupyter-book toc mybookpath/
 ```
 
-Jupyter Book will search `mybookpath/` for any [content files](../content-types/index)
+Jupyter Book will search `mybookpath/` for any [content files](../file-types/index)
 and create a `_toc.yml` file out of them. There are a few considerations to keep in mind:
 
 * Each sub-folder must have at least one content file inside it

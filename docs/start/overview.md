@@ -15,14 +15,15 @@ Jupyter Book. You can install it via pip with the following command:
 pip install -U jupyter-book
 ```
 
-```{admonition} A note for windows users
-:name: warning
-Currently, Jupyter Book is tested in a unix-like environment, and it is highly
-recommended that you use a unix environment to build your books. If you're running
-a recent version of Windows 10, we recommend
-[installing Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
-If you'd like to help with adding Windows support, please [say hello in this issue](https://github.com/executablebooks/jupyter-book/issues/575).
-```
+:::{admonition,warning} A note for Windows users
+
+Jupyter Book is now also tested against Windows OS 😀
+
+However, there is a known incompatibility for notebook execution, when using Python 3.8.
+
+See [](working-on-windows)
+
+:::
 
 ## The book building process
 
@@ -51,10 +52,10 @@ the pieces that you'll modify for your own book.
 Running the following command will create a new Jupyter Book with a few
 content pages and a Table of Contents to get you started:
 
-```{note}
+:::{note}
 Jupyter Book uses a command-line interface to generate books. For more complete
-information about the CLI, see {doc}`../reference/cli`.
-```
+information about the CLI, see [](../reference/cli.md).
+:::
 
 ### Create a template Jupyter Book
 
@@ -83,6 +84,22 @@ jupyter-book toc mybookname/
 And it will generate a TOC for you. Note that there must be at least one content
 file in each folder in order for any sub-folders to be parsed.
 ````
+
+:::{tip}
+Jupyter Book also provides a [cookiecutter](https://github.com/executablebooks/cookiecutter-jupyter-book) that can be used to interactively create a book directory structure.
+The cookiecutter is suitable for more advanced users that want to create a ready-to-go repository to host their book that includes pre-populated metafiles such as README, LICENSE, CONDUCT, CONTRIBUTING, etc., as well as GitHub Actions workflow files to {ref}`publish/gh-actions`.
+To try the cookiecutter template, run the following command:
+
+```bash
+jupyter-book create mybookpath/ --cookiecutter
+```
+
+For more help, see the [Jupyter Book cookiecutter GitHub repository](https://github.com/executablebooks/cookiecutter-jupyter-book), or run:
+
+```bash
+jupyter-book create --help
+```
+:::
 
 ### Inspecting your book's contents
 
@@ -188,7 +205,6 @@ You can store these files in whatever collection of folders you'd like, note tha
 the *structure* of your book when it is built will depend solely on the order of
 items in your `_toc.yml` file (see below section)
 
-
 ### Book bibliography for citations
 
 If you'd like to build a bibliography for your book, you can do so by including
@@ -200,8 +216,7 @@ mybookname/
 ```
 
 This BiBTex file can be used to insert citations into your book's pages. For more information,
-see {doc}`../content/citations`.
-
+see [](../content/citations.md).
 
 ## Next step: build your book
 
