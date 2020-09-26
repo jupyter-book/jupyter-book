@@ -131,6 +131,16 @@ The rules should then automatically be applied to your site. In general, these
 CSS and JS files will be loaded *after* others are loaded on your page, so they
 should overwrite pre-existing rules and behaviour.
 
+### An example: Justify the text
+
+If you want the text of you book to be justified instead of left aligned then create `myfile.css` under `mybook/_static` with the following CSS:
+
+```css
+p {
+    text-align: justify;
+}
+```
+
 ## Manual sphinx configuration
 
 You may also directly override the key-value pairs that Sphinx normally has
