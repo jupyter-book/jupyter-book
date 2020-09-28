@@ -26,7 +26,10 @@ The Table of Contents is broadly organized like so:
   your book's content. Their paths are relative to the book's root.
 
 ```{note}
-By default, the landing page of your book will not appear in the navbar, but this can be enabled in your `_config.yml` file by setting the `home_page_in_navbar` option to `true` (under the [html section](https://jupyterbook.org/customize/config.html#configuration-reference)).
+By default, the landing page of your book will appear in the navbar, but this can be disabled in your `_config.yml` file by setting the `home_page_in_navbar` option to `false` (under the [html section](https://jupyterbook.org/customize/config.html#configuration-reference)).
+```
+
+```{note}
 Currently, it is not possible to add nested sections to your landing page (see [#844](https://github.com/executablebooks/jupyter-book/issues/844))
 ```
 
