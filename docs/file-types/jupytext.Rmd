@@ -9,7 +9,7 @@ jupyter:
 (file-types:custom)=
 # Custom notebook formats and Jupytext
 
-You can designate additional file types to be converted to Notebooks and then executed/parsed in the same manner as regular notebooks.
+You can designate additional file types to be converted to notebooks and then executed/parsed in the same manner as regular notebooks.
 
 :::{tip}
 This page itself is written as an [RMarkdown](https://rmarkdown.rstudio.com/) notebook!
@@ -74,7 +74,7 @@ This mapping allows for "true" error reporting, as described in [](myst-nb:start
 between Jupyter Notebook `.ipynb` files and
 [a variety of text-based files](https://jupytext.readthedocs.io/en/latest/formats.html).
 
-Jupyter Book natively supports the Jupytext file format: [notebooks with MyST Markdown](./myst-notebooks.md), but you can add other formats like [RMarkdown](https://rmarkdown.rstudio.com/) or Python files.
+Jupyter Book natively supports the Jupytext file format: [notebooks with MyST markdown](./myst-notebooks.md), but you can add other formats like [RMarkdown](https://rmarkdown.rstudio.com/) or Python files.
 
 The configuration looks like:
 

@@ -11,9 +11,9 @@ kernelspec:
 
 # Notebooks written entirely in markdown
 
-It is possible to store Jupyter notebooks in pure markdown. This allows you
-to define a notebook structure entirely using MyST Markdown. For more information
-about MyST Markdown, see {doc}`../content/myst`.
+It is possible to store Jupyter notebooks in plain markdown. This allows you
+to define a notebook structure entirely using MyST markdown. For more information
+about MyST markdown, see {doc}`../content/myst`.
 
 Notebooks with markdown can be read in, executed, and cached by Jupyter Book (see {doc}`../content/execute` for information on how to cache pages).
 This allows you to store all of your notebook content in a text format that is much nicer for version control software, while still having all the functionality of a Jupyter notebook.
@@ -165,7 +165,7 @@ However, remember that there is only one kernel allowed per page.
 ### Markdown content
 
 Everything in-between your code cells is parsed as markdown content using the
-[MyST Markdown parser](https://myst-parser.readthedocs.io/). See {doc}`../content/myst` for
+[MyST markdown parser](https://myst-parser.readthedocs.io/). See {doc}`../content/myst` for
 more information about MyST markdown.
 
 To explicitly split up markdown content into two markdown cells, use the following

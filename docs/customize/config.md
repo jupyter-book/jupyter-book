@@ -31,7 +31,7 @@ In this case:
   In the HTML output, it is displayed above the title in the left sidebar.
 
 There are also some configuration options that are nested.
-For example, to configure your book to include **Binder links** in any section built from a Jupyter Notebook,
+For example, to configure your book to include **Binder links** in any section built from a Jupyter notebook,
 you may use the following configuration:
 
 ```yaml

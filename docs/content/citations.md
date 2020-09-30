@@ -13,9 +13,9 @@ kernelspec:
 # References and citations
 
 Because `jupyter-book` is built on top of {term}`Sphinx`,
-there are many ways of referencing content, including use of the excellent
+there are many ways to reference content, including the excellent
 [sphinxcontrib-bibtex](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/)
-extension to include citations and a bibliography with your book.
+extension that allows you to include citations and a bibliography with your book.
 
 :::{tip}
 When debugging your book build, the following options can be helpful:
@@ -24,7 +24,7 @@ When debugging your book build, the following options can be helpful:
 jupyter-book build -W -n --keep-going docs/
 ```
 
-This will check for missing references (`-n`), turning them into errors (`-W`),
+This will check for missing references (`-n`) and turn them into errors (`-W`),
 but will still attempt to run the full build (`--keep-going`),
 so that you can see all errors in one run.
 :::
@@ -32,7 +32,7 @@ so that you can see all errors in one run.
 (content:references)=
 ## Cross-references and labels
 
-Labels are a way to add tags to parts of your content that you can reference
+Labels are a way to add tags to parts of your content so that you can reference them
 later on. This is helpful if you want to quickly insert links to other
 parts of your book. Labels can be added before major elements of a page,
 such as titles or figures.
@@ -45,7 +45,7 @@ to label:
 # The thing to label
 ```
 
-For example, we've added the following label above the header for this section:
+For example, we've added the following label above the header for this section with:
 
 ```md
 (content:references)=
@@ -53,15 +53,15 @@ For example, we've added the following label above the header for this section:
 ```
 
 You can insert cross-references to labels in your content with the following syntax: `` {ref}`label-text` ``.
-For example, the following syntax: `` {ref}`content:references` `` results in a link to this section like so: {ref}`content:references`.
+For example, the syntax `` {ref}`content:references` `` results in a link to this section like so: {ref}`content:references`.
 
-### Referencing your book's content
+### Referencing content from your book
 
-There are a few ways to reference your book's content, depending on what kind of
+There are a few ways to reference content from your book, depending on what kind of
 content you'd like to reference. Here is a quick overview of some common options:
 
 * `{ref}` is used to reference section labels that you define or figures with a `name` value
-* `{numref}` is used to provide *numbered* references to figures
+* `{numref}` is used to provide *numbered* references to figures or headers
 * `{doc}` is used to reference other files in your book
 * `{eq}` is used to reference equations that have been given a `label` value
 
@@ -70,9 +70,9 @@ You can reference a section label through ``{ref}`label` `` or ``{ref}`some text
 Documents can be referenced through ``{doc}`path/to/document` `` or ``{doc}`some text <path/to/document>` ``
 :::
 
-If you wish to use Markdown style syntax, then MyST-Markdown will try to find a reference,
+If you wish to use markdown style syntax, then MyST markdown will try to find a reference,
 from any of the above reference types (and more!).
-This actually has an advantage, in that you can used nested syntax, ror example:
+This actually has an advantage, in that you can used nested syntax, for example:
 
 ```md
 [A **_reference_** to a page](./myst.md)
@@ -80,28 +80,32 @@ This actually has an advantage, in that you can used nested syntax, ror example:
 [A reference to a header](content:references)
 ```
 
+produces
+
 [A **_reference_** to a page](./myst.md)
 
 [A reference to a header](content:references)
 
-Leaving the title empty, will mean the reference uses the target as text, for example the title of a section:
+Leaving the title empty will mean the reference uses the target as text, for example the syntax
 
 ```md
 [](./myst.md)
 ```
+
+will link to a section and use its header text as the link text itself:
 
 [](./myst.md)
 
 :::{tip}
-You can control how MyST-Markdown distinguishes between internal references and external URLs in your `_config.yml`.
-For example:
+You can control how MyST markdown distinguishes between internal references and external URLs in your `_config.yml`.
+For example,
 
 ```yaml
 parse:
    myst_url_schemes: [mailto, http, https]
 ```
 
-Means that `[Jupyter Book](https://jupyterbook.org)` will be recognised as a URL, but `[Citations](content:citations)` will not:
+means that `[Jupyter Book](https://jupyterbook.org)` will be recognised as a URL, but `[Citations](content:citations)` will not:
 
 * [Jupyter Book](https://jupyterbook.org)
 * [Citations](content:citations)
@@ -111,7 +115,7 @@ Means that `[Jupyter Book](https://jupyterbook.org)` will be recognised as a URL
 (content:citations)=
 ## Citations and bibliographies
 
-You can add citations and bibliographies using references that are stored in a `bibtex` file that is in your book's folder. You can then add a citation in-line in your markdown with the **`{cite}`** role, and add a bibliography from your bibtex file with the `{bibliography}` directive.
+You can add citations and bibliographies using references that are stored in a `bibtex` file that is in your book's folder. You can then add a citation in-line in your markdown with the `{cite}` role, and include the bibliography from your bibtex file with the `{bibliography}` directive.
 
 **To add citations to your book**, take the following steps:
 
@@ -122,7 +126,7 @@ You can add citations and bibliographies using references that are stored in a `
    ```
 
 2. **Add references**. Add some references to your BibTex file. See
-   [the BibTex documentation](http://www.bibtex.org/Using/) for information about
+   [the BibTex documentation](http://www.bibtex.org/Using/) for information on
    the BibTex reference style. Here's an example citation:
 
    ```latex
@@ -138,13 +142,13 @@ You can add citations and bibliographies using references that are stored in a `
    }
    ```
 
-3. **Add a citation**. In your content, add the following text to include a citation
+3. **Add a citation**. In your content, use the following syntax to include a citation:
 
    ```md
    {cite}`mybibtexcitation`
    ```
 
-   For example, this text
+   For example,
 
    ```md
    {cite}`perez2011python`
@@ -167,24 +171,24 @@ You can add citations and bibliographies using references that are stored in a `
    ```
    ````
 
-   This will generate a bibliography for your entire bibtex file. See
+   This will generate the bibliography of your entire bibtex file. See
    [the bibliography at the end of this page](citations/bibliography) for an example.
 
 When your book is built, the bibliography and citations will now be included.
 
 :::{warning}
 If you are adding a bibliography to a *different* page from your references, then
-you may need to ensure that page is processed last, which Sphinx does alphabetically.
-For example, name the file `zreferences.rst`.
+you may need to ensure that page is processed last. Because Sphinx processes pages alphabetically,
+you may want to name the file `zreferences.rst` for example.
 
 See [this `sphinxcontrib-bibtex` section](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/usage.html#unresolved-citations-across-documents)
 for more information.
 :::
 
 This feature uses [`sphinxcontrib-bibtex`](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/usage.html#roles-and-directives)
-under the hood, see its documentation for more information on how to use and configure
-bibliographies in your book. Though note the documentation
-is written for rST and you'll need to adapt the directive/role syntax for your
+under the hood, so check its documentation for more information on how to use and configure
+bibliographies in your book. Do note the documentation
+is written with rST syntax in mind and you'll need to adapt the directive/role syntax for your
 markdown content.
 
 ### Selecting your reference style
@@ -207,7 +211,7 @@ To set your reference style, use the style option:
 ```
 ````
 
-### Local Bibliographies
+### Local bibliographies
 
 You may wish to include a bibliography listing at the end of each document
 rather than having a single bibliography contained in a separate document.
@@ -222,7 +226,7 @@ A common fix is to add a filter to the bibliography directives:
 ```
 ````
 
-See `sphinxcontrib-bibtex` documentation for [local bibliographies](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/usage.html#section-local-bibliographies)
+See `sphinxcontrib-bibtex` documentation on [local bibliographies](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/usage.html#section-local-bibliographies).
 
 (citations/bibliography)=
 ## Bibliography

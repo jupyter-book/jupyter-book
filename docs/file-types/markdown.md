@@ -2,8 +2,8 @@
 
 You can write content in regular markdown files (e.g., files ending in `.md`).
 Jupyter Book supports any markdown syntax that is supported by Jupyter notebooks.
-Jupyter notebook markdown is an extension of a flavour of markdown called
-[CommonMark Markdown](https://commonmark.org/).
+Jupyter Notebook markdown is an extension of a flavour of markdown called
+[CommonMark markdown](https://commonmark.org/).
 It has many elements for standard text processing, though it lacks a lot of features used for
 publishing and documentation.
 
@@ -12,12 +12,12 @@ If you'd like a more in-depth overview and guide to CommonMark markdown, see
 [the CommonMark markdown tutorial](https://commonmark.org/help/tutorial/).
 ```
 
-This page describes some basic features of Jupyter notebook markdown, and how to
+This page describes some basic features of the Jupyter Notebook markdown, and how to
 include them with your book.
 
 ```{margin}
-Jupyter Book also supports a fancier version of markdown called **MyST Markdown**. This
-is a slightly extended flavour of Jupyter notebook markdown. It
+Jupyter Book also supports a fancier version of markdown called **MyST markdown**. This
+is a slightly extended flavour of Jupyter Notebook markdown. It
 allows you to include citations and cross-references, and control more complex
 functionality like adding content to the margin. For more
 information, check out {doc}`../content/myst`.
@@ -56,7 +56,7 @@ This will be included in your book when it is built.
 ## Mathematics
 
 For HTML outputs, Jupyter Book uses the excellent [MathJax](http://docs.mathjax.org/en/latest/) library,
-along with the default Jupyter notebook configuration, for rendering mathematics from LaTeX-style syntax.
+along with the default Jupyter Notebook configuration, for rendering mathematics from LaTeX-style syntax.
 
 For example, here's a mathematical expression rendered with MathJax:
 
@@ -116,8 +116,8 @@ parse:
 
 :::
 
-## Extended markdown with MyST Markdown
+## Extended markdown with MyST markdown
 
-In addition to CommonMark markdown, Jupyter Book also supports a more fully-featured version of markdown called **MyST Markdown**.
+In addition to CommonMark markdown, Jupyter Book also supports a more fully-featured version of markdown called **MyST markdown**.
 This is a superset of CommonMark that includes syntactic pieces that are useful for publishing computational narratives.
-For more information about MyST Markdown, see [](../content/myst.md).
+For more information about MyST markdown, see [](../content/myst.md).
