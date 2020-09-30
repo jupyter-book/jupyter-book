@@ -88,7 +88,8 @@ def test_toc_rebuild(cli, build_resources):
 
     # Not using -W because we expect warnings for pages not listed in TOC
     result = cli.invoke(
-        commands.build, [tocs.as_posix(), "--toc", toc.as_posix(), "-n"],
+        commands.build,
+        [tocs.as_posix(), "--toc", toc.as_posix(), "-n"],
     )
     html = BeautifulSoup(index_html.read_text(encoding="utf8"), "html.parser")
     tags = html.find_all("a", "reference internal")
@@ -98,7 +99,8 @@ def test_toc_rebuild(cli, build_resources):
 
     toc.write_text("- file: index\n- file: content2\n- file: content1\n")
     result = cli.invoke(
-        commands.build, [tocs.as_posix(), "--toc", toc.as_posix(), "-n"],
+        commands.build,
+        [tocs.as_posix(), "--toc", toc.as_posix(), "-n"],
     )
     assert result.exit_code == 0, result.output
     html = BeautifulSoup(index_html.read_text(encoding="utf8"), "html.parser")

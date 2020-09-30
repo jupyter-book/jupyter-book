@@ -280,7 +280,8 @@ def create(path_book, cookiecutter):
             from cookiecutter.main import cookiecutter
         except ModuleNotFoundError as e:
             _error(
-                f"{e}. To install, run\n\n\tpip install cookiecutter", kind=e.__class__,
+                f"{e}. To install, run\n\n\tpip install cookiecutter",
+                kind=e.__class__,
             )
         book = cookiecutter(cc_url, output_dir=Path(path_book))
     _message_box(f"Your book template can be found at\n\n    {book}{os.sep}")
