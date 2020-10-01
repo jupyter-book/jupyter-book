@@ -16,7 +16,7 @@ There are two approaches to building PDF files:
 (pdf-html)=
 ## Build a PDF from your book HTML
 
-It is possible to build a single PDF from your book's HTML. This starts by 
+It is possible to build a single PDF from your book's HTML. This starts by
 converting all of your book's content into a single HTML file, and then renders
 it as a PDF by emulating a browser from the command-line.
 
