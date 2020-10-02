@@ -589,7 +589,7 @@ You can add citations and cross-references to your book. See
 
 ## Figures
 
-You can thouroughly customise the look of figures in your book. See {doc}`figures` for
+You can thoroughly customise the look of figures in your book. See {doc}`figures` for
 more information.
 
 ## Page layout and sidebar content
