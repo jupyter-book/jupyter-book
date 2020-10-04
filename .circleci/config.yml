@@ -59,6 +59,7 @@ jobs:
             sudo apt-get install texlive-fonts-extra texlive-latex-extra
             sudo apt-get install texlive-xetex
             sudo apt-get install latexmk
+            sudo apt-get install xindy
 
       - run:
           name: PDF from LaTeX
