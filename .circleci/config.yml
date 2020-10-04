@@ -55,7 +55,7 @@ jobs:
       - run:
           name: Install TeX
           command: |
-            sudo apt-get install texlive-full texlive-xetex latexmk
+            sudo apt-get install texlive-full
 
       - run:
           name: PDF from LaTeX
