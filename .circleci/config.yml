@@ -40,7 +40,6 @@ jobs:
     docker:
       - image: circleci/python:3.6-stretch
     steps:
-      - run: sudo apt-get update
       - checkout
 
       - restore_cache:
@@ -55,6 +54,7 @@ jobs:
       - run:
           name: Install TeX
           command: |
+            sudo apt-get update
             sudo apt-get install texlive
             sudo apt-get install texlive-fonts-extra texlive-latex-extra
             sudo apt-get install texlive-xetex
