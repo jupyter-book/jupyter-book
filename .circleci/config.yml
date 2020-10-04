@@ -38,7 +38,7 @@ jobs:
 
   pdflatex:
     docker:
-      - image: circleci/python:3.6-stretch
+      - image: circleci/python:3.8-stretch
     steps:
       - checkout
 
