@@ -55,10 +55,7 @@ jobs:
       - run:
           name: Install TeX
           command: |
-            sudo apt-get install texlive
-            sudo apt-get install texlive-fonts-extra texlive-latex-extra
-            sudo apt-get install texlive-xetex
-            sudo apt-get install latexmk
+            sudo apt-get install texlive-full texlive-xetex latexmk
 
       - run:
           name: PDF from LaTeX
