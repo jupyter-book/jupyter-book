@@ -55,8 +55,10 @@ jobs:
       - run:
           name: Install TeX
           command: |
-            sudo apt-get install texlive-gnu-freefont
-            sudo apt-get install texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra latexmk texlive-xetex
+            sudo apt-get install texlive-fonts-recommended texlive-fonts-extra
+            sudo apt-get install texlive-latex-recommended texlive-latex-extra
+            sudo apt-get install texlive-xetex
+            sudo apt-get latexmk
 
       - run:
           name: PDF from LaTeX
