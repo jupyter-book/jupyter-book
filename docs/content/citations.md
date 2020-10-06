@@ -70,7 +70,7 @@ You can reference a section label through ``{ref}`label` `` or ``{ref}`some text
 Documents can be referenced through ``{doc}`path/to/document` `` or ``{doc}`some text <path/to/document>` ``
 :::
 
-If you wish to use markdown style syntax, then MyST markdown will try to find a reference,
+If you wish to use Markdown style syntax, then MyST Markdown will try to find a reference,
 from any of the above reference types (and more!).
 This actually has an advantage, in that you can used nested syntax, for example:
 
@@ -97,7 +97,7 @@ will link to a section and use its header text as the link text itself:
 [](./myst.md)
 
 :::{tip}
-You can control how MyST markdown distinguishes between internal references and external URLs in your `_config.yml`.
+You can control how MyST Markdown distinguishes between internal references and external URLs in your `_config.yml`.
 For example,
 
 ```yaml
@@ -115,7 +115,7 @@ means that `[Jupyter Book](https://jupyterbook.org)` will be recognised as a URL
 (content:citations)=
 ## Citations and bibliographies
 
-You can add citations and bibliographies using references that are stored in a `bibtex` file that is in your book's folder. You can then add a citation in-line in your markdown with the `{cite}` role, and include the bibliography from your bibtex file with the `{bibliography}` directive.
+You can add citations and bibliographies using references that are stored in a `bibtex` file that is in your book's folder. You can then add a citation in-line in your Markdown with the `{cite}` role, and include the bibliography from your bibtex file with the `{bibliography}` directive.
 
 **To add citations to your book**, take the following steps:
 
@@ -189,7 +189,7 @@ This feature uses [`sphinxcontrib-bibtex`](https://sphinxcontrib-bibtex.readthed
 under the hood, so check its documentation for more information on how to use and configure
 bibliographies in your book. Do note the documentation
 is written with rST syntax in mind and you'll need to adapt the directive/role syntax for your
-markdown content.
+Markdown content.
 
 ### Selecting your reference style
 

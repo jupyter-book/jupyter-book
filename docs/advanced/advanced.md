@@ -148,9 +148,9 @@ for ipath in notebooks:
 ```
 
 (raw-html-in-markdown)=
-## Use raw HTML in markdown
+## Use raw HTML in Markdown
 
-Jupyter Notebook markdown allows you to use raw HTML in markdown cells.
+Jupyter Notebook Markdown allows you to use raw HTML in Markdown cells.
 This is discouraged in most cases,
 because it will usually just be passed through the build process as raw text, and so will not be subject to processes like:
 
@@ -173,7 +173,7 @@ and you will find that the HTML link is broken:
 [Go Home Markdown!](../intro.md)
 
 :::{tip}
-Note that MyST markdown now has some extended syntax features,
+Note that MyST Markdown now has some extended syntax features,
 which can allow you to use certain HTML elements in the correct manner.
 
 For example, the raw HTML image tag
@@ -291,7 +291,7 @@ Note that there is no guarantee that they will work on all Windows installations
 
 3. Nested tables of contents
 
-   Currently, `_toc.yml` files that reference markdown files
+   Currently, `_toc.yml` files that reference Markdown files
    in sub-folders are failing for some Windows users. That is, this
    [original _toc.yml](https://github.com/eoas-ubc/quantecon-mini-example/blob/master/mini_book/_toc.yml)
    file will fail with a message saying Jupyter Book "```cannot find index.md```"

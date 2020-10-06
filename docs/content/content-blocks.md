@@ -82,8 +82,8 @@ My content
 
 The admonition syntax above utilises the general [directives syntax](content:myst/directives).
 This has the advantage of making it consistent with every other directive.
-However, a big disadvantage is that, when working in any standard markdown editor (or with the Jupyter Notebook interface),
-the text they contain will not render nicely as standard markdown (for markdown previews).
+However, a big disadvantage is that, when working in any standard Markdown editor (or with the Jupyter Notebook interface),
+the text they contain will not render nicely as standard Markdown (for Markdown previews).
 
 By enabling extended syntax in your `_config.yml`, you will gain access to an alternative syntax for admonitions:
 
@@ -93,18 +93,18 @@ parse:
 ```
 
 The key differences is that, instead of back-ticks (`` ` ``), colons (`:`) are used,
-and thus **the content renders as regular markdown**.
+and thus **the content renders as regular Markdown**.
 
 For example:
 
 ```md
 :::{note}
-This text is **standard** _markdown_
+This text is **standard** _Markdown_
 :::
 ```
 
 :::{note}
-This text is **standard** _markdown_
+This text is **standard** _Markdown_
 :::
 
 Similar to normal directives, these admonitions can also be nested:
@@ -112,14 +112,14 @@ Similar to normal directives, these admonitions can also be nested:
 ```md
 ::::{important}
 :::{note}
-This text is **standard** _markdown_
+This text is **standard** _Markdown_
 :::
 ::::
 ```
 
 ::::{important}
 :::{note}
-This text is **standard** _markdown_
+This text is **standard** _Markdown_
 :::
 ::::
 
@@ -134,13 +134,13 @@ Also, `admonition` can have a custom title.
 For example:
 
 ```md
-:::{admonition,warning} This *is* also **markdown**
-This text is **standard** _markdown_
+:::{admonition,warning} This *is* also **Markdown**
+This text is **standard** _Markdown_
 :::
 ```
 
-:::{admonition,warning} This *is* also **markdown**
-This text is **standard** _markdown_
+:::{admonition,warning} This *is* also **Markdown**
+This text is **standard** _Markdown_
 :::
 
 (content/toggle-admonitions)=
@@ -325,7 +325,7 @@ From the [Pandoc documentation](https://pandoc.org/MANUAL.html#definition-lists)
 
 Here is a more complex example, demonstrating some of these features:
 
-Term *with markdown*
+Term *with Markdown*
 : Definition [with reference](content/definition-lists)
 
   A second paragraph
@@ -342,10 +342,10 @@ Term 3
 
   <img src="../images/fun-fish.png" alt="fishy" width="200px">
 
-This was created with the following markdown:
+This was created with the following Markdown:
 
 ```md
-Term *with markdown*
+Term *with Markdown*
 : Definition [with reference](ontent/definition-lists)
 
   A second paragraph
@@ -369,7 +369,7 @@ Term 3
 Quotations and epigraphs provide ways to highlight information given by others.
 They behave slightly differently.
 
-**Regular quotations** are controlled with standard markdown syntax, i.e., by
+**Regular quotations** are controlled with standard Markdown syntax, i.e., by
 inserting a caret (`>`) symbol in front of one or more lines of text. For example,
 the following quotation:
 
@@ -377,7 +377,7 @@ the following quotation:
 >
 > From me, Jo the Jovyan
 
-Was created with this markdown:
+Was created with this Markdown:
 
 ```md
 > Here is a cool quotation.
@@ -395,7 +395,7 @@ Here is a cool quotation.
 From me, Jo the Jovyan
 ```
 
-This was generated with this markdown:
+This was generated with this Markdown:
 
 ````md
 ```{epigraph}
@@ -414,7 +414,7 @@ Here is a cool quotation.
 -- Jo the Jovyan
 ```
 
-was generated with this markdown:
+was generated with this Markdown:
 
 ````md
 ```{epigraph}
@@ -599,7 +599,7 @@ information on this, see {doc}`layout`.
 
 ## Footnotes
 
-You can include footnotes in your book using standard markdown syntax.
+You can include footnotes in your book using standard Markdown syntax.
 This will include a numbered reference to the footnote in-line, and append the footnote
 to a list of footnotes at the bottom of the page.
 
@@ -618,4 +618,4 @@ at the bottom of this page.
 [^mynote]: Here's the text of my first note.
 [^mynote2]: And the text of my second note.
             Note that
-            [you can include markdown footnote definitions](https://executablebooks.org).
+            [you can include Markdown footnote definitions](https://executablebooks.org).

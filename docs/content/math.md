@@ -38,7 +38,7 @@ See the [Sphinx documentation](sphinx:sphinx.ext.mathjax) for details.
 
 ## In-line math
 
-To insert in-line math use the `$` symbol within a markdown cell.
+To insert in-line math use the `$` symbol within a Markdown cell.
 For example, the text `$this_{is}^{inline}$` will produce: $this_{is}^{inline}$.
 
 +++

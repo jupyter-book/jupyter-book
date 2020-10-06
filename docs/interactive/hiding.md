@@ -24,7 +24,7 @@ In this case, you have two options:
 
 There are two ways to hide content:
 
-* To hide markdown, use the `{toggle}` directive.
+* To hide Markdown, use the `{toggle}` directive.
 * To hide or remove code cells or their outputs, use **notebook cell tags**.
 
 We'll cover each alternative below.
@@ -33,19 +33,19 @@ We'll cover each alternative below.
 [](jupyter-cell-tags)
 :::
 
-## Hide markdown using MyST markdown
+## Hide Markdown using MyST Markdown
 
-There are two ways to hide markdown content
+There are two ways to hide Markdown content
 
 * you can use the `{toggle}` directive to hide arbitrary blocks of content
 * you can use the `dropdown` class with admonitions to turn them into dropdowns
 
-Both allow you to wrap chunks of markdown in a button that lets users show
+Both allow you to wrap chunks of Markdown in a button that lets users show
 and hide the content.
 
 ### The `{toggle}` directive
 
-You can activate a toggleable behavior in markdown with the `{toggle}`
+You can activate a toggleable behavior in Markdown with the `{toggle}`
 directive like so:
 
 ````md
@@ -106,7 +106,7 @@ See {ref}`content/toggle-admonitions` for more information on admonition dropdow
 ## Hide code cell content
 
 You can hide most cell elements of a page. The sections below describe how
-to hide each using cell tags in MyST markdown.
+to hide each using cell tags in MyST Markdown.
 If you're working with `.ipynb` files, see [the cell tags guide](jupyter-cell-tags)
 on adding cell tags to notebooks in Jupyter Notebook or JupyterLab.
 

@@ -3,9 +3,9 @@
 (content-blocks-images)=
 ## Images
 
-MyST markdown provides a few different syntaxes for including images in your documents, as explained below.
+MyST Markdown provides a few different syntaxes for including images in your documents, as explained below.
 
-The first is the standard markdown syntax, by which
+The first is the standard Markdown syntax, by which
 
 ```md
 ![fishy](../images/fun-fish.png)
@@ -41,8 +41,8 @@ will include the following _customized_ figure:
 
 These directives allow you to control aspects of the image with [directive arguments](directive-arguments).
 
-In one way, this is an improvement over the markdown syntax. However, the drawback is that this syntax will not show the image in common markdown viewers (for example when the files are viewed on GitHub).
-A workaround is to use HTML directly, which can also be parsed as MyST markdown.
+In one way, this is an improvement over the Markdown syntax. However, the drawback is that this syntax will not show the image in common Markdown viewers (for example when the files are viewed on GitHub).
+A workaround is to use HTML directly, which can also be parsed as MyST Markdown.
 Using raw HTML is usually a bad choice (see [this explanation](raw-html-in-markdown)),
 but enabling extended syntax in your `_config` enables MySt-Parser to properly handle isolated `img` tags.
 
@@ -96,7 +96,7 @@ Alternatively, you may wish to check out these Sphinx extensions:
 
 ## Figures
 
-MyST markdown also lets you include **figures** in your page. Figures are
+MyST Markdown also lets you include **figures** in your page. Figures are
 like images, except that they are easier to reference elsewhere in your
 book, and they include things like captions. To include a figure, use this
 syntax:
@@ -128,7 +128,7 @@ To do so, see [](content:code-outputs:glue).
 
 ## Markdown figures
 
-Markdown figures combine [colon style admonitions](admonitions:colons) and [HTML image parsing](content-blocks-images), to produce a "markdown friendly" syntax for figures,
+Markdown figures combine [colon style admonitions](admonitions:colons) and [HTML image parsing](content-blocks-images), to produce a "Markdown friendly" syntax for figures,
 with equivalent behaviour to the `figure` directive above.
 
 To enable them, add this to your `_config.yml` file:
@@ -138,7 +138,7 @@ parse:
   myst_extended_syntax: true
 ```
 
-The figure block must contain **only** two components; an image, in either markdown or HTML syntax, and a single paragraph for the caption.
+The figure block must contain **only** two components; an image, in either Markdown or HTML syntax, and a single paragraph for the caption.
 
 As with admonitions, the figure can have additional classes set.
 The "title" of the admonition is used as the label that can be targeted by your cross-references.
@@ -174,7 +174,7 @@ We just have to use the title of the admonition as target:
 
 ## Referencing figures
 
-You can then refer to your figures by using the `{ref}` role or markdown style references like:
+You can then refer to your figures by using the `{ref}` role or Markdown style references like:
 
 ```md
 - {ref}`directive-fig`

@@ -86,7 +86,7 @@ Now we can link to the image from anywhere in our documentation: [swim to the fi
 
 Markdown output is parsed by MyST-Parser, currently with the parsing set to strictly [CommonMark](https://commonmark.org/).
 
-The parsed markdown is then integrated into the wider context of the document. This means it is possible, for example, to include internal references:
+The parsed Markdown is then integrated into the wider context of the document. This means it is possible, for example, to include internal references:
 
 ```{code-cell} ipython3
 from IPython.display import display, Markdown
@@ -508,7 +508,7 @@ Here are a few more specific and advanced uses of the `glue` submodule.
 
 In addition to pasting blocks of outputs, or in-line with text, you can also paste directly
 into tables. This allows you to compose complex collections of structured data using outputs
-that were generated in other cells or other notebooks. For example, the following markdown table:
+that were generated in other cells or other notebooks. For example, the following Markdown table:
 
 ````md
 | name                            |       plot                    | mean                      | ci                                                |

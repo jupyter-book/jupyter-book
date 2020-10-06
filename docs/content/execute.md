@@ -21,8 +21,8 @@ Caching behaviour is controlled with the `execute:` section [in your `_config.ym
 the sections below for each configuration option and its effect.
 
 :::{tip}
-If you'd like to execute code that is in your markdown files,
-you can use the `{code-cell}` directive in MyST markdown.
+If you'd like to execute code that is in your Markdown files,
+you can use the `{code-cell}` directive in MyST Markdown.
 See [](../file-types/myst-notebooks.md) for more information.
 :::
 

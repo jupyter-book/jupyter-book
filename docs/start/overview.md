@@ -1,7 +1,7 @@
 # Overview and installation
 
 This is a guide for creating your own book using Jupyter Book.
-Book content is written in markdown files and Jupyter notebooks, and
+Book content is written in Markdown files and Jupyter notebooks, and
 `jupyter-book` converts these into a book fit for hosting on the web or a
 publishable PDF.
 
@@ -32,7 +32,7 @@ Building a Jupyter Book broadly consists of two steps:
 1. **Put your book content in a folder or a file**. Jupyter Book needs the following
    pieces in order to build your book:
 
-   * Your content file(s) (the pages of your book) in either markdown files or Jupyter
+   * Your content file(s) (the pages of your book) in either Markdown files or Jupyter
      notebooks.
    * A Table of Contents `YAML` file (`_toc.yml`) that defines
      the structure of your book. Mandatory when building a folder.
@@ -188,7 +188,7 @@ For more information about your book's table of contents file, see
 
 ## Book content
 
-The markdown and ipynb files in your folder make up your book's content. Some content
+The Markdown and ipynb files in your folder make up your book's content. Some content
 files for the demo book are shown below:
 
 ```bash
@@ -198,7 +198,7 @@ mybookname/
 └── notebooks.ipynb
 ```
 
-Note that the content files are either **Jupyter notebooks** or **markdown**
+Note that the content files are either **Jupyter notebooks** or **Markdown**
 files. These are the files that define "sections" in your book.
 
 You can store these files in whatever collection of folders you'd like, note that

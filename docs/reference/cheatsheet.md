@@ -70,7 +70,7 @@ You can specify the text of the target:
 {ref}`MyST syntax lecture <myst_cheatsheet>`
 ```
 
-Another alternative is to use markdown syntax:
+Another alternative is to use Markdown syntax:
 
 ```md
 [MyST syntax lecture](myst_cheatsheet)

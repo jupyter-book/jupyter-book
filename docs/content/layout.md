@@ -94,7 +94,7 @@ My sidebar content
 
 ### Margin content
 
-To add content to the margin with myst markdown, use this syntax:
+To add content to the margin with MyST Markdown, use this syntax:
 
 ````md
 ```{margin} An optional title
@@ -108,7 +108,7 @@ Here's some margin content! It was created by using the
 ```{margin}
 ```
 ````
-directive in a markdown cell. Jupyter Book automatically converts these
+directive in a Markdown cell. Jupyter Book automatically converts these
 cells into helpful margin content.
 `````
 
@@ -176,8 +176,8 @@ Sometimes, you'd like to use **all** of the horizontal space available to you. T
 you to highlight particular ideas, visualizations, etc.
 
 In Jupyter Book, you can specify that the outputs of a cell (if it's a code cell) or the entire
-cell (if it's a markdown cell) should take up all of
-the horizonal space (including the margin to the right) using the
+cell (if it's a Markdown cell) should take up all of
+the horizontal space (including the margin to the right) using the
 following cell metadata tag:
 
 ```json
@@ -188,7 +188,7 @@ following cell metadata tag:
 }
 ```
 
-This works equally well on markdown cells and on code cells.
+This works equally well on Markdown cells and on code cells.
 
 For example, let's take a look at the figure in the margin above in a cell with `full-width` set. We'll tell Matplotlib
 to make it a bit wider so we can take advantage of the extra space!
@@ -199,7 +199,7 @@ to make it a bit wider so we can take advantage of the extra space!
 make_fig(figsize=(20, 5))
 ```
 
-This can work with markdown cells as well. For example, we'll make the following warning block `full-width` so that
+This can work with Markdown cells as well. For example, we'll make the following warning block `full-width` so that
 it draws more attention to it:
 
 +++ {"tags": ["full-width"]}

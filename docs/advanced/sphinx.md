@@ -47,7 +47,7 @@ To enable it, we'll do the following:
   pip install sphinx-tabs
   ```
 
-* **Add `sphinx-tabs` content to your book**. Here's an example with MyST markdown:
+* **Add `sphinx-tabs` content to your book**. Here's an example with MyST Markdown:
 
   `````md
   ````{tabs}
@@ -171,7 +171,7 @@ jb config sphinx mybookname/
 ### Fine control of parsing and execution
 
 As discussed in [the components of Jupyter Book](intro/jupyter-book-components), two of the main components of Jupyter Book are Sphinx extensions;
-MyST-Parser for markdown parsing, and MyST-NB for notebook execution and output rendering.
+MyST-Parser for Markdown parsing, and MyST-NB for notebook execution and output rendering.
 
 These two extensions are highly customizable *via* Sphinx configuration.
 Some of their configuration is already exposed in the `_config.yml`, but you can also directly set configuration, see:

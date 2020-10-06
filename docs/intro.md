@@ -5,16 +5,16 @@ publication-quality books and documents from computational material.
 
 Here are some of the features of Jupyter Book:
 
-{fa}`check,text-success mr-1` [Write publication-quality content in markdown](file-types/markdown)
-: You can write in either Jupyter markdown, or an extended flavor of markdown with [publishing features](content/myst).
+{fa}`check,text-success mr-1` [Write publication-quality content in Markdown](file-types/markdown)
+: You can write in either Jupyter Markdown, or an extended flavor of Markdown with [publishing features](content/myst).
   This includes support for rich syntax such as [citations and cross-references](content/citations), [math and equations](content/math), and [figures](content/figures).
 
 {fa}`check,text-success mr-1` [Write content in Jupyter Notebook](file-types/notebooks)
 : This allows you to include your code and outputs in your book.
-  You can also write notebooks [entirely in markdown](file-types/myst-notebooks) that get executed when you build your book.
+  You can also write notebooks [entirely in Markdown](file-types/myst-notebooks) that get executed when you build your book.
 
 {fa}`check,text-success mr-1` [Execute and cache your book's content](content/execute)
-: For `.ipynb` and markdown notebooks, execute code and insert the latest outputs into your book.
+: For `.ipynb` and Markdown notebooks, execute code and insert the latest outputs into your book.
   In addition, {ref}`cache and re-use<execute/cache>` outputs to be used later.
 
 {fa}`check,text-success mr-1` [Insert notebook outputs into your content](content:code-outputs)
@@ -85,8 +85,8 @@ Some of the features on display include
 
 The source files can be [found on GitHub](https://github.com/executablebooks/quantecon-mini-example/)
 in the [docs directory](https://github.com/executablebooks/quantecon-mini-example/tree/master/mini_book/docs).
-These files are written in [MyST markdown](content/myst), an
-extension of the Jupyter Notebook markdown, that allows for additional scientific markup.
+These files are written in [MyST Markdown](content/myst), an
+extension of the Jupyter Notebook Markdown, that allows for additional scientific markup.
 They could alternatively have been written directly as Jupyter notebooks.
 
 **Build the demo book**
@@ -152,8 +152,8 @@ ecosystem that make it easier to publish computational documents.
 Here are
 a few key pieces:
 
-* It uses {term}`the MyST markdown language<MyST>` in
-  markdown and notebook documents.
+* It uses {term}`the MyST Markdown language<MyST>` in
+  Markdown and notebook documents.
   This allows users to write rich, publication-quality markup in their documents.
 * It uses {term}`the MyST-NB package<MyST-NB>` to parse and
   read-in notebooks so they are built into your book.

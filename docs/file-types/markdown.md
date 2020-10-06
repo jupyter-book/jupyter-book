@@ -1,23 +1,23 @@
 # Markdown files
 
-You can write content in regular markdown files (e.g., files ending in `.md`).
-Jupyter Book supports any markdown syntax that is supported by Jupyter notebooks.
-Jupyter Notebook markdown is an extension of a flavour of markdown called
-[CommonMark markdown](https://commonmark.org/).
+You can write content in regular Markdown files (e.g., files ending in `.md`).
+Jupyter Book supports any Markdown syntax that is supported by Jupyter notebooks.
+Jupyter Notebook Markdown is an extension of a flavour of Markdown called
+[CommonMark Markdown](https://commonmark.org/).
 It has many elements for standard text processing, though it lacks a lot of features used for
 publishing and documentation.
 
 ```{note}
-If you'd like a more in-depth overview and guide to CommonMark markdown, see
-[the CommonMark markdown tutorial](https://commonmark.org/help/tutorial/).
+If you'd like a more in-depth overview and guide to CommonMark Markdown, see
+[the CommonMark Markdown tutorial](https://commonmark.org/help/tutorial/).
 ```
 
-This page describes some basic features of the Jupyter Notebook markdown, and how to
+This page describes some basic features of the Jupyter Notebook Markdown, and how to
 include them with your book.
 
 ```{margin}
-Jupyter Book also supports a fancier version of markdown called **MyST markdown**. This
-is a slightly extended flavour of Jupyter Notebook markdown. It
+Jupyter Book also supports a fancier version of Markdown called **MyST Markdown**. This
+is a slightly extended flavour of Jupyter Notebook Markdown. It
 allows you to include citations and cross-references, and control more complex
 functionality like adding content to the margin. For more
 information, check out {doc}`../content/myst`.
@@ -27,8 +27,8 @@ information, check out {doc}`../content/myst`.
 
 ### Adding images
 
-You can reference external media like images from your markdown file. If you use
-relative paths, then they will continue to work when the markdown files are copied over,
+You can reference external media like images from your Markdown file. If you use
+relative paths, then they will continue to work when the Markdown files are copied over,
 so long as they point to a file that's inside of the repository.
 
 Here's an image relative to the book content root
@@ -116,8 +116,8 @@ parse:
 
 :::
 
-## Extended markdown with MyST markdown
+## Extended Markdown with MyST Markdown
 
-In addition to CommonMark markdown, Jupyter Book also supports a more fully-featured version of markdown called **MyST markdown**.
+In addition to CommonMark Markdown, Jupyter Book also supports a more fully-featured version of Markdown called **MyST Markdown**.
 This is a superset of CommonMark that includes syntactic pieces that are useful for publishing computational narratives.
-For more information about MyST markdown, see [](../content/myst.md).
+For more information about MyST Markdown, see [](../content/myst.md).

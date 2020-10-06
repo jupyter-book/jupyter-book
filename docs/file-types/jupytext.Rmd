@@ -39,9 +39,9 @@ sphinx:
 
 :::{important}
 
-By default, markdown cells in the notebook will be parsed using the same MyST parser configuration as for other markdown files.
+By default, Markdown cells in the notebook will be parsed using the same MyST parser configuration as for other Markdown files.
 
-But, if this is incompatible with your file format, then you can specify for the markdown to be parsed as **strictly CommonMark**, using a third argument:
+But, if this is incompatible with your file format, then you can specify for the Markdown to be parsed as **strictly CommonMark**, using a third argument:
 
 ```yaml
 sphinx:
@@ -74,7 +74,7 @@ This mapping allows for "true" error reporting, as described in [](myst-nb:start
 between Jupyter Notebook `.ipynb` files and
 [a variety of text-based files](https://jupytext.readthedocs.io/en/latest/formats.html).
 
-Jupyter Book natively supports the Jupytext file format: [notebooks with MyST markdown](./myst-notebooks.md), but you can add other formats like [RMarkdown](https://rmarkdown.rstudio.com/) or Python files.
+Jupyter Book natively supports the Jupytext file format: [notebooks with MyST Markdown](./myst-notebooks.md), but you can add other formats like [RMarkdown](https://rmarkdown.rstudio.com/) or Python files.
 
 The configuration looks like:
 

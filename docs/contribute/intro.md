@@ -90,9 +90,9 @@ explains which pieces are where.
 
 The Jupyter Book repository contains two main pieces:
 
-### MyST markdown
+### MyST Markdown
 
-Jupyter Book supports an *extended version of Jupyter Markdown* called "MyST markdown".
+Jupyter Book supports an *extended version of Jupyter Markdown* called "MyST Markdown".
 For information about the MyST syntax and how to use it, see
 [the MyST-Parser documentation](https://myst-parser.readthedocs.io/en/latest/using/syntax.html).
 
@@ -135,7 +135,7 @@ what kinds of functionality they support:
 
 * {term}`The Sphinx Documentation engine<Sphinx>` is used to build book outputs. This relies
   on a number of extensions that are developed by Jupyter Book.
-* {term}`MyST markdown<MyST>` is parsed into Sphinx by
+* {term}`MyST Markdown<MyST>` is parsed into Sphinx by
   {term}`the MyST-Parser<MyST-Parser>`.
 * {term}`The MyST-NB package<MyST-NB>` parses Jupyter Notebooks into Sphinx and also
   controls some parts of notebook execution.

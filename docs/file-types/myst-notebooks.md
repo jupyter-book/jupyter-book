@@ -9,13 +9,13 @@ kernelspec:
   name: python3
 ---
 
-# Notebooks written entirely in markdown
+# Notebooks written entirely in Markdown
 
-It is possible to store Jupyter notebooks in plain markdown. This allows you
-to define a notebook structure entirely using MyST markdown. For more information
-about MyST markdown, see {doc}`../content/myst`.
+It is possible to store Jupyter notebooks in plain Markdown. This allows you
+to define a notebook structure entirely using MyST Markdown. For more information
+about MyST Markdown, see {doc}`../content/myst`.
 
-Notebooks with markdown can be read in, executed, and cached by Jupyter Book (see {doc}`../content/execute` for information on how to cache pages).
+Notebooks with Markdown can be read in, executed, and cached by Jupyter Book (see {doc}`../content/execute` for information on how to cache pages).
 This allows you to store all of your notebook content in a text format that is much nicer for version control software, while still having all the functionality of a Jupyter notebook.
 
 :::{note}
@@ -45,7 +45,7 @@ This can then be used as a page in your book.
 For full compatibility with `myst-parser`, it is necessary to use `jupytext>=1.6.0`.
 :::
 
-Jupytext can also **automatically synchronize an `.ipynb` file with your markdown**.
+Jupytext can also **automatically synchronize an `.ipynb` file with your Markdown**.
 To do so, use a Jupyter interface such as Jupyter Lab or the classic notebook interface
 and follow the [Jupytext instructions for paired notebooks](https://jupytext.readthedocs.io/en/latest/paired-notebooks.html).
 
@@ -54,11 +54,11 @@ If **both** an `.ipynb` and a `.md` file exist in your book's folders, then
 the `.md` file will take precedence!
 ```
 
-### Convert a markdown file into Jupytext MyST markdown
+### Convert a Markdown file into Jupytext MyST Markdown
 
 Jupyter Book has a small CLI to provide common functionality for manipulating and
-creating MyST markdown files that synchronize with Jupytext. To add Jupytext syntax
-to a markdown file (that will tell Jupytext it is a MyST markdown file), run the
+creating MyST Markdown files that synchronize with Jupytext. To add Jupytext syntax
+to a Markdown file (that will tell Jupytext it is a MyST Markdown file), run the
 following command:
 
 ```bash
@@ -89,7 +89,7 @@ kernelspec:
 
 # My simple notebook
 
-Some **intro markdown**!
+Some **intro Markdown**!
 
 ```{code-cell} ipython3
 :tags: [mytag]
@@ -99,7 +99,7 @@ print("A python cell")
 
 ## A section
 
-And some more markdown...
+And some more Markdown...
 ````
 
 There are three main sections to notice:
@@ -164,20 +164,20 @@ However, remember that there is only one kernel allowed per page.
 
 ### Markdown content
 
-Everything in-between your code cells is parsed as markdown content using the
-[MyST markdown parser](https://myst-parser.readthedocs.io/). See {doc}`../content/myst` for
-more information about MyST markdown.
+Everything in-between your code cells is parsed as Markdown content using the
+[MyST Markdown parser](https://myst-parser.readthedocs.io/). See {doc}`../content/myst` for
+more information about MyST Markdown.
 
-To explicitly split up markdown content into two markdown cells, use the following
+To explicitly split up Markdown content into two Markdown cells, use the following
 pattern:
 
 ````md
 ```md
-Content in one markdown cell
+Content in one Markdown cell
 
 +++
 
-Content in another markdown cell
+Content in another Markdown cell
 ```
 ````
 
@@ -186,10 +186,10 @@ For example, to add tags to the second cell above:
 
 ````md
 ```md
-Content in one markdown cell
+Content in one Markdown cell
 
 +++ {"tags": ["tag1,tag2,tag3"]}
 
-Content in another markdown cell
+Content in another Markdown cell
 ```
 ````

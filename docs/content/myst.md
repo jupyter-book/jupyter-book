@@ -1,21 +1,21 @@
-# MyST markdown overview
+# MyST Markdown overview
 
-In addition to [Jupyter Notebook markdown](../file-types/notebooks.ipynb),
-Jupyter Book also supports a special flavour of markdown called **MyST (or
+In addition to [Jupyter Notebook Markdown](../file-types/notebooks.ipynb),
+Jupyter Book also supports a special flavour of Markdown called **MyST (or
 Markedly Structured Text)**.
-It was designed to make it easier to create publishable computational documents written with markdown notation.
-It is a superset of [CommonMark markdown](https://commonmark.org/) and draws heavy inspiration from the fantastic [RMarkdown language from RStudio](https://rmarkdown.rstudio.com/).
+It was designed to make it easier to create publishable computational documents written with Markdown notation.
+It is a superset of [CommonMark Markdown](https://commonmark.org/) and draws heavy inspiration from the fantastic [RMarkdown language from RStudio](https://rmarkdown.rstudio.com/).
 
 ```{margin}
-For those who are familiar with Sphinx, MyST markdown is basically
-CommonMark + markdown extensions + Sphinx roles and directives
+For those who are familiar with Sphinx, MyST Markdown is basically
+CommonMark + Markdown extensions + Sphinx roles and directives
 ```
 
-Whether you write your book's content in Jupyter notebooks (`.ipynb`) or in regular markdown files (`.md`),
-you'll write in the same flavour of **MyST markdown**. Jupyter Book will know how to parse both of them.
+Whether you write your book's content in Jupyter notebooks (`.ipynb`) or in regular Markdown files (`.md`),
+you'll write in the same flavour of **MyST Markdown**. Jupyter Book will know how to parse both of them.
 
-This page contains a few pieces of information about MyST markdown and how it relates to Jupyter Book.
-You can find much more information about this flavour of markdown at
+This page contains a few pieces of information about MyST Markdown and how it relates to Jupyter Book.
+You can find much more information about this flavour of Markdown at
 [the Myst Parser documentation](myst-parser:example_syntax).
 
 :::{admonition,tip} Want to use RMarkdown directly?
@@ -141,12 +141,12 @@ For more information on using roles, see the [MyST documentation](myst-parser:sy
 There is currently no single list of roles / directives to use as a reference, but this
 section tries to give as much as information as possible. For those who are familiar
 with the Sphinx ecosystem, **you may use any directive / role that is available in Sphinx**.
-This is because Jupyter Book uses Sphinx to build your book, and MyST markdown supports
-all syntax that Sphinx supports (think of it as a markdown version of reStructuredText).
+This is because Jupyter Book uses Sphinx to build your book, and MyST Markdown supports
+all syntax that Sphinx supports (think of it as a Markdown version of reStructuredText).
 
 :::{caution}
 If you search the internet (and the links below) for information about roles and directives,
-the documentation will generally be written with reStructuredText in mind. MyST markdown
+the documentation will generally be written with reStructuredText in mind. MyST Markdown
 is different from reStructuredText, but all of the functionality should be the same.
 See [the MyST Sphinx parser documentation](myst-parser:intro/get-started) for more information about the differences between MyST and rST.
 :::
@@ -179,13 +179,13 @@ which produces
 ```
 
 :::{seealso}
-The MyST-Parser documentation on [how directives parse content](myst-parser:syntax/directives/parsing), and its use for [including rST files into a markdown file](myst-parser:howto/include-rst), and [using `sphinx.ext.autodoc` in markdown files](myst-parser:howto/autodoc).
+The MyST-Parser documentation on [how directives parse content](myst-parser:syntax/directives/parsing), and its use for [including rST files into a Markdown file](myst-parser:howto/include-rst), and [using `sphinx.ext.autodoc` in Markdown files](myst-parser:howto/autodoc).
 :::
 
 (markdown/nesting)=
-## Nesting content blocks in markdown
+## Nesting content blocks in Markdown
 
-If you'd like to nest content blocks inside one another in markdown (for
+If you'd like to nest content blocks inside one another in Markdown (for
 example, to put a `{note}` inside of a `{margin}`), you may do so by adding
 extra backticks (`` ` ``) to the outer-most block. This works for literal
 code blocks as well.
@@ -225,11 +225,11 @@ Here's my note!
 ```
 ````
 
-## Other MyST markdown syntax
+## Other MyST Markdown syntax
 
 In addition to roles and directives, there are numerous other kinds of syntax
-that MyST markdown supports.
-MyST supports all syntax of CommonMark markdown (the kind of markdown that Jupyter notebooks use), as well as an extended syntax that is used for scientific publishing.
+that MyST Markdown supports.
+MyST supports all syntax of CommonMark Markdown (the kind of Markdown that Jupyter notebooks use), as well as an extended syntax that is used for scientific publishing.
 
 The [MyST-Parser](myst-parser:intro/get-started) is the tool that Jupyter Book uses to allow you to write your book content in MyST.
 It is also a good source of information about the MyST syntax.
@@ -247,28 +247,28 @@ parse:
   myst_extended_syntax: true
 ```
 
-## What can I create with MyST markdown?
+## What can I create with MyST Markdown?
 
-See [](./content-blocks.md) for an introduction to what you can do with MyST markdown
+See [](./content-blocks.md) for an introduction to what you can do with MyST Markdown
 in Jupyter Book.
 In addition, the other pages in this site cover many more use-cases for how to use directives with MyST.
 
-## Tools for writing MyST markdown
+## Tools for writing MyST Markdown
 
-There is some support for MyST markdown in tools across the community. Here we include
+There is some support for MyST Markdown in tools across the community. Here we include
 a few prominent ones.
 
 ### Jupyter interfaces
 
-While MyST markdown does not (yet) render in traditional Jupyter interfaces, most
+While MyST Markdown does not (yet) render in traditional Jupyter interfaces, most
 of its syntax should "gracefully degrade", meaning that you can still work with
 MyST in Jupyter, and then build your book with Jupyter Book.
 
 ### Jupytext and text sync
 
-For working with Jupyter notebook and markdown files, we recommend [jupytext](https://jupytext.readthedocs.io/en/latest),
+For working with Jupyter notebook and Markdown files, we recommend [jupytext](https://jupytext.readthedocs.io/en/latest),
 an open source tool for two-way conversion between `.ipynb` and text files.
-Jupytext [supports the MyST markdown format](https://jupytext.readthedocs.io/en/latest/formats.html#myst-markdown).
+Jupytext [supports the MyST Markdown format](https://jupytext.readthedocs.io/en/latest/formats.html#myst-markdown).
 
 :::{note}
 For full compatibility with `myst-parser`, it is necessary to use `jupytext>=1.6.0`.
@@ -278,6 +278,6 @@ See also [](file-types:custom:jupytext).
 
 ### VS Code
 
-If editing the markdown files using VS Code, the
-[VS Code MyST markdown extension](https://marketplace.visualstudio.com/items?itemName=ExecutableBookProject.myst-highlight)
+If editing the Markdown files using VS Code, the
+[VS Code MyST Markdown extension](https://marketplace.visualstudio.com/items?itemName=ExecutableBookProject.myst-highlight)
 provides syntax highlighting and other features.
