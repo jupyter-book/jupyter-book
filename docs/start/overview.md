@@ -1,22 +1,22 @@
-# Overview and installation
+---
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.12
+    jupytext_version: 1.6.0
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
+# Overview
 
 This is a short overview of the major components and steps in building a Jupyter Book. See the other pages in this guide for more in-depth information.
 
-## Install Jupyter Book
-
-You can install Jupyter Book via pip with the following command:
-
-```bash
-pip install -U jupyter-book
-```
-
-or via `conda-forge`
-
-```bash
-conda install -c conda-forge jupyter-book
-```
-
-This will install everything you need to build a Jupyter Book locally.
+## The Jupyter Book command-line interface
 
 Jupyter Book uses a command-line interface to perform a variety of actions. For example, building and cleaning books. You can run the following command to see what options are at your control:
 
@@ -25,8 +25,15 @@ You can also use the short-hand `jb` for `jupyter-book`. E.g.,:
 `jb create mybookname`. We'll use `jupyter-book` for the rest of this guide.
 ```
 
+% double-writing this so users aren't confused by the ! but we still get the output
 ```bash
 jupyter-book --help
+```
+
+```{code-cell}
+:tags: [remove-input]
+
+!jupyter-book --help
 ```
 
 :::{admonition,warning} A note for Windows users
@@ -199,11 +206,19 @@ are used in the book. This section goes through the process of creating a templa
 
 To see your options for creating books from templates, run the following command:
 
+% doubling the commands so users aren't confused by the !
 ```bash
 jupyter-book create --help
 ```
 
-### Create a simple template
+```{code-cell}
+:tags: [remove-input]
+!jupyter-book create --help
+```
+
+### Quickly generate a sample book
+
+This option is best if you are starting from scratch, or would like to see one example of a simple Jupyter Book on your own filesystem.
 
 If you'd just like to quickly create a sample book, you may do so by running the following command:
 
@@ -213,10 +228,17 @@ jupyter-book create mynewbook/
 
 This will generate a mini Jupyter Book that you can both build and explore locally. It will have a few decisions made for you, and you can explore the configuration of the book in `_config.yml` and its structure in `_toc.yml`. Use this book as inspiration, or as a starting point to work from.
 
-### The Jupyter Book Cookiecutter
+### Generate a templatized book from interactive prompts
+
+This option is best if you'd like to answer a few questions from the command line in order to create a template book that is more complex and customized for your use-case.
 
 Jupyter Book also provides a [Jupyter Book cookiecutter](https://github.com/executablebooks/cookiecutter-jupyter-book) that can be used to interactively create a book directory structure.
-The cookiecutter is suitable for more advanced users that want to create a ready-to-go repository to host their book that includes pre-populated metafiles such as README, LICENSE, CONDUCT, CONTRIBUTING, etc., as well as GitHub Actions workflow files to [](publish/gh-actions).
+
+```{margin}
+[`cookiecutter`](https://cookiecutter.readthedocs.io/en/latest/) is a Python tool for quickly generating folders from a templatized repository. Jupyter Book uses `cookiecutter` under the hood.
+```
+
+The cookiecutter is suitable for users that want to create a ready-to-go repository to host their book that includes pre-populated metafiles such as `README`, `LICENSE`, `CONDUCT`, `CONTRIBUTING`, etc., as well as GitHub Actions workflow files to [](publish/gh-actions).
 
 To try the cookiecutter template, run the following command:
 
