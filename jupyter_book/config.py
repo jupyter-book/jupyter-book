@@ -28,6 +28,7 @@ def get_default_sphinx_config():
             "jupyter_book",
             "sphinxcontrib.bibtex",
             "sphinx_thebe",
+            "sphinx_juniper",
             "sphinx_comments",
             "sphinx.ext.intersphinx",
             "sphinx_panels",

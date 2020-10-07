@@ -159,6 +159,12 @@
                 "thebe": {
                     "type": "boolean"
                 },
+                "juniper": {
+                    "type": [
+                        "boolean",
+                        "object"
+                    ]
+                },
                 "colab_url": {
                     "type": "string"
                 }
