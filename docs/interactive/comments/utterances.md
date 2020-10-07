@@ -19,7 +19,7 @@ html:
 
 Note that the `utteranc.es` UI will not show up when you are previewing your book locally, it must be hosted somewhere on the web to function.
 
-You must also activate the GitHub `utterance.es` app which can be found <a href="'off'">here</a>
+You must also activate the GitHub `utterance.es` app which can be found <a href="https://github.com/apps/utterances">here</a>
 
 ## Configure `utteranc.es`
 
