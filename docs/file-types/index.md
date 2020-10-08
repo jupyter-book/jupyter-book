@@ -32,6 +32,7 @@ links to their section in this book):
 [Custom Notebook Formats](file-types:custom)
 : Any other file type can be *auto-converted* before execution, by assigning it a custom Python function, for example those provided by the Jupytext conversion tool.
 
+(rules-all-content-types)=
 ## Rules for all content types
 
 There are a few things that are true for all content types. Here is a short list:
