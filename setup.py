@@ -67,7 +67,7 @@ setup(
         "sphinxcontrib-bibtex",
         "sphinx_book_theme>=0.0.36",
         "sphinx-thebe>=0.0.6",
-        "sphinx-juniper>=0.0.3",
+        "sphinx-juniper>=0.0.5",
         "sphinx-panels~=0.5.0",
     ],
     extras_require={
