@@ -100,6 +100,7 @@ Simple is better than complex. 😵
 ```
 ````
 
+(custom-assets)=
 ## Custom CSS or JavaScript
 
 If you'd like to include custom CSS rules or JavaScript scripts in your book,
