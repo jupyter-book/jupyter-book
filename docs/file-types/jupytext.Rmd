@@ -83,9 +83,13 @@ sphinx:
   config:
     nb_custom_formats:
         .Rmd:
-            - jupytext.read
+            - jupytext.reads
             - fmt: Rmd
 ```
+
+:::{warning}
+Note that some execution features (such as in-line code execution in RMarkdown) are not available in Jupyter Book.
+:::
 
 Now you can use RMarkdown blocks:
 

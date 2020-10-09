@@ -54,6 +54,7 @@ strings around them. For example, `false`, `true`, `off`, etc. In addition, pure
 numbers will be converted to `float` or `int` unless you put strings around them.
 :::
 
+(source-repository-button)=
 ## Add source repository buttons
 
 There is a collection of buttons that you can use to link back to your source
