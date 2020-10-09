@@ -64,6 +64,24 @@ for a potential fix, and [this Jupyter Book issue](https://github.com/executable
 where we're tracking the issue.
 :::
 
+### Control the look of PDF via HTML
+
+Because you are using HTML as an intermediary for your book's PDF, you can control the look and feel of the HTML via your own CSS rules. Most CSS changes that you make to your HTML website will also persist in the PDF version of that website. For information about how to define your own CSS rules, see [](custom-assets).
+
+To add CSS rules that **only apply to the printed PDF**, use the `@media print` CSS pattern to define print-specific rules. These will *only* be applied when the HTML is being printed, and will not show up in your non-PDF website.
+
+For example, to **hide the right table of contents** at print time, you could add this rule:
+
+```scss
+@media print {
+    .bd-toc {
+        visibility: hidden;
+    }
+}
+```
+
+The right Table of Contents would be present in your live website, but hidden when someone printed a PDF of your website.
+
 (pdf/latex)=
 ## Build a PDF using LaTeX
 
