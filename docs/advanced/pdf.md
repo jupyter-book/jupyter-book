@@ -122,8 +122,8 @@ latex:
      targetname: book.tex
 ```
 
-This will act as an automatic `override` when sphinx builds the
-[latex_documents](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-latex_documents). It is typically inferred by `sphinx` but when
+This will act as an automatic `override` when Sphinx builds the
+[latex_documents](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-latex_documents). It is typically inferred by `Sphinx` but when
 using `jupyter-book` naming the file in the `_config.yml` generally makes it
 easier to find.
 
@@ -150,7 +150,7 @@ See the Sphinx documentation [for available builders](https://www.sphinx-doc.org
 ### Other Sphinx LaTeX settings
 
 Other [LaTeX settings](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-latex_engine) available to Sphinx can be passed through using the config section
-of `sphinx` in the `_config.yml` file for your project.
+of `Sphinx` in the `_config.yml` file for your project.
 
 For example, if you would like to set the [latex_toplevel_sectioning](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-latex_toplevel_sectioning) option to use `part` instead of `chapter` you would use:
 
