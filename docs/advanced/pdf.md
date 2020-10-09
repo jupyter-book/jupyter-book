@@ -1,17 +1,13 @@
 # PDFs for your book
 
 It is possible to build a single PDF that contains all of your book's content. This
-page describes a few ways to do so.
+page describes a couple ways to do so.
 
 :::{warning}
 PDF building is experimental, and may change or have bugs.
 :::
 
-There are two approaches to building PDF files:
-
-```{contents}
-:depth: 2
-```
+There are two approaches to building PDF files.
 
 (pdf-html)=
 ## Build a PDF from your book HTML
@@ -67,18 +63,25 @@ where we're tracking the issue.
 (pdf/latex)=
 ## Build a PDF using LaTeX
 
-You can also use LaTeX to build a PDF of your book. This can behave differently depending on your
-operating system and setup. This section tries to recommend a few best-practices.
+You can also use LaTeX to build a PDF of your book.
+This can behave differently depending on your operating system and `tex` setup.
+This section tries to recommend a few best-practices.
+
+:::{note}
+We recommend using the [texlive](https://www.tug.org/texlive/) distribution
+:::
 
 ### Installation
 
 For `Debian`-based `Linux` platforms it is recommended to install the following packages:
 
 ```bash
-sudo apt-get install texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra latexmk
+sudo apt-get install texlive-latex-recommended texlive-latex-extra \
+                     texlive-fonts-recommended texlive-fonts-extra \
+                     texlive-xetex latexmks
 ```
 
-Alternatively you can install [TeX Live](https://www.tug.org/texlive/quickinstall.html)
+Alternatively you can install the full [TeX Live](https://www.tug.org/texlive/quickinstall.html) distribution.
 
 For `OSX` you may want to use [MacTeX](http://www.tug.org/mactex/) which is a more
 user friendly approach. Alternatively you may also use [TeX Live](https://www.tug.org/texlive/quickinstall.html).
@@ -107,3 +110,52 @@ jb build mybookname/ --builder latex
 ```
 
 ::::
+
+
+### Updating the name of the PDF file
+
+To update the name of your `PDF` file you can set the following in `_config.yml`
+
+```yaml
+latex:
+  latex_documents:
+     targetname: book.tex
+```
+
+This will act as an automatic `override` when sphinx builds the
+[latex_documents](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-latex_documents). It is typically inferred by `sphinx` but when
+using `jupyter-book` naming the file in the `_config.yml` generally makes it
+easier to find.
+
+### Using a different LaTeX engine
+
+Some users may want to switch to using a different LaTeX engine to build the
+`PDF` files. For example, if your project contains `Unicode` you will need to
+use `xelatex` to build the `PDF` file.
+
+To update the `LaTeX` engine to `xelatex` you can add the following to your `_config.yml`
+
+```yaml
+latex:
+  latex_engine: xelatex
+```
+
+:::{note}
+We will be making `xelatex` the default in the near future, so this can be used to
+specify other builders such as `pdflatex`, or `lualatex`.
+
+See the Sphinx documentation [for available builders](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-latex_engine)
+:::
+
+### Other Sphinx LaTeX settings
+
+Other [LaTeX settings](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-latex_engine) available to Sphinx can be passed through using the config section
+of `sphinx` in the `_config.yml` file for your project.
+
+For example, if you would like to set the [latex_toplevel_sectioning](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-latex_toplevel_sectioning) option to use `part` instead of `chapter` you would use:
+
+```yaml
+sphinx:
+  config:
+    latex_toplevel_sectioning: 'part'
+```
