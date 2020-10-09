@@ -63,11 +63,14 @@ jobs:
     - name: Install latex dependencies
       run: |
         sudo apt-get -qq update
-        sudo apt-get install -y   \
-          texlive                 \
-          texlive-xetex           \
-          texlive-latex-extra     \
-          latexmk
+        sudo apt-get install -y     \
+          texlive-latex-recommended \
+          texlive-latex-extra       \
+          texlive-fonts-recommended \
+          texlive-fonts-extra       \
+          texlive-xetex             \
+          latexmk                   \
+          xindy
     - name: Build PDF from LaTeX (Docs)
       run: |
         jb build docs --builder pdflatex -n -W --keep-going
