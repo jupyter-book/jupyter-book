@@ -10,7 +10,7 @@ kernelspec:
 ---
 
 (myst-content/math)=
-# Math and Equations
+# Math and equations
 
 Jupyter Book uses [MathJax](http://docs.mathjax.org/) for typesetting math in your HTML book build.
 This allows you to have LaTeX-style mathematics in your online content.
@@ -32,7 +32,7 @@ sphinx:
     mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 ```
 
-See the [sphinx documentation](sphinx:sphinx.ext.mathjax) for details.
+See the [Sphinx documentation](sphinx:sphinx.ext.mathjax) for details.
 
 :::
 
@@ -103,7 +103,7 @@ a_{21}& =b_{21}&
 \end{align}
 
 :::{seealso}
-The myst-parser guides to [dollar math syntax](myst-parser:syntax/math), [LaTeX math syntax](myst-parser:syntax/amsmath), and [how MyST-Parser works with MathJax](myst-parser:syntax/mathjax).
+The MyST guides to [dollar math syntax](myst-parser:syntax/math), [LaTeX math syntax](myst-parser:syntax/amsmath), and [how MyST-Parser works with MathJax](myst-parser:syntax/mathjax).
 
 For advanced use, also see how to [define MathJax TeX Macros](sphinx/tex-macros).
 :::
@@ -131,20 +131,22 @@ w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
 ```
 ````
 
-Will generate this:
+will generate
 
 ```{math}
 :label: my_label
 w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
 ```
 
-or you can use the dollar math syntax with a prefixed label:
+Alternatively you can use the dollar math syntax with a prefixed label:
 
 ```md
 $$
   w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
 $$ (my_other_label)
 ```
+
+which generates
 
 $$
   w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
@@ -158,16 +160,18 @@ be referenced.
 
 ### Linking to equations
 
-If you've created an equation with a label, you can link to it from within your text
+If you have created an equation with a label, you can link to it from within your text
 (and across pages!).
 
 You can refer to the equation using the label that you've provided by using
-the **`{eq}` role**. For example:
+the `{eq}` role. For example:
 
 ```md
 - A link to an equation directive: {eq}`my_label`
 - A link to a dollar math block: {eq}`my_other_label`
 ```
+
+results in
 
 - A link to an equation directive: {eq}`my_label`
 - A link to a dollar math block: {eq}`my_other_label`

@@ -12,7 +12,7 @@ kernelspec:
 # Control the page layout
 
 ```{warning}
-Many of the features on this page are experimental, and may change.
+Many of the features on this page are experimental and may change at any time.
 ```
 
 There are a few ways to control the layout of a page with Jupyter Book. Many of these
@@ -58,18 +58,17 @@ Adding sidebar elements allow you to provide contextual information that doesn't
 up the flow of your main content. It is one of the main patterns recommended in the
 [Tufte style guide](https://edwardtufte.github.io/tufte-css/).
 
-There are two kinds of sidebars supported in Jupyter Book, which we'll
-describe below.
+There are two kinds of sidebars supported by Jupyter Book. We'll
+describe them below.
 
 ```{note}
-Some Sidebar content behaves differently depending on the screen size. If the screen is narrow
+Some sidebar content behaves differently depending on the screen size. If the screen is narrow
 enough, the sidebar content will exist in-line with your content. Make the screen
 wider and it'll pop out to the right.
 ```
 
-### Within-content sidebars
+### Sidebars within content
 
-To add within-content sidebars, use this syntax:
 
 ````{sidebar} Here is some sidebar content
 It spans a bit of your main content, as well as the margin, as seen by the
@@ -79,13 +78,13 @@ Here's a note block within the sidebar!
 ```
 ````
 
-The sidebar will stay in-line with your page's content, but will be
+If you use a sidebar within your content, the sidebar will stay in-line with your page's content. However, it will be
 placed to the right, allowing your content to wrap around it. This prevents
 the sidebar from breaking up the flow of your content. This is particularly
 useful if you've got tall-and-long blocks of content or images that you would
 like to provide context to throughout your content.
 
-To add a sidebar to your content, use the following pattern:
+To add a sidebar to your content, use the following syntax:
 
 ````md
 ```{sidebar} My sidebar title
@@ -95,7 +94,7 @@ My sidebar content
 
 ### Margin content
 
-To add margin content with myst markdown, use this syntax:
+To add content to the margin with MyST Markdown, use this syntax:
 
 ````md
 ```{margin} An optional title
@@ -109,11 +108,11 @@ Here's some margin content! It was created by using the
 ```{margin}
 ```
 ````
-directive in a markdown cell. Jupyter Book automatically converts these
-cells into helpful side content.
+directive in a Markdown cell. Jupyter Book automatically converts these
+cells into helpful margin content.
 `````
 
-Controlling margin content with code cells uses a slightly different pattern,
+Controlling margin content with code cells uses a slightly different syntax,
 which we'll cover below.
 
 ### Margins with code cells
@@ -162,7 +161,7 @@ tag to a cell's metadata:
 }
 ```
 
-For example, the following cell has a long output, but will be scrollable in the book.
+For example, the following cell has a long output, but will be scrollable in the book:
 
 ```{code-cell} ipython3
 :tags: [output_scroll]
@@ -177,8 +176,8 @@ Sometimes, you'd like to use **all** of the horizontal space available to you. T
 you to highlight particular ideas, visualizations, etc.
 
 In Jupyter Book, you can specify that the outputs of a cell (if it's a code cell) or the entire
-cell (if it's a markdown cell) should take up all of
-the horizonal space (including the margin to the right) using the
+cell (if it's a Markdown cell) should take up all of
+the horizontal space (including the margin to the right) using the
 following cell metadata tag:
 
 ```json
@@ -189,9 +188,9 @@ following cell metadata tag:
 }
 ```
 
-This works equally well on markdown cells, or with code cells.
+This works equally well on Markdown cells and on code cells.
 
-For example, let's take a look at the figure at full-width. We'll tell Matplotlib
+For example, let's take a look at the figure in the margin above in a cell with `full-width` set. We'll tell Matplotlib
 to make it a bit wider so we can take advantage of the extra space!
 
 ```{code-cell} ipython3
@@ -200,8 +199,8 @@ to make it a bit wider so we can take advantage of the extra space!
 make_fig(figsize=(20, 5))
 ```
 
-This can work with markdown cells as well. For example, we'll make the following warning block full-width so that
-it draws more attention:
+This can work with Markdown cells as well. For example, we'll make the following warning block `full-width` so that
+it draws more attention to it:
 
 +++ {"tags": ["full-width"]}
 

@@ -40,7 +40,7 @@ jupyter-book --help
 
 Jupyter Book is now also tested against Windows OS 😀
 
-However, there is a known incompatibility for notebook execution, when using Python 3.8.
+However, there is a known incompatibility for notebook execution when using Python 3.8.
 
 See [](working-on-windows)
 
@@ -257,6 +257,6 @@ For more help, see the [Jupyter Book cookiecutter GitHub repository](https://git
 
 ## Next step: build your book
 
-Now that you've got a Jupyter Book folder structure, we can create
+Now that you've got a Jupyter Book folder structure, you can create
 the HTML (or PDF) for each of your book's pages. That's covered in the next
 section.
