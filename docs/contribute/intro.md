@@ -88,7 +88,7 @@ A test included for each pull request is to build the `docs` as `PDF` files usin
 `pdfhtml` and `pdflatex` writers. These tests build the `pdf` file and then save them as artifacts
 attached to each workflow run.
 
-These `pdf` files can be retrieved from the [top right corner of a worflow run](https://github.com/actions/upload-artifact#where-does-the-upload-go).
+These `pdf` files can be retrieved from the [top right corner of a workflow run](https://github.com/actions/upload-artifact#where-does-the-upload-go).
 
 ## Repository structure of Jupyter Book
 
