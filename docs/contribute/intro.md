@@ -82,6 +82,14 @@ Do so by following the instructions in {ref}`pdf/latex`.
 If you have installed the requirements for both HTML and LaTeX generation, you should
 be able to run the full test suite with pytest.
 
+### GitHub Actions Artifacts
+
+A test included for each pull request is to build the `docs` as `PDF` files using both the
+`pdfhtml` and `pdflatex` writers. These tests build the `pdf` file and then save them as artifacts
+attached to each workflow run.
+
+These `pdf` files can be retrieved from the [top right corner of a workflow run](https://github.com/actions/upload-artifact#where-does-the-upload-go).
+
 ## Repository structure of Jupyter Book
 
 This section covers the general structure of the
