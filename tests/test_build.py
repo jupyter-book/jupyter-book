@@ -2,25 +2,48 @@ from pathlib import Path
 
 import pytest
 from bs4 import BeautifulSoup
+from click.testing import CliRunner
+
+import sphinx
 
 from jupyter_book import commands
 
 
-def test_create(tmpdir, cli):
-    book = Path(tmpdir) / "new_book"
-    result = cli.invoke(commands.create, str(book))
+def test_version(cli: CliRunner):
+    result = cli.invoke(commands.main, "--version")
+    assert result.exit_code == 0, result.output
+    assert "Jupyter Book" in result.output, result.output
+
+
+def test_create(temp_with_override: Path, cli):
+    book = temp_with_override / "new_book"
+    result = cli.invoke(commands.create, book.as_posix())
     assert result.exit_code == 0
     assert book.joinpath("_config.yml").exists()
     assert len(list(book.iterdir())) == 9
 
 
-def test_build_from_template(tmpdir, cli):
+def test_create_from_cookiecutter(temp_with_override: Path, cli):
+    book = temp_with_override / "new_book"
+    result = cli.invoke(commands.create, [book.as_posix(), "--cookiecutter"])
+    assert result.exit_code == 0
+    # this test uses default cookiecutter prompt values
+    # note that default cookiecutter book name is "my_book"
+    assert book.joinpath("my_book", "my_book", "_config.yml").exists()
+    assert len(list(book.joinpath("my_book").iterdir())) == 7
+    assert len(list(book.joinpath("my_book", ".github", "workflows").iterdir())) == 1
+    assert len(list(book.joinpath("my_book", "my_book").iterdir())) == 8
+
+
+def test_build_from_template(temp_with_override, cli):
     """Test building the book template and a few test configs."""
     # Create the book from the template
-    book = Path(tmpdir) / "new_book"
-    _ = cli.invoke(commands.create, str(book))
-    build_result = cli.invoke(commands.build, str(book))
-    assert build_result.exit_code == 0
+    book = temp_with_override / "new_book"
+    _ = cli.invoke(commands.create, book.as_posix())
+    build_result = cli.invoke(
+        commands.build, [book.as_posix(), "-n", "-W", "--keep-going"]
+    )
+    assert build_result.exit_code == 0, build_result.output
     html = book.joinpath("_build", "html")
     assert html.joinpath("index.html").exists()
     assert html.joinpath("intro.html").exists()
@@ -30,9 +53,9 @@ def test_custom_config(cli, build_resources):
     """Test a variety of custom configuration values."""
     books, _ = build_resources
     config = books.joinpath("config")
-    result = cli.invoke(commands.build, str(config))
-    assert result.exit_code == 0
-    html = config.joinpath("_build", "html", "index.html").read_text()
+    result = cli.invoke(commands.build, [config.as_posix(), "-n", "-W", "--keep-going"])
+    assert result.exit_code == 0, result.output
+    html = config.joinpath("_build", "html", "index.html").read_text(encoding="utf8")
     soup = BeautifulSoup(html, "html.parser")
     assert '<h1 class="site-logo" id="site-title">TEST PROJECT NAME</h1>' in html
     assert '<div class="sphinx-tabs docutils container">' in html
@@ -45,12 +68,14 @@ def test_custom_config(cli, build_resources):
 
 
 @pytest.mark.parametrize("toc", ["_toc.yml", "_toc_startwithlist.yml"])
-def test_toc_builds(cli, build_resources, toc, tmpdir):
+def test_toc_builds(cli, build_resources, toc):
     """Test building the book template with several different TOC files."""
     books, tocs = build_resources
-    toc = str(tocs / toc)
-    result = cli.invoke(commands.build, [str(tocs), "--toc", toc, "-W"])
-    assert result.exit_code == 0
+    result = cli.invoke(
+        commands.build,
+        [tocs.as_posix(), "--toc", (tocs / toc).as_posix(), "-n", "-W", "--keep-going"],
+    )
+    assert result.exit_code == 0, result.output
 
 
 def test_toc_rebuild(cli, build_resources):
@@ -62,17 +87,23 @@ def test_toc_rebuild(cli, build_resources):
     index_html = tocs.joinpath("_build", "html", "index.html")
 
     # Not using -W because we expect warnings for pages not listed in TOC
-    result = cli.invoke(commands.build, [str(tocs), "--toc", str(toc)])
-    html = BeautifulSoup(index_html.read_text(), "html.parser")
+    result = cli.invoke(
+        commands.build,
+        [tocs.as_posix(), "--toc", toc.as_posix(), "-n"],
+    )
+    html = BeautifulSoup(index_html.read_text(encoding="utf8"), "html.parser")
     tags = html.find_all("a", "reference internal")
-    assert result.exit_code == 0
+    assert result.exit_code == 0, result.output
     assert tags[1].attrs["href"] == "content1.html"
     assert tags[2].attrs["href"] == "content2.html"
 
     toc.write_text("- file: index\n- file: content2\n- file: content1\n")
-    result = cli.invoke(commands.build, [str(tocs), "--toc", str(toc)])
-    assert result.exit_code == 0
-    html = BeautifulSoup(index_html.read_text(), "html.parser")
+    result = cli.invoke(
+        commands.build,
+        [tocs.as_posix(), "--toc", toc.as_posix(), "-n"],
+    )
+    assert result.exit_code == 0, result.output
+    html = BeautifulSoup(index_html.read_text(encoding="utf8"), "html.parser")
     tags = html.find_all("a", "reference internal")
     # The rendered TOC should reflect the order in the modified _toc.yml
     assert tags[1].attrs["href"] == "content2.html"
@@ -90,9 +121,10 @@ def test_toc_rebuild(cli, build_resources):
 )
 def test_corrupt_toc(build_resources, cli, toc, msg):
     books, tocs = build_resources
-    toc = str(tocs / toc)
-    with pytest.raises(ValueError):
-        result = cli.invoke(commands.build, [str(tocs), "--toc", toc, "-W"])
+    with pytest.raises(RuntimeError):
+        result = cli.invoke(
+            commands.build, [tocs.as_posix(), "--toc", (tocs / toc).as_posix(), "-W"]
+        )
         assert result.exit_code == 1
         assert msg in result.output
         raise result.exception
@@ -107,7 +139,7 @@ def test_build_errors(build_resources, cli):
 
     # No table of contents message
     p_notoc = books.joinpath("notoc")
-    with pytest.raises(ValueError):
+    with pytest.raises(RuntimeError):
         result = cli.invoke(commands.build, [p_notoc.as_posix()])
         assert result.exit_code == 1
         assert "Couldn't find a Table of Contents file" in str(result.exception)
@@ -115,14 +147,14 @@ def test_build_errors(build_resources, cli):
 
     # Test error on warnings and book error message
     p_syntax = books.joinpath("sphinx_syntaxerr")
-    with pytest.raises(ValueError):
+    with pytest.raises(RuntimeError):
         result = cli.invoke(commands.build, [p_syntax.as_posix(), "-W"])
         assert result.exit_code == 1
         assert "There was an error in building your book" in str(result.exception)
         raise result.exception
 
     # Config file path does not exist
-    with pytest.raises(ValueError):
+    with pytest.raises(IOError):
         result = cli.invoke(
             commands.build, [p_syntax.as_posix(), "--config", "non_existent_path"]
         )
@@ -131,26 +163,16 @@ def test_build_errors(build_resources, cli):
         raise result.exception
 
 
-def test_build_docs(docs, cli):
-    """Test building the documentation book."""
-    html = docs.joinpath("_build", "html")
-    result = cli.invoke(commands.build, [docs.as_posix()])
-    assert result.exit_code == 0
-    assert html.joinpath("index.html").exists()
-    assert html.joinpath("intro.html").exists()
-    assert html.joinpath("content", "citations.html").exists()
-
-
 def test_build_page(pages, cli):
     """Test building a page."""
     page = pages.joinpath("single_page.ipynb")
     html = pages.joinpath("_build", "_page", "single_page", "html")
     index = html.joinpath("index.html")
-    result = cli.invoke(commands.build, [page.as_posix()])
-    assert result.exit_code == 0
+    result = cli.invoke(commands.build, [page.as_posix(), "-n", "-W", "--keep-going"])
+    assert result.exit_code == 0, result.output
     assert html.joinpath("single_page.html").exists()
     assert not html.joinpath("extra_page.html").exists()
-    assert 'url=single_page.html" />' in index.read_text()
+    assert 'url=single_page.html" />' in index.read_text(encoding="utf8")
 
 
 def test_build_page_nested(build_resources, cli):
@@ -160,21 +182,30 @@ def test_build_page_nested(build_resources, cli):
     page = src.joinpath("contents", "markdown.md")
     html = src.joinpath("_build", "_page", "contents-markdown", "html")
     index = html.joinpath("index.html")
-    result = cli.invoke(commands.build, [page.as_posix()])
-    assert result.exit_code == 0
+    result = cli.invoke(commands.build, [page.as_posix(), "-n", "-W", "--keep-going"])
+    assert result.exit_code == 0, result.output
     assert html.joinpath("markdown.html").exists()
     assert not html.joinpath("extra_page.html").exists()
-    assert 'url=markdown.html" />' in index.read_text()
+    assert 'url=markdown.html" />' in index.read_text(encoding="utf8")
 
 
+@pytest.mark.skipif(sphinx.version_info[0] == 2, reason="randomly fails on CI")
 def test_execution_timeout(pages, build_resources, cli):
     """Testing timeout execution for a page."""
     books, _ = build_resources
-    path_page = pages.joinpath("complex_outputs_unrun.ipynb")
+    path_page = pages.joinpath("loop_unrun.ipynb")
     path_c = books.joinpath("config", "_config_timeout.yml")
-    path_html = pages.joinpath("_build", "_page", "complex_outputs_unrun", "html")
+    path_html = pages.joinpath("_build", "_page", "loop_unrun", "html")
     result = cli.invoke(
-        commands.build, [path_page.as_posix(), "--config", path_c.as_posix()]
+        commands.build,
+        [
+            path_page.as_posix(),
+            "--config",
+            path_c.as_posix(),
+            "-n",
+            "-W",
+            "--keep-going",
+        ],
     )
     assert "Execution Failed" in result.stdout
-    assert path_html.joinpath("reports", "complex_outputs_unrun.log").exists()
+    assert path_html.joinpath("reports", "loop_unrun.log").exists()

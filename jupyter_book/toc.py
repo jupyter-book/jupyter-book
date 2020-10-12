@@ -10,10 +10,12 @@ from .utils import _filename_to_title, SUPPORTED_FILE_SUFFIXES, _error
 logger = logging.getLogger(__name__)
 
 
-def _no_suffix(path):
-    if isinstance(path, str):
-        path = str(Path(path).with_suffix(""))
-    return path
+def _posix_no_suffix(path):
+    posix_path = None
+    if path:
+        the_path = Path(path)
+        posix_path = (the_path.with_suffix("")).as_posix()
+    return posix_path
 
 
 def find_name(pages, name):
@@ -27,7 +29,7 @@ def find_name(pages, name):
         pages = [pages]
 
     for page in pages:
-        if _no_suffix(page.get("file")) == name:
+        if _posix_no_suffix(page.get("file")) == name:
             return page
         else:
             sections = page.get("sections", [])
@@ -43,10 +45,10 @@ def add_toctree(app, docname, source):
 
     # First check whether this page has any descendants
     # If so, then we'll manually add them as a toctree object
-    path_parent = app.env.doc2path(docname, base=None)
+    path_parent = Path(app.env.doc2path(docname, base=None)).as_posix()
     toc = app.config["globaltoc"]
 
-    parent_page = find_name(toc, _no_suffix(path_parent))
+    parent_page = find_name(toc, _posix_no_suffix(path_parent))
     # If we didn't find this page in the TOC, raise a warning
     if parent_page is None:
         logger.warning(f"Found a content page that is not in _toc.yml: {path_parent}.")
@@ -116,7 +118,9 @@ def add_toctree(app, docname, source):
         for ipage in isection.get("sections"):
             if ipage.get("file"):
                 # Update path so it is relative to the root of the parent
-                path_sec = os.path.relpath(ipage.get("file"), path_parent_folder)
+                path_sec = Path(
+                    os.path.relpath(ipage.get("file"), path_parent_folder)
+                ).as_posix()
             elif ipage.get("url"):
                 path_sec = ipage.get("url")
             else:
@@ -185,7 +189,7 @@ def add_toc_to_sphinx(app, config):
     app.config["globaltoc"] = toc
 
     # Update the main toctree file for whatever the first file here is
-    app.config["master_doc"] = _no_suffix(toc["file"])
+    app.config["master_doc"] = _posix_no_suffix(toc["file"])
 
 
 def _gen_toctree(options, subsections, parent_suff):
@@ -231,8 +235,8 @@ def _content_path_to_yaml(path, root_path, split_char="_", add_titles=True):
     else:
         title = _filename_to_title(path.name, split_char=split_char)
 
-    path_rel_root = path.relative_to(root_path)
-    out = {"file": str(path_rel_root.with_suffix(""))}
+    path_rel_root = Path(os.path.relpath(path, root_path))
+    out = {"file": path_rel_root.with_suffix("").as_posix()}
     if add_titles:
         out["title"] = title
     return out
@@ -281,7 +285,7 @@ def _find_content_structure(
     # Now recursively run this on folders, and add as another sub-page
     folders = [ii for ii in path.iterdir() if ii.is_dir()]
     for folder in folders:
-        if any(iskip in str(folder) for iskip in skip_text):
+        if any(iskip in folder.as_posix() for iskip in skip_text):
             continue
         folder_out = _find_content_structure(
             folder,

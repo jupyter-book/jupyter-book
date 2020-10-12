@@ -20,15 +20,17 @@ test_reqs = [
     "pytest>=3.6,<4",
     "pytest-cov",
     "pytest-xdist",
+    "pytest-timeout",
     "beautifulsoup4",
     "matplotlib",
     "pytest-regressions",
-    "jupytext",
+    "jupytext~=1.6.0",
     "altair",
     "sphinx_click",
     "sphinx_tabs",
     "pyppeteer",
     "beautifulsoup4",
+    "cookiecutter",
 ] + doc_reqs
 # Define all extras
 extras = {
@@ -39,6 +41,7 @@ extras = {
 }
 # Set alias for all extras with "all"
 extras["all"] = set(ii for jj in extras.values() for ii in jj)
+
 
 setup(
     name="jupyter-book",
@@ -63,21 +66,20 @@ setup(
     install_requires=[
         "pyyaml",
         "docutils>=0.15",
-        "sphinx<3",
-        "myst-nb~=0.8.0",
-        # this is required by the current markdow-it-py
-        # but can be remove when moving to myst-nb 0.9
-        "attrs~=19.3",
+        "sphinx>=2,<4",
+        "myst-nb~=0.10.1",
         "click",
         "setuptools",
         "nbformat",
-        "nbconvert",
+        "nbconvert<6",
+        "jsonschema",
         "sphinx_togglebutton",
         "sphinx-copybutton",
         "sphinx-comments",
         "sphinxcontrib-bibtex",
-        "sphinx_book_theme>=0.0.34",
+        "sphinx_book_theme>=0.0.36",
         "sphinx-thebe>=0.0.6",
+        "sphinx-panels~=0.5.2",
     ],
     extras_require=extras,
     entry_points={
