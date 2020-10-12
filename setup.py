@@ -31,7 +31,7 @@ test_reqs = [
     "pyppeteer",
     "beautifulsoup4",
     "cookiecutter",
-] + doc_reqs
+]
 # Define all extras
 extras = {
     "code_style": ["flake8<3.8.0,>=3.7.0", "black", "pre-commit==1.17.0"],
