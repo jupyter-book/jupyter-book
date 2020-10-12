@@ -22,5 +22,5 @@ latex_engine = 'pdflatex'
 myst_url_schemes = ['mailto', 'http', 'https']
 nb_output_stderr = 'show'
 numfig = True
-panels_add_boostrap_css = False
+panels_add_bootstrap_css = False
 pygments_style = 'sphinx'
