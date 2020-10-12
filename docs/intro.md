@@ -5,16 +5,16 @@ publication-quality books and documents from computational material.
 
 Here are some of the features of Jupyter Book:
 
-{fa}`check,text-success mr-1` [Write publication-quality content in markdown](file-types/markdown)
-: You can write in either Jupyter markdown, or an extended flavor of markdown with [publishing features](content/myst).
+{fa}`check,text-success mr-1` [Write publication-quality content in Markdown](file-types/markdown)
+: You can write in either Jupyter Markdown, or an extended flavor of Markdown with [publishing features](content/myst).
   This includes support for rich syntax such as [citations and cross-references](content/citations), [math and equations](content/math), and [figures](content/figures).
 
-{fa}`check,text-success mr-1` [Write content in Jupyter Notebooks](file-types/notebooks)
+{fa}`check,text-success mr-1` [Write content in Jupyter Notebook](file-types/notebooks)
 : This allows you to include your code and outputs in your book.
-  You can also write notebooks [entirely in markdown](file-types/myst-notebooks) to execute when you build your book.
+  You can also write notebooks [entirely in Markdown](file-types/myst-notebooks) that get executed when you build your book.
 
 {fa}`check,text-success mr-1` [Execute and cache your book's content](content/execute)
-: For `.ipynb` and markdown notebooks, execute code and insert the latest outputs into your book.
+: For `.ipynb` and Markdown notebooks, execute code and insert the latest outputs into your book.
   In addition, {ref}`cache and re-use<execute/cache>` outputs to be used later.
 
 {fa}`check,text-success mr-1` [Insert notebook outputs into your content](content:code-outputs)
@@ -47,6 +47,16 @@ Jupyter Book is an open community that welcomes your feedback, input, and contri
 
 :::
 
+## Install Jupyter Book
+
+You can install Jupyter Book [via `pip`](https://pip.pypa.io/en/stable/):
+
+```bash
+pip install -U jupyter-book
+```
+
+This will install everything you need to build a Jupyter Book locally.
+
 ## Get started
 
 To get started with Jupyter Book, you can either
@@ -57,7 +67,7 @@ on a laptop), or
 * review the example project shown immediately below (if you like learning from examples).
 
 :::{warning}
-Jupyter Book `0.7` is a total re-write from `0.6`, and some things have changed.
+Jupyter Book `0.8` is a total re-write from previous versions, and some things have changed.
 See [the legacy upgrade guide](https://github.com/executablebooks/jupyter-book/wiki/The-Jupyter-Book-Wiki)
 for how to upgrade, and [legacy.jupyterbook.org](https://legacy.jupyterbook.org) for
 legacy documentation.
@@ -72,21 +82,21 @@ pip install -U jupyter-book
 ```
 
 (example-project)=
-## A Small Example Project
+## A small example project
 
 Here's [a short example](https://executablebooks.github.io/quantecon-mini-example/docs/index.html) of a web-based book created by Jupyter Book.
 
 Some of the features on display include
 
-* [Jupyter notebook-style inputs and outputs](https://executablebooks.github.io/quantecon-mini-example/docs/python_by_example.html#version-1)
+* [Jupyter Notebook-style inputs and outputs](https://executablebooks.github.io/quantecon-mini-example/docs/python_by_example.html#version-1)
 * [citations](https://executablebooks.github.io/quantecon-mini-example/docs/about_py.html#bibliography)
 * [numbered equations](https://executablebooks.github.io/quantecon-mini-example/docs/python_by_example.html#another-application)
 * [numbered figures](https://executablebooks.github.io/quantecon-mini-example/docs/getting_started.html#jupyter-notebooks) with captions and cross-referencing
 
-The source files  can be [found on GitHub](https://github.com/executablebooks/quantecon-mini-example/)
+The source files can be [found on GitHub](https://github.com/executablebooks/quantecon-mini-example/)
 in the [docs directory](https://github.com/executablebooks/quantecon-mini-example/tree/master/mini_book/docs).
-These files are written in [MyST markdown](content/myst), an
-extension of Jupyter notebook markdown that allows for additional scientific markup.
+These files are written in [MyST Markdown](content/myst), an
+extension of the Jupyter Notebook Markdown, that allows for additional scientific markup.
 They could alternatively have been written directly as Jupyter notebooks.
 
 **Build the demo book**
@@ -137,7 +147,7 @@ You can build this book locally on the command line via the following steps:
 Now you might like to try editing the files in ``mini_book/docs`` and then
 rebuilding.
 
-### Further Reading
+### Further reading
 
 See [the full QuantEcon example](https://executablebooks.github.io/quantecon-example/docs/index.html)
 for a longer Jupyter Book use case, drawn from the same source material.
@@ -152,8 +162,8 @@ ecosystem that make it easier to publish computational documents.
 Here are
 a few key pieces:
 
-* It uses {term}`the MyST markdown language<MyST>` in
-  markdown and notebook documents.
+* It uses {term}`the MyST Markdown language<MyST>` in
+  Markdown and notebook documents.
   This allows users to write rich, publication-quality markup in their documents.
 * It uses {term}`the MyST-NB package<MyST-NB>` to parse and
   read-in notebooks so they are built into your book.

@@ -1,14 +1,14 @@
 # reStructuredText files
 
-In addition to writing your content in markdown, Jupyter Book also supports
+In addition to writing your content in Markdown, Jupyter Book also supports
 writing content in [reStructuredText](https://docutils.sourceforge.io/rst.html),
 another markup language that is common in the Python documentation community.
 
 :::{warning}
 Writing content in reStructuredText is only recommended for users who are already
 familiar with it.
-For others, we recommend using [MyST markdown](../content/myst.md),
-which has all of the same features of rST and Sphinx, but with a markdown flavour.
+For others, we recommend using [MyST Markdown](../content/myst.md),
+which has all of the same features of rST and Sphinx, but with a Markdown flavour.
 :::
 
 Because Jupyter Book uses Sphinx under the hood, any document that is written in rST
@@ -21,7 +21,7 @@ reading [the Sphinx rST documentation](https://www.sphinx-doc.org/es/stable/rest
 
 ## Including reStructuredText in Markdown
 
-To include rST into Markdown, you can use the [eval-rst directive](myst-parser:syntax/directives/parsing):
+To insert rST into Markdown, you can use the [eval-rst directive](myst-parser:syntax/directives/parsing):
 
 ````md
 ```{eval-rst}
