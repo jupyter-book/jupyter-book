@@ -5,7 +5,7 @@
 **automatically build an updated copy of your Jupyter Book** as you push new content.
 It can be used across git clients including GitHub, GitLab, and Bitbucket.
 
-Note that these instructions assume you're keeping your source files under version-control,
+Note that these instructions assume you're keeping your source files under version control,
 rather than the built Jupyter Book HTML.
 If you're pushing your HTML to GitHub,
 you'll want to [host your book on GitHub Pages](./gh-pages.md) instead.
@@ -23,8 +23,8 @@ Here, we'll walk through connecting your Jupyter Book to Netlify's continous dep
 You can also check out their [documentation on continuous deployment](https://www.netlify.com/docs/continuous-deployment/).
 
 ```{warning}
-The default Netlify python environment is python 2.7.
-You should update the python environment by including a `runtime.txt` file in your repository,
+The default Netlify Python environment is Python 2.7.
+You should update the Python environment by including a `runtime.txt` file in your repository,
 as detailed in [the Netlify documentation](https://www.netlify.com/docs/build-settings/#build-environment-variables).
 
 For a full list of available environments,
@@ -83,7 +83,7 @@ In this example, we'll use the `master` branch.
 ![Netlify build command](../images/netlify-build.png)
 
 You can then select *Deploy site* and wait for the site to build.
-You'll be re-directed to the site dashboard during the build process.
+You'll be redirected to the site dashboard during the build process.
 
 ## Step 3: Updating your domain name
 
