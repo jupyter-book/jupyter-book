@@ -40,7 +40,7 @@ final:
     home_page_in_toc: true
     launch_buttons:
       binderhub_url: other
-      colab_url: https://colab.research.google.com
+      colab_url: ''
       jupyterhub_url: ''
       notebook_interface: classic
       thebe: false
