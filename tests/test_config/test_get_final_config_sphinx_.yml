@@ -56,7 +56,7 @@ final:
   nb_output_stderr: show
   new: value
   numfig: true
-  panels_add_boostrap_css: false
+  panels_add_bootstrap_css: false
   pygments_style: sphinx
 metadata:
   latex_doc_overrides:
