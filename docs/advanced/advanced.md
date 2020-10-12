@@ -77,6 +77,8 @@ in the metadata of your cells. This allows you to do things like
 {doc}`automatically hide code cells <../interactive/hiding>`) as well as
 {ref}`add interactive widgets to cells <launch/thebelab>`.
 
+### Adding tags using notebook interfaces
+
 There are two straightforward ways to add metadata to cells:
 
 1. **Use the Jupyter Notebook cell tag editor**. The Jupyter Notebook ships with a
@@ -105,7 +107,20 @@ There are three levels of metadata:
 
 ![NB Metadata GIF](../images/metadata_edit.*)
 
-### Add tags to notebook cells based on their content
+### Add tags using MyST Markdown notebooks
+
+If you're writing notebooks with MyST Markdown, then you can add tags to each code cell when you write the `{code-cell}` block. For example, below we:
+
+````
+```{code-cell}
+:tags: [tag1,tag2,tag3]
+print("some code")
+```
+````
+
+Will create a code cell with those three tags attached to it. For more information about MyST Markdown notebooks, see [](../file-types/myst-notebooks.md).
+
+### Add tags using Python code
 
 Sometimes you'd like to quickly scan through a notebook's cells in order to
 add tags based on the content of the cell. For example, you might want to

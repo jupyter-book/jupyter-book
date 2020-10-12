@@ -170,15 +170,14 @@ for ii in range(40):
     print(f"this is output line {ii}")
 ```
 
-## Wide-format content
+## Full-width content
 
-Sometimes, you'd like to use **all** of the horizontal space available to you. This allows
-you to highlight particular ideas, visualizations, etc.
+Sometimes, you'd like to use **all** of the horizontal space available to you.
+This allows you to highlight particular ideas, visualizations, etc.
 
-In Jupyter Book, you can specify that the outputs of a cell (if it's a code cell) or the entire
-cell (if it's a Markdown cell) should take up all of
-the horizontal space (including the margin to the right) using the
-following cell metadata tag:
+### Full-width code cells
+
+You can specify that a code cell's inputs and/or outputs should take up all of the horizontal space (including the margin to the right) using the following cell metadata tag:
 
 ```json
 {
@@ -188,7 +187,9 @@ following cell metadata tag:
 }
 ```
 
-This works equally well on Markdown cells and on code cells.
+```{seealso}
+For tips on how to add cell metadata to your notebooks, see [](jupyter-cell-tags).
+```
 
 For example, let's take a look at the figure in the margin above in a cell with `full-width` set. We'll tell Matplotlib
 to make it a bit wider so we can take advantage of the extra space!
@@ -199,15 +200,53 @@ to make it a bit wider so we can take advantage of the extra space!
 make_fig(figsize=(20, 5))
 ```
 
-This can work with Markdown cells as well. For example, we'll make the following warning block `full-width` so that
-it draws more attention to it:
+### Full-width markdown content
 
-+++ {"tags": ["full-width"]}
+If you'd like to make your markdown content full-width, you cannot do so via cell tags.
+Instead, you have a few options:
 
-```{admonition} **Be careful about mixing popouts and full-width content**.
-:class: full-width
+1. **Use the `{div}` directive with a `full-width` class.**. Any content with a `full-width` class will take up the full width of the screen. For example, the following code:
 
-Sometimes these can conflict
-with one another in visual space. You should use them relatively sparingly in order
-for them to have their full effect of highlighting information.
+   `````
+   ````{div} full-width
+   ```{note}
+   Here's a note that will take the full width
+   ```
+   ````
+   `````
+
+   results in:
+
+   ````{div} full-width
+   ```{note}
+   Here's a note that will take the full width
+   ```
+   ````
+
+   For more information on `<div>` blocks, see [](custom-div-blocks).
+2. **Add a `full-width` class to directives that support classes**. Many directives allow you to directly add a CSS class to them.
+
+   For example, the `{note}` directive above allows for this:
+
+   ````
+   ```{note}
+   :class: full-width
+   Here's a note that will take the full width
+   ```
+   ````
+
+   results in:
+
+   ```{note}
+   :class: full-width
+   Here's a note that will take the full width
+   ```
+
+   Check the documentation of the directive to see if it supports adding your own classes, or use the `{div}` directive as described above.
+
+```{admonition} **Mixing margins and full-width content**
+:class: warning, full-width
+
+Be careful when mixing margins and full-width content.
+Sometimes these can conflict with one another in visual space. You should use them relatively sparingly in order for them to have their full effect of highlighting information.
 ```

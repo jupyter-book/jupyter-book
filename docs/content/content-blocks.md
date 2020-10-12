@@ -619,3 +619,25 @@ at the bottom of this page.
 [^mynote2]: And the text of my second note.
             Note that
             [you can include Markdown footnote definitions](https://executablebooks.org).
+
+(custom-div-blocks)=
+## Custom `<div>` blocks
+
+You can add custom `div` blocks along with whatever classes you'd like using
+the `{div}` directive. The `{div}` directive will wrap everything inside in a single `<div>` with the classes you provide. For example:
+
+````md
+```{div} my-class
+**Some content.**
+```
+````
+
+Will result in the following HTML when your book is built:
+
+```html
+<div class="my-class">
+  <strong>Some content.</strong>
+</div>
+```
+
+This can be useful if you'd like to style your book with [custom CSS or JavaScript](custom-assets).
