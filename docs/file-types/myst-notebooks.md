@@ -146,7 +146,7 @@ cell like so:
 
 ````md
 ```{code-cell}
-:tags: tag1, tag2, tag3
+:tags: [tag1, tag2, tag3]
 your-code
 ```
 ````
