@@ -171,7 +171,6 @@ more information about MyST Markdown.
 To explicitly split up Markdown content into two Markdown cells, use the following
 pattern:
 
-````md
 ```md
 Content in one Markdown cell
 
@@ -179,17 +178,21 @@ Content in one Markdown cell
 
 Content in another Markdown cell
 ```
-````
 
 You may also attach metadata to the cell by adding a Python dictionary after the `+++`.
 For example, to add tags to the second cell above:
 
-````md
 ```md
 Content in one Markdown cell
 
-+++ {"tags": ["tag1,tag2,tag3"]}
++++ {"tags": ["tag1", "tag2", "tag3"]}
 
 Content in another Markdown cell
 ```
-````
+
+```{warning}
+Please note that cell breaks and metadata specified in MyST files via the `+++` syntax
+only propagate to their `.ipynb` counterpart. When generating the book's HTML, *Markdown
+cell* information is discarded to avoid conflicting hierarchies in the structure of the
+document. In other words, only *code cell* tags have an effect on the generated HTML.
+```

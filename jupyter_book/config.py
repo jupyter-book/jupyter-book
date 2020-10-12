@@ -40,7 +40,7 @@ def get_default_sphinx_config():
         html_add_permalinks="¶",
         html_sourcelink_suffix="",
         numfig=True,
-        panels_add_boostrap_css=False,
+        panels_add_bootstrap_css=False,
     )
 
 
