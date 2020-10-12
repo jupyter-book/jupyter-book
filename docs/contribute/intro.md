@@ -20,7 +20,7 @@ cd jupyter-book
 Next, install:
 
 ```bash
-pip install -e .[testing,code_style,sphinx]
+pip install -e .[all]
 ```
 
 This will install Jupyter Book locally, along with the packages needed to test it
