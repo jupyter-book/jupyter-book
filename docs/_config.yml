@@ -89,6 +89,7 @@ sphinx:
       content-types/myst-notebooks.md: file-types/myst-notebooks.md
       content-types/jupytext.md: file-types/jupytext.Rmd
       content-types/restructuredtext.md: file-types/restructuredtext.md
+    language: en
 
   extra_extensions:
     - sphinx_click.ext
