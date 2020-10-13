@@ -37,6 +37,8 @@ launch_buttons:
 
 latex:
   latex_engine: xelatex
+  latex_documents:
+    targetname: book.tex
 
 sphinx:
   config:

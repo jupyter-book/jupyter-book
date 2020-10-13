@@ -1,5 +1,18 @@
 # Change Log
 
+## v0.8.3 2020-10-12
+
+This is a relatively minor release with bugfixes and under-the-hood improvements.
+
+### Bugs fixed
+
+* 🐛 FIX: colab default is now empty [#1026](https://github.com/executablebooks/jupyter-book/pull/1026) ([@choldgraf](https://github.com/choldgraf))
+
+## Upgrade EBT dependencies
+* ⬆️UPGRADE: sphinx-book-theme v0.0.38 [#1047](https://github.com/executablebooks/jupyter-book/pull/1047) ([@choldgraf](https://github.com/choldgraf))
+* ⬆️ Update sphinx-panels pinning v0.5.2 [#1044](https://github.com/executablebooks/jupyter-book/pull/1044) ([@chrisjsewell](https://github.com/chrisjsewell))
+
+
 ## v0.8.2 2020-09-19
 
 ([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.8.1...879a2d4133db58a636655e08323cd98609cefcb4))
