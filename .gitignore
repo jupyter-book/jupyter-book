@@ -135,5 +135,8 @@ dmypy.json
 # VSCode config
 .vscode
 
+# PyCharm config
+.idea
+
 # OSX
 .DS_Store
