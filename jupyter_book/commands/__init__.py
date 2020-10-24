@@ -61,6 +61,7 @@ BUILDER_OPTS = {
     "pdfhtml": "singlehtml",
     "latex": "latex",
     "pdflatex": "latex",
+    "linkcheck": "linkcheck",
 }
 
 
@@ -214,7 +215,7 @@ def build(
     if path_config and not Path(path_config).exists():
         raise IOError(f"Config file path given, but not found: {path_config}")
 
-    if builder in ["html", "pdfhtml"]:
+    if builder in ["html", "pdfhtml", "linkcheck"]:
         OUTPUT_PATH = BUILD_PATH.joinpath("html")
     elif builder in ["latex", "pdflatex"]:
         OUTPUT_PATH = BUILD_PATH.joinpath("latex")
