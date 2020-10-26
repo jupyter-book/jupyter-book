@@ -102,9 +102,11 @@ Simple is better than complex. 😵
 
 ### Local Sphinx Extensions
 
-As detailed in its documentation, [Sphinx is able to use local extensions](https://www.sphinx-doc.org/en/master/development/tutorials/helloworld.html#using-the-extension) by adding additional directories to the [Python path](https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH). At present, this functionality is not available within Jupyter Book.
+[Sphinx is able to use local extensions](https://www.sphinx-doc.org/en/master/development/tutorials/helloworld.html#using-the-extension) by adding additional directories to the [Python path](https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH). At present, this functionality is not available within Jupyter Book.
 
-However, this limitation can be circumvented if one installs their Sphinx extension locally using `pip`. First, write a minimal `setup.py` as follows:
+However, you can use a local Sphinx extension by using `pip` and installing the package locally. Below we'll document how you can create a local `pip`-installable Sphinx extension.
+
+First, write a minimal `setup.py` as follows:
 
 ```python
 from setuptools import setup
@@ -114,7 +116,9 @@ setup(
 )
 ```
 
+```{seealso}
 For further documentation on the purposes and configuration of `setup.py`, please refer to [the official Python documentation on setup scripts](https://docs.python.org/3/distutils/setupscript.html).
+```
 
 Next, create a new directory with your extension's name (in this case `my_sphinx_ext`) within the same directory as `setup.py`. Afterwards, create an *empty* file called `__init__.py` within this directory. If you are on Linux, simply `touch my_sphinx_ext/__init__.py`. The result should be:
 
@@ -134,7 +138,10 @@ It's then as easy as updating your `_config.yml` with your new extension:
     - my_sphinx_ext
 ```
 
-However, your extension does nothing! This last step is left up for the user. :smile: Try following [Sphinx's extension tutorials](https://www.sphinx-doc.org/en/master/development/tutorials/index.html) and applying what is taught there to a local extension within Jupyter Book.
+
+:::{admonition,tip} More information on creating Sphinx extensions
+The extension in this example is `pip`-installable, but does nothing! For more information about how to create your own Sphinx extension, try following [Sphinx's extension tutorials](https://www.sphinx-doc.org/en/master/development/tutorials/index.html).
+:::
 
 (custom-assets)=
 ## Custom CSS or JavaScript
