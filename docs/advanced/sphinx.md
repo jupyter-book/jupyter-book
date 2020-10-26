@@ -117,7 +117,9 @@ setup(
 ```
 
 ```{seealso}
+```{seealso}
 For further documentation on the purposes and configuration of `setup.py`, please refer to [the official Python documentation on setup scripts](https://docs.python.org/3/distutils/setupscript.html).
+```
 ```
 
 Next, create a new directory with your extension's name (in this case `my_sphinx_ext`) within the same directory as `setup.py`. Afterwards, create an *empty* file called `__init__.py` within this directory. If you are on Linux, simply `touch my_sphinx_ext/__init__.py`. The result should be:
