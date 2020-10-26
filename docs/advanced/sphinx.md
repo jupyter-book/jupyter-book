@@ -100,6 +100,42 @@ Simple is better than complex. 😵
 ```
 ````
 
+### Local Sphinx Extensions
+
+As detailed in its documentation, [Sphinx is able to use local extensions](https://www.sphinx-doc.org/en/master/development/tutorials/helloworld.html#using-the-extension) by adding additional directories to the [Python path](https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH). At present, this functionality is not available within Jupyter Book.
+
+However, this limitation can be circumvented if one installs their Sphinx extension locally using `pip`. First, write a minimal `setup.py` as follows:
+
+```python
+from setuptools import setup
+
+setup(
+	name='my_sphinx_ext'
+)
+```
+
+For further documentation on the purposes and configuration of `setup.py`, please refer to [the official Python documentation on setup scripts](https://docs.python.org/3/distutils/setupscript.html).
+
+Next, create a new directory with your extension's name (in this case `my_sphinx_ext`) within the same directory as `setup.py`. Afterwards, create an *empty* file called `__init__.py` within this directory. If you are on Linux, simply `touch my_sphinx_ext/__init__.py`. The result should be:
+
+```
+setup.py
+my_sphinx_ext/
+└──__init__.py
+```
+
+Then, execute `pip install -e .` within the directory containing `setup.py`. This will install `my_sphinx_ext` as a local Python package.
+
+It's then as easy as updating your `_config.yml` with your new extension:
+
+```yaml
+  sphinx:
+    extra_extensions:
+    - my_sphinx_ext
+```
+
+However, your extension does nothing! This last step is left up for the user. :smile: Try following [Sphinx's extension tutorials](https://www.sphinx-doc.org/en/master/development/tutorials/index.html) and applying what is taught there to a local extension within Jupyter Book.
+
 (custom-assets)=
 ## Custom CSS or JavaScript
 
