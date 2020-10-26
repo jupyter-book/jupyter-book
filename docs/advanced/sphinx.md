@@ -118,7 +118,9 @@ setup(
 
 ```{seealso}
 ```{seealso}
+```{seealso}
 For further documentation on the purposes and configuration of `setup.py`, please refer to [the official Python documentation on setup scripts](https://docs.python.org/3/distutils/setupscript.html).
+```
 ```
 ```
 
