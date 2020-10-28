@@ -5,7 +5,7 @@ from .toc import add_toc_to_sphinx, add_toctree
 from .directive.toc import TableofContents, SwapTableOfContents
 
 
-__version__ = "0.8.0"
+__version__ = "0.8.3"
 
 
 def add_static_files(app, config):

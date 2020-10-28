@@ -11,9 +11,9 @@ more popular ones.
 Regardless of the approach you use for publishing your book online, it will require
 you to host your book's content in an online repository such as GitHub. This section describes one approach you can use to create your own GitHub repository and add your book's content to it.
 
-1. First, log-in to GitHub, then go to the "create a new repository" page:<https://github.com/new>
+1. First, log in to GitHub, then go to the "create a new repository" page: <https://github.com/new>
 
-2. Next, give your online repository a name and a description. Make your repository public and do not initialize with a README file, then click "Create repository".
+2. Next, give your online repository a name and a description. Make your repository public and do not initialize it with a README file, then click "Create repository".
 
 3. Now, clone the (currently empty) online repository to a location on your local computer. You can do this via the command line with:
 

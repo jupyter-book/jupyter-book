@@ -2,7 +2,7 @@
 
 # Custom Sphinx configuration
 
-Jupyter Book uses the excellent documentation tool [Sphinx](http://www.sphinx-doc.org/),
+Jupyter Book uses the excellent documentation tool [Sphinx](http://www.sphinx-doc.org/)
 to build your book and manage citations, cross-references, and extensibility.
 
 While Jupyter Book comes pre-configured with several Sphinx extensions,
@@ -38,7 +38,7 @@ how to build the extensions.
 ### An example: `sphinx-tabs`
 
 For example, let's say you'd like to include **tabbed content** in your book.
-There is [a sphinx-extension for that](https://github.com/djungelorm/sphinx-tabs).
+There is [a Sphinx extension for that](https://github.com/djungelorm/sphinx-tabs).
 To enable it, we'll do the following:
 
 * **Install `sphinx-tabs`**. Here's the command to do so:
@@ -47,7 +47,7 @@ To enable it, we'll do the following:
   pip install sphinx-tabs
   ```
 
-* **Add `sphinx-tabs` content to your book**. Here's an example with MyST markdown:
+* **Add `sphinx-tabs` content to your book**. Here's an example with MyST Markdown:
 
   `````md
   ````{tabs}
@@ -68,7 +68,7 @@ To enable it, we'll do the following:
   `````
 
 * **Activate `sphinx-tabs` in `_config.yml`**. [The `sphinx-tabs` documentation](https://github.com/djungelorm/sphinx-tabs#installation)
-  says we activate it in sphinx by adding `extensions = ["sphinx_tabs.tabs"]`, so we'll
+  says we activate it in Sphinx by adding `extensions = ["sphinx_tabs.tabs"]`, so we'll
   add it to our Jupyter Book like so:
 
   ```yaml
@@ -100,9 +100,53 @@ Simple is better than complex. 😵
 ```
 ````
 
-## Custom CSS or Javascript
+### Local Sphinx Extensions
 
-If you'd like to include custom CSS rules or Javascript scripts in your book,
+[Sphinx is able to use local extensions](https://www.sphinx-doc.org/en/master/development/tutorials/helloworld.html#using-the-extension) by adding additional directories to the [Python path](https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH). At present, this functionality is not available within Jupyter Book.
+
+However, you can use a local Sphinx extension by using `pip` and installing the package locally. Below we'll document how you can create a local `pip`-installable Sphinx extension.
+
+First, write a minimal `setup.py` as follows:
+
+```python
+from setuptools import setup
+
+setup(
+	name='my_sphinx_ext'
+)
+```
+
+```{seealso}
+For further documentation on the purposes and configuration of `setup.py`, please refer to [the official Python documentation on setup scripts](https://docs.python.org/3/distutils/setupscript.html).
+```
+
+Next, create a new directory with your extension's name (in this case `my_sphinx_ext`) within the same directory as `setup.py`. Afterwards, create an *empty* file called `__init__.py` within this directory. If you are on Linux, simply `touch my_sphinx_ext/__init__.py`. The result should be:
+
+```
+setup.py
+my_sphinx_ext/
+└──__init__.py
+```
+
+Then, execute `pip install -e .` within the directory containing `setup.py`. This will install `my_sphinx_ext` as a local Python package.
+
+It's then as easy as updating your `_config.yml` with your new extension:
+
+```yaml
+  sphinx:
+    extra_extensions:
+    - my_sphinx_ext
+```
+
+
+:::{admonition,tip} More information on creating Sphinx extensions
+The extension in this example is `pip`-installable, but does nothing! For more information about how to create your own Sphinx extension, try following [Sphinx's extension tutorials](https://www.sphinx-doc.org/en/master/development/tutorials/index.html).
+:::
+
+(custom-assets)=
+## Custom CSS or JavaScript
+
+If you'd like to include custom CSS rules or JavaScript scripts in your book,
 you can do so by adding them to a folder called `_static` in your book's folder.
 Any files that end in `.css` or `.js` in this folder will automatically be copied
 into your built book HTML and linked in the header of each page.
@@ -131,17 +175,27 @@ The rules should then automatically be applied to your site. In general, these
 CSS and JS files will be loaded *after* others are loaded on your page, so they
 should overwrite pre-existing rules and behaviour.
 
-## Manual sphinx configuration
+### An example: justify the text
+
+If you want the text of you book to be justified instead of left aligned then create `myfile.css` under `mybook/_static` with the following CSS:
+
+```css
+p {
+    text-align: justify;
+}
+```
+
+## Manual Sphinx configuration
 
 You may also directly override the key-value pairs that Sphinx normally has
 you configure in `conf.py`. To do so, use the following section of `_config.yml`:
 
-  ```yaml
-  sphinx:
-    config:
-      key1: value1
-      key2: value2
-  ```
+```yaml
+sphinx:
+config:
+    key1: value1
+    key2: value2
+```
 
 :::{warning}
 Any options set in this section will **override** default configurations set by Jupyter Book.
@@ -160,17 +214,17 @@ jb config sphinx mybookname/
 
 ### Fine control of parsing and execution
 
-As discussed in [the components of Jupyter Book](intro/jupyter-book-components), two of the principle components of Jupyter Book are sphinx extensions;
-MyST-Parser, for Markdown parsing, and MyST-NB, for notebook execution and output rendering.
+As discussed in [the components of Jupyter Book](intro/jupyter-book-components), two of the main components of Jupyter Book are Sphinx extensions;
+MyST-Parser for Markdown parsing, and MyST-NB for notebook execution and output rendering.
 
-These two extensions are highly customisable *via* Sphinx configuration.
-Some their configuration is already exposed in the `_config.yml`, but you can also directly set configuration, see:
+These two extensions are highly customizable *via* Sphinx configuration.
+Some of their configuration is already exposed in the `_config.yml`, but you can also directly set configuration, see:
 
-* The [MyST-Parser configuration options](myst-parser:intro/config-options)
-* The [MyST-NB configuration options](myst-nb:start/config-options)
+* the [MyST-Parser configuration options](myst-parser:intro/config-options)
+* the [MyST-NB configuration options](myst-nb:start/config-options)
 
 (sphinx/tex-macros)=
-### Defining TeX Macros
+### Defining TeX macros
 
 You can add LaTeX macros for the whole book by defining them under the `Macros` option of the `TeX` block. For example, the following two macros have been pre-defined in the Sphinx configuration
 
@@ -198,7 +252,7 @@ You can also define TeX macros for a specific file by introducing them at the be
 ```
 ````
 
-The commands can be used inside a `math` directive, `$$` or inline `$`, for example:
+The commands can be used inside a `math` directive, `$$`, or in-line `$`. For example,
 
 ```md
 $$
@@ -208,13 +262,15 @@ $$
 
 will be rendered as:
 
+```{only} html
 $$
 A = \bmat{} 1 & 1 \\ 2 & 1\\ 3 & 2 \emat{},\ b=\bmat{} 2\\ 3 \\ 4\emat{},\ \gamma = 0.5
 $$
+```
 
 :::{seealso}
 [How MyST-Parser works with MathJax](myst-parser:syntax/mathjax),
-and the [Math and Equations](myst-content/math) section.
+and the section on [math and equations](myst-content/math).
 :::
 
 :::{important}
@@ -240,6 +296,8 @@ Then you can include:
   \int_0^\infty \frac{x^3}{e^x-1}\,dx = \frac{\pi^4}{15}
 \end{equation}
 ```
+
+which renders as
 
 \begin{equation}
   \int_0^\infty \frac{x^3}{e^x-1}\,dx = \frac{\pi^4}{15}
