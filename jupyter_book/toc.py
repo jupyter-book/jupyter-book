@@ -137,7 +137,14 @@ def add_toctree(app, docname, source):
             toc_sections.append(this_section)
 
         # Generate the TOCtree for this page
-        toctrees.append(_gen_toctree(toc_options, toc_sections, parent_suff))
+        if docname == app.config["globaltoc"]["file"]:
+            toctree = "(globaltoc)=\n" + _gen_toctree(
+                toc_options, toc_sections, parent_suff
+            )
+        else:
+            toctree = _gen_toctree(toc_options, toc_sections, parent_suff)
+        toctrees.append(toctree)
+
     toctrees = "\n".join(toctrees)
 
     # Now modify the source file with the new toctree text
