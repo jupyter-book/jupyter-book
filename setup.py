@@ -14,6 +14,7 @@ doc_reqs = [
     for ii in path_doc_reqs.read_text(encoding="utf8").split("\n")
     if not ii.startswith("#")
 ]
+# Test requirements
 test_reqs = [
     "coverage",
     "pytest>=3.6,<4",
@@ -23,14 +24,25 @@ test_reqs = [
     "beautifulsoup4",
     "matplotlib",
     "pytest-regressions",
-    "jupytext==1.6.0rc0",
+    "jupytext~=1.6.0",
     "altair",
     "sphinx_click",
     "sphinx_tabs",
     "pyppeteer",
     "beautifulsoup4",
     "cookiecutter",
-] + doc_reqs
+]
+# Define all extras
+extras = {
+    "code_style": ["flake8<3.8.0,>=3.7.0", "black", "pre-commit==1.17.0"],
+    "sphinx": doc_reqs,
+    "testing": test_reqs,
+    "pdfhtml": ["pyppeteer"],
+}
+# Set alias for all extras with "all"
+extras["all"] = set(ii for jj in extras.values() for ii in jj)
+
+
 setup(
     name="jupyter-book",
     version=version,
@@ -55,28 +67,21 @@ setup(
         "pyyaml",
         "docutils>=0.15",
         "sphinx>=2,<4",
-        "myst-nb~=0.10.0",
-        # required for Markdown figures, but can be removed when myst-nb updates
-        "myst-parser~=0.12.6",
+        "myst-nb~=0.10.1",
         "click",
         "setuptools",
         "nbformat",
-        "nbconvert",
+        "nbconvert<6",
         "jsonschema",
         "sphinx_togglebutton",
         "sphinx-copybutton",
         "sphinx-comments",
         "sphinxcontrib-bibtex",
-        "sphinx_book_theme>=0.0.36",
+        "sphinx_book_theme>=0.0.38",
         "sphinx-thebe>=0.0.6",
-        "sphinx-panels~=0.4.1",
+        "sphinx-panels~=0.5.2",
     ],
-    extras_require={
-        "code_style": ["flake8<3.8.0,>=3.7.0", "black", "pre-commit==1.17.0"],
-        "sphinx": doc_reqs,
-        "testing": test_reqs,
-        "pdfhtml": "pyppeteer",
-    },
+    extras_require=extras,
     entry_points={
         "console_scripts": [
             "jb = jupyter_book.commands:main",
