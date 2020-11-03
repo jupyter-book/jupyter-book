@@ -64,12 +64,6 @@ def add_toctree(app, docname, source):
     if not sections:
         return
 
-    # Look for expand_sections and add to html config
-    if "expand_sections" in parent_page:
-        expanded_sections = app.config.html_theme_options.get("expand_sections", [])
-        expanded_sections.append(docname)
-        app.config.html_theme_options["expand_sections"] = expanded_sections
-
     # Rename `chapter:` in sections to `part:`
     # TODO: deprecate this after a release or two
     for isection in sections:
@@ -353,7 +347,6 @@ def _check_toc_entries(sections):
         "chapters",
         "sections",
         "title",
-        "expand_sections",
         "numbered",
     ]
     for section in sections:
