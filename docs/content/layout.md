@@ -9,7 +9,7 @@ kernelspec:
   name: python3
 ---
 
-# Control the page layout
+# Use the page sidebar
 
 ```{warning}
 Many of the features on this page are experimental and may change at any time.
@@ -143,32 +143,6 @@ This can be combined with other tags like `remove-input` to **only display the f
 :::
 
 +++
-
-## Scrolling cell outputs
-
-The traditional Jupyter Notebook interface allows you to toggle **output scrolling**
-for your cells. This allows you to visualize part of a long output without it taking up
-the entire page.
-
-You can trigger this behavior in Jupyter Book by adding the following
-tag to a cell's metadata:
-
-```json
-{
-    "tags": [
-        "output_scroll",
-    ]
-}
-```
-
-For example, the following cell has a long output, but will be scrollable in the book:
-
-```{code-cell} ipython3
-:tags: [output_scroll]
-
-for ii in range(40):
-    print(f"this is output line {ii}")
-```
 
 ## Full-width content
 
