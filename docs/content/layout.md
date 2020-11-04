@@ -135,7 +135,7 @@ Here's what the cell metadata for a margin cell looks like:
 ````
 
 `````{tabbed} MyST Text File
-For a MyST text file these tags can be added simply added to the `code-cell`
+For a MyST text file these tags can be added to the `code-cell`
 ````md
 ```{code-cell} <language>
 :tags: [margin]
