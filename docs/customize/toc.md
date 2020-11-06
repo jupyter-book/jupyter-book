@@ -348,19 +348,6 @@ built by Jupyter Book, see [](execute/exclude).
 The following sections apply to controlling the left navigation bar in
 HTML books built with Jupyter Book.
 
-### Automatically expand subsections of a page
-
-Sometimes you'd like some subsections of your book to *always* be expanded (as opposed
-to only expanded when one of the subsections is active). To enable this, add the following key in an entry of
-your `_toc.yml` file:
-
-```yaml
-- file: path/to/your/page
-  expand_sections: true
-```
-
-All subsections of that page will now be expanded in the navigation bar.
-
 ### Add external links
 
 You can also add external links to websites that are outside of your book.
