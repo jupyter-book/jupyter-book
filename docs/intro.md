@@ -81,6 +81,8 @@ To install the `jupyter-book` pre-release from pip, run the following command:
 pip install -U jupyter-book
 ```
 
+{ref}`create-a-template-book` to get started right away, or see the [getting started guide](start/overview) for more information.
+
 (example-project)=
 ## A small example project
 
