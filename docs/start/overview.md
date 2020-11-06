@@ -205,6 +205,7 @@ There are many other interesting things that you can do with notebook content as
 This is only a simple example, and touches on just a couple of the many ways that you can configure and structure your book. For more information about this, see [](../file-types/index) as well as [](../content/content-blocks).
 :::
 
+(create-a-template-book)=
 ## Create a template book
 
 Jupyter-Book comes with a demo book so that you can see how the content files
