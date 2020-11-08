@@ -44,6 +44,11 @@ You can reference a section label through ``{ref}`label` `` or ``{ref}`some text
 Documents can be referenced through ``{doc}`path/to/document` `` or ``{doc}`some text <path/to/document>` ``
 :::
 
+### Numbered references
+
+To add a **numbered reference** to a table, use the `{numref}` role. If you wish to use custom text, add `%s` as a placeholder for the number.
+See the examples in each section below for usage.
+
 ### Referencing with markdown link syntax
 
 If you wish to use Markdown style syntax, then MyST Markdown will try to find a reference,
@@ -88,7 +93,6 @@ means that `[Jupyter Book](https://jupyterbook.org)` will be recognised as a URL
 
 :::
 
-
 (content:references)=
 ## Reference section labels
 
@@ -123,64 +127,104 @@ For example, the syntax `` {ref}`content:references` `` or `[](content:reference
 
 To reference a figure in your book, first add a figure and ensure that it has both a `name` as well as a caption associated with it:
 
+`````{panels}
+source
+^^^
+````md
 ```{figure} ../images/cool.jpg
-:name: my-cool-fig
+:name: my-fig-ref
 
-Here is my caption.
+My figure title.
 ```
+````
+---
+result
+^^^
+```{figure} ../images/cool.jpg
+:name: my-fig-ref
+
+My figure title.
+```
+`````
 
 Then, reference the figure by its `:name:` value. For example:
 
-Here is {ref}`My cool fig <my-cool-fig>`.
-
+| source                                         | result                                   |
+|------------------------------------------------|------------------------------------------|
+| `` Here is {ref}`my-fig-ref` ``               | Here is {ref}`my-fig-ref`               |
+| `` Here is {ref}`My cool fig <my-fig-ref>` `` | Here is {ref}`My cool fig <my-fig-ref>`              |
+| `` Here is [](my-fig-ref) ``               | Here is [](my-fig-ref)               |
+| `` Here is [My cool fig](my-fig-ref) `` | Here is [My cool fig](my-fig-ref)              |
+| `` Here is {numref}`my-fig-ref` ``            | Here is {numref}`my-fig-ref`            |
+| `` Here is {numref}`Custom Figure %s text ` `` | Here is {numref}`Custom Figure %s text <my-fig-ref>` |
 
 ## Reference tables
 
 To reference a table, first create a table and ensure that it has a `:name:` and a title:
 
-```{table} Here is my title
-:name: my-reference-table
+`````{panels}
+source
+^^^
+````md
+```{table} My table title
+:name: my-table-ref
 
-| 1 | 2 |
+| header 1 | header 2 |
 |---|---|
 | 3 | 4 |
 ```
+````
+---
+result
+^^^
+```{table} My table title
+:name: my-table-ref
 
-{ref}`my-reference-table`.
+| header 1 | header 2 |
+|---|---|
+| 3 | 4 |
+```
+`````
+
+Here are several ways to reference this content:
+
+| source                                         | result                                   |
+|------------------------------------------------|------------------------------------------|
+| `` Here is {ref}`my-table-ref` ``               | Here is {ref}`my-table-ref`               |
+| `` Here is {ref}`My cool table <my-table-ref>` `` | Here is {ref}`My cool table <my-table-ref>`              |
+| `` Here is [](my-table-ref) ``               | Here is [](my-table-ref)               |
+| `` Here is [My cool table](my-table-ref) `` | Here is [My cool table](my-table-ref)              |
+| `` Here is {numref}`my-table-ref` ``            | Here is {numref}`my-table-ref`            |
+| `` Here is {numref}`Custom Table %s text ` `` | Here is {numref}`Custom Table %s text <my-table-ref>` |
+
 
 ## Reference content files
 
 To reference other files of book content, use the `{doc}` role, or link directly to another file with Markdown link syntax. For exmaple:
 
-{doc}`../file-types/myst-notebooks`.
-[](../file-types/myst-notebooks.md).
+| source                                         | result                                   |
+|------------------------------------------------|------------------------------------------|
+| `` Here is {doc}`../file-types/myst-notebooks` ``               | Here is {doc}`../file-types/myst-notebooks`               |
+| `` Here is {doc}`A different page <../file-types/myst-notebooks>` `` | Here is {doc}`A different page <../file-types/myst-notebooks>`              |
+| `` Here is [](../file-types/myst-notebooks.md) ``               | Here is [](../file-types/myst-notebooks.md)               |
+| `` Here is [A different page](../file-types/myst-notebooks.md) `` | Here is [A different page](../file-types/myst-notebooks.md)              |
 
 ## Reference equations
 
 To reference equations, first insert an equation with a label like so:
 
 ```{math}
-:label: my-reference-math
+:label: my-math-ref
 w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
 ```
 
-Next, reference the equation like so:
-
-{eq}`my-reference-math`.
-[](my-reference-math)
-
-## Numbered references
-
-Numbered references allow you to refer to attach a number to each figure, equation, or table.
-Use the `{numref}` role to insert a numbered reference, like so:
-
-{numref}`Numbered ref %s <my-reference-table>`.
-
-When generating custom text for your numbered references, include a `%s` character and the number for that reference will be inserted there.
+To reference equations, use the `{eq}` role. It will automatically insert the number of the equation.
+Note that you cannot modify the text of equation links.
 
 For example:
 
-{numref}`Numbered ref %s <my-reference-table>`.
+- `` See Equation `{eq}`my-math-ref` `` results in: See Equation {eq}`my-math-ref`
+- `` See Equation [](my-math-ref) `` results in: See Equation [](my-math-ref).
 
 
 (content:citations)=
@@ -304,7 +348,7 @@ A common fix is to add a filter to the bibliography directives:
 See `sphinxcontrib-bibtex` documentation on [local bibliographies](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/usage.html#section-local-bibliographies).
 
 (citations/bibliography)=
-## Bibliography
+### Bibliography
 
 ```{bibliography} ../references.bib
 ```
