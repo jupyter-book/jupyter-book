@@ -171,7 +171,7 @@ We just have to use the title of the admonition as target:
 [Go to the fish!](markdown-fig)
 ```
 
-
+(figures:referencing)=
 ## Referencing figures
 
 You can then refer to your figures by using the `{ref}` role or Markdown style references like:
@@ -186,6 +186,7 @@ which will replace the reference with the figure caption like so:
 - {ref}`directive-fig`
 - [](markdown-fig)
 
+(figures:numref)=
 ### Numbered references
 
 Another convenient way to create cross-references is with the `{numref}` role,
