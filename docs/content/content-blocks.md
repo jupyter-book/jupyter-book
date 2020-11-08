@@ -4,6 +4,7 @@ A common use of directives and roles is to designate "special blocks" of your co
 This allows your to include more complex information such as warnings and notes, citations, and figures.
 This section covers a few common ones.
 
+(content:admonitions)=
 ## Notes, warnings, and other admonitions
 
 Let's say you wish to highlight a particular block of text that exists slightly apart from the narrative of your page.
@@ -143,48 +144,6 @@ This text is **standard** _Markdown_
 This text is **standard** _Markdown_
 :::
 
-(content/toggle-admonitions)=
-### Hiding the content of admonitions
-
-You can also hide the body of your admonition blocks so that users must click
-a button to reveal their content. This is helpful if you'd like to include some text
-that isn't immediately visible to the user.
-
-To hide the body of admonition blocks, add the `dropdown` class to them, like so:
-
-````md
-```{note}
-:class: dropdown
-The note body will be hidden!
-```
-````
-
-results in:
-
-```{note}
-:class: dropdown
-The note body will be hidden!
-```
-
-You can use this in conjunction with `{admonition}` directives to include your
-own titles and stylings. For example:
-
-````md
-:::{admonition,dropdown,tip} Click the + sign to see what's inside
-Here's what's inside!
-:::
-````
-
-results in:
-
-:::{admonition,dropdown,tip} Click the + sign to see what's inside
-Here's what's inside!
-:::
-
-:::{important}
-Admonition dropdowns require JavaScript to be enabled on the browser which they are viewed.
-By contrast, the [dropdown directive](content/panels) below works purely *via* HTML+CSS.
-:::
 
 ### Insert code cell outputs into admonitions
 
@@ -216,10 +175,41 @@ See [](../interactive/hiding.md) for more information and other tag options.
 :::
 
 (content/panels)=
-## Panels and dropdowns
+## Panels
 
-Jupyter Book now also integrates the [sphinx-panels](https://sphinx-panels.readthedocs.io) extension.
-This allows you to add special blocks to your online content, for example
+Panels provide an easy fay for you to organize chunks of content into flexible containers on your page.
+They are useful for creating card-like layouts, flexible columns, and grids.
+Panels are based off of [Bootstrap CSS](https://getbootstrap.com/docs/4.5/components/card/), and utilize Bootstrap's classes to control the look and feel of panels.
+
+Here is an example that creates two panels:
+
+`````
+````{panels}
+Panel header 1
+^^^
+Panel body 1
++++
+Panel footer 1
+---
+
+Panel header 2
+^^^
+Panel body 2
++++
+Panel footer 2
+````
+`````
+
+- `---` separates each panel
+- `^^^` defines the panel header
+- `+++` defines the panel footer
+
+```{note}
+Panel headers and footers are optional.
+If you don't include `^^^` or `+++` in your panel, they will not show up.
+```
+
+You can embed all kinds of content inside of panels. For example, the following panels:
 
 ````{panels}
 Content of the left panel.
@@ -233,10 +223,10 @@ Content of the left panel.
 :type: ref
 :classes: stretched-link
 ```
-
 ````
 
-was created with
+were created with:
+
 
 `````md
 ````{panels}
@@ -255,28 +245,137 @@ Content of the left panel.
 ````
 `````
 
-Another example making use of dropdowns is given below:
-
-```{dropdown} Click on me to see my content!
-I'm the content which can be **anything** {fa}`check,text-success ml-1`
-
-:::{note}
-Even other blocks.
-:::
+```{seealso}
+See the [Sphinx Panels card layout documentaiton](https://sphinx-panels.readthedocs.io/en/latest/#card-layout) for more information.
 ```
 
-which was created from:
+### Controlling the look and feel of panels
 
-````md
+You can control the look and feel of panels by passing attaching bootstrap classes to panel headers/body/footers.
+You do this by passing configuration options to your  `{panels}` directive.
 
-```{dropdown} Click on me to see my content!
-I'm the content which can be **anything** {fa}`check,text-success ml-1`
+For example:
 
-:::{note}
-Even other blocks.
-:::
+
+```{seealso}
+See the [Panels card styling documentation](https://sphinx-panels.readthedocs.io/en/latest/#card-styling) for more information.
+```
+
+For example, you can control how many columns are in your panels by using [Bootstrap column classes](https://getbootstrap.com/docs/4.0/layout/grid/). These panels:
+
+````{panels}
+:column: col-4
+:card: border-2
+Header A
+^^^
+Body A
+---
+Header B
+^^^
+Body B
+---
+Header C
+^^^
+Body C
+````
+
+Were created by this code:
+
+`````
+````{panels}
+:column: col-4
+:card: border-2
+Header A
+^^^
+Body A
+---
+Header B
+^^^
+Body B
+---
+Header C
+^^^
+Body C
+````
+`````
+
+## Dropdowns
+
+Dropdowns allows you to hide content behind a title and a button.
+There are two kinds of dropdowns in Jupyter Book:
+
+### The `{dropdown}` directive
+
+Use the `{dropdown}` directive to create a clickable dropdown with a title.
+
+For example:
+
+`````{panels}
+source
+^^^
+````
+```{dropdown} Here's my dropdown
+And here's my dropdown content
 ```
 ````
+---
+result
+^^^
+```{dropdown} Here's my dropdown
+And here's my dropdown content
+```
+`````
+
+(content/toggle-admonitions)=
+### Dropdown admonitions
+
+You can also hide the body of your admonition blocks so that users must click a button to reveal their content.
+This is helpful if you'd like to include some text that isn't immediately visible to the user.
+
+To turn an admonition into a dropdown, add the `dropdown` class to them. For example:
+
+`````{panels}
+source
+^^^
+````md
+```{note}
+:class: dropdown
+The note body will be hidden!
+```
+````
+---
+result
+^^^
+```{note}
+:class: dropdown
+The note body will be hidden!
+```
+`````
+
+You can use this in conjunction with `{admonition}` directives to include your
+own titles and stylings. For example:
+
+`````{panels}
+source
+^^^
+````md
+:::{admonition,dropdown,tip} Click here!
+Here's what's inside!
+:::
+````
+---
+result
+^^^
+:::{admonition,dropdown,tip} Click here!
+Here's what's inside!
+:::
+`````
+
+:::{important}
+Admonition dropdowns require JavaScript to be enabled on the browser which they are viewed.
+By contrast, the [dropdown directive](content/panels) below works purely *via* HTML+CSS.
+:::
+
 
 (content/definition-lists)=
 
@@ -291,15 +390,11 @@ parse:
 
 Definition lists utilise the [markdown-it-py deflist plugin](https://markdown-it-py.readthedocs.io/en/latest/plugins.html), which itself is based on the [Pandoc definition list specification](http://johnmacfarlane.net/pandoc/README.html#definition-lists).
 
-This syntax can be useful, for example, as an alternative to nested bullet lists:
+Here's an example:
 
-- Term 1
-  - Definition
-- Term 2
-  - Definition
-
-Using instead:
-
+````{panels}
+source
+^^^
 ```md
 Term 1
 : Definition
@@ -307,20 +402,21 @@ Term 1
 Term 2
 : Definition
 ```
-
-gives
-
+---
+result
+^^^
 Term 1
 : Definition
 
 Term 2
 : Definition
+````
 
 From the [Pandoc documentation](https://pandoc.org/MANUAL.html#definition-lists):
 
 > Each term must fit on one line, which may optionally be followed by a blank line, and must be followed by one or more definitions.
 > A definition begins with a colon or tilde, which may be indented one or two spaces.
-
+>
 > A term may have multiple definitions, and each definition may consist of one or more block elements (paragraphs, code blocks, lists, etc.)
 
 Here is a more complex example, demonstrating some of these features:
@@ -367,36 +463,37 @@ Term 3
 ## Quotations and epigraphs
 
 Quotations and epigraphs provide ways to highlight information given by others.
-They behave slightly differently.
+
+### Quotations
 
 **Regular quotations** are controlled with standard Markdown syntax, i.e., by
-inserting a caret (`>`) symbol in front of one or more lines of text. For example,
-the following quotation:
+inserting a caret (`>`) symbol in front of one or more lines of text. For example:
 
-> Here is a cool quotation.
->
-> From me, Jo the Jovyan
-
-Was created with this Markdown:
-
+````{panels}
+source
+^^^
 ```md
 > Here is a cool quotation.
 >
 > From me, Jo the Jovyan
 ```
+---
+result
+^^^
+> Here is a cool quotation.
+>
+> From me, Jo the Jovyan
+````
+
+### Epigraphs
 
 **Epigraphs** draw more attention to a quote and highlight its author. You should
 keep these relatively short so that they don't take up too much vertical space. Here's
 how an epigraph looks:
 
-```{epigraph}
-Here is a cool quotation.
-
-From me, Jo the Jovyan
-```
-
-This was generated with this Markdown:
-
+`````{panels}
+source
+^^^
 ````md
 ```{epigraph}
 Here is a cool quotation.
@@ -404,18 +501,21 @@ Here is a cool quotation.
 From me, Jo the Jovyan
 ```
 ````
-
-You can provide an **attribution** to an epigraph by adding `--` to the final line, followed
-by the quote author. For example, the epigraph
-
+---
+result
+^^^
 ```{epigraph}
 Here is a cool quotation.
 
--- Jo the Jovyan
+From me, Jo the Jovyan
 ```
+`````
 
-was generated with this Markdown:
+You can provide an **attribution** to an epigraph by adding `--` to the final line, followed by the quote author. For example:
 
+`````{panels}
+source
+^^^
 ````md
 ```{epigraph}
 Here is a cool quotation.
@@ -423,6 +523,15 @@ Here is a cool quotation.
 -- Jo the Jovyan
 ```
 ````
+---
+result
+^^^
+```{epigraph}
+Here is a cool quotation.
+
+-- Jo the Jovyan
+```
+`````
 
 ## Glossaries
 
