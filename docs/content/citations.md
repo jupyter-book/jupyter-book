@@ -13,12 +13,11 @@ kernelspec:
 # References and citations
 
 Because `jupyter-book` is built on top of {term}`Sphinx`,
-there are many ways to reference content, including the excellent
-[sphinxcontrib-bibtex](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/)
-extension that allows you to include citations and a bibliography with your book.
+there are many ways to reference content within your book (or even across other books, or Sphinx websites). This page has several examples of what you can reference and how to accomplish it.
 
 :::{tip}
-When debugging your book build, the following options can be helpful:
+You can check for missing references when building a Jupyter Book.
+To do so, use the following options:
 
 ```bash
 jupyter-book build -W -n --keep-going docs/
@@ -29,8 +28,69 @@ but will still attempt to run the full build (`--keep-going`),
 so that you can see all errors in one run.
 :::
 
+## Referencing overview
+
+Referencing is accomplished with **roles** or with **markdown link syntax**, depending on your use-case.
+There are a few ways to reference content from your book, depending on what kind of content you'd like to reference.
+Here is a quick overview of some common roles for referencing:
+
+* `{ref}` is used to reference section labels that you define or figures with a `name` value
+* `{numref}` is used to provide *numbered* references to figures, tables, or headers
+* `{doc}` is used to reference other files in your book
+* `{eq}` is used to reference equations that have been given a `label` value
+
+:::{admonition,tip} Choosing your own link text
+You can reference a section label through ``{ref}`label` `` or ``{ref}`some text <label>` ``.
+Documents can be referenced through ``{doc}`path/to/document` `` or ``{doc}`some text <path/to/document>` ``
+:::
+
+### Referencing with markdown link syntax
+
+If you wish to use Markdown style syntax, then MyST Markdown will try to find a reference,
+from any of the above reference types (and more!).
+This has an advantage, in that you can used nested markdown syntax in your text, for example:
+
+```md
+[A **bolded _reference_** to a page](./myst.md)
+
+[A reference to a header](content:references)
+```
+
+produces
+
+[A **bolded _reference_** to a page](./myst.md)
+
+[A reference to a header](content:references)
+
+Leaving the title empty will mean the reference uses the target as text, for example the syntax
+
+```md
+[](./myst.md)
+```
+
+will link to a section and use its header text as the link text itself:
+
+[](./myst.md)
+
+:::{admonition,tip} Internval vs. External URLs
+You can control how MyST Markdown distinguishes between internal references and external URLs in your `_config.yml`.
+For example,
+
+```yaml
+parse:
+   myst_url_schemes: [mailto, http, https]
+```
+
+means that `[Jupyter Book](https://jupyterbook.org)` will be recognised as a URL, but `[Citations](content:citations)` will not:
+
+* [Jupyter Book](https://jupyterbook.org)
+* [Citations](content:citations)
+
+:::
+
+
 (content:references)=
-## Cross-references and labels
+## Reference section labels
 
 Labels are a way to add tags to parts of your content so that you can reference them
 later on. This is helpful if you want to quickly insert links to other
@@ -52,70 +112,85 @@ For example, we've added the following label above the header for this section w
 ## Cross-references and labels
 ```
 
-You can insert cross-references to labels in your content with the following syntax: `` {ref}`label-text` ``.
-For example, the syntax `` {ref}`content:references` `` results in a link to this section like so: {ref}`content:references`.
+You can insert cross-references to labels in your content with two kinds of syntax:
 
-### Referencing content from your book
+- `` {ref}`label-text` ``
+- `[](label-text)`
 
-There are a few ways to reference content from your book, depending on what kind of
-content you'd like to reference. Here is a quick overview of some common options:
+For example, the syntax `` {ref}`content:references` `` or `[](content:references)` results in a link to this section like so: {ref}`content:references`.
 
-* `{ref}` is used to reference section labels that you define or figures with a `name` value
-* `{numref}` is used to provide *numbered* references to figures or headers
-* `{doc}` is used to reference other files in your book
-* `{eq}` is used to reference equations that have been given a `label` value
+## Referencing figures
 
-:::{tip}
-You can reference a section label through ``{ref}`label` `` or ``{ref}`some text <label>` ``.
-Documents can be referenced through ``{doc}`path/to/document` `` or ``{doc}`some text <path/to/document>` ``
-:::
+To reference a figure in your book, first add a figure and ensure that it has both a `name` as well as a caption associated with it:
 
-If you wish to use Markdown style syntax, then MyST Markdown will try to find a reference,
-from any of the above reference types (and more!).
-This actually has an advantage, in that you can used nested syntax, for example:
+```{figure} ../images/cool.jpg
+:name: my-cool-fig
 
-```md
-[A **_reference_** to a page](./myst.md)
-
-[A reference to a header](content:references)
+Here is my caption.
 ```
 
-produces
+Then, reference the figure by its `:name:` value. For example:
 
-[A **_reference_** to a page](./myst.md)
+Here is {ref}`My cool fig <my-cool-fig>`.
 
-[A reference to a header](content:references)
 
-Leaving the title empty will mean the reference uses the target as text, for example the syntax
+## Reference tables
 
-```md
-[](./myst.md)
+To reference a table, first create a table and ensure that it has a `:name:` and a title:
+
+```{table} Here is my title
+:name: my-reference-table
+
+| 1 | 2 |
+|---|---|
+| 3 | 4 |
 ```
 
-will link to a section and use its header text as the link text itself:
+{ref}`my-reference-table`.
 
-[](./myst.md)
+## Reference content files
 
-:::{tip}
-You can control how MyST Markdown distinguishes between internal references and external URLs in your `_config.yml`.
-For example,
+To reference other files of book content, use the `{doc}` role, or link directly to another file with Markdown link syntax. For exmaple:
 
-```yaml
-parse:
-   myst_url_schemes: [mailto, http, https]
+{doc}`../file-types/myst-notebooks`.
+[](../file-types/myst-notebooks.md).
+
+## Reference equations
+
+To reference equations, first insert an equation with a label like so:
+
+```{math}
+:label: my-reference-math
+w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
 ```
 
-means that `[Jupyter Book](https://jupyterbook.org)` will be recognised as a URL, but `[Citations](content:citations)` will not:
+Next, reference the equation like so:
 
-* [Jupyter Book](https://jupyterbook.org)
-* [Citations](content:citations)
+{eq}`my-reference-math`.
+[](my-reference-math)
 
-:::
+## Numbered references
+
+Numbered references allow you to refer to attach a number to each figure, equation, or table.
+Use the `{numref}` role to insert a numbered reference, like so:
+
+{numref}`Numbered ref %s <my-reference-table>`.
+
+When generating custom text for your numbered references, include a `%s` character and the number for that reference will be inserted there.
+
+For example:
+
+{numref}`Numbered ref %s <my-reference-table>`.
+
 
 (content:citations)=
 ## Citations and bibliographies
 
 You can add citations and bibliographies using references that are stored in a `bibtex` file that is in your book's folder. You can then add a citation in-line in your Markdown with the `{cite}` role, and include the bibliography from your bibtex file with the `{bibliography}` directive.
+
+```{seealso}
+This functionality uses the excellent [sphinxcontrib-bibtex](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/) extension.
+```
 
 **To add citations to your book**, take the following steps:
 
