@@ -1,33 +1,26 @@
 # PDFs for your book
 
 It is possible to build a single PDF that contains all of your book's content. This
-page describes a few ways to do so.
+page describes a couple ways to do so.
 
 :::{warning}
 PDF building is experimental, and may change or have bugs.
 :::
 
-There are two approaches to building PDF files:
-
-```{contents}
-:depth: 2
-```
+There are two approaches to building PDF files.
 
 (pdf-html)=
 ## Build a PDF from your book HTML
 
-It is also possible to build a single PDF from your book's HTML. This first
-converts all of your book's content into a single HTML file, and then renders
+It is possible to build a single PDF from your book's HTML. This starts by
+converting all of your book's content into a single HTML file, and then renders
 it as a PDF by emulating a browser from the command-line.
 
 ### Installation
 
-Your system will need to use `pyppeteer` to parse the generated html for
+Your system will need to use `pyppeteer` to parse the generated HTML for
 conversion to PDF.
 
-### Installing pyppeteer
-
-If you wish to build a PDF from your book's HTML, you will need the `pyppeteer` package.
 You can install it like so:
 
 ```bash
@@ -62,31 +55,56 @@ jb build mybookname/ --builder pdfhtml
 :::{warning}
 If you get a "MaxRetryError" and see mentions of SSL in the error message when building the PDF,
 this could be due to a bug in `pyppeteer` as it downloads Chromium for the first time.
-See [this github comment](https://github.com/miyakogi/pyppeteer/issues/258#issuecomment-563075764)
-for a potential fix, and [this jupyter book issue](https://github.com/executablebooks/jupyter-book/issues/593)
+See [this GitHub comment](https://github.com/miyakogi/pyppeteer/issues/258#issuecomment-563075764)
+for a potential fix, and [this Jupyter Book issue](https://github.com/executablebooks/jupyter-book/issues/593)
 where we're tracking the issue.
 :::
 
-(pdf/latex)=
-## Build a PDF using Latex
+### Control the look of PDF via HTML
 
-You can also use Latex to build a PDF of your book. This can behave differently depending on your
-operating system and setup. This section tries to recommend a few best-practices.
+Because you are using HTML as an intermediary for your book's PDF, you can control the look and feel of the HTML via your own CSS rules. Most CSS changes that you make to your HTML website will also persist in the PDF version of that website. For information about how to define your own CSS rules, see [](custom-assets).
+
+To add CSS rules that **only apply to the printed PDF**, use the `@media print` CSS pattern to define print-specific rules. These will *only* be applied when the HTML is being printed, and will not show up in your non-PDF website.
+
+For example, to **hide the right table of contents** at print time, you could add this rule:
+
+```scss
+@media print {
+    .bd-toc {
+        visibility: hidden;
+    }
+}
+```
+
+The right Table of Contents would be present in your live website, but hidden when someone printed a PDF of your website.
+
+(pdf/latex)=
+## Build a PDF using LaTeX
+
+You can also use LaTeX to build a PDF of your book.
+This can behave differently depending on your operating system and `tex` setup.
+This section tries to recommend a few best-practices.
+
+:::{note}
+We recommend using the [texlive](https://www.tug.org/texlive/) distribution
+:::
 
 ### Installation
 
-For `Debian` based `Linux` platforms it is recommended to install the following packages:
+For `Debian`-based `Linux` platforms it is recommended to install the following packages:
 
 ```bash
-sudo apt-get install texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra latexmk
+sudo apt-get install texlive-latex-recommended texlive-latex-extra \
+                     texlive-fonts-recommended texlive-fonts-extra \
+                     texlive-xetex latexmk
 ```
 
-alternatively you can install [texlive](https://www.tug.org/texlive/quickinstall.html)
+Alternatively you can install the full [TeX Live](https://www.tug.org/texlive/quickinstall.html) distribution.
 
-For `OSX` you may want to use [mactex](http://www.tug.org/mactex/) which is a more
-user friendly approach, alternatively you may use [texlive](https://www.tug.org/texlive/quickinstall.html).
+For `OSX` you may want to use [MacTeX](http://www.tug.org/mactex/) which is a more
+user friendly approach. Alternatively you may also use [TeX Live](https://www.tug.org/texlive/quickinstall.html).
 
-For `Windows` please install [texlive](https://www.tug.org/texlive/windows.html).
+For `Windows` users, please install [TeX Live](https://www.tug.org/texlive/windows.html).
 
 ### Build
 
@@ -110,3 +128,52 @@ jb build mybookname/ --builder latex
 ```
 
 ::::
+
+
+### Updating the name of the PDF file
+
+To update the name of your `PDF` file you can set the following in `_config.yml`
+
+```yaml
+latex:
+  latex_documents:
+     targetname: book.tex
+```
+
+This will act as an automatic `override` when Sphinx builds the
+[latex_documents](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-latex_documents). It is typically inferred by `Sphinx` but when
+using `jupyter-book` naming the file in the `_config.yml` generally makes it
+easier to find.
+
+### Using a different LaTeX engine
+
+Some users may want to switch to using a different LaTeX engine to build the
+`PDF` files. For example, if your project contains `Unicode` you will need to
+use `xelatex` to build the `PDF` file.
+
+To update the `LaTeX` engine to `xelatex` you can add the following to your `_config.yml`
+
+```yaml
+latex:
+  latex_engine: xelatex
+```
+
+:::{note}
+We will be making `xelatex` the default in the near future, so this can be used to
+specify other builders such as `pdflatex`, or `lualatex`.
+
+See the Sphinx documentation [for available builders](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-latex_engine)
+:::
+
+### Other Sphinx LaTeX settings
+
+Other [LaTeX settings](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-latex_engine) available to Sphinx can be passed through using the config section
+of `Sphinx` in the `_config.yml` file for your project.
+
+For example, if you would like to set the [latex_toplevel_sectioning](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-latex_toplevel_sectioning) option to use `part` instead of `chapter` you would use:
+
+```yaml
+sphinx:
+  config:
+    latex_toplevel_sectioning: 'part'
+```

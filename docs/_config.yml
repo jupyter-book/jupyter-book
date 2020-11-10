@@ -35,6 +35,11 @@ launch_buttons:
   colab_url: "https://colab.research.google.com"
   thebe: true
 
+latex:
+  latex_engine: xelatex
+  latex_documents:
+    targetname: book.tex
+
 sphinx:
   config:
     nb_custom_formats:
@@ -51,6 +56,12 @@ sphinx:
           "floor": ["\\lfloor#1\\rfloor", 1]
           "bmat": ["\\left[\\begin{array}"]
           "emat": ["\\end{array}\\right]"]
+    latex_elements:
+        preamble: |
+          \newcommand\N{\mathbb{N}}
+          \newcommand\floor[1]{\lfloor#1\rfloor}
+          \newcommand{\bmat}{\left[\begin{array}}
+          \newcommand{\emat}{\end{array}\right]}
     intersphinx_mapping:
       ebp:
         - "https://executablebooks.org/en/latest/"
@@ -67,6 +78,9 @@ sphinx:
       nbformat:
         - "https://nbformat.readthedocs.io/en/latest"
         - null
+      sphinx-panels:
+        - https://sphinx-panels.readthedocs.io/en/sphinx-book-theme/
+        - null
     rediraffe_branch: 'master'
     rediraffe_redirects:
       content-types/index.md: file-types/index.md
@@ -75,6 +89,7 @@ sphinx:
       content-types/myst-notebooks.md: file-types/myst-notebooks.md
       content-types/jupytext.md: file-types/jupytext.Rmd
       content-types/restructuredtext.md: file-types/restructuredtext.md
+    language: en
 
   extra_extensions:
     - sphinx_click.ext

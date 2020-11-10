@@ -5,10 +5,10 @@ This page contains more advanced and complete information about the
 
 ## Enable Google Analytics
 
-If you have a Google Account, you can use Google Analytics to collect some
+If you have a Google account, you can use Google Analytics to collect some
 information on the traffic to your Jupyter Book. With this tool, you can find
 out how many people are using your book, where they come from and how they
-access it, whether they are using the Desktop or the mobile version etc.
+access it, whether they are using the desktop or the mobile version etc.
 
 To add Google Analytics to your Jupyter Book, navigate to
 [Google Analytics](https://analytics.google.com/analytics/web/), create a new
@@ -27,7 +27,7 @@ html:
 
 If you'd like to make sure that the links outside of your book are valid,
 run the Sphinx link checker with Jupyter Book. This will check each of your
-external links and ensure that it resolves.
+external links and ensure that they resolve.
 
 ```{margin}
 Note that you must ensure each link is
@@ -70,20 +70,21 @@ jupyter-book clean mybookname/ --all
 This will entirely remove the folders in the `_build/` directory.
 
 (jupyter-cell-tags)=
-
 ## How should I add cell tags and metadata to my notebooks?
 
 You can control the behaviour of Jupyter Book by putting custom tags
 in the metadata of your cells. This allows you to do things like
 {doc}`automatically hide code cells <../interactive/hiding>`) as well as
-{ref}`adding interactive widgets to cells <launch/thebelab>`.
+{ref}`add interactive widgets to cells <launch/thebelab>`.
+
+### Adding tags using notebook interfaces
 
 There are two straightforward ways to add metadata to cells:
 
 1. **Use the Jupyter Notebook cell tag editor**. The Jupyter Notebook ships with a
    cell tag editor by default. This lets you add cell tags to each cell quickly.
 
-   To enable the cell tag editor, go click `View -> Cell Toolbar -> Tags`. This
+   To enable the cell tag editor, click `View -> Cell Toolbar -> Tags`. This
    will enable the tags UI. Here's what the menu looks like.
 
    ![tags_notebook](../images/tags_notebook.png)
@@ -102,11 +103,24 @@ There are three levels of metadata:
 
 * For notebook level: in the Jupyter Notebook Toolbar go to `Edit -> Edit Notebook Metadata`
 * For cell level: in the Jupyter Notebook Toolbar go to `View -> Cell Toolbar -> Edit Metadata` and a button will appear above each cell.
-* For output level: using e.g. `IPython.display.display(obj,metadata={"tags": [])`, you can set metadata specific to a certain output (but jupyter-book does not utilise this just yet).
+* For output level: using e.g. `IPython.display.display(obj,metadata={"tags": [])`, you can set metadata specific to a certain output (but Jupyter Book does not utilize this just yet).
 
-![NB Metadata GIF](../images/metadata_edit.gif)
+![NB Metadata GIF](../images/metadata_edit.*)
 
-### Add tags to notebook cells based on their content
+### Add tags using MyST Markdown notebooks
+
+If you're writing notebooks with MyST Markdown, then you can add tags to each code cell when you write the `{code-cell}` block. For example, below we:
+
+````
+```{code-cell}
+:tags: [tag1,tag2,tag3]
+print("some code")
+```
+````
+
+Will create a code cell with those three tags attached to it. For more information about MyST Markdown notebooks, see [](../file-types/myst-notebooks.md).
+
+### Add tags using Python code
 
 Sometimes you'd like to quickly scan through a notebook's cells in order to
 add tags based on the content of the cell. For example, you might want to
@@ -132,7 +146,7 @@ text_search_dict = {
     "# HIDE CODE": "hide-input"  # Hide the input w/ a button to show
 }
 
-# Search through each notebook and look for th text, add a tag if necessary
+# Search through each notebook and look for the text, add a tag if necessary
 for ipath in notebooks:
     ntbk = nbf.read(ipath, nbf.NO_CONVERT)
 
@@ -151,39 +165,43 @@ for ipath in notebooks:
 (raw-html-in-markdown)=
 ## Use raw HTML in Markdown
 
-Jupyter notebook markdown allows you to use pure HTML in markdown cells.
+Jupyter Notebook Markdown allows you to use raw HTML in Markdown cells.
 This is discouraged in most cases,
 because it will usually just be passed through the build process as raw text, and so will not be subject to processes like:
 
-- Relative path corrections
-- Copying of assets to the build folder
-- Multiple output type formatting (e.g. it will not show in PDFs!).
+- relative path corrections
+- copying of assets to the build folder
+- multiple output type formatting (e.g. it will not show in PDFs!).
 
-So, for instance, below we add, and you will find that the HTML link is broken:
+So, for instance, below we add:
 
 ```md
- <a href="../intro.md">Go Home HTML!</a>
+<a href="../intro.md">Go Home HTML!</a>
 
- [Go Home Markdown!](../intro.md)
+[Go Home Markdown!](../intro.md)
 ```
 
- <a href="../intro.md">Go Home HTML!</a>
+and you will find that the HTML link is broken:
 
- [Go Home Markdown!](../intro.md)
+<a href="../intro.md">Go Home HTML!</a>
+
+[Go Home Markdown!](../intro.md)
 
 :::{tip}
-Note that MyST markdown now has some extended syntax features,
+Note that MyST Markdown now has some extended syntax features,
 which can allow you to use certain HTML elements in the correct manner.
 
-Such as:
+For example, the raw HTML image tag
 
 ```html
 <img src="../images/fun-fish.png" alt="the fun fish!" width="200px"/>
 ```
 
+becomes
+
 <img src="../images/fun-fish.png" alt="the fun fish!" width="200px"/>
 
-See the [image appearance section](content-blocks-images) for details.
+See the [image section](content-blocks-images) for details.
 :::
 
 ## Use Jupyter Book and Sphinx together
@@ -213,7 +231,7 @@ In case of trouble, make sure the default `index.rst` or `index.md` (the file th
 
 ## Adding extra HTML to your book
 
-There are a few places in Jupyter Book where you can add arbitrary extra HTML.
+There are a few places in Jupyter Book where you can add extra arbitrary HTML.
 In all cases, this is done with a configuration value in your `_config.yml` file.
 
 ### Extra HTML in your footer
@@ -244,7 +262,7 @@ html:
 ```
 
 The contents of `extra_navbar` will be inserted into your page's HTML after
-all other html content.
+all other HTML content.
 
 ## Adding a license to your HTML footer
 
@@ -266,7 +284,20 @@ sphinx:
     html_show_copyright: false
 ```
 
-Note that this may not work in latex-generated PDF builds of your page.
+Note that this may not work in PDF builds of your page generated by LaTeX.
+
+## Configuring to Improve Accessibility
+
+Declaring the primary language used in your book assists screen reader and browser translation tools.
+
+Language can be configured by providing the appropriate [language code](https://www.w3schools.com/tags/ref_language_codes.asp) to the `language` option, under `sphinx` configuration in your `_config.yml` file:
+
+```yaml
+sphinx:
+  language: en
+```
+
+This example will set the book language to English, which would be represented in your book's HTML as `<html lang="en">...</html>`.
 
 (working-on-windows)=
 ## Working on Windows
@@ -282,14 +313,14 @@ If you're running a recent version of Windows 10 and encounter any issues, you m
 [installing Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
 
 As of June 5, 2020, there were three open issues that required Windows-specific changes.
-We hope these are now fixed in jupyter-book version 0.8 but, in case any issues still arise,
-leave these community tips, which are known to work for some users.
-Note that there is no guarantee that they will work on all windows installations.
+We hope these are now fixed in version 0.8 of Jupyter Book but, in case any issues still arise,
+we leave these community tips, which are known to work for some users.
+Note that there is no guarantee that they will work on all Windows installations.
 
 1. Character encoding
 
-    Jupyter-book currently reads and writes files on windows in the native windows
-    encoding, which causes encoding errors for some characters in UTF-8 encoded
+    Jupyter Book currently reads and writes files on Windows in the native Windows
+    encoding, which causes encoding errors for some characters in UTF8 encoded
     notebooks.
 
     **Work-around:**  Beginning with
@@ -302,25 +333,25 @@ Note that there is no guarantee that they will work on all windows installations
     the EOAS/UBC notebook courseware project has created a Conda package [runjb](https://anaconda.org/eoas_ubc/runjb) which [does this automatically for powershell](https://github.com/eoas-ubc/eoas_tlef/blob/master/converted_docs/wintools/binwin/runjb.ps1)
     :::
 
-2. A new windows event loop
+2. A new Windows event loop
 
    The asyncio event loop [has been changed for Python 3.8](https://github.com/sphinx-doc/sphinx/issues/7310)
    causing sphinx-build to fail.
 
-   **Work-around:**  Pin to Python 3.7.6.  This
+   **Work-around:**  Pin to Python 3.7.6. This
    [environment_win.yml](https://github.com/eoas-ubc/quantecon-mini-example/blob/windows/environment_win.yml)
    file does that, and also installs runjb to fix issue 1.
 
 3. Nested tables of contents
 
-   Currently, `_toc.yml` files that reference markdown files
-   in sub-folders are failing for some windows users.  That is, this
+   Currently, `_toc.yml` files that reference Markdown files
+   in sub-folders are failing for some Windows users. That is, this
    [original _toc.yml](https://github.com/eoas-ubc/quantecon-mini-example/blob/master/mini_book/_toc.yml)
-   file will fail with a message saying jupyter-book "```cannot find index.md```"
+   file will fail with a message saying Jupyter Book "```cannot find index.md```"
 
    **Work-around**: Flatten the layout of the book to a single level, i.e.
    [this _toc.yml](https://github.com/eoas-ubc/quantecon-mini-example/blob/windows/mini_book/docs/_toc.yml)
-   file works with windows.
+   file works with Windows.
 
 **Summary**
 
@@ -335,11 +366,48 @@ The following workflow should succeed using a miniconda powershell terminal on W
 7. `cd mini_book`
 8. `runjb docs`
 
-After the build, view the html with:
+After the build, view the HTML with:
 
 `start docs\_build\html\index.html`
+
+(sphinx:manual-assets)=
+## Manually specify extra files/folders to be included in a website
+
+Jupyter Book will copy over any files that are linked from within its pages so that the links work in the built website.
+However, sometimes you'd like to manually ensure that files and folders are included in your built website.
+For example, if you'd like to link to them from *outside* your built documentation, but not from within your built documentation.
+
+To manually specify items to copy over, use the [`html_extra_path` Sphinx configuration](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_extra_path).
+You can configure this with Jupyter Book like so:
+
+```yaml
+sphinx:
+  config:
+    html_extra_path: ['folder1', 'folder2']
+```
+
+When you build your book's HTML, Jupyter Book will ensure that all files and folders _inside_ the folders specified in `html_extra_path` will be copied over to your built website.
+
+For example, if you have a folder structure in your book like so:
+
+```bash
+assets
+└── data
+    └── mydataset.csv
+```
+
+and the following Jupyter Book configuration:
+
+```yaml
+sphinx:
+  config:
+    html_extra_path: ['assets']
+```
+
+Then the dataset will be accessible at `yourwebsite.com/data/mydataset.csv`.
+
 
 ## What if I have an issue or question?
 
 If you've got questions, concerns, or suggestions, please open an issue at
-[at the jupyter book issues page](https://github.com/executablebooks/jupyter-book/issues)
+[at the Jupyter Book issues page](https://github.com/executablebooks/jupyter-book/issues)

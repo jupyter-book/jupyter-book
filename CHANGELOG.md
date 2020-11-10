@@ -1,5 +1,46 @@
 # Change Log
 
+## v0.8.3 2020-10-12
+
+This is a relatively minor release with bugfixes and under-the-hood improvements.
+
+### Bugs fixed
+
+* 🐛 FIX: colab default is now empty [#1026](https://github.com/executablebooks/jupyter-book/pull/1026) ([@choldgraf](https://github.com/choldgraf))
+
+### Upgrade EBT dependencies
+
+* ⬆️ Update sphinx-book-theme v0.0.38 [#1047](https://github.com/executablebooks/jupyter-book/pull/1047) ([@choldgraf](https://github.com/choldgraf))
+* ⬆️ Update sphinx-panels pinning v0.5.2 [#1044](https://github.com/executablebooks/jupyter-book/pull/1044) ([@chrisjsewell](https://github.com/chrisjsewell))
+
+
+## v0.8.2 2020-09-19
+
+([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.8.1...879a2d4133db58a636655e08323cd98609cefcb4))
+
+### Improved
+
+`sphinx-panels` version bump to v0.5, which adds several new content blocks
+including `{tabbed}` content. [#972](https://github.com/executablebooks/jupyter-book/pull/972)
+
+
+## v0.8.1 2020-09-09
+
+### New ✨
+
+Add `jupyter-book create --cookiecutter` (thanks to [@TomasBeuzen](https://github.com/TomasBeuzen))
+: This adds a `--cookiecutter` option to `jb create`, to allow users to use the [Jupyter Book cookiecutter](https://github.com/executablebooks/cookiecutter-jupyter-book) to create a book template.
+
+  The cookiecutter is suitable for more advanced users that want to create a ready-to-go repository to host their book that includes pre-populated metafiles such as README, LICENSE, CONDUCT, CONTRIBUTING, etc., as well as GitHub Actions workflow files.
+
+### Fixes 🐛
+
+This release contains numerous improvements, to the documentation and code, to address issues noted by you guys:
+
+- Fix issues with single document builds (e.g. pdflatex) and relative path resolutions
+- Ensure `sphinx-book-theme` is loaded on PDF builds (to allow the use of the `margin` directive)
+- Allow execution `timeout: -1` and `execute_notebooks: off` to be valid in the `_config.yml`
+
 ## v0.8.0 2020-09-01
 
 ([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.7.5...v0.8.0))

@@ -11,7 +11,7 @@ kernelspec:
 ---
 
 (myst_cheatsheet)=
-# MyST Cheat Sheet
+# MyST cheat sheet
 
 ## Headers
 
@@ -36,7 +36,7 @@ kernelspec:
   - Level 1-6 headings, denoted by number of `#`
 ``````
 
-## Target Headers
+## Target headers
 
 ``````{list-table}
 :header-rows: 1
@@ -56,9 +56,9 @@ kernelspec:
 ``````
 
 (ref/target_headers)=
-### Referencing Target Headers
+### Referencing target headers
 
-Targets can be referenced with the [ref inline role](https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-ref) which by default uses the section title:
+Targets can be referenced with the [ref inline role](https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#role-ref) which uses the section title by default:
 
 ```md
 {ref}`myst_cheatsheet`
@@ -70,7 +70,7 @@ You can specify the text of the target:
 {ref}`MyST syntax lecture <myst_cheatsheet>`
 ```
 
-Another alternative is to use markdown syntax:
+Another alternative is to use Markdown syntax:
 
 ```md
 [MyST syntax lecture](myst_cheatsheet)
@@ -94,7 +94,7 @@ Another alternative is to use markdown syntax:
   - quoted text
 ``````
 
-## Thematic Break
+## Thematic break
 
 ``````{list-table}
 :header-rows: 1
@@ -116,7 +116,7 @@ Another alternative is to use markdown syntax:
   - Creates a horizontal line in the output
 ``````
 
-## Line Comment
+## Line comment
 
 ``````{list-table}
 :header-rows: 1
@@ -136,7 +136,7 @@ Another alternative is to use markdown syntax:
   - See [Comments](https://myst-parser.readthedocs.io/en/latest/using/syntax.html#syntax-comments) for more information.
 ``````
 
-## Block Break
+## Block break
 
 ``````{list-table}
 :header-rows: 1
@@ -158,7 +158,7 @@ Another alternative is to use markdown syntax:
     a block break
 ``````
 
-## HTML Block
+## HTML block
 
 ``````{list-table}
 :header-rows: 1
@@ -228,7 +228,7 @@ Another alternative is to use markdown syntax:
 
 ## Lists
 
-### Ordered List
+### Ordered list
 
 ``````{list-table}
 :header-rows: 1
@@ -254,7 +254,7 @@ Another alternative is to use markdown syntax:
         * First subitem
 ``````
 
-### Unordered List
+### Unordered list
 
 ``````{list-table}
 :header-rows: 1
@@ -329,7 +329,7 @@ Another alternative is to use markdown syntax:
       - 2744
     ```
     ````
-  - ```{list-table}
+  - ```{list-table} My table title
     :header-rows: 1
     :name: example-table
 
@@ -341,7 +341,7 @@ Another alternative is to use markdown syntax:
       - 2744
     ```
 * - ````md
-     ```{list-table} title
+     ```{list-table} Table title
     :header-rows: 1
 
     * - Col1
@@ -353,7 +353,7 @@ Another alternative is to use markdown syntax:
     ```
     ````
   - ````md
-     ```{list-table} Table with a title
+     ```{list-table} This table title
     :header-rows: 1
 
     * - Training
@@ -364,7 +364,7 @@ Another alternative is to use markdown syntax:
       - 2744
     ```
     ````
-  - ```{list-table} Table with a title
+  - ```{list-table} This table title
     :header-rows: 1
 
     * - Training
@@ -376,10 +376,13 @@ Another alternative is to use markdown syntax:
     ```
 ``````
 
-### Referencing Tables
+### Referencing tables
 
 ```{note}
-To add a label to your table simply include a `:name:` parameter followed by the label of your table. See example above.
+In order to [reference a table](figures:referencing) you must add a label to it.
+To add a label to your table simply include a `:name:` parameter followed by the label of your table.
+In order to add a [numbered reference](figures:numref), you
+must also include a table title. See example above.
 ```
 
 ``````{list-table}
@@ -558,14 +561,14 @@ To add a label to your table simply include a `:name:` parameter followed by the
     ```
 ``````
 
-## Figures and Images
+## Figures and images
 
 ``````{margin}
 <br/><br/><br/><br/><br/><br/>
 <br/><br/><br/><br/><br/><br/>
 <br/><br/><br/><br/><br/><br/>
 ```{note}
-Content is not permitted in image directive.
+Content is not permitted in the image directive.
 ```
 ``````
 
@@ -616,7 +619,7 @@ Content is not permitted in image directive.
 
 See {doc}`../content/figures` and {doc}`../file-types/markdown` for more information.
 
-### Referencing Figures
+### Referencing figures
 
 ``````{list-table}
 :header-rows: 1
@@ -654,7 +657,7 @@ See {doc}`../content/figures` and {doc}`../file-types/markdown` for more informa
     is an example.
 ``````
 
-### Referencing Images
+### Referencing images
 
 ``````{list-table}
 :header-rows: 1
@@ -743,7 +746,7 @@ See {doc}`../content/figures` and {doc}`../file-types/markdown` for more informa
 
 See {doc}`../content/math` for more information.
 
-### Referencing Math Directives
+### Referencing math directives
 
 ``````{list-table}
 :header-rows: 1
@@ -763,19 +766,19 @@ See {doc}`../content/math` for more information.
 
 ## Code
 
-### Inline Code
+### In-line code
 
 **Example**:
 
 ```md
-Wrap inline code blocks in backticks: `boolean example = true;`.
+Wrap in-line code blocks in backticks: `boolean example = true;`.
 ```
 
 **Result**:
 
-Wrap inline code blocks in backticks: `boolean example = true;`.
+Wrap in-line code blocks in backticks: `boolean example = true;`.
 
-### Code and Syntax Highlighting
+### Code and syntax highlighting
 
 **Example**:
 
@@ -809,7 +812,7 @@ No syntax highlighting if no language
 is indicated.
 ```
 
-### Executable Code
+### Executable code
 
 ````{warning}
 Make sure to include this front-matter YAML block at the beginning of your `.ipynb` or `.md` files.
@@ -940,7 +943,7 @@ The following `tags` can be applied to code cells by introducing them as options
     ````
 ``````
 
-### Gluing Variables
+### Gluing variables
 
 **Example**:
 
@@ -966,7 +969,7 @@ Here is an example of how to glue text: {glue:}`glued_text`
 
 See {ref}`glue/gluing` for more information.
 
-### Gluing Numbers
+### Gluing numbers
 
 **Example**:
 
@@ -1004,7 +1007,7 @@ Here is an example of how to glue numbers: {glue:}`ss_mean` and {glue:}`ns_mean`
 
 See {ref}`glue/gluing` for more information.
 
-### Gluing Visualizations
+### Gluing visualizations
 
 **Example**:
 
@@ -1051,7 +1054,7 @@ This is an example of pasting a glued output as a block:
 
 See {ref}`glue/gluing` for more information.
 
-### Gluing Math
+### Gluing math
 
 **Example**:
 
@@ -1088,7 +1091,7 @@ To glue a math equation try:
 
 See [](content:code-outputs:glue) for more information.
 
-## Reference Documents
+## Reference documents
 
 ``````{list-table}
 :header-rows: 1
