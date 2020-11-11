@@ -49,6 +49,20 @@ def test_build_from_template(temp_with_override, cli):
     assert html.joinpath("intro.html").exists()
 
 
+def test_build_dirhtml_from_template(temp_with_override, cli):
+    """Test building the book template with dirhtml."""
+    # Create the book from the template
+    book = temp_with_override / "new_book"
+    _ = cli.invoke(commands.create, book.as_posix())
+    build_result = cli.invoke(
+        commands.build, [book.as_posix(), "-n", "-W", "--builder", "dirhtml"]
+    )
+    assert build_result.exit_code == 0, build_result.output
+    html = book.joinpath("_build", "dirhtml")
+    assert html.joinpath("index.html").exists()
+    assert html.joinpath("intro", "index.html").exists()
+
+
 def test_custom_config(cli, build_resources):
     """Test a variety of custom configuration values."""
     books, _ = build_resources

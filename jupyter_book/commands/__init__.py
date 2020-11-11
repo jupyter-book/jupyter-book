@@ -58,6 +58,7 @@ def main():
 
 BUILDER_OPTS = {
     "html": "html",
+    "dirhtml": "dirhtml",
     "pdfhtml": "singlehtml",
     "latex": "latex",
     "pdflatex": "latex",
@@ -219,6 +220,8 @@ def build(
         OUTPUT_PATH = BUILD_PATH.joinpath("html")
     elif builder in ["latex", "pdflatex"]:
         OUTPUT_PATH = BUILD_PATH.joinpath("latex")
+    elif builder in ["dirhtml"]:
+        OUTPUT_PATH = BUILD_PATH.joinpath("dirhtml")
 
     if nitpick:
         config_overrides["nitpicky"] = True
