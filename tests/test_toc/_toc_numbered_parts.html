@@ -1,12 +1,12 @@
 <nav aria-label="Main navigation" class="bd-links" id="bd-docs-nav">
 <ul class="nav sidenav_l1">
-<li class="toctree-l1">
+<li class="toctree-l1 current active">
 <a class="reference internal" href="#">
    Main index
   </a>
 </li>
 </ul>
-<p class="caption">
+<p class="caption collapsible-parent">
 <span class="caption-text">
   Chapter 1
  </span>
@@ -17,13 +17,22 @@
    1. Content1
   </a>
 </li>
-<li class="toctree-l1">
+<li class="toctree-l1 collapsible-parent">
 <a class="reference internal" href="subfolder/index.html">
    2. Subfolder
   </a>
+<ul class="collapse-ul">
+<li class="toctree-l2">
+<a class="reference internal" href="subfolder/asubpage.html">
+     2.1. Asubpage
+    </a>
 </li>
 </ul>
-<p class="caption">
+<i class="fas fa-chevron-down">
+</i>
+</li>
+</ul>
+<p class="caption collapsible-parent">
 <span class="caption-text">
   Chapter 2
  </span>

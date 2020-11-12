@@ -100,7 +100,7 @@ For `Debian`-based `Linux` platforms it is recommended to install the following 
 ```bash
 sudo apt-get install texlive-latex-recommended texlive-latex-extra \
                      texlive-fonts-recommended texlive-fonts-extra \
-                     texlive-xetex latexmks
+                     texlive-xetex latexmk
 ```
 
 Alternatively you can install the full [TeX Live](https://www.tug.org/texlive/quickinstall.html) distribution.

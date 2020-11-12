@@ -329,7 +329,7 @@ Another alternative is to use Markdown syntax:
       - 2744
     ```
     ````
-  - ```{list-table}
+  - ```{list-table} My table title
     :header-rows: 1
     :name: example-table
 
@@ -341,7 +341,7 @@ Another alternative is to use Markdown syntax:
       - 2744
     ```
 * - ````md
-     ```{list-table} title
+     ```{list-table} Table title
     :header-rows: 1
 
     * - Col1
@@ -353,7 +353,7 @@ Another alternative is to use Markdown syntax:
     ```
     ````
   - ````md
-     ```{list-table} Table with a title
+     ```{list-table} This table title
     :header-rows: 1
 
     * - Training
@@ -364,7 +364,7 @@ Another alternative is to use Markdown syntax:
       - 2744
     ```
     ````
-  - ```{list-table} Table with a title
+  - ```{list-table} This table title
     :header-rows: 1
 
     * - Training
@@ -379,7 +379,10 @@ Another alternative is to use Markdown syntax:
 ### Referencing tables
 
 ```{note}
-To add a label to your table simply include a `:name:` parameter followed by the label of your table. See example above.
+In order to [reference a table](figures:referencing) you must add a label to it.
+To add a label to your table simply include a `:name:` parameter followed by the label of your table.
+In order to add a [numbered reference](figures:numref), you
+must also include a table title. See example above.
 ```
 
 ``````{list-table}
