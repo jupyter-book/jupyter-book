@@ -62,6 +62,7 @@ BUILDER_OPTS = {
     "latex": "latex",
     "pdflatex": "latex",
     "linkcheck": "linkcheck",
+    "passthrough": None,
 }
 
 
@@ -105,6 +106,13 @@ BUILDER_OPTS = {
     type=click.Choice(list(BUILDER_OPTS.keys())),
 )
 @click.option(
+    "--builder-name",
+    default=None,
+    help="Specify alternative builder name which allows jupyter-book to use a builder"
+    "provided by an external extension. This can only be used when using"
+    "--builder=passthrough",
+)
+@click.option(
     "-v", "--verbose", count=True, help="increase verbosity (can be repeated)"
 )
 @click.option(
@@ -123,6 +131,7 @@ def build(
     keep_going,
     freshenv,
     builder,
+    builder_name,
     verbose,
     quiet,
     get_config_only=False,
@@ -219,6 +228,9 @@ def build(
         OUTPUT_PATH = BUILD_PATH.joinpath("html")
     elif builder in ["latex", "pdflatex"]:
         OUTPUT_PATH = BUILD_PATH.joinpath("latex")
+    elif builder in ["passthrough"]:
+        OUTPUT_PATH = BUILD_PATH.joinpath(builder_name)
+        BUILDER_OPTS["passthrough"] = builder_name
 
     if nitpick:
         config_overrides["nitpicky"] = True
