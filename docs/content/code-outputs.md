@@ -16,9 +16,38 @@ kernelspec:
 The formatting of code outputs is highly configurable.
 Below we give examples of how to format particular outputs and even insert outputs into other locations of the document.
 
+The [MyST cheat sheet](myst_cheatsheet) provides a [list of `code-cell` tags available](myst_cheatsheet:code-cell:tags)
+
 :::{seealso}
 The [MyST-NB documentation](myst-nb:use/format/cutomise), for how to fully customize the output renderer.
 :::
+
+(content:code-outputs:scrolling)=
+## Scrolling cell outputs
+
+The traditional Jupyter Notebook interface allows you to toggle **output scrolling**
+for your cells. This allows you to visualize part of a long output without it taking up
+the entire page.
+
+You can trigger this behavior in Jupyter Book by adding the following
+tag to a cell's metadata:
+
+```json
+{
+    "tags": [
+        "output_scroll",
+    ]
+}
+```
+
+For example, the following cell has a long output, but will be scrollable in the book:
+
+```{code-cell} ipython3
+:tags: [output_scroll]
+
+for ii in range(40):
+    print(f"this is output line {ii}")
+```
 
 (content:code-outputs:images)=
 ## Images
