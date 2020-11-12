@@ -10,7 +10,7 @@ from sphinx.cmd.build import handle_exception
 import yaml
 
 from .config import get_final_config
-from .pdf import update_latex_document
+from .pdf import update_latex_documents
 
 REDIRECT_TEXT = """
 <meta http-equiv="Refresh" content="0; url={first_page}" />
@@ -131,12 +131,19 @@ def build_sphinx(
             # We have to apply this update after the sphinx initialisation,
             # since default_latex_documents is dynamically generated
             # see sphinx/builders/latex/__init__.py:default_latex_documents
-            # TODO what if the user has specifically set latex_documents?
-            default_latex_document = app.config.latex_documents[0]
-            new_latex_document = update_latex_document(
-                default_latex_document, config_meta["latex_doc_overrides"]
+            new_latex_documents = update_latex_documents(
+                app.config.latex_documents, config_meta["latex_doc_overrides"]
             )
-            app.config.latex_documents = [new_latex_document]
+            app.config.latex_documents = new_latex_documents
+
+            # Build latex_doc tuples based on --individualpages option request
+            if config_meta["latex_individualpages"]:
+                from .pdf import autobuild_singlepage_latexdocs
+
+                # Ask Builder to read the source files to fetch titles and documents
+                app.builder.read()
+                latex_documents = autobuild_singlepage_latexdocs(app)
+                app.config.latex_documents = latex_documents
 
             app.build(force_all, filenames)
 

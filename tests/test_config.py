@@ -44,8 +44,9 @@ from jupyter_book.commands import sphinx
     ],
 )
 def test_get_final_config(user_config, data_regression):
+    cli_config = {"latex_individualpages": False}
     final_config, metadata = get_final_config(
-        user_config, validate=True, raise_on_invalid=True
+        user_config, cli_config, validate=True, raise_on_invalid=True
     )
     data_regression.check(
         {"_user_config": user_config, "final": final_config, "metadata": metadata}

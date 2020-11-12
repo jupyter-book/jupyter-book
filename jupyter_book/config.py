@@ -129,6 +129,14 @@ def get_final_config(
     # and completely override any defaults (sphinx and yaml)
     sphinx_config.update(user_yaml_update)
 
+    # This is to deal with a special case, where the override needs to be applied after
+    # the sphinx app is initialised (since the default is a function)
+    # TODO I'm not sure if there is a better way to deal with this?
+    config_meta = {
+        "latex_doc_overrides": sphinx_config.pop("latex_doc_overrides"),
+        "latex_individualpages": cli_config.pop("latex_individualpages"),
+    }
+
     # finally merge in CLI configuration
     _recursive_update(sphinx_config, cli_config or {})
 
@@ -137,11 +145,6 @@ def get_final_config(
         paths_static = sphinx_config.get("html_static_path", [])
         paths_static.append("_static")
         sphinx_config["html_static_path"] = paths_static
-
-    # This is to deal with a special case, where the override needs to be applied after
-    # the sphinx app is initialised (since the default is a function)
-    # TODO I'm not sure if there is a better way to deal with this?
-    config_meta = {"latex_doc_overrides": sphinx_config.pop("latex_doc_overrides")}
 
     return sphinx_config, config_meta
 
