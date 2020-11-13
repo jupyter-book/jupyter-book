@@ -61,3 +61,4 @@ final:
 metadata:
   latex_doc_overrides:
     title: My Jupyter Book
+  latex_individualpages: false

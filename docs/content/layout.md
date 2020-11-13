@@ -118,8 +118,10 @@ which we'll cover below.
 ### Margins with code cells
 
 You can make a code cell move to the right margin by adding `margin` to your
-cell's tags. Here's what the cell metadata for a margin cell looks like:
+cell's tags.
 
+````{tabbed} Jupyter Notebook
+Here's what the cell metadata for a margin cell looks like:
 ```json
 {
     "tags": [
@@ -127,6 +129,19 @@ cell's tags. Here's what the cell metadata for a margin cell looks like:
     ]
 }
 ```
+:::{seealso}
+[](jupyter-cell-tags)
+:::
+````
+
+`````{tabbed} MyST Text File
+For a MyST text file these tags can be added to the `code-cell`
+````md
+```{code-cell} <language>
+:tags: [margin]
+```
+````
+`````
 
 For example, we'll re-display the figure above, and add a `margin` tag to the code cell.
 
@@ -138,37 +153,7 @@ make_fig(figsize=(10, 5))
 
 This can be combined with other tags like `remove-input` to **only display the figure**.
 
-:::{seealso}
-[](jupyter-cell-tags)
-:::
-
-+++
-
-## Scrolling cell outputs
-
-The traditional Jupyter Notebook interface allows you to toggle **output scrolling**
-for your cells. This allows you to visualize part of a long output without it taking up
-the entire page.
-
-You can trigger this behavior in Jupyter Book by adding the following
-tag to a cell's metadata:
-
-```json
-{
-    "tags": [
-        "output_scroll",
-    ]
-}
-```
-
-For example, the following cell has a long output, but will be scrollable in the book:
-
-```{code-cell} ipython3
-:tags: [output_scroll]
-
-for ii in range(40):
-    print(f"this is output line {ii}")
-```
+The [MyST cheat sheet](myst_cheatsheet) provides a [list of `code-cell` tags available](myst_cheatsheet:code-cell:tags)
 
 ## Full-width content
 
