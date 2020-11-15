@@ -35,68 +35,103 @@ Make sure that you have your extension installed on your machine, or Sphinx won'
 how to build the extensions.
 :::
 
-### An example: `sphinx-tabs`
+### An example: `sphinx-inline-tabs`
 
-For example, let's say you'd like to include **tabbed content** in your book.
-There is [a Sphinx extension for that](https://github.com/djungelorm/sphinx-tabs).
-To enable it, we'll do the following:
+By default, Jupyter Book ships with [tabs via `sphinx-panels`](content:tabs).
+There are other packages for tabs in the Sphinx ecosystem with different functionality.
+One-such package is [`sphinx-inline-tabs`](https://sphinx-inline-tabs.readthedocs.io/en/latest/), which allows for _syncronized tabs_ in case you'd like your tabs to shift across the page at the same time.
 
-* **Install `sphinx-tabs`**. Here's the command to do so:
+`sphinx-inline-tabs` is not included with Jupyter Book by default, but we can activate it with Jupyter Book like so:
+
+* **Install `sphinx-inline-tabs`**. Here's the command to do so:
 
   ```bash
-  pip install sphinx-tabs
+  pip install sphinx-inline-tabs
   ```
 
-* **Add `sphinx-tabs` content to your book**. Here's an example with MyST Markdown:
+* **Add `sphinx-inline-tabs` content to your book**. Here's an example with MyST Markdown:
 
   `````md
-  ````{tabs}
-  ```{tab} Line one
+  First two tabs showing off defining a function.
 
-  Beautiful is better than ugly. ✨
-
+  ````{tab} Python
+  ```python
+  def main():
+      return
   ```
-  ```{tab} Line two
-
-  Explicit is better than implicit. ❗
+  ````
+  ````{tab} C++
+  ```c++
+  int main(const int argc, const char **argv) {
+    return 0;
+  }
   ```
-  ```{tab} Line three
+  ````
 
-  Simple is better than complex. 😵
+  Second two tabs showing off printing.
+
+  ````{tab} Python
+  ```python
+  print("Hello World!")
+  ```
+  ````
+
+  ````{tab} C++
+  ```c++
+  #include <iostream>
+
+  int main() {
+    std::cout << "Hello World!" << std::endl;
+  }
   ```
   ````
   `````
 
-* **Activate `sphinx-tabs` in `_config.yml`**. [The `sphinx-tabs` documentation](https://github.com/djungelorm/sphinx-tabs#installation)
-  says we activate it in Sphinx by adding `extensions = ["sphinx_tabs.tabs"]`, so we'll
-  add it to our Jupyter Book like so:
+* **Activate `sphinx-inline-tabs` in `_config.yml`**.
+  [The `sphinx-inline-tabs` documentation](https://sphinx-inline-tabs.readthedocs.io/en/latest/) says we activate it in Sphinx by adding `extensions = ["sphinx_inline_tabs"]`, so we'll add it to our Jupyter Book like so:
 
   ```yaml
   sphinx:
     extra_extensions:
-    - sphinx_tabs.tabs
+    - sphinx_inline_tabs
   ```
 
-Now, Jupyter Book will know how to interpret the `{tabs}` directive
-(and any other directives that `sphinx-tabs` supports).
+Now, Jupyter Book will know how to interpret the `{tab}` directive
+(and any other directives that `sphinx-inline-tabs` supports).
 
 For example, here is a rendered version of the tab code pasted above:
 
-The [Zen of Python](https://www.python.org/dev/peps/pep-0020/), in 3 tabs.
+First two tabs showing off defining a function.
 
-````{tabs}
-```{tab} Line one
-
-Beautiful is better than ugly. ✨
-
+````{tab} Python
+```python
+def main():
+    return
 ```
-```{tab} Line two
-
-Explicit is better than implicit. ❗
+````
+````{tab} C++
+```c++
+int main(const int argc, const char **argv) {
+  return 0;
+}
 ```
-```{tab} Line three
+````
 
-Simple is better than complex. 😵
+Second two tabs showing off printing.
+
+````{tab} Python
+```python
+print("Hello World!")
+```
+````
+
+````{tab} C++
+```c++
+#include <iostream>
+
+int main() {
+  std::cout << "Hello World!" << std::endl;
+}
 ```
 ````
 
