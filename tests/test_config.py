@@ -19,8 +19,8 @@ from jupyter_book.commands import sphinx
         {"exclude_patterns": ["new"]},
         {
             "sphinx": {
-                "extra_extensions": ["other"],
-                "local_extensions": {"helloworld": "./ext"},
+                "extra_extensions": ["other", "helloworld"],
+                "local_paths": ["./ext"],
                 "config": {
                     "html_theme_options": {
                         "launch_buttons": {"binderhub_url": "other"}

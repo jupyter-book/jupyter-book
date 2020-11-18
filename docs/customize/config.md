@@ -123,16 +123,17 @@ This will **append** to the list of extensions already loaded by Jupyter Book.
 
 ### Adding Local Extensions
 
-To add a local extension that requires a path, use:
+To add a local extension you can specify the path using `local_paths` such as:
 
 ```yaml
 sphinx:
-  local_extensions:
-    <name>: <path>
+  extra_extensions: [my_extension]
+  local_paths:
+    - <path>
 ```
 
-This will **append to the list of extensions already loaded by Jupyter Book and update the `sys.path` so
-the local extension can be found.
+This will **append** the path to the `sys.path` context so the local extension
+can be found.
 
 ### Specifying Sphinx Configuration Values
 
