@@ -8,9 +8,8 @@ _user_config:
       new: value
     extra_extensions:
     - other
-    - helloworld
-    local_paths:
-    - ./ext
+    local_extensions:
+      helloworld: ./ext
 final:
   author: The Jupyter Book community
   comments_config:

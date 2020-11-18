@@ -69,5 +69,5 @@ repository:
 # Advanced and power-user settings
 sphinx:
   extra_extensions          :   # A list of extra extensions to load by Sphinx (added to those already used by JB).
-  local_paths               :   # A list of paths to be added to sys.path for loading local extensions
+  local_extensions          :   # A list of local extensions to load by sphinx specified by "name: path" items
   config                    :   # key-value pairs to directly over-ride the Sphinx configuration

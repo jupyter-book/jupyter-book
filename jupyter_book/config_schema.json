@@ -190,14 +190,11 @@
                         "type": "string"
                     }
                 },
-                "local_paths": {
+                "local_extensions": {
                     "type": [
                         "null",
-                        "array"
-                    ],
-                    "items": {
-                        "type": "string"
-                    }
+                        "object"
+                    ]
                 },
                 "config": {
                     "type": [
