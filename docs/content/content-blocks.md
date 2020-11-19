@@ -563,6 +563,7 @@ To reference terms in your glossary, use the `{term}` role. For example,
 `` {term}`Term one` `` becomes {term}`Term one` and `` {term}`A second term` ``
 becomes {term}`A second term`.
 
+(content:tabs)=
 ## Tabbed content
 
 You can also use [`sphinx-panels`](sphinx-panels:panels/usage) to produce [**tabbed content**](sphinx-panels:components-tabbed).
