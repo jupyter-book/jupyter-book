@@ -131,7 +131,8 @@ def add_toctree(app, docname, source):
             toc_sections.append(this_section)
 
         # Generate the TOCtree for this page
-        toctrees.append(_gen_toctree(toc_options, toc_sections, parent_suff))
+        if parent_suff in [".ipynb", ".md", ".rst"]:
+            toctrees.append(_gen_toctree(toc_options, toc_sections, parent_suff))
     toctrees = "\n".join(toctrees)
 
     # Now modify the source file with the new toctree text
