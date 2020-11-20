@@ -119,6 +119,12 @@ BUILDER_OPTS = {
     count=True,
     help="-q means no sphinx status, -qq also turns off warnings ",
 )
+@click.option(
+    "--individualpages",
+    is_flag=True,
+    default=False,
+    help="[pdflatex] Enable build of PDF files for each individual page",
+)
 def build(
     path_source,
     path_output,
@@ -132,6 +138,7 @@ def build(
     external_builder,
     verbose,
     quiet,
+    individualpages,
     get_config_only=False,
 ):
     """Convert your book's or page's content to HTML or a PDF."""
@@ -157,6 +164,20 @@ def build(
     config_overrides = {}
     found_config = find_config_path(PATH_SRC_FOLDER)
     BUILD_PATH = path_output if path_output is not None else found_config[0]
+
+    # Set config for --individualpages option (pages, documents)
+    if individualpages:
+        if builder != "pdflatex":
+            _error(
+                """
+                Specified option --individualpages only works with the
+                following builders:
+
+                pdflatex
+                """
+            )
+
+    # Build Page
     if not PATH_SRC_FOLDER.is_dir():
         # it is a single file
         build_type = "page"
@@ -191,7 +212,10 @@ def build(
             "globaltoc_path": "",
             "exclude_patterns": to_exclude,
             "html_theme_options": {"single_page": True},
+            # --individualpages option set to True for page call
+            "latex_individualpages": True,
         }
+    # Build Project
     else:
         build_type = "book"
         PAGE_NAME = None
@@ -223,6 +247,9 @@ def build(
         # Builder-specific overrides
         if builder == "pdfhtml":
             config_overrides["html_theme_options"] = {"single_page": True}
+
+        # --individualpages option passthrough
+        config_overrides["latex_individualpages"] = individualpages
 
     # Use the specified configuration file, or one found in the root directory
     path_config = config or (
