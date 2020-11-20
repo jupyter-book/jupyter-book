@@ -6,6 +6,8 @@ from typing import Optional, Union
 
 import jsonschema
 import yaml
+import sys
+import os
 
 from .utils import _message_box
 
@@ -282,6 +284,16 @@ def yaml_to_sphinx(yaml: dict):
         for extension in extra_extensions:
             if extension not in sphinx_config["extensions"]:
                 sphinx_config["extensions"].append(extension)
+
+    local_extensions = yaml.get("sphinx", {}).get("local_extensions")
+    if local_extensions:
+        if "extensions" not in sphinx_config:
+            sphinx_config["extensions"] = get_default_sphinx_config()["extensions"]
+        for extension, path in local_extensions.items():
+            if extension not in sphinx_config["extensions"]:
+                sphinx_config["extensions"].append(extension)
+            if path not in sys.path:
+                sys.path.append(os.path.abspath(path))
 
     # items in sphinx.config will override defaults,
     # rather than recursively updating them

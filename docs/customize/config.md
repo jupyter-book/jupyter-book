@@ -106,9 +106,12 @@ html:
 ```
 
 (config:sphinx)=
-### Advanced configuration (with sphinx)
+## Advanced configuration (with sphinx)
 
 Users who are familiar with [Sphinx configuration](sphinx:build-config) may wish to directly add extensions or set options to parse to the underlying Sphinx application.
+
+(config:sphinx:extra_extensions)=
+### Adding Extra Extensions
 
 To add extensions, use:
 
@@ -118,6 +121,22 @@ sphinx:
 ```
 
 This will **append** to the list of extensions already loaded by Jupyter Book.
+
+(config:sphinx:local_extensions)=
+### Adding Local Extensions
+
+To add a local extension that requires a path, use:
+
+```yaml
+sphinx:
+  local_extensions:
+    <name>: <path>
+```
+
+This will **append to the list of extensions already loaded by Jupyter Book and update the `sys.path` so
+the local extension can be found.
+
+### Specifying Sphinx Configuration Values
 
 To set additional Sphinx configurations:
 

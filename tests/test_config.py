@@ -20,6 +20,7 @@ from jupyter_book.commands import sphinx
         {
             "sphinx": {
                 "extra_extensions": ["other"],
+                "local_extensions": {"helloworld": "./ext"},
                 "config": {
                     "html_theme_options": {
                         "launch_buttons": {"binderhub_url": "other"}
