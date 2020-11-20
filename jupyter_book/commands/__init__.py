@@ -62,7 +62,6 @@ BUILDER_OPTS = {
     "latex": "latex",
     "pdflatex": "latex",
     "linkcheck": "linkcheck",
-    "passthrough": None,
 }
 
 
@@ -103,14 +102,13 @@ BUILDER_OPTS = {
     "--builder",
     default="html",
     help="Which builder to use.",
-    type=click.Choice(list(BUILDER_OPTS.keys())),
+    type=str,
 )
 @click.option(
-    "--builder-name",
-    default=None,
-    help="Specify alternative builder name which allows jupyter-book to use a builder"
-    "provided by an external extension. This can only be used when using"
-    "--builder=passthrough",
+    "--external-builder",
+    is_flag=True,
+    help="indicates that an external builder is requested via an extension"
+    "specified by the user",
 )
 @click.option(
     "-v", "--verbose", count=True, help="increase verbosity (can be repeated)"
@@ -131,7 +129,7 @@ def build(
     keep_going,
     freshenv,
     builder,
-    builder_name,
+    external_builder,
     verbose,
     quiet,
     get_config_only=False,
@@ -143,6 +141,15 @@ def build(
 
     if not get_config_only:
         click.secho(f"Running Jupyter-Book v{jbv}", bold=True, fg="green")
+
+    # Parse --builder options
+    builder = builder.lower()  # normalise input
+    if external_builder:
+        BUILDER_OPTS[builder] = builder
+    BUILDERS = list(BUILDER_OPTS.keys())
+    if builder not in BUILDERS:
+        msg = f"{builder} not a valid builder option\nAvailable Builders: {BUILDERS}"
+        raise click.BadOptionUsage("builder", msg)
 
     # Paths for the notebooks
     PATH_SRC_FOLDER = Path(path_source).absolute()
@@ -228,9 +235,8 @@ def build(
         OUTPUT_PATH = BUILD_PATH.joinpath("html")
     elif builder in ["latex", "pdflatex"]:
         OUTPUT_PATH = BUILD_PATH.joinpath("latex")
-    elif builder in ["passthrough"]:
-        OUTPUT_PATH = BUILD_PATH.joinpath(builder_name)
-        BUILDER_OPTS["passthrough"] = builder_name
+    elif external_builder:
+        OUTPUT_PATH = BUILD_PATH.joinpath(builder)
 
     if nitpick:
         config_overrides["nitpicky"] = True
