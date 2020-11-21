@@ -29,12 +29,10 @@ files in your book's `_build/html` folder.
    ```
 2. Update the settings for your GitHub pages site:
 
-    a. Use the `gh-pages` branch to host
-your website. 
+    a. Use the `gh-pages` branch to host your website.
 
-    b. Choose root directory `/` if you're
-building the book in it's own repository. Choose `/docs` 
-directory if you're building documentation with jupyter-book. 
+    b. Choose root directory `/` if you're building the book in it's own repository.
+       Choose `/docs` directory if you're building documentation with jupyter-book.
 
 3. From the `master` branch of your book's root directory (which should contain the `_build/html` folder) call `ghp-import` and point it to your HTML files, like so:
 
