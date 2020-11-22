@@ -70,3 +70,4 @@ metadata:
   latex_doc_overrides:
     targetname: book.tex
     title: other
+  latex_individualpages: false

@@ -190,6 +190,12 @@
                         "type": "string"
                     }
                 },
+                "local_extensions": {
+                    "type": [
+                        "null",
+                        "object"
+                    ]
+                },
                 "config": {
                     "type": [
                         "null",

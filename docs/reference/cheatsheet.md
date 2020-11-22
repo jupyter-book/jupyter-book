@@ -849,6 +849,7 @@ print(note)
 
 See {doc}`../file-types/myst-notebooks` for more information.
 
+(myst_cheatsheet:code-cell:tags)=
 #### Tags
 
 The following `tags` can be applied to code cells by introducing them as options:

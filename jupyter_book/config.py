@@ -6,6 +6,8 @@ from typing import Optional, Union
 
 import jsonschema
 import yaml
+import sys
+import os
 
 from .utils import _message_box
 
@@ -129,6 +131,14 @@ def get_final_config(
     # and completely override any defaults (sphinx and yaml)
     sphinx_config.update(user_yaml_update)
 
+    # This is to deal with a special case, where the override needs to be applied after
+    # the sphinx app is initialised (since the default is a function)
+    # TODO I'm not sure if there is a better way to deal with this?
+    config_meta = {
+        "latex_doc_overrides": sphinx_config.pop("latex_doc_overrides"),
+        "latex_individualpages": cli_config.pop("latex_individualpages"),
+    }
+
     # finally merge in CLI configuration
     _recursive_update(sphinx_config, cli_config or {})
 
@@ -137,11 +147,6 @@ def get_final_config(
         paths_static = sphinx_config.get("html_static_path", [])
         paths_static.append("_static")
         sphinx_config["html_static_path"] = paths_static
-
-    # This is to deal with a special case, where the override needs to be applied after
-    # the sphinx app is initialised (since the default is a function)
-    # TODO I'm not sure if there is a better way to deal with this?
-    config_meta = {"latex_doc_overrides": sphinx_config.pop("latex_doc_overrides")}
 
     return sphinx_config, config_meta
 
@@ -279,6 +284,16 @@ def yaml_to_sphinx(yaml: dict):
         for extension in extra_extensions:
             if extension not in sphinx_config["extensions"]:
                 sphinx_config["extensions"].append(extension)
+
+    local_extensions = yaml.get("sphinx", {}).get("local_extensions")
+    if local_extensions:
+        if "extensions" not in sphinx_config:
+            sphinx_config["extensions"] = get_default_sphinx_config()["extensions"]
+        for extension, path in local_extensions.items():
+            if extension not in sphinx_config["extensions"]:
+                sphinx_config["extensions"].append(extension)
+            if path not in sys.path:
+                sys.path.append(os.path.abspath(path))
 
     # items in sphinx.config will override defaults,
     # rather than recursively updating them

@@ -89,6 +89,10 @@ This section tries to recommend a few best-practices.
 We recommend using the [texlive](https://www.tug.org/texlive/) distribution
 :::
 
+The default is to build your project as a single PDF file, however it is possible to build
+individual PDF files for each page of the project by enabling the `--individualpages` option
+when using the `pdflatex` builder.
+
 ### Installation
 
 For `Debian`-based `Linux` platforms it is recommended to install the following packages:
@@ -129,8 +133,23 @@ jb build mybookname/ --builder latex
 
 ::::
 
+**Individual PDF Files:**
 
-### Updating the name of the PDF file
+To build PDF files for each page of the project,
+you can specify the option `--individualpages` for `--builder=pdflatex`.
+
+The individual PDF files will be available in the `_build/latex` build folder.
+These files will have the same name as the source file or, if nested in folders, will be named `{folder}-{filename}.pdf`.
+
+:::{note}
+When specifying a page using the `build` command,
+the `--individualpages` will automatically be set to `True`.
+
+In the future we intend for this to produce latex documents more suitable to single pages
+(see [issue #904](https://github.com/executablebooks/jupyter-book/issues/904)).
+:::
+
+### Updating the name of the Global PDF file
 
 To update the name of your `PDF` file you can set the following in `_config.yml`
 

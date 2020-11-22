@@ -213,6 +213,8 @@ def _gen_toctree(options, subsections, parent_suff):
         toctree_template = toctree_text_md
     elif parent_suff == ".rst":
         toctree_template = toctree_text_rst
+    else:
+        return ""
 
     # Create the markdown directive for our toctree
     toctree = dedent(toctree_template).format(

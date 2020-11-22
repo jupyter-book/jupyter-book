@@ -8,6 +8,8 @@ _user_config:
       new: value
     extra_extensions:
     - other
+    local_extensions:
+      helloworld: ./ext
 final:
   author: The Jupyter Book community
   comments_config:
@@ -35,6 +37,7 @@ final:
   - sphinx_panels
   - sphinx_book_theme
   - other
+  - helloworld
   html_add_permalinks: ¶
   html_baseurl: ''
   html_favicon: ''
@@ -61,3 +64,4 @@ final:
 metadata:
   latex_doc_overrides:
     title: My Jupyter Book
+  latex_individualpages: false
