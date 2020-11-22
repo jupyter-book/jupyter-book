@@ -137,46 +137,8 @@ int main() {
 
 ### Local Sphinx Extensions
 
-[Sphinx is able to use local extensions](https://www.sphinx-doc.org/en/master/development/tutorials/helloworld.html#using-the-extension) by adding additional directories to the [Python path](https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH). At present, this functionality is not available within Jupyter Book.
-
-However, you can use a local Sphinx extension by using `pip` and installing the package locally. Below we'll document how you can create a local `pip`-installable Sphinx extension.
-
-First, write a minimal `setup.py` as follows:
-
-```python
-from setuptools import setup
-
-setup(
-	name='my_sphinx_ext'
-)
-```
-
-```{seealso}
-For further documentation on the purposes and configuration of `setup.py`, please refer to [the official Python documentation on setup scripts](https://docs.python.org/3/distutils/setupscript.html).
-```
-
-Next, create a new directory with your extension's name (in this case `my_sphinx_ext`) within the same directory as `setup.py`. Afterwards, create an *empty* file called `__init__.py` within this directory. If you are on Linux, simply `touch my_sphinx_ext/__init__.py`. The result should be:
-
-```
-setup.py
-my_sphinx_ext/
-└──__init__.py
-```
-
-Then, execute `pip install -e .` within the directory containing `setup.py`. This will install `my_sphinx_ext` as a local Python package.
-
-It's then as easy as updating your `_config.yml` with your new extension:
-
-```yaml
-  sphinx:
-    extra_extensions:
-    - my_sphinx_ext
-```
-
-
-:::{admonition,tip} More information on creating Sphinx extensions
-The extension in this example is `pip`-installable, but does nothing! For more information about how to create your own Sphinx extension, try following [Sphinx's extension tutorials](https://www.sphinx-doc.org/en/master/development/tutorials/index.html).
-:::
+[Sphinx is able to use local extensions](https://www.sphinx-doc.org/en/master/development/tutorials/helloworld.html#using-the-extension) by adding additional directories to the [Python path](https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH). You can use local extensions by
+specifying them as [local_extensions](config:sphinx:local_extensions) in the `_config.yml` file.
 
 (custom-assets)=
 ## Custom CSS or JavaScript
