@@ -209,3 +209,19 @@ def test_execution_timeout(pages, build_resources, cli):
     )
     assert "Execution Failed" in result.stdout
     assert path_html.joinpath("reports", "loop_unrun.log").exists()
+
+
+def test_build_using_custom_builder(cli, build_resources):
+    """Test building the book template using a custom builder"""
+    books, _ = build_resources
+    config = books.joinpath("config_custombuilder")
+    result = cli.invoke(
+        commands.build(builder="custom", custom_builder="mycustombuilder"),
+        [config.as_posix(), "-n", "-W", "--keep-going"],
+    )
+    assert result.exit_code == 0, result.output
+    html = config.joinpath("_build", "html", "index.html").read_text(encoding="utf8")
+    assert '<h1 class="site-logo" id="site-title">TEST PROJECT NAME</h1>' in html
+    assert '<div class="sphinx-tabs docutils container">' in html
+    assert '<link rel="stylesheet" type="text/css" href="_static/mycss.css" />' in html
+    assert '<script src="_static/js/myjs.js"></script>' in html
