@@ -216,8 +216,15 @@ def test_build_using_custom_builder(cli, build_resources):
     books, _ = build_resources
     config = books.joinpath("config_custombuilder")
     result = cli.invoke(
-        commands.build(builder="custom", custom_builder="mycustombuilder"),
-        [config.as_posix(), "-n", "-W", "--keep-going"],
+        commands.build(),
+        [
+            config.as_posix(),
+            "--builder=custom",
+            "--custom-builder=mycustombuilder",
+            "-n",
+            "-W",
+            "--keep-going",
+        ],
     )
     assert result.exit_code == 0, result.output
     html = config.joinpath("_build", "html", "index.html").read_text(encoding="utf8")
