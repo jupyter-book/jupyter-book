@@ -95,6 +95,18 @@ Either double-click the html file in your local folder, or enter the absolute
 path to the file in your browser navigation bar adding `file://` at the beginning
 (e.g. `file://Users/my_path_to_book/_build/index.html`).
 
+## Other builder types
+
+You can build a variety of outputs using Jupyter Book. To choose a different builder, use the `--builder <builder-name>` configuration when running `jupyter-book build` from the command-line. Here is a list of builders that are available to you:
+
+- `html`: HTML outputs (default)
+- `singlehtml`: A single HTML page for your book
+- `dirhtml`: HTML outputs with `<filename>/index.html` structure.
+- `pdfhtml`: Build a PDF via HTML outputs (see [](pdf:html))
+- `linkcheck`: Run the Sphinx link checker
+- `latex`: Build Latex files for your book
+- `pdflatex`: Build a PDF of your book via Latex (see [](pdf:latex))
+
 ## Next step: publish your book
 
 Now that you've created the HTML for your book, it's time to publish it online.
