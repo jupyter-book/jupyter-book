@@ -215,7 +215,6 @@ def test_build_using_custom_builder(cli, build_resources):
     """Test building the book template using a custom builder"""
     books, _ = build_resources
     config = books.joinpath("config_custombuilder")
-    print(config.as_posix())
     result = cli.invoke(
         commands.build,
         [
