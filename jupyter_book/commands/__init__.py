@@ -58,6 +58,7 @@ def main():
 
 BUILDER_OPTS = {
     "html": "html",
+    "dirhtml": "dirhtml",
     "pdfhtml": "singlehtml",
     "latex": "latex",
     "pdflatex": "latex",
@@ -255,6 +256,8 @@ def build(
         OUTPUT_PATH = BUILD_PATH.joinpath("html")
     elif builder in ["latex", "pdflatex"]:
         OUTPUT_PATH = BUILD_PATH.joinpath("latex")
+    elif builder in ["dirhtml"]:
+        OUTPUT_PATH = BUILD_PATH.joinpath("dirhtml")
     elif builder in ["custom"]:
         OUTPUT_PATH = BUILD_PATH.joinpath(custom_builder)
         BUILDER_OPTS["custom"] = custom_builder
