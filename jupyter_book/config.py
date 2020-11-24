@@ -111,12 +111,12 @@ def get_final_config(
 
     # if available, get the user defined configuration
     user_yaml_recurse, user_yaml_update = {}, {}
+    user_yaml_path = None
     if user_yaml:
         if isinstance(user_yaml, Path):
             user_yaml_path = user_yaml
             user_yaml = yaml.safe_load(user_yaml.read_text(encoding="utf8"))
         else:
-            user_yaml_path = None
             user_yaml = user_yaml
         if validate:
             validate_yaml(user_yaml, raise_on_errors=raise_on_invalid)
@@ -127,10 +127,6 @@ def get_final_config(
         for path in add_paths:
             path = (user_yaml_path.parent / path).resolve()
             sys.path.append(path.as_posix())
-    else:
-        raise EnvironmentError(
-            "Config path is not available for setting up paths to local_extensions"
-        )
 
     # first merge the user yaml into the default yaml
     _recursive_update(yaml_config, user_yaml_recurse)
