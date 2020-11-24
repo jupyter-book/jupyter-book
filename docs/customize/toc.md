@@ -211,7 +211,7 @@ tips and best-practices.
 
 ```{note}
 This is particularly important when you [number your book's sections](toc/numbering)
-or when you [build a PDF of your book through Latex](pdf/latex).
+or when you [build a PDF of your book through Latex](pdf:latex).
 ```
 
 **Chapters are at the top of your book hierarchy**. The top level of your `_toc.yml` contains

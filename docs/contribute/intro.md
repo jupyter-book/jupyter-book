@@ -73,11 +73,11 @@ If you'd like to test (or try out) the generation of PDFs, take the following st
 **To generate PDFs via HTML**, make sure you install Jupyter Book with
 `pip install -e .[pdfhtml]`. This will install [`pyppeteer`](https://github.com/pyppeteer/pyppeteer),
 which runs a headless chrome session to convert your book to PDF. Next, follow
-the installation instructions at {ref}`pdf-html`. You should then be able to build your
+the installation instructions at {ref}`pdf:html`. You should then be able to build your
 book's PDF through HTML.
 
 **To generate PDFs via LaTeX**, make sure you install a working LaTeX distribution locally.
-Do so by following the instructions in {ref}`pdf/latex`.
+Do so by following the instructions in {ref}`pdf:latex`.
 
 If you have installed the requirements for both HTML and LaTeX generation, you should
 be able to run the full test suite with pytest.

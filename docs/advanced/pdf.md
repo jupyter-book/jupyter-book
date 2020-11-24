@@ -9,7 +9,7 @@ PDF building is experimental, and may change or have bugs.
 
 There are two approaches to building PDF files.
 
-(pdf-html)=
+(pdf:html)=
 ## Build a PDF from your book HTML
 
 It is possible to build a single PDF from your book's HTML. This starts by
@@ -78,7 +78,7 @@ For example, to **hide the right table of contents** at print time, you could ad
 
 The right Table of Contents would be present in your live website, but hidden when someone printed a PDF of your website.
 
-(pdf/latex)=
+(pdf:latex)=
 ## Build a PDF using LaTeX
 
 You can also use LaTeX to build a PDF of your book.
