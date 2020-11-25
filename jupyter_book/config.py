@@ -161,7 +161,7 @@ def get_final_config(
 def yaml_to_sphinx(yaml: dict):
     """Convert a Jupyter Book style config structure into a Sphinx config dict.
 
-    :returns: (recursive_updates, override_updates)
+    :returns: (recursive_updates, override_updates, add_paths)
     """
     sphinx_config = {}
 
@@ -293,6 +293,7 @@ def yaml_to_sphinx(yaml: dict):
                 sphinx_config["extensions"].append(extension)
 
     local_extensions = yaml.get("sphinx", {}).get("local_extensions")
+    # add_paths collects additional paths for sys.path
     add_paths = []
     if local_extensions:
         if "extensions" not in sphinx_config:
