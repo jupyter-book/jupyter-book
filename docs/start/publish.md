@@ -13,10 +13,10 @@ The __source__ files comprise all of the content and configuration that Jupyter 
 
 
 The `_build` folder contains all of your static website __build__ files.
-The __build__ files contain all of the output from Jupyter Book's `build` command. 
-These files are only used to view your content in a browser. 
+The __build__ files contain all of the output from Jupyter Book's `build` command.
+These files are only used to view your content in a browser.
 
-Best practice for publishing your book is to keep two branches in your git project: 
+Best practice for publishing your book is to keep two branches in your git project:
 
 - Your book's __source__ files that you create to build the book
 - Your book's __build__ files that Jupyter Book created to view the book
