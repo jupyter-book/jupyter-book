@@ -18,7 +18,7 @@ The __build__ files contain all of the output from Jupyter Book's
 `build` command. These files are only used to view your content in a
 browser. 
 
-Best practices for publishing your book is to keep two branches in your
+Best practice for publishing your book is to keep two branches in your
 git project: 
 
 - Your book's __source__ files that you create to build the book
