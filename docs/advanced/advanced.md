@@ -381,6 +381,44 @@ sphinx:
 
 Then the dataset will be accessible at `yourwebsite.com/data/mydataset.csv`.
 
+## Enabling a custom builder using `jupyter-book`
+
+You can initiate builds for a custom builder using:
+
+```bash
+jb build <project> --builder=custom --custom-builder=<builder-name>
+```
+
+Advanced `sphinx` users may find an extension that builds a different type of output from
+the Sphinx AST such as [sphinx-tojupyter](https://github.com/QuantEcon/sphinx-tojupyter)
+which is an extension for building notebooks that only includes `basic` markdown.
+
+```{warning}
+[sphinx-tojupyter](https://github.com/QuantEcon/sphinx-tojupyter) will be deprecated once
+`myst` syntax rendering support is available in jupyter notebooks.
+```
+
+You can enable the `jupyter` builder by adding it to the `_config.yml`
+
+```
+sphinx:
+  extra_extensions: [sphinx_tojupyter]
+```
+
+and using the `custom` option via `jupyter-book`:
+
+```bash
+jb build <project> --builder=custom --custom-builder=jupyter
+```
+
+```{warning}
+**Developers:** When using other output targets, the package will need to support specifying the
+`mime` type priority for `myst_nb` compatibility.
+
+See [this code](https://github.com/QuantEcon/sphinx-tojupyter/blob/ef85226e5e3e30903b62ddda24d8a32d36687944/sphinx_tojupyter/__init__.py#L124) for
+further details
+```
+
 
 ## What if I have an issue or question?
 

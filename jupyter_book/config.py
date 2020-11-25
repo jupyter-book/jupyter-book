@@ -7,7 +7,6 @@ from typing import Optional, Union
 import jsonschema
 import yaml
 import sys
-import os
 
 from .utils import _message_box
 
@@ -105,21 +104,29 @@ def get_final_config(
     sphinx_config = get_default_sphinx_config()
 
     # get the default yaml configuration
-    yaml_config, default_yaml_update = yaml_to_sphinx(
+    yaml_config, default_yaml_update, add_paths = yaml_to_sphinx(
         yaml.safe_load(PATH_YAML_DEFAULT.read_text(encoding="utf8"))
     )
     yaml_config.update(default_yaml_update)
 
     # if available, get the user defined configuration
     user_yaml_recurse, user_yaml_update = {}, {}
+    user_yaml_path = None
     if user_yaml:
         if isinstance(user_yaml, Path):
+            user_yaml_path = user_yaml
             user_yaml = yaml.safe_load(user_yaml.read_text(encoding="utf8"))
         else:
             user_yaml = user_yaml
         if validate:
             validate_yaml(user_yaml, raise_on_errors=raise_on_invalid)
-        user_yaml_recurse, user_yaml_update = yaml_to_sphinx(user_yaml)
+        user_yaml_recurse, user_yaml_update, add_paths = yaml_to_sphinx(user_yaml)
+
+    # add paths from yaml config
+    if user_yaml_path:
+        for path in add_paths:
+            path = (user_yaml_path.parent / path).resolve()
+            sys.path.append(path.as_posix())
 
     # first merge the user yaml into the default yaml
     _recursive_update(yaml_config, user_yaml_recurse)
@@ -154,7 +161,11 @@ def get_final_config(
 def yaml_to_sphinx(yaml: dict):
     """Convert a Jupyter Book style config structure into a Sphinx config dict.
 
-    :returns: (recursive_updates, override_updates)
+    :returns: (recursive_updates, override_updates, add_paths)
+
+    add_paths collects paths that are specified in the _config.yml (such as those
+    provided in local_extensions) and returns them for adding to sys.path in
+    a context where the _config.yml path is known
     """
     sphinx_config = {}
 
@@ -286,6 +297,8 @@ def yaml_to_sphinx(yaml: dict):
                 sphinx_config["extensions"].append(extension)
 
     local_extensions = yaml.get("sphinx", {}).get("local_extensions")
+    # add_paths collects additional paths for sys.path
+    add_paths = []
     if local_extensions:
         if "extensions" not in sphinx_config:
             sphinx_config["extensions"] = get_default_sphinx_config()["extensions"]
@@ -293,11 +306,11 @@ def yaml_to_sphinx(yaml: dict):
             if extension not in sphinx_config["extensions"]:
                 sphinx_config["extensions"].append(extension)
             if path not in sys.path:
-                sys.path.append(os.path.abspath(path))
+                add_paths.append(path)
 
     # items in sphinx.config will override defaults,
     # rather than recursively updating them
-    return sphinx_config, yaml.get("sphinx", {}).get("config") or {}
+    return sphinx_config, yaml.get("sphinx", {}).get("config") or {}, add_paths
 
 
 def _recursive_update(config, update, list_extend=False):

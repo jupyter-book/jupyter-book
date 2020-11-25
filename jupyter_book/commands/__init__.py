@@ -63,6 +63,7 @@ BUILDER_OPTS = {
     "latex": "latex",
     "pdflatex": "latex",
     "linkcheck": "linkcheck",
+    "custom": None,
 }
 
 
@@ -106,6 +107,13 @@ BUILDER_OPTS = {
     type=click.Choice(list(BUILDER_OPTS.keys())),
 )
 @click.option(
+    "--custom-builder",
+    default=None,
+    help="Specify alternative builder name which allows jupyter-book to use a builder"
+    "provided by an external extension. This can only be used when using"
+    "--builder=custom",
+)
+@click.option(
     "-v", "--verbose", count=True, help="increase verbosity (can be repeated)"
 )
 @click.option(
@@ -130,6 +138,7 @@ def build(
     keep_going,
     freshenv,
     builder,
+    custom_builder,
     verbose,
     quiet,
     individualpages,
@@ -249,6 +258,9 @@ def build(
         OUTPUT_PATH = BUILD_PATH.joinpath("latex")
     elif builder in ["dirhtml"]:
         OUTPUT_PATH = BUILD_PATH.joinpath("dirhtml")
+    elif builder in ["custom"]:
+        OUTPUT_PATH = BUILD_PATH.joinpath(custom_builder)
+        BUILDER_OPTS["custom"] = custom_builder
 
     if nitpick:
         config_overrides["nitpicky"] = True
