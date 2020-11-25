@@ -162,6 +162,10 @@ def yaml_to_sphinx(yaml: dict):
     """Convert a Jupyter Book style config structure into a Sphinx config dict.
 
     :returns: (recursive_updates, override_updates, add_paths)
+
+    add_paths collects paths that are specified in the _config.yml (such as those
+    provided in local_extensions) and returns them for adding to sys.path in
+    a context where the _config.yml path is known
     """
     sphinx_config = {}
 
