@@ -4,49 +4,24 @@ import jsonschema
 from jupyter_book.config import get_final_config, validate_yaml
 from jupyter_book.commands import sphinx
 
-
+from pathlib import Path
 @pytest.mark.parametrize(
     "user_config",
     [
-        {},
-        {"title": "hallo"},
-        {"html": {"extra_footer": ""}},
-        {"execute": {"execute_notebooks": "cache"}},
-        {"parse": {"myst_extended_syntax": True}},
-        {"latex": {"latex_documents": {"targetname": "book.tex", "title": "other"}}},
-        {"launch_buttons": {"binderhub_url": "other"}},
-        {"repository": {"url": "other"}},
-        {"exclude_patterns": ["new"]},
-        {
-            "sphinx": {
-                "extra_extensions": ["other"],
-                "local_extensions": {"helloworld": "./ext"},
-                "config": {
-                    "html_theme_options": {
-                        "launch_buttons": {"binderhub_url": "other"}
-                    },
-                    "html_theme": "other",
-                    "new": "value",
-                },
-            }
-        },
+        {"title":"alex","only_build_toc_files": True, 'exclude_patterns': ['_build/**/*']},
+        
     ],
     ids=[
-        "empty",
-        "title",
-        "html.extra_footer",
-        "execute.method",
-        "extended_syntax",
-        "latex_doc",
-        "launch_buttons",
-        "repository",
-        "exclude_patterns",
-        "sphinx",
+        "toc",
+
     ],
 )
 def test_get_final_config(user_config, data_regression):
     cli_config = {"latex_individualpages": False}
+    import os
+    os.chdir('/Users/alexremedios/git/volkamerlab/TeachOpenCADD')
     final_config, metadata = get_final_config(
+        Path('_toc.yml'),
         user_config, cli_config, validate=True, raise_on_invalid=True
     )
     data_regression.check(
