@@ -76,7 +76,7 @@ def validate_yaml(yaml: dict, raise_on_errors=False, print_func=print):
 
 
 def get_final_config(
-    toc: Path,
+    toc: Optional[Path],
     user_yaml: Optional[Union[dict, Path]] = None,
     cli_config: Optional[dict] = None,
     sourcedir: Optional[Path] = None,
@@ -123,6 +123,8 @@ def get_final_config(
             validate_yaml(user_yaml, raise_on_errors=raise_on_invalid)
 
         if user_yaml.get("only_build_toc_files"):
+            if not toc:
+                raise ValueError("you must have a toc to use `only_build_toc_files`")
             excluded_patterns = set(user_yaml.get("exclude_patterns", []))
             excluded_file_sets = [
                 set(glob(p, recursive=True)) for p in excluded_patterns
