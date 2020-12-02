@@ -44,7 +44,6 @@ from pathlib import Path
         "repository",
         "exclude_patterns",
         "sphinx",
-        "toc",
     ],
 )
 def test_get_final_config(user_config, data_regression):
