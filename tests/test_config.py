@@ -34,6 +34,16 @@ from pathlib import Path
         },
     ],
     ids=[
+        "empty",
+        "title",
+        "html.extra_footer",
+        "execute.method",
+        "extended_syntax",
+        "latex_doc",
+        "launch_buttons",
+        "repository",
+        "exclude_patterns",
+        "sphinx",
         "toc",
     ],
 )
