@@ -886,11 +886,11 @@ The following `tags` can be applied to code cells by introducing them as options
     print("This is a test.")
     ```
     ````
-* - `"hide-input""`
+* - `"hide-input"`
   - Hide cell but the display the outputs
   - ````md
     ```{code-cell} ipython3
-    :tags: ["hide-input""]
+    :tags: ["hide-input"]
     print("This is a test.")
     ```
     ````
