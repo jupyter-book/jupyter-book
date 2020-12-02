@@ -5,24 +5,28 @@ from jupyter_book.config import get_final_config, validate_yaml
 from jupyter_book.commands import sphinx
 
 from pathlib import Path
+
+
 @pytest.mark.parametrize(
     "user_config",
     [
-        {"title":"alex","only_build_toc_files": True, 'exclude_patterns': ['_build/**/*']},
-        
+        {
+            "title": "alex",
+            "only_build_toc_files": True,
+            "exclude_patterns": ["_build/**/*"],
+        },
     ],
     ids=[
         "toc",
-
     ],
 )
 def test_get_final_config(user_config, data_regression):
     cli_config = {"latex_individualpages": False}
     import os
-    os.chdir('/Users/alexremedios/git/volkamerlab/TeachOpenCADD')
+
+    os.chdir("/Users/alexremedios/git/volkamerlab/TeachOpenCADD")
     final_config, metadata = get_final_config(
-        Path('_toc.yml'),
-        user_config, cli_config, validate=True, raise_on_invalid=True
+        Path("_toc.yml"), user_config, cli_config, validate=True, raise_on_invalid=True
     )
     data_regression.check(
         {"_user_config": user_config, "final": final_config, "metadata": metadata}

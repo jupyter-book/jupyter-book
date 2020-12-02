@@ -479,6 +479,7 @@ def config():
 def sphinx(ctx, path_source, config, toc):
     """Generate a Sphinx conf.py representation of the build configuration."""
     from ..config import get_final_config
+
     path_config, path_src, config_overrides = ctx.invoke(
         build, path_source=path_source, config=config, toc=toc, get_config_only=True
     )

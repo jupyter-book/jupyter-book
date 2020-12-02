@@ -10,7 +10,6 @@ import yaml
 import sys
 import os
 from .utils import _message_box
-from os import replace
 
 # Transform a "Jupyter Book" YAML configuration file into a Sphinx configuration file.
 # This is so that we can choose more user-friendly words for things than Sphinx uses.
@@ -125,20 +124,31 @@ def get_final_config(
 
         if user_yaml.get("only_build_toc_files"):
             excluded_patterns = set(user_yaml.get("exclude_patterns", []))
-            excluded_file_sets = [set(glob(p, recursive=True)) for p in excluded_patterns]
-            source_root = sourcedir or Path('')
+            excluded_file_sets = [
+                set(glob(p, recursive=True)) for p in excluded_patterns
+            ]
+            source_root = sourcedir or Path()
             source_pattern = source_root / "**/*"
             source_files = {f for f in glob(str(source_pattern), recursive=True)}
- 
-            included_files = {relpath(f, source_root) for f in source_files.difference(*excluded_file_sets) if not isdir(f)}
+
+            included_files = {
+                relpath(f, source_root)
+                for f in source_files.difference(*excluded_file_sets)
+                if not isdir(f)
+            }
 
             toc_yaml = yaml.safe_load(toc.read_text(encoding="utf8"))
             from nested_lookup import nested_lookup
-            toc_files = {f for f in nested_lookup('file', toc_yaml)}
-            verified_toc_files = {f for f in included_files if os.path.splitext(f)[0] in toc_files}
+
+            toc_files = {f for f in nested_lookup("file", toc_yaml)}
+            verified_toc_files = {
+                f for f in included_files if os.path.splitext(f)[0] in toc_files
+            }
 
             newly_excluded = included_files.difference(verified_toc_files)
-            user_yaml["exclude_patterns"] = sorted(excluded_patterns.union(newly_excluded))
+            user_yaml["exclude_patterns"] = sorted(
+                excluded_patterns.union(newly_excluded)
+            )
 
         user_yaml_recurse, user_yaml_update, add_paths = yaml_to_sphinx(user_yaml)
 
