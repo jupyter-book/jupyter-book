@@ -1,1 +1,1 @@
-git+https://github.com/treebeardtech/nbmake.git@integtest
+-r ../docs/requirements.txt
