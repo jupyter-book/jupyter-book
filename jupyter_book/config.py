@@ -3,7 +3,7 @@ from os.path import relpath, isdir
 from pathlib import Path
 from functools import lru_cache
 import json
-from typing import Collection, Optional, Union
+from typing import Collection, Optional, Union, Set
 from glob import glob
 import jsonschema
 import yaml
@@ -354,8 +354,8 @@ def _get_files_outside_toc(
     source_files = {f for f in glob(str(source_root / "**/*"), recursive=True)}
 
     excluded_file_sets = [set(glob(p, recursive=True)) for p in excluded_patterns]
-    included_files = {
-        relpath(f, source_root)
+    included_files: Set[str] = {
+        Path(relpath(f, source_root)).as_posix()
         for f in source_files.difference(*excluded_file_sets)
         if not isdir(f)
     }
@@ -366,7 +366,9 @@ def _get_files_outside_toc(
 
     toc_files = {f for f in nested_lookup("file", toc_yaml)}
 
-    verified_toc_files = {
-        f for f in included_files if os.path.splitext(f)[0] in toc_files
+    verified_toc_files: Set[str] = {
+        Path(f).as_posix()
+        for f in included_files
+        if os.path.splitext(f)[0] in toc_files
     }
     return included_files.difference(verified_toc_files)

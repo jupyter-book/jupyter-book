@@ -80,7 +80,7 @@ setup(
         "sphinx_book_theme>=0.0.39",
         "sphinx-thebe>=0.0.6",
         "sphinx-panels~=0.5.2",
-        "nested-lookup",
+        "nested-lookup~=0.2.21",
     ],
     extras_require=extras,
     entry_points={
