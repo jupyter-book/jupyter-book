@@ -6,6 +6,8 @@ from jupyter_book.commands import sphinx
 
 from pathlib import Path
 
+pytest_plugins = "pytester"
+
 
 @pytest.mark.parametrize(
     "user_config",
@@ -49,7 +51,7 @@ from pathlib import Path
 def test_get_final_config(user_config, data_regression):
     cli_config = {"latex_individualpages": False}
     final_config, metadata = get_final_config(
-        Path("_toc.yml"), user_config, cli_config, validate=True, raise_on_invalid=True
+        None, user_config, cli_config, validate=True, raise_on_invalid=True
     )
     data_regression.check(
         {"_user_config": user_config, "final": final_config, "metadata": metadata}
@@ -77,3 +79,55 @@ def test_config_sphinx_command(cli, temp_with_override, file_regression):
         if not line.startswith("globaltoc_path")
     )
     file_regression.check(output, encoding="utf8")
+
+
+def test_only_build_toc_files(testdir):
+    cli_config = {"latex_individualpages": False}
+    toc = Path("toc.yml")
+    toc.write_text("- file: landing\n")
+    Path("landing.md").write_text("")
+    Path("exclude.md").write_text("")
+    user_config = {"only_build_toc_files": True}
+
+    final_config, metadata = get_final_config(
+        toc, user_config, cli_config, validate=True, raise_on_invalid=True
+    )
+
+    assert "exclude.md" in final_config["exclude_patterns"]
+    assert "landing.md" not in final_config["exclude_patterns"]
+
+
+def test_only_build_toc_files_non_default_source_dir(testdir):
+    cli_config = {"latex_individualpages": False}
+    toc = Path("toc.yml")
+    toc.write_text("- file: landing\n")
+    sourcedir = Path("s")
+    subdir = sourcedir / "subdir"
+    subdir.mkdir(parents=True)
+    Path(sourcedir / "landing.md").write_text("")
+    Path(sourcedir / "exclude.md").write_text("")
+    Path(subdir / "sub.md").write_text("")
+    user_config = {"only_build_toc_files": True}
+
+    final_config, metadata = get_final_config(
+        toc,
+        user_config,
+        cli_config,
+        validate=True,
+        raise_on_invalid=True,
+        sourcedir=sourcedir,
+    )
+
+    assert "exclude.md" in final_config["exclude_patterns"]
+    assert "subdir/sub.md" in final_config["exclude_patterns"]
+    assert "landing.md" not in final_config["exclude_patterns"]
+
+
+def test_only_build_toc_files_missing_toc(testdir):
+    cli_config = {"latex_individualpages": False}
+    user_config = {"only_build_toc_files": True}
+
+    with pytest.raises(ValueError, match=r".*you must have a toc.*"):
+        get_final_config(
+            None, user_config, cli_config, validate=True, raise_on_invalid=True
+        )

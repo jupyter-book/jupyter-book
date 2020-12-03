@@ -3,7 +3,7 @@ from os.path import relpath, isdir
 from pathlib import Path
 from functools import lru_cache
 import json
-from typing import Optional, Union
+from typing import Collection, Optional, Union
 from glob import glob
 import jsonschema
 import yaml
@@ -126,28 +126,8 @@ def get_final_config(
             if not toc:
                 raise ValueError("you must have a toc to use `only_build_toc_files`")
             excluded_patterns = set(user_yaml.get("exclude_patterns", []))
-            excluded_file_sets = [
-                set(glob(p, recursive=True)) for p in excluded_patterns
-            ]
-            source_root = sourcedir or Path()
-            source_pattern = source_root / "**/*"
-            source_files = {f for f in glob(str(source_pattern), recursive=True)}
 
-            included_files = {
-                relpath(f, source_root)
-                for f in source_files.difference(*excluded_file_sets)
-                if not isdir(f)
-            }
-
-            toc_yaml = yaml.safe_load(toc.read_text(encoding="utf8"))
-            from nested_lookup import nested_lookup
-
-            toc_files = {f for f in nested_lookup("file", toc_yaml)}
-            verified_toc_files = {
-                f for f in included_files if os.path.splitext(f)[0] in toc_files
-            }
-
-            newly_excluded = included_files.difference(verified_toc_files)
+            newly_excluded = _get_files_outside_toc(toc, sourcedir, excluded_patterns)
             user_yaml["exclude_patterns"] = sorted(
                 excluded_patterns.union(newly_excluded)
             )
@@ -365,3 +345,28 @@ def _recursive_update(config, update, list_extend=False):
                 config[key] = val
         else:
             config[key] = val
+
+
+def _get_files_outside_toc(
+    toc: Path, sourcedir: Path, excluded_patterns: Collection[str]
+):
+    source_root = sourcedir or Path()
+    source_files = {f for f in glob(str(source_root / "**/*"), recursive=True)}
+
+    excluded_file_sets = [set(glob(p, recursive=True)) for p in excluded_patterns]
+    included_files = {
+        relpath(f, source_root)
+        for f in source_files.difference(*excluded_file_sets)
+        if not isdir(f)
+    }
+
+    toc_yaml = yaml.safe_load(toc.read_text(encoding="utf8"))
+
+    from nested_lookup import nested_lookup
+
+    toc_files = {f for f in nested_lookup("file", toc_yaml)}
+
+    verified_toc_files = {
+        f for f in included_files if os.path.splitext(f)[0] in toc_files
+    }
+    return included_files.difference(verified_toc_files)

@@ -79,6 +79,10 @@ execute:
 
 Any file that matches one of the items in `exclude_patterns` will not be executed.
 
+If you would like to disable all files outside of your toc by default, use `only_build_toc_files: true` in your `_config.yml`.
+
+Note that hidden files e.g. in `.github` or `.venv` may still need to be excluded explicitly.
+
 (execute/cache)=
 ## Caching the notebook execution
 
