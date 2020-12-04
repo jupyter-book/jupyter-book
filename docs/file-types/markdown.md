@@ -61,13 +61,11 @@ along with the default Jupyter Notebook configuration, for rendering mathematics
 For example, here's a mathematical expression rendered with MathJax:
 
 $$
-\begin{align}
-    P(A_1 \cup A_2 \cup A_3)
-    & = P(B \cup A_3)  \\
-    & = P(B) + P(A_3) - P(BA_3) \\
-    &= P(A_1) + P(A_2) - P(A_1A_2) + P(A_3) - P(A_1A_3 \cup A_2A_3) \\
-    &= \sum_{i=1}^3 P(A_i) - \mathop{\sum \sum}_{1 \le i < j \le 3} P(A_iA_j) + P(A_1A_2A_3)
-\end{align}
+P(A_1 \cup A_2 \cup A_3)
+& = P(B \cup A_3)  \\
+& = P(B) + P(A_3) - P(BA_3) \\
+&= P(A_1) + P(A_2) - P(A_1A_2) + P(A_3) - P(A_1A_3 \cup A_2A_3) \\
+&= \sum_{i=1}^3 P(A_i) - \mathop{\sum \sum}_{1 \le i < j \le 3} P(A_iA_j) + P(A_1A_2A_3)
 $$
 
 :::{seealso}
