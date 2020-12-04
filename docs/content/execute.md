@@ -81,8 +81,6 @@ Any file that matches one of the items in `exclude_patterns` will not be execute
 
 **To auto-exclude files outside of your table of contents**, see [only_build_toc_files](config:toc)
 
-Note that hidden files e.g. in `.github` or `.venv` may still need to be excluded explicitly.
-
 (execute/cache)=
 ## Caching the notebook execution
 

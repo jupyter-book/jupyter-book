@@ -369,7 +369,7 @@ def _get_files_outside_toc(
 
     from nested_lookup import nested_lookup
 
-    toc_files = {f for f in nested_lookup("file", toc_yaml)}
+    toc_files = {ff for ff in nested_lookup("file", toc_yaml)}
 
     verified_toc_files: Set[str] = {
         Path(ff).as_posix()

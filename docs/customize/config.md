@@ -106,11 +106,15 @@ html:
 ```
 
 (config:toc)=
-### **To disable building any files that aren't specified in toc**, use the following pattern in `_config.yml`:
+### To disable building any files that aren't specified in toc
+
+use the following pattern in `_config.yml`:
 
 ```
 only_build_toc_files: true
 ```
+
+Note that hidden files e.g. in `.github` or `.venv` may still need to be excluded explicitly.
 
 (config:sphinx)=
 ## Advanced configuration (with sphinx)
