@@ -34,6 +34,10 @@ in the site by navigating to that folder and opening the `html` files with your
 web browser.
 
 :::{note}
+By default, Sphinx will try to build all files in the given source directory. To auto-exclude files outside of your table of contents, see [](config:toc)
+:::
+
+:::{note}
 You can also use the short-hand `jb` for `jupyter-book`. E.g.,:
 `jb build mybookname/`.
 :::

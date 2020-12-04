@@ -105,6 +105,13 @@ html:
   use_edit_page_button: true
 ```
 
+(config:toc)=
+**To disable building any files that aren't specified in toc**, use the following pattern in `_config.yml`:
+
+```
+only_build_toc_files: true
+```
+
 (config:sphinx)=
 ## Advanced configuration (with sphinx)
 

@@ -79,7 +79,7 @@ execute:
 
 Any file that matches one of the items in `exclude_patterns` will not be executed.
 
-If you would like to disable all files outside of your toc by default, use `only_build_toc_files: true` in your `_config.yml`.
+By default, Sphinx will try to build all files in the given source directory. To auto-exclude files outside of your table of contents, see [](config:toc)
 
 Note that hidden files e.g. in `.github` or `.venv` may still need to be excluded explicitly.
 
