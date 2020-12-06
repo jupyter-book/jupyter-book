@@ -1,5 +1,6 @@
 from docutils import nodes
 
+from sphinx import builders
 from sphinx.util import logging
 from sphinx.util.docutils import SphinxDirective
 from sphinx.transforms import SphinxTransform
@@ -19,6 +20,8 @@ class TableOfContentsNode(nodes.Element):
 class TableofContents(SphinxDirective):
     def run(self):
         """returns an array of nodes for the tableofcontents directive declaration"""
+        if isinstance(self.env.app.builder, builders.latex.LaTeXBuilder):
+            return []
         return [TableOfContentsNode()]
 
 
