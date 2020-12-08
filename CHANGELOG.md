@@ -1,5 +1,48 @@
 # Change Log
 
+## v0.8.4 2020-12-08
+
+This release includes a number of improvements and bug fixes
+
+[full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.8.3...6c30f554d86fe7d1a0e4ad05012a5de4133117d0)
+
+### New
+
+* 👌 IMPROVE: Option to exclude every file not in the toc [#1123](https://github.com/executablebooks/jupyter-book/pull/1123)
+* 👌 IMPROVE: enable custom builder passthrough [#1094](https://github.com/executablebooks/jupyter-book/pull/1094)
+* 👌 IMPROVE: adding dirhtml builder [#1092](https://github.com/executablebooks/jupyter-book/pull/1092)
+* ✨ ENH: Enable local_extensions to be specified in _config.yml [#1102](https://github.com/executablebooks/jupyter-book/pull/1102)
+* ✨ NEW: add `--individualpages` option for pdflatex builder [#944](https://github.com/executablebooks/jupyter-book/pull/944)
+
+### Upgrades
+
+* ⬆ UPGRADE: sphinx-book-theme v0.0.39 [#1086](https://github.com/executablebooks/jupyter-book/pull/1086)
+
+### Bugs fixed
+
+* 🐛 FIX: Check for file extensions when generating toc [#1108](https://github.com/executablebooks/jupyter-book/pull/1108)
+* 🐛 FIX: Export Notebook as HTML with no page-breaks [#903](https://github.com/executablebooks/jupyter-book/pull/903)
+* 🐛 FIX: Restore linkcheck to builder opts [#1051](https://github.com/executablebooks/jupyter-book/pull/1051)
+
+### Deprecated
+
+* 🗑 DEPRECATE: removing expand_sections for toc [#1073](https://github.com/executablebooks/jupyter-book/pull/1073)
+
+### Docs
+
+* 📚 DOCS: Removing latex align inside math-block [#1124](https://github.com/executablebooks/jupyter-book/pull/1124)
+* 📚 DOCS: Remove extra quotation mark [#1120](https://github.com/executablebooks/jupyter-book/pull/1120)
+* 📚 DOCS: adding a link to the gallery [#1115](https://github.com/executablebooks/jupyter-book/pull/1115)
+* 📚 DOCS: update instructions for using w/ jupyterhub and binder [#1097](https://github.com/executablebooks/jupyter-book/pull/1097)
+* 📚 DOCS: Update gh-pages.md for hosting [#1096](https://github.com/executablebooks/jupyter-book/pull/1096)
+* 📚 DOCS: sphinx_inline_tabs example [#1099](https://github.com/executablebooks/jupyter-book/pull/1099)
+* 📚 DOCS: Updates to code-cell docs [#1075](https://github.com/executablebooks/jupyter-book/pull/1075)
+* 📚 DOCS: Improving citations and panels [#1085](https://github.com/executablebooks/jupyter-book/pull/1085)
+* 📚 DOCS: adding a title to our example tables [#1084](https://github.com/executablebooks/jupyter-book/pull/1084)
+* 📚 DOCS: Improve cross links on getting started [#1082](https://github.com/executablebooks/jupyter-book/pull/1082)
+* 📚 DOCS: Add local Sphinx extension documentation [#1058](https://github.com/executablebooks/jupyter-book/pull/1058)
+* 📚 DOCS: Add html tag lang attribute via sphinx config [#1024](https://github.com/executablebooks/jupyter-book/pull/1024)
+
 ## v0.8.3 2020-10-12
 
 This is a relatively minor release with bugfixes and under-the-hood improvements.
