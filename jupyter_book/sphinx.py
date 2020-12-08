@@ -22,6 +22,7 @@ ROOT = Path(__file__)
 def build_sphinx(
     sourcedir,
     outputdir,
+    toc,
     confdir=None,
     path_config=None,
     noconfig=False,
@@ -48,6 +49,7 @@ def build_sphinx(
     #######################
     # Configuration creation
     sphinx_config, config_meta = get_final_config(
+        toc,
         user_yaml=Path(path_config) if path_config else None,
         cli_config=confoverrides or {},
         sourcedir=Path(sourcedir),
