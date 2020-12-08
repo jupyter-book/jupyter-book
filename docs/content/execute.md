@@ -79,7 +79,9 @@ execute:
 
 Any file that matches one of the items in `exclude_patterns` will not be executed.
 
-**To auto-exclude files outside of your table of contents**, see [only_build_toc_files](config:toc)
+:::{tip}
+To auto-exclude all files outside of your table of contents, see [](config:exclude-non-toc-files)
+:::
 
 (execute/cache)=
 ## Caching the notebook execution

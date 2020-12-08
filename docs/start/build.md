@@ -34,7 +34,7 @@ in the site by navigating to that folder and opening the `html` files with your
 web browser.
 
 :::{tip}
-If you find a lot of unwanted files are being built into your book, you can auto-exclude files outside of your table of contents with [only_build_toc_files](config:toc)
+If you find a lot of unwanted files are being built into your book, you can auto-exclude files outside of your table of contents with [only_build_toc_files](config:exclude-non-toc-files)
 :::
 
 :::{note}

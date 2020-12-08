@@ -9,6 +9,7 @@ import jsonschema
 import yaml
 import sys
 import os
+from nested_lookup import nested_lookup
 from .utils import _message_box
 
 # Transform a "Jupyter Book" YAML configuration file into a Sphinx configuration file.
@@ -366,9 +367,6 @@ def _get_files_outside_toc(
     }
 
     toc_yaml = yaml.safe_load(toc.read_text(encoding="utf8"))
-
-    from nested_lookup import nested_lookup
-
     toc_files = {ff for ff in nested_lookup("file", toc_yaml)}
 
     verified_toc_files: Set[str] = {
