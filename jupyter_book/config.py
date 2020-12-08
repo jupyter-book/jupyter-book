@@ -1,15 +1,16 @@
 """A small sphinx extension to let you configure a site with YAML metadata."""
+from os.path import relpath, isdir
 from pathlib import Path
 from functools import lru_cache
 import json
-from typing import Optional, Union
-
+from typing import Collection, Optional, Union, Set
+from glob import glob
 import jsonschema
 import yaml
 import sys
-
+import os
+from nested_lookup import nested_lookup
 from .utils import _message_box
-
 
 # Transform a "Jupyter Book" YAML configuration file into a Sphinx configuration file.
 # This is so that we can choose more user-friendly words for things than Sphinx uses.
@@ -76,6 +77,7 @@ def validate_yaml(yaml: dict, raise_on_errors=False, print_func=print):
 
 
 def get_final_config(
+    toc: Optional[Path],
     user_yaml: Optional[Union[dict, Path]] = None,
     cli_config: Optional[dict] = None,
     sourcedir: Optional[Path] = None,
@@ -120,6 +122,17 @@ def get_final_config(
             user_yaml = user_yaml
         if validate:
             validate_yaml(user_yaml, raise_on_errors=raise_on_invalid)
+
+        if user_yaml.get("only_build_toc_files"):
+            if not toc:
+                raise ValueError("you must have a toc to use `only_build_toc_files`")
+            excluded_patterns = set(user_yaml.get("exclude_patterns", []))
+
+            newly_excluded = _get_files_outside_toc(toc, sourcedir, excluded_patterns)
+            user_yaml["exclude_patterns"] = sorted(
+                excluded_patterns.union(newly_excluded)
+            )
+
         user_yaml_recurse, user_yaml_update, add_paths = yaml_to_sphinx(user_yaml)
 
     # add paths from yaml config
@@ -333,3 +346,32 @@ def _recursive_update(config, update, list_extend=False):
                 config[key] = val
         else:
             config[key] = val
+
+
+def _get_files_outside_toc(
+    toc: Path, sourcedir: Path, excluded_patterns: Collection[str]
+) -> Set[str]:
+    """Returns a set of files that are outside of the toc for exclusion from sphinx.
+
+    Hidden files are NOT processed here as it may result in thousands of individual
+     exclusions.
+    """
+    source_root = sourcedir or Path()
+    source_files = {ff for ff in glob(str(source_root / "**/*"), recursive=True)}
+
+    excluded_file_sets = [set(glob(pp, recursive=True)) for pp in excluded_patterns]
+    included_files: Set[str] = {
+        Path(relpath(ff, source_root)).as_posix()
+        for ff in source_files.difference(*excluded_file_sets)
+        if not isdir(ff)
+    }
+
+    toc_yaml = yaml.safe_load(toc.read_text(encoding="utf8"))
+    toc_files = {ff for ff in nested_lookup("file", toc_yaml)}
+
+    verified_toc_files: Set[str] = {
+        Path(ff).as_posix()
+        for ff in included_files
+        if os.path.splitext(ff)[0] in toc_files
+    }
+    return included_files.difference(verified_toc_files)
