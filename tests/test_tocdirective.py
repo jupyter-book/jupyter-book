@@ -40,6 +40,30 @@ def test_toc_startwithlist(cli: CliRunner, temp_with_override, file_regression):
     file_regression.check(str(toc), extension=".html", encoding="utf8")
 
 
+def test_toc_simple_latex(cli: CliRunner, temp_with_override, file_regression):
+    """Testing a basic _toc.yml for tableofcontents directive in latex"""
+    path_output = temp_with_override.joinpath("mybook").absolute()
+    # Regular TOC should work
+    p_toc = path_books.joinpath("toc")
+    path_toc = p_toc.joinpath("_toc.yml")
+    result = cli.invoke(
+        build,
+        [
+            p_toc.as_posix(),
+            "--path-output",
+            path_output.as_posix(),
+            "--toc",
+            path_toc.as_posix(),
+            "--builder=pdflatex",
+            "-W",
+        ],
+    )
+    assert result.exit_code == 0
+
+    path_tex_file = path_output.joinpath("_build", "latex", "python.tex")
+    file_regression.check(path_tex_file.read_text(), extension=".tex", encoding="utf8")
+
+
 def test_toc_parts(cli: CliRunner, temp_with_override, file_regression):
     """Testing `header` in _toc.yml"""
     path_output = temp_with_override.joinpath("mybook").absolute()
