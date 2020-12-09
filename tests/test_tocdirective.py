@@ -40,6 +40,7 @@ def test_toc_startwithlist(cli: CliRunner, temp_with_override, file_regression):
     file_regression.check(str(toc), extension=".html", encoding="utf8")
 
 
+@pytest.mark.requires_tex
 def test_toc_latex(cli: CliRunner, temp_with_override, file_regression):
     """Testing _toc.yml for tableofcontents directive in latex"""
     path_output = temp_with_override.joinpath("mybook").absolute()
