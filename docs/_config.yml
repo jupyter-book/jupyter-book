@@ -89,7 +89,6 @@ sphinx:
       content-types/myst-notebooks.md: file-types/myst-notebooks.md
       content-types/jupytext.md: file-types/jupytext.Rmd
       content-types/restructuredtext.md: file-types/restructuredtext.md
-      gallery.md: https://executablebooks.org/en/latest/gallery.html
     language: en
 
   extra_extensions:
