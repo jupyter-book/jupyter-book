@@ -32,17 +32,20 @@ Here are some of the features of Jupyter Book:
 This website is built with Jupyter Book! You can browse its contents to the
 left to see what is possible.
 
-:::{admonition,tip} Get involved with Jupyter Book!
+:::{admonition,tip} Learn more and get involved
 
 Jupyter Book is an open community that welcomes your feedback, input, and contributions!
 
-[Open an issue](https://github.com/executablebooks/jupyter-book/issues/new/choose)
+💡 [Open an issue](https://github.com/executablebooks/jupyter-book/issues/new/choose)
 : to provide feedback and new ideas, and to help others.
 
-{ref}`Vote for new features <ebp:feature-note>`
-: by adding a 👍 to issues you'd like to see completed.
+📚 [See the Jupyter Book Gallery](http://gallery.jupyterbook.org)
+: to be inspired by Jupyter Books that others have created.
 
-[Contribute to Jupyter Book](contribute/intro.md)
+👍 [Vote for new features](ebp:feature-note)
+: by adding a +1 to issues you'd like to see completed.
+
+🙌 [Contribute to Jupyter Book](contribute/intro.md)
 : by following our contributing guidelines and finding an issue to work on. See {ref}`the feature voting leaderboard <ebp:feature-note>` for inspiration.
 
 :::
