@@ -23,6 +23,9 @@ This release includes a number of new features, improvements and bug fixes. Ther
 * ✨ NEW: Add `--individualpages` option for pdflatex builder.
   This option enables building individual (pdflatex) files for each page of the project. **Note:** Further work is ongoing to improve the styling and formatting of pdflatex output.
   ([docs](docs/advanced/pdf.md), [#944](https://github.com/executablebooks/jupyter-book/pull/944), [@mmcky](https://github.com/mmcky))
+
+### Maintain
+
 * 🔧 MAINTAIN: Pin sphinxcontrib-bibtex to ~=1.0 until compatible with recently released v2 ([#1138](https://github.com/executablebooks/jupyter-book/pull/1138), [@choldgraf](https://github.com/choldgraf))
 
 ### Upgrades
