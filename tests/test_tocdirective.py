@@ -3,6 +3,7 @@ from pathlib import Path
 
 from click.testing import CliRunner
 from bs4 import BeautifulSoup
+from TexSoup import TexSoup
 import pytest
 
 from jupyter_book.commands import build
@@ -42,9 +43,9 @@ def test_toc_startwithlist(cli: CliRunner, temp_with_override, file_regression):
 
 @pytest.mark.requires_tex
 def test_toc_latex(cli: CliRunner, temp_with_override, file_regression):
-    """Testing _toc.yml for tableofcontents directive in latex"""
+    """Testing _toc.yml for tableofcontents directive in latex.
+    The directive is ignore in latex for now."""
     path_output = temp_with_override.joinpath("mybook").absolute()
-    # Regular TOC should work
     p_toc = path_books.joinpath("toc")
     path_toc = p_toc.joinpath("_toc.yml")
     result = cli.invoke(
@@ -62,7 +63,8 @@ def test_toc_latex(cli: CliRunner, temp_with_override, file_regression):
     assert result.exit_code == 0
 
     path_tex_file = path_output.joinpath("_build", "latex", "python.tex")
-    file_regression.check(path_tex_file.read_text(), extension=".tex", encoding="utf8")
+    file_content = TexSoup(path_tex_file.read_text())
+    file_regression.check(str(file_content.document), extension=".tex", encoding="utf8")
 
 
 def test_toc_parts(cli: CliRunner, temp_with_override, file_regression):

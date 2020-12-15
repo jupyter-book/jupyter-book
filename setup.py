@@ -22,6 +22,7 @@ test_reqs = [
     "pytest-xdist",
     "pytest-timeout",
     "beautifulsoup4",
+    "texsoup",
     "matplotlib",
     "pytest-regressions",
     "jupytext~=1.6.0",
