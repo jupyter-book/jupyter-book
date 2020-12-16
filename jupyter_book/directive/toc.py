@@ -22,7 +22,7 @@ class TableofContents(SphinxDirective):
         """returns an array of nodes for the tableofcontents directive declaration."""
         # Not supporting this directive in latex, as a short-term fix.
         # Will revert to using reference nodes instead of toctree for latex in the next
-        # release.
+        # release. https://github.com/executablebooks/jupyter-book/issues/1143
         if isinstance(self.env.app.builder, builders.latex.LaTeXBuilder):
             return []
         return [TableOfContentsNode()]
