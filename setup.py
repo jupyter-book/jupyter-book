@@ -82,7 +82,7 @@ setup(
         "sphinx-thebe>=0.0.6",
         "sphinx-panels~=0.5.2",
         "nested-lookup~=0.2.21",
-        "jupyterbook-latex",
+        "jupyterbook-latex==0.1.3a0",
     ],
     extras_require=extras,
     entry_points={
