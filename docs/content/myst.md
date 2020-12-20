@@ -15,7 +15,7 @@ Whether you write your book's content in Jupyter notebooks (`.ipynb`) or in regu
 you'll write in the same flavour of **MyST Markdown**. Jupyter Book will know how to parse both of them.
 
 This page contains a few pieces of information about MyST Markdown and how it relates to Jupyter Book.
-You can find much more information about this flavour of Markdown at
+You can find much more information about this flavour of M243arkdown at
 [the Myst Parser documentation](myst-parser:example_syntax).
 
 :::{admonition,tip} Want to use RMarkdown directly?
@@ -240,7 +240,7 @@ Here are some links you can use as a reference:
 * [CommonMark in-line syntax](myst-parser:commonmark-span-tokens)
 * [Extended in-line syntax in MyST](myst-parser:extended-span-tokens)
 
-As a shorthand, Jupyter Book offers a single configuration, to enable the MyST [extended syntaxes](myst-parser:syntax-optional):
+As a shorthand, Jupyter Book offers a single configuration, to enable the MyST [extended syntaxes](myst-parser:syntax/optional):
 
 ```yaml
 parse:
