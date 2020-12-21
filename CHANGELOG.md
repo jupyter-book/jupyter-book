@@ -1,5 +1,48 @@
 # Change Log
 
+## v0.9.0 2020-12-09
+
+([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.8.3...6c30f554d86fe7d1a0e4ad05012a5de4133117d0))
+
+This release includes a number of new features, improvements and bug fixes. There is also a new [gallery of jupyter-book projects](https://executablebooks.org/en/latest/gallery.html) available.
+
+### New
+
+* 👌 IMPROVE: Option to exclude every file not in the toc. ([docs](docs/customize/config.md), [#1123](https://github.com/executablebooks/jupyter-book/pull/1123), [@alex-treebeard](https://github.com/alex-treebeard))
+*  ✨ NEW: Enable the use of local Sphinx extension via _config.yml. ([docs](docs/customize/config.md), [#1102](https://github.com/executablebooks/jupyter-book/pull/1102), [@mmcky](https://github.com/mmcky))
+* ✨ NEW: Enable custom builder passthrough. This is an **advanced feature**
+  that enables the use of additional sphinx builders via jupyter-book that may be provided by an extension. ([docs](docs/advanced/advanced.md), [#1094]([#1094](https://github.com/executablebooks/jupyter-book/pull/1094)), [@mmcky](https://github.com/mmcky))
+
+**HTML:**
+
+* 👌 NEW: Add `dirhtml` builder. This enables the use
+  of the `dirhtml` sphinx builder when using jupyter book. ([docs](docs/start/build.md), [#1092](https://github.com/executablebooks/jupyter-book/pull/1092), [@choldgraf](https://github.com/choldgraf))
+
+**LaTeX:**
+
+* ✨ NEW: Add `--individualpages` option for pdflatex builder.
+  This option enables building individual (pdflatex) files for each page of the project. **Note:** Further work is ongoing to improve the styling and formatting of pdflatex output.
+  ([docs](docs/advanced/pdf.md), [#944](https://github.com/executablebooks/jupyter-book/pull/944), [@mmcky](https://github.com/mmcky))
+
+### Maintain
+
+* 🔧 MAINTAIN: Pin sphinxcontrib-bibtex to ~=1.0 until compatible with recently released v2 ([#1138](https://github.com/executablebooks/jupyter-book/pull/1138), [@choldgraf](https://github.com/choldgraf))
+
+### Upgrades
+
+* ⬆ UPGRADE: sphinx-book-theme v0.0.39 ([#1086](https://github.com/executablebooks/jupyter-book/pull/1086), [@choldgraf](https://github.com/choldgraf))
+
+### Bugs fixed
+
+* 🐛 FIX: Check for file extensions when generating toc. ([#1108](https://github.com/executablebooks/jupyter-book/pull/1108), [@AakashGfude](https://github.com/AakashGfude))
+* 🐛 FIX: Export Notebook as HTML with no page-breaks. ([#903](https://github.com/executablebooks/jupyter-book/pull/903), [@AakashGfude](https://github.com/AakashGfude))
+* 🐛 FIX: Restore linkcheck to builder opts ([#1051](https://github.com/executablebooks/jupyter-book/pull/1051), [@fmaussion](https://github.com/fmaussion))
+
+### Deprecated
+
+* 🗑 DEPRECATE: removing expand_sections for toc as it is deprecated in `sphinx-book-theme`. ([#1073](https://github.com/executablebooks/jupyter-book/pull/1073), [@choldgraf](https://github.com/choldgraf))
+
+
 ## v0.8.3 2020-10-12
 
 This is a relatively minor release with bugfixes and under-the-hood improvements.
