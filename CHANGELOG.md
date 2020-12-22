@@ -1,5 +1,9 @@
 # Change Log
 
+## v0.9.1 2020-12-22
+
+This is a minor release to issue `v0.9` to PyPI and updates a broken link that prohibited the `v0.9.0` PyPI release action.
+
 ## v0.9.0 2020-12-09
 
 ([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.8.3...6c30f554d86fe7d1a0e4ad05012a5de4133117d0))
