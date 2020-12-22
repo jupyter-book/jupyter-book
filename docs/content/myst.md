@@ -240,7 +240,7 @@ Here are some links you can use as a reference:
 * [CommonMark in-line syntax](myst-parser:commonmark-span-tokens)
 * [Extended in-line syntax in MyST](myst-parser:extended-span-tokens)
 
-As a shorthand, Jupyter Book offers a single configuration, to enable the MyST [extended syntaxes](myst-parser:syntax-optional):
+As a shorthand, Jupyter Book offers a single configuration, to enable the MyST [extended syntaxes](myst-parser:syntax/optional):
 
 ```yaml
 parse:
