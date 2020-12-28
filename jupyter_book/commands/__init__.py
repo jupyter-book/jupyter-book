@@ -228,9 +228,10 @@ def build(
             )
 
         # Check whether the table of contents has changed. If so we rebuild all
-        if toc and BUILD_PATH.joinpath(".doctrees").exists():
+        build_files = list(BUILD_PATH.joinpath(".doctrees").rglob("*"))
+        if toc and build_files:
             toc_modified = toc.stat().st_mtime
-            build_files = BUILD_PATH.rglob(".doctrees/*")
+
             build_modified = max([os.stat(ii).st_mtime for ii in build_files])
 
             # If the toc file has been modified after the build we need to force rebuild
