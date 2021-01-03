@@ -53,8 +53,10 @@ def test_toc_numbered(cli: CliRunner, temp_with_override, file_regression):
     path_output = temp_with_override.joinpath("mybook").absolute()
     toc_list = [
         "_toc_numbered.yml",  # Numbered in top-level title
+        "_toc_numbered_depth.yml",  # Numbering limited to depth 1
         "_toc_numbered_parts.yml",  # Numbered in top-level title w/ parts
         "_toc_numbered_parts_subset.yml",  # Only some sections numbered
+        "_toc_numbered_depth_parts_subset.yml",  # Selected numbering limited to depth 1
     ]
     for itoc in toc_list:
         # Numbering with files

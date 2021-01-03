@@ -164,6 +164,7 @@ your introduction page entry (the first entry in `_toc.yml`). For example:
 This will cause all chapters of the book to be
 numbered. They will follow a hierarchy according to the sub-sections structure
 defined in your `_toc.yml` file.
+You can also limit the TOC numbering depth by setting the `numbered` flag to an integer instead of `true`, e.g., `numbered: 3`.
 
 If you'd like to number **subsets of chapters**, group them into parts and
 apply the `numbered: true` flag to the parts whose chapters you wish to be numbered.
