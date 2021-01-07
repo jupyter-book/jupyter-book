@@ -32,9 +32,6 @@ class SwapTableOfContents(SphinxTransform):
 
     def _process_toc_dict(self, globaltoc):
         """Filters globaltoc to take children of the current page only"""
-        import pdb
-
-        pdb.set_trace()
         for key, val in globaltoc.items():
             if key == "file":
                 if val == self.env.docname:
