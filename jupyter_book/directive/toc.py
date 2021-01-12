@@ -5,6 +5,7 @@ from sphinx.util.docutils import SphinxDirective
 from sphinx.util.nodes import clean_astext
 from sphinx.transforms import SphinxTransform
 from sphinx import builders
+from pathlib import Path
 
 import copy
 
@@ -30,21 +31,26 @@ class TableofContents(SphinxDirective):
 class SwapTableOfContents(SphinxTransform):
     default_priority = 700
 
-    def _process_toc_dict(self, globaltoc):
+    def _process_toc_dict(self, globaltoc, parent_file, filtered_toc):
         """Filters globaltoc to take children of the current page only"""
         for key, val in globaltoc.items():
             if key == "file":
-                if val == self.env.docname:
-                    del globaltoc[key]
+                if val == parent_file:
+                    del globaltoc["file"]
                     return globaltoc
             if key == "sections":
                 for item in val:
-                    if "file" in item and item["file"] == self.env.docname:
+                    if "file" in item and item["file"] == parent_file:
                         del item["file"]
-                        return item
+                        filtered_toc = item
+                        break
                     elif "sections" in item:
-                        globaltoc = self._process_toc_dict(item)
-        return globaltoc
+                        filtered_toc = self._process_toc_dict(
+                            item, parent_file, filtered_toc
+                        )
+                if filtered_toc:
+                    return filtered_toc
+        return
 
     def _has_toc_yaml(self, subnode, tocdict, depth):
         """constructs toc nodes from globaltoc dict"""
@@ -107,26 +113,44 @@ class SwapTableOfContents(SphinxTransform):
         item["classes"].append("fs-1-2")
         return item
 
+    def _get_parent_file(self, tocnode):
+        """searches parent nodes to find the chapter name"""
+        if isinstance(tocnode.parent, nodes.document):
+            parent_file = Path(tocnode.parent.attributes["source"]).relative_to(
+                self.env.app.confdir
+            )
+            parent_file = str(parent_file).replace(parent_file.suffix, "")
+            return parent_file
+        else:
+            return self._get_parent_file(tocnode.parent)
+
     def apply(self):
         if isinstance(self.env.app.builder, builders.latex.LaTeXBuilder):
             # if Latex Builder makes reference nodes instead of using toctree directive
+            parent_file = None
             for index, tocnode in enumerate(
                 self.document.traverse(TableOfContentsNode)
             ):
+                parent_file = self._get_parent_file(tocnode)
+
                 ret = []
                 wrappernode = nodes.compound(classes=["tableofcontents-wrapper"])
-                # self.add_name(wrappernode)
+
                 depth = 0
 
-                globaltoc = self._process_toc_dict(copy.deepcopy(self.config.globaltoc))
+                filtered_toc = self._process_toc_dict(
+                    copy.deepcopy(self.config.globaltoc), parent_file, filtered_toc=None
+                )
 
                 # remove master_doc from the dict
-                if "file" in globaltoc and globaltoc["file"] == self.config.master_doc:
-                    del globaltoc["file"]
+                if (
+                    "file" in filtered_toc
+                    and filtered_toc["file"] == self.config.master_doc
+                ):
+                    del filtered_toc["file"]
 
                 wncopy = wrappernode.deepcopy()
-                self._has_toc_yaml(wncopy, globaltoc, depth)
-
+                self._has_toc_yaml(wncopy, filtered_toc, depth)
                 ret.append(wncopy)
                 tocnode.replace_self(ret)
         else:
