@@ -269,7 +269,8 @@ Language can be configured by providing the appropriate [language code](https://
 
 ```yaml
 sphinx:
-  language: en
+  config
+    language: en
 ```
 
 This example will set the book language to English, which would be represented in your book's HTML as `<html lang="en">...</html>`.
