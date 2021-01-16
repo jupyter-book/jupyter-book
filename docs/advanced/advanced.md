@@ -269,7 +269,7 @@ Language can be configured by providing the appropriate [language code](https://
 
 ```yaml
 sphinx:
-  config
+  config:
     language: en
 ```
 
