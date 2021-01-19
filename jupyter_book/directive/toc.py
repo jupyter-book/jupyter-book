@@ -70,7 +70,7 @@ class SwapTableOfContents(SphinxTransform):
                         # since "file" key will be anyways for each "url" key
                         continue
                 else:
-                    val = val
+                    val = "%" + val
                     internal = True
                 reference = nodes.reference(
                     "",
