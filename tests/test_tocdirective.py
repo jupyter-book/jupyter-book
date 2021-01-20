@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 import pytest
 
 from jupyter_book.commands import build
+from TexSoup import TexSoup
 
 path_tests = Path(__file__).parent.resolve()
 path_books = path_tests.joinpath("books")
@@ -135,3 +136,32 @@ def test_toc_urllink(cli: CliRunner, temp_with_override, file_regression):
     soup = BeautifulSoup(path_toc_directive.read_text(encoding="utf8"), "html.parser")
     toc = soup.find_all("div", class_="tableofcontents-wrapper")[0]
     file_regression.check(str(toc), extension=".html", encoding="utf8")
+
+
+def test_toc_latex(cli: CliRunner, temp_with_override, file_regression):
+    """Testing LaTex output"""
+    path_output = temp_with_override.joinpath("mybook").absolute()
+    # Regular TOC should work
+    p_toc = path_books.joinpath("toc")
+    path_toc = p_toc.joinpath("_toc_urllink.yml")
+    p_config = path_books.joinpath("config")
+    path_config = p_config.joinpath("_config_jupyterbooklatex.yml")
+    result = cli.invoke(
+        build,
+        [
+            p_toc.as_posix(),
+            "--path-output",
+            path_output.as_posix(),
+            "--toc",
+            path_toc.as_posix(),
+            "--config",
+            path_config.as_posix(),
+            "-W",
+        ],
+    )
+    assert result.exit_code == 0, result.output
+
+    # reading the tex file
+    path_output_file = p_toc.joinpath("_build", "latex", "python.tex")
+    file_content = TexSoup(path_output_file.read_text())
+    file_regression.check(str(file_content.document), extension=".tex", encoding="utf8")

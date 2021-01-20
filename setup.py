@@ -17,6 +17,7 @@ doc_reqs = [
 # Test requirements
 test_reqs = [
     "coverage",
+    "texsoup",
     "pytest>=3.6,<4",
     "pytest-cov",
     "pytest-xdist",
