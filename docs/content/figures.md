@@ -146,7 +146,7 @@ The "title" of the admonition is used as the label that can be targeted by your 
 For example, the code
 
 ```md
-:::{figure,myclass} markdown-fig
+:::{figure-md} markdown-fig
 <img src="../images/fun-fish.png" alt="fishy" class="bg-primary mb-1" width="200px">
 
 This is a caption in **Markdown**!
@@ -155,7 +155,7 @@ This is a caption in **Markdown**!
 
 generates this figure:
 
-:::{figure,myclass} markdown-fig
+:::{figure-md} markdown-fig
 <img src="../images/fun-fish.png" alt="fishy" class="bg-primary mb-1" width="200px">
 
 This is a caption in **Markdown**!

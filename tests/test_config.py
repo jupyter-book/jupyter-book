@@ -152,3 +152,14 @@ def test_only_build_toc_files_missing_toc(testdir):
         get_final_config(
             None, user_config, cli_config, validate=True, raise_on_invalid=True
         )
+
+
+def test_get_final_config_custom_myst_extensions(data_regression):
+    cli_config = {"latex_individualpages": False}
+    user_config = {"parse": {"myst_extra_extensions": ["linkify"]}}
+    final_config, metadata = get_final_config(
+        None, user_config, cli_config, validate=True, raise_on_invalid=True
+    )
+    data_regression.check(
+        {"_user_config": user_config, "final": final_config, "metadata": metadata}
+    )

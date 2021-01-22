@@ -39,7 +39,8 @@ Here is a quick overview of some common roles for referencing:
 * `{doc}` is used to reference other files in your book
 * `{eq}` is used to reference equations that have been given a `label` value
 
-:::{admonition,tip} Choosing your own link text
+:::{admonition} Choosing your own link text
+:class: tip
 You can reference a section label through ``{ref}`label` `` or ``{ref}`some text <label>` ``.
 Documents can be referenced through ``{doc}`path/to/document` `` or ``{doc}`some text <path/to/document>` ``
 :::
@@ -77,7 +78,8 @@ will link to a section and use its header text as the link text itself:
 
 [](./myst.md)
 
-:::{admonition,tip} Internval vs. External URLs
+:::{admonition} Internval vs. External URLs
+:class: tip
 You can control how MyST Markdown distinguishes between internal references and external URLs in your `_config.yml`.
 For example,
 

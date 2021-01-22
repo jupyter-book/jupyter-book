@@ -12,9 +12,6 @@ exclude_patterns: [file-types/include-rst.rst]
 execute:
   execute_notebooks: cache
 
-parse:
-  myst_extended_syntax: true
-
 html:
   favicon: images/favicon.ico
   google_analytics_id: UA-52617120-7
@@ -34,6 +31,10 @@ launch_buttons:
   binderhub_url: "https://mybinder.org"
   colab_url: "https://colab.research.google.com"
   thebe: true
+
+parse:
+  myst_substitutions:
+      sub3: My _global_ value!
 
 latex:
   latex_engine: xelatex

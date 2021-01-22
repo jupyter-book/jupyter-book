@@ -97,7 +97,8 @@ Below the first entry you have two options for defining the structure of your bo
    Note that **chapters do not continue between parts**. Think of each part as
    a self-contained collection of chapters (e.g., for the purposes of numbering).
 
-:::{admonition,warning} Don't mix these two structures!
+:::{admonition} Don't mix these two structures!
+:class: warning
 When designing the top-level sections of your `_toc.yml` file, you must
 pick *either* a list of chapters via `- file:` entries, or a list of parts
 via `- part:` entries with chapters inside of them. You cannot intermix them both.

@@ -1,8 +1,7 @@
 _user_config:
-  latex:
-    latex_documents:
-      targetname: book.tex
-      title: other
+  parse:
+    myst_extra_extensions:
+    - linkify
 final:
   author: The Jupyter Book community
   comments_config:
@@ -73,6 +72,5 @@ final:
   pygments_style: sphinx
 metadata:
   latex_doc_overrides:
-    targetname: book.tex
-    title: other
+    title: My Jupyter Book
   latex_individualpages: false

@@ -56,6 +56,11 @@ final:
   jupyter_execute_notebooks: cache
   language: null
   latex_engine: pdflatex
+  myst_enable_extensions:
+  - colon_fence
+  - dollarmath
+  - linkify
+  - substitution
   myst_url_schemes:
   - mailto
   - http
