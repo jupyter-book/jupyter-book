@@ -305,6 +305,14 @@ def yaml_to_sphinx(yaml: dict):
         sphinx_config["extensions"] = get_default_sphinx_config()["extensions"]
         if not isinstance(extra_extensions, list):
             extra_extensions = [extra_extensions]
+
+        # Citations
+        if isinstance(yaml.get("bibtex_bibfiles"), str):
+            yaml["bibtex_bibfiles"] = [yaml["bibtex_bibfiles"]]
+        if yaml.get("bibtex_bibfiles"):
+            sphinx_config["bibtex_bibfiles"] = yaml["bibtex_bibfiles"]
+            sphinx_config["extensions"].append("sphinxcontrib.bibtex")
+
         for extension in extra_extensions:
             if extension not in sphinx_config["extensions"]:
                 sphinx_config["extensions"].append(extension)
