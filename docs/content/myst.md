@@ -244,12 +244,10 @@ Here are some links you can use as a reference:
 * [CommonMark in-line syntax](myst-parser:commonmark-span-tokens)
 * [Extended in-line syntax in MyST](myst-parser:extended-span-tokens)
 
-As a shorthand, Jupyter Book offers a single configuration, to enable the MyST [extended syntaxes](myst-parser:syntax/optional):
-
-```yaml
-parse:
-  myst_extended_syntax: true
-```
+:::{seealso}
+For information about enabling extended MyST syntax, see [](content-blocks:myst-extensions).
+In addition, see other examples of this extended syntax (and how to enable each) throughout this documentation.
+:::
 
 ## What can I create with MyST Markdown?
 

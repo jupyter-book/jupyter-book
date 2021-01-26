@@ -41,19 +41,29 @@ will include the following _customized_ figure:
 
 These directives allow you to control aspects of the image with [directive arguments](directive-arguments).
 
-In one way, this is an improvement over the Markdown syntax. However, the drawback is that this syntax will not show the image in common Markdown viewers (for example when the files are viewed on GitHub).
-A workaround is to use HTML directly, which can also be parsed as MyST Markdown.
-Using raw HTML is usually a bad choice (see [this explanation](raw-html-in-markdown)),
-but enabling extended syntax in your `_config` enables MySt-Parser to properly handle isolated `img` tags.
 
-Setting
+(figures:raw-html)=
+### Raw HTML images
+
+The image syntax described above gives you more customizability, but note that this syntax will not show the image in common Markdown viewers (for example when the files are viewed on GitHub).
+
+A workaround is to use HTML directly, and MyST can parse HTML images directly via the `html_image` extension.
+
+:::{warning}
+Using raw HTML is usually a bad choice (see [this explanation](raw-html-in-markdown)), so be careful before doing so!
+:::
+
+To parse raw HTML image syntax, enable the `html_image` extension to your list of extensions in `_config.yml`:
 
 ```yaml
 parse:
-  myst_extended_syntax: true
+  myst_enable_extensions:
+    # don't forget to list any other extensions you want enabled,
+    # including those that are enabled by default!
+    - html_image
 ```
 
-in your `_config.yml` and writing
+HTML images will be parsed like any other image. For example:
 
 ```html
 <img src="../images/fun-fish.png" alt="fishy" class="bg-primary" width="200px">
@@ -128,17 +138,14 @@ To do so, see [](content:code-outputs:glue).
 
 ## Markdown figures
 
-Markdown figures combine [colon style admonitions](admonitions:colons) and [HTML image parsing](content-blocks-images), to produce a "Markdown friendly" syntax for figures,
+Markdown figures combine [colon style admonitions](admonitions:colons) and [HTML image parsing](figures:raw-html), to produce a "Markdown friendly" syntax for figures,
 with equivalent behaviour to the `figure` directive above.
 
-To enable them, add this to your `_config.yml` file:
+:::{note}
+Using this feature requires that [HTML image parsing is enabled](figures:raw-html).
+:::
 
-```yaml
-parse:
-  myst_extended_syntax: true
-```
-
-The figure block must contain **only** two components; an image, in either Markdown or HTML syntax, and a single paragraph for the caption.
+The figure block must contain **only** two components; an image, in either Markdown or HTML syntax, and a single paragraph for the caption. See below for an example.
 
 As with admonitions, the figure can have additional classes set.
 The "title" of the admonition is used as the label that can be targeted by your cross-references.

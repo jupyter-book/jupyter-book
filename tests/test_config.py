@@ -16,7 +16,7 @@ pytest_plugins = "pytester"
         {"title": "hallo"},
         {"html": {"extra_footer": ""}},
         {"execute": {"execute_notebooks": "cache"}},
-        {"parse": {"myst_extended_syntax": True}},
+        {"parse": {"myst_enable_extensions": ["linkify"]}},
         {"latex": {"latex_documents": {"targetname": "book.tex", "title": "other"}}},
         {"launch_buttons": {"binderhub_url": "other"}},
         {"repository": {"url": "other"}},

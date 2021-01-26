@@ -1,6 +1,7 @@
 _user_config:
   parse:
-    myst_extended_syntax: true
+    myst_enable_extensions:
+    - linkify
 final:
   author: The Jupyter Book community
   comments_config:
@@ -57,11 +58,7 @@ final:
   language: null
   latex_engine: pdflatex
   myst_enable_extensions:
-  - - colon_fence
-    - dollarmath
-    - amsmath
-    - deflist
-    - html_image
+  - linkify
   myst_url_schemes:
   - mailto
   - http

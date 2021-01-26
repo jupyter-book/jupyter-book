@@ -21,6 +21,7 @@ A common use of directives and roles is to designate "special blocks" of your co
 This allows your to include more complex information such as warnings and notes, citations, and figures.
 This section covers a few common ones.
 
+(content-blocks:myst-extensions)=
 ## MyST syntax extensions
 
 {term}`MyST Markdown` has a base syntax that it supports, and additional syntax can be enabled to add extra functionality.
@@ -133,7 +134,7 @@ My content
 ### Markdown-friendly directives with `:::`
 
 The admonition syntax above utilises the general [directives syntax](content:myst/directives).
-However, if you're using an interface that does not support {term}`MyST Markdown`, it will render as a "raw" code block.
+However, if you're using an interface that does not support {term}`MyST Markdown`, it will render as a raw literal block.
 Many directives contain markdown inside, and if you'd like this markdown to render "normally", you may also use `:::` fences rather than ` ``` ` fences to define the directive. As a result, the contents of the directive will be rendered as markdown.
 
 
@@ -412,7 +413,10 @@ Definition lists are enabled by defining the following setting in your `_config.
 
 ```yaml
 parse:
-  myst_extended_syntax: true
+  myst_enable_extensions:
+    # don't forget to list any other extensions you want enabled,
+    # including those that are enabled by default!
+    - deflist
 ```
 
 Definition lists utilise the [markdown-it-py deflist plugin](https://markdown-it-py.readthedocs.io/en/latest/plugins.html), which itself is based on the [Pandoc definition list specification](http://johnmacfarlane.net/pandoc/README.html#definition-lists).

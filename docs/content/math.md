@@ -65,14 +65,19 @@ $$
 
 +++
 
-or, by adding to your `_config.yml`:
+### Latex-style math
+
+You can enable parsing LaTeX-style math blocks with the `amsmath` MyST extension. Enable it by adding the following to `_config.yml`
 
 ```yaml
 parse:
-  myst_extended_syntax: true
+  myst_enable_extensions:
+    # don't forget to list any other extensions you want enabled,
+    # including those that are enabled by default!
+    - amsmath
 ```
 
-you can use:
+Once enabled, you can define math blocks like so:
 
 ```latex
 \begin{gather*}
