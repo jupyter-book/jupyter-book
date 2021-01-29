@@ -157,12 +157,14 @@ def test_toc_latex(cli: CliRunner, temp_with_override, file_regression):
             path_toc.as_posix(),
             "--config",
             path_config.as_posix(),
+            "--builder",
+            "pdflatex",
             "-W",
         ],
     )
     assert result.exit_code == 0, result.output
 
     # reading the tex file
-    path_output_file = p_toc.joinpath("_build", "latex", "python.tex")
+    path_output_file = path_output.joinpath("_build", "latex", "python.tex")
     file_content = TexSoup(path_output_file.read_text())
     file_regression.check(str(file_content.document), extension=".tex", encoding="utf8")
