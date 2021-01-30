@@ -331,6 +331,10 @@ To set your reference style, use the style option:
 
 ### Textual citations
 
+:::{note}
+This requires `sphinxcontrib-bibtex` version v2.2.2, which is currently in alpha.
+:::
+
 If you'd like your citation to have no surrounding brackets, then use the _textual citation_ syntax with the following role:
 
 ```md
