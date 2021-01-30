@@ -200,6 +200,7 @@ To hide code input and output that generated the variable you are inserting, use
 See [](../interactive/hiding.md) for more information and other tag options.
 :::
 
+(content-blocks:html-admonitions)=
 ### HTML admonitions
 
 A drawback of admonition syntax is that it will not render in interfaces that do not support this syntax (e.g., GitHub). If you'd like to use admonitions that are defined *purely with HTML*, MyST can parse them via the `html_admonitions` extension. To use it, first enable it with the following configuration:
