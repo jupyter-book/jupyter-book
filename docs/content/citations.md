@@ -363,7 +363,7 @@ Having multiple bibliography directives, however, can cause `sphinx` to issue
 A common fix is to add a filter to the bibliography directives:
 
 ````md
-```{bibliography} path/to/references.bib
+```{bibliography}
 :filter: docname in docnames
 ```
 ````

@@ -1184,7 +1184,7 @@ or view a {download}`references.bib <../references.bib>` example.
 To include a list of citations mentioned in the document, introduce the `bibliography` directive
 
 ``````md
-```{bibliography} ../references.bib
+```{bibliography}
 :filter: docname in docnames
 ```
 ``````

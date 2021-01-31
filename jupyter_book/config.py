@@ -28,7 +28,6 @@ def get_default_sphinx_config():
             "sphinx_copybutton",
             "myst_nb",
             "jupyter_book",
-            "sphinxcontrib.bibtex",
             "sphinx_thebe",
             "sphinx_comments",
             "sphinx.ext.intersphinx",
@@ -306,13 +305,6 @@ def yaml_to_sphinx(yaml: dict):
         if not isinstance(extra_extensions, list):
             extra_extensions = [extra_extensions]
 
-        # Citations
-        if isinstance(yaml.get("bibtex_bibfiles"), str):
-            yaml["bibtex_bibfiles"] = [yaml["bibtex_bibfiles"]]
-        if yaml.get("bibtex_bibfiles"):
-            sphinx_config["bibtex_bibfiles"] = yaml["bibtex_bibfiles"]
-            sphinx_config["extensions"].append("sphinxcontrib.bibtex")
-
         for extension in extra_extensions:
             if extension not in sphinx_config["extensions"]:
                 sphinx_config["extensions"].append(extension)
@@ -328,6 +320,15 @@ def yaml_to_sphinx(yaml: dict):
                 sphinx_config["extensions"].append(extension)
             if path not in sys.path:
                 add_paths.append(path)
+
+    # Citations
+    if yaml.get("bibtex_bibfiles"):
+        if "extensions" not in sphinx_config:
+            sphinx_config["extensions"] = get_default_sphinx_config()["extensions"]
+        if isinstance(yaml.get("bibtex_bibfiles"), str):
+            yaml["bibtex_bibfiles"] = [yaml["bibtex_bibfiles"]]
+        sphinx_config["bibtex_bibfiles"] = yaml["bibtex_bibfiles"]
+        sphinx_config["extensions"].append("sphinxcontrib.bibtex")
 
     # items in sphinx.config will override defaults,
     # rather than recursively updating them
