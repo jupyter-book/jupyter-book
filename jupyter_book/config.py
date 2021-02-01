@@ -331,11 +331,6 @@ def yaml_to_sphinx(yaml: dict):
             if extension not in sphinx_config["extensions"]:
                 sphinx_config["extensions"].append(extension)
 
-    # If we have specified bibtex files, activate the bibtex plugin
-    if sphinx_config.get("bibtex_bibfiles"):
-        if "sphinxcontrib.bibtex" not in sphinx_config.get("extensions", []):
-            sphinx_config["extensions"].append("sphinxcontrib.bibtex")
-
     local_extensions = yaml.get("sphinx", {}).get("local_extensions")
     # add_paths collects additional paths for sys.path
     add_paths = []
