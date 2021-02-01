@@ -24,8 +24,13 @@ This update focuses on new syntax features for MyST markdown, as well as a new c
   ```
   See [](content-blocks:myst-extensions) for more information.
 
+**Citations and references configuration**
+: This version comes with a version bump to `sphinxcontrib.bibtex v2.1.*`. This introduces new configuration for connecting your bibfiles (no longer using the bibliography directive), and makes the citation resolution process much more stable and dependable.
+  See [](content:citations) for more information, and the [`sphinxcontrib.bibtex` documentation](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/) for more information about updates in the latest version.
+
 **TOC depth numbering**.
 : You can now set the depth of numbering (e.g., 3.2 vs. 3.2.1) via the the `numbered` flag in your Table of Contents.
+
 
 ### New MyST syntax
 
@@ -81,6 +86,9 @@ This update focuses on new syntax features for MyST markdown, as well as a new c
   ```
 
 **`myst_extended_syntax` is deprecated**
+: See above for new configuration details.
+
+**Bibliographies no longer use a path to a bibtex file**.
 : See above for new configuration details.
 
 ## v0.9.1 2020-12-22
