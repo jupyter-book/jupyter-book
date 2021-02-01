@@ -144,6 +144,7 @@ def test_toc_latex_parts(cli: CliRunner, temp_with_override, file_regression):
     # Regular TOC should work
     p_toc = path_books.joinpath("toc")
     path_toc = p_toc.joinpath("_toc_parts.yml")
+    path_config = path_books.joinpath("config", "_config_jupyterbooklatex.yml")
     result = cli.invoke(
         build,
         [
@@ -152,6 +153,8 @@ def test_toc_latex_parts(cli: CliRunner, temp_with_override, file_regression):
             path_output.as_posix(),
             "--toc",
             path_toc.as_posix(),
+            "--config",
+            path_config.as_posix(),
             "--builder",
             "pdflatex",
             "-W",
@@ -172,6 +175,7 @@ def test_toc_latex_urllink(cli: CliRunner, temp_with_override, file_regression):
     # Regular TOC should work
     p_toc = path_books.joinpath("toc")
     path_toc = p_toc.joinpath("_toc_urllink.yml")
+    path_config = path_books.joinpath("config", "_config_jupyterbooklatex.yml")
     result = cli.invoke(
         build,
         [
@@ -180,6 +184,8 @@ def test_toc_latex_urllink(cli: CliRunner, temp_with_override, file_regression):
             path_output.as_posix(),
             "--toc",
             path_toc.as_posix(),
+            "--config",
+            path_config.as_posix(),
             "--builder",
             "pdflatex",
         ],
