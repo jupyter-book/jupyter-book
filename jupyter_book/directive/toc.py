@@ -57,17 +57,17 @@ class SwapTableOfContents(SphinxTransform):
         depth += 1
         for key, val in tocdict.items():
             if key in ["file", "url"]:
+                internal = False
                 if "title" in tocdict:
                     title = tocdict["title"]
                 else:
                     if val not in self.env.titles:
                         continue
                     title = clean_astext(self.env.titles[val])
-                if key == "url":
-                    if "http" in val:
+                if "url" in tocdict:
+                    if "http" in tocdict["url"]:
                         internal = False
                     else:
-                        # since "file" key will be anyways for each "url" key
                         continue
                 else:
                     val = "%" + val
@@ -101,14 +101,7 @@ class SwapTableOfContents(SphinxTransform):
 
     def _handle_toc_header(self, subnode, val, depth):
         """Constructs node for the headers in globaltoc"""
-        if val in self.env.titles:
-            title = clean_astext(self.env.titles[val])
-            reference = nodes.reference(
-                "", "", internal=False, refuri=val, anchorname="", *[nodes.Text(title)]
-            )
-            para = addnodes.compact_paragraph("", "", reference)
-        else:
-            para = addnodes.compact_paragraph("", "", nodes.Text(val))
+        para = addnodes.compact_paragraph("", "", nodes.Text(val))
         item = nodes.list_item("", para)
         item["classes"].append("fs-1-2")
         return item
@@ -141,13 +134,6 @@ class SwapTableOfContents(SphinxTransform):
                 filtered_toc = self._process_toc_dict(
                     copy.deepcopy(self.config.globaltoc), parent_file, filtered_toc=None
                 )
-
-                # remove master_doc from the dict
-                if (
-                    "file" in filtered_toc
-                    and filtered_toc["file"] == self.config.master_doc
-                ):
-                    del filtered_toc["file"]
 
                 wncopy = wrappernode.deepcopy()
                 self._has_toc_yaml(wncopy, filtered_toc, depth)

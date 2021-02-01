@@ -1,0 +1,82 @@
+\begin{document}
+
+\pagestyle{empty}
+\sphinxmaketitle
+\pagestyle{plain}
+\sphinxtableofcontents
+\pagestyle{normal}
+\phantomsection\label{\detokenize{index::doc}}
+
+
+\sphinxstylestrong{Table of Contents}
+\begin{itemize}
+\item{} 
+A section
+
+\begin{itemize}
+\item{}{\hyperref[\detokenize{subfolder/index::doc}]{\sphinxcrossref{Subfolder}}}
+
+\begin{itemize}
+\item{}{\hyperref[\detokenize{subfolder/asubpage::doc}]{\sphinxcrossref{Asubpage}}}
+
+\end{itemize}
+\end{itemize}
+\item{} 
+Another section
+
+\begin{itemize}
+\item{}{\hyperref[\detokenize{content1::doc}]{\sphinxcrossref{Content1}}}
+
+\begin{itemize}
+\item{}{\hyperref[\detokenize{subfolder/asubpage::doc}]{\sphinxcrossref{Asubpage}}}
+
+\end{itemize}
+\item{}{\hyperref[\detokenize{content2::doc}]{\sphinxcrossref{Content2}}}
+
+\begin{itemize}
+\item{}{\hyperref[\detokenize{subfolder/asubpage::doc}]{\sphinxcrossref{Asubpage}}}
+
+\end{itemize}
+\item{}{\hyperref[\detokenize{content3::doc}]{\sphinxcrossref{Content3}}}
+
+\begin{itemize}
+\item{}{\hyperref[\detokenize{subfolder/asubpage::doc}]{\sphinxcrossref{Asubpage}}}
+
+\end{itemize}
+\end{itemize}
+\end{itemize}
+
+
+\chapter{Subfolder index}
+\label{\detokenize{subfolder/index:subfolder-index}}\label{\detokenize{subfolder/index::doc}}
+\sphinxstylestrong{Table of contents directive}
+\begin{itemize}
+\item{}{\hyperref[\detokenize{subfolder/asubpage::doc}]{\sphinxcrossref{Asubpage}}}
+
+\end{itemize}
+
+
+\chapter{A subpage}
+\label{\detokenize{subfolder/asubpage:a-subpage}}\label{\detokenize{subfolder/asubpage::doc}}
+
+\chapter{Content 1}
+\label{\detokenize{content1:content-1}}\label{\detokenize{content1::doc}}
+
+\chapter{Content 2}
+\label{\detokenize{content2:content-2}}\label{\detokenize{content2::doc}}
+Content body
+
+
+\chapter{Content 3}
+\label{\detokenize{content3:content-3}}\label{\detokenize{content3::doc}}
+Content body
+
+
+
+
+
+
+
+\renewcommand{\indexname}{Index}
+\printindex
+\end{document}

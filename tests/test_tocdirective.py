@@ -125,7 +125,6 @@ def test_toc_urllink(cli: CliRunner, temp_with_override, file_regression):
             path_output.as_posix(),
             "--toc",
             path_toc.as_posix(),
-            "-W",
         ],
     )
     assert result.exit_code == 0, result.output
@@ -139,7 +138,39 @@ def test_toc_urllink(cli: CliRunner, temp_with_override, file_regression):
 
 
 @pytest.mark.requires_tex
-def test_toc_latex(cli: CliRunner, temp_with_override, file_regression):
+def test_toc_latex_parts(cli: CliRunner, temp_with_override, file_regression):
+    """Testing LaTex output"""
+    path_output = temp_with_override.joinpath("mybook").absolute()
+    # Regular TOC should work
+    p_toc = path_books.joinpath("toc")
+    path_toc = p_toc.joinpath("_toc_parts.yml")
+    p_config = path_books.joinpath("config")
+    path_config = p_config.joinpath("_config_jupyterbooklatex.yml")
+    result = cli.invoke(
+        build,
+        [
+            p_toc.as_posix(),
+            "--path-output",
+            path_output.as_posix(),
+            "--toc",
+            path_toc.as_posix(),
+            "--config",
+            path_config.as_posix(),
+            "--builder",
+            "pdflatex",
+            "-W",
+        ],
+    )
+    assert result.exit_code == 0, result.output
+
+    # reading the tex file
+    path_output_file = path_output.joinpath("_build", "latex", "python.tex")
+    file_content = TexSoup(path_output_file.read_text())
+    file_regression.check(str(file_content.document), extension=".tex", encoding="utf8")
+
+
+@pytest.mark.requires_tex
+def test_toc_latex_urllink(cli: CliRunner, temp_with_override, file_regression):
     """Testing LaTex output"""
     path_output = temp_with_override.joinpath("mybook").absolute()
     # Regular TOC should work
@@ -159,7 +190,6 @@ def test_toc_latex(cli: CliRunner, temp_with_override, file_regression):
             path_config.as_posix(),
             "--builder",
             "pdflatex",
-            "-W",
         ],
     )
     assert result.exit_code == 0, result.output
