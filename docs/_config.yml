@@ -110,4 +110,3 @@ sphinx:
     - sphinx_click.ext
     - sphinx_inline_tabs
     - sphinxext.rediraffe
-    - jupyterbook_latex
