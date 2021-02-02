@@ -9,6 +9,9 @@ description: >- # this means to ignore newlines until "baseurl:"
 
 exclude_patterns: [file-types/include-rst.rst]
 
+bibtex_bibfiles:
+  - references.bib
+
 execute:
   execute_notebooks: cache
 

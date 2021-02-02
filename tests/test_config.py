@@ -163,3 +163,12 @@ def test_get_final_config_custom_myst_extensions(data_regression):
     data_regression.check(
         {"_user_config": user_config, "final": final_config, "metadata": metadata}
     )
+
+
+def test_get_final_config_bibtex(data_regression):
+    cli_config = {"latex_individualpages": False}
+    user_config = {"bibtex_bibfiles": ["tmp.bib"]}
+    final_config, metadata = get_final_config(
+        None, user_config, cli_config, validate=True, raise_on_invalid=True
+    )
+    assert "sphinxcontrib.bibtex" in final_config["extensions"]

@@ -240,7 +240,7 @@ This functionality uses the excellent [sphinxcontrib-bibtex](https://sphinxcontr
 
 **To add citations to your book**, take the following steps:
 
-1. **Create a references bibtex file**.
+1. **Create one or more bibtex files for your references**.
 
    ```bash
    touch references.bib
@@ -262,8 +262,17 @@ This functionality uses the excellent [sphinxcontrib-bibtex](https://sphinxcontr
    ,	publisher	= {AIP Publishing}
    }
    ```
+3. **List your bibtex file in your configuration**. In order to activate citations, list your references file like so:
 
-3. **Add a citation**. In your content, use the following syntax to include a citation:
+   ```yaml
+   # In _config.yml
+   bibtex_bibfiles:
+      - referencess.bib
+   ```
+
+   This will activate the [`sphinxcontrib.bibtex` extension](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/)
+
+4. **Add a citation**. In your content, use the following syntax to include a citation:
 
    ```md
    {cite}`mybibtexcitation`
@@ -285,32 +294,22 @@ This functionality uses the excellent [sphinxcontrib-bibtex](https://sphinxcontr
 
    becomes {cite}`perez2011python,holdgraf_rapid_2016,RePEc:the:publsh:1367,caporaso2010qiime`.
 
-4. **Add a bibliography**. Use the following directive to do so:
+5. **Add a bibliography**. Use the following directive to do so:
 
    ````md
-   ```{bibliography} path/to/references.bib
+   ```{bibliography}
    ```
    ````
 
-   This will generate the bibliography of your entire bibtex file. See
+   This will generate the bibliography of all citations in your book. See
    [the bibliography at the end of this page](citations/bibliography) for an example.
 
 When your book is built, the bibliography and citations will now be included.
 
-:::{warning}
-If you are adding a bibliography to a *different* page from your references, then
-you may need to ensure that page is processed last. Because Sphinx processes pages alphabetically,
-you may want to name the file `zreferences.rst` for example.
-
-See [this `sphinxcontrib-bibtex` section](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/usage.html#unresolved-citations-across-documents)
-for more information.
+:::{seealso}
+For more information about citation and reference syntax, see the [`sphinxcontrib-bibtex` documentation](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/usage.html#roles-and-directives).
+Note that this documentation is written with rST syntax in mind and you'll need to adapt the directive/role syntax for your Markdown content.
 :::
-
-This feature uses [`sphinxcontrib-bibtex`](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/usage.html#roles-and-directives)
-under the hood, so check its documentation for more information on how to use and configure
-bibliographies in your book. Do note the documentation
-is written with rST syntax in mind and you'll need to adapt the directive/role syntax for your
-Markdown content.
 
 ### Selecting your reference style
 
@@ -327,7 +326,7 @@ These styles create the following bibliography formatting:
 To set your reference style, use the style option:
 
 ````md
-```{bibliography} path/to/references.bib
+```{bibliography}
 :style: unsrt
 ```
 ````
@@ -342,7 +341,7 @@ Having multiple bibliography directives, however, can cause `sphinx` to issue
 A common fix is to add a filter to the bibliography directives:
 
 ````md
-```{bibliography} path/to/references.bib
+```{bibliography}
 :filter: docname in docnames
 ```
 ````
@@ -352,5 +351,7 @@ See `sphinxcontrib-bibtex` documentation on [local bibliographies](https://sphin
 (citations/bibliography)=
 ### Bibliography
 
-```{bibliography} ../references.bib
+An example bibliography, for reference:
+
+```{bibliography}
 ```

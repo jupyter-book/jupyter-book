@@ -25,7 +25,7 @@ As an example,
 ````md
 ```{image} ../images/fun-fish.png
 :alt: fishy
-:class: bg-primary
+:class: bg-primary mb-1
 :width: 200px
 :align: center
 ```
@@ -37,6 +37,7 @@ will include the following _customized_ figure:
 :alt: fishy
 :class: bg-primary mb-1
 :width: 200px
+:align: center
 ```
 
 These directives allow you to control aspects of the image with [directive arguments](directive-arguments).
