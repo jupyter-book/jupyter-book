@@ -152,3 +152,12 @@ def test_only_build_toc_files_missing_toc(testdir):
         get_final_config(
             None, user_config, cli_config, validate=True, raise_on_invalid=True
         )
+
+
+def test_get_final_config_bibtex(data_regression):
+    cli_config = {"latex_individualpages": False}
+    user_config = {"bibtex_bibfiles": ["tmp.bib"]}
+    final_config, metadata = get_final_config(
+        None, user_config, cli_config, validate=True, raise_on_invalid=True
+    )
+    assert "sphinxcontrib.bibtex" in final_config["extensions"]
