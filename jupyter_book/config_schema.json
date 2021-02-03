@@ -23,8 +23,14 @@
         "parse": {
             "type": "object",
             "properties": {
-                "myst_extended_syntax": {
-                    "type": "boolean"
+                "myst_enable_extensions": {
+                    "type": [
+                        "null",
+                        "array"
+                    ],
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "myst_url_schemes": {
                     "type": [

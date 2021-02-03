@@ -254,15 +254,37 @@ def yaml_to_sphinx(yaml: dict):
     # Parse and Rendering
     parse = yaml.get("parse")
     if parse:
+        # Enable extra extensions
+        extensions = sphinx_config.get("myst_enable_extensions", [])
+        # TODO: deprecate this in v0.11.0
         if parse.get("myst_extended_syntax") is True:
-            sphinx_config["myst_dmath_enable"] = True
-            sphinx_config["myst_amsmath_enable"] = True
-            sphinx_config["myst_deflist_enable"] = True
-            sphinx_config["myst_admonition_enable"] = True
-            sphinx_config["myst_html_img_enable"] = True
-            sphinx_config["myst_figure_enable"] = True
-        if "myst_url_schemes" in parse:
-            sphinx_config["myst_url_schemes"] = parse.get("myst_url_schemes")
+            extensions.append(
+                [
+                    "colon_fence",
+                    "dollarmath",
+                    "amsmath",
+                    "deflist",
+                    "html_image",
+                ]
+            )
+            _message_box(
+                (
+                    "myst_extended_syntax is deprecated, instead specify extensions "
+                    "you wish to be enabled. See https://myst-parser.readthedocs.io/en/latest/using/syntax-optional.html"  # noqa: E501
+                ),
+                color="orange",
+                print_func=print,
+            )
+        for ext in parse.get("myst_enable_extensions", []):
+            if ext not in extensions:
+                extensions.append(ext)
+        if extensions:
+            sphinx_config["myst_enable_extensions"] = extensions
+
+        # Configuration values we'll just pass-through
+        for ikey in ["myst_substitutions", "myst_url_schemes"]:
+            if ikey in parse:
+                sphinx_config[ikey] = parse.get(ikey)
 
     # Execution
     execute = yaml.get("execute")

@@ -1,5 +1,96 @@
 # Change Log
 
+## v0.10.0 2021-02-01
+
+[full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.9.1...d3c78097edda4fefb672e32344c3806c9cdc7a72) | [GitHub contributors page for this release](https://github.com/executablebooks/jupyter-book/graphs/contributors?from=2020-12-22&to=2021-01-30&type=c)
+
+This update focuses on new syntax features for MyST markdown, as well as a new configuration to enable MyST extensions. See below for more details.
+
+### New
+
+**MyST Parser version 0.13.x**
+: The MyST-NB and MyST-parser have both been upgraded.
+  This comes with support for new syntax and a new configuration mechanism (see below for some examples).
+
+  See [the myst-parser changelog](https://myst-parser.readthedocs.io/en/latest/develop/_changelog.html#id4) for more information about the syntax additions.
+
+**New `myst` extension configuration**
+: The `myst_extended_syntax` configuration is **now deprecated**, in lieu of a more flexible extension mechanism.
+  You may now enable individual `myst` extensions by adding them to the following section of your `_config.yml` file:
+  ```yaml
+  parse:
+    myst_enable_extensions:
+      - <list-of-extensions>
+  ```
+  See [](content-blocks:myst-extensions) for more information.
+
+**Citations and references configuration**
+: This version comes with a version bump to `sphinxcontrib.bibtex v2.1.*`. This introduces new configuration for connecting your bibfiles (no longer using the bibliography directive), and makes the citation resolution process much more stable and dependable.
+  See [](content:citations) for more information, and the [`sphinxcontrib.bibtex` documentation](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/) for more information about updates in the latest version.
+
+**TOC depth numbering**.
+: You can now set the depth of numbering (e.g., 3.2 vs. 3.2.1) via the the `numbered` flag in your Table of Contents.
+
+
+### New MyST syntax
+
+**MyST Markdown substitutions**
+: Substitutions allow you to define **variables** in markdown, and insert them elsewhere in your document.
+  This lets you change the variable value and have it automatically update throughout your book.
+  This is **on by default**.
+  See [](content:substitutions) for more information.
+
+**Automatic HTML links**
+: The `linkify` extension will automatically identify “bare” web URLs, like `www.example.com`,  and add hyperlinks; www.example.com.
+  This extension is **on by default**.
+
+**Smart Quotes**
+: The `smartquotes` extension will automatically convert standard quotations to their opening/closing variants:
+
+  - `'single quotes'`: ‘single quotes’
+  - `"double quotes"`:  “double quotes”
+
+  This extension is **off by default**.
+  See [](myst-parser:syntax/typography) for more details.
+
+**Typography replacements for common characters**
+: The `replacements` extension will automatically convert some common typographic texts, such as `+-` -> `±`.
+  This extension is **off by default**.
+  See [](myst-parser:syntax/typography) for more details.
+
+**HTML admonitions**
+: By adding `"html_admonition"` to `myst_enable_extensions`, you can enable parsing of `<div class="admonition">` HTML blocks to sphinx admonitions.
+  This is helpful when you care about viewing the "source" Markdown, such as in Jupyter Notebooks.
+  For example:
+  ```html
+  <div class="admonition note" name="html-admonition">
+  <p class="title">This is the **title**</p>
+  This is the *content*
+  </div>
+  ```
+  See [](content-blocks:html-admonitions) for further information.
+  This extension is **off by default**.
+
+### Deprecations
+
+**Colon fences now behave like directives**
+: The `colon_fence` extension (replacing `admonition_enable`) now works exactly the same as normal ```` ``` ```` code fences, but using `:::` delimiters.
+  This is helpful for directives that contain Markdown text, for example:
+
+  ```md
+  :::{admonition} The title
+  :class: note
+
+  This note contains *Markdown*
+  :::
+  ```
+
+**`myst_extended_syntax` is deprecated**
+: See above for new configuration details.
+
+**Bibliographies no longer use a path to a bibtex file**.
+: See above for new configuration details.
+
 ## v0.9.1 2020-12-22
 
 This is a minor release to issue `v0.9` to PyPI and updates a broken link that prohibited the `v0.9.0` PyPI release action.
