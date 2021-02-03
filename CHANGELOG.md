@@ -34,6 +34,7 @@ Citations and references configuration
 TOC depth numbering
 
 : You can now set the depth of numbering (e.g., 3.2 vs. 3.2.1) via the the `numbered` flag in your Table of Contents.
+  See [the table of contents documentation](./customize/toc.md) for more information.
 
 
 ### New MyST syntax
