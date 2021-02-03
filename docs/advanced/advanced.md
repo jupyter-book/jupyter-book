@@ -74,7 +74,7 @@ This will entirely remove the folders in the `_build/` directory.
 
 You can control the behaviour of Jupyter Book by putting custom tags
 in the metadata of your cells. This allows you to do things like
-{doc}`automatically hide code cells <../interactive/hiding>`) as well as
+{doc}`automatically hide code cells <../interactive/hiding>` as well as
 {ref}`add interactive widgets to cells <launch/thebelab>`.
 
 ### Adding tags using notebook interfaces
