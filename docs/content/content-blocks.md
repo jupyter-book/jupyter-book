@@ -18,7 +18,7 @@ substitutions:
 # Special content blocks
 
 A common use of directives and roles is to designate "special blocks" of your content.
-This allows your to include more complex information such as warnings and notes, citations, and figures.
+This allows you to include more complex information such as warnings and notes, citations, and figures.
 This section covers a few common ones.
 
 (content-blocks:myst-extensions)=
