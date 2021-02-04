@@ -39,15 +39,15 @@ parse:
   myst_substitutions:
       sub3: My _global_ value!
   myst_enable_extensions:  # default extensions to enable in the myst parser. See https://myst-parser.readthedocs.io/en/latest/using/syntax-optional.html
-    # - amsmath
+    - amsmath
     - colon_fence
     - deflist
     - dollarmath
     - html_admonition
-    # - html_image
+    - html_image
     - linkify
-    # - replacements
-    # - smartquotes
+    - replacements
+    - smartquotes
     - substitution
 
 latex:
