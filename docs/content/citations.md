@@ -267,7 +267,7 @@ This functionality uses the excellent [sphinxcontrib-bibtex](https://sphinxcontr
    ```yaml
    # In _config.yml
    bibtex_bibfiles:
-      - referencess.bib
+      - references.bib
    ```
 
    This will activate the [`sphinxcontrib.bibtex` extension](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/)
