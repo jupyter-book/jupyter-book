@@ -236,7 +236,7 @@ See [](myst-parser:syntax/html-admonition) for more information about HTML admon
 (content/panels)=
 ## Panels
 
-Panels provide an easy fay for you to organize chunks of content into flexible containers on your page.
+Panels provide an easy way for you to organize chunks of content into flexible containers on your page.
 They are useful for creating card-like layouts, flexible columns, and grids.
 Panels are based off of [Bootstrap CSS](https://getbootstrap.com/docs/4.5/components/card/), and utilize Bootstrap's classes to control the look and feel of panels.
 
