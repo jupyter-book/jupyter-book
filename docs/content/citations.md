@@ -303,7 +303,15 @@ This functionality uses the excellent [sphinxcontrib-bibtex](https://sphinxcontr
 
    This will generate the bibliography of all citations in your book. See
    [the bibliography at the end of this page](citations/bibliography) for an example.
-
+   
+   If your `.bib` file is located in another folder, you might 
+   have to specify its relative path as:
+   
+   ````md
+   ```{bibliography} ../references.bib
+   ```
+   ````
+   
 When your book is built, the bibliography and citations will now be included.
 
 :::{seealso}
