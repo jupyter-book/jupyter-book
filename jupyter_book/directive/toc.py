@@ -6,6 +6,7 @@ from sphinx.util.nodes import clean_astext
 from sphinx.transforms import SphinxTransform
 from sphinx import builders
 from pathlib import Path
+from typing import Dict
 
 import copy
 
@@ -28,91 +29,110 @@ class TableofContents(SphinxDirective):
         return [TableOfContentsNode()]
 
 
+def process_toc_dict(
+    self,
+    globaltoc: Dict[str, nodes.Element],
+    parent_file: str,
+    filtered_toc: Dict[str, nodes.Element],
+):
+    """Filters globaltoc to take children of the current page only
+    :param globaltoc: toc entries
+    :param parent_file: chapter filename
+    :param filtered_toc: filtered toc entries
+    """
+    for key, val in globaltoc.items():
+        if key == "file":
+            if val == parent_file:
+                del globaltoc["file"]
+                return globaltoc
+        if key == "sections":
+            for item in val:
+                if "file" in item and item["file"] == parent_file:
+                    del item["file"]
+                    filtered_toc = item
+                    break
+                elif "sections" in item:
+                    filtered_toc = self.process_toc_dict(
+                        item, parent_file, filtered_toc
+                    )
+            if filtered_toc:
+                return filtered_toc
+    return
+
+
+def has_toc_yaml(
+    self, subnode: nodes.Element, tocdict: Dict[str, nodes.Element], depth: int
+) -> None:
+    """constructs toc nodes from globaltoc dict
+    :param subnode: node to which toc constructed here is appended to
+    :param tocdict: dictionary of toc entries
+    :param depth: current toclevel depth
+    """
+    depth += 1
+    for key, val in tocdict.items():
+        if key in ["file", "url"]:
+            internal = False
+            if "title" in tocdict:
+                title = tocdict["title"]
+            else:
+                if val not in self.env.titles:
+                    continue
+                title = clean_astext(self.env.titles[val])
+            if "url" in tocdict:
+                if "http" in tocdict["url"]:
+                    internal = False
+                else:
+                    continue
+            else:
+                val = "%" + val
+                internal = True
+            reference = nodes.reference(
+                "",
+                "",
+                internal=internal,
+                refuri=val,
+                anchorname="",
+                *[nodes.Text(title)],
+            )
+            para = addnodes.compact_paragraph("", "", reference)
+            item = nodes.list_item("", para)
+            item["classes"].append("tableofcontents-l%d" % (depth))
+            subnode.append(item)
+        if key in ["sections"]:
+            sectionlist = nodes.bullet_list().deepcopy()
+            sectionheader = None
+            for item in val:
+                if "part" in item:
+                    sectionheader = self.handle_toc_header(item["part"], depth)
+                    sectionlist.append(sectionheader)
+                    del item["part"]
+                    self.has_toc_yaml(sectionlist, item, depth)
+                else:
+                    self.has_toc_yaml(sectionlist, item, depth)
+            subnode.append(sectionlist)
+
+
+def handle_toc_header(self, val: str, depth: int) -> nodes.Element:
+    """Constructs node for the headers in globaltoc
+    :param val: value for the node
+    :param depth: current toclevel depth
+    """
+    para = addnodes.compact_paragraph("", "", nodes.Text(val))
+    item = nodes.list_item("", para)
+    item["classes"].append("fs-1-2")
+    return item
+
+
 class SwapTableOfContents(SphinxTransform):
     default_priority = 700
 
-    def _process_toc_dict(self, globaltoc, parent_file, filtered_toc):
-        """Filters globaltoc to take children of the current page only"""
-        for key, val in globaltoc.items():
-            if key == "file":
-                if val == parent_file:
-                    del globaltoc["file"]
-                    return globaltoc
-            if key == "sections":
-                for item in val:
-                    if "file" in item and item["file"] == parent_file:
-                        del item["file"]
-                        filtered_toc = item
-                        break
-                    elif "sections" in item:
-                        filtered_toc = self._process_toc_dict(
-                            item, parent_file, filtered_toc
-                        )
-                if filtered_toc:
-                    return filtered_toc
-        return
-
-    def _has_toc_yaml(self, subnode, tocdict, depth):
-        """constructs toc nodes from globaltoc dict"""
-        depth += 1
-        for key, val in tocdict.items():
-            if key in ["file", "url"]:
-                internal = False
-                if "title" in tocdict:
-                    title = tocdict["title"]
-                else:
-                    if val not in self.env.titles:
-                        continue
-                    title = clean_astext(self.env.titles[val])
-                if "url" in tocdict:
-                    if "http" in tocdict["url"]:
-                        internal = False
-                    else:
-                        continue
-                else:
-                    val = "%" + val
-                    internal = True
-                reference = nodes.reference(
-                    "",
-                    "",
-                    internal=internal,
-                    refuri=val,
-                    anchorname="",
-                    *[nodes.Text(title)],
-                )
-                para = addnodes.compact_paragraph("", "", reference)
-                item = nodes.list_item("", para)
-                item["classes"].append("tableofcontents-l%d" % (depth))
-                subnode.append(item)
-            if key in ["sections"]:
-                sectionlist = nodes.bullet_list().deepcopy()
-                sectionheader = None
-                for item in val:
-                    if "part" in item:
-                        sectionheader = self._handle_toc_header(
-                            sectionlist, item["part"], depth
-                        )
-                        sectionlist.append(sectionheader)
-                        del item["part"]
-                        self._has_toc_yaml(sectionlist, item, depth)
-                    else:
-                        self._has_toc_yaml(sectionlist, item, depth)
-                subnode.append(sectionlist)
-
-    def _handle_toc_header(self, subnode, val, depth):
-        """Constructs node for the headers in globaltoc"""
-        para = addnodes.compact_paragraph("", "", nodes.Text(val))
-        item = nodes.list_item("", para)
-        item["classes"].append("fs-1-2")
-        return item
-
-    def _get_parent_file(self, tocnode):
+    def _get_parent_file(self, tocnode: nodes.Element) -> str:
         """searches parent nodes to find the chapter name"""
         if isinstance(tocnode.parent, nodes.document):
-            parent_file = Path(tocnode.parent.attributes["source"]).relative_to(
+            parent_file_path = Path(tocnode.parent.attributes["source"]).relative_to(
                 self.env.app.confdir
             )
-            parent_file = str(parent_file).replace(parent_file.suffix, "")
+            parent_file = str(parent_file_path).replace(parent_file_path.suffix, "")
             return parent_file
         else:
             return self._get_parent_file(tocnode.parent)
@@ -131,12 +151,12 @@ class SwapTableOfContents(SphinxTransform):
 
                 depth = 0
 
-                filtered_toc = self._process_toc_dict(
+                filtered_toc = self.process_toc_dict(
                     copy.deepcopy(self.config.globaltoc), parent_file, filtered_toc=None
                 )
 
                 wncopy = wrappernode.deepcopy()
-                self._has_toc_yaml(wncopy, filtered_toc, depth)
+                self.has_toc_yaml(wncopy, filtered_toc, depth)
                 ret.append(wncopy)
                 tocnode.replace_self(ret)
         else:
