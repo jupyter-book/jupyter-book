@@ -4,9 +4,11 @@ from pathlib import Path
 from click.testing import CliRunner
 from bs4 import BeautifulSoup
 import pytest
+from copy import deepcopy
 
 from jupyter_book.commands import build
 from TexSoup import TexSoup
+from docutils import nodes
 
 path_tests = Path(__file__).parent.resolve()
 path_books = path_tests.joinpath("books")
@@ -135,6 +137,81 @@ def test_toc_urllink(cli: CliRunner, temp_with_override, file_regression):
     soup = BeautifulSoup(path_toc_directive.read_text(encoding="utf8"), "html.parser")
     toc = soup.find_all("div", class_="tableofcontents-wrapper")[0]
     file_regression.check(str(toc), extension=".html", encoding="utf8")
+
+
+@pytest.mark.requires_tex
+def test_toc_latex_funcs_(cli: CliRunner, temp_with_override, file_regression):
+    """Testing individaul functions used in latex"""
+    from jupyter_book.directive.toc import (
+        has_toc_yaml,
+        process_toc_dict,
+        handle_toc_header,
+    )
+
+    subnode = nodes.bullet_list().deepcopy()
+    globaldict = {
+        "file": "index",
+        "title": "Toc",
+        "sections": [
+            {
+                "part": "A section",
+                "sections": [
+                    {
+                        "file": "subfolder/index",
+                        "title": "Subfolder",
+                        "sections": [
+                            {"file": "subfolder/asubpage", "title": "Asubpage"}
+                        ],
+                    }
+                ],
+            },
+            {
+                "part": "Another section",
+                "sections": [
+                    {
+                        "file": "content1",
+                        "title": "Content1",
+                        "sections": [
+                            {"file": "subfolder/asubpage", "title": "Asubpage"}
+                        ],
+                    },
+                    {
+                        "file": "content2",
+                        "title": "Content2",
+                        "sections": [
+                            {"file": "subfolder/asubpage", "title": "Asubpage"}
+                        ],
+                    },
+                    {
+                        "file": "content3",
+                        "title": "Content3",
+                        "sections": [
+                            {"file": "subfolder/asubpage", "title": "Asubpage"}
+                        ],
+                    },
+                ],
+            },
+        ],
+    }
+
+    # has_toc_yaml func test
+    has_toc_yaml(None, subnode, deepcopy(globaldict), 0)
+    file_regression.check(
+        subnode.pformat(), extension=".xml", encoding="utf8", basename="has_toc_yaml"
+    )
+
+    # handle_toc_header func test
+    item = handle_toc_header("Subfolder")
+    file_regression.check(
+        item.pformat(), extension=".xml", encoding="utf8", basename="handle_toc_header"
+    )
+
+    # process_toc_dict func test
+    filtered_toc = process_toc_dict(deepcopy(globaldict), "subfolder/index", None)
+    assert filtered_toc == {
+        "title": "Subfolder",
+        "sections": [{"file": "subfolder/asubpage", "title": "Asubpage"}],
+    }
 
 
 @pytest.mark.requires_tex

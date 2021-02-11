@@ -30,7 +30,6 @@ class TableofContents(SphinxDirective):
 
 
 def process_toc_dict(
-    self,
     globaltoc: Dict[str, nodes.Element],
     parent_file: str,
     filtered_toc: Dict[str, nodes.Element],
@@ -52,9 +51,7 @@ def process_toc_dict(
                     filtered_toc = item
                     break
                 elif "sections" in item:
-                    filtered_toc = self.process_toc_dict(
-                        item, parent_file, filtered_toc
-                    )
+                    filtered_toc = process_toc_dict(item, parent_file, filtered_toc)
             if filtered_toc:
                 return filtered_toc
     return
@@ -103,19 +100,18 @@ def has_toc_yaml(
             sectionheader = None
             for item in val:
                 if "part" in item:
-                    sectionheader = self.handle_toc_header(item["part"], depth)
+                    sectionheader = handle_toc_header(item["part"])
                     sectionlist.append(sectionheader)
                     del item["part"]
-                    self.has_toc_yaml(sectionlist, item, depth)
+                    has_toc_yaml(self, sectionlist, item, depth)
                 else:
-                    self.has_toc_yaml(sectionlist, item, depth)
+                    has_toc_yaml(self, sectionlist, item, depth)
             subnode.append(sectionlist)
 
 
-def handle_toc_header(self, val: str, depth: int) -> nodes.Element:
+def handle_toc_header(val: str) -> nodes.Element:
     """Constructs node for the headers in globaltoc
-    :param val: value for the node
-    :param depth: current toclevel depth
+    :param val: value of the node
     """
     para = addnodes.compact_paragraph("", "", nodes.Text(val))
     item = nodes.list_item("", para)
@@ -151,12 +147,12 @@ class SwapTableOfContents(SphinxTransform):
 
                 depth = 0
 
-                filtered_toc = self.process_toc_dict(
+                filtered_toc = process_toc_dict(
                     copy.deepcopy(self.config.globaltoc), parent_file, filtered_toc=None
                 )
 
                 wncopy = wrappernode.deepcopy()
-                self.has_toc_yaml(wncopy, filtered_toc, depth)
+                has_toc_yaml(self, wncopy, filtered_toc, depth)
                 ret.append(wncopy)
                 tocnode.replace_self(ret)
         else:
