@@ -37,6 +37,9 @@ def setup(app):
     # Directives
     app.add_directive("tableofcontents", TableofContents)
 
+    # Using jupyterbook-latex for latex builds
+    app.setup_extension("jupyterbook_latex")
+
     # Transforms
     app.add_post_transform(SwapTableOfContents)
 
