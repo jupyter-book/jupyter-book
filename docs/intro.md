@@ -79,7 +79,7 @@ legacy documentation.
 In addition, note that Jupyter Book is pre-1.0. Its API may change!
 :::
 
-To install the `jupyter-book` pre-release from pip, run the following command:
+To install `jupyter-book` from pip, run the following command:
 
 ```bash
 pip install -U jupyter-book
