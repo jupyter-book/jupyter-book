@@ -29,7 +29,7 @@ By default, Jupyter Book enables a few extra syntax pieces for MyST in order to 
 These extensions are:
 
 `dollarmath`
-: To support `$$` and `$` syntax for math blocks. See [](math.md).
+: To support `$$` and `$` syntax for math blocks. See [](./math.md).
 
 `linkify`
 : To auto-detect HTML-like links in your markdown and convert them to hyperlinks.

@@ -8,13 +8,15 @@ This update focuses on new syntax features for MyST markdown, as well as a new c
 
 ### New
 
-**MyST Parser version 0.13.x**
+MyST Parser version 0.13.x
+
 : The MyST-NB and MyST-parser have both been upgraded.
   This comes with support for new syntax and a new configuration mechanism (see below for some examples).
 
-  See [the myst-parser changelog](https://myst-parser.readthedocs.io/en/latest/develop/_changelog.html#id4) for more information about the syntax additions.
+  (see also [the myst-parser changelog](https://myst-parser.readthedocs.io/en/v0.13.3/develop/_changelog.html#id4) for more information about the syntax additions)
 
-**New `myst` extension configuration**
+New `myst` extension configuration
+
 : The `myst_extended_syntax` configuration is **now deprecated**, in lieu of a more flexible extension mechanism.
   You may now enable individual `myst` extensions by adding them to the following section of your `_config.yml` file:
   ```yaml
@@ -22,43 +24,51 @@ This update focuses on new syntax features for MyST markdown, as well as a new c
     myst_enable_extensions:
       - <list-of-extensions>
   ```
-  See [](content-blocks:myst-extensions) for more information.
+  See the [MyST syntax extension section here](docs/content/content-blocks.md) for more information.
 
-**Citations and references configuration**
+Citations and references configuration
+
 : This version comes with a version bump to `sphinxcontrib.bibtex v2.1.*`. This introduces new configuration for connecting your bibfiles (no longer using the bibliography directive), and makes the citation resolution process much more stable and dependable.
-  See [](content:citations) for more information, and the [`sphinxcontrib.bibtex` documentation](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/) for more information about updates in the latest version.
+: See [](content:citations) for more information, and the [`sphinxcontrib.bibtex` documentation](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/) for more information about updates in the latest version.
 
-**TOC depth numbering**.
+TOC depth numbering
+
 : You can now set the depth of numbering (e.g., 3.2 vs. 3.2.1) via the the `numbered` flag in your Table of Contents.
+  See [the table of contents documentation](docs/customize/toc.md) for more information.
 
 
 ### New MyST syntax
 
-**MyST Markdown substitutions**
+MyST Markdown substitutions**
+
 : Substitutions allow you to define **variables** in markdown, and insert them elsewhere in your document.
   This lets you change the variable value and have it automatically update throughout your book.
   This is **on by default**.
   See [](content:substitutions) for more information.
 
-**Automatic HTML links**
+Automatic HTML links
+
 : The `linkify` extension will automatically identify “bare” web URLs, like `www.example.com`,  and add hyperlinks; www.example.com.
   This extension is **on by default**.
 
-**Smart Quotes**
+Smart Quotes
+
 : The `smartquotes` extension will automatically convert standard quotations to their opening/closing variants:
 
   - `'single quotes'`: ‘single quotes’
   - `"double quotes"`:  “double quotes”
 
   This extension is **off by default**.
-  See [](myst-parser:syntax/typography) for more details.
+  See [this documentation](https://myst-parser.readthedocs.io/en/v0.13.3/using/syntax-optional.html#typography) for more details.
 
-**Typography replacements for common characters**
+Typography replacements for common characters
+
 : The `replacements` extension will automatically convert some common typographic texts, such as `+-` -> `±`.
   This extension is **off by default**.
-  See [](myst-parser:syntax/typography) for more details.
+  See [this documentation](https://myst-parser.readthedocs.io/en/v0.13.3/using/syntax-optional.html#typography) for more details.
 
-**HTML admonitions**
+HTML admonitions
+
 : By adding `"html_admonition"` to `myst_enable_extensions`, you can enable parsing of `<div class="admonition">` HTML blocks to sphinx admonitions.
   This is helpful when you care about viewing the "source" Markdown, such as in Jupyter Notebooks.
   For example:
@@ -73,7 +83,12 @@ This update focuses on new syntax features for MyST markdown, as well as a new c
 
 ### Deprecations
 
-**Colon fences now behave like directives**
+`myst_extended_syntax` is deprecated
+
+: See above for new configuration details.
+
+Colon fences now behave like directives
+
 : The `colon_fence` extension (replacing `admonition_enable`) now works exactly the same as normal ```` ``` ```` code fences, but using `:::` delimiters.
   This is helpful for directives that contain Markdown text, for example:
 
@@ -85,10 +100,8 @@ This update focuses on new syntax features for MyST markdown, as well as a new c
   :::
   ```
 
-**`myst_extended_syntax` is deprecated**
-: See above for new configuration details.
+Bibliographies no longer use a path to a bibtex file
 
-**Bibliographies no longer use a path to a bibtex file**.
 : See above for new configuration details.
 
 ## v0.9.1 2020-12-22
