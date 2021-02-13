@@ -22,6 +22,50 @@ The [MyST cheat sheet](myst_cheatsheet) provides a [list of `code-cell` tags ava
 The [MyST-NB documentation](myst-nb:use/format/cutomise), for how to fully customize the output renderer.
 :::
 
+(content:code-outputs:library-outputs)=
+## Library output formatting
+
+Many libraries support their own HTML output formatting, and this generally carries over to Jupyter Book outputs as well.
+
+For example, the following cell uses Pandas to format cells based on their values:
+
+```{code-cell} ipython3
+:tags: [hide-input]
+
+import numpy as np
+import pandas as pd
+
+np.random.seed(24)
+df = pd.DataFrame({'A': np.linspace(1, 10, 10)})
+df = pd.concat([df, pd.DataFrame(np.random.randn(10, 4), columns=list('BCDE'))],
+               axis=1)
+df.iloc[3, 3] = np.nan
+df.iloc[0, 2] = np.nan
+
+def color_negative_red(val):
+    """
+    Takes a scalar and returns a string with
+    the css property `'color: red'` for negative
+    strings, black otherwise.
+    """
+    color = 'red' if val < 0 else 'black'
+    return 'color: %s' % color
+
+def highlight_max(s):
+    '''
+    highlight the maximum in a Series yellow.
+    '''
+    is_max = s == s.max()
+    return ['background-color: yellow' if v else '' for v in is_max]
+
+df.style.\
+    applymap(color_negative_red).\
+    apply(highlight_max).\
+    set_table_attributes('style="font-size: 10px"')
+```
+
+See the [Pandas Styling docs](https://pandas.pydata.org/pandas-docs/stable/user_guide/style.html) for more information about styling DataFrames, and check out the documentation of your library of choice to see if they support similar features.
+
 (content:code-outputs:scrolling)=
 ## Scrolling cell outputs
 
