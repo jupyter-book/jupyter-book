@@ -3,7 +3,7 @@ from docutils import nodes
 from sphinx.util import logging
 from sphinx.util.docutils import SphinxDirective
 from sphinx.util.nodes import clean_astext
-from sphinx.transforms import SphinxTransform
+from sphinx.transforms.post_transforms import SphinxPostTransform
 from sphinx import builders
 from pathlib import Path
 from typing import Dict
@@ -119,7 +119,7 @@ def handle_toc_header(val: str) -> nodes.Element:
     return item
 
 
-class SwapTableOfContents(SphinxTransform):
+class SwapTableOfContents(SphinxPostTransform):
     default_priority = 700
 
     def _get_parent_file(self, tocnode: nodes.Element) -> str:
