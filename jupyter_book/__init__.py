@@ -25,6 +25,7 @@ def add_static_files(app, config):
 def add_extensions(app, config):
     if config["use_jupyterbook_latex"]:
         app.setup_extension("jupyterbook_latex")
+        app.config["suppress_warnings"] = ["myst.domains"]
         logger.info(
             "Loaded jupyterbook_latex for pdf building, latex_engine='xelatex' "  # noqa: E501
         )
