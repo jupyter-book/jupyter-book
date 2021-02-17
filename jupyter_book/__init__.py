@@ -22,15 +22,6 @@ def add_static_files(app, config):
             app.add_js_file((path_js.relative_to(path)).as_posix())
 
 
-def add_extensions(app, config):
-    if config["use_jupyterbook_latex"]:
-        app.setup_extension("jupyterbook_latex")
-        app.config["suppress_warnings"] = ["myst.domains"]
-        logger.info(
-            "Loaded jupyterbook_latex for pdf building, latex_engine='xelatex' "  # noqa: E501
-        )
-
-
 # We connect this function to the step after the builder is initialized
 def setup(app):
 
@@ -43,16 +34,17 @@ def setup(app):
     # Path for `_toc.yml`
     app.add_config_value("globaltoc_path", "toc.yml", "env")
     app.add_config_value("use_jupyterbook_latex", True, "env")
-
     # Add custom static files to the sphinx build
     app.connect("config-inited", add_static_files)
-    app.connect("config-inited", add_extensions)
 
     # Directives
     app.add_directive("tableofcontents", TableofContents)
+
     # Transforms
     app.add_post_transform(SwapTableOfContents)
 
+    # Extensions
+    app.setup_extension("jupyterbook_latex")
     return {
         "version": __version__,
         "parallel_read_safe": True,
