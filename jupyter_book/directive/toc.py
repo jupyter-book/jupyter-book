@@ -120,7 +120,7 @@ def handle_toc_header(val: str) -> nodes.Element:
 
 
 class SwapTableOfContents(SphinxPostTransform):
-    default_priority = 700
+    default_priority = 900
 
     def _get_parent_file(self, tocnode: nodes.Element) -> str:
         """searches parent nodes to find the chapter name"""
