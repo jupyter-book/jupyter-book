@@ -97,7 +97,8 @@ Below the first entry you have two options for defining the structure of your bo
    Note that **chapters do not continue between parts**. Think of each part as
    a self-contained collection of chapters (e.g., for the purposes of numbering).
 
-:::{admonition,warning} Don't mix these two structures!
+:::{admonition} Don't mix these two structures!
+:class: warning
 When designing the top-level sections of your `_toc.yml` file, you must
 pick *either* a list of chapters via `- file:` entries, or a list of parts
 via `- part:` entries with chapters inside of them. You cannot intermix them both.
@@ -164,6 +165,7 @@ your introduction page entry (the first entry in `_toc.yml`). For example:
 This will cause all chapters of the book to be
 numbered. They will follow a hierarchy according to the sub-sections structure
 defined in your `_toc.yml` file.
+You can also **limit the TOC numbering depth** by setting the `numbered` flag to an integer instead of `true`, e.g., `numbered: 3`.
 
 If you'd like to number **subsets of chapters**, group them into parts and
 apply the `numbered: true` flag to the parts whose chapters you wish to be numbered.
@@ -211,7 +213,7 @@ tips and best-practices.
 
 ```{note}
 This is particularly important when you [number your book's sections](toc/numbering)
-or when you [build a PDF of your book through Latex](pdf/latex).
+or when you [build a PDF of your book through Latex](pdf:latex).
 ```
 
 **Chapters are at the top of your book hierarchy**. The top level of your `_toc.yml` contains

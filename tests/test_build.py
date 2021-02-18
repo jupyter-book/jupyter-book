@@ -49,6 +49,20 @@ def test_build_from_template(temp_with_override, cli):
     assert html.joinpath("intro.html").exists()
 
 
+def test_build_dirhtml_from_template(temp_with_override, cli):
+    """Test building the book template with dirhtml."""
+    # Create the book from the template
+    book = temp_with_override / "new_book"
+    _ = cli.invoke(commands.create, book.as_posix())
+    build_result = cli.invoke(
+        commands.build, [book.as_posix(), "-n", "-W", "--builder", "dirhtml"]
+    )
+    assert build_result.exit_code == 0, build_result.output
+    html = book.joinpath("_build", "dirhtml")
+    assert html.joinpath("index.html").exists()
+    assert html.joinpath("intro", "index.html").exists()
+
+
 def test_custom_config(cli, build_resources):
     """Test a variety of custom configuration values."""
     books, _ = build_resources
@@ -209,3 +223,27 @@ def test_execution_timeout(pages, build_resources, cli):
     )
     assert "Execution Failed" in result.stdout
     assert path_html.joinpath("reports", "loop_unrun.log").exists()
+
+
+def test_build_using_custom_builder(cli, build_resources):
+    """Test building the book template using a custom builder"""
+    books, _ = build_resources
+    config = books.joinpath("config_custombuilder")
+    result = cli.invoke(
+        commands.build,
+        [
+            config.as_posix(),
+            "--builder=custom",
+            "--custom-builder=mycustombuilder",
+            "-n",
+            "-W",
+            "--keep-going",
+        ],
+    )
+    assert result.exit_code == 0, result.output
+    html = config.joinpath("_build", "mycustombuilder", "index.html").read_text(
+        encoding="utf8"
+    )
+    assert '<h1 class="site-logo" id="site-title">TEST PROJECT NAME</h1>' in html
+    assert '<link rel="stylesheet" type="text/css" href="_static/mycss.css" />' in html
+    assert '<script src="_static/js/myjs.js"></script>' in html

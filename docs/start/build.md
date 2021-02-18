@@ -33,6 +33,10 @@ The site will be placed in the `_build/html` folder. You can then open the pages
 in the site by navigating to that folder and opening the `html` files with your
 web browser.
 
+:::{tip}
+If you find a lot of unwanted files are being built into your book, you can auto-exclude files outside of your table of contents with [only_build_toc_files](config:exclude-non-toc-files)
+:::
+
 :::{note}
 You can also use the short-hand `jb` for `jupyter-book`. E.g.,:
 `jb build mybookname/`.
@@ -94,6 +98,18 @@ To preview your book, you can open the generated HTML files in your browser.
 Either double-click the html file in your local folder, or enter the absolute
 path to the file in your browser navigation bar adding `file://` at the beginning
 (e.g. `file://Users/my_path_to_book/_build/index.html`).
+
+## Other builder types
+
+You can build a variety of outputs using Jupyter Book. To choose a different builder, use the `--builder <builder-name>` configuration when running `jupyter-book build` from the command-line. Here is a list of builders that are available to you:
+
+- `html`: HTML outputs (default)
+- `singlehtml`: A single HTML page for your book
+- `dirhtml`: HTML outputs with `<filename>/index.html` structure.
+- `pdfhtml`: Build a PDF via HTML outputs (see [](pdf:html))
+- `linkcheck`: Run the Sphinx link checker
+- `latex`: Build Latex files for your book
+- `pdflatex`: Build a PDF of your book via Latex (see [](pdf:latex))
 
 ## Next step: publish your book
 

@@ -32,17 +32,21 @@ Here are some of the features of Jupyter Book:
 This website is built with Jupyter Book! You can browse its contents to the
 left to see what is possible.
 
-:::{admonition,tip} Get involved with Jupyter Book!
+:::{admonition} Learn more and get involved
+:class: tip
 
 Jupyter Book is an open community that welcomes your feedback, input, and contributions!
 
-[Open an issue](https://github.com/executablebooks/jupyter-book/issues/new/choose)
+💡 [Open an issue](https://github.com/executablebooks/jupyter-book/issues/new/choose)
 : to provide feedback and new ideas, and to help others.
 
-{ref}`Vote for new features <ebp:feature-note>`
-: by adding a 👍 to issues you'd like to see completed.
+📚 [See the Jupyter Book Gallery](http://gallery.jupyterbook.org)
+: to be inspired by Jupyter Books that others have created.
 
-[Contribute to Jupyter Book](contribute/intro.md)
+👍 [Vote for new features](ebp:feature-note)
+: by adding a +1 to issues you'd like to see completed.
+
+🙌 [Contribute to Jupyter Book](contribute/intro.md)
 : by following our contributing guidelines and finding an issue to work on. See {ref}`the feature voting leaderboard <ebp:feature-note>` for inspiration.
 
 :::
@@ -75,7 +79,7 @@ legacy documentation.
 In addition, note that Jupyter Book is pre-1.0. Its API may change!
 :::
 
-To install the `jupyter-book` pre-release from pip, run the following command:
+To install `jupyter-book` from pip, run the following command:
 
 ```bash
 pip install -U jupyter-book

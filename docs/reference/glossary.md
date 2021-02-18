@@ -11,6 +11,7 @@ A glossary of common terms used throughout Jupyter Book.
 [ExecutableBookProject](https://executablebooks.org/en/latest/)
     The project that supports and develops many of the core tools used by Jupyter Book.
 
+[MyST Markdown](https://myst-parser.readthedocs.io/en/latest/using/syntax.html)
 [MyST](https://myst-parser.readthedocs.io/en/latest/using/syntax.html)
     A flavour of Markdown that was designed for use with the {term}`Sphinx` project.
     It is a combination of {term}`CommonMark Markdown <CommonMark>` and a few extra

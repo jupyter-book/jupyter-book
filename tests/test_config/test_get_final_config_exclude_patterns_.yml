@@ -22,7 +22,6 @@ final:
   - sphinx_copybutton
   - myst_nb
   - jupyter_book
-  - sphinxcontrib.bibtex
   - sphinx_thebe
   - sphinx_comments
   - sphinx.ext.intersphinx
@@ -57,6 +56,11 @@ final:
   jupyter_execute_notebooks: auto
   language: null
   latex_engine: pdflatex
+  myst_enable_extensions:
+  - colon_fence
+  - dollarmath
+  - linkify
+  - substitution
   myst_url_schemes:
   - mailto
   - http
