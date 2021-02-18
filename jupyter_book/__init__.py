@@ -33,7 +33,7 @@ def setup(app):
 
     # Path for `_toc.yml`
     app.add_config_value("globaltoc_path", "toc.yml", "env")
-    app.add_config_value("use_jupyterbook_latex", True, "env")
+
     # Add custom static files to the sphinx build
     app.connect("config-inited", add_static_files)
 
@@ -44,7 +44,6 @@ def setup(app):
     app.add_post_transform(SwapTableOfContents)
 
     # Extensions
-    app.setup_extension("jupyterbook_latex")
     return {
         "version": __version__,
         "parallel_read_safe": True,

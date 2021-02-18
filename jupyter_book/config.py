@@ -325,6 +325,9 @@ def yaml_to_sphinx(yaml: dict):
     extra_extensions = yaml.get("sphinx", {}).get("extra_extensions")
     if extra_extensions:
         sphinx_config["extensions"] = get_default_sphinx_config()["extensions"]
+
+        if "use_jupyterbook_latex" in latex and latex["use_jupyterbook_latex"]:
+            sphinx_config["extensions"].append("jupyterbook_latex")
         if not isinstance(extra_extensions, list):
             extra_extensions = [extra_extensions]
 
