@@ -271,19 +271,14 @@ and the section on [math and equations](myst-content/math).
 :::
 
 :::{important}
-To have "bare" LaTeX rendered in HTML, you must either set in your `_config.yml`:
+To have "bare" LaTeX rendered in HTML, enable the `amsmath` extension in your `_config.yml`:
 
 ```yaml
 parse:
-  myst_extended_syntax: true
-```
-
-or more specifically:
-
-```yaml
-sphinx:
-  config:
-    myst_amsmath_enable: true
+  myst_enable_extensions:
+    # don't forget to list any other extensions you want enabled,
+    # including those that are enabled by default!
+    - amsmath
 ```
 
 Then you can include:

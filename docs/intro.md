@@ -32,7 +32,8 @@ Here are some of the features of Jupyter Book:
 This website is built with Jupyter Book! You can browse its contents to the
 left to see what is possible.
 
-:::{admonition,tip} Learn more and get involved
+:::{admonition} Learn more and get involved
+:class: tip
 
 Jupyter Book is an open community that welcomes your feedback, input, and contributions!
 
@@ -78,7 +79,7 @@ legacy documentation.
 In addition, note that Jupyter Book is pre-1.0. Its API may change!
 :::
 
-To install the `jupyter-book` pre-release from pip, run the following command:
+To install `jupyter-book` from pip, run the following command:
 
 ```bash
 pip install -U jupyter-book

@@ -105,13 +105,7 @@ yep = its_{more}^{math}
 \end{align*}
 
 :::{important}
-This requires the MyST extended syntax enabled in your `_config.yml`:
-
-```yaml
-parse:
-  myst_extended_syntax: true
-```
-
+This requires the [`amsmath` MyST extension to be enabled](math:latex).
 :::
 
 ## Extended Markdown with MyST Markdown

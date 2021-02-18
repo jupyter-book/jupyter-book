@@ -16,7 +16,7 @@ pytest_plugins = "pytester"
         {"title": "hallo"},
         {"html": {"extra_footer": ""}},
         {"execute": {"execute_notebooks": "cache"}},
-        {"parse": {"myst_extended_syntax": True}},
+        {"parse": {"myst_enable_extensions": ["linkify"]}},
         {"latex": {"latex_documents": {"targetname": "book.tex", "title": "other"}}},
         {"launch_buttons": {"binderhub_url": "other"}},
         {"repository": {"url": "other"}},
@@ -152,3 +152,23 @@ def test_only_build_toc_files_missing_toc(testdir):
         get_final_config(
             None, user_config, cli_config, validate=True, raise_on_invalid=True
         )
+
+
+def test_get_final_config_custom_myst_extensions(data_regression):
+    cli_config = {"latex_individualpages": False}
+    user_config = {"parse": {"myst_extra_extensions": ["linkify"]}}
+    final_config, metadata = get_final_config(
+        None, user_config, cli_config, validate=True, raise_on_invalid=True
+    )
+    data_regression.check(
+        {"_user_config": user_config, "final": final_config, "metadata": metadata}
+    )
+
+
+def test_get_final_config_bibtex(data_regression):
+    cli_config = {"latex_individualpages": False}
+    user_config = {"bibtex_bibfiles": ["tmp.bib"]}
+    final_config, metadata = get_final_config(
+        None, user_config, cli_config, validate=True, raise_on_invalid=True
+    )
+    assert "sphinxcontrib.bibtex" in final_config["extensions"]

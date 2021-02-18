@@ -1,5 +1,7 @@
 _user_config:
-  title: hallo
+  parse:
+    myst_extra_extensions:
+    - linkify
 final:
   author: The Jupyter Book community
   comments_config:
@@ -49,7 +51,7 @@ final:
     use_edit_page_button: false
     use_issues_button: false
     use_repository_button: false
-  html_title: hallo
+  html_title: My Jupyter Book
   jupyter_cache: ''
   jupyter_execute_notebooks: auto
   language: null
@@ -69,5 +71,5 @@ final:
   pygments_style: sphinx
 metadata:
   latex_doc_overrides:
-    title: hallo
+    title: My Jupyter Book
   latex_individualpages: false
