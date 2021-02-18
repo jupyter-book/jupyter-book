@@ -85,13 +85,13 @@ For example, if the references for your book are stored in `references.bib`,
 then the bibliography is inserted with:
 
 ````
-```{bibliography} references.bib
+```{bibliography}
 ```
 ````
 
 Resulting in a rendered bibliography that looks like:
 
-```{bibliography} references.bib
+```{bibliography}
 ```
 
 

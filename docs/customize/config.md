@@ -1,12 +1,12 @@
 # Configure book settings
 
-In Jupyter Book, most configuration is controlled with a **Configuration YAML file (`_config.yml`)**.
+In Jupyter Book, most configurations are controlled in a **YAML configuration file (`_config.yml`)**.
 This file controls a number of options that you may use to configure your book
 (the [defaults](config:defaults) can be found at the bottom of this page).
 
-This page describes the general structure of `_config.yml`,
+This page describes the general structure of `_config.yml`
 and how you can use it to control some basic parts of your book.
-The rest of the pages in this section describe more detail for specific features.
+The rest of the pages in this section describe specific features in more detail.
 
 ## Structure of `_config.yml`
 
@@ -20,18 +20,18 @@ author: The Jupyter Book Community
 logo: 'images/logo.png'
 ```
 
-As you can see, keys correspond to configuration options, and their values are how you control behaviour of the book.
+As you can see, keys correspond to configuration options and their values are how you control the behaviour of the book.
 In this case:
 
-* **title**: controls the title of your book.
+* **title**: sets the title of your book.
   In the HTML output, it is displayed in the left sidebar.
-* **author**: controls the book's author.
+* **author**: sets the book's author.
   In the HTML output, it is displayed in the footer.
-* **logo**: controls the logo of the book, relative to the book root.
+* **logo**: sets the logo of the book, relative to the book root.
   In the HTML output, it is displayed above the title in the left sidebar.
 
 There are also some configuration options that are nested.
-For example, to configure your book to include **binder links** with any section built from a Jupyter Notebook,
+For example, to configure your book to include **Binder links** in any section built from a Jupyter notebook,
 you may use the following configuration:
 
 ```yaml
@@ -44,8 +44,7 @@ launch_buttons:
   binderhub_url             : https://mybinder.org
 ```
 
-Look throughout this book's documentation for different ways that you can configure
-your book.
+Look out for different book configuration options throughout this book's documentation.
 
 :::{caution}
 YAML can be tricky when it comes to how it treats certain kinds of values. For example,
@@ -55,12 +54,13 @@ strings around them. For example, `false`, `true`, `off`, etc. In addition, pure
 numbers will be converted to `float` or `int` unless you put strings around them.
 :::
 
+(source-repository-button)=
 ## Add source repository buttons
 
-There are a collection of buttons that you can use to link back to your source
-repository. This lets users browse the repository, or take actions like suggest
-an edit or open an issue. In each case, they require the following configuration
-to exist:
+There is a collection of buttons that you can use to link back to your source
+repository. This lets users browse the repository or take actions like suggesting
+an edit or opening an issue. In each case, they require the following configuration
+to be set:
 
 ```yaml
 repository:
@@ -105,10 +105,25 @@ html:
   use_edit_page_button: true
 ```
 
-(config:sphinx)=
-### Advance configuration (with sphinx)
+(config:exclude-non-toc-files)=
+### Disable building files that aren't specified in the TOC
 
-Users who are familiar with [Sphinx configuration](sphinx:build-config), may wish to directly add extensions or set options to parse to the underlying sphinx application.
+By default, Jupyter Book will build all files that are in your book's folder, regardless of whether they are specified in the Table of Contents.
+To disable this behavior and *only* build files that are specified in the TOC, use the following pattern in `_config.yml`:
+
+```
+only_build_toc_files: true
+```
+
+Note that files that are in *hidden folders* (e.g. in `.github` or `.venv`) will still be built even if they are not specified in the TOC. You should exclude these files explicitly.
+
+(config:sphinx)=
+## Advanced configuration (with sphinx)
+
+Users who are familiar with [Sphinx configuration](sphinx:build-config) may wish to directly add extensions or set options to parse to the underlying Sphinx application.
+
+(config:sphinx:extra_extensions)=
+### Adding Extra Extensions
 
 To add extensions, use:
 
@@ -119,7 +134,23 @@ sphinx:
 
 This will **append** to the list of extensions already loaded by Jupyter Book.
 
-To set additional sphinx configuration:
+(config:sphinx:local_extensions)=
+### Adding Local Extensions
+
+To add a local extension that requires a path, use:
+
+```yaml
+sphinx:
+  local_extensions:
+    <name>: <path>
+```
+
+This will **append to the list of extensions already loaded by Jupyter Book and update the `sys.path` so
+the local extension can be found.
+
+### Specifying Sphinx Configuration Values
+
+To set additional Sphinx configurations:
 
 ```yaml
 sphinx:
@@ -133,21 +164,21 @@ Use at your own risk!
 :::
 
 If you wish to inspect a `conf.py` representation of the generated configuration,
-which Jupyter Book will pass to Sphinx, you can run from the command-line:
+which Jupyter Book will pass to Sphinx, from the command line run:
 
 ```bash
 jb config sphinx mybookname/
 ```
 
 :::{seealso}
-The advanced section on [sphinx configuration](advanced/sphinx-config).
+The advanced section on [Sphinx configuration](advanced/sphinx-config).
 :::
 
 (config:defaults)=
-## Configuration Defaults
+## Configuration defaults
 
 Below is the full default configuration file.
-Anything you set in your own `_config.yml` will be merged into these defaults, before they are used to configure the build.
+Anything you set in your own `_config.yml` will be merged into these defaults before they are used to configure the build.
 
 ```{literalinclude} ../../jupyter_book/default_config.yml
 :language: yaml

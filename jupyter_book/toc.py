@@ -64,12 +64,6 @@ def add_toctree(app, docname, source):
     if not sections:
         return
 
-    # Look for expand_sections and add to html config
-    if "expand_sections" in parent_page:
-        expanded_sections = app.config.html_theme_options.get("expand_sections", [])
-        expanded_sections.append(docname)
-        app.config.html_theme_options["expand_sections"] = expanded_sections
-
     # Rename `chapter:` in sections to `part:`
     # TODO: deprecate this after a release or two
     for isection in sections:
@@ -102,8 +96,20 @@ def add_toctree(app, docname, source):
     for isection in sections:
         # Check for TOC options (that generally only change behavior on top-level page)
         toc_options = {}
-        if isection.get("numbered") or parent_page.get("numbered"):
+
+        # Child numbering setting overwrites parent numbering setting
+        if "numbered" in isection:
+            toc_num_depth = isection["numbered"]
+        elif "numbered" in parent_page:
+            toc_num_depth = parent_page["numbered"]
+        else:
+            toc_num_depth = False
+        # Set the toc numbering depth
+        if isinstance(toc_num_depth, int) and toc_num_depth > 0:
+            toc_options["numbered"] = toc_num_depth  # Set numbering depth
+        elif toc_num_depth:
             toc_options["numbered"] = ""  # Empty string will == a flag in the toctree
+
         if isection.get("part"):
             toc_options["caption"] = isection.get("part")
 
@@ -219,6 +225,8 @@ def _gen_toctree(options, subsections, parent_suff):
         toctree_template = toctree_text_md
     elif parent_suff == ".rst":
         toctree_template = toctree_text_rst
+    else:
+        return ""
 
     # Create the markdown directive for our toctree
     toctree = dedent(toctree_template).format(
@@ -353,7 +361,6 @@ def _check_toc_entries(sections):
         "chapters",
         "sections",
         "title",
-        "expand_sections",
         "numbered",
     ]
     for section in sections:

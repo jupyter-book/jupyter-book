@@ -23,11 +23,11 @@ final:
   - sphinx_copybutton
   - myst_nb
   - jupyter_book
-  - sphinxcontrib.bibtex
   - sphinx_thebe
   - sphinx_comments
   - sphinx.ext.intersphinx
   - sphinx_panels
+  - sphinx_book_theme
   html_add_permalinks: ¶
   html_baseurl: ''
   html_favicon: ''
@@ -41,7 +41,7 @@ final:
     home_page_in_toc: true
     launch_buttons:
       binderhub_url: https://mybinder.org
-      colab_url: https://colab.research.google.com
+      colab_url: ''
       jupyterhub_url: ''
       notebook_interface: classic
       thebe: false
@@ -57,15 +57,21 @@ final:
   jupyter_execute_notebooks: auto
   language: null
   latex_engine: pdflatex
+  myst_enable_extensions:
+  - colon_fence
+  - dollarmath
+  - linkify
+  - substitution
   myst_url_schemes:
   - mailto
   - http
   - https
   nb_output_stderr: show
   numfig: true
-  panels_add_boostrap_css: false
+  panels_add_bootstrap_css: false
   pygments_style: sphinx
 metadata:
   latex_doc_overrides:
     targetname: book.tex
     title: other
+  latex_individualpages: false

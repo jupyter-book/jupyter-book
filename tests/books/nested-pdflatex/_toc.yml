@@ -1,0 +1,5 @@
+- file: source/index
+- file: source/content
+  sections:
+  - file: source/sections/section1
+  - file: source/sections/section2

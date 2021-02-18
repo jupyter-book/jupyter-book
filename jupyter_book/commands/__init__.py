@@ -58,9 +58,12 @@ def main():
 
 BUILDER_OPTS = {
     "html": "html",
+    "dirhtml": "dirhtml",
     "pdfhtml": "singlehtml",
     "latex": "latex",
     "pdflatex": "latex",
+    "linkcheck": "linkcheck",
+    "custom": None,
 }
 
 
@@ -104,6 +107,13 @@ BUILDER_OPTS = {
     type=click.Choice(list(BUILDER_OPTS.keys())),
 )
 @click.option(
+    "--custom-builder",
+    default=None,
+    help="Specify alternative builder name which allows jupyter-book to use a builder"
+    "provided by an external extension. This can only be used when using"
+    "--builder=custom",
+)
+@click.option(
     "-v", "--verbose", count=True, help="increase verbosity (can be repeated)"
 )
 @click.option(
@@ -111,6 +121,12 @@ BUILDER_OPTS = {
     "--quiet",
     count=True,
     help="-q means no sphinx status, -qq also turns off warnings ",
+)
+@click.option(
+    "--individualpages",
+    is_flag=True,
+    default=False,
+    help="[pdflatex] Enable build of PDF files for each individual page",
 )
 def build(
     path_source,
@@ -122,8 +138,10 @@ def build(
     keep_going,
     freshenv,
     builder,
+    custom_builder,
     verbose,
     quiet,
+    individualpages,
     get_config_only=False,
 ):
     """Convert your book's or page's content to HTML or a PDF."""
@@ -140,6 +158,20 @@ def build(
     config_overrides = {}
     found_config = find_config_path(PATH_SRC_FOLDER)
     BUILD_PATH = path_output if path_output is not None else found_config[0]
+
+    # Set config for --individualpages option (pages, documents)
+    if individualpages:
+        if builder != "pdflatex":
+            _error(
+                """
+                Specified option --individualpages only works with the
+                following builders:
+
+                pdflatex
+                """
+            )
+
+    # Build Page
     if not PATH_SRC_FOLDER.is_dir():
         # it is a single file
         build_type = "page"
@@ -174,7 +206,10 @@ def build(
             "globaltoc_path": "",
             "exclude_patterns": to_exclude,
             "html_theme_options": {"single_page": True},
+            # --individualpages option set to True for page call
+            "latex_individualpages": True,
         }
+    # Build Project
     else:
         build_type = "book"
         PAGE_NAME = None
@@ -193,9 +228,10 @@ def build(
             )
 
         # Check whether the table of contents has changed. If so we rebuild all
-        if toc and BUILD_PATH.joinpath(".doctrees").exists():
+        build_files = list(BUILD_PATH.joinpath(".doctrees").rglob("*"))
+        if toc and build_files:
             toc_modified = toc.stat().st_mtime
-            build_files = BUILD_PATH.rglob(".doctrees/*")
+
             build_modified = max([os.stat(ii).st_mtime for ii in build_files])
 
             # If the toc file has been modified after the build we need to force rebuild
@@ -207,6 +243,9 @@ def build(
         if builder == "pdfhtml":
             config_overrides["html_theme_options"] = {"single_page": True}
 
+        # --individualpages option passthrough
+        config_overrides["latex_individualpages"] = individualpages
+
     # Use the specified configuration file, or one found in the root directory
     path_config = config or (
         found_config[0].joinpath("_config.yml") if found_config[1] else None
@@ -214,10 +253,15 @@ def build(
     if path_config and not Path(path_config).exists():
         raise IOError(f"Config file path given, but not found: {path_config}")
 
-    if builder in ["html", "pdfhtml"]:
+    if builder in ["html", "pdfhtml", "linkcheck"]:
         OUTPUT_PATH = BUILD_PATH.joinpath("html")
     elif builder in ["latex", "pdflatex"]:
         OUTPUT_PATH = BUILD_PATH.joinpath("latex")
+    elif builder in ["dirhtml"]:
+        OUTPUT_PATH = BUILD_PATH.joinpath("dirhtml")
+    elif builder in ["custom"]:
+        OUTPUT_PATH = BUILD_PATH.joinpath(custom_builder)
+        BUILDER_OPTS["custom"] = custom_builder
 
     if nitpick:
         config_overrides["nitpicky"] = True
@@ -244,6 +288,7 @@ def build(
     result = build_sphinx(
         PATH_SRC_FOLDER,
         OUTPUT_PATH,
+        toc,
         noconfig=True,
         path_config=path_config,
         confoverrides=config_overrides,
@@ -280,7 +325,8 @@ def create(path_book, cookiecutter):
             from cookiecutter.main import cookiecutter
         except ModuleNotFoundError as e:
             _error(
-                f"{e}. To install, run\n\n\tpip install cookiecutter", kind=e.__class__,
+                f"{e}. To install, run\n\n\tpip install cookiecutter",
+                kind=e.__class__,
             )
         book = cookiecutter(cc_url, output_dir=Path(path_book))
     _message_box(f"Your book template can be found at\n\n    {book}{os.sep}")
@@ -440,6 +486,7 @@ def sphinx(ctx, path_source, config, toc):
     )
 
     sphinx_config, config_meta = get_final_config(
+        Path(toc) if toc else Path(),
         user_yaml=Path(path_config) if path_config else None,
         sourcedir=Path(path_src),
         cli_config=config_overrides,

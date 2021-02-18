@@ -18,8 +18,7 @@ class TableOfContentsNode(nodes.Element):
 
 class TableofContents(SphinxDirective):
     def run(self):
-        """ returns an array of nodes for the tableofcontents directive declaration
-        """
+        """returns an array of nodes for the tableofcontents directive declaration"""
         return [TableOfContentsNode()]
 
 
