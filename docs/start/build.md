@@ -33,6 +33,10 @@ The site will be placed in the `_build/html` folder. You can then open the pages
 in the site by navigating to that folder and opening the `html` files with your
 web browser.
 
+:::{tip}
+If you find a lot of unwanted files are being built into your book, you can auto-exclude files outside of your table of contents with [only_build_toc_files](config:exclude-non-toc-files)
+:::
+
 :::{note}
 You can also use the short-hand `jb` for `jupyter-book`. E.g.,:
 `jb build mybookname/`.

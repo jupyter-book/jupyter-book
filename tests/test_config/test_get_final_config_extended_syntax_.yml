@@ -1,6 +1,7 @@
 _user_config:
   parse:
-    myst_extended_syntax: true
+    myst_enable_extensions:
+    - linkify
 final:
   author: The Jupyter Book community
   comments_config:
@@ -21,7 +22,6 @@ final:
   - sphinx_copybutton
   - myst_nb
   - jupyter_book
-  - sphinxcontrib.bibtex
   - sphinx_thebe
   - sphinx_comments
   - sphinx.ext.intersphinx
@@ -56,12 +56,8 @@ final:
   jupyter_execute_notebooks: auto
   language: null
   latex_engine: pdflatex
-  myst_admonition_enable: true
-  myst_amsmath_enable: true
-  myst_deflist_enable: true
-  myst_dmath_enable: true
-  myst_figure_enable: true
-  myst_html_img_enable: true
+  myst_enable_extensions:
+  - linkify
   myst_url_schemes:
   - mailto
   - http

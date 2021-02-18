@@ -1,16 +1,16 @@
 """A small sphinx extension to let you configure a site with YAML metadata."""
+from os.path import relpath, isdir
 from pathlib import Path
 from functools import lru_cache
 import json
-from typing import Optional, Union
-
+from typing import Collection, Optional, Union, Set
+from glob import glob
 import jsonschema
 import yaml
 import sys
 import os
-
+from nested_lookup import nested_lookup
 from .utils import _message_box
-
 
 # Transform a "Jupyter Book" YAML configuration file into a Sphinx configuration file.
 # This is so that we can choose more user-friendly words for things than Sphinx uses.
@@ -28,7 +28,6 @@ def get_default_sphinx_config():
             "sphinx_copybutton",
             "myst_nb",
             "jupyter_book",
-            "sphinxcontrib.bibtex",
             "sphinx_thebe",
             "sphinx_comments",
             "sphinx.ext.intersphinx",
@@ -77,6 +76,7 @@ def validate_yaml(yaml: dict, raise_on_errors=False, print_func=print):
 
 
 def get_final_config(
+    toc: Optional[Path],
     user_yaml: Optional[Union[dict, Path]] = None,
     cli_config: Optional[dict] = None,
     sourcedir: Optional[Path] = None,
@@ -105,21 +105,40 @@ def get_final_config(
     sphinx_config = get_default_sphinx_config()
 
     # get the default yaml configuration
-    yaml_config, default_yaml_update = yaml_to_sphinx(
+    yaml_config, default_yaml_update, add_paths = yaml_to_sphinx(
         yaml.safe_load(PATH_YAML_DEFAULT.read_text(encoding="utf8"))
     )
     yaml_config.update(default_yaml_update)
 
     # if available, get the user defined configuration
     user_yaml_recurse, user_yaml_update = {}, {}
+    user_yaml_path = None
     if user_yaml:
         if isinstance(user_yaml, Path):
+            user_yaml_path = user_yaml
             user_yaml = yaml.safe_load(user_yaml.read_text(encoding="utf8"))
         else:
             user_yaml = user_yaml
         if validate:
             validate_yaml(user_yaml, raise_on_errors=raise_on_invalid)
-        user_yaml_recurse, user_yaml_update = yaml_to_sphinx(user_yaml)
+
+        if user_yaml.get("only_build_toc_files"):
+            if not toc:
+                raise ValueError("you must have a toc to use `only_build_toc_files`")
+            excluded_patterns = set(user_yaml.get("exclude_patterns", []))
+
+            newly_excluded = _get_files_outside_toc(toc, sourcedir, excluded_patterns)
+            user_yaml["exclude_patterns"] = sorted(
+                excluded_patterns.union(newly_excluded)
+            )
+
+        user_yaml_recurse, user_yaml_update, add_paths = yaml_to_sphinx(user_yaml)
+
+    # add paths from yaml config
+    if user_yaml_path:
+        for path in add_paths:
+            path = (user_yaml_path.parent / path).resolve()
+            sys.path.append(path.as_posix())
 
     # first merge the user yaml into the default yaml
     _recursive_update(yaml_config, user_yaml_recurse)
@@ -154,7 +173,11 @@ def get_final_config(
 def yaml_to_sphinx(yaml: dict):
     """Convert a Jupyter Book style config structure into a Sphinx config dict.
 
-    :returns: (recursive_updates, override_updates)
+    :returns: (recursive_updates, override_updates, add_paths)
+
+    add_paths collects paths that are specified in the _config.yml (such as those
+    provided in local_extensions) and returns them for adding to sys.path in
+    a context where the _config.yml path is known
     """
     sphinx_config = {}
 
@@ -231,15 +254,37 @@ def yaml_to_sphinx(yaml: dict):
     # Parse and Rendering
     parse = yaml.get("parse")
     if parse:
+        # Enable extra extensions
+        extensions = sphinx_config.get("myst_enable_extensions", [])
+        # TODO: deprecate this in v0.11.0
         if parse.get("myst_extended_syntax") is True:
-            sphinx_config["myst_dmath_enable"] = True
-            sphinx_config["myst_amsmath_enable"] = True
-            sphinx_config["myst_deflist_enable"] = True
-            sphinx_config["myst_admonition_enable"] = True
-            sphinx_config["myst_html_img_enable"] = True
-            sphinx_config["myst_figure_enable"] = True
-        if "myst_url_schemes" in parse:
-            sphinx_config["myst_url_schemes"] = parse.get("myst_url_schemes")
+            extensions.append(
+                [
+                    "colon_fence",
+                    "dollarmath",
+                    "amsmath",
+                    "deflist",
+                    "html_image",
+                ]
+            )
+            _message_box(
+                (
+                    "myst_extended_syntax is deprecated, instead specify extensions "
+                    "you wish to be enabled. See https://myst-parser.readthedocs.io/en/latest/using/syntax-optional.html"  # noqa: E501
+                ),
+                color="orange",
+                print_func=print,
+            )
+        for ext in parse.get("myst_enable_extensions", []):
+            if ext not in extensions:
+                extensions.append(ext)
+        if extensions:
+            sphinx_config["myst_enable_extensions"] = extensions
+
+        # Configuration values we'll just pass-through
+        for ikey in ["myst_substitutions", "myst_url_schemes"]:
+            if ikey in parse:
+                sphinx_config[ikey] = parse.get(ikey)
 
     # Execution
     execute = yaml.get("execute")
@@ -281,11 +326,14 @@ def yaml_to_sphinx(yaml: dict):
         sphinx_config["extensions"] = get_default_sphinx_config()["extensions"]
         if not isinstance(extra_extensions, list):
             extra_extensions = [extra_extensions]
+
         for extension in extra_extensions:
             if extension not in sphinx_config["extensions"]:
                 sphinx_config["extensions"].append(extension)
 
     local_extensions = yaml.get("sphinx", {}).get("local_extensions")
+    # add_paths collects additional paths for sys.path
+    add_paths = []
     if local_extensions:
         if "extensions" not in sphinx_config:
             sphinx_config["extensions"] = get_default_sphinx_config()["extensions"]
@@ -293,11 +341,20 @@ def yaml_to_sphinx(yaml: dict):
             if extension not in sphinx_config["extensions"]:
                 sphinx_config["extensions"].append(extension)
             if path not in sys.path:
-                sys.path.append(os.path.abspath(path))
+                add_paths.append(path)
+
+    # Citations
+    if yaml.get("bibtex_bibfiles"):
+        if "extensions" not in sphinx_config:
+            sphinx_config["extensions"] = get_default_sphinx_config()["extensions"]
+        if isinstance(yaml.get("bibtex_bibfiles"), str):
+            yaml["bibtex_bibfiles"] = [yaml["bibtex_bibfiles"]]
+        sphinx_config["bibtex_bibfiles"] = yaml["bibtex_bibfiles"]
+        sphinx_config["extensions"].append("sphinxcontrib.bibtex")
 
     # items in sphinx.config will override defaults,
     # rather than recursively updating them
-    return sphinx_config, yaml.get("sphinx", {}).get("config") or {}
+    return sphinx_config, yaml.get("sphinx", {}).get("config") or {}, add_paths
 
 
 def _recursive_update(config, update, list_extend=False):
@@ -320,3 +377,32 @@ def _recursive_update(config, update, list_extend=False):
                 config[key] = val
         else:
             config[key] = val
+
+
+def _get_files_outside_toc(
+    toc: Path, sourcedir: Path, excluded_patterns: Collection[str]
+) -> Set[str]:
+    """Returns a set of files that are outside of the toc for exclusion from sphinx.
+
+    Hidden files are NOT processed here as it may result in thousands of individual
+     exclusions.
+    """
+    source_root = sourcedir or Path()
+    source_files = {ff for ff in glob(str(source_root / "**/*"), recursive=True)}
+
+    excluded_file_sets = [set(glob(pp, recursive=True)) for pp in excluded_patterns]
+    included_files: Set[str] = {
+        Path(relpath(ff, source_root)).as_posix()
+        for ff in source_files.difference(*excluded_file_sets)
+        if not isdir(ff)
+    }
+
+    toc_yaml = yaml.safe_load(toc.read_text(encoding="utf8"))
+    toc_files = {ff for ff in nested_lookup("file", toc_yaml)}
+
+    verified_toc_files: Set[str] = {
+        Path(ff).as_posix()
+        for ff in included_files
+        if os.path.splitext(ff)[0] in toc_files
+    }
+    return included_files.difference(verified_toc_files)

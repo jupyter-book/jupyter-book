@@ -63,6 +63,7 @@ BUILDER_OPTS = {
     "latex": "latex",
     "pdflatex": "latex",
     "linkcheck": "linkcheck",
+    "custom": None,
 }
 
 
@@ -106,6 +107,13 @@ BUILDER_OPTS = {
     type=click.Choice(list(BUILDER_OPTS.keys())),
 )
 @click.option(
+    "--custom-builder",
+    default=None,
+    help="Specify alternative builder name which allows jupyter-book to use a builder"
+    "provided by an external extension. This can only be used when using"
+    "--builder=custom",
+)
+@click.option(
     "-v", "--verbose", count=True, help="increase verbosity (can be repeated)"
 )
 @click.option(
@@ -130,6 +138,7 @@ def build(
     keep_going,
     freshenv,
     builder,
+    custom_builder,
     verbose,
     quiet,
     individualpages,
@@ -219,9 +228,10 @@ def build(
             )
 
         # Check whether the table of contents has changed. If so we rebuild all
-        if toc and BUILD_PATH.joinpath(".doctrees").exists():
+        build_files = list(BUILD_PATH.joinpath(".doctrees").rglob("*"))
+        if toc and build_files:
             toc_modified = toc.stat().st_mtime
-            build_files = BUILD_PATH.rglob(".doctrees/*")
+
             build_modified = max([os.stat(ii).st_mtime for ii in build_files])
 
             # If the toc file has been modified after the build we need to force rebuild
@@ -249,6 +259,9 @@ def build(
         OUTPUT_PATH = BUILD_PATH.joinpath("latex")
     elif builder in ["dirhtml"]:
         OUTPUT_PATH = BUILD_PATH.joinpath("dirhtml")
+    elif builder in ["custom"]:
+        OUTPUT_PATH = BUILD_PATH.joinpath(custom_builder)
+        BUILDER_OPTS["custom"] = custom_builder
 
     if nitpick:
         config_overrides["nitpicky"] = True
@@ -275,6 +288,7 @@ def build(
     result = build_sphinx(
         PATH_SRC_FOLDER,
         OUTPUT_PATH,
+        toc,
         noconfig=True,
         path_config=path_config,
         confoverrides=config_overrides,
@@ -472,6 +486,7 @@ def sphinx(ctx, path_source, config, toc):
     )
 
     sphinx_config, config_meta = get_final_config(
+        Path(toc) if toc else Path(),
         user_yaml=Path(path_config) if path_config else None,
         sourcedir=Path(path_src),
         cli_config=config_overrides,

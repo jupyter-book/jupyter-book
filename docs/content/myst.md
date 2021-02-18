@@ -18,7 +18,8 @@ This page contains a few pieces of information about MyST Markdown and how it re
 You can find much more information about this flavour of Markdown at
 [the Myst Parser documentation](myst-parser:example_syntax).
 
-:::{admonition,tip} Want to use RMarkdown directly?
+:::{admonition} Want to use RMarkdown directly?
+:class: tip
 See [](../file-types/jupytext.md)
 :::
 
@@ -159,7 +160,9 @@ For a list of directives that are available to you, there are three places to ch
    has a list of directives in the Python "docutils" module.
 3. This documentation has several additional directives that are specific to Jupyter Book.
 
-In some unusual cases, MyST-Parser may be incompatible with a certain role or directive.
+:::{admonition} What if it exists in rST but not MyST?
+:class: tip
+In some unusual cases, MyST may be incompatible with a certain role or directive.
 In this case, you can use the special `eval-rst` directive, to directly parse reStructuredText:
 
 ````md
@@ -177,6 +180,7 @@ which produces
 
    A note written in reStructuredText.
 ```
+:::
 
 :::{seealso}
 The MyST-Parser documentation on [how directives parse content](myst-parser:syntax/directives/parsing), and its use for [including rST files into a Markdown file](myst-parser:howto/include-rst), and [using `sphinx.ext.autodoc` in Markdown files](myst-parser:howto/autodoc).
@@ -240,12 +244,10 @@ Here are some links you can use as a reference:
 * [CommonMark in-line syntax](myst-parser:commonmark-span-tokens)
 * [Extended in-line syntax in MyST](myst-parser:extended-span-tokens)
 
-As a shorthand, Jupyter Book offers a single configuration, to enable the MyST [extended syntaxes](myst-parser:syntax-optional):
-
-```yaml
-parse:
-  myst_extended_syntax: true
-```
+:::{seealso}
+For information about enabling extended MyST syntax, see [](content-blocks:myst-extensions).
+In addition, see other examples of this extended syntax (and how to enable each) throughout this documentation.
+:::
 
 ## What can I create with MyST Markdown?
 
