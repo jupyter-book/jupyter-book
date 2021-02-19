@@ -78,3 +78,6 @@ jobs:
       with:
         name: PDF_LATEX
         path: docs/_build/latex/book.pdf
+    - uses: actions/checkout@v2
+      run: |
+        cp docs/_build/latex/book.pdf docs/_build/html/_sources/

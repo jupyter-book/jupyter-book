@@ -112,6 +112,16 @@ For `Windows` users, please install [TeX Live](https://www.tug.org/texlive/windo
 
 ### Build
 
+Jupyter-book leverages a package called [jupyterbook-latex](https://github.com/executablebooks/jupyterbook-latex)
+which handles most of the LaTeX infrastructure. A feature list of this package can be found
+[here](https://github.com/executablebooks/jupyterbook-latex/blob/master/docs/intro.md#feature-list).
+If you want to opt-out of this package though, the following config setting will help:
+
+```yaml
+latex:
+  use_jupyterbook_latex: false
+```
+
 To build a single PDF using LaTeX, use the following command:
 
 ```bash
@@ -130,6 +140,8 @@ If you would just like to generate the **latex** file you may use:
 ```bash
 jb build mybookname/ --builder latex
 ```
+
+An example of the latex build of this doc leveraging `jupyterbook-latex`, can be seen [here](../_sources/book.pdf)
 
 ::::
 
