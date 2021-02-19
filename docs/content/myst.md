@@ -135,6 +135,12 @@ For example, the `doc` role can be used to refer to another page in your book.
 You can refer directly to another page by its relative path.
 For example, the syntax `` {doc}`../intro` `` will result in: {doc}`../intro`.
 
+```{warning}
+It is currently a requirement for roles to be on the **same line** in your source file. It will
+not be parsed correctly if it spans more than one line. Progress towards supporting roles
+that span multiple lines can be tracked [by this issue](https://github.com/executablebooks/MyST-Parser/issues/269)
+```
+
 For more information on using roles, see the [MyST documentation](myst-parser:syntax/roles).
 
 ## What roles and directives are available?
