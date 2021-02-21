@@ -45,7 +45,7 @@
   chapters:
   - file: advanced/pdf
   - file: advanced/sphinx
-  - file: advanced/api-reference
+  - file: advanced/jb-for-developers
   - file: advanced/advanced
   - file: contribute/intro
 
