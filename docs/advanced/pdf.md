@@ -141,8 +141,6 @@ If you would just like to generate the **latex** file you may use:
 jb build mybookname/ --builder latex
 ```
 
-An example of the latex build of this doc leveraging `jupyterbook-latex`, can be seen [here](../_sources/book.pdf)
-
 ::::
 
 **Individual PDF Files:**
