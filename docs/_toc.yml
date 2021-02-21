@@ -45,6 +45,7 @@
   chapters:
   - file: advanced/pdf
   - file: advanced/sphinx
+  - file: advanced/api-reference
   - file: advanced/advanced
   - file: contribute/intro
 
