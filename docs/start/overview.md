@@ -53,8 +53,9 @@ For more complete information about the CLI, see [](../reference/cli.md).
 
 Building a Jupyter Book broadly consists of these steps:
 
-1. **Put your book content in a folder or a file**. See [](anatomy-of-a-book).
-2. **Build your book**. Using Jupyter Book's command-line interface you can
+1. Create a Jupyter Book template.
+2. **Write your book content by creating or editing the appropriate file(s)**. See [](anatomy-of-a-book).
+3. **Build your book**. Using Jupyter Book's command-line interface you can
    convert your pages into either an HTML or a PDF book. See [](build.md).
 3. **Host your book's HTML online**. Once your book's HTML is built, you can host
    it online as a public website. See {doc}`publish`.
@@ -78,7 +79,9 @@ mybookname/
 └── page1.ipynb
 ```
 
-We'll cover each briefly below, and you can find more information about them
+You can boostrap a JupyterBook project with template files by using the command `jb create <directory name>`.
+
+We'll cover these files briefly below, and you can find more information about them
 elsewhere in this documentation.
 
 ### Book configuration (`_config.yml`)
