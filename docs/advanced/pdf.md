@@ -115,7 +115,7 @@ For `Windows` users, please install [TeX Live](https://www.tug.org/texlive/windo
 Jupyter-book leverages a package called [jupyterbook-latex](https://github.com/executablebooks/jupyterbook-latex)
 which handles most of the LaTeX infrastructure. A feature list of this package can be found
 [here](https://github.com/executablebooks/jupyterbook-latex/blob/master/docs/intro.md#feature-list).
-If you want to opt-out of this package though, the following config setting will help:
+If you want to opt-out of this package, the following config setting will help:
 
 ```yaml
 latex:
