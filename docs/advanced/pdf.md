@@ -148,7 +148,7 @@ jb build mybookname/ --builder latex
 
 **Individual PDF Files:**
 
-:::warning
+:::{warning}
 The current implementation of `--individualpages` does **not** make use of the improvements
 introduced by [jupyterbook-latex](https://github.com/executablebooks/jupyterbook-latex) and
 uses the default `latex` writer included with Sphinx.
@@ -189,7 +189,7 @@ easier to find.
 
 The current default is to use `xelatex` to build `pdf` files.
 
-:::warning
+:::{warning}
 The `--individualpages` option currently uses `pdflatex` by default.
 :::
 
