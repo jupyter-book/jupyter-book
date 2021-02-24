@@ -1,5 +1,15 @@
 # Change Log
 
+## v0.10.1 2021-02-24
+
+[full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.10.0...4c2210b6a74067bfe37afef8197b86f198eeaa52) | [GitHub contributors page for this release](https://github.com/executablebooks/jupyter-book/graphs/contributors?from=2021-01-30&to=2021-01-24&type=c)
+
+This is a minor update to include recent improvements made [MyST-NB](https://github.com/executablebooks/myst-nb)
+
+## New
+
+
+
 ## v0.10.0 2021-02-01
 
 [full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.9.1...d3c78097edda4fefb672e32344c3806c9cdc7a72) | [GitHub contributors page for this release](https://github.com/executablebooks/jupyter-book/graphs/contributors?from=2020-12-22&to=2021-01-30&type=c)
