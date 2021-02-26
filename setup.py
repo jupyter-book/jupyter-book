@@ -67,7 +67,7 @@ setup(
         "docutils>=0.15",
         "sphinx>=2,<4",
         "linkify-it-py~=1.0.1",
-        "myst-nb~=0.11.1",
+        "myst-nb~=0.12.0",
         "jupytext~=1.8.0",
         "click",
         "setuptools",

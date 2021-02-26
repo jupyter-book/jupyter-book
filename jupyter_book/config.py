@@ -42,6 +42,7 @@ def get_default_sphinx_config():
         html_sourcelink_suffix="",
         numfig=True,
         panels_add_bootstrap_css=False,
+        suppress_warnings=["myst.domains"],
     )
 
 

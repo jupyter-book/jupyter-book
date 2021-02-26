@@ -67,6 +67,8 @@ final:
   numfig: true
   panels_add_bootstrap_css: false
   pygments_style: sphinx
+  suppress_warnings:
+  - myst.domains
   use_multitoc_numbering: true
 metadata:
   latex_doc_overrides:
