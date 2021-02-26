@@ -158,6 +158,12 @@ def get_final_config(
         "latex_individualpages": cli_config.pop("latex_individualpages"),
     }
 
+    if (
+        "use_multitoc_numbering" in sphinx_config
+        and sphinx_config["use_multitoc_numbering"]
+    ):
+        sphinx_config["extensions"].append("sphinx_multitoc_numbering")
+
     # finally merge in CLI configuration
     _recursive_update(sphinx_config, cli_config or {})
 
@@ -188,6 +194,7 @@ def yaml_to_sphinx(yaml: dict):
         "copyright": "copyright",
         "logo": "html_logo",
         "project": "project",
+        "use_multitoc_numbering": "use_multitoc_numbering",
     }
     for key, newkey in YAML_TRANSLATIONS.items():
         if key in yaml:
