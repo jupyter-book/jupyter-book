@@ -25,6 +25,7 @@ final:
   - sphinx.ext.intersphinx
   - sphinx_panels
   - sphinx_book_theme
+  - sphinx_multitoc_numbering
   html_add_permalinks: ¶
   html_baseurl: ''
   html_favicon: ''
@@ -67,6 +68,7 @@ final:
   numfig: true
   panels_add_bootstrap_css: false
   pygments_style: sphinx
+  use_multitoc_numbering: true
 metadata:
   latex_doc_overrides:
     title: hallo
