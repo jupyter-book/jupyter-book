@@ -14,6 +14,9 @@ This is a minor update to include recent improvements made to [MyST-NB](https://
 
 * ⬆ UPGRADE: myst-nb v0.12.0 ([#1086](https://github.com/executablebooks/jupyter-book/pull/1086), [@choldgraf](https://github.com/choldgraf))
 
+### Maintain
+
+* 🔧 MAINTAIN: Expand `jupytext` version pinning ([#1221](https://github.com/executablebooks/jupyter-book/pull/1221), [@bollwyvl](https://github.com/bollwyvl))
 
 ## v0.10.0 2021-02-01
 
