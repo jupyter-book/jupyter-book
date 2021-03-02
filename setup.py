@@ -68,7 +68,7 @@ setup(
         "sphinx>=2,<4",
         "linkify-it-py~=1.0.1",
         "myst-nb~=0.12.0",
-        "jupytext~=1.8.0",
+        "jupytext>=1.8,<1.11",
         "click",
         "setuptools",
         "nbformat",
