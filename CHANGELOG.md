@@ -1,13 +1,18 @@
 # Change Log
 
-## v0.10.1 2021-02-24
+## v0.10.1 2021-03-02
 
-[full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.10.0...4c2210b6a74067bfe37afef8197b86f198eeaa52) | [GitHub contributors page for this release](https://github.com/executablebooks/jupyter-book/graphs/contributors?from=2021-01-30&to=2021-01-24&type=c)
+[full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.10.0...a73538c22d6c8c7b7b198db79ada0f801d685856) | [GitHub contributors page for this release](https://github.com/executablebooks/jupyter-book/graphs/contributors?from=2021-01-30&to=2021-03-02&type=c)
 
-This is a minor update to include recent improvements made [MyST-NB](https://github.com/executablebooks/myst-nb)
+This is a minor update to include recent improvements made to [MyST-NB](https://github.com/executablebooks/myst-nb)
 
-## New
+### New
 
+1. An **experimental** MyST-NB feature that enables loading of code from a file for `code-cell` directives using a `:load: <file>` option. Additional information is available in the [myst-nb documentation](https://myst-nb.readthedocs.io/en/latest/use/markdown.html#syntax-for-code-cells)
+
+### Upgrades
+
+* ⬆ UPGRADE: myst-nb v0.12.0 ([#1086](https://github.com/executablebooks/jupyter-book/pull/1086), [@choldgraf](https://github.com/choldgraf))
 
 
 ## v0.10.0 2021-02-01
