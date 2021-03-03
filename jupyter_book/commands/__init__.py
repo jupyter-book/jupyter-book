@@ -242,8 +242,6 @@ def build(
         # Builder-specific overrides
         if builder == "pdfhtml":
             config_overrides["html_theme_options"] = {"single_page": True}
-        if builder == "pdflatex":
-            config_overrides["suppress_warnings"] = ["myst.domains"]
 
         # --individualpages option passthrough
         config_overrides["latex_individualpages"] = individualpages

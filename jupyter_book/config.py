@@ -159,10 +159,7 @@ def get_final_config(
         "latex_individualpages": cli_config.pop("latex_individualpages"),
     }
 
-    if (
-        "use_jupyterbook_latex" in sphinx_config
-        and sphinx_config["use_jupyterbook_latex"]
-    ):
+    if sphinx_config.get("use_jupyterbook_latex"):
         sphinx_config["extensions"].append("jupyterbook_latex")
 
     # finally merge in CLI configuration
