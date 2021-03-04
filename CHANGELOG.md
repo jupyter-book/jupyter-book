@@ -12,7 +12,7 @@ This is a minor update to include recent improvements made to [MyST-NB](https://
 
 ### Upgrades
 
-* ⬆ UPGRADE: myst-nb v0.12.0 ([#1086](https://github.com/executablebooks/jupyter-book/pull/1086), [@choldgraf](https://github.com/choldgraf))
+* ⬆ UPGRADE: myst-nb v0.12.0 ([#1238](https://github.com/executablebooks/jupyter-book/pull/1238), [@mmcky](https://github.com/mmcky))
 
 ### Maintain
 
