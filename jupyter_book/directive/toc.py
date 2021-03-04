@@ -135,6 +135,7 @@ class SwapTableOfContents(SphinxPostTransform):
 
     def apply(self):
         if isinstance(self.env.app.builder, builders.latex.LaTeXBuilder):
+            # for the case of LaTeX builder
             # if Latex Builder makes reference nodes instead of using toctree directive
             parent_file = None
             for index, tocnode in enumerate(
@@ -156,6 +157,7 @@ class SwapTableOfContents(SphinxPostTransform):
                 ret.append(wncopy)
                 tocnode.replace_self(ret)
         else:
+            # for other builders apart from LaTeX
             # toctrees will have a compound just before them
             toctrees = [
                 ii
