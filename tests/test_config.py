@@ -81,11 +81,15 @@ def test_config_sphinx_command(cli, temp_with_override, file_regression):
     file_regression.check(output, encoding="utf8")
 
 
-def test_only_build_toc_files(testdir):
+@pytest.mark.parametrize(
+    "toc_file, filename",
+    [("p.md", "p.md"), ("p", "p.md"), ("[]p", "[]p.md"), ("[t]p.md", "[t]p.md")],
+)
+def test_only_build_toc_files(testdir, toc_file, filename):
     cli_config = {"latex_individualpages": False}
     toc = Path("toc.yml")
-    toc.write_text("- file: landing\n")
-    Path("landing.md").write_text("")
+    toc.write_text(f"- file: '{toc_file}'\n")
+    Path(filename).write_text("")
     Path("exclude.md").write_text("")
     user_config = {"only_build_toc_files": True}
 
@@ -94,7 +98,7 @@ def test_only_build_toc_files(testdir):
     )
 
     assert "exclude.md" in final_config["exclude_patterns"]
-    assert "landing.md" not in final_config["exclude_patterns"]
+    assert filename not in final_config["exclude_patterns"]
 
 
 def test_only_build_toc_files_with_exclude_patterns(testdir):
