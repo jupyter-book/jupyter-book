@@ -409,6 +409,6 @@ def _get_files_outside_toc(
     verified_toc_files: Set[str] = {
         Path(ff).as_posix()
         for ff in included_files
-        if os.path.splitext(ff)[0] in toc_files
+        if os.path.splitext(ff)[0] in toc_files or ff in toc_files
     }
     return included_files.difference(verified_toc_files)

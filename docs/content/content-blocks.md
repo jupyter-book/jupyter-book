@@ -827,7 +827,7 @@ You can also define book-level substitution variables with the following configu
 
 ```yaml
 parse:
-  substitutions:
+  myst_substitutions:
     key: value
 ```
 
