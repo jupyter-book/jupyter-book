@@ -1,0 +1,50 @@
+<bullet_list>
+    <list_item classes="tableofcontents-l1">
+        <compact_paragraph>
+            <reference anchorname="" internal="True" refuri="%index">
+                Toc
+    <bullet_list>
+        <list_item classes="fs-1-2">
+            <compact_paragraph>
+                A section
+        <bullet_list>
+            <list_item classes="tableofcontents-l3">
+                <compact_paragraph>
+                    <reference anchorname="" internal="True" refuri="%subfolder/index">
+                        Subfolder
+            <bullet_list>
+                <list_item classes="tableofcontents-l4">
+                    <compact_paragraph>
+                        <reference anchorname="" internal="True" refuri="%subfolder/asubpage">
+                            Asubpage
+        <list_item classes="fs-1-2">
+            <compact_paragraph>
+                Another section
+        <bullet_list>
+            <list_item classes="tableofcontents-l3">
+                <compact_paragraph>
+                    <reference anchorname="" internal="True" refuri="%content1">
+                        Content1
+            <bullet_list>
+                <list_item classes="tableofcontents-l4">
+                    <compact_paragraph>
+                        <reference anchorname="" internal="True" refuri="%subfolder/asubpage">
+                            Asubpage
+            <list_item classes="tableofcontents-l3">
+                <compact_paragraph>
+                    <reference anchorname="" internal="True" refuri="%content2">
+                        Content2
+            <bullet_list>
+                <list_item classes="tableofcontents-l4">
+                    <compact_paragraph>
+                        <reference anchorname="" internal="True" refuri="%subfolder/asubpage">
+                            Asubpage
+            <list_item classes="tableofcontents-l3">
+                <compact_paragraph>
+                    <reference anchorname="" internal="True" refuri="%content3">
+                        Content3
+            <bullet_list>
+                <list_item classes="tableofcontents-l4">
+                    <compact_paragraph>
+                        <reference anchorname="" internal="True" refuri="%subfolder/asubpage">
+                            Asubpage

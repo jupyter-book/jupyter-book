@@ -17,6 +17,7 @@ doc_reqs = [
 # Test requirements
 test_reqs = [
     "coverage",
+    "texsoup",
     "pytest>=3.6,<4",
     "pytest-cov",
     "pytest-xdist",
@@ -82,6 +83,7 @@ setup(
         "sphinx-thebe>=0.0.6",
         "sphinx-panels~=0.5.2",
         "nested-lookup~=0.2.21",
+        "jupyterbook-latex~=0.2.0",
     ],
     extras_require=extras,
     entry_points={

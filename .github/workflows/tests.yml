@@ -57,7 +57,10 @@ jobs:
           texlive                 \
           texlive-xetex           \
           texlive-latex-extra     \
-          latexmk
+          texlive-fonts-extra     \
+          fonts-freefont-otf      \
+          latexmk                 \
+          xindy
 
     - name: Run pytest
       run: |
