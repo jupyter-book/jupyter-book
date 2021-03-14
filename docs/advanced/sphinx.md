@@ -189,7 +189,7 @@ you configure in `conf.py`. To do so, use the following section of `_config.yml`
 
 ```yaml
 sphinx:
-config:
+  config:
     key1: value1
     key2: value2
 ```
