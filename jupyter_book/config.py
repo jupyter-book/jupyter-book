@@ -159,11 +159,11 @@ def get_final_config(
         "latex_individualpages": cli_config.pop("latex_individualpages"),
     }
 
-    if (
-        "use_multitoc_numbering" in sphinx_config
-        and sphinx_config["use_multitoc_numbering"]
-    ):
+    if sphinx_config.get("use_multitoc_numbering"):
         sphinx_config["extensions"].append("sphinx_multitoc_numbering")
+
+    if sphinx_config.get("use_jupyterbook_latex"):
+        sphinx_config["extensions"].append("jupyterbook_latex")
 
     # finally merge in CLI configuration
     _recursive_update(sphinx_config, cli_config or {})
@@ -318,6 +318,7 @@ def yaml_to_sphinx(yaml: dict):
     if latex:
         for spx_key, yml_key in [
             ("latex_engine", "latex_engine"),
+            ("use_jupyterbook_latex", "use_jupyterbook_latex"),
         ]:
             if yml_key in latex:
                 sphinx_config[spx_key] = latex[yml_key]
@@ -332,6 +333,7 @@ def yaml_to_sphinx(yaml: dict):
     extra_extensions = yaml.get("sphinx", {}).get("extra_extensions")
     if extra_extensions:
         sphinx_config["extensions"] = get_default_sphinx_config()["extensions"]
+
         if not isinstance(extra_extensions, list):
             extra_extensions = [extra_extensions]
 
@@ -411,6 +413,6 @@ def _get_files_outside_toc(
     verified_toc_files: Set[str] = {
         Path(ff).as_posix()
         for ff in included_files
-        if os.path.splitext(ff)[0] in toc_files
+        if os.path.splitext(ff)[0] in toc_files or ff in toc_files
     }
     return included_files.difference(verified_toc_files)
