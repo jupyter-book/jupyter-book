@@ -48,6 +48,46 @@ def test_toc_add_titles(cli: CliRunner, build_resources):
         assert "title" in section
 
 
+def test_toc_skip_text(cli: CliRunner, build_resources):
+    """Test that skipped files are not include in toc"""
+    books, tocs = build_resources
+    result = cli.invoke(toc, tocs.as_posix())
+    assert result.exit_code == 0
+    toc_yaml = tocs.joinpath("_toc.yml")
+    res = yaml.safe_load(toc_yaml.read_text(encoding="utf8"))
+    files = [section["file"] for section in res["sections"]]
+    assert "content2" in files
+    
+    # Test we exclude only specific files according to pattern
+    skip_tests = ["content2", "ontent2", "2"]
+    for skip_test in skip_tests:
+      result = cli.invoke(toc, (tocs.as_posix(), "--skip_text", skip_test))
+      assert result.exit_code == 0
+      toc_yaml = tocs.joinpath("_toc.yml")
+      res_ = yaml.safe_load(toc_yaml.read_text(encoding="utf8"))
+      files = [section["file"] for section in res_["sections"]]
+      assert "content1" in files
+      assert "content2" not in files
+
+    # Test we exclude general files according to pattern
+    skip_tests = ["content", "onten" ]
+    for skip_test in skip_tests:
+      result = cli.invoke(toc, (tocs.as_posix(), "--skip_text", skip_test))
+      assert result.exit_code == 0
+      toc_yaml = tocs.joinpath("_toc.yml")
+      res_ = yaml.safe_load(toc_yaml.read_text(encoding="utf8"))
+      files = [section["file"] for section in res_["sections"]]
+      assert not any(skip_test in s for s in files)
+
+    # Test we don't error if there are no matches
+    result = cli.invoke(toc, (tocs.as_posix(), "--skip_text", "otherwise"))
+    assert result.exit_code == 0
+    toc_yaml = tocs.joinpath("_toc.yml")
+    res_ = yaml.safe_load(toc_yaml.read_text(encoding="utf8"))
+    # Should this be a proper dictionary comparison assertion test?
+    assert res == res_
+
+
 def test_toc_numbered(cli: CliRunner, temp_with_override, file_regression):
     """Testing that numbers make it into the sidebar"""
     path_output = temp_with_override.joinpath("mybook").absolute()
