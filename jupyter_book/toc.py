@@ -258,7 +258,6 @@ def _find_content_structure(
         skip_text = []
     elif not isinstance(skip_text, list):
         skip_text = [skip_text]
-
     skip_text.append(".ipynb_checkpoints")
 
     path = Path(path)
