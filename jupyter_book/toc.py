@@ -256,6 +256,9 @@ def _find_content_structure(
     """Parse a folder and sub-folders for content and return a dict."""
     if skip_text is None:
         skip_text = []
+    elif not isinstance(skip_text, list):
+        skip_text = [skip_text]
+
     skip_text.append(".ipynb_checkpoints")
 
     path = Path(path)
