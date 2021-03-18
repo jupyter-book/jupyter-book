@@ -305,7 +305,7 @@ Content of the left panel.
 `````
 
 ```{seealso}
-See the [Sphinx Panels card layout documentaiton](https://sphinx-panels.readthedocs.io/en/latest/#card-layout) for more information.
+See the [Sphinx Panels card layout documentation](https://sphinx-panels.readthedocs.io/en/latest/#card-layout) for more information.
 ```
 
 ### Controlling the look and feel of panels
