@@ -264,7 +264,7 @@ def _find_content_structure(
 
     # First parse all the content files
     content_files = [
-        ii for ii in path.iterdir() if ii.suffix in SUPPORTED_FILE_SUFFIXES
+        ii for ii in sorted(path.iterdir()) if ii.suffix in SUPPORTED_FILE_SUFFIXES
     ]
 
     if len(content_files) == 0:
