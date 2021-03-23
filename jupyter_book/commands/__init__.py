@@ -486,7 +486,7 @@ def sphinx(ctx, path_source, config, toc):
     )
 
     sphinx_config, config_meta = get_final_config(
-        Path(toc) if toc else Path(),
+        Path(toc) if toc else Path("_toc.yml"),
         user_yaml=Path(path_config) if path_config else None,
         sourcedir=Path(path_src),
         cli_config=config_overrides,
