@@ -12,6 +12,18 @@ There are two ways you can quickly host your book with GitHub Pages:
 
 ## Push your book to a branch hosted by GitHub Pages
 
+There are multiple options you can choose to host your documentation on Github Page. Choose what's more convenient for you.
+
+### Option 1 - Manually copying output to docs folder
+
+Github Pages no longer requires the documentation to be on a separate branch `gh-pages` as it used.
+
+You can configure your repository to include the Github Pages documentation under a `docs` directory in the root of your project in the `main` branch.
+
+Then you can simply copy the output of the jupyter book `_build/html` directory into `docs`. One caviat, you will need to disable Jekyll default configurations from Github Pages by adding a file called `.nojekyll` in the `docs` directory.
+
+### Option 2 - Using ghp-import tool
+
 The easiest way to use GitHub Pages with your built HTML is to use the [`ghp-import`](https://github.com/davisp/ghp-import) package. `ghp-import` is a lightweight Python package that makes it easy to push HTML content to a GitHub repository.
 
 `ghp-import` works by copying *all* of the contents of your built book (i.e., the `_build/html` folder) to a branch of your repository called `gh-pages`, and pushes it to GitHub. The `gh-pages` branch will be created and populated automatically for you by `ghp-import`. To use `ghp-import` to host your book online with GitHub Pages follow the steps below:
@@ -43,6 +55,8 @@ files in your book's `_build/html` folder.
 ```{warning}
 Make sure that you included the `-n` - this tells GitHub *not* to build your book with
 [Jekyll](https://jekyllrb.com/), which we don't want because our HTML is already built!
+
+As per `ghp-import` the option `-n` or `--no-jekyll` includes a .nojekyll file in the branch which allows Github Pages to read content from Jekyll excluded directories, like the ones starting with understand (e.g. _static, _images).
 ```
 
 Typically after a few minutes your site should be viewable online at a url such as: `https://<user>.github.io/<myonlinebook>/`. If not, check your repository settings under **Options** -> **GitHub Pages** to ensure that the `gh-pages` branch is configured as the build source for GitHub Pages and/or to find the url address GitHub is building for you.
