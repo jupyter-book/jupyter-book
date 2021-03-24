@@ -68,10 +68,8 @@ To use `ghp-import` to host your book online with GitHub Pages follow the steps 
    ```
 
 ```{warning}
-Make sure that you included the `-n` - this tells GitHub *not* to build your book with
-[Jekyll](https://jekyllrb.com/), which we don't want because our HTML is already built!
-
-As per `ghp-import` the option `-n` or `--no-jekyll` includes a .nojekyll file in the branch which allows Github Pages to read content from Jekyll excluded directories, like the ones starting with understand (e.g. _static, _images).
+Make sure that you included the `-n`. This adds a file called `.nojekyll` to the output of your book, which tells GitHub *not* to build your book with
+[Jekyll](https://jekyllrb.com/).
 ```
 
 Typically after a few minutes your site should be viewable online at a url such as: `https://<user>.github.io/<myonlinebook>/`. If not, check your repository settings under **Options** -> **GitHub Pages** to ensure that the `gh-pages` branch is configured as the build source for GitHub Pages and/or to find the url address GitHub is building for you.
