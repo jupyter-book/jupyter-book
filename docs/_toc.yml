@@ -5,7 +5,7 @@
   - file: start/your-first-book
     sections:
     - file: start/overview
-    - file: start/content
+    - file: start/create
     - file: start/build
     - file: start/publish
   - file: tutorials/references
@@ -59,8 +59,6 @@
 
 - part: Advanced configuration
   chapters:
-  - file: advanced/html
-  - file: advanced/sphinx
   - file: advanced/sphinx
   - file: advanced/windows
 

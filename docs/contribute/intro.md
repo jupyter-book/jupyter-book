@@ -6,6 +6,29 @@ Welcome to the `jupyter-book` repository! We're excited you're here and want to 
 
 For information about development conventions, practices, and infrastructure, please see [the `executablebooks/` development guidelines](https://github.com/executablebooks/.github/blob/master/CONTRIBUTING.md).
 
+## Documentation guidelines
+
+The documentation of Jupyter Book is inspired by the [Divio Documentation Framework](https://documentation.divio.com/).
+This separates documentation into four main areas:
+
+- **Tutorials** are step-by-step guides that are learning-oriented.
+  They give the learner a feel for how a tool works, and get them excited about learning more.
+  Tutorials live in a dedicated section of the documentation.
+- **How-To guides** are shorter guides that tell the reader how to do something.
+  They assume more background knowledge of Jupyter Book (often, that they have read the tutorial).
+  They are focused on "doing things" rather than long explanations.
+  How-To guides make up most of Jupyter Book's documentation, and are separated into sections for various topics.
+- **Reference** documentation _describes_ Jupyter Book's structure and functionality in a complete sense.
+  It is more programmatic, less narrative, and more interested in covering all configuration and options in Jupyter Book rather than describing how and when to use them.
+  Jupyter Book has a reference section after our topic sections.
+  In addition, it has an organization-level reference section just underneath.
+- **Explanations** are higher-level discussions about topics and concepts related to Jupyter Book.
+  They are less focused on doing things, and more focused on gaining a conceptual framework for how Jupyter Book works.
+  Jupyter Book currently has no dedicated explanation section, but welcomes the addition of explanatory content and potentially a dedicated section.
+
+These four areas are not **strict rules** for the Jupyter Book documentation, but should serve as inspiration in deciding what to document, and where.
+Any contributions to the documentation that fall within this framework (e.g., adding a new tutorial, adding a How To section) are most-welcome!
+
 ## Getting started
 
 To get started with Jupyter Book's *codebase*, take the following steps:

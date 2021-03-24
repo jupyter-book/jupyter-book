@@ -45,9 +45,11 @@ Some text
 This is how you specify a label called `my-label` that points to the header just below (`## My header`).
 
 :::{margin}
-You can also reference labels in this was with the following syntax:
+You can also reference labels in this way with the following syntax:
 
+```
 Some text and {ref}`my-label`
+```
 :::
 
 ## Refer to your label

@@ -141,7 +141,7 @@ This is a simple table of contents, consisting of three pages.
 The first item of your ToC is always your book's **landing page** - the first page people will see when they look at your book.
 
 Subsequent pages are defined in sequential order.
-You can do a lot more than just define a single list of pages - see [](../basicas/toc.md) for more information about structuring your book.
+You can do a lot more than just define a single list of pages - see [](../customize/toc.md) for more information about structuring your book.
 
 ## Create your own content file
 
