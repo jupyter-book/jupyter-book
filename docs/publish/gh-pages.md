@@ -34,6 +34,7 @@ There are two places we recommend:
 In a separate branch
 : You can configure GitHub Pages to build any books that are in a branch that you specify.
   By default, this is `gh-pages`.
+
 In a `docs/` folder of your main branch
 : If you'd like to keep your built book alongside your book's source files, you may paste them into a `docs/` folder.
   :::{warning}
