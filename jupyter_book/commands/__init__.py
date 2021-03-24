@@ -481,14 +481,14 @@ def sphinx(ctx, path_source, config, toc):
     """Generate a Sphinx conf.py representation of the build configuration."""
     from ..config import get_final_config
 
-    path_config, path_src, config_overrides = ctx.invoke(
+    path_config, full_path_source, config_overrides = ctx.invoke(
         build, path_source=path_source, config=config, toc=toc, get_config_only=True
     )
 
     sphinx_config, config_meta = get_final_config(
         Path(toc) if toc else Path(path_source).joinpath("_toc.yml"),
         user_yaml=Path(path_config) if path_config else None,
-        sourcedir=Path(path_src),
+        sourcedir=Path(full_path_source),
         cli_config=config_overrides,
     )
     lines = []
