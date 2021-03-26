@@ -65,6 +65,30 @@ def test_validate_yaml():
     assert validate_yaml({"title": ""}, raise_on_errors=False) is None
 
 
+def test_config_sphinx_command_only_build_toc_files(
+    cli, temp_with_override, file_regression
+):
+    temp_with_override.joinpath("_config.yml").write_text(
+        "only_build_toc_files: True\n", encoding="utf8"
+    )
+    temp_with_override.joinpath("_config.yml").write_text(
+        "exclude_patterns: [test_config/*]\n", encoding="utf8"
+    )
+
+    temp_with_override.joinpath("_toc.yml").write_text("\n", encoding="utf8")
+    result = cli.invoke(sphinx, temp_with_override.as_posix())
+
+    assert result.exit_code == 0, result.exception
+    # remove global_toc which is path dependent
+    output = "\n".join(
+        line
+        for line in result.output.splitlines()
+        if not line.startswith("globaltoc_path")
+    )
+
+    file_regression.check(output, encoding="utf8")
+
+
 def test_config_sphinx_command(cli, temp_with_override, file_regression):
     temp_with_override.joinpath("_config.yml").write_text(
         "title: test\n", encoding="utf8"
