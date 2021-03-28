@@ -173,5 +173,5 @@ what kinds of functionality they support:
   It also allows [inserting code outputs into content](content:code-outputs:glue).
 * {term}`Jupyter-Cache` manages the execution and cacheing of notebook content at
   build time. It is controlled by {term}`MyST-NB`.
-* The {term}`Sphinx-Book-Theme` defines the look and feel of Jupyter Book, and is
+* The {term}`Sphinx Book Theme` defines the look and feel of Jupyter Book, and is
   where most of the CSS rules are defined.

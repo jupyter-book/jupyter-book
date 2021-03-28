@@ -57,10 +57,11 @@
   - file: advanced/pdf
   - file: advanced/html
 
-- part: Advanced configuration
+- part: Advanced usage
   chapters:
   - file: advanced/sphinx
   - file: advanced/windows
+  - file: explain/sphinx
 
 - part: Reference
   chapters:
