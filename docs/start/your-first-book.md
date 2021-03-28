@@ -16,7 +16,4 @@ However, there is a known incompatibility for notebook execution when using Pyth
 See [](working-on-windows)
 :::
 
-See the sections below to get started!
-
-```{tableofcontents}
-```
+See the sections of this tutorial to the left to get started!
