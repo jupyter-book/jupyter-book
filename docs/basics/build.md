@@ -1,4 +1,4 @@
-# Building your book
+# Build your book
 
 (clean-build)=
 ## Clean your book's generated files

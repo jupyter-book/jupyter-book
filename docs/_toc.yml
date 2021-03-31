@@ -9,13 +9,23 @@
     - file: start/build
     - file: start/publish
   - file: tutorials/references
+  - file: basics/questions
 
-- part: Book basics
+- part: Create your book
   chapters:
-  - file: customize/config
   - file: customize/toc
   - file: basics/create
-  - file: basics/build
+  - file: content/index
+    sections:
+    - file: content/myst
+    - file: content/content-blocks
+    - file: content/references
+    - file: content/layout
+    - file: content/citations
+    - file: content/math
+    - file: content/figures
+    - file: content/metadata
+    - file: interactive/hiding
   - file: file-types/index
     sections:
       - file: file-types/markdown
@@ -23,39 +33,32 @@
       - file: file-types/myst-notebooks
       - file: file-types/jupytext
       - file: file-types/restructuredtext
-  - file: publish/page
-  - file: content/execute
-  - file: basics/repository
-  - file: basics/questions
 
-- part: Write book content
+- part: Build your book
   chapters:
-  - file: content/myst
-  - file: content/content-blocks
-  - file: content/references
-  - file: content/layout
-  - file: content/citations
-  - file: content/math
-  - file: content/figures
-  - file: content/metadata
-  - file: content/code-outputs
-
-- part: Make your book interactive
-  chapters:
+  - file: basics/build
+  - file: execute/index
+    sections:
+    - file: content/code-outputs
+    - file: content/execute
   - file: interactive/interactive
+  - file: basics/page
+
+- part: Publish your book
+  chapters:
+  - file: publish/web
+    sections:
+    - file: publish/gh-pages
+    - file: publish/netlify
+  - file: basics/repository
   - file: interactive/launchbuttons
-  - file: interactive/hiding
   - file: interactive/comments
     sections:
     - file: interactive/comments/hypothesis
     - file: interactive/comments/utterances
 
-- part: Publish your book
-  chapters:
-  - file: publish/gh-pages
-  - file: publish/netlify
-  - file: advanced/pdf
   - file: advanced/html
+  - file: advanced/pdf
 
 - part: Advanced usage
   chapters:
@@ -65,6 +68,7 @@
 
 - part: Reference
   chapters:
+  - file: customize/config
   - file: reference/cheatsheet
   - file: reference/cli
   - file: reference/glossary
