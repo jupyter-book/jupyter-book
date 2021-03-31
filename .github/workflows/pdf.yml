@@ -66,11 +66,12 @@ jobs:
         sudo apt-get install -y     \
           texlive-latex-recommended \
           texlive-latex-extra       \
-          texlive-fonts-recommended \
           texlive-fonts-extra       \
+          fonts-freefont-otf        \
           texlive-xetex             \
           latexmk                   \
           xindy
+
     - name: Build PDF from LaTeX (Docs)
       run: |
         jb build docs --builder pdflatex -n -W --keep-going

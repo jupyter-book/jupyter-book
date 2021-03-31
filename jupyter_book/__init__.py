@@ -3,9 +3,12 @@ from pathlib import Path
 
 from .toc import add_toc_to_sphinx, add_toctree
 from .directive.toc import TableofContents, SwapTableOfContents
+from sphinx.util import logging
 
 
-__version__ = "0.10.0"
+__version__ = "0.10.1"
+
+logger = logging.getLogger(__name__)
 
 
 def add_static_files(app, config):
@@ -30,6 +33,7 @@ def setup(app):
 
     # Path for `_toc.yml`
     app.add_config_value("globaltoc_path", "toc.yml", "env")
+    app.add_config_value("use_jupyterbook_latex", True, "env")
 
     # Add custom static files to the sphinx build
     app.connect("config-inited", add_static_files)
@@ -40,6 +44,7 @@ def setup(app):
     # Transforms
     app.add_post_transform(SwapTableOfContents)
 
+    # Extensions
     return {
         "version": __version__,
         "parallel_read_safe": True,

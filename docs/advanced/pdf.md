@@ -112,7 +112,20 @@ For `Windows` users, please install [TeX Live](https://www.tug.org/texlive/windo
 
 ### Build
 
-To build a single PDF using LaTeX, use the following command:
+`jupyter-book` uses the [jupyterbook-latex](https://github.com/executablebooks/jupyterbook-latex) package
+which handles much of the customised LaTeX infrastructure. A feature list of this package can be found
+[here](https://github.com/executablebooks/jupyterbook-latex/blob/master/docs/intro.md#feature-list). It
+enables building `pdf` files with full support for the `file` and `part/chapter`
+[structures that are defined in the _toc.yml](https://jupyterbook.org/customize/toc.html).
+
+If you need to **turn off** this package, the following config is required:
+
+```yaml
+latex:
+  use_jupyterbook_latex: false
+```
+
+To build a PDF of your project using LaTeX, use the following command:
 
 ```bash
 jupyter-book build mybookname/ --builder pdflatex
@@ -134,6 +147,14 @@ jb build mybookname/ --builder latex
 ::::
 
 **Individual PDF Files:**
+
+:::{warning}
+The current implementation of `--individualpages` does **not** make use of the improvements
+introduced by [jupyterbook-latex](https://github.com/executablebooks/jupyterbook-latex) and
+uses the default `latex` writer included with Sphinx.
+We are currently working on making improvements to how `--individualpages` are constructed.
+You can track progress [here](https://github.com/executablebooks/jupyterbook-latex/issues/41)
+:::
 
 To build PDF files for each page of the project,
 you can specify the option `--individualpages` for `--builder=pdflatex`.
@@ -166,27 +187,29 @@ easier to find.
 
 ### Using a different LaTeX engine
 
-Some users may want to switch to using a different LaTeX engine to build the
-`PDF` files. For example, if your project contains `Unicode` you will need to
-use `xelatex` to build the `PDF` file.
+The current default is to use `xelatex` to build `pdf` files.
 
-To update the `LaTeX` engine to `xelatex` you can add the following to your `_config.yml`
+:::{warning}
+The `--individualpages` option currently uses `pdflatex` by default.
+:::
+
+Some users may want to switch to using a different LaTeX engine such as `pdflatex`.
+To revert the `LaTeX` engine to `pdflatex` you can add the following to your `_config.yml`
 
 ```yaml
 latex:
-  latex_engine: xelatex
+  latex_engine: pdflatex
 ```
 
 :::{note}
-We will be making `xelatex` the default in the near future, so this can be used to
-specify other builders such as `pdflatex`, or `lualatex`.
-
-See the Sphinx documentation [for available builders](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-latex_engine)
+The Sphinx documentation [for available builders](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-latex_engine)
+contains a full list of supported `latex` builders.
 :::
 
 ### Other Sphinx LaTeX settings
 
-Other [LaTeX settings](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-latex_engine) available to Sphinx can be passed through using the config section
+Other [LaTeX settings](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-latex_engine) available
+to Sphinx can be passed through using the config section
 of `Sphinx` in the `_config.yml` file for your project.
 
 For example, if you would like to set the [latex_toplevel_sectioning](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-latex_toplevel_sectioning) option to use `part` instead of `chapter` you would use:

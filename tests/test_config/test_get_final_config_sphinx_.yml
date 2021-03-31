@@ -37,6 +37,7 @@ final:
   - sphinx_book_theme
   - other
   - helloworld
+  - jupyterbook_latex
   html_add_permalinks: ¶
   html_baseurl: ''
   html_favicon: ''
@@ -67,6 +68,7 @@ final:
   pygments_style: sphinx
   suppress_warnings:
   - myst.domains
+  use_jupyterbook_latex: true
 metadata:
   latex_doc_overrides:
     title: My Jupyter Book

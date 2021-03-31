@@ -27,6 +27,7 @@ final:
   - sphinx.ext.intersphinx
   - sphinx_panels
   - sphinx_book_theme
+  - jupyterbook_latex
   html_add_permalinks: ¶
   html_baseurl: ''
   html_favicon: ''
@@ -71,6 +72,7 @@ final:
   pygments_style: sphinx
   suppress_warnings:
   - myst.domains
+  use_jupyterbook_latex: true
 metadata:
   latex_doc_overrides:
     title: My Jupyter Book
