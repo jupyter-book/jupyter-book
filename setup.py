@@ -65,7 +65,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         "pyyaml",
-        "docutils>=0.15",
+        "docutils>=0.15,<0.17",
         "sphinx>=2,<4",
         "linkify-it-py~=1.0.1",
         "myst-nb~=0.12.0",
