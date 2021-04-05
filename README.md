@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/executablebooks/jupyter-book.svg?style=svg)](https://circleci.com/gh/executablebooks/jupyter-book)
 [![codecov](https://codecov.io/gh/executablebooks/jupyter-book/branch/master/graph/badge.svg)](https://codecov.io/gh/executablebooks/jupyter-book)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2799972.svg)](https://doi.org/10.5281/zenodo.2799972)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2561065.svg)](https://doi.org/10.5281/zenodo.2561065)
 [![PyPI][pypi-badge]][pypi-link]
 
 Jupyter Book is an open-source tool for building publication-quality books and documents from computational material.

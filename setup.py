@@ -17,6 +17,7 @@ doc_reqs = [
 # Test requirements
 test_reqs = [
     "coverage",
+    "texsoup",
     "pytest>=3.6,<4",
     "pytest-cov",
     "pytest-xdist",
@@ -64,11 +65,11 @@ setup(
     packages=find_packages(),
     install_requires=[
         "pyyaml",
-        "docutils>=0.15",
+        "docutils>=0.15,<0.17",
         "sphinx>=2,<4",
         "linkify-it-py~=1.0.1",
-        "myst-nb~=0.11.1",
-        "jupytext~=1.8.0",
+        "myst-nb~=0.12.0",
+        "jupytext>=1.8,<1.11",
         "click",
         "setuptools",
         "nbformat",
@@ -82,6 +83,7 @@ setup(
         "sphinx-thebe>=0.0.6",
         "sphinx-panels~=0.5.2",
         "nested-lookup~=0.2.21",
+        "jupyterbook-latex~=0.2.0",
     ],
     extras_require=extras,
     entry_points={

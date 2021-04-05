@@ -6,6 +6,8 @@ on:
     tags:
       - 'v*'
   pull_request:
+  schedule:
+    - cron:  '0 0 * * *'
 
 jobs:
 
@@ -55,7 +57,10 @@ jobs:
           texlive                 \
           texlive-xetex           \
           texlive-latex-extra     \
-          latexmk
+          texlive-fonts-extra     \
+          fonts-freefont-otf      \
+          latexmk                 \
+          xindy
 
     - name: Run pytest
       run: |
