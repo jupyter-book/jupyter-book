@@ -1,9 +1,10 @@
 """Commands to facilitate conversion to PDF."""
+import asyncio
+import os
 from copy import copy
 from pathlib import Path
-import asyncio
+
 import sphinx
-import os
 
 from .utils import _error, _message_box
 

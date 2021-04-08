@@ -1,8 +1,10 @@
-- file: index
-  title: Toc
+defaults:
   numbered: true
-- part: Chapter 1
-  chapters:
+root: index
+title: Toc
+parts:
+- caption: Chapter 1
+  sections:
   - file: content1
     title: Content1
   - file: subfolder/index
@@ -10,8 +12,8 @@
     sections:
     - file: subfolder/asubpage
       title: Asubpage
-- part: Chapter 2
-  chapters:
+- caption: Chapter 2
+  sections:
   - file: content2
     title: Content2
   - file: content3

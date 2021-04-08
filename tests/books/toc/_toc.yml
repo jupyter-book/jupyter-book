@@ -1,4 +1,4 @@
-file: index
+root: index
 title: Toc
 sections:
 - file: content1

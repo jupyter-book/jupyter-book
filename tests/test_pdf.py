@@ -2,10 +2,10 @@
 
 from pathlib import Path
 
-from click.testing import CliRunner
 import pytest
+from click.testing import CliRunner
 
-from jupyter_book.commands import build
+from jupyter_book.cli.main import build
 
 path_tests = Path(__file__).parent
 

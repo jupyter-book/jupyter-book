@@ -1,13 +1,13 @@
 """Tools for interacting with Sphinx."""
 import os.path as op
-from pathlib import Path
 import sys
-from typing import Union
+from pathlib import Path
+from typing import Optional, Union
 
-from sphinx.util.docutils import docutils_namespace, patch_docutils
 from sphinx.application import Sphinx
 from sphinx.cmd.build import handle_exception
-import yaml
+from sphinx.util.docutils import docutils_namespace, patch_docutils
+from sphinx_external_toc.api import SiteMap
 
 from .config import get_final_config
 from .pdf import update_latex_documents
@@ -22,7 +22,8 @@ ROOT = Path(__file__)
 def build_sphinx(
     sourcedir,
     outputdir,
-    toc,
+    *,
+    use_external_toc=True,
     confdir=None,
     path_config=None,
     noconfig=False,
@@ -49,10 +50,10 @@ def build_sphinx(
     #######################
     # Configuration creation
     sphinx_config, config_meta = get_final_config(
-        toc,
         user_yaml=Path(path_config) if path_config else None,
         cli_config=confoverrides or {},
         sourcedir=Path(sourcedir),
+        use_external_toc=use_external_toc,
     )
 
     ##################################
@@ -150,34 +151,16 @@ def build_sphinx(
             app.build(force_all, filenames)
 
             # Write an index.html file in the root to redirect to the first page
+            # TODO when would this be required?
             path_index = outputdir.joinpath("index.html")
-            if sphinx_config["globaltoc_path"]:
-                path_toc = Path(sphinx_config["globaltoc_path"])
-                if not path_toc.exists():
-                    raise IOError(
-                        (
-                            "You gave a Configuration file path"
-                            f"that doesn't exist: {path_toc}"
-                        )
-                    )
-                if path_toc.suffix not in [".yml", ".yaml"]:
-                    raise IOError(
-                        "You gave a Configuration file path"
-                        f"that is not a YAML file: {path_toc}"
-                    )
-            else:
-                path_toc = None
-
-            if not path_index.exists() and path_toc:
-                toc = yaml.safe_load(path_toc.read_text(encoding="utf8"))
-                if isinstance(toc, dict):
-                    first_page = toc["file"]
-                else:
-                    first_page = toc[0]["file"]
-                first_page = first_page.split(".")[0] + ".html"
+            site_map: Optional[SiteMap] = getattr(app.env, "external_site_map", None)
+            if not path_index.exists() and site_map:
+                first_page = site_map.root.docname.split(".")[0] + ".html"
                 with open(path_index, "w", encoding="utf8") as ff:
                     ff.write(REDIRECT_TEXT.format(first_page=first_page))
+
             return app.statuscode
+
     except (Exception, KeyboardInterrupt) as exc:
         handle_exception(app, debug_args, exc, error)
         return exc

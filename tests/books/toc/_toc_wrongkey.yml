@@ -1,4 +1,4 @@
-file: index
+root: index
 title: Toc
 foo: bar
 sections:

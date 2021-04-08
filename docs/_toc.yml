@@ -1,7 +1,8 @@
-- file: intro
+root: intro
+parts:
 
-- part: Get started
-  chapters:
+- caption: Get started
+  sections:
   - file: start/overview
   - file: start/build
   - file: start/publish
@@ -18,8 +19,8 @@
       - file: file-types/jupytext
       - file: file-types/restructuredtext
 
-- part: Write book content
-  chapters:
+- caption: Write book content
+  sections:
   - file: content/myst
   - file: content/content-blocks
   - file: content/citations
@@ -30,8 +31,8 @@
   - file: content/code-outputs
 
 
-- part: Make your book interactive
-  chapters:
+- caption: Make your book interactive
+  sections:
   - file: interactive/launchbuttons
   - file: interactive/hiding
   - file: interactive/interactive
@@ -41,15 +42,15 @@
     - file: interactive/comments/utterances
 
 
-- part: Advanced and miscellaneous
-  chapters:
+- caption: Advanced and miscellaneous
+  sections:
   - file: advanced/pdf
   - file: advanced/sphinx
   - file: advanced/advanced
   - file: contribute/intro
 
-- part: Reference
-  chapters:
+- caption: Reference
+  sections:
   - url: https://executablebooks.org/en/latest/gallery.html
     title: Gallery of Jupyter Books
   - file: reference/cheatsheet

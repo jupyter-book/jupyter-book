@@ -1,12 +1,11 @@
 from pathlib import Path
 
 import pytest
+import sphinx
 from bs4 import BeautifulSoup
 from click.testing import CliRunner
 
-import sphinx
-
-from jupyter_book import commands
+from jupyter_book.cli import main as commands
 
 
 def test_version(cli: CliRunner):

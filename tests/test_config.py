@@ -1,10 +1,10 @@
-import pytest
+from pathlib import Path
 
 import jsonschema
-from jupyter_book.config import get_final_config, validate_yaml
-from jupyter_book.commands import sphinx
+import pytest
 
-from pathlib import Path
+from jupyter_book.cli.main import sphinx
+from jupyter_book.config import get_final_config, validate_yaml
 
 pytest_plugins = "pytester"
 
@@ -51,7 +51,10 @@ pytest_plugins = "pytester"
 def test_get_final_config(user_config, data_regression):
     cli_config = {"latex_individualpages": False}
     final_config, metadata = get_final_config(
-        None, user_config, cli_config, validate=True, raise_on_invalid=True
+        user_yaml=user_config,
+        cli_config=cli_config,
+        validate=True,
+        raise_on_invalid=True,
     )
     data_regression.check(
         {"_user_config": user_config, "final": final_config, "metadata": metadata}
@@ -83,7 +86,7 @@ def test_config_sphinx_command_only_build_toc_files(
     output = "\n".join(
         line
         for line in result.output.splitlines()
-        if not line.startswith("globaltoc_path")
+        if not line.startswith("external_toc_path")
     )
 
     file_regression.check(output, encoding="utf8")
@@ -100,7 +103,7 @@ def test_config_sphinx_command(cli, temp_with_override, file_regression):
     output = "\n".join(
         line
         for line in result.output.splitlines()
-        if not line.startswith("globaltoc_path")
+        if not line.startswith("external_toc_path")
     )
     file_regression.check(output, encoding="utf8")
 
@@ -118,7 +121,10 @@ def test_only_build_toc_files(testdir, toc_file, filename):
     user_config = {"only_build_toc_files": True}
 
     final_config, metadata = get_final_config(
-        toc, user_config, cli_config, validate=True, raise_on_invalid=True
+        user_yaml=user_config,
+        cli_config=cli_config,
+        validate=True,
+        raise_on_invalid=True,
     )
 
     assert "exclude.md" in final_config["exclude_patterns"]
@@ -137,7 +143,10 @@ def test_only_build_toc_files_with_exclude_patterns(testdir):
     }
 
     final_config, metadata = get_final_config(
-        toc, user_config, cli_config, validate=True, raise_on_invalid=True
+        user_yaml=user_config,
+        cli_config=cli_config,
+        validate=True,
+        raise_on_invalid=True,
     )
 
     assert "exclude.md" in final_config["exclude_patterns"]
@@ -159,9 +168,8 @@ def test_only_build_toc_files_non_default_source_dir(testdir):
     user_config = {"only_build_toc_files": True}
 
     final_config, metadata = get_final_config(
-        toc,
-        user_config,
-        cli_config,
+        user_yaml=user_config,
+        cli_config=cli_config,
         validate=True,
         raise_on_invalid=True,
         sourcedir=sourcedir,
@@ -178,7 +186,10 @@ def test_only_build_toc_files_missing_toc(testdir):
 
     with pytest.raises(ValueError, match=r".*you must have a toc.*"):
         get_final_config(
-            None, user_config, cli_config, validate=True, raise_on_invalid=True
+            user_yaml=user_config,
+            cli_config=cli_config,
+            validate=True,
+            raise_on_invalid=True,
         )
 
 
@@ -186,7 +197,10 @@ def test_get_final_config_custom_myst_extensions(data_regression):
     cli_config = {"latex_individualpages": False}
     user_config = {"parse": {"myst_extra_extensions": ["linkify"]}}
     final_config, metadata = get_final_config(
-        None, user_config, cli_config, validate=True, raise_on_invalid=True
+        user_yaml=user_config,
+        cli_config=cli_config,
+        validate=True,
+        raise_on_invalid=True,
     )
     data_regression.check(
         {"_user_config": user_config, "final": final_config, "metadata": metadata}
@@ -197,6 +211,9 @@ def test_get_final_config_bibtex(data_regression):
     cli_config = {"latex_individualpages": False}
     user_config = {"bibtex_bibfiles": ["tmp.bib"]}
     final_config, metadata = get_final_config(
-        None, user_config, cli_config, validate=True, raise_on_invalid=True
+        user_yaml=user_config,
+        cli_config=cli_config,
+        validate=True,
+        raise_on_invalid=True,
     )
     assert "sphinxcontrib.bibtex" in final_config["extensions"]
