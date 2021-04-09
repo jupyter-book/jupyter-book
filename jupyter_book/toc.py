@@ -237,8 +237,7 @@ def _gen_toctree(options, subsections, parent_suff):
 
 def _content_path_to_yaml(path, root_path, split_char="_", add_titles=True):
     """Return a YAML entry for the TOC from a path."""
-    path = path.with_suffix("")
-    if path.name == "index":
+    if path.with_suffix("").name == "index":
         title = _filename_to_title(path.resolve().parent.name, split_char=split_char)
     else:
         title = _filename_to_title(path.name, split_char=split_char)

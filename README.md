@@ -4,6 +4,7 @@
 [![codecov](https://codecov.io/gh/executablebooks/jupyter-book/branch/master/graph/badge.svg)](https://codecov.io/gh/executablebooks/jupyter-book)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2561065.svg)](https://doi.org/10.5281/zenodo.2561065)
 [![PyPI][pypi-badge]][pypi-link]
+[![Conda][conda-badge]][conda-link]
 
 Jupyter Book is an open-source tool for building publication-quality books and documents from computational material.
 
@@ -35,3 +36,5 @@ the [Executable Book Project](https://executablebooks.org).
 
 [pypi-badge]: https://img.shields.io/pypi/v/jupyter-book.svg
 [pypi-link]: https://pypi.org/project/jupyter-book
+[conda-badge]: https://anaconda.org/conda-forge/jupyter-book/badges/version.svg
+[conda-link]: https://anaconda.org/conda-forge/jupyter-book
