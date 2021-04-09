@@ -229,23 +229,24 @@ def build(
         # Table of contents
         toc = PATH_SRC_FOLDER.joinpath("_toc.yml") if toc is None else Path(toc)
 
-        if not toc.exists():
-            _error(
-                "Couldn't find a Table of Contents file. "
-                "To auto-generate one, run:"
-                f"\n\n\tjupyter-book toc create-toc {path_source}"
-            )
+        if not get_config_only:
 
-        # we don't need to read the toc here, but do so to control the error message
-        try:
-            parse_toc_yaml(toc)
-        except MalformedError as exc:
-            # TODO this command does not yet exist!
-            _error(
-                f"The Table of Contents file is Malformed: {exc}\n"
-                "You may need to migrate from the old format, using:"
-                f"\n\n\tjupyter-book toc migrate {toc}"
-            )
+            if not toc.exists():
+                _error(
+                    "Couldn't find a Table of Contents file. "
+                    "To auto-generate one, run:"
+                    f"\n\n\tjupyter-book toc create-toc {path_source}"
+                )
+
+            # we don't need to read the toc here, but do so to control the error message
+            try:
+                parse_toc_yaml(toc)
+            except MalformedError as exc:
+                _error(
+                    f"The Table of Contents file is malformed: {exc}\n"
+                    "You may need to migrate from the old format, using:"
+                    f"\n\n\tjupyter-book toc migrate {toc}"
+                )
 
         config_overrides["external_toc_path"] = toc.as_posix()
 
