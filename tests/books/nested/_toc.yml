@@ -1,3 +1,5 @@
 root: intro
+defaults:
+  titlesonly: true
 sections:
 - file: contents/markdown

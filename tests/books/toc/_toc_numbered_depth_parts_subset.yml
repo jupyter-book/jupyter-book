@@ -1,5 +1,7 @@
 root: index
 title: Toc
+defaults:
+  titlesonly: true
 parts:
 - caption: Chapter 1
   numbered: true

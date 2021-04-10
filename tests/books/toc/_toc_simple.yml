@@ -1,4 +1,6 @@
 root: index
+defaults:
+  titlesonly: true
 sections:
 - file: content1
 - file: content2

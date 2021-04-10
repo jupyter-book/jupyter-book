@@ -155,7 +155,7 @@ def build(
     get_config_only=False,
 ):
     """Convert your book's or page's content to HTML or a PDF."""
-    from sphinx_external_toc.api import MalformedError, parse_toc_yaml
+    from sphinx_external_toc.parsing import MalformedError, parse_toc_yaml
 
     from jupyter_book import __version__ as jbv
     from jupyter_book.sphinx import build_sphinx

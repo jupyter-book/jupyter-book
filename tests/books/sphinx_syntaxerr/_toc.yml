@@ -1,2 +1,4 @@
 root: index
 title: Toc
+defaults:
+  titlesonly: true

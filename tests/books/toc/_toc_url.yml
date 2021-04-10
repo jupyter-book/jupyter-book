@@ -1,5 +1,7 @@
 url: index
 title: Toc
+defaults:
+  titlesonly: true
 sections:
 - url: content1
   title: Content1

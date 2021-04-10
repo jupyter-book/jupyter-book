@@ -1,4 +1,8 @@
 root: intro
+
+defaults:
+  titlesonly: true
+
 parts:
 
 - caption: Get started

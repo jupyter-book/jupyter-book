@@ -1,5 +1,7 @@
 root: index
 title: Toc
+defaults:
+  titlesonly: true
 sections:
 - url: http://somelink.com
   title: Content1

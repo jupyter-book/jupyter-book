@@ -1,4 +1,6 @@
 root: source/index
+defaults:
+  titlesonly: true
 sections:
 - file: source/content
   sections:

@@ -77,7 +77,7 @@ setup(
         "nbconvert<6",
         'importlib_metadata; python_version < "3.7"',
         "jsonschema",
-        "sphinx-external-toc==0.1.0a3",
+        "sphinx-external-toc==0.1.0a5",
         "sphinx_togglebutton",
         "sphinx-copybutton",
         "sphinx-comments",

@@ -1,7 +1,9 @@
-defaults:
-  numbered: true
 root: index
 title: Toc
+defaults:
+  titlesonly: true
+options:
+  numbered: true
 sections:
 - file: content1
   title: Content1
