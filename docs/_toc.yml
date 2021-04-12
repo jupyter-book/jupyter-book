@@ -1,16 +1,32 @@
 - file: intro
   numbered: true
 
-- part: Get started
+- part: Tutorials
   chapters:
-  - file: start/overview
-  - file: start/build
-  - file: start/publish
+  - file: start/your-first-book
     sections:
-      - file: publish/gh-pages
-      - file: publish/netlify
-  - file: customize/config
+    - file: start/overview
+    - file: start/create
+    - file: start/build
+    - file: start/publish
+  - file: tutorials/references
+  - file: basics/questions
+
+- part: Create your book
+  chapters:
   - file: customize/toc
+  - file: basics/create
+  - file: content/index
+    sections:
+    - file: content/myst
+    - file: content/content-blocks
+    - file: content/references
+    - file: content/layout
+    - file: content/citations
+    - file: content/math
+    - file: content/figures
+    - file: content/metadata
+    - file: interactive/hiding
   - file: file-types/index
     sections:
       - file: file-types/markdown
@@ -19,43 +35,50 @@
       - file: file-types/jupytext
       - file: file-types/restructuredtext
 
-- part: Write book content
+- part: Build your book
   chapters:
-  - file: content/myst
-  - file: content/content-blocks
-  - file: content/citations
-  - file: content/math
-  - file: content/figures
-  - file: content/layout
-  - file: content/execute
-  - file: content/code-outputs
-
-
-- part: Make your book interactive
-  chapters:
-  - file: interactive/launchbuttons
-  - file: interactive/hiding
+  - file: basics/build
+  - file: execute/index
+    sections:
+    - file: content/code-outputs
+    - file: content/execute
   - file: interactive/interactive
+  - file: basics/page
+
+- part: Publish your book
+  chapters:
+  - file: publish/web
+    sections:
+    - file: publish/gh-pages
+    - file: publish/netlify
+  - file: basics/repository
+  - file: interactive/launchbuttons
   - file: interactive/comments
     sections:
     - file: interactive/comments/hypothesis
     - file: interactive/comments/utterances
 
-
-- part: Advanced and miscellaneous
-  chapters:
+  - file: advanced/html
   - file: advanced/pdf
+
+- part: Advanced usage
+  chapters:
   - file: advanced/sphinx
-  - file: advanced/advanced
-  - file: contribute/intro
+  - file: advanced/windows
+  - file: explain/sphinx
 
 - part: Reference
   chapters:
-  - url: https://executablebooks.org/en/latest/gallery.html
-    title: Gallery of Jupyter Books
+  - file: customize/config
   - file: reference/cheatsheet
   - file: reference/cli
   - file: reference/glossary
+
+- part: About Jupyter Book
+  chapters:
+  - url: https://executablebooks.org/en/latest/gallery.html
+    title: Gallery of Jupyter Books
+  - file: contribute/intro
   - file: cite
   - file: reference/_changelog
     title: Change log

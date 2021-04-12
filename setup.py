@@ -65,7 +65,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         "pyyaml",
-        "docutils>=0.15",
+        "docutils>=0.15,<0.17",
         "sphinx>=2,<4",
         "linkify-it-py~=1.0.1",
         "myst-nb~=0.12.0",
@@ -78,7 +78,7 @@ setup(
         "sphinx_togglebutton",
         "sphinx-copybutton",
         "sphinx-comments",
-        "sphinxcontrib-bibtex~=2.1.0",
+        "sphinxcontrib-bibtex~=2.2.0",
         "sphinx_book_theme>=0.0.39",
         "sphinx-thebe>=0.0.6",
         "sphinx-panels~=0.5.2",

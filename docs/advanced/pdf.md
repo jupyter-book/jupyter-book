@@ -1,4 +1,4 @@
-# PDFs for your book
+# Publish PDFs of your book
 
 It is possible to build a single PDF that contains all of your book's content. This
 page describes a couple ways to do so.
