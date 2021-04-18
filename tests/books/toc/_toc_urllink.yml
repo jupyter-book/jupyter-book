@@ -14,5 +14,5 @@ sections:
   sections:
   - file: subfolder/asubpage
     title: Asubpage
-  - url: www.jupyterbook.org/file-types/markdown.html
+  - url: https://jupyterbook.org/file-types/markdown.html
     title: Markdown pages
