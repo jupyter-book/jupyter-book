@@ -2,7 +2,7 @@
 from pathlib import Path
 
 from .toc import add_toc_to_sphinx, add_toctree
-from .directive.toc import TableofContents, SwapTableOfContents
+from .directive.toc import TableofContents, SwapTableOfContents, TableOfContentsNode
 from sphinx.util import logging
 
 
@@ -39,6 +39,15 @@ def setup(app):
     app.connect("config-inited", add_static_files)
 
     # Directives
+    app.add_node(
+        TableOfContentsNode,
+        override=True,
+        html=(None, None),
+        latex=(None, None),
+        textinfo=(None, None),
+        text=(None, None),
+        man=(None, None),
+    )
     app.add_directive("tableofcontents", TableofContents)
 
     # Transforms
