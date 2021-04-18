@@ -235,7 +235,7 @@ def build(
                 _error(
                     "Couldn't find a Table of Contents file. "
                     "To auto-generate one, run:"
-                    f"\n\n\tjupyter-book toc create-toc {path_source}"
+                    f"\n\n\tjupyter-book toc from-site {path_source}"
                 )
 
             # we don't need to read the toc here, but do so to control the error message
@@ -250,6 +250,7 @@ def build(
             # TODO could also check/warn if the format is not set to jb-article/jb-book?
 
         config_overrides["external_toc_path"] = toc.as_posix()
+        print("external_toc_path", toc.as_posix())
 
         # Builder-specific overrides
         if builder == "pdfhtml":
