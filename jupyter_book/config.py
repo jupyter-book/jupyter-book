@@ -355,13 +355,18 @@ def yaml_to_sphinx(yaml: dict):
                 add_paths.append(path)
 
     # Citations
-    if yaml.get("bibtex_bibfiles"):
+    sphinxcontrib_bibtex_configs = ["bibtex_bibfiles", "bibtex_reference_style"]
+    if any(ii in yaml for ii in sphinxcontrib_bibtex_configs):
+        # Load sphincontrib-bibtex
         if "extensions" not in sphinx_config:
             sphinx_config["extensions"] = get_default_sphinx_config()["extensions"]
-        if isinstance(yaml.get("bibtex_bibfiles"), str):
-            yaml["bibtex_bibfiles"] = [yaml["bibtex_bibfiles"]]
-        sphinx_config["bibtex_bibfiles"] = yaml["bibtex_bibfiles"]
         sphinx_config["extensions"].append("sphinxcontrib.bibtex")
+
+        # Pass through configuration
+        if yaml.get("bibtex_bibfiles"):
+            if isinstance(yaml.get("bibtex_bibfiles"), str):
+                yaml["bibtex_bibfiles"] = [yaml["bibtex_bibfiles"]]
+            sphinx_config["bibtex_bibfiles"] = yaml["bibtex_bibfiles"]
 
     # items in sphinx.config will override defaults,
     # rather than recursively updating them
