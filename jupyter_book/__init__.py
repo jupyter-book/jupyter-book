@@ -1,6 +1,8 @@
 """Build a book with Jupyter Notebooks and Sphinx."""
 from pathlib import Path
 
+from docutils import nodes
+
 from .toc import add_toc_to_sphinx, add_toctree
 from .directive.toc import TableofContents, SwapTableOfContents, TableOfContentsNode
 from sphinx.util import logging
@@ -20,6 +22,10 @@ def add_static_files(app, config):
             app.add_css_file((path_css.relative_to(path)).as_posix())
         for path_js in path.rglob("*.js"):
             app.add_js_file((path_js.relative_to(path)).as_posix())
+
+
+def skip(self, node) -> None:
+    raise nodes.SkipNode
 
 
 # We connect this function to the step after the builder is initialized
@@ -42,11 +48,11 @@ def setup(app):
     app.add_node(
         TableOfContentsNode,
         override=True,
-        html=(None, None),
-        latex=(None, None),
-        textinfo=(None, None),
-        text=(None, None),
-        man=(None, None),
+        html=(skip, None),
+        latex=(skip, None),
+        textinfo=(skip, None),
+        text=(skip, None),
+        man=(skip, None),
     )
     app.add_directive("tableofcontents", TableofContents)
 
