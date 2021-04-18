@@ -71,7 +71,6 @@ def test_pdflatex_individualpages(cli: CliRunner, temp_with_override: Path):
     assert result.exit_code == 0
     path_pdf = path_output.joinpath("_build", "latex")
     assert path_pdf.joinpath("book.pdf").exists()
-    assert path_pdf.joinpath("content.pdf").exists()
     assert path_pdf.joinpath("markdown.pdf").exists()
     assert path_pdf.joinpath("notebooks.pdf").exists()
     # removing as intro is startdoc for book
