@@ -1,5 +1,4 @@
+format: jb-article
 root: intro
-defaults:
-  titlesonly: true
 sections:
 - file: contents/markdown

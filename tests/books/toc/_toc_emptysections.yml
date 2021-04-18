@@ -1,11 +1,10 @@
+format: jb-book
 root: index
 title: Toc
-defaults:
-  titlesonly: true
 parts:
 - caption: Empty chapter
 - caption: A section
-  sections:
+  chapters:
   - file: content1
     title: Content1
   - file: subfolder/index
@@ -14,7 +13,7 @@ parts:
     - file: subfolder/asubpage
       title: Asubpage
 - caption: Another section
-  sections:
+  chapters:
   - file: content2
     title: Content2
   - file: content3

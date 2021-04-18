@@ -1,6 +1,5 @@
+format: jb-article
 root: index
-defaults:
-  titlesonly: true
 title: Toc
 sections:
 - file: content1

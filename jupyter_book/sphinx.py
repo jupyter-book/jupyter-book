@@ -2,12 +2,11 @@
 import os.path as op
 import sys
 from pathlib import Path
-from typing import Optional, Union
+from typing import Union
 
 from sphinx.application import Sphinx
 from sphinx.cmd.build import handle_exception
 from sphinx.util.docutils import docutils_namespace, patch_docutils
-from sphinx_external_toc.api import SiteMap
 
 from .config import get_final_config
 from .pdf import update_latex_documents
@@ -149,15 +148,6 @@ def build_sphinx(
                 app.config.latex_documents = latex_documents
 
             app.build(force_all, filenames)
-
-            # Write an index.html file in the root to redirect to the first page
-            # TODO when would this be required?
-            path_index = outputdir.joinpath("index.html")
-            site_map: Optional[SiteMap] = getattr(app.env, "external_site_map", None)
-            if not path_index.exists() and site_map:
-                first_page = site_map.root.docname.split(".")[0] + ".html"
-                with open(path_index, "w", encoding="utf8") as ff:
-                    ff.write(REDIRECT_TEXT.format(first_page=first_page))
 
             return app.statuscode
 

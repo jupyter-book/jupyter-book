@@ -129,12 +129,14 @@ def test_toc_rebuild(cli, build_resources):
 @pytest.mark.parametrize(
     "toc,msg",
     [
-        ("_toc_emptysections.yml", "part not a mapping containing 'sections' key"),
+        (
+            "_toc_emptysections.yml",
+            " item not a mapping containing 'chapters' key @ '/parts/0/'",
+        ),
         # sphinx-ext-toc does not enforce url titles
         # ("_toc_urlwithouttitle.yml", "`url:` link should"),
         ("_toc_url.yml", "'root' key not found"),
-        # sphinx-ext-toc does not enforce no unknown keys
-        # ("_toc_wrongkey.yml", "Unknown key in `_toc.yml`"),
+        ("_toc_wrongkey.yml", "Unknown keys found"),
     ],
 )
 def test_corrupt_toc(build_resources, cli, toc, msg):

@@ -1,10 +1,9 @@
+format: jb-book
 root: index
 title: Toc
-defaults:
-  titlesonly: true
 options:
   numbered: 1
-sections:
+chapters:
 - file: content1
   title: Content1
 - file: subfolder/index
