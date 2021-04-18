@@ -41,7 +41,6 @@ def test_build_from_template(temp_with_override, cli):
     # Create the book from the template
     book = temp_with_override / "new_book"
     _ = cli.invoke(commands.create, book.as_posix())
-    print([p.name for p in book.glob("*")])
     build_result = cli.invoke(
         commands.build, [book.as_posix(), "-n", "-W", "--keep-going"]
     )

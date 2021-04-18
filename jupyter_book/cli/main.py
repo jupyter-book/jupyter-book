@@ -250,7 +250,6 @@ def build(
             # TODO could also check/warn if the format is not set to jb-article/jb-book?
 
         config_overrides["external_toc_path"] = toc.as_posix()
-        print("external_toc_path", toc.as_posix())
 
         # Builder-specific overrides
         if builder == "pdfhtml":
