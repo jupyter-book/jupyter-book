@@ -1,4 +1,4 @@
-# Table of contents structure
+# Structure your book with the Table of Contents
 
 There are many ways in which you can control the table of contents for
 your book. Most of them involve adding syntax to your `_toc.yml` file.

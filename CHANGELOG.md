@@ -137,7 +137,7 @@ This release includes a number of new features, improvements and bug fixes. Ther
 * 👌 IMPROVE: Option to exclude every file not in the toc. ([docs](docs/customize/config.md), [#1123](https://github.com/executablebooks/jupyter-book/pull/1123), [@alex-treebeard](https://github.com/alex-treebeard))
 *  ✨ NEW: Enable the use of local Sphinx extension via _config.yml. ([docs](docs/customize/config.md), [#1102](https://github.com/executablebooks/jupyter-book/pull/1102), [@mmcky](https://github.com/mmcky))
 * ✨ NEW: Enable custom builder passthrough. This is an **advanced feature**
-  that enables the use of additional sphinx builders via jupyter-book that may be provided by an extension. ([docs](docs/advanced/advanced.md), [#1094]([#1094](https://github.com/executablebooks/jupyter-book/pull/1094)), [@mmcky](https://github.com/mmcky))
+  that enables the use of additional sphinx builders via jupyter-book that may be provided by an extension. ([docs](docs/advanced/sphinx.md), [#1094]([#1094](https://github.com/executablebooks/jupyter-book/pull/1094)), [@mmcky](https://github.com/mmcky))
 
 **HTML:**
 
@@ -251,7 +251,7 @@ Here's the headlines:
 
 Windows support
 : Continuous Integration (CI) testing is now run against Windows OS throughout the EBP stack.
-  The fixes this entailed, mean that Jupyter Book can now be run on Windows with minimal issue (see [Working on Windows](docs/advanced/advanced.md))
+  The fixes this entailed, mean that Jupyter Book can now be run on Windows with minimal issue (see [Working on Windows](docs/advanced/windows.md))
 
 Extended "Markdown friendly" syntaxes
 : MyST Markdown directives offer a high degree of extensibility, to add all the features we might need to create a scientific document.

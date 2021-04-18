@@ -59,7 +59,7 @@ A glossary of common terms used throughout Jupyter Book.
     content. Outputs are cached in a hidden folder so that they do not need to be
     included directly with your source files.
 
-[Sphinx-Book-Theme](https://github.com/executablebooks/sphinx-book-theme)
+[Sphinx Book Theme](https://github.com/executablebooks/sphinx-book-theme)
     A customized version of the
     [PyData Sphinx Theme](https://pydata-sphinx-theme.readthedocs.io/en/latest/)
     that defines the look and feel of Jupyter Book.
