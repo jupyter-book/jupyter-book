@@ -247,6 +247,7 @@ def build(
                     "You may need to migrate from the old format, using:"
                     f"\n\n\tjupyter-book toc migrate {toc}"
                 )
+            # TODO could also check/warn if the format is not set to jb-article/jb-book?
 
         config_overrides["external_toc_path"] = toc.as_posix()
 
