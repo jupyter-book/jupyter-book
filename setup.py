@@ -85,7 +85,7 @@ setup(
         "sphinx_book_theme~=0.1.0",
         "sphinx-thebe>=0.0.6",
         "sphinx-panels~=0.5.2",
-        "jupyterbook-latex~=0.2.0",
+        "jupyterbook-latex==0.2.1a1",
     ],
     extras_require=extras,
     entry_points={

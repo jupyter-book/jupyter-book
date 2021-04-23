@@ -3,8 +3,6 @@ from typing import Any, Iterable, List, Set
 
 import click
 
-# from aiida.plugins.entry_point import load_entry_point, get_entry_point_names
-
 try:
     from importlib import metadata
 except ImportError:
