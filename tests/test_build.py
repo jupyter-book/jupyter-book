@@ -131,7 +131,7 @@ def test_toc_rebuild(cli, build_resources):
     [
         (
             "_toc_emptysections.yml",
-            " item not a mapping containing 'chapters' key @ '/parts/0/'",
+            "entry not a mapping containing 'chapters' key @ '/parts/0/'",
         ),
         # sphinx-ext-toc does not enforce url titles
         # ("_toc_urlwithouttitle.yml", "`url:` link should"),
