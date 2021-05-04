@@ -83,7 +83,7 @@ setup(
         "sphinx-comments",
         "sphinxcontrib-bibtex~=2.2.0",
         "sphinx_book_theme~=0.1.0",
-        "sphinx-thebe>=0.0.6",
+        "sphinx-thebe~=0.0.8",
         "sphinx-panels~=0.5.2",
         "jupyterbook-latex==0.2.1a1",
     ],
