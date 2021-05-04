@@ -77,7 +77,7 @@ setup(
         "nbconvert<6",
         'importlib_metadata; python_version < "3.7"',
         "jsonschema",
-        "sphinx-external-toc==0.1.0a8",
+        "sphinx-external-toc~=0.1.0",
         "sphinx_togglebutton",
         "sphinx-copybutton",
         "sphinx-comments",
@@ -85,7 +85,7 @@ setup(
         "sphinx_book_theme~=0.1.0",
         "sphinx-thebe~=0.0.8",
         "sphinx-panels~=0.5.2",
-        "jupyterbook-latex==0.2.1a1",
+        "jupyterbook-latex>=0.2.1a1,<0.4",
     ],
     extras_require=extras,
     entry_points={
