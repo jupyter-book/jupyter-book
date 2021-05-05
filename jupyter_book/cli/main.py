@@ -245,7 +245,7 @@ def build(
                 _error(
                     f"The Table of Contents file is malformed: {exc}\n"
                     "You may need to migrate from the old format, using:"
-                    f"\n\n\tjupyter-book toc migrate {toc}"
+                    f"\n\n\tjupyter-book toc migrate {toc} -o {toc}"
                 )
             # TODO could also check/warn if the format is not set to jb-article/jb-book?
 
