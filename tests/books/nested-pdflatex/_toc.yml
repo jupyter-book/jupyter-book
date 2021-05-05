@@ -1,4 +1,6 @@
-- file: source/index
+format: jb-article
+root: source/index
+sections:
 - file: source/content
   sections:
   - file: source/sections/section1

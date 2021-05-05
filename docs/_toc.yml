@@ -1,6 +1,7 @@
-- file: intro
-
-- part: Tutorials
+format: jb-book
+root: intro
+parts:
+- caption: Tutorials
   chapters:
   - file: start/your-first-book
     sections:
@@ -10,8 +11,7 @@
     - file: start/publish
   - file: tutorials/references
   - file: basics/questions
-
-- part: Create your book
+- caption: Create your book
   chapters:
   - file: customize/toc
   - file: basics/create
@@ -28,13 +28,12 @@
     - file: interactive/hiding
   - file: file-types/index
     sections:
-      - file: file-types/markdown
-      - file: file-types/notebooks
-      - file: file-types/myst-notebooks
-      - file: file-types/jupytext
-      - file: file-types/restructuredtext
-
-- part: Build your book
+    - file: file-types/markdown
+    - file: file-types/notebooks
+    - file: file-types/myst-notebooks
+    - file: file-types/jupytext
+    - file: file-types/restructuredtext
+- caption: Build your book
   chapters:
   - file: basics/build
   - file: execute/index
@@ -43,8 +42,7 @@
     - file: content/execute
   - file: interactive/interactive
   - file: basics/page
-
-- part: Publish your book
+- caption: Publish your book
   chapters:
   - file: publish/web
     sections:
@@ -56,24 +54,20 @@
     sections:
     - file: interactive/comments/hypothesis
     - file: interactive/comments/utterances
-
   - file: advanced/html
   - file: advanced/pdf
-
-- part: Advanced usage
+- caption: Advanced usage
   chapters:
   - file: advanced/sphinx
   - file: advanced/windows
   - file: explain/sphinx
-
-- part: Reference
+- caption: Reference
   chapters:
   - file: customize/config
   - file: reference/cheatsheet
   - file: reference/cli
   - file: reference/glossary
-
-- part: About Jupyter Book
+- caption: About Jupyter Book
   chapters:
   - url: https://executablebooks.org/en/latest/gallery.html
     title: Gallery of Jupyter Books

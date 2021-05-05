@@ -1,5 +1,6 @@
-from setuptools import setup, find_packages
 from pathlib import Path
+
+from setuptools import find_packages, setup
 
 text = Path("./jupyter_book/__init__.py").read_text(encoding="utf8")
 for line in text.split("\n"):
@@ -34,7 +35,7 @@ test_reqs = [
 ]
 # Define all extras
 extras = {
-    "code_style": ["flake8<3.8.0,>=3.7.0", "black", "pre-commit==1.17.0"],
+    "code_style": ["pre-commit~=2.12"],
     "sphinx": doc_reqs,
     "testing": test_reqs,
     "pdfhtml": ["pyppeteer"],
@@ -71,25 +72,25 @@ setup(
         "myst-nb~=0.12.0",
         "jupytext>=1.8,<1.11",
         "click",
-        "setuptools",
         "nbformat",
         "nbconvert<6",
+        'importlib_metadata; python_version < "3.7"',
         "jsonschema",
+        "sphinx-external-toc~=0.1.0",
         "sphinx_togglebutton",
         "sphinx-copybutton",
         "sphinx-comments",
         "sphinxcontrib-bibtex~=2.2.0",
-        "sphinx_book_theme~=0.0.39",
+        "sphinx_book_theme~=0.1.0",
         "sphinx-thebe~=0.0.8",
         "sphinx-panels~=0.5.2",
-        "nested-lookup~=0.2.21",
-        "jupyterbook-latex~=0.2.0",
+        "jupyterbook-latex~=0.3.0",
     ],
     extras_require=extras,
     entry_points={
         "console_scripts": [
-            "jb = jupyter_book.commands:main",
-            "jupyter-book = jupyter_book.commands:main",
+            "jb = jupyter_book.cli.main:main",
+            "jupyter-book = jupyter_book.cli.main:main",
         ]
     },
     include_package_data=True,

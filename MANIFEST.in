@@ -13,7 +13,6 @@ recursive-exclude scripts *
 
 exclude .pre-commit-config.yaml
 exclude .readthedocs.yml
-exclude .flake8
 exclude tox.ini
 exclude codecov.yml
 exclude RELEASES.md

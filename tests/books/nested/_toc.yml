@@ -1,2 +1,4 @@
-- file: intro
+format: jb-article
+root: intro
+sections:
 - file: contents/markdown

@@ -1,12 +1,13 @@
 from pathlib import Path
 
 import pytest
+import sphinx
 from bs4 import BeautifulSoup
 from click.testing import CliRunner
 
-import sphinx
+from jupyter_book.cli import main as commands
 
-from jupyter_book import commands
+PATH_BOOKS = Path(__file__).parent.joinpath("books")
 
 
 def test_version(cli: CliRunner):
@@ -111,11 +112,12 @@ def test_toc_rebuild(cli, build_resources):
     assert tags[1].attrs["href"] == "content1.html"
     assert tags[2].attrs["href"] == "content2.html"
 
-    toc.write_text("- file: index\n- file: content2\n- file: content1\n")
+    toc = tocs / "_toc_simple_changed.yml"
     result = cli.invoke(
         commands.build,
         [tocs.as_posix(), "--toc", toc.as_posix(), "-n"],
     )
+    print(result.exception)
     assert result.exit_code == 0, result.output
     html = BeautifulSoup(index_html.read_text(encoding="utf8"), "html.parser")
     tags = html.find_all("a", "reference internal")
@@ -127,20 +129,23 @@ def test_toc_rebuild(cli, build_resources):
 @pytest.mark.parametrize(
     "toc,msg",
     [
-        ("_toc_emptysections.yml", "Found an empty section"),
-        ("_toc_urlwithouttitle.yml", "`url:` link should"),
-        ("_toc_url.yml", "Rename `url:` to `file:`"),
-        ("_toc_wrongkey.yml", "Unknown key in `_toc.yml`"),
+        (
+            "_toc_emptysections.yml",
+            "entry not a mapping containing 'chapters' key @ '/parts/0/'",
+        ),
+        # sphinx-ext-toc does not enforce url titles
+        # ("_toc_urlwithouttitle.yml", "`url:` link should"),
+        ("_toc_url.yml", "'root' key not found"),
+        ("_toc_wrongkey.yml", "Unknown keys found"),
     ],
 )
 def test_corrupt_toc(build_resources, cli, toc, msg):
     books, tocs = build_resources
-    with pytest.raises(RuntimeError):
+    with pytest.raises(RuntimeError, match=msg):
         result = cli.invoke(
             commands.build, [tocs.as_posix(), "--toc", (tocs / toc).as_posix(), "-W"]
         )
         assert result.exit_code == 1
-        assert msg in result.output
         raise result.exception
 
 
@@ -247,3 +252,43 @@ def test_build_using_custom_builder(cli, build_resources):
     assert '<h1 class="site-logo" id="site-title">TEST PROJECT NAME</h1>' in html
     assert '<link rel="stylesheet" type="text/css" href="_static/mycss.css" />' in html
     assert '<script src="_static/js/myjs.js"></script>' in html
+
+
+@pytest.mark.parametrize(
+    "toc_file",
+    (
+        "_toc_numbered.yml",  # Numbered at top-level
+        "_toc_numbered_depth.yml",  # Numbered at top-level, limited to depth 1
+        "_toc_numbered_parts.yml",  # Numbered at top-level w/ parts
+        "_toc_numbered_parts_subset.yml",  # Only some sections numbered
+        "_toc_numbered_depth_parts_subset.yml",  # Selected numbering limited to depth 1
+    ),
+)
+def test_toc_numbered(
+    toc_file: str, cli: CliRunner, temp_with_override, file_regression
+):
+    """Testing that numbers make it into the sidebar"""
+    path_output = temp_with_override.joinpath("mybook").absolute()
+    p_toc = PATH_BOOKS.joinpath("toc")
+    path_toc = p_toc.joinpath(toc_file)
+    result = cli.invoke(
+        commands.build,
+        [
+            p_toc.as_posix(),
+            "--path-output",
+            path_output.as_posix(),
+            "--toc",
+            path_toc.as_posix(),
+            "-W",
+        ],
+    )
+    assert result.exit_code == 0
+
+    path_toc_directive = path_output.joinpath("_build", "html", "index.html")
+
+    # get the tableofcontents markup
+    soup = BeautifulSoup(path_toc_directive.read_text(encoding="utf8"), "html.parser")
+    toc = soup.select("nav.bd-links")[0]
+    file_regression.check(
+        toc.prettify(), basename=toc_file.split(".")[0], extension=".html"
+    )

@@ -21,10 +21,12 @@ final:
   - jupyter_book
   - sphinx_thebe
   - sphinx_comments
+  - sphinx_external_toc
   - sphinx.ext.intersphinx
   - sphinx_panels
   - sphinx_book_theme
   - jupyterbook_latex
+  external_toc_exclude_missing: false
   html_add_permalinks: ¶
   html_baseurl: ''
   html_favicon: ''

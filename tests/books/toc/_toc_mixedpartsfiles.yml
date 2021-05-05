@@ -1,16 +1,17 @@
-- file: index
-  title: Toc
+format: jb-article
+root: index
+title: Toc
+sections:
+- file: content1
+  title: Content1
+- file: content2
+  title: Content2
+- file: content3
+  title: Content3
+- part: My chapter
   sections:
-  - file: content1
-    title: Content1
-  - file: content2
-    title: Content2
-  - file: content3
-    title: Content3
-  - part: My chapter
+  - file: subfolder/index
+    title: Subfolder
     sections:
-    - file: subfolder/index
-      title: Subfolder
-      sections:
-      - file: subfolder/asubpage
-        title: Asubpage
+    - file: subfolder/asubpage
+      title: Asubpage
