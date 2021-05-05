@@ -105,6 +105,13 @@ BUILDER_OPTS = {
     "instead error on build completion",
 )
 @click.option(
+    "-f",
+    "--fail-on-exception",
+    is_flag=True,
+    default=False,
+    help="Report a failed build if any notebooks encountered an unexpected exception.",
+)
+@click.option(
     "--all",
     "freshenv",
     is_flag=True,
@@ -147,6 +154,7 @@ def build(
     warningiserror,
     nitpick,
     keep_going,
+    fail_on_exception,
     freshenv,
     builder,
     custom_builder,
@@ -314,6 +322,7 @@ def build(
         builder=BUILDER_OPTS[builder],
         warningiserror=warningiserror,
         keep_going=keep_going,
+        fail_on_exception=fail_on_exception,
         freshenv=freshenv,
         verbosity=verbose,
         quiet=quiet > 0,

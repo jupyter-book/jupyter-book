@@ -41,6 +41,7 @@ def build_sphinx(
     verbosity=0,
     jobs=None,
     keep_going=False,
+    fail_on_exception=False,
 ) -> Union[int, Exception]:
     """Sphinx build "main" command-line entry.
 
@@ -169,6 +170,18 @@ def build_sphinx(
                 app.config.latex_documents = latex_documents
 
             app.build(force_all, filenames)
+
+            if fail_on_exception:
+                failed = [nb for nb, data in app.env.nb_execution_data.items()
+                          if not data['succeeded']]
+
+                if failed:
+                    print('\nThe following notebooks encountered unexpected exceptions.')
+                    print("Add the tag 'raises-exception' to the offending cells to ignore these "
+                          "exceptions.\n")
+                    print('\n'.join(failed))
+
+                    return len(failed)
 
             return app.statuscode
 
