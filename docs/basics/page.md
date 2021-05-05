@@ -1,5 +1,5 @@
 (publish:page)=
-# Build a standalone page
+# Build a single page
 
 Sometimes you'd like to build a single page of content rather than an entire book.
 For example, if you'd like to generate a web-friendly HTML page from a Jupyter notebook for a report or publication.

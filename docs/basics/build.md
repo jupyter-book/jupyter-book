@@ -1,4 +1,31 @@
-# Build your book
+# Build a book
+
+When you've written your book's content, it is now time to build outputs for your book so that you may share them with others.
+For example, you may wish to build HTML files to host as a static website, or a PDF to share with colleagues.
+
+## Build via the command-line
+
+The basic way to build your book is via the following command:
+
+```bash
+jupyter-book build <path-to-book>
+```
+
+In addition, you may control the kinds of outputs that are generated, and the ways in which your book conducts the build.
+The rest of the sections on this page cover some of these options.
+
+## Types of build outputs
+
+You can build a variety of outputs using Jupyter Book. To choose a different builder, use the `--builder <builder-name>` configuration when running `jupyter-book build` from the command-line. Here is a list of builders that are available to you:
+
+- `html`: HTML outputs (default)
+- `singlehtml`: A single HTML page for your book
+- `dirhtml`: HTML outputs with `<filename>/index.html` structure.
+- `pdfhtml`: Build a PDF via HTML outputs (see [](pdf:html))
+- `linkcheck`: Run the Sphinx link checker (see [](html:link-check))
+- `latex`: Build Latex files for your book
+- `pdflatex`: Build a PDF of your book via Latex (see [](pdf:latex))
+
 
 (clean-build)=
 ## Clean your book's generated files
@@ -51,16 +78,3 @@ but will still attempt to run the full build (`--keep-going`),
 so that you can see all errors in one run.
 
 You can also use `-v` or `-vvv` to increase verbosity.
-
-
-## A list of book output types
-
-You can build a variety of outputs using Jupyter Book. To choose a different builder, use the `--builder <builder-name>` configuration when running `jupyter-book build` from the command-line. Here is a list of builders that are available to you:
-
-- `html`: HTML outputs (default)
-- `singlehtml`: A single HTML page for your book
-- `dirhtml`: HTML outputs with `<filename>/index.html` structure.
-- `pdfhtml`: Build a PDF via HTML outputs (see [](pdf:html))
-- `linkcheck`: Run the Sphinx link checker (see [](html:link-check))
-- `latex`: Build Latex files for your book
-- `pdflatex`: Build a PDF of your book via Latex (see [](pdf:latex))

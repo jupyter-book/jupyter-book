@@ -1,4 +1,4 @@
-# Book content and syntax
+# Write narrative content
 
 In this section we'll cover the many ways that you can write content for your book.
 You can write book content in a variety of markup languages and file formats, and create special kinds of content for your book with MyST Markdown.

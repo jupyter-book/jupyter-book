@@ -10,7 +10,7 @@ This is a short guide to how metadata is added to various kinds of content in Ju
 You can control the behaviour of Jupyter Book by putting custom tags
 in the metadata of your cells. This allows you to do things like
 {doc}`automatically hide code cells <../interactive/hiding>` as well as
-{ref}`add interactive widgets to cells <launch/thebelab>`.
+{ref}`add interactive widgets to cells <launch/thebe>`.
 
 ### Adding tags using notebook interfaces
 
