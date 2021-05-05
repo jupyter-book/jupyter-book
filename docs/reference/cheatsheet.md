@@ -11,7 +11,7 @@ kernelspec:
 ---
 
 (myst_cheatsheet)=
-# MyST cheat sheet
+# MyST syntax cheat sheet
 
 ## Headers
 

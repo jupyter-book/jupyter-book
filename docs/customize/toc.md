@@ -1,18 +1,22 @@
-# Structure your book with the Table of Contents
+# Structure your book's pages
 
-There are many ways in which you can control the table of contents for
-your book. Most of them involve adding syntax to your `_toc.yml` file.
-
-This page covers a few common options.
+Your book's structure is determined by a **Table of Contents**.
+This is a YAML file (called `_toc.yml`) that defines a structure that Jupyter Book uses to create the order and nesting of pages.
 
 ```{note}
 The {download}`_toc.yml file for this site <../_toc.yml>` has an entry for each
 of the features described below for reference.
 ```
 
-## General TOC structure
+## Table of Contents structure
 
 The table of contents is broadly organized like so:
+
+```yaml
+format: jb-book  # Tells Jupyter Book what kind of structure to expect
+root: index  # A path to the *root page* (landing page) of your book
+
+```
 
 * The first entry of your `_toc.yml` file is the *introduction* to your book.
   It is the landing page for the HTML of your book.
