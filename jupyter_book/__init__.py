@@ -3,7 +3,7 @@ from pathlib import Path
 
 from sphinx.util import logging
 
-__version__ = "0.11.0a1"
+__version__ = "0.11.0"
 
 logger = logging.getLogger(__name__)
 
