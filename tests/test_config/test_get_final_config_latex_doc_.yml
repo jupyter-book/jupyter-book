@@ -30,6 +30,7 @@ final:
   - sphinx_panels
   - sphinx_book_theme
   - jupyterbook_latex
+  - sphinx_multitoc_numbering
   external_toc_exclude_missing: false
   html_add_permalinks: ¶
   html_baseurl: ''
@@ -76,6 +77,7 @@ final:
   suppress_warnings:
   - myst.domains
   use_jupyterbook_latex: true
+  use_multitoc_numbering: true
 metadata:
   latex_doc_overrides:
     targetname: book.tex

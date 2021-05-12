@@ -158,7 +158,8 @@ to **all chapters of your book**, add the `numbered: true` flag to
 your introduction page entry (the first entry in `_toc.yml`). For example:
 
 ```yaml
-- file: intro
+root: intro
+options:
   numbered: true
 
 - file: chapter1
@@ -169,7 +170,24 @@ your introduction page entry (the first entry in `_toc.yml`). For example:
 This will cause all chapters of the book to be
 numbered. They will follow a hierarchy according to the sub-sections structure
 defined in your `_toc.yml` file.
-You can also **limit the TOC numbering depth** by setting the `numbered` flag to an integer instead of `true`, e.g., `numbered: 3`.
+
+You can also **limit the TOC numbering depth** by setting the `numbered` flag
+to an integer instead of `true`, e.g., `numbered: 3`.
+
+```{margin}
+This is now the default behavior from `jupyter-book>=0.11`
+```
+
+By default, chapter numbering will be continuous between parts (i.e. they will not re-start each section at `1.` each time)
+using an extension called [sphinx-multitoc-numbering](https://github.com/executablebooks/sphinx-multitoc-numbering).
+
+:::{tip}
+To **restart chapter numbering between parts**, use the following setting in your `_config.yml` file:
+
+```yaml
+use_multitoc_numbering: false
+```
+:::
 
 If you'd like to number **subsets of chapters**, group them into parts and
 apply the `numbered: true` flag to the parts whose chapters you wish to be numbered.

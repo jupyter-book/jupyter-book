@@ -152,6 +152,9 @@ def get_final_config(
     if sphinx_config.get("use_jupyterbook_latex"):
         sphinx_config["extensions"].append("jupyterbook_latex")
 
+    if sphinx_config.get("use_multitoc_numbering"):
+        sphinx_config["extensions"].append("sphinx_multitoc_numbering")
+
     # finally merge in CLI configuration
     _recursive_update(sphinx_config, cli_config or {})
 
@@ -194,6 +197,7 @@ def yaml_to_sphinx(yaml: dict):
         "copyright": "copyright",
         "logo": "html_logo",
         "project": "project",
+        "use_multitoc_numbering": "use_multitoc_numbering",
     }
     for key, newkey in YAML_TRANSLATIONS.items():
         if key in yaml:

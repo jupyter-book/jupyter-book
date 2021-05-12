@@ -23,6 +23,7 @@ def add_static_files(app, config):
 def setup(app):
 
     app.add_config_value("use_jupyterbook_latex", True, "env")
+    app.add_config_value("use_multitoc_numbering", True, "env")
     # Add custom static files to the sphinx build
     app.connect("config-inited", add_static_files)
 
