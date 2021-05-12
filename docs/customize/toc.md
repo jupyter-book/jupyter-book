@@ -1,7 +1,8 @@
 # Structure your book's pages
 
 Your book's structure is determined by a **Table of Contents**.
-This is a YAML file (called `_toc.yml`) that defines a structure that Jupyter Book uses to create the order and nesting of pages.
+This is a YAML file (called `_toc.yml`) that defines a structure that Jupyter
+Book uses to create the order and nesting of pages.
 
 ```{note}
 The {download}`_toc.yml file for this site <../_toc.yml>` has an entry for each
@@ -30,7 +31,9 @@ root: index  # A path to the *root page* (landing page) of your book
   your book's content. Their paths are relative to the book's root.
 
 ```{note}
-By default, the landing page of your book will appear in the navbar, but this can be disabled in your `_config.yml` file by setting the `home_page_in_navbar` option to `false` (under the [html section](https://jupyterbook.org/customize/config.html#configuration-reference)).
+By default, the landing page of your book will appear in the navbar, but this can
+be disabled in your `_config.yml` file by setting the `home_page_in_navbar` option
+to `false` (under the [html section](https://jupyterbook.org/customize/config.html#configuration-reference)).
 ```
 
 ```{note}
@@ -40,15 +43,18 @@ Currently, it is not possible to add nested sections to your landing page (see [
 For reference, here is an example similar to this book's `_toc.yml` file:
 
 ```yaml
-- file: myintro
+format: jb-book
+root: myintro
+options:
   numbered: true
 
-- part: Get started
+parts:
+- caption: Get started
   chapters:
   - file: start/overview
   - file: start/build
 
-- part: Reference and test pages
+- caption: Reference and test pages
   chapters:
   - file: test_pages/test
     sections:
@@ -64,21 +70,33 @@ The sections below cover this information in more depth.
 The top layer of entries in your table of contents allows you to define
 **chapters** and (optionally) **parts** of your book.
 
-The first entry (`- file: myintro` above) defines the introductory page for your book.
-It is also where you can control some behavior for the entire book (in the example
-above, we set `numbered: true` to number *all* sections of the book).
+The first entry (`root: myintro` above) defines the introductory page for your book.
 
-Below the first entry you have two options for defining the structure of your book:
+The `options:` entry enables global options to be applied to all parts of the `toc`.
+
+For example,
+
+```yaml
+options:
+  numbered: true
+```
+
+enables numbering across all `parts` and `chapters`.
+
+You have two primary `format` options for defining the structure of your book:
 
 1. **A list of chapters.** You can specify each chapter with a `- file:` entry.
    Below is an example `_toc.yml` file with this structure:
 
    ```yaml
-   - file: myintro
-
+   format: jb-article
+   root: myintro
+   sections:
    - file: firstchapter
    - file: secondchapter
    ```
+
+  this uses the `jb-article` format for defining a document that contains chapters.
 
 2. **A list of parts with chapters.** If you'd like to separate chapters into groups,
    do so by using `- part:` entries in the top level of `_toc.yml`. Each part should have
@@ -87,26 +105,21 @@ Below the first entry you have two options for defining the structure of your bo
    this structure:
 
    ```yaml
-   - file: myintro
+   format: jb-book
+   root: myintro
 
-   - part: My first part
+   parts:
+   - caption: My first part
      chapters:
      - file: part1_firstchapter
      - file: part1_secondchapter
-   - part: My second part
+   - caption: My second part
      chapters:
      - file: part2_firstchapter
    ```
 
-   Note that **chapters do not continue between parts**. Think of each part as
-   a self-contained collection of chapters (e.g., for the purposes of numbering).
-
-:::{admonition} Don't mix these two structures!
-:class: warning
-When designing the top-level sections of your `_toc.yml` file, you must
-pick *either* a list of chapters via `- file:` entries, or a list of parts
-via `- part:` entries with chapters inside of them. You cannot intermix them both.
-:::
+   this uses the `jb-book` format for defining a document that contains both parts
+   and chapters.
 
 (toc/files)=
 ### Files
@@ -201,10 +214,6 @@ few quirks to it. Here are a few gotchas:
   in a file*. This means that if you have headers in a top-level section, then its
   headers will become numbered as sub-sections, and any other _files_ underneath it
   will begin as third-level children. See [](toc/structure) for more information.
-* **Numbering resets across parts**.
-  If you specify groups of sections via `- part:` entries, then numbering will restart between
-  them. That means if you have two `- part:` entries with 2 pages each, you will
-  have two sets of `1.` and `2.` sections, one for each part.
 
 (toc/structure)=
 ## How headers and sections map onto to book structure
@@ -238,8 +247,9 @@ then those sections will begin *underneath* the last headers of the parent page.
 For example, if your `_toc.yml` file looks like this:
 
 ```yaml
-- file: myintro
-
+format: jb-article
+root: myintro
+sections:
 - file: chapter1
   sections:
   - file: chapter1section
