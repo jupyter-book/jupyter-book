@@ -197,7 +197,6 @@ def yaml_to_sphinx(yaml: dict):
         "copyright": "copyright",
         "logo": "html_logo",
         "project": "project",
-        "use_multitoc_numbering": "use_multitoc_numbering",
     }
     for key, newkey in YAML_TRANSLATIONS.items():
         if key in yaml:
@@ -238,6 +237,7 @@ def yaml_to_sphinx(yaml: dict):
             ("html_favicon", "favicon"),
             ("html_baseurl", "baseurl"),
             ("comments_config", "comments"),
+            ("use_multitoc_numbering", "use_multitoc_numbering"),
         ]:
             if yml_key in html:
                 sphinx_config[spx_key] = html[yml_key]
