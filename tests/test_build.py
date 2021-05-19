@@ -268,7 +268,7 @@ def test_toc_numbered(
     toc_file: str, cli: CliRunner, temp_with_override, file_regression
 ):
     """Testing that numbers make it into the sidebar"""
-    path_output = temp_with_override.joinpath("mybook").absolute()
+    path_output = temp_with_override.joinpath("book").absolute()
     p_toc = PATH_BOOKS.joinpath("toc")
     path_toc = p_toc.joinpath(toc_file)
     result = cli.invoke(
@@ -282,7 +282,7 @@ def test_toc_numbered(
             "-W",
         ],
     )
-    assert result.exit_code == 0
+    assert result.exit_code == 0, result.output
 
     path_toc_directive = path_output.joinpath("_build", "html", "index.html")
 
@@ -308,7 +308,7 @@ def test_toc_numbered_multitoc_numbering_false(
     toc_file: str, cli: CliRunner, temp_with_override, file_regression
 ):
     """Testing use_multitoc_numbering: false"""
-    path_output = temp_with_override.joinpath("mybook").absolute()
+    path_output = temp_with_override.joinpath("book").absolute()
     p_toc = PATH_BOOKS.joinpath("toc")
     path_toc = p_toc.joinpath(toc_file)
     path_config = PATH_BOOKS.joinpath("config").joinpath(
@@ -327,7 +327,7 @@ def test_toc_numbered_multitoc_numbering_false(
             "-W",
         ],
     )
-    assert result.exit_code == 0
+    assert result.exit_code == 0, result.output
 
     path_toc_directive = path_output.joinpath("_build", "html", "index.html")
 
