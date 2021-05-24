@@ -18,7 +18,7 @@ You can use `jupyter-book` to *generate* a table of contents file from your book
 using the filenames of your book's content. To do so, run the following command
 
 ```bash
-jupyter-book toc from-site path/to/book -f [jb-book/jb-article]
+jupyter-book toc from-project path/to/book -f [jb-book/jb-article]
 ```
 
 Jupyter Book will search `mybookpath/` for any [content files](../file-types/index)
@@ -38,5 +38,5 @@ In addition, you have a few extra options for controlling how the `_toc.yml` fil
 
 ```{code-cell}
 :tags: [remove-input]
-!jupyter-book toc from-site -h
+!jupyter-book toc from-project -h
 ```
