@@ -21,7 +21,7 @@ This is useful if you wish to quickly generate empty files from a single structu
 To create your book's files from the Table of Contents, use the following command:
 
 ```bash
-jupyter-book toc to-site path/to/_toc.yml
+jupyter-book toc to-project path/to/_toc.yml
 ```
 
 This will generate a collection of files according to the structure in `_toc.yml`.
@@ -31,5 +31,5 @@ See below for reference.
 
 ```{code-cell}
 :tags: [remove-input]
-!jupyter-book toc to-site -h
+!jupyter-book toc to-project -h
 ```

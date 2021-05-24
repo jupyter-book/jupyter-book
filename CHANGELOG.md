@@ -39,13 +39,13 @@ This is primarily a documentation and under-the-hood update, but it comes with a
 - The `jupyterbook toc` command has now been converted to a collection of tools. It was originally setup to read a collection of files and then build a `_toc.yml`. The equivalent of this command is now:
 
   ```bash
-  jupyter-book toc from-site
+  jupyter-book toc from-project
   ```
 
   There is also an additional helper tool that builds a collection of files from a user written `_toc.yml` file using
 
   ```bash
-  jupyter-book toc to-site
+  jupyter-book toc to-project
   ```
 
 ## v0.10.1 2021-03-02
