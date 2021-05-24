@@ -1,12 +1,7 @@
-from pathlib import Path
-
 import pytest
 from bs4 import BeautifulSoup
-from click.testing import CliRunner
 
 from jupyter_book.cli import main as commands
-
-PATH_BOOKS = Path(__file__).parent.joinpath("books")
 
 
 @pytest.mark.parametrize(
@@ -20,31 +15,28 @@ PATH_BOOKS = Path(__file__).parent.joinpath("books")
     ),
 )
 def test_toc_numbered_multitoc_numbering_false(
-    toc_file: str, cli: CliRunner, temp_with_override, file_regression
+    toc_file, cli, build_resources, file_regression
 ):
     """Testing use_multitoc_numbering: false"""
-    path_output = temp_with_override.joinpath("book2").absolute()
-    p_toc = PATH_BOOKS.joinpath("toc")
-    path_toc = p_toc.joinpath(toc_file)
-    path_config = PATH_BOOKS.joinpath("config").joinpath(
-        "_config_sphinx_multitoc_numbering.yml"
-    )
+    books, tocs = build_resources
+    config = books.joinpath("config").joinpath("_config_sphinx_multitoc_numbering.yml")
+    toc = tocs.joinpath(toc_file)
     result = cli.invoke(
         commands.build,
         [
-            p_toc.as_posix(),
+            tocs.as_posix(),
             "--path-output",
-            path_output.as_posix(),
+            books.as_posix(),
             "--toc",
-            path_toc.as_posix(),
+            toc.as_posix(),
             "--config",
-            path_config.as_posix(),
+            config.as_posix(),
             "-W",
         ],
     )
     assert result.exit_code == 0, result.output
 
-    path_toc_directive = path_output.joinpath("_build", "html", "index.html")
+    path_toc_directive = books.joinpath("_build", "html", "index.html")
 
     # get the tableofcontents markup
     soup = BeautifulSoup(path_toc_directive.read_text(encoding="utf8"), "html.parser")

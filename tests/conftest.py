@@ -33,4 +33,5 @@ def pages(temp_with_override):
 def cli():
     """Provides a click.testing CliRunner object for invoking CLI commands."""
     runner = CliRunner()
-    return runner
+    yield runner
+    del runner
