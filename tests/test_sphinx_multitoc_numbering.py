@@ -38,7 +38,7 @@ def test_toc_numbered_multitoc_numbering_false(
     # )
     # assert result.exit_code == 0, result.output
 
-    # TODO: There is an issue when using CliRunner and building projects
+    # Issue #1339: There is an issue when using CliRunner and building projects
     # that make use of --config. The internal state of Sphinx appears to
     # be correct, but the written outputs (i.e. html) are not correct
     # suggesting some type of caching is going on.
