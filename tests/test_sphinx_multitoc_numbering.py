@@ -1,7 +1,9 @@
+import subprocess
+
 import pytest
 from bs4 import BeautifulSoup
 
-from jupyter_book.cli import main as commands
+# from jupyter_book.cli import main as commands
 
 
 @pytest.mark.parametrize(
@@ -21,9 +23,29 @@ def test_toc_numbered_multitoc_numbering_false(
     books, tocs = build_resources
     config = books.joinpath("config").joinpath("_config_sphinx_multitoc_numbering.yml")
     toc = tocs.joinpath(toc_file)
-    result = cli.invoke(
-        commands.build,
+    # result = cli.invoke(
+    #     commands.build,
+    #     [
+    #         tocs.as_posix(),
+    #         "--path-output",
+    #         books.as_posix(),
+    #         "--toc",
+    #         toc.as_posix(),
+    #         "--config",
+    #         config.as_posix(),
+    #         "-W",
+    #     ],
+    # )
+    # assert result.exit_code == 0, result.output
+
+    # TODO: There is an issue when using CliRunner and building projects
+    # that make use of --config. The internal state of Sphinx appears to
+    # be correct, but the written outputs (i.e. html) are not correct
+    # suggesting some type of caching is going on.
+    process = subprocess.Popen(
         [
+            "jb",
+            "build",
             tocs.as_posix(),
             "--path-output",
             books.as_posix(),
@@ -33,8 +55,11 @@ def test_toc_numbered_multitoc_numbering_false(
             config.as_posix(),
             "-W",
         ],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
     )
-    assert result.exit_code == 0, result.output
+    stdout, _ = process.communicate()
+    assert process.returncode == 0, stdout
 
     path_toc_directive = books.joinpath("_build", "html", "index.html")
 
