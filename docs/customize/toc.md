@@ -185,7 +185,8 @@ using an extension called [sphinx-multitoc-numbering](https://github.com/executa
 To **restart chapter numbering between parts**, use the following setting in your `_config.yml` file:
 
 ```yaml
-use_multitoc_numbering: false
+html:
+  use_multitoc_numbering: false
 ```
 :::
 
@@ -219,10 +220,6 @@ few quirks to it. Here are a few gotchas:
   in a file*. This means that if you have headers in a top-level section, then its
   headers will become numbered as sub-sections, and any other _files_ underneath it
   will begin as third-level children. See [](toc/structure) for more information.
-* **Numbering resets across parts**.
-  If you specify groups of sections via `- part:` entries, then numbering will restart between
-  them. That means if you have two `- part:` entries with 2 pages each, you will
-  have two sets of `1.` and `2.` sections, one for each part.
 
 (toc/structure)=
 ## How headers and sections map onto to book structure
