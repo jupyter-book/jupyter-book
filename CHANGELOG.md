@@ -1,5 +1,9 @@
 # Change Log
 
+## v0.11.1
+
+This release included two minor patches brought in via updates to `sphinx-external-toc` and `jupyterbook-latex`.
+
 ## v0.11.0
 
 ([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.10.2...d43216c57a2710eaeb2363f21d2b3aadf914feca)) | [GitHub contributors page for this release](https://github.com/executablebooks/jupyter-book/graphs/contributors?from=2021-04-04&to=2021-05-11&type=c)
