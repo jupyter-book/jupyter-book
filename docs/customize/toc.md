@@ -74,6 +74,7 @@ chapters:
 - url: https://example.com
   title: Example website
 - glob: subfolder/other*
+```
 
 ## Use chapter sub-sections
 
