@@ -49,6 +49,22 @@ chapters:
 
 Numbers will follow a hierarchy according to the structure defined in your `_toc.yml` file.
 
+```{margin}
+Continuous numbering is now the default behavior from `jupyter-book>=0.11.2`
+```
+
+By default, chapter numbering will be continuous between parts (i.e. they will not re-start each section at `1.` each time)
+using an extension called [sphinx-multitoc-numbering](https://github.com/executablebooks/sphinx-multitoc-numbering).
+
+:::{tip}
+To **restart chapter numbering between parts**, use the following setting in your `_config.yml` file:
+
+```yaml
+html:
+  use_multitoc_numbering: false
+```
+:::
+
 :::{admonition} Limit the depth of numbering
 If you'd like to limit the depth of numbering, use an **integer** for the `numbered` flag.
 This will be the depth of sub-sections to continue numbering.
@@ -73,7 +89,7 @@ parts:
   - file: part2/chapter1
 ```
 
-:::{admonition} A few caveats about numbering
+::::{admonition} A few caveats about numbering
 Jupyter Book relies on {term}`Sphinx` to apply section numbering, and this has a
 few quirks to it. Here are a few gotchas:
 
@@ -82,11 +98,17 @@ few quirks to it. Here are a few gotchas:
   in a file*. This means that if you have headers in a top-level section, then its
   headers will become numbered as sub-sections, and any other _files_ underneath it
   will begin as third-level children. See [](toc/structure) for more information.
+
+:::{admonition} jupyter-book <= 0.11.2
 * **Numbering resets across parts**.
   If you specify groups of sections via `- part:` entries, then numbering will restart between
   them. That means if you have two `- part:` entries with 2 pages each, you will
   have two sets of `1.` and `2.` sections, one for each part.
 :::
+
+::::
+
+
 
 ## Add a table of contents to a page's content
 
