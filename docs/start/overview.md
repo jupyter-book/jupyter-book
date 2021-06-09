@@ -87,7 +87,7 @@ Here's an example of a simple `_config.yml` file:
 ```yaml
 # in _config.yml
 title: "My book title"
-logo: images/logo.png
+logo: images/logo-wide.svg
 execute:
   execute_notebooks: "off"
 ```
