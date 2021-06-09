@@ -9,7 +9,7 @@ path_books = Path(__file__).parent.joinpath("books")
 
 def test_toc_basic(cli: CliRunner, build_resources):
     books, tocs = build_resources
-    # run(f"jb toc from-site {tocs} -f jb-article".split(), check=True)
+    # run(f"jb toc from-project {tocs} -f jb-article".split(), check=True)
     result = cli.invoke(create_toc, [tocs.as_posix()])
     assert result.exit_code == 0
     yaml.safe_load(result.output)
