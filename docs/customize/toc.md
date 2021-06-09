@@ -62,8 +62,8 @@ Here is a quick overview:
 `url:`
 : An external link to a website (starting with `http` or `https`).
   This will be inserted into your book's Table of Contents, though it will not affect your book's structure (like numbering).
-  When a `title:` entry is provided its text is used instead of the full URL.
-  
+When a `title:` entry is provided its text is used instead of the full URL.
+
 Here is an example to show all three types:
 
 ```yaml
@@ -74,7 +74,6 @@ chapters:
 - url: https://example.com
   title: Example website
 - glob: subfolder/other*
-```
 
 ## Use chapter sub-sections
 
