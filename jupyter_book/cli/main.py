@@ -235,7 +235,7 @@ def build(
                 _error(
                     "Couldn't find a Table of Contents file. "
                     "To auto-generate one, run:"
-                    f"\n\n\tjupyter-book toc from-site {path_source}"
+                    f"\n\n\tjupyter-book toc from-project {path_source}"
                 )
 
             # we don't need to read the toc here, but do so to control the error message

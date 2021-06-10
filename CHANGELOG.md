@@ -1,5 +1,57 @@
 # Change Log
 
+## v0.11.1
+
+This release included two minor patches brought in via updates to `sphinx-external-toc` and `jupyterbook-latex`.
+
+## v0.11.0
+
+([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.10.2...d43216c57a2710eaeb2363f21d2b3aadf914feca)) | [GitHub contributors page for this release](https://github.com/executablebooks/jupyter-book/graphs/contributors?from=2021-04-04&to=2021-05-11&type=c)
+
+This is primarily a documentation and under-the-hood update, but it comes with an important change to the way that **Table of Contents** are structured. See below for more information.
+
+### Breaking ‼
+
+- **Table of Contents**. The Table of Contents infrastructure is now handled by the Sphinx extension [`sphinx-external-toc`](https://github.com/executablebooks/sphinx-external-toc). This comes with a more structured format for `_toc.yaml` through the introduction of `jb-article` and `jb-book` formats. In order to convert your book's TOC to the new format, you may run the following command:
+
+  ```
+  jupyter-book toc migrate _toc.yml -o _toc.yml
+  ```
+
+  This command includes `-o` which will update your current `_toc.yml` file to work with the latest `jupyter-book` release.
+
+  See the [Table of Contents documentation](https://jupyterbook.org/customize/toc.html) for more information.
+
+### New
+
+- The `_toc.yml` file now has support to use `glob` to add files based on a pattern to the table of contents. This
+  is added using the `glob` key where you would usually specify a `file` or `url`.
+
+  ```yaml
+  root: intro
+  subtrees:
+  - entries:
+    - file: doc1
+    - url: https://example.com
+    - glob: subfolder/other*
+  ```
+
+  this matches any documents that start with `other` that are contained in `subfolder`. [Fixes [Issue #1038](https://github.com/executablebooks/jupyter-book/issues/1038)]
+
+- Input files to the `_toc.yml` no longer need to be just `ipynb`, `md`, `rst`. You can now use [custom file types](https://jupyterbook.org/file-types/jupytext.html#file-types-custom) as an input such as `py` files. (Fixes [Issue #1064](https://github.com/executablebooks/jupyter-book/issues/1064), [Issue #1175](https://github.com/executablebooks/jupyter-book/issues/1175))
+
+- The `jupyterbook toc` command has now been converted to a collection of tools. It was originally setup to read a collection of files and then build a `_toc.yml`. The equivalent of this command is now:
+
+  ```bash
+  jupyter-book toc from-project
+  ```
+
+  There is also an additional helper tool that builds a collection of files from a user written `_toc.yml` file using
+
+  ```bash
+  jupyter-book toc to-project
+  ```
+
 ## v0.10.1 2021-03-02
 
 [full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.10.0...a73538c22d6c8c7b7b198db79ada0f801d685856) | [GitHub contributors page for this release](https://github.com/executablebooks/jupyter-book/graphs/contributors?from=2021-01-30&to=2021-03-02&type=c)
