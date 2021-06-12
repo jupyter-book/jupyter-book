@@ -1,4 +1,5 @@
-file: index
+format: jb-article
+root: index
 title: Toc
 sections:
 - file: content1

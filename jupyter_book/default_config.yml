@@ -7,7 +7,7 @@
 # Book settings
 title                       : My Jupyter Book  # The title of the book. Will be placed in the left navbar.
 author                      : The Jupyter Book community  # The author of the book
-copyright                   : "2020"  # Copyright year to be placed in the footer
+copyright                   : "2021"  # Copyright year to be placed in the footer
 logo                        : ""  # A path to the book logo
 # Patterns to skip when building the book. Can be glob-style (e.g. "*skip.ipynb")
 exclude_patterns            : [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints"]
@@ -63,6 +63,7 @@ html:
 # LaTeX-specific settings
 latex:
   latex_engine              : pdflatex  # one of 'pdflatex', 'xelatex' (recommended for unicode), 'luatex', 'platex', 'uplatex'
+  use_jupyterbook_latex     : true # use jupyterbook-latex for pdf builds as default
 
 #######################################################################################
 # Launch button settings

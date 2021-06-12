@@ -2,19 +2,21 @@
 
 IMPORTANT: Top-level imports should be minimised here, to improve CLI responsiveness
 """
-from glob import glob
 import os
 import os.path as op
-from pathlib import Path
 import shutil as sh
 import subprocess
 import sys
+from glob import iglob
+from pathlib import Path
 from textwrap import dedent
 from typing import Tuple
 
 import click
 
-from ..utils import _message_box, _error
+from jupyter_book.utils import _error, _message_box
+
+from .pluggable import PluggableGroup
 
 
 def version_callback(ctx, param, value):
@@ -22,27 +24,35 @@ def version_callback(ctx, param, value):
     if not value or ctx.resilient_parsing:
         return
 
-    from .. import __version__ as jbv
-    from sphinx_book_theme import __version__ as sbtv
+    from jupyter_cache import __version__ as jcv
     from myst_nb import __version__ as mnbv
     from myst_parser import __version__ as mpv
-    from jupyter_cache import __version__ as jcv
     from nbclient import __version__ as ncv
+    from sphinx_book_theme import __version__ as sbtv
+    from sphinx_external_toc import __version__ as etoc
+
+    from jupyter_book import __version__ as jbv
 
     versions = {
         "Jupyter Book": jbv,
+        "External ToC": etoc,
+        "MyST-Parser": mpv,
         "MyST-NB": mnbv,
         "Sphinx Book Theme": sbtv,
-        "MyST-Parser": mpv,
         "Jupyter-Cache": jcv,
         "NbClient": ncv,
     }
-    versions_string = "\n".join(f"{tt}: {vv}" for tt, vv in versions.items())
+    versions_string = "\n".join(f"{tt:<18}: {vv}" for tt, vv in versions.items())
     click.echo(versions_string)
     ctx.exit()
 
 
-@click.group(context_settings={"help_option_names": ["-h", "--help"]})
+@click.group(
+    cls=PluggableGroup,
+    entry_point_group="jb.cmdline",
+    use_internal={"build", "clean", "config", "create", "myst"},
+    context_settings={"help_option_names": ["-h", "--help"]},
+)
 @click.option(
     "--version",
     is_flag=True,
@@ -145,9 +155,10 @@ def build(
     get_config_only=False,
 ):
     """Convert your book's or page's content to HTML or a PDF."""
+    from sphinx_external_toc.parsing import MalformedError, parse_toc_yaml
 
-    from .. import __version__ as jbv
-    from ..sphinx import build_sphinx
+    from jupyter_book import __version__ as jbv
+    from jupyter_book.sphinx import build_sphinx
 
     if not get_config_only:
         click.secho(f"Running Jupyter-Book v{jbv}", bold=True, fg="green")
@@ -156,6 +167,7 @@ def build(
     PATH_SRC_FOLDER = Path(path_source).absolute()
 
     config_overrides = {}
+    use_external_toc = True
     found_config = find_config_path(PATH_SRC_FOLDER)
     BUILD_PATH = path_output if path_output is not None else found_config[0]
 
@@ -175,6 +187,7 @@ def build(
     if not PATH_SRC_FOLDER.is_dir():
         # it is a single file
         build_type = "page"
+        use_external_toc = False
         subdir = None
         PATH_SRC = Path(path_source)
         PATH_SRC_FOLDER = PATH_SRC.parent.absolute()
@@ -192,10 +205,9 @@ def build(
             BUILD_PATH = Path(BUILD_PATH).joinpath("_build", "_page", PAGE_NAME)
 
         # Find all files that *aren't* the page we're building and exclude them
-        to_exclude = glob(str(PATH_SRC_FOLDER.joinpath("**", "*")), recursive=True)
         to_exclude = [
             op.relpath(ifile, PATH_SRC_FOLDER)
-            for ifile in to_exclude
+            for ifile in iglob(str(PATH_SRC_FOLDER.joinpath("**", "*")), recursive=True)
             if ifile != str(PATH_SRC.absolute())
         ]
         to_exclude.extend(["_build", "Thumbs.db", ".DS_Store", "**.ipynb_checkpoints"])
@@ -203,7 +215,6 @@ def build(
         # Now call the Sphinx commands to build
         config_overrides = {
             "master_doc": PAGE_NAME,
-            "globaltoc_path": "",
             "exclude_patterns": to_exclude,
             "html_theme_options": {"single_page": True},
             # --individualpages option set to True for page call
@@ -216,28 +227,29 @@ def build(
         BUILD_PATH = Path(BUILD_PATH).joinpath("_build")
 
         # Table of contents
-        if toc is None:
-            toc = PATH_SRC_FOLDER.joinpath("_toc.yml")
-        else:
-            toc = Path(toc)
+        toc = PATH_SRC_FOLDER.joinpath("_toc.yml") if toc is None else Path(toc)
 
-        if not toc.exists():
-            _error(
-                "Couldn't find a Table of Contents file. To auto-generate "
-                f"one, run\n\n\tjupyter-book toc {path_source}"
-            )
+        if not get_config_only:
 
-        # Check whether the table of contents has changed. If so we rebuild all
-        build_files = list(BUILD_PATH.joinpath(".doctrees").rglob("*"))
-        if toc and build_files:
-            toc_modified = toc.stat().st_mtime
+            if not toc.exists():
+                _error(
+                    "Couldn't find a Table of Contents file. "
+                    "To auto-generate one, run:"
+                    f"\n\n\tjupyter-book toc from-project {path_source}"
+                )
 
-            build_modified = max([os.stat(ii).st_mtime for ii in build_files])
+            # we don't need to read the toc here, but do so to control the error message
+            try:
+                parse_toc_yaml(toc)
+            except MalformedError as exc:
+                _error(
+                    f"The Table of Contents file is malformed: {exc}\n"
+                    "You may need to migrate from the old format, using:"
+                    f"\n\n\tjupyter-book toc migrate {toc} -o {toc}"
+                )
+            # TODO could also check/warn if the format is not set to jb-article/jb-book?
 
-            # If the toc file has been modified after the build we need to force rebuild
-            freshenv = toc_modified > build_modified
-
-        config_overrides["globaltoc_path"] = toc.as_posix()
+        config_overrides["external_toc_path"] = toc.as_posix()
 
         # Builder-specific overrides
         if builder == "pdfhtml":
@@ -288,7 +300,7 @@ def build(
     result = build_sphinx(
         PATH_SRC_FOLDER,
         OUTPUT_PATH,
-        toc,
+        use_external_toc=use_external_toc,
         noconfig=True,
         path_config=path_config,
         confoverrides=config_overrides,
@@ -330,47 +342,6 @@ def create(path_book, cookiecutter):
             )
         book = cookiecutter(cc_url, output_dir=Path(path_book))
     _message_box(f"Your book template can be found at\n\n    {book}{os.sep}")
-
-
-@main.command()
-@click.argument("path")
-@click.option(
-    "--filename_split_char",
-    default="_",
-    help="A character used to split file names for titles",
-)
-@click.option(
-    "--skip_text",
-    default=None,
-    help="If this text is found in any files or folders, they will be skipped.",
-)
-@click.option(
-    "--output-folder",
-    default=None,
-    help="A folder where the TOC will be written. Default is `path`",
-)
-@click.option(
-    "--add-titles",
-    is_flag=True,
-    help="Whether to generate page titles from file names.",
-)
-def toc(path, filename_split_char, skip_text, output_folder, add_titles):
-    """Generate a _toc.yml file for your content folder.
-    It also generates a _toc.yml file for sub-directories.
-    The alpha-numeric name of valid content files will be used to choose the
-    order of pages/sections. If any file is called "index.{extension}", it will be
-    chosen as the first file. Note that each folder must have at least one content file
-    in it.
-    """
-    from ..toc import build_toc
-
-    out_yaml = build_toc(path, filename_split_char, skip_text, add_titles)
-    if output_folder is None:
-        output_folder = path
-    output_file = Path(output_folder).joinpath("_toc.yml")
-    output_file.write_text(out_yaml, encoding="utf8")
-
-    _message_box(f"Table of Contents written to {output_file}")
 
 
 @main.command()
@@ -452,7 +423,7 @@ def myst():
 )
 def init(path, kernel):
     """Add Jupytext metadata for your markdown file(s), with optional Kernel name."""
-    from ..utils import init_myst_file
+    from jupyter_book.utils import init_myst_file
 
     for ipath in path:
         init_myst_file(ipath, kernel, verbose=True)
@@ -479,16 +450,15 @@ def config():
 @click.pass_context
 def sphinx(ctx, path_source, config, toc):
     """Generate a Sphinx conf.py representation of the build configuration."""
-    from ..config import get_final_config
+    from jupyter_book.config import get_final_config
 
-    path_config, path_src, config_overrides = ctx.invoke(
+    path_config, full_path_source, config_overrides = ctx.invoke(
         build, path_source=path_source, config=config, toc=toc, get_config_only=True
     )
 
     sphinx_config, config_meta = get_final_config(
-        Path(toc) if toc else Path(),
         user_yaml=Path(path_config) if path_config else None,
-        sourcedir=Path(path_src),
+        sourcedir=Path(full_path_source),
         cli_config=config_overrides,
     )
     lines = []
@@ -534,8 +504,8 @@ def builder_specific_actions(
 
     from sphinx.util.osutil import cd
 
-    from ..pdf import html_to_pdf
-    from ..sphinx import REDIRECT_TEXT
+    from jupyter_book.pdf import html_to_pdf
+    from jupyter_book.sphinx import REDIRECT_TEXT
 
     if isinstance(result, Exception):
         msg = (

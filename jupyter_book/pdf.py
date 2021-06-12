@@ -1,9 +1,10 @@
 """Commands to facilitate conversion to PDF."""
+import asyncio
+import os
 from copy import copy
 from pathlib import Path
-import asyncio
+
 import sphinx
-import os
 
 from .utils import _error, _message_box
 
@@ -60,7 +61,7 @@ async def _html_to_pdf(html_file, pdf_file):
     html_file = Path(html_file).resolve()
 
     # Waiting for networkidle0 seems to let mathjax render
-    await page.goto(f"file:///{html_file}", {"waitUntil": ["networkidle0"]})
+    await page.goto(f"file:///{html_file}", {"waitUntil": ["networkidle2"]})
     # Give it *some* margins to make it look a little prettier
     # I just made these up
     page_margins = {"left": "0in", "right": "0in", "top": ".5in", "bottom": ".5in"}

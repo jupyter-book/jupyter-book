@@ -1,14 +1,14 @@
-# Documentation requirements
-folium
-numpy
-matplotlib
-ipywidgets
-pandas
-nbclient
-sympy
-plotly
-bokeh
+# Copied from 'sphinx' extra of setup.cfg
 altair
+bokeh
+folium
+ipywidgets
+matplotlib
+nbclient
+numpy
+pandas
+plotly
 sphinx-click
 sphinx_inline_tabs
 sphinxext-rediraffe~=0.2.3
+sympy

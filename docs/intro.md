@@ -1,4 +1,4 @@
-# Books with Jupyter
+# Books with Jupyter <img src="images/logo-square.svg" width=40 />
 
 ```{only} html
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2561065.svg)](https://doi.org/10.5281/zenodo.2561065)

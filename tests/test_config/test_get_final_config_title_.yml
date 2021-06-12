@@ -5,7 +5,7 @@ final:
   comments_config:
     hypothesis: false
     utterances: false
-  copyright: '2020'
+  copyright: '2021'
   exclude_patterns:
   - '**.ipynb_checkpoints'
   - .DS_Store
@@ -22,9 +22,12 @@ final:
   - jupyter_book
   - sphinx_thebe
   - sphinx_comments
+  - sphinx_external_toc
   - sphinx.ext.intersphinx
   - sphinx_panels
   - sphinx_book_theme
+  - jupyterbook_latex
+  external_toc_exclude_missing: false
   html_add_permalinks: ¶
   html_baseurl: ''
   html_favicon: ''
@@ -69,6 +72,7 @@ final:
   pygments_style: sphinx
   suppress_warnings:
   - myst.domains
+  use_jupyterbook_latex: true
 metadata:
   latex_doc_overrides:
     title: hallo

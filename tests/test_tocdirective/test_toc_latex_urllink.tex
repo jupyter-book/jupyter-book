@@ -1,0 +1,46 @@
+\begin{document}
+
+\pagestyle{empty}
+\sphinxmaketitle
+\pagestyle{plain}
+\sphinxtableofcontents
+\pagestyle{normal}
+\phantomsection\label{\detokenize{index::doc}}
+
+
+\sphinxAtStartPar
+\sphinxstylestrong{Table of Contents}
+
+
+\section{Content 1}
+\label{\detokenize{content1:content-1}}\label{\detokenize{content1::doc}}
+
+\section{Content 2}
+\label{\detokenize{content2:content-2}}\label{\detokenize{content2::doc}}
+\sphinxAtStartPar
+Content body
+
+
+\section{Content 3}
+\label{\detokenize{content3:content-3}}\label{\detokenize{content3::doc}}
+\sphinxAtStartPar
+Content body
+
+
+\section{Subfolder index}
+\label{\detokenize{subfolder/index:subfolder-index}}\label{\detokenize{subfolder/index::doc}}
+\sphinxAtStartPar
+\sphinxstylestrong{Table of contents directive}
+
+
+\subsection{A subpage}
+\label{\detokenize{subfolder/asubpage:a-subpage}}\label{\detokenize{subfolder/asubpage::doc}}
+
+
+
+
+
+
+\renewcommand{\indexname}{Index}
+\printindex
+\end{document}

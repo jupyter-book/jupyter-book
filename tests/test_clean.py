@@ -3,7 +3,7 @@ import os
 
 from click.testing import CliRunner
 
-from jupyter_book.commands import build, clean
+from jupyter_book.cli.main import build, clean
 
 
 def test_clean_book(cli: CliRunner, build_resources):

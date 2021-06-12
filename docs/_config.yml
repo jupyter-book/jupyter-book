@@ -1,7 +1,7 @@
 #######################################################################################
 # Book settings
 title: ""
-logo: images/logo.png
+logo: images/logo-wide.svg
 author: The Jupyter Book Community
 email: choldgraf@berkeley.edu
 description: >- # this means to ignore newlines until "baseurl:"
@@ -9,6 +9,7 @@ description: >- # this means to ignore newlines until "baseurl:"
 
 exclude_patterns: [file-types/include-rst.rst]
 
+# Bibliography settings
 bibtex_bibfiles:
   - references.bib
 
@@ -61,6 +62,7 @@ sphinx:
       .Rmd:
         - jupytext.reads
         - fmt: Rmd
+    bibtex_reference_style: author_year  # or label, super, \supercite
     # TODO: #917 this path will be the default in sphinx v4
     # mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
     # However, it is incompatible with the mathjax config below for macros
