@@ -228,7 +228,7 @@ MyST-Parser for Markdown parsing, and MyST-NB for notebook execution and output 
 These two extensions are highly customizable *via* Sphinx configuration.
 Some of their configuration is already exposed in the `_config.yml`, but you can also directly set configuration, see:
 
-* the [MyST-Parser configuration options](myst-parser:intro/config-options)
+* the [MyST-Parser configuration options](myst-parser:sphinx/config-options)
 * the [MyST-NB configuration options](myst-nb:start/config-options)
 
 (sphinx/tex-macros)=
