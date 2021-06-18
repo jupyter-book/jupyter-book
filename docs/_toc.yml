@@ -50,7 +50,6 @@ parts:
   - file: basics/building/index
     sections:
     - file: basics/build
-    - file: basics/page
     - file: advanced/pdf
 
   - file: publish/web
