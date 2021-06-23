@@ -16,6 +16,7 @@ parts:
   - file: basics/organize
     sections:
     - file: customize/toc
+    - file: structure/configure
     - file: file-types/index
       sections:
       - file: file-types/markdown
@@ -23,10 +24,7 @@ parts:
       - file: file-types/myst-notebooks
       - file: file-types/jupytext
       - file: file-types/restructuredtext
-    - file: structure/configure
     - file: basics/create
-    - file: structure/book-generate
-    - file: structure/toc-generate
     - file: structure/sections-headers
 
   - file: content/index

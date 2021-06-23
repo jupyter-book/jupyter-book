@@ -1,3 +1,17 @@
+---
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.12
+    jupytext_version: 1.6.0
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
 # Structure the Table of Contents
 
 Your book's structure is determined by a **Table of Contents**.
@@ -17,38 +31,6 @@ To migrate your old TOC structure to the new structure, you have a few options:
   ```
 
 :::
-
-
-## Types of content entries
-
-There are several types of entries that you may provide in order to point to specific types of content.
-Here is a quick overview:
-
-`file:`
-: A path that points to a local text file, which defines the content of this entry (the chapter, section, or sub-section).
-  These paths should be relative to your `_toc.yml` file.
-
-`glob:`
-: A [glob-like pattern](https://docs.python.org/3/library/glob.html) that can be used to match against **multiple local files**.
-  Each of these files will be collected and inserted into your content, in the order that `glob` discovers them.
-
-`url:`
-: An external link to a website (starting with `http` or `https`).
-  This will be inserted into your book's Table of Contents, though it will not affect your book's structure (like numbering).
-
-  When a `title:` entry is provided its text is used instead of the full URL.
-
-Here is an example to show all three types:
-
-```yaml
-format: jb-book
-root: index
-chapters:
-- file: path/to/chapter1
-- url: https://example.com
-  title: Example website
-- glob: subfolder/other*
-```
 
 ## Structure of a Book
 
@@ -124,7 +106,7 @@ Here's a brief explanation of `parts:`
 : A list of entries, each of which defines a chapter.
   This is useful if you'd like to use different groups of chapters.
 
-(publish:page)=
+(structure/article)=
 ## Structure of an Article
 
 You can build an **article** (e.g., a single page) rather than an entire book.
@@ -171,67 +153,62 @@ sections:
 
 The primary difference is that the `jb-book` format uses `parts:` and `chapters:` syntax, while the `jb-article` format uses `sections:` syntax alone.
 
+## Types of content entries
 
-(toc/configuration-structure)=
-## Configure Table of Contents entries
+There are several types of entries that you may provide in order to point to specific types of content.
+Here is a quick overview:
 
-You may control the behavior of entries in your Table of Contents via configuration.
-This section covers how to do so.
+`file:`
+: A path that points to a local text file, which defines the content of this entry (the chapter, section, or sub-section).
+  These paths should be relative to your `_toc.yml` file.
 
-:::{seealso}
-For information about the kinds of configuration at your disposal, see [](structure/configure)
-:::
+`glob:`
+: A [glob-like pattern](https://docs.python.org/3/library/glob.html) that can be used to match against **multiple local files**.
+  Each of these files will be collected and inserted into your content, in the order that `glob` discovers them.
 
-### Configuration for all entries
+`url:`
+: An external link to a website (starting with `http` or `https`).
+  This will be inserted into your book's Table of Contents, though it will not affect your book's structure (like numbering).
 
-To configure options for all entries of your TOC, use the `defaults:` configuration at the root of your Table of Contents.
-This configuration will be applied to every list of chapters or sections within your book.
+  When a `title:` entry is provided its text is used instead of the full URL.
 
-For example:
+Here is an example to show all three types:
 
 ```yaml
 format: jb-book
 root: index
-defaults:  # The defaults key will be applied to all chapters and sub-sections
-  numbered: True
 chapters:
 - file: path/to/chapter1
-- file: path/to/chapter2
+- url: https://example.com
+  title: Example website
+- glob: subfolder/other*
 ```
 
-### Configure a single top-level set of chapters/sections
+## Generate a Table of Contents from content files
 
-If you're only using a single list of chapters, and not organizing them into parts, you can configure each with the `options:` key.
+You can use `jupyter-book` to *generate* a table of contents file from your book
+using the filenames of your book's content. To do so, run the following command
 
-For example:
-
-```yaml
-format: jb-book
-root: index
-options:  # The options key will be applied to all chapters, but not sub-sections
-  numbered: True
-chapters:
-- file: path/to/part1/chapter1
-- file: path/to/part1/chapter2
+```bash
+jupyter-book toc from-project path/to/book -f [jb-book/jb-article]
 ```
 
-### Configuring multiple parts
+Jupyter Book will search `mybookpath/` for any [content files](../file-types/index)
+and create a `_toc.yml` file out of them. There are a few considerations to keep in mind:
 
-If you are organizing your book into **parts** (groups of chapters), you can configure each set of chapters separately by providing `key: value` pairs alongside each `part` entry, like so:
+* Each sub-folder must have at least one content file inside it
+* The ordering of files in `_toc.yml` will depend on the alphanumeric order of
+  the filenames (e.g., `folder_01` comes before `folder_02`, and `apage` comes
+  before `b_page`)
+* If there is a file called `index.md` in any folder, it will be listed first.
 
-```yaml
-format: jb-book
-root: index
-parts:
-  - caption: Name of Numbered Part 1
-    numbered: True  # Only applies to chapters in Part 1.
-    chapters:
-    - file: path/to/part1/chapter1
-    - file: path/to/part1/chapter2
-  - caption: Name of Not-numbered Part 2
-    chapters:
-    - file: path/to/part2/chapter1
-    - file: path/to/part2/chapter2
+You may also **generate navigation bar *titles* from each file of your book**.
+If you do so, note that if the file name begins with `<integer>_filename.md`, then
+the `<integer>` part will be removed before it is inserted into `_toc.yml`.
+
+In addition, you have a few extra options for controlling how the `_toc.yml` file is generated.
+
+```{code-cell}
+:tags: [remove-input]
+!jupyter-book toc from-project -h
 ```
-
-In this case, the `numbered:` option would *only apply to Part 1*, and not Part 2.
