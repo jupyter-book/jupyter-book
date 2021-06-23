@@ -92,7 +92,7 @@ bibtex_bibfiles:
 
 This will activate the [`sphinxcontrib.bibtex` extension](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/)
 
-Finally, note that the default reference style is `label` which shows up as [1] in-line; it is [described in detail here](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/usage.html#referencing-style) along with other styles.
+Finally, note that the default reference style is `label` which shows up as an in-line link in the rendered HTML as [ABC21]; it is [described in detail here](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/usage.html#referencing-style) along with other styles.
 You can adjust the reference style in your book's `_config.yml` file like so:
 
 ```yaml
