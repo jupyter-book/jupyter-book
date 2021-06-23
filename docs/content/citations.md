@@ -46,13 +46,16 @@ To set your reference style, use the style option:
 
 ## Change the reference style
 
-There are a few options for your in-line citation style.
-To select one, use the following configuration in `_config.yml`.
+To set the reference style, use the `bibtex_reference_style` field in your book's `_config.yml` file.
 
 ```yaml
 # In _config.yml
-bibtex_reference_style: author_year  # or label, super, \supercite
+sphinx:
+  config:
+    bibtex_reference_style: author_year
 ```
+
+There are a few options for your in-line citation style such as `label`, `super`, `supercite`.
 
 :::{seealso}
 For a list of configuration options and more detail about this, see [the `sphinxcontrib-bibtex` docs](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/usage.html#referencing-style)
