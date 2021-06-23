@@ -55,7 +55,7 @@ sphinx:
     bibtex_reference_style: author_year
 ```
 
-There are a few options for your in-line citation style such as `label`, `super`, `supercite`.
+There are a few options for your in-line citation style such as `label`, `super`, and `author-year`.
 
 :::{seealso}
 For a list of configuration options and more detail about this, see [the `sphinxcontrib-bibtex` docs](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/usage.html#referencing-style)
