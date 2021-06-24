@@ -112,11 +112,13 @@ For `Windows` users, please install [TeX Live](https://www.tug.org/texlive/windo
 
 ### Build
 
-`jupyter-book` uses the [jupyterbook-latex](https://github.com/executablebooks/jupyterbook-latex) package
+`jupyter-book` uses the [sphinx-jupyterbook-latex](https://github.com/executablebooks/sphinx-jupyterbook-latex) package
 which handles much of the customised LaTeX infrastructure. A feature list of this package can be found
-[here](https://github.com/executablebooks/jupyterbook-latex/blob/master/docs/intro.md#feature-list). It
-enables building `pdf` files with full support for the `file` and `part/chapter`
-[structures that are defined in the _toc.yml](https://jupyterbook.org/customize/toc.html).
+[here](https://github.com/executablebooks/sphinx-jupyterbook-latex/blob/master/docs/intro.md#feature-list).
+
+This package enables building `pdf` files with full support for the `file` and `part/chapter`
+[structures that are defined in the _toc.yml](https://jupyterbook.org/customize/toc.html). This builds
+`pdf` files that are similar in structure to the `html` output.
 
 If you need to **turn off** this package, the following config is required:
 
@@ -150,10 +152,10 @@ jb build mybookname/ --builder latex
 
 :::{warning}
 The current implementation of `--individualpages` does **not** make use of the improvements
-introduced by [jupyterbook-latex](https://github.com/executablebooks/jupyterbook-latex) and
+introduced by [sphinx-jupyterbook-latex](https://github.com/executablebooks/sphinx-jupyterbook-latex) and
 uses the default `latex` writer included with Sphinx.
 We are currently working on making improvements to how `--individualpages` are constructed.
-You can track progress [here](https://github.com/executablebooks/jupyterbook-latex/issues/41)
+You can track progress [here](https://github.com/executablebooks/sphinx-jupyterbook-latex/issues/41)
 :::
 
 To build PDF files for each page of the project,

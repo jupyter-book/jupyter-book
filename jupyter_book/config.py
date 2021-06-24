@@ -150,7 +150,7 @@ def get_final_config(
     }
 
     if sphinx_config.get("use_jupyterbook_latex"):
-        sphinx_config["extensions"].append("jupyterbook_latex")
+        sphinx_config["extensions"].append("sphinx_jupyterbook_latex")
 
     if sphinx_config.get("use_multitoc_numbering"):
         sphinx_config["extensions"].append("sphinx_multitoc_numbering")

@@ -1,7 +1,7 @@
 #######################################################################################
 # Book settings
 title: ""
-logo: images/logo.png
+logo: images/logo-wide.svg
 author: The Jupyter Book Community
 email: choldgraf@berkeley.edu
 description: >- # this means to ignore newlines until "baseurl:"

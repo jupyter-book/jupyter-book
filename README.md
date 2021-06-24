@@ -1,4 +1,4 @@
-# <img src="https://raw.githubusercontent.com/executablebooks/jupyter-book/master/docs/images/logo-square.png" width=40 /> Jupyter Book
+# <img src="https://raw.githubusercontent.com/executablebooks/jupyter-book/master/docs/images/logo-square.svg" width=40 /> Jupyter Book
 
 [![CircleCI](https://circleci.com/gh/executablebooks/jupyter-book.svg?style=svg)](https://circleci.com/gh/executablebooks/jupyter-book)
 [![codecov](https://codecov.io/gh/executablebooks/jupyter-book/branch/master/graph/badge.svg)](https://codecov.io/gh/executablebooks/jupyter-book)
