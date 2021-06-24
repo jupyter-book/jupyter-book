@@ -1,13 +1,64 @@
 (structure/configure)=
-# Configuration options for the table of contents
+# Configure the Table of Contents
 
 This page covers some of the options you have available to control your book's behavior via the Table of Contents.
 
-:::{seealso}
-For an overview of the configuration structure for the Table of Contents, see [](toc/configuration-structure)
-:::
+## Configure all entries in the TOC
 
-## Add captions to parts
+To configure options for all entries of your TOC, use the `defaults:` configuration at the root of your Table of Contents.
+This configuration will be applied to every list of chapters or sections within your book.
+
+For example:
+
+```yaml
+format: jb-book
+root: index
+defaults:  # The defaults key will be applied to all chapters and sub-sections
+  numbered: True
+chapters:
+- file: path/to/chapter1
+- file: path/to/chapter2
+```
+
+## Configure a single top-level set of chapters/sections
+
+If you're only using a single list of chapters, and not organizing them into parts, you can configure each with the `options:` key.
+
+For example:
+
+```yaml
+format: jb-book
+root: index
+options:  # The options key will be applied to all chapters, but not sub-sections
+  numbered: True
+chapters:
+- file: path/to/part1/chapter1
+- file: path/to/part1/chapter2
+```
+
+## Configure an individual Part
+
+If you are organizing your book into **parts** (groups of chapters), you can configure each set of chapters separately by providing `key: value` pairs alongside each `part` entry, like so:
+
+```yaml
+format: jb-book
+root: index
+parts:
+  - caption: Name of Numbered Part 1
+    numbered: True  # Only applies to chapters in Part 1.
+    chapters:
+    - file: path/to/part1/chapter1
+    - file: path/to/part1/chapter2
+  - caption: Name of Not-numbered Part 2
+    chapters:
+    - file: path/to/part2/chapter1
+    - file: path/to/part2/chapter2
+```
+
+In this case, the `numbered:` option would *only apply to Part 1*, and not Part 2.
+
+
+## Add captions to Parts
 
 To add a caption to a Part (so that it shows up in the sidebar, for example) use the `caption:` option like so:
 
@@ -101,7 +152,7 @@ may do so by using the `{tableofcontents}` directive. You can use it like so:
 
 See the source of [the content types page](../file-types/index.md) for an example.
 
-### Control the depth of the displayed Table of Contents
+## Control the depth of the displayed Table of Contents
 
 To control the maximum depth of the Table of Contents that you insert, use the `maxdepth:` option in your `_toc.yml` file. For example:
 
