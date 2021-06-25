@@ -143,7 +143,7 @@ def build_sphinx(
             # setting up sphinx-multitoc-numbering
             if app.config["use_multitoc_numbering"]:
                 # if sphinx-external-toc is used
-                if app.config["external_toc_path"]:
+                if "external_toc_path" in app.config:
                     import yaml
 
                     site_map = app.config.external_site_map

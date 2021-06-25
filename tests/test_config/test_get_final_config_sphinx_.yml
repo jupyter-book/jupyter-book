@@ -39,7 +39,6 @@ final:
   - other
   - helloworld
   - sphinx_jupyterbook_latex
-  - sphinx_multitoc_numbering
   external_toc_exclude_missing: false
   html_add_permalinks: ¶
   html_baseurl: ''
