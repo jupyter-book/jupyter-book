@@ -6,6 +6,7 @@ from typing import Union
 
 from sphinx.application import Sphinx
 from sphinx.cmd.build import handle_exception
+from sphinx.util import logging
 from sphinx.util.docutils import docutils_namespace, patch_docutils
 
 from .config import get_final_config
@@ -16,6 +17,7 @@ REDIRECT_TEXT = """
 """
 
 ROOT = Path(__file__)
+LOGGER = logging.getLogger(__name__)
 
 
 def build_sphinx(
@@ -148,8 +150,14 @@ def build_sphinx(
                     site_map_str = yaml.dump(site_map.as_json())
 
                     # only if there is atleast one numbered: true in the toc file
-                    if site_map_str.index("numbered: true") > -1:
+                    try:
+                        site_map_str.index("numbered: true")
                         app.setup_extension("sphinx_multitoc_numbering")
+                    except ValueError:
+                        # should we have some info like this?
+                        LOGGER.info(
+                            "sphinx-multitoc-numbering is setup if toc has a 'numbered: true'"
+                        )
                 else:
                     app.setup_extension("sphinx_multitoc_numbering")
 

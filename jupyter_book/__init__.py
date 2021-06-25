@@ -1,11 +1,7 @@
 """Build a book with Jupyter Notebooks and Sphinx."""
 from pathlib import Path
 
-from sphinx.util import logging
-
 __version__ = "0.11.1"
-
-logger = logging.getLogger(__name__)
 
 
 def add_static_files(app, config):
