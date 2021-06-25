@@ -2,6 +2,7 @@ format: jb-book
 root: intro
 parts:
 - caption: Tutorials
+  numbered: true
   chapters:
   - file: start/your-first-book
     sections:
@@ -12,6 +13,7 @@ parts:
   - file: tutorials/references
   - file: basics/questions
 - caption: Topic Guides
+  numbered: True
   chapters:
   - file: basics/organize
     sections:
