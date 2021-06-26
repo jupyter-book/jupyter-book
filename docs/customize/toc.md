@@ -193,7 +193,7 @@ using the filenames of your book's content. To do so, run the following command
 jupyter-book toc from-project path/to/book -f [jb-book/jb-article]
 ```
 
-Jupyter Book will search `mybookpath/` for any [content files](../file-types/index)
+Jupyter Book will search `mybookpath/` for any [content files](../file-types/index.md)
 and create a `_toc.yml` file out of them. There are a few considerations to keep in mind:
 
 * Each sub-folder must have at least one content file inside it

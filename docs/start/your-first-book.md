@@ -17,3 +17,6 @@ See [](working-on-windows)
 :::
 
 See the sections of this tutorial to the left to get started!
+
+```{tableofcontents}
+```

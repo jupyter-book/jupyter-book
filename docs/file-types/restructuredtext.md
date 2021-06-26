@@ -1,3 +1,4 @@
+(file-types:rst)=
 # reStructuredText files
 
 In addition to writing your content in Markdown, Jupyter Book also supports

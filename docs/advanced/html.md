@@ -1,5 +1,45 @@
 # Advanced HTML outputs
 
+
+(custom-assets)=
+## Custom CSS or JavaScript
+
+If you'd like to include custom CSS rules or JavaScript scripts in your book, add them to a folder called `_static` in your book's folder.
+Any files that end in `.css` or `.js` in this folder will automatically be copied into your built book HTML and linked in the header of each page.
+
+For example, to include a custom CSS file `myfile.css` in a Jupyter Book folder with the following structure:
+
+```
+mybook/
+├── _config.yml
+├── _toc.yml
+└── page1.md
+```
+
+Add the static file here:
+
+```
+├── _config.yml
+├── _toc.yml
+├── page1.md
+└── _static
+    └── myfile.css
+```
+
+The rules should then automatically be applied to your site. In general, these
+CSS and JS files will be loaded *after* others are loaded on your page, so they
+should overwrite pre-existing rules and behaviour.
+
+### An example: justify the text
+
+If you want the text of you book to be justified instead of left aligned then create `myfile.css` under `mybook/_static` with the following CSS:
+
+```css
+p {
+    text-align: justify;
+}
+```
+
 ## Enable Google Analytics
 
 If you have a Google account, you can use Google Analytics to collect some
