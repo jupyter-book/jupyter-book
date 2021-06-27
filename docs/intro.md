@@ -12,7 +12,7 @@ Here are some of the features of Jupyter Book:
 
 :::{panels}
 :container: +full-width text-center
-:column: col-4 px-2 py-2
+:column: col-md-4 px-2 py-2
 :card:
 
 **[Publication-quality content with Markdown](file-types:markdown)** ✍
@@ -21,7 +21,7 @@ You can write in either Jupyter Markdown, or an extended flavor of Markdown with
 This includes support for rich syntax such as [citations and cross-references](content/citations), [math and equations](content/math), and [figures](content/figures).
 
 ---
-**[Write with many source files](file-types:index)** 📄
+**[Write with many kinds of source files](file-types:index)** 📄
 ^^^
 You can write your content in [Markdown files](file-types:markdown), in [Jupyter Notebooks](file-types:notebooks), [MyST Markdown Notebooks](file-types:myst-notebooks), [reStructuredText](file-types:rst), or [any Jupytext format](file-types:custom).
 
@@ -83,7 +83,7 @@ Here are a few pointers to help you get started.
 
 :::{panels}
 :container: +full-width
-:column: col-4 px-2 py-2
+:column: col-md-4 px-2 py-2
 ---
 :header: bg-jb-one
 **Get started**
