@@ -14,7 +14,7 @@ For example:
 format: jb-book
 root: index
 defaults:  # The defaults key will be applied to all chapters and sub-sections
-  numbered: True
+  titlesonly: True
 chapters:
 - file: path/to/chapter1
 - file: path/to/chapter2
@@ -91,7 +91,7 @@ To add numbers to **all chapters of your book**, add the `numbered: true` flag t
 ```yaml
 format: jb-book
 root: intro
-defaults:
+options:
   numbered: true
 chapters:
   - file: chapter1
