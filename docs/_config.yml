@@ -107,6 +107,9 @@ sphinx:
       content-types/jupytext.md: file-types/jupytext.Rmd
       content-types/restructuredtext.md: file-types/restructuredtext.md
     language: en
+    html_extra_path:
+      - images/badge.svg
+
 
   extra_extensions:
     - sphinx_click.ext

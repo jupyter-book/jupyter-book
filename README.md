@@ -1,5 +1,6 @@
 # <img src="https://raw.githubusercontent.com/executablebooks/jupyter-book/master/docs/images/logo-square.svg" width=40 /> Jupyter Book
 
+[![Jupyter Book Badge](docs/images/badge.svg)](https://jupyterbook.org)
 [![CircleCI](https://circleci.com/gh/executablebooks/jupyter-book.svg?style=svg)](https://circleci.com/gh/executablebooks/jupyter-book)
 [![codecov](https://codecov.io/gh/executablebooks/jupyter-book/branch/master/graph/badge.svg)](https://codecov.io/gh/executablebooks/jupyter-book)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2561065.svg)](https://doi.org/10.5281/zenodo.2561065)

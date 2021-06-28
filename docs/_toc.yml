@@ -65,6 +65,7 @@ parts:
       sections:
       - file: interactive/comments/hypothesis
       - file: interactive/comments/utterances
+    - file: web/badge
     - file: advanced/html
 
   - file: advanced/index
