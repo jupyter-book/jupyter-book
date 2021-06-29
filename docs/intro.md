@@ -12,18 +12,13 @@ Here are some of the features of Jupyter Book:
 
 :::{panels}
 :container: +full-width text-center
-:column: col-md-4 px-2 py-2
+:column: col-lg-6 col-xl-3 px-2 py-2
 :card:
 
-**[Publication-quality content with Markdown](file-types:markdown)** ✍
+**[Publication-quality content](file-types:markdown)** ✍
 ^^^
-You can write in either Jupyter Markdown, or an extended flavor of Markdown with [publishing features](content/myst).
-This includes support for rich syntax such as [citations and cross-references](content/citations), [math and equations](content/math), and [figures](content/figures).
-
----
-**[Write with many kinds of source files](file-types:index)** 📄
-^^^
-You can write your content in [Markdown files](file-types:markdown), in [Jupyter Notebooks](file-types:notebooks), [MyST Markdown Notebooks](file-types:myst-notebooks), [reStructuredText](file-types:rst), or [any Jupytext format](file-types:custom).
+Write in either Jupyter Markdown, MyST Markdown for more [publishing features](content/myst), [reStructuredText](file-types:rst), [Jupyter Notebooks](file-types:notebooks), or [any Jupytext format](file-types:custom).
+Includes support for rich syntax such as [citations and cross-references](content/citations), [math and equations](content/math), and [figures](content/figures).
 
 ---
 **[Execute, cache, and insert computational content](content/execute)** 🚀
@@ -35,17 +30,13 @@ Even [save notebook outputs and insert them into other pages](content:code-outpu
 ---
 **[Add interactivity to content and outputs](interactive/launchbuttons)** ✨
 ^^^
-[Toggle cell visibility](interactive/hiding), include [interactive outputs](interactive/interactive) from Jupyter, and [connect with online services](interactive/launchbuttons) like Binder.
+Create interactive such as [](content:tabs), [](content:dropdowns). [Toggle cell visibility](interactive/hiding) and include [interactive cell outputs](interactive/interactive) with Jupyter notebooks. [Launch interactive sessions](interactive/launchbuttons) with Binder or Colab, [make your code executable with Thebe](launch:thebe), or [connect with commenting services like Hypothes.is](interactive:comments).
 
 ---
 **[Build books and articles in many formats](start/build)** 🎁
 ^^^
-You can build multi-page books or single articles, and generate many kinds of outputs from them, such as [HTML websites](start/build) or [PDF outputs](advanced/pdf).
+Build [multi-page books](structure:book) or [single articles](structure:article), and generate many kinds of outputs from them, such as [HTML websites](start/build) or [PDF outputs](advanced/pdf). Jupyter Book uses [the Sphinx Documentation engine](https://sphinx-doc.org) which supports [a variety of output types](https://www.sphinx-doc.org/en/master/usage/builders/index.html).
 
----
-**[Build books with a simple command-line interface](reference/cli)** ⌨
-^^^
-You can quickly generate your books with one command, like so: `jupyter-book build mybook/`
 :::
 
 This documentation is organized into a few major sections.
@@ -83,7 +74,7 @@ Here are a few pointers to help you get started.
 
 :::{panels}
 :container: +full-width
-:column: col-md-4 px-2 py-2
+:column: col-lg-4 px-2 py-2
 ---
 :header: bg-jb-one
 **Get started**

@@ -32,6 +32,7 @@ To migrate your old TOC structure to the new structure, you have a few options:
 
 :::
 
+(structure:book)=
 ## Structure of a Book
 
 The table of contents is broadly organized like so:
@@ -106,7 +107,7 @@ Here's a brief explanation of `parts:`
 : A list of entries, each of which defines a chapter.
   This is useful if you'd like to use different groups of chapters.
 
-(structure/article)=
+(structure:article)=
 ## Structure of an Article
 
 You can build an **article** (e.g., a single page) rather than an entire book.

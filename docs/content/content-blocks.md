@@ -358,6 +358,7 @@ Body C
 ````
 `````
 
+(content:dropdowns)=
 ## Dropdowns
 
 Dropdowns allows you to hide content behind a title and a button.
