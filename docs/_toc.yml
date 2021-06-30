@@ -9,8 +9,9 @@ parts:
     - file: start/create
     - file: start/build
     - file: start/publish
+    - file: start/example-book
   - file: tutorials/references
-  - file: basics/questions
+
 - caption: Topic Guides
   chapters:
   - file: basics/organize
@@ -40,20 +41,15 @@ parts:
 
   - file: content/executable/index
     sections:
+    - file: content/execute
     - file: content/code-outputs
     - file: content/executable/output-insert
-    - file: content/execute
     - file: interactive/interactive
 
   - file: basics/building/index
     sections:
     - file: basics/build
     - file: advanced/pdf
-
-  - file: publish/web
-    sections:
-    - file: publish/gh-pages
-    - file: publish/netlify
 
   - file: web/index
     sections:
@@ -65,6 +61,10 @@ parts:
       sections:
       - file: interactive/comments/hypothesis
       - file: interactive/comments/utterances
+    - file: publish/web
+      sections:
+      - file: publish/gh-pages
+      - file: publish/netlify
     - file: advanced/html
 
   - file: advanced/index
@@ -72,6 +72,7 @@ parts:
     - file: advanced/sphinx
     - file: advanced/windows
     - file: explain/sphinx
+  - file: contribute/intro
 
 - caption: Reference
   chapters:
@@ -79,11 +80,12 @@ parts:
   - file: reference/cheatsheet
   - file: reference/cli
   - file: reference/glossary
+
 - caption: About Jupyter Book
   chapters:
   - url: https://executablebooks.org/en/latest/gallery.html
     title: Gallery of Jupyter Books
-  - file: contribute/intro
+  - file: explain/components
   - file: cite
   - file: reference/_changelog
     title: Change log

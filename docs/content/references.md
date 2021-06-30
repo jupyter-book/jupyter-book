@@ -136,8 +136,8 @@ To reference other files of book content, use the `{doc}` role, or link directly
 
 | source                                         | result                                   |
 |------------------------------------------------|------------------------------------------|
-| `` Here is {doc}`../file-types/myst-notebooks` ``               | Here is {doc}`../file-types/myst-notebooks`               |
-| `` Here is {doc}`A different page <../file-types/myst-notebooks>` `` | Here is {doc}`A different page <../file-types/myst-notebooks>`              |
+| `` Here is {doc}`../file-types/myst-notebooks.md` ``               | Here is {doc}`../file-types/myst-notebooks`               |
+| `` Here is {doc}`A different page <../file-types/myst-notebooks.md>` `` | Here is {doc}`A different page <../file-types/myst-notebooks>`              |
 | `` Here is [](../file-types/myst-notebooks.md) ``               | Here is [](../file-types/myst-notebooks.md)               |
 | `` Here is [A different page](../file-types/myst-notebooks.md) `` | Here is [A different page](../file-types/myst-notebooks.md)              |
 

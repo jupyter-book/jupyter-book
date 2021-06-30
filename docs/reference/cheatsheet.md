@@ -847,7 +847,7 @@ note = "Python syntax highlighting"
 print(note)
 ```
 
-See {doc}`../file-types/myst-notebooks` for more information.
+See [](../file-types/myst-notebooks.md) for more information.
 
 (myst_cheatsheet:code-cell:tags)=
 #### Tags
