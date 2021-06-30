@@ -12,7 +12,7 @@ Here are some of the features of Jupyter Book:
 
 :::{panels}
 :container: +full-width text-center
-:column: col-lg-6 col-xl-3 px-2 py-2
+:column: col-lg-6 px-2 py-2
 :card:
 
 **[Publication-quality content](file-types:markdown)** ✍
