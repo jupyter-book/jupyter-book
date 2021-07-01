@@ -167,6 +167,7 @@ few quirks to it. Here are a few gotchas:
   headers will become numbered as sub-sections, and any other _files_ underneath it
   will begin as third-level children. See [](toc/structure) for more information.
 
+% TODO: remove after we release v0.13
 :::{admonition} jupyter-book < 0.11.2
 * **Numbering resets across parts**.
   If you specify groups of sections via `- part:` entries, then numbering will restart between
