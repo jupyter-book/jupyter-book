@@ -12,7 +12,7 @@ kernelspec:
   name: python3
 ---
 
-(launch/thebe)=
+(launch:thebe)=
 # Make your code cells executable
 
 This section describes how to bring interactivity to your book. This lets users

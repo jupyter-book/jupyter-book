@@ -1,3 +1,4 @@
+(file-types:markdown)=
 # Markdown files
 
 You can write content in regular Markdown files (e.g., files ending in `.md`).

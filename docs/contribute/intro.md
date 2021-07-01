@@ -2,13 +2,17 @@
 
 Welcome to the `jupyter-book` repository! We're excited you're here and want to contribute. ✨
 
+:::{admonition} Be sure to check out our Code of Conduct
+The Executable Books community follows [this Code of Conduct](https://github.com/executablebooks/.github/blob/master/CODE_OF_CONDUCT.md) to ensure that our online spaces are enjoyable, inclusive, and productive for all contributors.
+:::
+
 ## Development guidelines
 
 For information about development conventions, practices, and infrastructure, please see [the `executablebooks/` development guidelines](https://github.com/executablebooks/.github/blob/master/CONTRIBUTING.md).
 
 ## Documentation guidelines
 
-The documentation of Jupyter Book is inspired by the [Divio Documentation Framework](https://documentation.divio.com/).
+The documentation of Jupyter Book is inspired by the [Diataxis Documentation Framework](https://diataxis.fr/).
 This separates documentation into four main areas:
 
 - **Tutorials** are step-by-step guides that are learning-oriented.
