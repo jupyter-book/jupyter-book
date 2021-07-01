@@ -55,11 +55,11 @@ parts:
     - file: path/to/part2/chapter2
 ```
 
-In this case, the `numbered:` option would *only apply to Part 1*, and not Part 2. If you would like numbering across your 
+In this case, the `numbered:` option would *only apply to Part 1*, and not Part 2. If you would like numbering across your
 project you will need to add `numbered: true` to all `parts`.
 
 :::{warning}
-Currently there is no global setting to enable `numbered: true` across all parts. 
+Currently there is no global setting to enable `numbered: true` across all parts.
 
 You cannot use
 
