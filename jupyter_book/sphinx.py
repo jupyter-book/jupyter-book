@@ -150,14 +150,8 @@ def build_sphinx(
                     site_map_str = yaml.dump(site_map.as_json())
 
                     # only if there is atleast one numbered: true in the toc file
-                    try:
-                        site_map_str.index("numbered: true")
+                    if "numbered: true" in site_map_str:
                         app.setup_extension("sphinx_multitoc_numbering")
-                    except ValueError:
-                        # should we have some info like this?
-                        LOGGER.info(
-                            "sphinx-multitoc-numbering is setup if toc has a 'numbered: true'"
-                        )
                 else:
                     app.setup_extension("sphinx_multitoc_numbering")
 
