@@ -55,7 +55,22 @@ parts:
     - file: path/to/part2/chapter2
 ```
 
-In this case, the `numbered:` option would *only apply to Part 1*, and not Part 2.
+In this case, the `numbered:` option would *only apply to Part 1*, and not Part 2. If you would like numbering across your 
+project you will need to add `numbered: true` to all `parts`.
+
+:::{warning}
+Currently there is no global setting to enable `numbered: true` across all parts. 
+
+You cannot use
+
+```yaml
+defaults:
+  numbered: true
+```
+
+as sphinx will issue warnings due to `numbered` flag being set for substrees. It also causes unexpected
+output.
+:::
 
 
 ## Add captions to Parts
@@ -114,6 +129,8 @@ To **restart chapter numbering between parts**, use the following setting in you
 html:
   use_multitoc_numbering: false
 ```
+
+This was the **default behaviour** prior to `jupyter-book<0.11.2`.
 :::
 
 :::{admonition} Limit the depth of numbering
