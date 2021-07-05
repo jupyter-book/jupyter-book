@@ -24,6 +24,10 @@ def test_toc_numbered_multitoc_numbering_false(
     config = books.joinpath("config").joinpath("_config_sphinx_multitoc_numbering.yml")
     toc = tocs.joinpath(toc_file)
     # TODO: commented out because of the issue described below. Uncomment when it is resolved.
+    # Issue #1339: There is an issue when using CliRunner and building projects
+    # that make use of --config. The internal state of Sphinx appears to
+    # be correct, but the written outputs (i.e. html) are not correct
+    # suggesting some type of caching is going on.
     # result = cli.invoke(
     #     commands.build,
     #     [
@@ -38,11 +42,6 @@ def test_toc_numbered_multitoc_numbering_false(
     #     ],
     # )
     # assert result.exit_code == 0, result.output
-
-    # Issue #1339: There is an issue when using CliRunner and building projects
-    # that make use of --config. The internal state of Sphinx appears to
-    # be correct, but the written outputs (i.e. html) are not correct
-    # suggesting some type of caching is going on.
     process = subprocess.Popen(
         [
             "jb",
