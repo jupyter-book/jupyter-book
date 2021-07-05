@@ -23,6 +23,7 @@ def test_toc_numbered_multitoc_numbering_false(
     books, tocs = build_resources
     config = books.joinpath("config").joinpath("_config_sphinx_multitoc_numbering.yml")
     toc = tocs.joinpath(toc_file)
+    # TODO: commented out because of the issue described below. Uncomment when it is resolved.
     # result = cli.invoke(
     #     commands.build,
     #     [
