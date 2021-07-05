@@ -14,7 +14,7 @@ For example:
 format: jb-book
 root: index
 defaults:  # The defaults key will be applied to all chapters and sub-sections
-  numbered: True
+  titlesonly: True
 chapters:
 - file: path/to/chapter1
 - file: path/to/chapter2
@@ -55,7 +55,22 @@ parts:
     - file: path/to/part2/chapter2
 ```
 
-In this case, the `numbered:` option would *only apply to Part 1*, and not Part 2.
+In this case, the `numbered:` option would *only apply to Part 1*, and not Part 2. If you would like numbering across your
+project you will need to add `numbered: true` to all `parts`.
+
+:::{warning}
+Currently there is no global setting to enable `numbered: true` across all parts.
+
+You cannot use
+
+```yaml
+defaults:
+  numbered: true
+```
+
+as sphinx will issue warnings due to `numbered` flag being set for substrees. It also causes unexpected
+output.
+:::
 
 
 ## Add captions to Parts
@@ -91,7 +106,7 @@ To add numbers to **all chapters of your book**, add the `numbered: true` flag t
 ```yaml
 format: jb-book
 root: intro
-defaults:
+options:
   numbered: true
 chapters:
   - file: chapter1
@@ -99,6 +114,24 @@ chapters:
 ```
 
 Numbers will follow a hierarchy according to the structure defined in your `_toc.yml` file.
+
+```{margin}
+Continuous numbering is now the default behavior from `jupyter-book>=0.11.2`
+```
+
+By default, chapter numbering will be continuous between parts (i.e. they will not re-start each section at `1.` each time)
+using an extension called [sphinx-multitoc-numbering](https://github.com/executablebooks/sphinx-multitoc-numbering).
+
+:::{tip}
+To **restart chapter numbering between parts**, use the following setting in your `_config.yml` file:
+
+```yaml
+html:
+  use_multitoc_numbering: false
+```
+
+This was the **default behaviour** prior to `jupyter-book<0.11.2`.
+:::
 
 :::{admonition} Limit the depth of numbering
 If you'd like to limit the depth of numbering, use an **integer** for the `numbered` flag.
@@ -124,7 +157,7 @@ parts:
   - file: part2/chapter1
 ```
 
-:::{admonition} A few caveats about numbering
+::::{admonition} A few caveats about numbering
 Jupyter Book relies on {term}`Sphinx` to apply section numbering, and this has a
 few quirks to it. Here are a few gotchas:
 
@@ -133,11 +166,18 @@ few quirks to it. Here are a few gotchas:
   in a file*. This means that if you have headers in a top-level section, then its
   headers will become numbered as sub-sections, and any other _files_ underneath it
   will begin as third-level children. See [](toc/structure) for more information.
+
+% TODO: remove after we release v0.13
+:::{admonition} jupyter-book < 0.11.2
 * **Numbering resets across parts**.
   If you specify groups of sections via `- part:` entries, then numbering will restart between
   them. That means if you have two `- part:` entries with 2 pages each, you will
   have two sets of `1.` and `2.` sections, one for each part.
 :::
+
+::::
+
+
 
 ## Add a table of contents to a page's content
 

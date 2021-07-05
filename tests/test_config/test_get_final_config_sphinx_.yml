@@ -71,6 +71,7 @@ final:
   suppress_warnings:
   - myst.domains
   use_jupyterbook_latex: true
+  use_multitoc_numbering: true
 metadata:
   latex_doc_overrides:
     title: My Jupyter Book

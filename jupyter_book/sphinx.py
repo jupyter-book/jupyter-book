@@ -6,6 +6,7 @@ from typing import Union
 
 from sphinx.application import Sphinx
 from sphinx.cmd.build import handle_exception
+from sphinx.util import logging
 from sphinx.util.docutils import docutils_namespace, patch_docutils
 
 from .config import get_final_config
@@ -16,6 +17,7 @@ REDIRECT_TEXT = """
 """
 
 ROOT = Path(__file__)
+LOGGER = logging.getLogger(__name__)
 
 
 def build_sphinx(
@@ -137,6 +139,21 @@ def build_sphinx(
                 app.config.latex_documents, config_meta["latex_doc_overrides"]
             )
             app.config.latex_documents = new_latex_documents
+
+            # setting up sphinx-multitoc-numbering
+            if app.config["use_multitoc_numbering"]:
+                # if sphinx-external-toc is used
+                if "external_toc_path" in app.config:
+                    import yaml
+
+                    site_map = app.config.external_site_map
+                    site_map_str = yaml.dump(site_map.as_json())
+
+                    # only if there is atleast one numbered: true in the toc file
+                    if "numbered: true" in site_map_str:
+                        app.setup_extension("sphinx_multitoc_numbering")
+                else:
+                    app.setup_extension("sphinx_multitoc_numbering")
 
             # Build latex_doc tuples based on --individualpages option request
             if config_meta["latex_individualpages"]:
