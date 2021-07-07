@@ -9,7 +9,7 @@ There are three ways you can quickly host your book with GitHub Pages:
 * Use the `ghp-import` tool to automatically push your built documentation to a `gh-pages` branch.
 * Use a GitHub Action to automatically build your book and update your website when you change the content.
 
-Well cover each option below.
+We'll cover each option below.
 
 ## Manually put your book's contents online
 
@@ -73,7 +73,7 @@ Make sure that you included the `-n`. This adds a file called `.nojekyll` to the
 [Jekyll](https://jekyllrb.com/).
 ```
 
-Typically after a few minutes your site should be viewable online at a url such as: `https://<user>.github.io/<myonlinebook>/`. If not, check your repository settings under **Options** -> **GitHub Pages** to ensure that the `gh-pages` branch is configured as the build source for GitHub Pages and/or to find the url address GitHub is building for you.
+Typically after a few minutes your site should be viewable online at a url such as: `https://<user>.github.io/<myonlinebook>/`. If not, check your repository settings under **Pages** to ensure that the `gh-pages` branch is configured as the build source for GitHub Pages and/or to find the url address GitHub is building for you.
 
 To update your online book, make changes to your book's content on the `main` branch of your repository, re-build your book with `jupyter-book build mybookname/` and then use `ghp-import -n -p -f mylocalbook/_build/html` as before to push the newly built HTML to the `gh-pages` branch.
 
