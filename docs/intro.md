@@ -30,7 +30,7 @@ Even [save notebook outputs and insert them into other pages](content:code-outpu
 ---
 **[Add interactivity to content and outputs](interactive/launchbuttons)** ✨
 ^^^
-Create interactive such as [](content:tabs), [](content:dropdowns). [Toggle cell visibility](interactive/hiding) and include [interactive cell outputs](interactive/interactive) with Jupyter notebooks. [Launch interactive sessions](interactive/launchbuttons) with Binder or Colab, [make your code executable with Thebe](launch:thebe), or [connect with commenting services like Hypothes.is](interactive:comments).
+Create interactive content blocks such as [](content:tabs), [](content:dropdowns). [Toggle cell visibility](interactive/hiding) and include [interactive cell outputs](interactive/interactive) with Jupyter notebooks. [Launch interactive sessions](interactive/launchbuttons) with Binder or Colab, [make your code executable with Thebe](launch:thebe), or [connect with commenting services like Hypothes.is](interactive:comments).
 
 ---
 **[Build books and articles in many formats](start/build)** 🎁
