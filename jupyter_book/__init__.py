@@ -1,7 +1,7 @@
 """Build a book with Jupyter Notebooks and Sphinx."""
 from pathlib import Path
 
-__version__ = "0.11.1"
+__version__ = "0.11.2"
 
 
 def add_static_files(app, config):
