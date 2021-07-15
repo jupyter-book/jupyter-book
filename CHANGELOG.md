@@ -14,12 +14,6 @@ This release introduces [sphinx-multitoc-numbering](https://github.com/executabl
 - [pdflatex] UPGRADE: Upgrade to `sphinx-jupyterbook-latex==0.4.2` which enables support for the `tableofcontents` directives and improvements
   to `pdf` compilation via `LaTeX`.
 
-### Docs and Maintenance
-
-Various updates to the docs have been made since `v0.11.1`. Many thanks to @choldgraf, @ria-rivera, @fortierq, @lexnederbragt
-
-- MAINT: Removing unnecesary dependencies [[PR #1375](https://github.com/executablebooks/jupyter-book/pull/1375)]
-- MAINT: Switched from `jupyterbook-latex` to `sphinx-jupyterbook-latex` package for LaTeX support [[PR #1340](https://github.com/executablebooks/jupyter-book/pull/1340)]
 
 ## v0.11.1
 
