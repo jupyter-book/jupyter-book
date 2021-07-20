@@ -157,7 +157,7 @@ add the following tag to your cell:
 ```json
 {
     "tags": [
-        "hide-output",
+        "hide-output"
     ]
 }
 ```
@@ -179,7 +179,7 @@ tag to the cell metadata, like so:
 ```json
 {
     "tags": [
-        "hide-cell",
+        "hide-cell"
     ]
 }
 ```
@@ -230,7 +230,7 @@ of a cell with `remove-output`:
 ```json
 {
     "tags": [
-        "remove-output",
+        "remove-output"
     ]
 }
 ```
@@ -249,7 +249,7 @@ of the cell. Here's an example of cell metadata that would trigger the "remove c
 ```json
 {
     "tags": [
-        "remove-cell",
+        "remove-cell"
     ]
 }
 ```

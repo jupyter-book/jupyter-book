@@ -1,3 +1,4 @@
+(file-types:index)=
 # Types of content source files
 
 Jupyter Book supports many kinds of source files for your book's content.

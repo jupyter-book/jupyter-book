@@ -9,6 +9,7 @@ kernelspec:
   name: python3
 ---
 
+(file-types:myst-notebooks)=
 # Notebooks written entirely in Markdown
 
 It is possible to store Jupyter notebooks in plain Markdown. This allows you

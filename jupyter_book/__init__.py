@@ -1,11 +1,7 @@
 """Build a book with Jupyter Notebooks and Sphinx."""
 from pathlib import Path
 
-from sphinx.util import logging
-
-__version__ = "0.11.1"
-
-logger = logging.getLogger(__name__)
+__version__ = "0.11.2"
 
 
 def add_static_files(app, config):
@@ -23,6 +19,7 @@ def add_static_files(app, config):
 def setup(app):
 
     app.add_config_value("use_jupyterbook_latex", True, "env")
+    app.add_config_value("use_multitoc_numbering", True, "env")
     # Add custom static files to the sphinx build
     app.connect("config-inited", add_static_files)
 

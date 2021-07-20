@@ -234,6 +234,7 @@ def yaml_to_sphinx(yaml: dict):
             ("html_favicon", "favicon"),
             ("html_baseurl", "baseurl"),
             ("comments_config", "comments"),
+            ("use_multitoc_numbering", "use_multitoc_numbering"),
         ]:
             if yml_key in html:
                 sphinx_config[spx_key] = html[yml_key]
