@@ -61,6 +61,7 @@ parts:
       sections:
       - file: interactive/comments/hypothesis
       - file: interactive/comments/utterances
+    - file: web/badge
     - file: publish/web
       sections:
       - file: publish/gh-pages
