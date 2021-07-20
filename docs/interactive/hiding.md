@@ -116,7 +116,7 @@ the element will be displayed.
 
 ### Hide cell inputs
 
-If you add the tag `hide-input` to a cell, then Jupyter Book will hide the cell but
+If you add the tag `hide_input` to a cell, then Jupyter Book will hide the cell but
 display the outputs.
 
 Here's an example of cell metadata that would trigger the "hide code" behavior:
@@ -124,15 +124,15 @@ Here's an example of cell metadata that would trigger the "hide code" behavior:
 ```json
 {
     "tags": [
-        "hide-input",
+        "hide_input",
     ]
 }
 ```
 
-For example, notice the cell below contains the `hide-input` tag:
+For example, notice the cell below contains the `hide_input` tag:
 
 ```{code-cell} ipython3
-:tags: [hide-input]
+:tags: [hide_input]
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -157,13 +157,13 @@ add the following tag to your cell:
 ```json
 {
     "tags": [
-        "hide-output"
+        "hide_output"
     ]
 }
 ```
 
 ```{code-cell} ipython3
-:tags: [hide-output]
+:tags: [hide_output]
 
 # This cell should have its output hidden!
 data = np.random.randn(2, 100)
@@ -179,13 +179,13 @@ tag to the cell metadata, like so:
 ```json
 {
     "tags": [
-        "hide-cell"
+        "hide_cell"
     ]
 }
 ```
 
 ```{code-cell} ipython3
-:tags: [hide-cell]
+:tags: [hide_cell]
 
 # This cell should have its output hidden!
 data = np.random.randn(2, 100)
@@ -199,18 +199,18 @@ ax.scatter(*data, c=data[1], s=100*np.abs(data[0]));
 In the above examples, we are only *hiding* parts of the cell, with the option
 that readers can reveal them if they wish. However, if you'd like to completely **remove**
 the respective parts, so that their contents do not make it into the book's HTML, you may
-use the appropriate `remove-` tags, i.e. `remove-input`, `remove-output` and `remove-cell`.
+use the appropriate `remove_` tags, i.e. `remove_input`, `remove_output` and `remove_cell`.
 
 +++
 
 ### Remove cell inputs
 
-The following cell has its inputs removed with `remove-input`. Note that in
+The following cell has its inputs removed with `remove_input`. Note that in
 this case, there is no button available to show the input contents,
 the entire input cell is gone!
 
 ```{code-cell} ipython3
-:tags: [remove-input]
+:tags: [remove_input]
 
 # For example, this cell's inputs will be removed
 import numpy as np
@@ -225,12 +225,12 @@ ax.scatter(*data, c=data[1], s=100*np.abs(data[0]));
 ### Remove cell outputs
 
 Similar to hiding inputs, it is also possible to hide the outputs
-of a cell with `remove-output`:
+of a cell with `remove_output`:
 
 ```json
 {
     "tags": [
-        "remove-output"
+        "remove_output"
     ]
 }
 ```
@@ -243,25 +243,25 @@ You can also remove **both** the inputs and outputs of a cell, in which case it
 won't show up in your book at all. These cells remain in the notebook file itself,
 so they'll show up if readers click on a {term}`JupyterHub` or {term}`Binder` link from a page.
 
-To remove both the inputs and outputs of a cell, add the tag `remove-cell` to the tags
+To remove both the inputs and outputs of a cell, add the tag `remove_cell` to the tags
 of the cell. Here's an example of cell metadata that would trigger the "remove cell" behavior:
 
 ```json
 {
     "tags": [
-        "remove-cell"
+        "remove_cell"
     ]
 }
 ```
 
 These cells will be entirely removed from each book page - remember that if you'd like to
-optionally display the inputs of a cell instead, you should use the `hide-input` tag.
+optionally display the inputs of a cell instead, you should use the `hide_input` tag.
 
 For example, there's a cell below this text that won't make it into the final book,
 because it has been removed!
 
 ```{code-cell} ipython3
-:tags: [remove-cell]
+:tags: [remove_cell]
 
 # For example, this entire cell (input and output) will be removed
 import numpy as np
