@@ -109,9 +109,9 @@ Here are a few pointers to help you get started.
 
 Jupyter Book is supported by an [open community of contributors](https://github.com/executablebooks/jupyter-book/graphs/contributors), many of whom come from [the Executable Books Community](https://executablebooks.org) and [the Jupyter community](https://jupyter.org/community).
 
-:::{image} https://pbs.twimg.com/profile_images/1226944724365447169/MzFpwY5P_400x400.png
+:::{image} https://sloan.org/storage/app/media/uploaded-files/Logo-1B-SMALL-Gold-Blue.png
 :class: float-left mr-2 rounded
-:width: 100px
+:width: 150px
 :::
 
 Many thanks to the Sloan Foundation, which [provides support for the Executable Books Project](https://sloan.org/grant-detail/9231).
