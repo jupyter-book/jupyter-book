@@ -69,6 +69,7 @@ def main():
 BUILDER_OPTS = {
     "html": "html",
     "dirhtml": "dirhtml",
+    "singlehtml": "singlehtml",
     "pdfhtml": "singlehtml",
     "latex": "latex",
     "pdflatex": "latex",
