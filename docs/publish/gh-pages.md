@@ -113,6 +113,12 @@ an action that does the following things:
 For reference, [here is a sample repository](https://github.com/executablebooks/github-action-demo)
 that builds a book with GitHub Actions.
 
+````{margin}
+```{note}
+Make sure you use Jupyter Book >= `0.7.0`.
+```
+````
+
 :::{tip}
 You can use the [Jupyter Book cookiecutter](https://github.com/executablebooks/cookiecutter-jupyter-book) to quickly create a book template that already includes the GitHub Actions workflow file needed to automatically deploy your book to GitHub Pages:
 
