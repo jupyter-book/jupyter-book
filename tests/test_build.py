@@ -63,6 +63,7 @@ def test_build_dirhtml_from_template(temp_with_override, cli):
     assert html.joinpath("index.html").exists()
     assert html.joinpath("intro", "index.html").exists()
 
+
 def test_build_singlehtml_from_template(temp_with_override, cli):
     """Test building the book template with singlehtml."""
     # Create the book from the template
@@ -75,6 +76,7 @@ def test_build_singlehtml_from_template(temp_with_override, cli):
     html = book.joinpath("_build", "singlehtml")
     assert html.joinpath("index.html").exists()
     assert html.joinpath("intro.html").exists()
+
 
 def test_custom_config(cli, build_resources):
     """Test a variety of custom configuration values."""
