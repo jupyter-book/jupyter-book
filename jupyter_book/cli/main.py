@@ -475,7 +475,7 @@ def sphinx(ctx, path_source, config, toc):
     click.secho(f"Wrote conf.py to {out_folder}", fg="green")
     if not existed:
         # indicate to pre-commit that the file changed
-        sys.exit(1)
+        sys.exit(2)
 
 
 # utility functions
