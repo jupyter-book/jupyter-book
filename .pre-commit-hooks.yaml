@@ -1,0 +1,10 @@
+- id: jb-to-sphinx
+  name: JB config to Sphinx
+  description: Convert Jupyter Book config to Sphinx format
+  minimum_pre_commit_version: '1.0.0'
+  language: python
+  language_version: python3
+  types: [file]
+  entry: jupyter-book config sphinx
+  args: ["docs"]
+  pass_filenames: false
