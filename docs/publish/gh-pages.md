@@ -116,6 +116,7 @@ that builds a book with GitHub Actions.
 ````{margin}
 ```{note}
 Make sure you use Jupyter Book >= `0.7.0`.
+To use the latest version, run `pip install -U jupyter-book`.
 ```
 ````
 
