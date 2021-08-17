@@ -1,4 +1,4 @@
-# Jupyter Book for developers
+# Developer workflows
 
 ## API reference from docstrings
 
