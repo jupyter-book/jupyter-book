@@ -1,0 +1,99 @@
+\begin{document}
+
+\pagestyle{empty}
+\sphinxmaketitle
+\pagestyle{plain}
+\sphinxtableofcontents
+\pagestyle{normal}
+\phantomsection\label{\detokenize{index::doc}}
+
+
+\sphinxAtStartPar
+\sphinxstylestrong{Table of Contents}
+\begin{itemize}
+\item{} 
+\sphinxAtStartPar
+A section
+
+\begin{itemize}
+\item{} 
+\sphinxAtStartPar{\hyperref[\detokenize{subfolder/index::doc}]{\sphinxcrossref{Subfolder}}}
+\begin{itemize}
+\item{} 
+\sphinxAtStartPar{\hyperref[\detokenize{subfolder/asubpage1::doc}]{\sphinxcrossref{Asubpage 1}}}
+
+\end{itemize}
+
+\end{itemize}
+\end{itemize}
+\begin{itemize}
+\item{} 
+\sphinxAtStartPar
+Another section
+
+\begin{itemize}
+\item{} 
+\sphinxAtStartPar{\hyperref[\detokenize{content1::doc}]{\sphinxcrossref{Content1}}}
+
+\item{} 
+\sphinxAtStartPar{\hyperref[\detokenize{content2::doc}]{\sphinxcrossref{Content2}}}
+
+\item{} 
+\sphinxAtStartPar{\hyperref[\detokenize{content3::doc}]{\sphinxcrossref{Content3}}}
+
+\end{itemize}
+\end{itemize}
+
+
+\part{A section}
+
+
+\chapter{Subfolder index}
+\label{\detokenize{subfolder/index:subfolder-index}}\label{\detokenize{subfolder/index::doc}}
+\sphinxAtStartPar
+\sphinxstylestrong{Table of contents directive}
+\begin{itemize}
+\item{} 
+\sphinxAtStartPar{\hyperref[\detokenize{subfolder/asubpage1::doc}]{\sphinxcrossref{Asubpage 1}}}
+
+\end{itemize}
+
+
+\section{A subpage 1}
+\label{\detokenize{subfolder/asubpage1:a-subpage-1}}\label{\detokenize{subfolder/asubpage1::doc}}
+
+\part{Another section}
+
+
+\chapter{Content 1}
+\label{\detokenize{content1:content-1}}\label{\detokenize{content1::doc}}
+
+\section{A subpage 2}
+\label{\detokenize{subfolder/asubpage2:a-subpage-2}}\label{\detokenize{subfolder/asubpage2::doc}}
+
+\chapter{Content 2}
+\label{\detokenize{content2:content-2}}\label{\detokenize{content2::doc}}
+\sphinxAtStartPar
+Content body
+
+
+\section{A subpage 3}
+\label{\detokenize{subfolder/asubpage3:a-subpage-3}}\label{\detokenize{subfolder/asubpage3::doc}}
+
+\chapter{Content 3}
+\label{\detokenize{content3:content-3}}\label{\detokenize{content3::doc}}
+\sphinxAtStartPar
+Content body
+
+
+\section{A subpage 4}
+\label{\detokenize{subfolder/asubpage4:a-subpage-4}}\label{\detokenize{subfolder/asubpage4::doc}}
+
+
+
+
+
+
+\renewcommand{\indexname}{Index}
+\printindex
+\end{document}

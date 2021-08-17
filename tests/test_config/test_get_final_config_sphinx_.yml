@@ -8,12 +8,14 @@ _user_config:
       new: value
     extra_extensions:
     - other
+    local_extensions:
+      helloworld: ./ext
 final:
   author: The Jupyter Book community
   comments_config:
     hypothesis: false
     utterances: false
-  copyright: '2020'
+  copyright: '2021'
   exclude_patterns:
   - '**.ipynb_checkpoints'
   - .DS_Store
@@ -28,12 +30,16 @@ final:
   - sphinx_copybutton
   - myst_nb
   - jupyter_book
-  - sphinxcontrib.bibtex
   - sphinx_thebe
   - sphinx_comments
+  - sphinx_external_toc
   - sphinx.ext.intersphinx
   - sphinx_panels
+  - sphinx_book_theme
   - other
+  - helloworld
+  - sphinx_jupyterbook_latex
+  external_toc_exclude_missing: false
   html_add_permalinks: ¶
   html_baseurl: ''
   html_favicon: ''
@@ -48,6 +54,11 @@ final:
   jupyter_execute_notebooks: auto
   language: null
   latex_engine: pdflatex
+  myst_enable_extensions:
+  - colon_fence
+  - dollarmath
+  - linkify
+  - substitution
   myst_url_schemes:
   - mailto
   - http
@@ -55,8 +66,13 @@ final:
   nb_output_stderr: show
   new: value
   numfig: true
-  panels_add_boostrap_css: false
+  panels_add_bootstrap_css: false
   pygments_style: sphinx
+  suppress_warnings:
+  - myst.domains
+  use_jupyterbook_latex: true
+  use_multitoc_numbering: true
 metadata:
   latex_doc_overrides:
     title: My Jupyter Book
+  latex_individualpages: false

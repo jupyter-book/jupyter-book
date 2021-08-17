@@ -1,169 +1,117 @@
-# Books with Jupyter
+# Books with Jupyter <img src="images/logo-square.svg" width=40 />
+
+```{only} html
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2561065.svg)](https://doi.org/10.5281/zenodo.2561065)
+[![Jupyter Book Badge](images/badge.svg)](https://jupyterbook.org)
+```
 
 Jupyter Book is an open source project for building beautiful,
 publication-quality books and documents from computational material.
 
 Here are some of the features of Jupyter Book:
 
-{fa}`check,text-success mr-1` [Write publication-quality content in markdown](file-types/markdown)
-: You can write in either Jupyter markdown, or an extended flavor of markdown with [publishing features](content/myst).
-  This includes support for rich syntax such as [citations and cross-references](content/citations), [math and equations](content/math), and [figures](content/figures).
 
-{fa}`check,text-success mr-1` [Write content in Jupyter Notebooks](file-types/notebooks)
-: This allows you to include your code and outputs in your book.
-  You can also write notebooks [entirely in markdown](file-types/myst-notebooks) to execute when you build your book.
+:::{panels}
+:container: +full-width text-center
+:column: col-lg-6 px-2 py-2
+:card:
 
-{fa}`check,text-success mr-1` [Execute and cache your book's content](content/execute)
-: For `.ipynb` and markdown notebooks, execute code and insert the latest outputs into your book.
-  In addition, {ref}`cache and re-use<execute/cache>` outputs to be used later.
+**[Publication-quality content](file-types:markdown)** ✍
+^^^
+Write in either Jupyter Markdown, MyST Markdown for more [publishing features](content/myst), [reStructuredText](file-types:rst), [Jupyter Notebooks](file-types:notebooks), or [any Jupytext format](file-types:custom).
+Includes support for rich syntax such as [citations and cross-references](content/citations), [math and equations](content/math), and [figures](content/figures).
 
-{fa}`check,text-success mr-1` [Insert notebook outputs into your content](content:code-outputs)
-: Generate outputs as you build your documentation, and insert them in-line with your content across pages.
+---
+**[Execute, cache, and insert computational content](content/execute)** 🚀
+^^^
+Execute notebook cells, then [format and insert the latest outputs](content:code-outputs) into your book.
+[Cache outputs to save time in re-building later](execute/cache).
+Even [save notebook outputs and insert them into other pages](content:code-outputs:glue).
 
-{fa}`check,text-success mr-1` [Add interactivity to your book](interactive/launchbuttons)
-: You can [toggle cell visibility](interactive/hiding), include [interactive outputs](interactive/interactive) from Jupyter, and [connect with online services](interactive/launchbuttons) like Binder.
+---
+**[Add interactivity to content and outputs](interactive/launchbuttons)** ✨
+^^^
+Create interactive content blocks such as [](content:tabs), [](content:dropdowns). [Toggle cell visibility](interactive/hiding) and include [interactive cell outputs](interactive/interactive) with Jupyter notebooks. [Launch interactive sessions](interactive/launchbuttons) with Binder or Colab, [make your code executable with Thebe](launch:thebe), or [connect with commenting services like Hypothes.is](interactive:comments).
 
-{fa}`check,text-success mr-1` [Generate a variety of outputs](start/build)
-: This includes single- and multi-page websites, as well as [PDF outputs](advanced/pdf).
-
-{fa}`check,text-success mr-1` [Build books with a simple command-line interface](reference/cli)
-: You can quickly generate your books with one command, like so: `jupyter-book build mybook/`
-
-This website is built with Jupyter Book! You can browse its contents to the
-left to see what is possible.
-
-:::{admonition,tip} Get involved with Jupyter Book!
-
-Jupyter Book is an open community that welcomes your feedback, input, and contributions!
-[Open an issue](https://github.com/executablebooks/jupyter-book/issues/new/choose) with any feedback.
-Give an issue a 👍 if you think it should be resolved and check out {ref}`our enhancement voting leaderboard <ebp:feature-note>` for the issues people want to see completed!
-If you'd like to contribute, [check out our contributing guide](contribute/intro.md).
+---
+**[Build books and articles in many formats](start/build)** 🎁
+^^^
+Build [multi-page books](structure:book) or [single articles](structure:article), and generate many kinds of outputs from them, such as [HTML websites](start/build) or [PDF outputs](advanced/pdf). Jupyter Book uses [the Sphinx Documentation engine](https://sphinx-doc.org) which supports [a variety of output types](https://www.sphinx-doc.org/en/master/usage/builders/index.html).
 
 :::
 
-## Get started
+This documentation is organized into a few major sections.
 
-To get started with Jupyter Book, you can either
+- **Tutorials** are step-by-step introductory guides to Jupyter Book.
+- **Topic Guides** cover specific areas in more depth, and are organized as discrete "how-to" sections.
+- **Reference** sections describe the API/syntax/etc of Jupyter Book in detail.
 
-* check out the [getting started guide](start/overview),
-* browse the contents of the navigation menu of this book (to the left, if you're
-on a laptop), or
-* review the example project shown immediately below (if you like learning from examples).
+This website is built with Jupyter Book!
+Explore the chapters to the left to learn more!
 
-:::{warning}
-Jupyter Book `0.7` is a total re-write from `0.6`, and some things have changed.
-See [the legacy upgrade guide](https://github.com/executablebooks/jupyter-book/wiki/The-Jupyter-Book-Wiki)
-for how to upgrade, and [legacy.jupyterbook.org](https://legacy.jupyterbook.org) for
-legacy documentation.
+:::{admonition} Learn more and get involved
+:class: tip full-width
 
-In addition, note that Jupyter Book is pre-1.0. Its API may change!
+💡 [Open an issue](https://github.com/executablebooks/jupyter-book/issues/new/choose)
+: We track enhancement requests, bug-reports, and to-do items via GitHub issues.
+
+💬 [Join the discussion](https://github.com/executablebooks/meta/discussions)
+: We have community discussions, talk about ideas, and share general questions and feedback in our [community forum](https://github.com/executablebooks/meta/discussions).
+
+👍 [Vote for new features](ebp:feature-note)
+: The community provides feedback by adding a 👍 reaction to issues in our repositories.
+  You can find a list of the top issues [in the Executable Books issue leader board](ebp:feature-note).
+
+🙌 [Join the community](contribute/intro.md)
+: Jupyter Book is developed by the [Executable Books community](https://executablebooks.org).
+  We welcome anyone to join us in improving Jupyter Book and helping one another learn and create their books.
+  To join, check out our [contributing guide](contribute/intro.md).
 :::
 
-To install the `jupyter-book` pre-release from pip, run the following command:
 
-```bash
-pip install -U jupyter-book
-```
+## Find the right documentation resources
 
-(example-project)=
-## A Small Example Project
+Here are a few pointers to help you get started.
 
-Here's [a short example](https://executablebooks.github.io/quantecon-mini-example/docs/index.html) of a web-based book created by Jupyter Book.
+:::{panels}
+:container: +full-width
+:column: col-lg-4 px-2 py-2
+---
+:header: bg-jb-one
+**Get started**
+^^^
 
-Some of the features on display include
+**[](start/your-first-book.md)**: a step-by-step tutorial to get started.
 
-* [Jupyter notebook-style inputs and outputs](https://executablebooks.github.io/quantecon-mini-example/docs/python_by_example.html#version-1)
-* [citations](https://executablebooks.github.io/quantecon-mini-example/docs/about_py.html#bibliography)
-* [numbered equations](https://executablebooks.github.io/quantecon-mini-example/docs/python_by_example.html#another-application)
-* [numbered figures](https://executablebooks.github.io/quantecon-mini-example/docs/getting_started.html#jupyter-notebooks) with captions and cross-referencing
+**[](create-a-template-book)**: get started with a simple template book.
 
-The source files  can be [found on GitHub](https://github.com/executablebooks/quantecon-mini-example/)
-in the [docs directory](https://github.com/executablebooks/quantecon-mini-example/tree/master/mini_book/docs).
-These files are written in [MyST markdown](content/myst), an
-extension of Jupyter notebook markdown that allows for additional scientific markup.
-They could alternatively have been written directly as Jupyter notebooks.
+---
+:header: bg-jb-two
 
-**Build the demo book**
+**Learn more**
+^^^
+**[](structure:index)**: Learn how to structure and organize your content.
 
-You can build this book locally on the command line via the following steps:
+**[](content/index.md)**: Learn how to write rich narrative content.
 
-1. Ensure you have a recent version of [Anaconda Python](https://www.anaconda.com/distribution/) installed.
+**[](content/executable/index.md)**: Write computational content.
+---
+:header: bg-jb-three
 
-2. Clone the repository containing the demo book source files
+**Be inspired**
+^^^
+[**The Jupyter Book Gallery**](http://gallery.jupyterbook.org): A gallery of community books that have been created with Jupyter Book.
 
-    ```bash
-    git clone https://github.com/executablebooks/quantecon-mini-example
-    cd quantecon-mini-example
-    ```
-
-    ````{margin}
-    If you'd like to install Jupyter Book with `pip`, you can do so with:
-
-    ```bash
-    pip install -U jupyter-book
-    ```
-    See [the getting started page](start/overview) for more information.
-    ````
-
-3. Install the Python libraries needed to run the code in this particular example
-   from [the `environment.yml` file](https://github.com/executablebooks/quantecon-mini-example/blob/master/environment.yml).
-   This includes the latest version of Jupyter Book:
-
-    ```bash
-    conda env create -f environment.yml
-    conda activate qe-mini-example
-    ```
-
-4. Run Jupyter Book over the source files
-
-    ```bash
-    jupyter-book build ./mini_book
-    ```
-
-5. View the result through a browser --- try (with, say, firefox)
-
-    ```bash
-    firefox mini_book/_build/html/index.html
-    ```
-
-    (or simply double-click on the `html` file)
-
-Now you might like to try editing the files in ``mini_book/docs`` and then
-rebuilding.
-
-### Further Reading
-
-See [the full QuantEcon example](https://executablebooks.github.io/quantecon-example/docs/index.html)
-for a longer Jupyter Book use case, drawn from the same source material.
-
-For more information on how to use Jupyter Book, see {doc}`start/overview`.
-
-(intro/jupyter-book-components)=
-## Under the hood - the components of Jupyter Book
-
-Jupyter Book is a wrapper around a collection of tools in the Python
-ecosystem that make it easier to publish computational documents.
-Here are
-a few key pieces:
-
-* It uses {term}`the MyST markdown language<MyST>` in
-  markdown and notebook documents.
-  This allows users to write rich, publication-quality markup in their documents.
-* It uses {term}`the MyST-NB package<MyST-NB>` to parse and
-  read-in notebooks so they are built into your book.
-* It uses {term}`the Sphinx documentation engine<Sphinx>`
-  to build outputs from your book's content.
-* It uses a slightly modified version of the [PyData Sphinx theme](https://pydata-sphinx-theme.readthedocs.io/en/latest/) for beautiful HTML output.
-* It uses a collection of Sphinx plugins and tools to add new functionality.
-
-For more information about the project behind many of these tools, see [The Executable Book Project](https://ebp.jupyterbook.org/) documentation.
-
-## Contribute to Jupyter Book
-
-Jupyter Book is an open project and we welcome your feedback and contributions!
-To contribute to Jupyter Book, see {doc}`contribute/intro`.
+[**The QuantEcon Python Lectures**](https://python.quantecon.org/intro.html): A full mathematical textbook built with a customer Jupyter Book theme.
+:::
 
 ## Acknowledgements
 
-Jupyter Book is supported by an [open community of contributors](https://github.com/executablebooks/jupyter-book/graphs/contributors), many of whom come from [the Jupyter community](https://jupyter.org/community).
-Jupyter Book and many of the tools it uses are stewarded by [the Executable Book Project](https://executablebooks.org), which is supported in part by [the Alfred P. Sloan foundation](https://sloan.org/grant-detail/9231).
+Jupyter Book is supported by an [open community of contributors](https://github.com/executablebooks/jupyter-book/graphs/contributors), many of whom come from [the Executable Books Community](https://executablebooks.org) and [the Jupyter community](https://jupyter.org/community).
+
+:::{image} https://sloan.org/storage/app/media/uploaded-files/Logo-1B-SMALL-Gold-Blue.png
+:class: float-left mr-2 rounded
+:width: 150px
+:::
+
+Many thanks to the Sloan Foundation, which [provides support for the Executable Books Project](https://sloan.org/grant-detail/9231).

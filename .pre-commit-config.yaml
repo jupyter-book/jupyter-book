@@ -17,17 +17,46 @@ repos:
     - id: end-of-file-fixer
     - id: trailing-whitespace
 
+  # this is not used for now,
+  # since it converts jupyter-book to jupyter_book and removes comments
+  # - repo: https://github.com/asottile/setup-cfg-fmt
+  #   rev: v1.17.0
+  #   hooks:
+  #   - id: setup-cfg-fmt
+
   - repo: https://github.com/mgedmin/check-manifest
-    rev: "0.39"
+    rev: "0.46"
     hooks:
     - id: check-manifest
+      args: [--no-build-isolation]
+      additional_dependencies: [setuptools>=46.4.0]
 
-  - repo: https://gitlab.com/pycqa/flake8
-    rev: 3.7.9
+  - repo: local
     hooks:
-    - id: flake8
+    - id: check-doc-req
+      name: Check docs/requirements.txt up-to-date
+      pass_filenames: false
+      files: >-
+          (?x)^(
+              setup.cfg|
+              docs/requirements.txt|
+              scripts/check_doc_requirements.py|
+          )$
+      language: python
+      language_version: python3
+      entry: python scripts/check_doc_requirements.py
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.8.0
+    hooks:
+    - id: isort
 
   - repo: https://github.com/psf/black
-    rev: stable
+    rev: 20.8b1
     hooks:
     - id: black
+
+  - repo: https://gitlab.com/pycqa/flake8
+    rev: 3.8.4
+    hooks:
+    - id: flake8

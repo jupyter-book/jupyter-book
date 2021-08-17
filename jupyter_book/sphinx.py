@@ -1,27 +1,30 @@
 """Tools for interacting with Sphinx."""
 import os.path as op
-from pathlib import Path
 import sys
+from pathlib import Path
 from typing import Union
 
-from sphinx.util.docutils import docutils_namespace, patch_docutils
 from sphinx.application import Sphinx
 from sphinx.cmd.build import handle_exception
-import yaml
+from sphinx.util import logging
+from sphinx.util.docutils import docutils_namespace, patch_docutils
 
 from .config import get_final_config
-from .pdf import update_latex_document
+from .pdf import update_latex_documents
 
 REDIRECT_TEXT = """
 <meta http-equiv="Refresh" content="0; url={first_page}" />
 """
 
 ROOT = Path(__file__)
+LOGGER = logging.getLogger(__name__)
 
 
 def build_sphinx(
     sourcedir,
     outputdir,
+    *,
+    use_external_toc=True,
     confdir=None,
     path_config=None,
     noconfig=False,
@@ -51,6 +54,7 @@ def build_sphinx(
         user_yaml=Path(path_config) if path_config else None,
         cli_config=confoverrides or {},
         sourcedir=Path(sourcedir),
+        use_external_toc=use_external_toc,
     )
 
     ##################################
@@ -131,44 +135,39 @@ def build_sphinx(
             # We have to apply this update after the sphinx initialisation,
             # since default_latex_documents is dynamically generated
             # see sphinx/builders/latex/__init__.py:default_latex_documents
-            # TODO what if the user has specifically set latex_documents?
-            default_latex_document = app.config.latex_documents[0]
-            new_latex_document = update_latex_document(
-                default_latex_document, config_meta["latex_doc_overrides"]
+            new_latex_documents = update_latex_documents(
+                app.config.latex_documents, config_meta["latex_doc_overrides"]
             )
-            app.config.latex_documents = [new_latex_document]
+            app.config.latex_documents = new_latex_documents
+
+            # setting up sphinx-multitoc-numbering
+            if app.config["use_multitoc_numbering"]:
+                # if sphinx-external-toc is used
+                if "external_toc_path" in app.config:
+                    import yaml
+
+                    site_map = app.config.external_site_map
+                    site_map_str = yaml.dump(site_map.as_json())
+
+                    # only if there is atleast one numbered: true in the toc file
+                    if "numbered: true" in site_map_str:
+                        app.setup_extension("sphinx_multitoc_numbering")
+                else:
+                    app.setup_extension("sphinx_multitoc_numbering")
+
+            # Build latex_doc tuples based on --individualpages option request
+            if config_meta["latex_individualpages"]:
+                from .pdf import autobuild_singlepage_latexdocs
+
+                # Ask Builder to read the source files to fetch titles and documents
+                app.builder.read()
+                latex_documents = autobuild_singlepage_latexdocs(app)
+                app.config.latex_documents = latex_documents
 
             app.build(force_all, filenames)
 
-            # Write an index.html file in the root to redirect to the first page
-            path_index = outputdir.joinpath("index.html")
-            if sphinx_config["globaltoc_path"]:
-                path_toc = Path(sphinx_config["globaltoc_path"])
-                if not path_toc.exists():
-                    raise IOError(
-                        (
-                            "You gave a Configuration file path"
-                            f"that doesn't exist: {path_toc}"
-                        )
-                    )
-                if path_toc.suffix not in [".yml", ".yaml"]:
-                    raise IOError(
-                        "You gave a Configuration file path"
-                        f"that is not a YAML file: {path_toc}"
-                    )
-            else:
-                path_toc = None
-
-            if not path_index.exists() and path_toc:
-                toc = yaml.safe_load(path_toc.read_text(encoding="utf8"))
-                if isinstance(toc, dict):
-                    first_page = toc["file"]
-                else:
-                    first_page = toc[0]["file"]
-                first_page = first_page.split(".")[0] + ".html"
-                with open(path_index, "w", encoding="utf8") as ff:
-                    ff.write(REDIRECT_TEXT.format(first_page=first_page))
             return app.statuscode
+
     except (Exception, KeyboardInterrupt) as exc:
         handle_exception(app, debug_args, exc, error)
         return exc

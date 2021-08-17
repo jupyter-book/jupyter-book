@@ -50,7 +50,7 @@ coverage.xml
 *.py,cover
 .hypothesis/
 .pytest_cache/
-*_build
+_build
 
 
 # Translations
@@ -134,6 +134,9 @@ dmypy.json
 
 # VSCode config
 .vscode
+
+# PyCharm config
+.idea
 
 # OSX
 .DS_Store

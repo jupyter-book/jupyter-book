@@ -2,7 +2,6 @@ import shutil
 from pathlib import Path
 
 import pytest
-
 from click.testing import CliRunner
 
 
@@ -31,20 +30,8 @@ def pages(temp_with_override):
 
 
 @pytest.fixture()
-def docs(temp_with_override):
-    """Copys ../docs to a temporary directory and yields the path as a `pathlib.Path`
-    object.
-    """
-    src = Path(__file__).parent.parent.joinpath("docs").absolute()
-    dst = temp_with_override / "docs"
-    shutil.copytree(src, dst)
-    yield Path(dst)
-    shutil.rmtree(dst)
-
-
-@pytest.fixture()
 def cli():
-    """Provides a click.testing CliRunner object for invoking CLI commands.
-    """
+    """Provides a click.testing CliRunner object for invoking CLI commands."""
     runner = CliRunner()
-    return runner
+    yield runner
+    del runner

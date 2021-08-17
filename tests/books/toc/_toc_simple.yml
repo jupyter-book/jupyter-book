@@ -1,3 +1,5 @@
-- file: index
+format: jb-article
+root: index
+sections:
 - file: content1
 - file: content2

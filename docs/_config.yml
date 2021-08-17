@@ -1,7 +1,7 @@
 #######################################################################################
 # Book settings
 title: ""
-logo: images/logo.png
+logo: images/logo-wide.svg
 author: The Jupyter Book Community
 email: choldgraf@berkeley.edu
 description: >- # this means to ignore newlines until "baseurl:"
@@ -9,11 +9,12 @@ description: >- # this means to ignore newlines until "baseurl:"
 
 exclude_patterns: [file-types/include-rst.rst]
 
+# Bibliography settings
+bibtex_bibfiles:
+  - references.bib
+
 execute:
   execute_notebooks: cache
-
-parse:
-  myst_extended_syntax: true
 
 html:
   favicon: images/favicon.ico
@@ -35,12 +36,33 @@ launch_buttons:
   colab_url: "https://colab.research.google.com"
   thebe: true
 
+parse:
+  myst_substitutions:
+      sub3: My _global_ value!
+  myst_enable_extensions:  # default extensions to enable in the myst parser. See https://myst-parser.readthedocs.io/en/latest/using/syntax-optional.html
+    - amsmath
+    - colon_fence
+    - deflist
+    - dollarmath
+    - html_admonition
+    - html_image
+    - linkify
+    - replacements
+    - smartquotes
+    - substitution
+
+latex:
+  latex_engine: xelatex
+  latex_documents:
+    targetname: book.tex
+
 sphinx:
   config:
     nb_custom_formats:
       .Rmd:
         - jupytext.reads
         - fmt: Rmd
+    bibtex_reference_style: author_year  # or label, super, \supercite
     # TODO: #917 this path will be the default in sphinx v4
     # mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
     # However, it is incompatible with the mathjax config below for macros
@@ -51,6 +73,12 @@ sphinx:
           "floor": ["\\lfloor#1\\rfloor", 1]
           "bmat": ["\\left[\\begin{array}"]
           "emat": ["\\end{array}\\right]"]
+    latex_elements:
+        preamble: |
+          \newcommand\N{\mathbb{N}}
+          \newcommand\floor[1]{\lfloor#1\rfloor}
+          \newcommand{\bmat}{\left[\begin{array}}
+          \newcommand{\emat}{\end{array}\right]}
     intersphinx_mapping:
       ebp:
         - "https://executablebooks.org/en/latest/"
@@ -67,6 +95,9 @@ sphinx:
       nbformat:
         - "https://nbformat.readthedocs.io/en/latest"
         - null
+      sphinx-panels:
+        - https://sphinx-panels.readthedocs.io/en/sphinx-book-theme/
+        - null
     rediraffe_branch: 'master'
     rediraffe_redirects:
       content-types/index.md: file-types/index.md
@@ -75,8 +106,12 @@ sphinx:
       content-types/myst-notebooks.md: file-types/myst-notebooks.md
       content-types/jupytext.md: file-types/jupytext.Rmd
       content-types/restructuredtext.md: file-types/restructuredtext.md
+    language: en
+    html_extra_path:
+      - images/badge.svg
+
 
   extra_extensions:
     - sphinx_click.ext
-    - sphinx_tabs.tabs
+    - sphinx_inline_tabs
     - sphinxext.rediraffe
