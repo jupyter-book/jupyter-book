@@ -246,6 +246,7 @@ In this case, you should [consult the PyData theme documentation](https://pydata
 
 :::{warning}
 While you may choose any theme, there is some Jupyter Book configuration that only works with the Sphinx Book Theme, so some functionality may not be present if you choose a custom theme.
+For example, the [Launch Buttons](launchbuttons/binder) are not supported in most Sphinx themes.
 :::
 
 ### Fine control of parsing and execution
