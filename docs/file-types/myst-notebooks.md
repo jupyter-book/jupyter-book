@@ -20,7 +20,7 @@ Notebooks with Markdown can be read in, executed, and cached by Jupyter Book (se
 This allows you to store all of your notebook content in a text format that is much nicer for version control software, while still having all the functionality of a Jupyter notebook.
 
 :::{note}
-MyST notebooks uses [MyST-NB to convert between ipynb and text files][myst-nb:index].
+MyST notebooks uses [MyST-NB to convert between ipynb and text files](myst-nb:index).
 See its documentation for more information.
 :::
 
