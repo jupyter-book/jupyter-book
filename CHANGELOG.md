@@ -1,5 +1,19 @@
 # Change Log
 
+## v0.11.3
+
+This release enables the use of the [singlehtml builder](https://www.sphinx-doc.org/en/master/usage/builders/index.html#sphinx.builders.singlehtml.SingleFileHTMLBuilder) and updates [sphinx-thebe](https://github.com/executablebooks/sphinx-thebe) and [sphinx-book-theme](https://github.com/executablebooks/sphinx-book-theme)
+
+### New
+
+1. [builders] Add access to the [singlehtml](https://www.sphinx-doc.org/en/master/usage/builders/index.html#sphinx.builders.singlehtml.SingleFileHTMLBuilder) builder via the CLI [[PR #1418](https://github.com/executablebooks/jupyter-book/pull/1418)]
+
+### Upgrade
+
+1. [sphinx-thebe](https://sphinx-thebe.readthedocs.io/en/latest/changelog.html#v0-0-10-2021-08-24) is now version `0.0.10`
+2. [sphinx-book-theme](https://github.com/executablebooks/sphinx-book-theme/blob/master/CHANGELOG.md#v012---2021-08-25) is now version `0.1.3`
+
+
 ## v0.11.2
 
 This release introduces [sphinx-multitoc-numbering](https://github.com/executablebooks/sphinx-multitoc-numbering) for consistent numbering across a `part/chapter` book structure. It also includes improvements to `pdflatex` output, updates to the documentation and various maintenance tasks.
