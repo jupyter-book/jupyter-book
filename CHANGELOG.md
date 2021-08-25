@@ -11,7 +11,7 @@ This release enables the use of the [singlehtml builder](https://www.sphinx-doc.
 ### Upgrade
 
 1. [sphinx-thebe](https://sphinx-thebe.readthedocs.io/en/latest/changelog.html#v0-0-10-2021-08-24) is now version `0.0.10`
-2. [sphinx-book-theme](https://github.com/executablebooks/sphinx-book-theme/blob/master/CHANGELOG.md#v012---2021-08-25) is now version `0.1.3`
+2. [sphinx-book-theme](https://github.com/executablebooks/sphinx-book-theme/blob/master/CHANGELOG.md#v013---2021-08-25) is now version `0.1.3`
 
 
 ## v0.11.2
