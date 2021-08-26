@@ -10,6 +10,7 @@ numpy
 pandas
 plotly
 sphinx-click
+sphinx-design
 sphinx_inline_tabs
 sphinxext-rediraffe~=0.2.3
 sympy

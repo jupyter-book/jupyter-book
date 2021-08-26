@@ -1,4 +1,23 @@
-# Books with Jupyter <img src="images/logo-square.svg" width=40 />
+---
+:title: Books with Jupyter
+---
+
+::::{grid} 2
+
+:reverse:
+
+:::{grid-item}
+:columns: 3
+<img src="images/logo-square.svg" />
+:::
+
+:::{grid-item}
+:columns: 9
+:class: sd-fs-3
+Jupyter Book is an open source project for building beautiful, publication-quality books and documents from computational material.
+:::
+
+::::
 
 ```{only} html
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2561065.svg)](https://doi.org/10.5281/zenodo.2561065)
@@ -10,35 +29,30 @@ publication-quality books and documents from computational material.
 
 Here are some of the features of Jupyter Book:
 
+::::{grid} 1 1 2 2
+:class-container: text-center
 
-:::{panels}
-:container: +full-width text-center
-:column: col-lg-6 px-2 py-2
-:card:
-
-**[Publication-quality content](file-types:markdown)** ✍
-^^^
+:::{grid-item-card} **TEST** [Publication-quality content](file-types:markdown) ✍
 Write in either Jupyter Markdown, MyST Markdown for more [publishing features](content/myst), [reStructuredText](file-types:rst), [Jupyter Notebooks](file-types:notebooks), or [any Jupytext format](file-types:custom).
 Includes support for rich syntax such as [citations and cross-references](content/citations), [math and equations](content/math), and [figures](content/figures).
+:::
 
----
-**[Execute, cache, and insert computational content](content/execute)** 🚀
-^^^
+:::{grid-item-card} **[Execute, cache, and insert computational content](content/execute)** 🚀
 Execute notebook cells, then [format and insert the latest outputs](content:code-outputs) into your book.
 [Cache outputs to save time in re-building later](execute/cache).
 Even [save notebook outputs and insert them into other pages](content:code-outputs:glue).
 
----
-**[Add interactivity to content and outputs](interactive/launchbuttons)** ✨
-^^^
-Create interactive content blocks such as [](content:tabs), [](content:dropdowns). [Toggle cell visibility](interactive/hiding) and include [interactive cell outputs](interactive/interactive) with Jupyter notebooks. [Launch interactive sessions](interactive/launchbuttons) with Binder or Colab, [make your code executable with Thebe](launch:thebe), or [connect with commenting services like Hypothes.is](interactive:comments).
-
----
-**[Build books and articles in many formats](start/build)** 🎁
-^^^
-Build [multi-page books](structure:book) or [single articles](structure:article), and generate many kinds of outputs from them, such as [HTML websites](start/build) or [PDF outputs](advanced/pdf). Jupyter Book uses [the Sphinx Documentation engine](https://www.sphinx-doc.org) which supports [a variety of output types](https://www.sphinx-doc.org/en/master/usage/builders/index.html).
-
 :::
+
+:::{grid-item-card} **[Add interactivity to content and outputs](interactive/launchbuttons)** ✨
+
+Create interactive content blocks such as [](content:tabs), [](content:dropdowns). [Toggle cell visibility](interactive/hiding) and include [interactive cell outputs](interactive/interactive) with Jupyter notebooks. [Launch interactive sessions](interactive/launchbuttons) with Binder or Colab, [make your code executable with Thebe](launch:thebe), or [connect with commenting services like Hypothes.is](interactive:comments).
+:::
+
+:::{grid-item-card} **[Build books and articles in many formats](start/build)** 🎁
+Build [multi-page books](structure:book) or [single articles](structure:article), and generate many kinds of outputs from them, such as [HTML websites](start/build) or [PDF outputs](advanced/pdf). Jupyter Book uses [the Sphinx Documentation engine](https://www.sphinx-doc.org) which supports [a variety of output types](https://www.sphinx-doc.org/en/master/usage/builders/index.html).
+:::
+::::
 
 This documentation is organized into a few major sections.
 
@@ -68,50 +82,62 @@ Explore the chapters to the left to learn more!
   To join, check out our [contributing guide](contribute/intro.md).
 :::
 
-
-## Find the right documentation resources
+# Find the right documentation resources
 
 Here are a few pointers to help you get started.
 
-:::{panels}
-:container: +full-width
-:column: col-lg-4 px-2 py-2
----
-:header: bg-jb-one
-**Get started**
-^^^
+::::{grid} 1 1 3 3
+:class-container: full-width
 
+:::{grid-item-card} **Get started**
+:class-item: bg-jb-one
 **[](start/your-first-book.md)**: a step-by-step tutorial to get started.
 
 **[](create-a-template-book)**: get started with a simple template book.
 
----
-:header: bg-jb-two
+:::
 
-**Learn more**
-^^^
+:::{grid-item-card} **Learn more**
+
+:class-item: bg-jb-two
+
 **[](structure:index)**: Learn how to structure and organize your content.
 
 **[](content/index.md)**: Learn how to write rich narrative content.
 
 **[](content/executable/index.md)**: Write computational content.
----
-:header: bg-jb-three
 
-**Be inspired**
-^^^
+:::
+
+:::{grid-item-card} **Be inspired**
+:class-item: bg-jb-three
+
 [**The Jupyter Book Gallery**](http://gallery.jupyterbook.org): A gallery of community books that have been created with Jupyter Book.
 
 [**The QuantEcon Python Lectures**](https://python.quantecon.org/intro.html): A full mathematical textbook built with a custom Jupyter Book theme.
-:::
 
-## Acknowledgements
+:::
+::::
+
+# Acknowledgements
 
 Jupyter Book is supported by an [open community of contributors](https://github.com/executablebooks/jupyter-book/graphs/contributors), many of whom come from [the Executable Books Community](https://executablebooks.org) and [the Jupyter community](https://jupyter.org/community).
 
-:::{image} https://sloan.org/storage/app/media/uploaded-files/Logo-1B-SMALL-Gold-Blue.png
-:class: float-left mr-2 rounded
-:width: 150px
+::::{grid} 2 2 2 2
+
+:::{grid-item}
+:columns: 4
+
+```{image} https://sloan.org/storage/app/media/uploaded-files/Logo-1B-SMALL-Gold-Blue.png
+:class: m-auto
+:width: 200px
+```
+
 :::
 
+:::{grid-item}
+:columns: 7
 Many thanks to the Sloan Foundation, which [provides support for the Executable Books Project](https://sloan.org/grant-detail/9231).
+:::
+
+::::

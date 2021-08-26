@@ -120,3 +120,4 @@ sphinx:
     - sphinx_inline_tabs
     - sphinxext.rediraffe
     - sphinx_proof
+    - sphinx_design
