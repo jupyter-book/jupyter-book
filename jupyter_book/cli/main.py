@@ -121,7 +121,7 @@ BUILDER_OPTS = {
     "--custom-builder",
     default=None,
     help="Specify alternative builder provided by Sphinx, including text and epub. "
-    "This can only be used when using --builder=custom. Valid options listed at "
+    "This can only be used with --builder=custom. Valid options listed at "
     "https://www.sphinx-doc.org/en/master/man/sphinx-build.html",
 )
 @click.option(
