@@ -155,6 +155,8 @@ w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
 ```
 ````
 ---
+rendered
+^^^
 ```{math}
 :label: my-math-ref
 w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
