@@ -1,0 +1,17 @@
+format: jb-book
+root: intro
+parts:
+- caption: part1
+  chapters:
+  - file: part1/chap1.md
+  - file: part1/chap2
+    sections:
+    - file: part1/sec1
+    - file: part1/sec2.md
+- caption: part2
+  chapters:
+  - url: https://executablebooks.org/en/latest/gallery.html
+    title: Gallery of Jupyter Books
+  - file: part2/chap3
+    sections:
+    - file: part2/sec1
