@@ -4,7 +4,8 @@
 exclude: >
     (?x)^(
       \.vscode/settings\.json|
-      tests/test_tocdirective/.*
+      tests/test_tocdirective/.*|
+      tests/test_sphinx_jupyterbook_latex/.*|
     )$
 
 repos:
