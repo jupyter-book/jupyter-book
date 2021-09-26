@@ -1,51 +1,38 @@
+import sys
 from pathlib import Path
 from textwrap import dedent
 
 from jupyter_client.kernelspec import find_kernel_specs
+from rich.console import Console
+from rich.panel import Panel
+
+console = Console()
+error_console = Console(stderr=True)
 
 ##############################################################################
 # CLI utilities
 
-border = "=" * 79
-endc = "\033[0m"
-bcolors = dict(
-    blue="\033[94m",
-    green="\033[92m",
-    orange="\033[93m",
-    red="\033[91m",
-    bold="\033[1m",
-    underline="\033[4m",
-)
 
-
-def _color_message(msg, style):
-    return bcolors[style] + msg + endc
-
-
-def _message_box(msg, color="green", doprint=True, print_func=print):
+def _message_box(
+    msg,
+    title=None,
+    subtitle=None,
+    color="green",
+    doprint=True,
+    print_func=console.print,
+):
     # Prepare the message so the indentation is the same as the box
     msg = dedent(msg)
+    box = Panel(msg, title=title, subtitle=subtitle, border_style=color, padding=(1, 2))
 
-    # Color and create the box
-    border_colored = _color_message(border, color)
-    box = """
-    {border_colored}
-
-    {msg}
-
-    {border_colored}
-    """
-    box = dedent(box).format(msg=msg, border_colored=border_colored)
     if doprint is True:
         print_func(box)
     return box
 
 
 def _error(msg, kind=None):
-    if kind is None:
-        kind = RuntimeError
-    box = _message_box(msg, color="red", doprint=False)
-    raise kind(box)
+    _message_box(msg, title="🛑 Error! 🛑", color="red", print_func=error_console.print)
+    sys.exit(1)
 
 
 ##############################################################################
