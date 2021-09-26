@@ -9,14 +9,17 @@ import subprocess
 import sys
 from glob import iglob
 from pathlib import Path
-from textwrap import dedent
 from typing import Tuple
 
 import click
+from rich.traceback import install as install_rich
 
 from jupyter_book.utils import _error, _message_box
 
+from ..utils import console, error_console
 from .pluggable import PluggableGroup
+
+install_rich(suppress=[click])
 
 
 def version_callback(ctx, param, value):
@@ -303,6 +306,8 @@ def build(
         + click.format_filename(f"{OUTPUT_PATH}")
     )
 
+    console.print("\n")
+    console.rule("Sphinx build")
     # Now call the Sphinx commands to build
     result = build_sphinx(
         PATH_SRC_FOLDER,
@@ -319,7 +324,6 @@ def build(
         quiet=quiet > 0,
         really_quiet=quiet > 1,
     )
-
     builder_specific_actions(
         result, builder, OUTPUT_PATH, build_type, PAGE_NAME, click.echo
     )
@@ -532,13 +536,13 @@ def builder_specific_actions(
             "Look above for the cause."
         )
         # TODO ideally we probably only want the original traceback here
-        raise RuntimeError(_message_box(msg, color="red", doprint=False)) from result
+        raise RuntimeError(msg) from result
     elif result:
         msg = (
             f"Building your {cmd_type}, returns a non-zero exit code ({result}). "
             "Look above for the cause."
         )
-        _message_box(msg, color="red", print_func=click.echo)
+        _message_box(msg, color="red", print_func=error_console.print)
         sys.exit(result)
 
     # Builder-specific options
@@ -552,13 +556,11 @@ def builder_specific_actions(
                 path_index.write_text(REDIRECT_TEXT.format(first_page=path_page.name))
 
             _message_box(
-                dedent(
-                    f"""
-                    Page build finished.
-                        Your page folder is: {path_page.parent}{os.sep}
-                        Open your page at: {path_page}
-                    """
-                )
+                f"""
+                Your page folder is: {path_page.parent}{os.sep}
+                Open your page at: {path_page}
+                """,
+                title="Page build finished.",
             )
 
         elif cmd_type == "book":
@@ -566,14 +568,16 @@ def builder_specific_actions(
             path_index = path_output_rel.joinpath("index.html")
             _message_box(
                 f"""\
-            Finished generating HTML for {cmd_type}.
-            Your book's HTML pages are here:
+            [bright_white]Your book's HTML pages are here[/bright_white]:
                 {path_output_rel}{os.sep}
-            You can look at your book by opening this file in a browser:
+
+            [bright_white]You can look at your book by opening this file in a browser:[bright_white]
                 {path_index}
-            Or paste this line directly into your browser bar:
+
+            [bright_white]Or paste this line directly into your browser bar:[/bright_white]
                 file://{path_index.resolve()}\
-            """
+            """,
+                title=f"✨Finished generating HTML for {cmd_type}.✨",
             )
     if builder == "pdfhtml":
         print_func(f"Finished generating HTML for {cmd_type}...")
