@@ -1,7 +1,7 @@
 # Cite Jupyter Book
 
 Jupyter Book is developed by many people across academia and industry.
-Moreover, Jupyter Book is powered by an ecosystem of open source tools, most notably within the [Executable Books Project](https://executablebook.org).
+Moreover, Jupyter Book is powered by an ecosystem of open source tools, most notably within the [Executable Books Project](https://executablebooks.org).
 
 Rather than citing each tool, we choose to use a single blanket citation for the entire project and all of its community members.
 
