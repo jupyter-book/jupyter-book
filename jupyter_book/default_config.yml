@@ -41,8 +41,6 @@ parse:
     # - smartquotes
     - substitution
 
-  myst_url_schemes          : [mailto, http, https]  # URI schemes that will be recognised as external URLs in Markdown links
-
 #######################################################################################
 # HTML-specific settings
 html:

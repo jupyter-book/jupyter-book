@@ -58,10 +58,6 @@ final:
   - dollarmath
   - linkify
   - substitution
-  myst_url_schemes:
-  - mailto
-  - http
-  - https
   nb_output_stderr: show
   new: value
   numfig: true
