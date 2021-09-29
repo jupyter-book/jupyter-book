@@ -145,17 +145,30 @@ To reference other files of book content, use the `{doc}` role, or link directly
 
 To reference equations, first insert an equation with a label like so:
 
+`````{panels}
+source
+^^^
+````md
 ```{math}
 :label: my-math-ref
 w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
 ```
+````
+---
+rendered
+^^^
+```{math}
+:label: my-math-ref
+w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
+```
+`````
 
 To reference equations, use the `{eq}` role. It will automatically insert the number of the equation.
 Note that you cannot modify the text of equation links.
 
 For example:
 
-- `` See Equation `{eq}`my-math-ref` `` results in: See Equation {eq}`my-math-ref`
+- `` See Equation {eq}`my-math-ref` `` results in: See Equation {eq}`my-math-ref`
 - `` See Equation [](my-math-ref) `` results in: See Equation [](my-math-ref).
 
 
