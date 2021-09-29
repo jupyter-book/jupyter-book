@@ -71,6 +71,8 @@ parts:
   - file: sphinx/index
     sections:
     - file: advanced/sphinx
+    - file: advanced/developers
+    - file: advanced/windows
     - file: explain/sphinx
 
   - file: advanced/index

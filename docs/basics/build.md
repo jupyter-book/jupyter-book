@@ -16,7 +16,9 @@ The rest of the sections on this page cover some of these options.
 
 ## Types of build outputs
 
-You can build a variety of outputs using Jupyter Book. To choose a different builder, use the `--builder <builder-name>` configuration when running `jupyter-book build` from the command-line. Here is a list of builders that are available to you:
+You can build a variety of outputs using Jupyter Book. To choose a different builder, use the `--builder <builder-name>` configuration when running `jupyter-book build` from the command-line.
+
+Here is a list of builders that are available to you:
 
 - `html`: HTML outputs (default)
 - `singlehtml`: A single HTML page for your book
