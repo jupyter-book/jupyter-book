@@ -1,9 +1,12 @@
 import subprocess
 
 import pytest
+import sphinx
 from bs4 import BeautifulSoup
 
 # from jupyter_book.cli import main as commands
+
+SPHINX_VERSION = f".sphinx{sphinx.version_info[0]}"
 
 
 @pytest.mark.parametrize(
@@ -69,5 +72,5 @@ def test_toc_numbered_multitoc_numbering_false(
     file_regression.check(
         toc.prettify(),
         basename=toc_file.split(".")[0] + "_multitoc_numbering_false",
-        extension=".html",
+        extension=f"{SPHINX_VERSION}.html",
     )
