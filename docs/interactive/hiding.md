@@ -41,7 +41,7 @@ There are two ways to hide Markdown content
 * you can use the `dropdown` class with admonitions to turn them into dropdowns
 
 Both allow you to wrap chunks of Markdown in a button that lets users show
-and hide the content.
+and hide the content. Note however that Markdown headers do not work inside dropdowns (they will appear outside of the dropdown). Use HTML headers inside dropdowns.
 
 ### The `{toggle}` directive
 
