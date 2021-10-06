@@ -58,6 +58,7 @@ final:
   - dollarmath
   - linkify
   - substitution
+  - tasklist
   nb_output_stderr: show
   new: value
   numfig: true
