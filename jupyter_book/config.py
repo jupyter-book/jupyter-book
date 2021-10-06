@@ -137,26 +137,22 @@ def get_final_config(
     # then merge this into the default sphinx config
     _recursive_update(sphinx_config, yaml_config)
 
-    # Check mathjax_config for sphinx>=4
-    # mathjax3 is now the default version used but the configuration keys have been changed
-    # in Sphinx
-    if sphinx.version_info[0] >= 4:
-        mathjax_warning = False
-        if "mathjax_config" in user_yaml_update:
-            mathjax_warning = True
-            # Switch off warning if user has specified mathjax v2
-            if (
-                "mathjax_path" in user_yaml_update
-                and "mathjax@2" in user_yaml_update["mathjax_path"]
-            ):
-                mathjax_warning = False
-        if mathjax_warning:
+    # Check user specified mathjax_config for sphinx >= 4
+    if sphinx.version_info[0] >= 4 and "mathjax_config" in user_yaml_update:
+        # Switch off warning if user has specified mathjax v2
+        if (
+            "mathjax_path" in user_yaml_update
+            and "@2" in user_yaml_update["mathjax_path"]
+        ):
+            # use mathjax2_config so not to tigger deprecation warning in future
+            user_yaml_update["mathjax2_config"] = user_yaml_update.pop("mathjax_config")
+        else:
             _message_box(
                 (
-                    f"[mathjax Warning] The mathjax configuration has changed for sphinx>=4.0 [Using sphinx: {sphinx.__version__}]\n"  # noqa: E501
-                    "The _config.yml file is using `mathjax_config` when it should be switched to `mathjax3_config`\n"  # noqa: E501
-                    "mathjax3 is now the default mathjax version and configuration values need to use `mathjax3_config`\n"  # noqa: E501
-                    "If you would like to use `mathjax2` then you will need to specify this using `mathjax_path`\n"  # noqa: E501
+                    f"[Warning] Mathjax configuration has changed for sphinx>=4.0 [Using sphinx: {sphinx.__version__}]\n"  # noqa: E501
+                    "Your _config.yml needs to be updated:\n"  # noqa: E501
+                    "\tmathjax_config -> mathjax3_config"  # noqa: E501
+                    "To continue using `mathjax v2` you will need to use the `mathjax_path` configuration\n"  # noqa: E501
                     "\n"
                     "See Sphinx Documentation:\n"
                     "https://www.sphinx-doc.org/en/master/usage/extensions/math.html#module-sphinx.ext.mathjax"  # noqa: E501
