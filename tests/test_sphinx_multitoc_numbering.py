@@ -61,8 +61,8 @@ def test_toc_numbered_multitoc_numbering_false(
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
     )
-    stdout, _ = process.communicate()
-    assert process.returncode == 0, stdout
+    stdout, stderr = process.communicate()
+    assert process.returncode == 0, stderr
 
     path_toc_directive = books.joinpath("_build", "html", "index.html")
 
