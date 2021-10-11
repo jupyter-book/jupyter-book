@@ -172,6 +172,26 @@ and even internal images can be rendered, as the code below exemplifies:
 display(Markdown('![figure](../images/logo-wide.svg)'))
 ```
 
+(content:code-outputs:stdout-and-stderr)=
+## Stdout and Stderr Output
+
+Code contained in code cells may print outputs through two primary streams:
+
+1. `stdout`: outputs issued through the standard output stream
+2. `stderr`: outputs issued through the error output stream
+
+These outputs may appear in a mixed order and you may want them to be grouped and sorted to display the correct `logical` ordering.
+
+This can be achieved using the [nb_merge_streams feature contained in `myst_nb`](https://myst-nb.readthedocs.io/en/latest/use/formatting_outputs.html#group-stderr-stdout).
+
+You can enable this in your `_config.yml`:
+
+```yaml
+sphinx:
+  config:
+    nb_merge_streams: true
+```
+
 (content:code-outputs:ansi)=
 ## ANSI outputs
 
