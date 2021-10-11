@@ -114,7 +114,7 @@ def update_latex_documents(latex_documents, latexoverrides):
 
 
 def latex_document_components(latex_documents):
-    """ Return a dictionary of latex_document components by name """
+    """Return a dictionary of latex_document components by name"""
     latex_tuple_components = {}
     for idx, item in enumerate(LATEX_DOCUMENTS):
         # skip if latex_documents doesn't doesn't contain all elements
@@ -126,7 +126,7 @@ def latex_document_components(latex_documents):
 
 
 def latex_document_tuple(components):
-    """ Return a tuple for latex_documents from named components dictionary """
+    """Return a tuple for latex_documents from named components dictionary"""
     latex_doc = []
     for item in LATEX_DOCUMENTS:
         if item not in components.keys():
