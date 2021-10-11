@@ -18,7 +18,12 @@ SPHINX_VERSION = f".sphinx{sphinx_build.version_info[0]}"
         {"title": "hallo"},
         {"html": {"extra_footer": ""}},
         {"execute": {"execute_notebooks": "cache"}},
-        {"parse": {"myst_enable_extensions": ["linkify"]}},
+        {
+            "parse": {
+                "myst_enable_extensions": ["linkify"],
+                "myst_dmath_double_inline": "true",
+            }
+        },
         {"latex": {"latex_documents": {"targetname": "book.tex", "title": "other"}}},
         {"launch_buttons": {"binderhub_url": "other"}},
         {"repository": {"url": "other"}},
