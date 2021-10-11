@@ -1,5 +1,15 @@
 # Change Log
 
+## v0.12.0
+
+### New
+
+
+
+### Deprecations from `myst-parser`
+
+- The [deprecations made to extension configurations and colon fences in `0.13.0`](https://github.com/executablebooks/MyST-Parser/blob/master/CHANGELOG.md#remove-v013-deprecations-%EF%B8%8F) have now been removed:
+
 ## v0.11.3
 
 This release enables the use of the [singlehtml builder](https://www.sphinx-doc.org/en/master/usage/builders/index.html#sphinx.builders.singlehtml.SingleFileHTMLBuilder) and updates [sphinx-thebe](https://github.com/executablebooks/sphinx-thebe) and [sphinx-book-theme](https://github.com/executablebooks/sphinx-book-theme)
