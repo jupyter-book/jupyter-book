@@ -178,7 +178,6 @@ few quirks to it. Here are a few gotchas:
 ::::
 
 
-
 ## Add a table of contents to a page's content
 
 If you'd like to add a table of contents for the sub-sections of a page
@@ -203,3 +202,21 @@ To control the maximum depth of the Table of Contents that you insert, use the `
   - file: chapter1
   ...
 ```
+
+
+## Exclude pages from your build
+
+By default, Jupyter Book will build all content files that are found in your book's
+folder, even if they are not specified in `_toc.yml` (and will raise a warning if
+it finds a file that isn't listed there).
+
+If you'd like Jupyter Book to skip a file entirely, you can do so with the following
+configuration in `_config.yml`:
+
+```yaml
+exclude_patterns: [pattern1/*, path/to/myfile.ipynb]
+```
+
+Any files that match the patterns described there will be excluded from the build.
+If you'd like to exclude files from being *executed* but still wish for them to be
+built by Jupyter Book, see [](execute/exclude).
