@@ -137,6 +137,7 @@ def get_final_config(
     # then merge this into the default sphinx config
     _recursive_update(sphinx_config, yaml_config)
 
+    # TODO: deprecate this in version 0.14
     # Check user specified mathjax_config for sphinx >= 4
     if sphinx.version_info[0] >= 4 and "mathjax_config" in user_yaml_update:
         # Switch off warning if user has specified mathjax v2
