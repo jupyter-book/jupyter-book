@@ -65,6 +65,10 @@ final:
   - linkify
   - substitution
   - tasklist
+  myst_url_schemes:
+  - mailto
+  - http
+  - https
   nb_output_stderr: show
   numfig: true
   panels_add_bootstrap_css: false

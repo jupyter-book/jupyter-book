@@ -31,6 +31,15 @@
                     "items": {
                         "type": "string"
                     }
+                },
+                "myst_url_schemes": {
+                    "type": [
+                        "null",
+                        "array"
+                    ],
+                    "items": {
+                        "type": "string"
+                    }
                 }
             }
         },

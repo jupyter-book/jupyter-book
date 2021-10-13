@@ -319,7 +319,7 @@ def yaml_to_sphinx(yaml: dict):
             sphinx_config["myst_enable_extensions"] = extensions
 
         # Configuration values we'll just pass-through
-        for ikey in ["myst_substitutions"]:
+        for ikey in ["myst_substitutions", "myst_url_schemes"]:
             if ikey in parse:
                 sphinx_config[ikey] = parse.get(ikey)
 
