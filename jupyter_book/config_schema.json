@@ -40,6 +40,10 @@
                     "items": {
                         "type": "string"
                     }
+                },
+                "myst_dmath_double_inline": {
+                    "type": "boolean",
+                    "default": true
                 }
             }
         },

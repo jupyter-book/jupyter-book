@@ -1,6 +1,6 @@
 _user_config:
   parse:
-    myst_dmath_double_inline: 'true'
+    myst_dmath_double_inline: true
     myst_enable_extensions:
     - linkify
 final:

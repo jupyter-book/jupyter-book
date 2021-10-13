@@ -21,7 +21,7 @@ SPHINX_VERSION = f".sphinx{sphinx_build.version_info[0]}"
         {
             "parse": {
                 "myst_enable_extensions": ["linkify"],
-                "myst_dmath_double_inline": "true",
+                "myst_dmath_double_inline": True,
             }
         },
         {"latex": {"latex_documents": {"targetname": "book.tex", "title": "other"}}},
