@@ -76,7 +76,7 @@ For more information about MyST markdown and all the things you can do with it, 
 ### Jupyter Notebooks (`.ipynb`)
 
 The other type of content we'll note is a **Jupyter Notebook**, ending in `.ipynb`.
-Jupyter Notebooks have a combination of computational content and narrative conent.
+Jupyter Notebooks have a combination of computational content and narrative content.
 Each notebook is associated with a **kernel** (aka, Python, R, Julia, etc) that defines the language used to execute the notebook's computational content.
 
 By default, when Jupyter Book builds your book, **notebooks will be executed and their outputs cached**. On subsequent builds, notebook pages will be re-executed only if their code has changed.
