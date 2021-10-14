@@ -2,11 +2,13 @@
 
 import jsonschema
 import pytest
+import sphinx as sphinx_build
 
 from jupyter_book.cli.main import sphinx
 from jupyter_book.config import get_final_config, validate_yaml
 
 pytest_plugins = "pytester"
+SPHINX_VERSION = f".sphinx{sphinx_build.version_info[0]}"
 
 
 @pytest.mark.parametrize(
@@ -16,7 +18,12 @@ pytest_plugins = "pytester"
         {"title": "hallo"},
         {"html": {"extra_footer": ""}},
         {"execute": {"execute_notebooks": "cache"}},
-        {"parse": {"myst_enable_extensions": ["linkify"]}},
+        {
+            "parse": {
+                "myst_enable_extensions": ["linkify"],
+                "myst_dmath_double_inline": True,
+            }
+        },
         {"latex": {"latex_documents": {"targetname": "book.tex", "title": "other"}}},
         {"launch_buttons": {"binderhub_url": "other"}},
         {"repository": {"url": "other"}},
@@ -220,3 +227,49 @@ def test_get_final_config_bibtex(data_regression):
         raise_on_invalid=True,
     )
     assert "sphinxcontrib.bibtex" in final_config["extensions"]
+
+
+def test_mathjax_config_warning(data_regression):
+    mathjax_config = {
+        "sphinx": {
+            "config": {
+                "mathjax_config": {"TeX": {"Macros": {"argmax": "arg\\,max"}}},
+            }
+        }
+    }
+    cli_config = {"latex_individualpages": False}
+    user_config = mathjax_config
+    final_config, metadata = get_final_config(
+        user_yaml=user_config,
+        cli_config=cli_config,
+        validate=True,
+        raise_on_invalid=True,
+    )
+    data_regression.check(
+        {"_user_config": user_config, "final": final_config, "metadata": metadata},
+        basename=f"test_mathjax_config_warning{SPHINX_VERSION}",
+    )
+
+
+def test_mathjax_config_warning_mathjax2path(data_regression):
+    mathjax_config = {
+        "sphinx": {
+            "config": {
+                "mathjax_config": {"TeX": {"Macros": {"argmax": "arg\\,max"}}},
+                "mathjax_path": "https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_CHTML",  # noqa: E501
+            }
+        }
+    }
+
+    cli_config = {"latex_individualpages": False}
+    user_config = mathjax_config
+    final_config, metadata = get_final_config(
+        user_yaml=user_config,
+        cli_config=cli_config,
+        validate=True,
+        raise_on_invalid=True,
+    )
+    data_regression.check(
+        {"_user_config": user_config, "final": final_config, "metadata": metadata},
+        basename=f"test_mathjax_config_warning_mathjax2path{SPHINX_VERSION}",
+    )
