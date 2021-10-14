@@ -32,13 +32,51 @@ should overwrite pre-existing rules and behaviour.
 
 ### An example: justify the text
 
-If you want the text of you book to be justified instead of left aligned then create `myfile.css` under `mybook/_static` with the following CSS:
+If you want the text of your book to be justified instead of left aligned then create `myfile.css` under `mybook/_static` with the following CSS:
 
 ```css
 p {
     text-align: justify;
 }
 ```
+
+(custom-admonitions)=
+### An Example: custom admonitions
+
+Using the `admonition` directive with a title creates a css class based on the
+title of the admonition. To create custom admonitions, create a `myadmonitions.css`
+under `mybook/_static` with the following CSS:
+
+```css
+.admonition-extra-credit {
+    border-left-color: rgba(var(--pst-color-success), 1);
+}
+.admonition-extra-credit .admonition-title {
+    background-color: rgba(var(--pst-color-success), .1)
+}
+.admonition-extra-credit .admonition-title:before {
+    color: rgba(var(--pst-color-success), 1);
+    content: '\f19d';
+}
+```
+
+This uses
+and then in your book, use
+
+```md
+:::{admonition} Extra credit
+An "extra credit" exercise is presented here.
+:::
+```
+
+or
+
+
+````md
+```{admonition} Extra credit
+An "extra credit" exercise is presented here.
+```
+````
 
 ## Enable Google Analytics
 

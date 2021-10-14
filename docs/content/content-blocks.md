@@ -130,6 +130,8 @@ My content
 ````
 `````
 
+You can also [create custom admonitions using custom CSS](custom-admonitions).
+
 (admonitions:colons)=
 ### Markdown-friendly directives with `:::`
 
