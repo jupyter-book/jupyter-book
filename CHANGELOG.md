@@ -5,15 +5,20 @@
 ### New
 
 The primary change in this release is to update the requirements of `jupyter-book` from `sphinx>=2,4` to `sphinx>=3,<5` to support `sphinx>=4` via [#1448](https://github.com/executablebooks/jupyter-book/pull/1448).
+
 This includes upgrades to underlying packages:
 
 - `myst-nb` has been upgrade from `myst-nb~=0.12.0` to `myst-nb~=0.13.1`. Some new features were added in `v0.13+` and can
   be seen in the [myst-nb changelog](https://github.com/executablebooks/MyST-NB/blob/master/CHANGELOG.md#change-log)
 - additional projects such as [jupytext](https://github.com/mwouts/jupytext), [sphinx-external-toc](https://github.com/executablebooks/sphinx-external-toc), [sphinx-jupyterbook-latex](https://github.com/executablebooks/sphinx-jupyterbook-latex), [sphinx-panels](https://github.com/executablebooks/sphinx-panels), and [sphinx-book-theme](https://github.com/executablebooks/sphinx-book-theme) were also upgraded as part of this release.
 
-### Deprecations from `myst-parser` upgrade
+Documentation has also received updates and fixes.
 
-- The [deprecations made to extension configurations and colon fences in `0.13.0`](https://github.com/executablebooks/MyST-Parser/blob/master/CHANGELOG.md#remove-v013-deprecations-%EF%B8%8F) have now been removed:
+Thanks to @bryanwweber, @chrisjsewell, @choldgraf, @gabri470, @jmshea, @joelostblom, @mmcky, @TomasBeuzen
+
+### Deprecations from upgrade to `myst-parser`
+
+- The [deprecations made to extension configurations and colon fences in `0.13.0`](https://github.com/executablebooks/MyST-Parser/blob/master/CHANGELOG.md#remove-v013-deprecations-%EF%B8%8F) have now been removed
 
 ## v0.11.3
 
