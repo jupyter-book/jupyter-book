@@ -1,5 +1,10 @@
 _user_config:
-  title: hallo
+  sphinx:
+    config:
+      mathjax3_config:
+        TeX:
+          Macros:
+            argmax: arg\,max
 final:
   author: The Jupyter Book community
   comments_config:
@@ -51,11 +56,15 @@ final:
     use_edit_page_button: false
     use_issues_button: false
     use_repository_button: false
-  html_title: hallo
+  html_title: My Jupyter Book
   jupyter_cache: ''
   jupyter_execute_notebooks: auto
   language: null
   latex_engine: pdflatex
+  mathjax3_config:
+    TeX:
+      Macros:
+        argmax: arg\,max
   myst_enable_extensions:
   - colon_fence
   - dollarmath
@@ -76,5 +85,5 @@ final:
   use_multitoc_numbering: true
 metadata:
   latex_doc_overrides:
-    title: hallo
+    title: My Jupyter Book
   latex_individualpages: false
