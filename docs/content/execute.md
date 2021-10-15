@@ -291,7 +291,7 @@ These outputs may appear in a mixed order and you may want them to be grouped an
 to display the correct `logical` ordering.
 
 This can be achieved using the [nb_merge_streams feature contained in
-`myst_nb`](myst-nb:use/formatting_outputs.html#group-stderr-stdout).
+`myst_nb`](myst-nb:use/format/group-stderr-stdout).
 
 You can enable this in your `_config.yml`:
 
