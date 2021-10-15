@@ -124,9 +124,9 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ~\AppData\Local\pip\Cache
-        key: ${{ runner.os }}-{{ matrix.python-version }}-pip-${{ hashFiles('setup.py') }}
+        key: ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('setup.py') }}
         restore-keys: |
-          ${{ runner.os }}-{{ matrix.python-version }}-pip-
+          ${{ runner.os }}-${{ matrix.python-version }}-pip-
     - name: Install Python dependencies
       run: |
         python -m pip install --upgrade pip
@@ -152,9 +152,9 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ~\AppData\Local\pip\Cache
-        key: ${{ runner.os }}-{{ matrix.python-version }}-pip-${{ hashFiles('setup.py') }}
+        key: ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('setup.py') }}
         restore-keys: |
-          ${{ runner.os }}-{{ matrix.python-version }}-pip-
+          ${{ runner.os }}-${{ matrix.python-version }}-pip-
     - name: Install Python dependencies
       run: |
         python -m pip install --upgrade pip
