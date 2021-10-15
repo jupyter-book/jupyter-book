@@ -54,18 +54,6 @@ jupyter-book clean mybookname/ --all
 
 This will entirely remove the folders in the `_build/` directory.
 
-(config:exclude-non-toc-files)=
-## Disable building files that aren't specified in the TOC
-
-By default, Jupyter Book will build all files that are in your book's folder, regardless of whether they are specified in the Table of Contents.
-To disable this behavior and *only* build files that are specified in the TOC, use the following pattern in `_config.yml`:
-
-```yaml
-only_build_toc_files: true
-```
-
-Note that files that are in *hidden folders* (e.g. in `.github` or `.venv`) will still be built even if they are not specified in the TOC. You should exclude these files explicitly.
-
 ## Debug your book's build process
 
 When debugging your book build, the following options can be helpful:

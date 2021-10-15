@@ -220,3 +220,16 @@ exclude_patterns: [pattern1/*, path/to/myfile.ipynb]
 Any files that match the patterns described there will be excluded from the build.
 If you'd like to exclude files from being *executed* but still wish for them to be
 built by Jupyter Book, see [](execute/exclude).
+
+
+(config:exclude-non-toc-files)=
+### Disable building files that aren't in the Table of Contents
+
+By default, Jupyter Book will build all files that are in your book's folder, regardless of whether they are specified in the Table of Contents.
+To disable this behavior and *only* build files that are specified in the TOC, use the following pattern in `_config.yml`:
+
+```yaml
+only_build_toc_files: true
+```
+
+Note that files that are in *hidden folders* (e.g. in `.github` or `.venv`) will still be built even if they are not specified in the TOC. You should exclude these files explicitly.
