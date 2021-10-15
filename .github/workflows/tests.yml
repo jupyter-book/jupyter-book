@@ -121,9 +121,9 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ~\AppData\Local\pip\Cache
-        key: ${{ runner.os }}-3.8-pip-${{ hashFiles('setup.py') }}
+        key: ${{ runner.os }}-{{ python-version }}-pip-${{ hashFiles('setup.py') }}
         restore-keys: |
-          ${{ runner.os }}-3.8-pip-
+          ${{ runner.os }}-{{ python-version }}-pip-
     - name: Install Python dependencies
       run: |
         python -m pip install --upgrade pip
@@ -146,9 +146,9 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ~\AppData\Local\pip\Cache
-        key: ${{ runner.os }}-3.8-pip-${{ hashFiles('setup.py') }}
+        key: ${{ runner.os }}-{{ python-version }}-pip-${{ hashFiles('setup.py') }}
         restore-keys: |
-          ${{ runner.os }}-3.8-pip-
+          ${{ runner.os }}-{{ python-version }}-pip-
     - name: Install Python dependencies
       run: |
         python -m pip install --upgrade pip
