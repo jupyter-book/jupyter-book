@@ -14,7 +14,7 @@ This includes upgrades to underlying packages:
 
 Documentation has also received updates and fixes.
 
-Thanks to @bryanwweber, @chrisjsewell, @choldgraf, @gabri470, @jmshea, @joelostblom, @mmcky, @TomasBeuzen
+Thanks to @bryanwweber, @chrisjsewell, @choldgraf, @gabri470, @jmshea, @joelostblom, @mmcky, @patrickmineault, @TomasBeuzen
 
 ### Deprecations from upgrade to `myst-parser`
 
