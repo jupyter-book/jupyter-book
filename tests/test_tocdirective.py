@@ -3,6 +3,7 @@ import shutil
 from pathlib import Path
 
 import pytest
+import sphinx
 from bs4 import BeautifulSoup
 from click.testing import CliRunner
 from TexSoup import TexSoup
@@ -12,6 +13,8 @@ from jupyter_book.cli.main import build
 path_tests = Path(__file__).parent.resolve()
 path_books = path_tests.joinpath("books")
 path_root = path_tests.parent
+
+SPHINX_VERSION = f".sphinx{sphinx.version_info[0]}"
 
 
 def test_toc_startwithlist(cli: CliRunner, temp_with_override, file_regression):
@@ -83,7 +86,7 @@ def test_toc_parts(cli: CliRunner, temp_with_override, file_regression):
     file_regression.check(
         toc[0].prettify(),
         basename="test_toc_parts_directive",
-        extension=".html",
+        extension=f"{SPHINX_VERSION}.html",
         encoding="utf8",
     )
 
@@ -91,7 +94,7 @@ def test_toc_parts(cli: CliRunner, temp_with_override, file_regression):
     file_regression.check(
         soup.select(".bd-links")[0].prettify(),
         basename="test_toc_parts_sidebar",
-        extension=".html",
+        extension=f"{SPHINX_VERSION}.html",
         encoding="utf8",
     )
 

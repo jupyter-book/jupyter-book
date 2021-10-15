@@ -83,11 +83,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.6, 3.7]
-        sphinx: [">=3,<4"]
-        include:
-          - python-version: 3.8
-            sphinx: ">=2,<3"
+        python-version: ["3.6", "3.7", "3.8"]
+        sphinx: [">=3,<4", ">=4,<5"]
 
     steps:
     - uses: actions/checkout@v2
@@ -114,19 +111,22 @@ jobs:
 
     name: Tests on Windows
     runs-on: windows-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 3.7
+    - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
-        python-version: 3.7
+        python-version: 3.8
     - uses: actions/cache@v2
       with:
         path: ~\AppData\Local\pip\Cache
-        key: ${{ runner.os }}-pip-${{ hashFiles('setup.py') }}
+        key: ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('setup.py') }}
         restore-keys: |
-          ${{ runner.os }}-pip-
+          ${{ runner.os }}-${{ matrix.python-version }}-pip-
     - name: Install Python dependencies
       run: |
         python -m pip install --upgrade pip
@@ -139,19 +139,22 @@ jobs:
   build-book-osx:
     name: Build docs on OSX
     runs-on: macos-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 3.7
+    - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
-        python-version: 3.7
+        python-version: 3.8
     - uses: actions/cache@v2
       with:
         path: ~\AppData\Local\pip\Cache
-        key: ${{ runner.os }}-pip-${{ hashFiles('setup.py') }}
+        key: ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('setup.py') }}
         restore-keys: |
-          ${{ runner.os }}-pip-
+          ${{ runner.os }}-${{ matrix.python-version }}-pip-
     - name: Install Python dependencies
       run: |
         python -m pip install --upgrade pip
@@ -171,10 +174,10 @@ jobs:
     steps:
       - name: Checkout source
         uses: actions/checkout@v2
-      - name: Set up Python 3.7
+      - name: Set up Python 3.8
         uses: actions/setup-python@v1
         with:
-          python-version: 3.7
+          python-version: 3.8
       - name: Build package
         run: |
           pip install wheel

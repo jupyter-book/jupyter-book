@@ -1,5 +1,39 @@
 # Change Log
 
+## v0.12.0
+
+### New
+
+The primary change in this release is to update the requirements of `jupyter-book` from `sphinx>=2,4` to `sphinx>=3,<5` to support `sphinx>=4` via [#1448](https://github.com/executablebooks/jupyter-book/pull/1448).
+
+This includes upgrades to underlying packages:
+
+- `myst-nb` has been upgrade from `myst-nb~=0.12.0` to `myst-nb~=0.13.1`. Some new features were added in `v0.13+` and can
+  be seen in the [myst-nb changelog](https://github.com/executablebooks/MyST-NB/blob/master/CHANGELOG.md#change-log)
+- additional projects such as [jupytext](https://github.com/mwouts/jupytext), [sphinx-external-toc](https://github.com/executablebooks/sphinx-external-toc), [sphinx-jupyterbook-latex](https://github.com/executablebooks/sphinx-jupyterbook-latex), [sphinx-panels](https://github.com/executablebooks/sphinx-panels), and [sphinx-book-theme](https://github.com/executablebooks/sphinx-book-theme) were also upgraded as part of this release.
+
+Documentation has also received updates and fixes.
+
+Thanks to @bryanwweber, @chrisjsewell, @choldgraf, @gabri470, @jmshea, @joelostblom, @mmcky, @patrickmineault, @TomasBeuzen
+
+### Deprecations from upgrade to `myst-parser`
+
+- The [deprecations made to extension configurations and colon fences in `0.13.0`](https://github.com/executablebooks/MyST-Parser/blob/master/CHANGELOG.md#remove-v013-deprecations-%EF%B8%8F) have now been removed
+
+## v0.11.3
+
+This release enables the use of the [singlehtml builder](https://www.sphinx-doc.org/en/master/usage/builders/index.html#sphinx.builders.singlehtml.SingleFileHTMLBuilder) and updates [sphinx-thebe](https://github.com/executablebooks/sphinx-thebe) and [sphinx-book-theme](https://github.com/executablebooks/sphinx-book-theme)
+
+### New
+
+1. [builders] Add access to the [singlehtml](https://www.sphinx-doc.org/en/master/usage/builders/index.html#sphinx.builders.singlehtml.SingleFileHTMLBuilder) builder via the CLI [[PR #1418](https://github.com/executablebooks/jupyter-book/pull/1418)]
+
+### Upgrade
+
+1. [sphinx-thebe](https://sphinx-thebe.readthedocs.io/en/latest/changelog.html#v0-0-10-2021-08-24) is now version `0.0.10`
+2. [sphinx-book-theme](https://github.com/executablebooks/sphinx-book-theme/blob/master/CHANGELOG.md#v013---2021-08-25) is now version `0.1.3`
+
+
 ## v0.11.2
 
 This release introduces [sphinx-multitoc-numbering](https://github.com/executablebooks/sphinx-multitoc-numbering) for consistent numbering across a `part/chapter` book structure. It also includes improvements to `pdflatex` output, updates to the documentation and various maintenance tasks.

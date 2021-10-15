@@ -179,6 +179,35 @@ jb config sphinx mybookname/
 
 :::
 
+### Choose a custom Sphinx theme
+
+Sphinx provides support for many different themes to control the look and feel of the output.
+Jupyter Book uses the [Sphinx Book Theme](https://sphinx-book-theme.readthedocs.io/) by default, but it is possible to use *any* Sphinx theme for your Jupyter Book by directly configuring Sphinx.
+
+For example, if you wished to use the [PyData Sphinx Theme](https://pydata-sphinx-theme.readthedocs.io/), you could install the theme with:
+
+```bash
+pip install pydata-sphinx-theme
+```
+
+and then configure your book like so:
+
+```yaml
+...
+sphinx:
+  config:
+    html_theme: pydata_sphinx_theme
+...
+```
+
+When you build your book, the PyData theme will be used.
+In this case, you should [consult the PyData theme documentation](https://pydata-sphinx-theme.readthedocs.io/en/latest/user_guide/index.html) for information about how to configure it.
+
+:::{warning}
+While you may choose any theme, there is some Jupyter Book configuration that only works with the Sphinx Book Theme, so some functionality may not be present if you choose a custom theme.
+For example, the [Launch Buttons](launchbuttons/binder) are not supported in most Sphinx themes.
+:::
+
 ### Fine control of parsing and execution
 
 As discussed in [the components of Jupyter Book](intro/jupyter-book-components), two of the main components of Jupyter Book are Sphinx extensions;
@@ -188,7 +217,7 @@ These two extensions are highly customizable *via* Sphinx configuration.
 Some of their configuration is already exposed in the `_config.yml`, but you can also directly set configuration, see:
 
 * the [MyST-Parser configuration options](myst-parser:sphinx/config-options)
-* the [MyST-NB configuration options](myst-nb:start/config-options)
+* the [MyST-NB configuration options](myst-nb:config/reference)
 
 (sphinx/tex-macros)=
 ### Defining TeX macros

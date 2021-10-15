@@ -282,6 +282,25 @@ print("this is some stdout")
 print("this is some stderr", file=sys.stderr)
 ```
 
+(content:execute:merge-stdout-and-stderr)=
+### Merging stdout and stderr output
+
+Code contained in code cells may print outputs through both the `stdout` and `stderr` stream.
+
+These outputs may appear in a mixed order and you may want them to be grouped and sorted
+to display the correct `logical` ordering.
+
+This can be achieved using the [nb_merge_streams feature contained in
+`myst_nb`](myst-nb:use/format/group-stderr-stdout).
+
+You can enable this in your `_config.yml`:
+
+```yaml
+sphinx:
+  config:
+    nb_merge_streams: true
+```
+
 ## Execution statistics
 
 As notebooks are executed, certain statistics are stored on the build environment by MyST-NB.
