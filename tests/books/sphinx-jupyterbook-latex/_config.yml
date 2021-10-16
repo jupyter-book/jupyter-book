@@ -1,0 +1,25 @@
+# Book settings
+# Learn more at https://jupyterbook.org/customize/config.html
+
+title: My sample book
+author: The Jupyter Book Community
+logo: logo.png
+
+# Force re-execution of notebooks on each build.
+# See https://jupyterbook.org/content/execute.html
+execute:
+  execute_notebooks: force
+
+# Define the name of the latex output file for PDF builds
+latex:
+  latex_documents:
+    targetname: book.tex
+
+bibtex_bibfiles:
+- references.bib
+
+sphinx:
+  extra_extensions:
+    - sphinx_jupyterbook_latex
+  config:
+    jblatex_captions_to_parts: true
