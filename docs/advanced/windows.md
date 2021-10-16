@@ -1,6 +1,5 @@
-
 (working-on-windows)=
-## Working on Windows
+# Working on Windows
 
 Jupyter Book is now also tested against a Windows environment on Python 3.7 😀
 
