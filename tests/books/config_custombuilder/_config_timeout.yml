@@ -1,0 +1,4 @@
+# Book settings
+execute:
+  execute_notebooks: cache
+  timeout: 1

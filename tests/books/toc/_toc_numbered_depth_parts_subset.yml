@@ -1,0 +1,23 @@
+format: jb-book
+root: index
+title: Toc
+parts:
+- caption: Chapter 1
+  numbered: true
+  chapters:
+  - file: content1
+    title: Content1
+- caption: Chapter 2
+  chapters:
+  - file: content2
+    title: Content2
+  - file: content3
+    title: Content3
+- caption: Chapter 3
+  numbered: 1
+  chapters:
+  - file: subfolder/index
+    title: Subfolder
+    sections:
+    - file: subfolder/asubpage
+      title: Asubpage

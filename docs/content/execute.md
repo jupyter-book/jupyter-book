@@ -21,14 +21,14 @@ Caching behaviour is controlled with the `execute:` section [in your `_config.ym
 the sections below for each configuration option and its effect.
 
 :::{tip}
-If you'd like to execute code that is in your markdown files,
-you can use the `{code-cell}` directive in MyST markdown.
+If you'd like to execute code that is in your Markdown files,
+you can use the `{code-cell}` directive in MyST Markdown.
 See [](../file-types/myst-notebooks.md) for more information.
 :::
 
 ## Trigger notebook execution
 
-By default, Jupyter Book will execute any content files that have a notebook structure,
+By default, Jupyter Book will execute any content files that have a notebook structure
 and that are missing at least one output. This is equivalent to the following configuration in _config.yml`:
 
 ```yaml
@@ -56,7 +56,7 @@ execute:
 
 See {ref}`execute/cache` for more information.
 
-**To turn off notebook execution**,change the above configuration value to:
+**To turn off notebook execution**, change the above configuration value to:
 
 ```yaml
 execute:
@@ -79,6 +79,10 @@ execute:
 
 Any file that matches one of the items in `exclude_patterns` will not be executed.
 
+:::{tip}
+To auto-exclude all files outside of your table of contents, see [](config:exclude-non-toc-files)
+:::
+
 (execute/cache)=
 ## Caching the notebook execution
 
@@ -93,7 +97,7 @@ When you re-build your site, the following will happen:
 
 * Notebooks that have not seen changes to their **code cells** since the last build will not be re-executed.
   Instead, their outputs will be pulled from the cache and inserted into your site.
-* Notebooks that **have any change to their code cells** will be re-executed
+* Notebooks that **have had any change to their code cells** will be re-executed
   and the cache will be updated with the new outputs.
 
 To enable caching of notebook outputs, use the following configuration:
@@ -117,10 +121,10 @@ The path should point to an **empty folder**, or a folder where a **jupyter cach
 
 [jupyter-cache]: https://github.com/executablebooks/jupyter-cache "the Jupyter Cache Project"
 
-## Execution Configuration
+## Execution configuration
 
-You can control notebook execution, and how output content is handled at a project level (using your `_config.yml`) or also, in some cases, at a notebook and code cell level.
-Below are detailed a number of ways to achieve this.
+You can control notebook execution and how output content is handled at a project level using your `_config.yml` but, in some cases, also at a notebook and code cell level.
+Below we explore a number of ways to achieve this.
 
 :::{seealso}
 [](jupyter-cell-tags) and [](./code-outputs.md).
@@ -130,13 +134,13 @@ Below are detailed a number of ways to achieve this.
 
 :::{important}
 The default behaviour of `cache` is now to run in the local directory.
-This is a change from the from `v0.7`.
+This is a change from `v0.7`.
 :::
 
 By default, the command working directory (cwd) in which a notebook runs will be the directory in which it is located (for both `auto` and `cache`). This means that notebooks requiring access to assets in relative paths will work.
 
-Alternatively, if you wish for your notebooks to isolate your notebook execution, in a temporary folder,
-you can use the `_config.yml` setting:
+Alternatively, if you wish for your notebooks to isolate your notebook execution in a temporary folder,
+you can use the following `_config.yml` setting:
 
 ```yaml
 execute:
@@ -145,19 +149,19 @@ execute:
 
 ### Setting execution timeout
 
-Execution timeout defines the maximum time (in seconds) each notebook cell is allowed to run.
+Execution timeout defines the maximum time (in seconds) each notebook cell is allowed to run for.
 If the execution takes longer an exception will be raised.
-The default is 30 seconds, so in cases of long-running cells you may want to specify an higher value.
-The timeout option can also be set to `None` or -1 to remove any restriction on execution time.
+The default is 30 seconds, so in cases of long-running cells you may want to specify a higher value.
+The timeout option can also be set to -1, to remove any restriction on execution time.
 
-You can set the timeout for all notebook execution in your `_config.yml`:
+You can set the timeout for all notebook executions in your `_config.yml`:
 
 ```yaml
 execute:
   timeout: 100
 ```
 
-This global value can also be overridden per notebook by adding this to you notebooks metadata:
+This global value can also be overridden per notebook by adding this to your notebook metadata:
 
 ```json
 {
@@ -180,7 +184,7 @@ execute:
   allow_errors: true
 ```
 
-This global value can also be overridden per notebook by adding this to you notebooks metadata:
+This global value can also be overridden per notebook by adding this to your notebook metadata:
 
 ```json
 {
@@ -217,7 +221,6 @@ print(thisvariabledoesntexist)
 You may also wish to control how stderr outputs are dealt with.
 
 Alternatively, you can configure how stdout is dealt with at a global configuration level, using the `nb_output_stderr` configuration value.
-This can be set to:
 
 You can configure the default behaviour for all notebooks in your `_config.yml`:
 
@@ -233,7 +236,7 @@ Where the value is one of:
 * `"remove-warn"`: remove all stderr, but log a warning if any found
 * `"warn"`, `"error"` or `"severe"`: log the stderr at a certain level, if any found.
 
-You can also remove stderr at a cell level, sing the `remove-stderr` [cell tag](https://jupyter-notebook.readthedocs.io/en/stable/changelog.html#cell-tags), like so:
+You can also remove stderr at a cell level, using the `remove-stderr` [cell tag](https://jupyter-notebook.readthedocs.io/en/stable/changelog.html#cell-tags), like so:
 
 ````md
 ```{code-cell} ipython3
@@ -244,6 +247,8 @@ print("this is some stdout")
 print("this is some stderr", file=sys.stderr)
 ```
 ````
+
+which produces
 
 ```{code-cell} ipython3
 :tags: [remove-stderr]
@@ -255,7 +260,7 @@ print("this is some stderr", file=sys.stderr)
 
 ### Dealing with code that produces stdout
 
-Similar to stderr, you can remove stdout at a cell level with the `remove-stdout` tag:
+Similar to stderr, you can remove stdout at a cell level with the `remove-stdout` tag, by which
 
 ````md
 ```{code-cell} ipython3
@@ -267,6 +272,8 @@ print("this is some stderr", file=sys.stderr)
 ```
 ````
 
+produces the following:
+
 ```{code-cell} ipython3
 :tags: [remove-stdout]
 
@@ -275,14 +282,35 @@ print("this is some stdout")
 print("this is some stderr", file=sys.stderr)
 ```
 
+(content:execute:merge-stdout-and-stderr)=
+### Merging stdout and stderr output
+
+Code contained in code cells may print outputs through both the `stdout` and `stderr` stream.
+
+These outputs may appear in a mixed order and you may want them to be grouped and sorted
+to display the correct `logical` ordering.
+
+This can be achieved using the [nb_merge_streams feature contained in
+`myst_nb`](myst-nb:use/formatting_outputs.html#group-stderr-stdout).
+
+You can enable this in your `_config.yml`:
+
+```yaml
+sphinx:
+  config:
+    nb_merge_streams: true
+```
+
 ## Execution statistics
 
 As notebooks are executed, certain statistics are stored on the build environment by MyST-NB.
-The simplest way to access and visualise this data is using the **`{nb-exec-table}`** directive.
+The simplest way to access and visualise this data is using the `{nb-exec-table}` directive.
 
 :::{seealso}
-The [MyST-NB documentation](myst-nb:execute/statistics), for creating you own directives to manipulate this data.
+The [MyST-NB documentation](myst-nb:execute/statistics), for creating your own directives to manipulate this data.
 :::
+
+The simple directive
 
 ````md
 ```{nb-exec-table}

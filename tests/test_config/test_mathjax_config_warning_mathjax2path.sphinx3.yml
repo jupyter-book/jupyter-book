@@ -1,0 +1,91 @@
+_user_config:
+  sphinx:
+    config:
+      mathjax_config:
+        TeX:
+          Macros:
+            argmax: arg\,max
+      mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_CHTML
+final:
+  author: The Jupyter Book community
+  comments_config:
+    hypothesis: false
+    utterances: false
+  copyright: '2021'
+  exclude_patterns:
+  - '**.ipynb_checkpoints'
+  - .DS_Store
+  - Thumbs.db
+  - _build
+  execution_allow_errors: false
+  execution_excludepatterns: []
+  execution_in_temp: false
+  execution_timeout: 30
+  extensions:
+  - sphinx_togglebutton
+  - sphinx_copybutton
+  - myst_nb
+  - jupyter_book
+  - sphinx_thebe
+  - sphinx_comments
+  - sphinx_external_toc
+  - sphinx.ext.intersphinx
+  - sphinx_panels
+  - sphinx_book_theme
+  - sphinx_jupyterbook_latex
+  external_toc_exclude_missing: false
+  html_baseurl: ''
+  html_favicon: ''
+  html_logo: ''
+  html_sourcelink_suffix: ''
+  html_theme: sphinx_book_theme
+  html_theme_options:
+    extra_footer: ''
+    extra_navbar: Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+    google_analytics_id: ''
+    home_page_in_toc: true
+    launch_buttons:
+      binderhub_url: https://mybinder.org
+      colab_url: ''
+      jupyterhub_url: ''
+      notebook_interface: classic
+      thebe: false
+    path_to_docs: ''
+    repository_branch: master
+    repository_url: https://github.com/executablebooks/jupyter-book
+    search_bar_text: Search this book...
+    use_edit_page_button: false
+    use_issues_button: false
+    use_repository_button: false
+  html_title: My Jupyter Book
+  jupyter_cache: ''
+  jupyter_execute_notebooks: auto
+  language: null
+  latex_engine: pdflatex
+  mathjax_config:
+    TeX:
+      Macros:
+        argmax: arg\,max
+  mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_CHTML
+  myst_enable_extensions:
+  - colon_fence
+  - dollarmath
+  - linkify
+  - substitution
+  - tasklist
+  myst_url_schemes:
+  - mailto
+  - http
+  - https
+  nb_output_stderr: show
+  numfig: true
+  panels_add_bootstrap_css: false
+  pygments_style: sphinx
+  suppress_warnings:
+  - myst.domains
+  use_jupyterbook_latex: true
+  use_multitoc_numbering: true
+metadata:
+  latex_doc_overrides:
+    title: My Jupyter Book
+  latex_individualpages: false

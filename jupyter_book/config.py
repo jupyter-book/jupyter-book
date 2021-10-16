@@ -1,14 +1,15 @@
 """A small sphinx extension to let you configure a site with YAML metadata."""
-from pathlib import Path
-from functools import lru_cache
 import json
+import sys
+from functools import lru_cache
+from pathlib import Path
 from typing import Optional, Union
 
 import jsonschema
+import sphinx
 import yaml
 
 from .utils import _message_box
-
 
 # Transform a "Jupyter Book" YAML configuration file into a Sphinx configuration file.
 # This is so that we can choose more user-friendly words for things than Sphinx uses.
@@ -26,20 +27,21 @@ def get_default_sphinx_config():
             "sphinx_copybutton",
             "myst_nb",
             "jupyter_book",
-            "sphinxcontrib.bibtex",
             "sphinx_thebe",
             "sphinx_comments",
+            "sphinx_external_toc",
             "sphinx.ext.intersphinx",
             "sphinx_panels",
+            "sphinx_book_theme",
         ],
         language=None,
         pygments_style="sphinx",
         html_theme="sphinx_book_theme",
         html_theme_options={"search_bar_text": "Search this book..."},
-        html_add_permalinks="¶",
         html_sourcelink_suffix="",
         numfig=True,
-        panels_add_boostrap_css=False,
+        panels_add_bootstrap_css=False,
+        suppress_warnings=["myst.domains"],
     )
 
 
@@ -74,11 +76,13 @@ def validate_yaml(yaml: dict, raise_on_errors=False, print_func=print):
 
 
 def get_final_config(
+    *,
     user_yaml: Optional[Union[dict, Path]] = None,
     cli_config: Optional[dict] = None,
     sourcedir: Optional[Path] = None,
     validate: bool = True,
     raise_on_invalid: bool = False,
+    use_external_toc: bool = True,
 ):
     """Create the final configuration dictionary, to parser to sphinx
 
@@ -102,21 +106,30 @@ def get_final_config(
     sphinx_config = get_default_sphinx_config()
 
     # get the default yaml configuration
-    yaml_config, default_yaml_update = yaml_to_sphinx(
+    yaml_config, default_yaml_update, add_paths = yaml_to_sphinx(
         yaml.safe_load(PATH_YAML_DEFAULT.read_text(encoding="utf8"))
     )
     yaml_config.update(default_yaml_update)
 
     # if available, get the user defined configuration
     user_yaml_recurse, user_yaml_update = {}, {}
+    user_yaml_path = None
     if user_yaml:
         if isinstance(user_yaml, Path):
+            user_yaml_path = user_yaml
             user_yaml = yaml.safe_load(user_yaml.read_text(encoding="utf8"))
         else:
             user_yaml = user_yaml
         if validate:
             validate_yaml(user_yaml, raise_on_errors=raise_on_invalid)
-        user_yaml_recurse, user_yaml_update = yaml_to_sphinx(user_yaml)
+
+        user_yaml_recurse, user_yaml_update, add_paths = yaml_to_sphinx(user_yaml)
+
+    # add paths from yaml config
+    if user_yaml_path:
+        for path in add_paths:
+            path = (user_yaml_path.parent / path).resolve()
+            sys.path.append(path.as_posix())
 
     # first merge the user yaml into the default yaml
     _recursive_update(yaml_config, user_yaml_recurse)
@@ -124,9 +137,48 @@ def get_final_config(
     # then merge this into the default sphinx config
     _recursive_update(sphinx_config, yaml_config)
 
+    # TODO: deprecate this in version 0.14
+    # Check user specified mathjax_config for sphinx >= 4
+    # https://github.com/executablebooks/jupyter-book/issues/1502
+    if sphinx.version_info[0] >= 4 and "mathjax_config" in user_yaml_update:
+        # Switch off warning if user has specified mathjax v2
+        if (
+            "mathjax_path" in user_yaml_update
+            and "@2" in user_yaml_update["mathjax_path"]
+        ):
+            # use mathjax2_config so not to tigger deprecation warning in future
+            user_yaml_update["mathjax2_config"] = user_yaml_update.pop("mathjax_config")
+        else:
+            _message_box(
+                (
+                    f"[Warning] Mathjax configuration has changed for sphinx>=4.0 [Using sphinx: {sphinx.__version__}]\n"  # noqa: E501
+                    "Your _config.yml needs to be updated:\n"  # noqa: E501
+                    "\tmathjax_config -> mathjax3_config"  # noqa: E501
+                    "To continue using `mathjax v2` you will need to use the `mathjax_path` configuration\n"  # noqa: E501
+                    "\n"
+                    "See Sphinx Documentation:\n"
+                    "https://www.sphinx-doc.org/en/master/usage/extensions/math.html#module-sphinx.ext.mathjax"  # noqa: E501
+                ),
+                color="orange",
+                print_func=print,
+            )
+            # Automatically make the configuration name substitution so older projects build
+            user_yaml_update["mathjax3_config"] = user_yaml_update.pop("mathjax_config")
+
     # Value set in `sphinx: config: ...` are a special case,
     # and completely override any defaults (sphinx and yaml)
     sphinx_config.update(user_yaml_update)
+
+    # This is to deal with a special case, where the override needs to be applied after
+    # the sphinx app is initialised (since the default is a function)
+    # TODO I'm not sure if there is a better way to deal with this?
+    config_meta = {
+        "latex_doc_overrides": sphinx_config.pop("latex_doc_overrides"),
+        "latex_individualpages": cli_config.pop("latex_individualpages"),
+    }
+
+    if sphinx_config.get("use_jupyterbook_latex"):
+        sphinx_config["extensions"].append("sphinx_jupyterbook_latex")
 
     # finally merge in CLI configuration
     _recursive_update(sphinx_config, cli_config or {})
@@ -137,10 +189,17 @@ def get_final_config(
         paths_static.append("_static")
         sphinx_config["html_static_path"] = paths_static
 
-    # This is to deal with a special case, where the override needs to be applied after
-    # the sphinx app is initialised (since the default is a function)
-    # TODO I'm not sure if there is a better way to deal with this?
-    config_meta = {"latex_doc_overrides": sphinx_config.pop("latex_doc_overrides")}
+    if not use_external_toc:
+        # TODO perhaps a better logic for this?
+        # remove all configuration related to sphinx_external_toc
+        try:
+            idx = sphinx_config["extensions"].index("sphinx_external_toc")
+        except ValueError:
+            pass
+        else:
+            sphinx_config["extensions"].pop(idx)
+        sphinx_config.pop("external_toc_path", None)
+        sphinx_config.pop("external_toc_exclude_missing", None)
 
     return sphinx_config, config_meta
 
@@ -148,7 +207,11 @@ def get_final_config(
 def yaml_to_sphinx(yaml: dict):
     """Convert a Jupyter Book style config structure into a Sphinx config dict.
 
-    :returns: (recursive_updates, override_updates)
+    :returns: (recursive_updates, override_updates, add_paths)
+
+    add_paths collects paths that are specified in the _config.yml (such as those
+    provided in local_extensions) and returns them for adding to sys.path in
+    a context where the _config.yml path is known
     """
     sphinx_config = {}
 
@@ -174,6 +237,9 @@ def yaml_to_sphinx(yaml: dict):
         defaults.update(yaml["exclude_patterns"])
         sphinx_config["exclude_patterns"] = list(sorted(defaults))
 
+    if "only_build_toc_files" in yaml:
+        sphinx_config["external_toc_exclude_missing"] = yaml["only_build_toc_files"]
+
     # Theme
     sphinx_config["html_theme_options"] = theme_options = {}
     if "launch_buttons" in yaml:
@@ -196,6 +262,7 @@ def yaml_to_sphinx(yaml: dict):
             ("html_favicon", "favicon"),
             ("html_baseurl", "baseurl"),
             ("comments_config", "comments"),
+            ("use_multitoc_numbering", "use_multitoc_numbering"),
         ]:
             if yml_key in html:
                 sphinx_config[spx_key] = html[yml_key]
@@ -225,15 +292,37 @@ def yaml_to_sphinx(yaml: dict):
     # Parse and Rendering
     parse = yaml.get("parse")
     if parse:
+        # Enable extra extensions
+        extensions = sphinx_config.get("myst_enable_extensions", [])
+        # TODO: deprecate this in v0.11.0
         if parse.get("myst_extended_syntax") is True:
-            sphinx_config["myst_dmath_enable"] = True
-            sphinx_config["myst_amsmath_enable"] = True
-            sphinx_config["myst_deflist_enable"] = True
-            sphinx_config["myst_admonition_enable"] = True
-            sphinx_config["myst_html_img_enable"] = True
-            sphinx_config["myst_figure_enable"] = True
-        if "myst_url_schemes" in parse:
-            sphinx_config["myst_url_schemes"] = parse.get("myst_url_schemes")
+            extensions.append(
+                [
+                    "colon_fence",
+                    "dollarmath",
+                    "amsmath",
+                    "deflist",
+                    "html_image",
+                ]
+            )
+            _message_box(
+                (
+                    "myst_extended_syntax is deprecated, instead specify extensions "
+                    "you wish to be enabled. See https://myst-parser.readthedocs.io/en/latest/using/syntax-optional.html"  # noqa: E501
+                ),
+                color="orange",
+                print_func=print,
+            )
+        for ext in parse.get("myst_enable_extensions", []):
+            if ext not in extensions:
+                extensions.append(ext)
+        if extensions:
+            sphinx_config["myst_enable_extensions"] = extensions
+
+        # Configuration values we'll just pass-through
+        for ikey in ["myst_substitutions", "myst_url_schemes"]:
+            if ikey in parse:
+                sphinx_config[ikey] = parse.get(ikey)
 
     # Execution
     execute = yaml.get("execute")
@@ -259,6 +348,7 @@ def yaml_to_sphinx(yaml: dict):
     if latex:
         for spx_key, yml_key in [
             ("latex_engine", "latex_engine"),
+            ("use_jupyterbook_latex", "use_jupyterbook_latex"),
         ]:
             if yml_key in latex:
                 sphinx_config[spx_key] = latex[yml_key]
@@ -273,15 +363,43 @@ def yaml_to_sphinx(yaml: dict):
     extra_extensions = yaml.get("sphinx", {}).get("extra_extensions")
     if extra_extensions:
         sphinx_config["extensions"] = get_default_sphinx_config()["extensions"]
+
         if not isinstance(extra_extensions, list):
             extra_extensions = [extra_extensions]
+
         for extension in extra_extensions:
             if extension not in sphinx_config["extensions"]:
                 sphinx_config["extensions"].append(extension)
 
+    local_extensions = yaml.get("sphinx", {}).get("local_extensions")
+    # add_paths collects additional paths for sys.path
+    add_paths = []
+    if local_extensions:
+        if "extensions" not in sphinx_config:
+            sphinx_config["extensions"] = get_default_sphinx_config()["extensions"]
+        for extension, path in local_extensions.items():
+            if extension not in sphinx_config["extensions"]:
+                sphinx_config["extensions"].append(extension)
+            if path not in sys.path:
+                add_paths.append(path)
+
+    # Citations
+    sphinxcontrib_bibtex_configs = ["bibtex_bibfiles", "bibtex_reference_style"]
+    if any(ii in yaml for ii in sphinxcontrib_bibtex_configs):
+        # Load sphincontrib-bibtex
+        if "extensions" not in sphinx_config:
+            sphinx_config["extensions"] = get_default_sphinx_config()["extensions"]
+        sphinx_config["extensions"].append("sphinxcontrib.bibtex")
+
+        # Pass through configuration
+        if yaml.get("bibtex_bibfiles"):
+            if isinstance(yaml.get("bibtex_bibfiles"), str):
+                yaml["bibtex_bibfiles"] = [yaml["bibtex_bibfiles"]]
+            sphinx_config["bibtex_bibfiles"] = yaml["bibtex_bibfiles"]
+
     # items in sphinx.config will override defaults,
     # rather than recursively updating them
-    return sphinx_config, yaml.get("sphinx", {}).get("config") or {}
+    return sphinx_config, yaml.get("sphinx", {}).get("config") or {}, add_paths
 
 
 def _recursive_update(config, update, list_extend=False):

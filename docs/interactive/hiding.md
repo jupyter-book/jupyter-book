@@ -13,39 +13,39 @@ kernelspec:
 
 It's possible to control which content shows up in your book. For example,
 you may want to display a complex visualization to illustrate an idea, but don't
-want the page to be cluttered with a large code cell that generated the viz.
+want the page to be cluttered with a large code cell that generated the visualization.
 In other cases, you may want to remove a code cell entirely.
 
 In this case, you have two options:
 
-* **Hiding** content provide a button that lets readers reveal the content.
+* **Hiding** content provides a button that lets readers reveal the content.
 * **Removing** content prevents it from making it into your book. It
   will be entirely gone (though still present in the source files)
 
 There are two ways to hide content:
 
-* To hide markdown, use the `{toggle}` directive.
+* To hide Markdown, use the `{toggle}` directive.
 * To hide or remove code cells or their outputs, use **notebook cell tags**.
 
-We'll cover each below.
+We'll cover each alternative below.
 
 :::{seealso}
 [](jupyter-cell-tags)
 :::
 
-## Hide markdown using MyST markdown
+## Hide Markdown using MyST Markdown
 
-There are two ways to hide markdown content
+There are two ways to hide Markdown content
 
 * you can use the `{toggle}` directive to hide arbitrary blocks of content
-* you can use the `dropdown` class to admonitions to turn them into dropdowns
+* you can use the `dropdown` class with admonitions to turn them into dropdowns
 
-Both allow you to wrap chunks of markdown in a button that lets users show
-and hide the content. We cover each below.
+Both allow you to wrap chunks of Markdown in a button that lets users show
+and hide the content.
 
 ### The `{toggle}` directive
 
-You can activate this behavior in markdown with the `{toggle}`
+You can activate a toggleable behavior in Markdown with the `{toggle}`
 directive like so:
 
 ````md
@@ -65,7 +65,7 @@ Some hidden toggle content!
 ```
 
 Note that if you'd like to **show the toggle content by default**, you can
-add the `:show:` flag when you call `{toggle}`, like so:
+add the `:show:` flag when you use `{toggle}`, like so:
 
 ````md
 ```{toggle} Click the button to reveal!
@@ -81,7 +81,7 @@ Some hidden toggle content!
 You can also **add toggle buttons to admonition blocks**, effectively making them
 dropdown blocks. Users will see the admonition title, but will need to click
 in order to reveal the content. To do so, add the `dropdown` class to any admonition.
-For example:
+For example, the code
 
 ````md
 ```{admonition} Click the button to reveal!
@@ -92,7 +92,7 @@ Some hidden toggle content!
 ```
 ````
 
-This results in:
+results in:
 
 ```{admonition} Click the button to reveal!
 :class: dropdown
@@ -106,7 +106,7 @@ See {ref}`content/toggle-admonitions` for more information on admonition dropdow
 ## Hide code cell content
 
 You can hide most cell elements of a page. The sections below describe how
-to hide each using cell tags in MyST markdown.
+to hide each using cell tags in MyST Markdown.
 If you're working with `.ipynb` files, see [the cell tags guide](jupyter-cell-tags)
 on adding cell tags to notebooks in Jupyter Notebook or JupyterLab.
 
@@ -129,7 +129,7 @@ Here's an example of cell metadata that would trigger the "hide code" behavior:
 }
 ```
 
-For example, see the cell below contains the `hide-input` tag:
+For example, notice the cell below contains the `hide-input` tag:
 
 ```{code-cell} ipython3
 :tags: [hide-input]
@@ -157,7 +157,7 @@ add the following tag to your cell:
 ```json
 {
     "tags": [
-        "hide-output",
+        "hide-output"
     ]
 }
 ```
@@ -173,13 +173,13 @@ ax.scatter(*data, c=data[1], s=100*np.abs(data[0]));
 
 ### Hide entire code cells
 
-If you'd like to hide the whole code cell (both inputs and outputs) just add each
+If you'd like to hide the whole code cell (both inputs and outputs) just add this
 tag to the cell metadata, like so:
 
 ```json
 {
     "tags": [
-        "hide-cell",
+        "hide-cell"
     ]
 }
 ```
@@ -196,32 +196,18 @@ ax.scatter(*data, c=data[1], s=100*np.abs(data[0]));
 (hiding/remove-content)=
 ## Removing code cell content
 
-In the above examples, we are only *hiding* the inputs, with the option
+In the above examples, we are only *hiding* parts of the cell, with the option
 that readers can reveal them if they wish. However, if you'd like to completely **remove**
-the inputs, so that their contents do not make it into the book's HTML, you may
-use the following tag:
-
-To remove the inputs of a cell:
-
-```json
-{
-    "tags": [
-        "remove-input",
-    ]
-}
-```
-
-+++
-
-The following cell demonstrates removing inputs. Note that in
-this case, there is no button available to show the input contents,
-the entire input cell is gone!
+the respective parts, so that their contents do not make it into the book's HTML, you may
+use the appropriate `remove-` tags, i.e. `remove-input`, `remove-output` and `remove-cell`.
 
 +++
 
 ### Remove cell inputs
 
-The following cell has its inputs removed
+The following cell has its inputs removed with `remove-input`. Note that in
+this case, there is no button available to show the input contents,
+the entire input cell is gone!
 
 ```{code-cell} ipython3
 :tags: [remove-input]
@@ -239,14 +225,12 @@ ax.scatter(*data, c=data[1], s=100*np.abs(data[0]));
 ### Remove cell outputs
 
 Similar to hiding inputs, it is also possible to hide the outputs
-of a cell.
-
-To remove the outputs of a cell:
+of a cell with `remove-output`:
 
 ```json
 {
     "tags": [
-        "remove-output",
+        "remove-output"
     ]
 }
 ```
@@ -265,7 +249,7 @@ of the cell. Here's an example of cell metadata that would trigger the "remove c
 ```json
 {
     "tags": [
-        "remove-cell",
+        "remove-cell"
     ]
 }
 ```
@@ -273,7 +257,7 @@ of the cell. Here's an example of cell metadata that would trigger the "remove c
 These cells will be entirely removed from each book page - remember that if you'd like to
 optionally display the inputs of a cell instead, you should use the `hide-input` tag.
 
-For example, there's a cell below this one that won't make it into the final book,
+For example, there's a cell below this text that won't make it into the final book,
 because it has been removed!
 
 ```{code-cell} ipython3
@@ -304,6 +288,6 @@ whitespace will be removed.
 
 ```
 
-For example, in the notebook for this page there are two cells above this one. One
-cell with whitespace, and another cell with a few line-breaks. Both are gone in
+For example, in the notebook for this page there are two cells above this text.
+Both only contain whitespace. Both are gone from
 the final output.

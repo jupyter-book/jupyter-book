@@ -1,5 +1,6 @@
-import nbformat as nbf
 from glob import glob
+
+import nbformat as nbf
 from nbconvert.exporters import NotebookExporter
 from traitlets.config import Config
 

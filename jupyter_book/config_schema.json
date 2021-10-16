@@ -1,5 +1,5 @@
 {
-    "$schema": "http://json-schema.org/schema#",
+    "$schema": "http://json-schema.org/draft-07/schema",
     "type": "object",
     "properties": {
         "title": {
@@ -23,8 +23,14 @@
         "parse": {
             "type": "object",
             "properties": {
-                "myst_extended_syntax": {
-                    "type": "boolean"
+                "myst_enable_extensions": {
+                    "type": [
+                        "null",
+                        "array"
+                    ],
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "myst_url_schemes": {
                     "type": [
@@ -34,6 +40,10 @@
                     "items": {
                         "type": "string"
                     }
+                },
+                "myst_dmath_double_inline": {
+                    "type": "boolean",
+                    "default": true
                 }
             }
         },
@@ -41,15 +51,12 @@
             "type": "object",
             "properties": {
                 "execute_notebooks": {
-                    "type": [
-                        "string",
-                        "boolean"
-                    ],
                     "enum": [
                         "auto",
                         "cache",
                         "force",
-                        "off"
+                        "off",
+                        false
                     ],
                     "default": "auto"
                 },
@@ -58,7 +65,7 @@
                 },
                 "timeout": {
                     "type": "number",
-                    "minimum": 0,
+                    "minimum": -1,
                     "default": 30
                 },
                 "allow_errors": {
@@ -87,8 +94,7 @@
                         "type": "string"
                     }
                 }
-            },
-            "required": []
+            }
         },
         "html": {
             "type": "object",
@@ -135,11 +141,9 @@
                                 "object"
                             ]
                         }
-                    },
-                    "required": []
+                    }
                 }
-            },
-            "required": []
+            }
         },
         "latex": {
             "type": "object",
@@ -168,8 +172,7 @@
                 "colab_url": {
                     "type": "string"
                 }
-            },
-            "required": []
+            }
         },
         "repository": {
             "type": "object",
@@ -183,8 +186,7 @@
                 "branch": {
                     "type": "string"
                 }
-            },
-            "required": []
+            }
         },
         "sphinx": {
             "type": "object",
@@ -198,15 +200,19 @@
                         "type": "string"
                     }
                 },
+                "local_extensions": {
+                    "type": [
+                        "null",
+                        "object"
+                    ]
+                },
                 "config": {
                     "type": [
                         "null",
                         "object"
                     ]
                 }
-            },
-            "required": []
+            }
         }
-    },
-    "required": []
+    }
 }
