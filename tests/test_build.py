@@ -22,7 +22,7 @@ def test_create(temp_with_override: Path, cli):
     result = cli.invoke(commands.create, book.as_posix())
     assert result.exit_code == 0
     assert book.joinpath("_config.yml").exists()
-    assert len(list(book.iterdir())) == 9
+    assert len(list(book.iterdir())) == 8
 
 
 def test_create_from_cookiecutter(temp_with_override: Path, cli):
