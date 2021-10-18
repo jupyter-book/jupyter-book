@@ -153,7 +153,7 @@ def get_final_config(
                 (
                     f"[Warning] Mathjax configuration has changed for sphinx>=4.0 [Using sphinx: {sphinx.__version__}]\n"  # noqa: E501
                     "Your _config.yml needs to be updated:\n"  # noqa: E501
-                    "\tmathjax_config -> mathjax3_config"  # noqa: E501
+                    "mathjax_config -> mathjax3_config\n"  # noqa: E501
                     "To continue using `mathjax v2` you will need to use the `mathjax_path` configuration\n"  # noqa: E501
                     "\n"
                     "See Sphinx Documentation:\n"
