@@ -147,9 +147,8 @@ chapters:
 ```
 
 The `_toc.yml` is arranged with a `format` such as `jb-article`, or `jb-book`.
-The `root` item is considered the landing page (for `html` builds) and is
-used as front matter (for `latex` builds). For `jb-book` subsequent chapters
-can be added under the `chapters:` section in the `yml` file.
+The `root` item is considered the landing page (for `html` builds) and is used as front matter (for `latex` builds).
+For `jb-book`, subsequent chapters can be added under the `chapters:` section in the `yml` file.
 
 Each entry relates to a file and they should be added as names with **no extensions**
 and **relative to your book's folder and with no extension.**
