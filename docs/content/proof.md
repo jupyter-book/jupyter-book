@@ -58,7 +58,10 @@ This incudes support for the following `directives`:
 ## Using the Package
 
 This package uses a `prf` sphinx domain. All markup objects follow the `{prf:<typeset>}` (such as `{prf:proof}`) pattern and allows the directives
-to be referenced using the inline role `{prf:ref}`
+to be referenced using the inline role `{prf:ref}`.
+
+Below we show an example using the `{algorithm}` role.
+A similar pattern can be followed for [the other syntax supported by `sphinx-proof`](https://sphinx-proof.readthedocs.io/en/latest/syntax.html).
 
 ### An Example
 
