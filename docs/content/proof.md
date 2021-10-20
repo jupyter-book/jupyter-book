@@ -65,7 +65,7 @@ A similar pattern can be followed for [the other syntax supported by `sphinx-pro
 
 ### An Example
 
-In `myst:md` you can add an `algorithm` to your document using
+In MyST Markdown, you can add an `algorithm` to your document using
 the `algorithm` directive:
 
 ::::::md
