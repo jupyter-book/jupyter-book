@@ -19,7 +19,7 @@ This extension supports the `html` and `pdflatex` builders.
 ::::{admonition} Setup and Installation
 
 This is **not** currently a default package in `jupyter-book` as
-it is a relatively new package. It needs to be enabled through the `_config.yml` after installation.
+it is relatively new. It needs to be enabled through the `_config.yml` after installation.
 
 **Install:**
 
