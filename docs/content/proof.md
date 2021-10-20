@@ -16,29 +16,7 @@ Infrastructure to support items such as `proof` and `algorithm` style formatting
 
 This extension supports the `html` and `pdflatex` builders.
 
-::::{admonition} Setup and Installation
-
-This is **not** currently a default package in `jupyter-book` as
-it is relatively new. It needs to be enabled through the `_config.yml` after installation.
-
-**Install:**
-
-```bash
-pip install sphinx-proof
-```
-
-**Add to `_config.yml`:**
-
-Open `_config.yml` and add `sphinx_proof` to:
-
-```yaml
-sphinx:
-  extra_extensions:
-    - sphinx_proof
-```
-::::
-
-This incudes support for the following `directives`:
+[sphinx-proof](https://github.com/executablebooks/sphinx-proof) includes support for the following `directives`:
 
 1. [Algorithms](https://sphinx-proof.readthedocs.io/en/latest/syntax.html#algorithms)
 2. [Axioms](https://sphinx-proof.readthedocs.io/en/latest/syntax.html#axioms)
@@ -55,20 +33,48 @@ This incudes support for the following `directives`:
 13. [Remarks](https://sphinx-proof.readthedocs.io/en/latest/syntax.html#remarks)
 14. [Theorems](https://sphinx-proof.readthedocs.io/en/latest/syntax.html#theorems)
 
-## Using the Package
+## Installation
 
-This package uses a `prf` sphinx domain. All markup objects follow the `{prf:<typeset>}` (such as `{prf:proof}`) pattern and allows the directives
-to be referenced using the inline role `{prf:ref}`.
+```{warning}
+This is **not** currently a default package in `jupyter-book` as is a relatively new package.
 
-Below we show an example using the `{algorithm}` role.
+It needs to be enabled through the `_config.yml` after installation.
+```
+
+To install you can use `pip`:
+
+```bash
+pip install sphinx-proof
+```
+
+## Adding extension through `_config.yml`
+
+Open `_config.yml` and add `sphinx_proof` to:
+
+```yaml
+sphinx:
+  extra_extensions:
+    - sphinx_proof
+```
+
+## Using [sphinx-proof](https://github.com/executablebooks/sphinx-proof)
+
+This package uses a `prf` sphinx domain.
+
+All markup objects follow the `{prf:<typeset>}` (such as `{prf:proof}`) pattern and allows the directives to be referenced using the inline role `{prf:ref}`.
+
+```{warning}
+When referencing directives in [sphinx-proof](https://github.com/executablebooks/sphinx-proof) you need to use the ```{prf:ref}`<label>` ``` inline role.
+Using other cross-referencing facilities will **not** work such as `[](<label>)`
+```
+
+Below we show an example using the `{prf:algorithm}` directive.
+
 A similar pattern can be followed for [the other syntax supported by `sphinx-proof`](https://sphinx-proof.readthedocs.io/en/latest/syntax.html).
 
-### An Example
+In MyST Markdown, you can add an `algorithm` to your document using the `algorithm` directive:
 
-In MyST Markdown, you can add an `algorithm` to your document using
-the `algorithm` directive:
-
-::::::md
+::::md
 ```{prf:algorithm} Ford–Fulkerson
 :label: my-algorithm
 
@@ -86,7 +92,7 @@ the `algorithm` directive:
 		1. $f(u,v) \leftarrow f(u,v) + c_{f}(p)$ *(Send flow along the path)*
 		2. $f(u,v) \leftarrow f(u,v) - c_{f}(p)$ *(The flow might be "returned" later)*
 ```
-::::::
+::::
 
 will be rendered as
 
@@ -110,8 +116,10 @@ will be rendered as
 
 and can be referenced using the `label` assigned to the algorithm such as ```{prf:ref}`ford-fulkerson` ``` which will provide a link such as {prf:ref}`ford-fulkerson`.
 
-::::{note}
-The `proof` directive does not support `labels` but they can
-be referenced using [targets](https://myst-parser.readthedocs.io/en/latest/using/syntax.html#targets-and-cross-referencing) defined
-by `MyST`
-::::
+:::{margin}
+The `proof` directive does not support `:label:` so it is currently recommended to use [targets](https://myst-parser.readthedocs.io/en/latest/using/syntax.html#targets-and-cross-referencing) defined by `MyST` for cross-referencing `proof` directives. See [documentation](https://sphinx-proof.readthedocs.io/en/latest/syntax.html#proofs)
+:::
+
+# Additional Documentation
+
+Further [documentation for sphinx-proof](https://sphinx-proof.readthedocs.io/en/latest/) is also available.
