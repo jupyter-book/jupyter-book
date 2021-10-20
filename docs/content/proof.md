@@ -57,7 +57,7 @@ This incudes support for the following `directives`:
 
 ## Using the Package
 
-This package uses a `prf` sphinx domain. All markup objects follow the `{prf:<typset>}` (such as `{prf:proof}`) pattern and allows the directives
+This package uses a `prf` sphinx domain. All markup objects follow the `{prf:<typeset>}` (such as `{prf:proof}`) pattern and allows the directives
 to be referenced using the inline role `{prf:ref}`
 
 ### An Example
