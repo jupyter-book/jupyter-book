@@ -36,6 +36,7 @@ parts:
     - file: content/layout
     - file: content/citations
     - file: content/math
+    - file: content/proof
     - file: content/figures
     - file: content/metadata
 

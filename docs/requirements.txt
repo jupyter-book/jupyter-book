@@ -12,3 +12,4 @@ sphinx-click
 sphinx_inline_tabs
 sphinxext-rediraffe~=0.2.3
 sympy
+sphinx-proof
