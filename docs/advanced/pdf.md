@@ -88,7 +88,7 @@ Jupyter Book will construct a LaTeX file and then use the system `latex` to buil
 :::{margin}
 The LaTeX file that `jupyter-book` produces is not particularly easy to edit primarily
 because it contains `sphinx` and `pygments` markup to enable syntax highlighting for
-code cells etc. This is an area we woud like to improve so that the LaTeX file is more
+code cells etc. This is an area we would like to improve so that the LaTeX file is more
 human editable to enable customization.
 
 See [#1497](https://github.com/executablebooks/jupyter-book/issues/1497)
