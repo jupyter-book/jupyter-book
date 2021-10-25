@@ -101,7 +101,7 @@ We recommend using the [texlive](https://www.tug.org/texlive/) distribution
 :::
 
 `jupyter-book` uses the
-[sphinx-jupyterbook-latex](https://github.com/executablebooks/sphinx-jupyterbook-latex) package
+[sphinx-jupyterbook-latex](https://github.com/executablebooks/sphinx-jupyterbook-latex) package,
 which handles much of the customised LaTeX infrastructure. A full list of features can be found
 [here](https://github.com/executablebooks/sphinx-jupyterbook-latex/blob/master/docs/intro.md#feature-list).
 
