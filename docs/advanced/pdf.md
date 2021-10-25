@@ -224,9 +224,8 @@ The current default is to use `xelatex` to build `pdf` files.
 The `--individualpages` option currently uses `pdflatex` by default.
 :::
 
-Some users may want to switch to using a different LaTeX engine such as `pdflatex` or `lualatex`.
-
-To revert the `LaTeX` engine to `pdflatex` you can add the following to your `_config.yml` such as:
+You may choose a different LaTeX engine such as `pdflatex` or `lualatex`.
+For example, to use `pdflatex` engine for `LaTeX`, add the following to your `_config.yml`:
 
 ```yaml
 latex:
