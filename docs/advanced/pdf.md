@@ -82,8 +82,8 @@ The right Table of Contents would be present in your live website, but hidden wh
 ## Build a PDF using LaTeX
 
 You can also use LaTeX to build a PDF of your book.
-This process requires you to have `tex` setup on your system. Jupyter Book will construct a LaTeX
-file and then uses the system `latex` to build that LaTeX file.
+This process requires you to have `tex` setup on your system.
+Jupyter Book will construct a LaTeX file and then use the system `latex` to build that LaTeX file.
 
 :::{margin}
 The LaTeX file that `jupyter-book` produces is not particularly easy to edit primarily
