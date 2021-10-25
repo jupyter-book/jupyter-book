@@ -216,7 +216,7 @@ This will act as an automatic `override` when Sphinx builds the
 It is typically inferred by `Sphinx` but when using `jupyter-book` naming the file in the `_config.yml`
 generally makes it easier to find.
 
-#### Specifying LaTeX compiler
+#### Choose a different LaTeX compiler
 
 The current default is to use `xelatex` to build `pdf` files.
 
