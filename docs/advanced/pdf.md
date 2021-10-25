@@ -232,7 +232,7 @@ latex:
   latex_engine: pdflatex
 ```
 
-:::{note}
+:::{seealso}
 The Sphinx documentation
 [for available builders](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-latex_engine)
 contains a full list of supported `latex` builders.
