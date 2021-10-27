@@ -8,6 +8,7 @@ from click.testing import CliRunner
 from jupyter_book.cli import main as commands
 
 PATH_BOOKS = Path(__file__).parent.joinpath("books")
+SPHINX_VERSION = f".sphinx{sphinx.version_info[0]}"
 
 
 def test_version(cli: CliRunner):
@@ -304,5 +305,7 @@ def test_toc_numbered(
     soup = BeautifulSoup(path_toc_directive.read_text(encoding="utf8"), "html.parser")
     toc = soup.select("nav.bd-links")[0]
     file_regression.check(
-        toc.prettify(), basename=toc_file.split(".")[0], extension=".html"
+        toc.prettify(),
+        basename=toc_file.split(".")[0],
+        extension=f"{SPHINX_VERSION}.html",
     )

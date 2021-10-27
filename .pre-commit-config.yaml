@@ -5,13 +5,14 @@ exclude: >
     (?x)^(
       \.vscode/settings\.json|
       docs/conf\.py|
-      tests/test_tocdirective/.*
+      tests/test_tocdirective/.*|
+      tests/test_sphinx_jupyterbook_latex/.*|
     )$
 
 repos:
 
   - repo: git://github.com/pre-commit/pre-commit-hooks
-    rev: v2.2.3
+    rev: v4.0.1
     hooks:
     - id: check-json
     - id: check-yaml
@@ -26,7 +27,7 @@ repos:
   #   - id: setup-cfg-fmt
 
   - repo: https://github.com/mgedmin/check-manifest
-    rev: "0.46"
+    rev: "0.47"
     hooks:
     - id: check-manifest
       args: [--no-build-isolation]
@@ -48,16 +49,16 @@ repos:
       entry: python scripts/check_doc_requirements.py
 
   - repo: https://github.com/pycqa/isort
-    rev: 5.8.0
+    rev: 5.9.3
     hooks:
     - id: isort
 
   - repo: https://github.com/psf/black
-    rev: 20.8b1
+    rev: 21.9b0
     hooks:
     - id: black
 
-  - repo: https://gitlab.com/pycqa/flake8
-    rev: 3.8.4
+  - repo: https://github.com/PyCQA/flake8
+    rev: 4.0.1
     hooks:
     - id: flake8

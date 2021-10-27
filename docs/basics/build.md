@@ -28,25 +28,6 @@ Here is a list of builders that are available to you:
 - `latex`: Build Latex files for your book
 - `pdflatex`: Build a PDF of your book via Latex (see [](pdf:latex))
 
-
-## Exclude some pages from your book's build
-
-By default, Jupyter Book will build all content files that are found in your book's
-folder, even if they are not specified in `_toc.yml` (and will raise a warning if
-it finds a file that isn't listed there).
-
-If you'd like Jupyter Book to skip a file entirely, you can do so with the following
-configuration in `_config.yml`:
-
-```yaml
-exclude_patterns: [pattern1/*, path/to/myfile.ipynb]
-```
-
-Any files that match the patterns described there will be excluded from the build.
-If you'd like to exclude files from being *executed* but still wish for them to be
-built by Jupyter Book, see [](execute/exclude).
-
-
 (clean-build)=
 ## Clean your book's generated files
 
@@ -72,18 +53,6 @@ jupyter-book clean mybookname/ --all
 ```
 
 This will entirely remove the folders in the `_build/` directory.
-
-(config:exclude-non-toc-files)=
-## Disable building files that aren't specified in the TOC
-
-By default, Jupyter Book will build all files that are in your book's folder, regardless of whether they are specified in the Table of Contents.
-To disable this behavior and *only* build files that are specified in the TOC, use the following pattern in `_config.yml`:
-
-```yaml
-only_build_toc_files: true
-```
-
-Note that files that are in *hidden folders* (e.g. in `.github` or `.venv`) will still be built even if they are not specified in the TOC. You should exclude these files explicitly.
 
 ## Debug your book's build process
 

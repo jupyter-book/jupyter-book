@@ -120,9 +120,9 @@ BUILDER_OPTS = {
 @click.option(
     "--custom-builder",
     default=None,
-    help="Specify alternative builder name which allows jupyter-book to use a builder"
-    "provided by an external extension. This can only be used when using"
-    "--builder=custom",
+    help="Specify alternative builder provided by Sphinx, including text and epub. "
+    "This can only be used with --builder=custom. Valid options listed at "
+    "https://www.sphinx-doc.org/en/master/man/sphinx-build.html",
 )
 @click.option(
     "-v", "--verbose", count=True, help="increase verbosity (can be repeated)"
