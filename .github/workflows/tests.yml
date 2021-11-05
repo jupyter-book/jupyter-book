@@ -31,6 +31,9 @@ jobs:
         python-version: 3.8
     - name: Install pre-commit
       run: pip install pre-commit
+    # Run pre-commit with try-repo to test the local version of the pre-commit hook
+    # because we cannot initialize a local repo easily with the normal configuration file.
+    # See https://pre-commit.com/#developing-hooks-interactively for details.
     - name: run pre-commit
       run: pre-commit try-repo -v -a --show-diff-on-failure .
 
