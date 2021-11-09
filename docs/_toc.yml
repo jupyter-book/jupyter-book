@@ -50,6 +50,11 @@ parts:
   - file: basics/building/index
     sections:
     - file: basics/build
+    - file: publish/web
+      sections:
+      - file: publish/gh-pages
+      - file: publish/netlify
+      - file: publish/readthedocs
     - file: advanced/pdf
 
   - file: web/index
@@ -62,19 +67,17 @@ parts:
       sections:
       - file: interactive/comments/hypothesis
       - file: interactive/comments/utterances
-    - file: web/badge
-    - file: publish/web
-      sections:
-      - file: publish/gh-pages
-      - file: publish/netlify
     - file: advanced/html
 
-  - file: advanced/index
+  - file: sphinx/index
     sections:
     - file: advanced/sphinx
     - file: advanced/developers
-    - file: advanced/windows
     - file: explain/sphinx
+
+  - file: advanced/index
+    sections:
+    - file: advanced/windows
   - file: contribute/intro
 
 - caption: Reference

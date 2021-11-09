@@ -1,4 +1,4 @@
-# Use the Build command line interface
+# Build from the command line
 
 When you've written your book's content, it is now time to build outputs for your book so that you may share them with others.
 For example, you may wish to build HTML files to host as a static website, or a PDF to share with colleagues.

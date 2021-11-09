@@ -12,9 +12,7 @@ on:
 jobs:
 
   pre-commit:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.8
@@ -22,6 +20,22 @@ jobs:
       with:
         python-version: 3.8
     - uses: pre-commit/action@v2.0.0
+
+  pre-commit-hook:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install pre-commit
+      run: pip install pre-commit
+    # Run pre-commit with try-repo to test the local version of the pre-commit hook
+    # because we cannot initialize a local repo easily with the normal configuration file.
+    # See https://pre-commit.com/#developing-hooks-interactively for details.
+    - name: run pre-commit
+      run: pre-commit try-repo -v -a --show-diff-on-failure .
 
   # for speed, we run a test matrix against only the tests that do not require TeX,
   # then test-with-cov for all tests, for a single environment

@@ -1,4 +1,4 @@
-# The command-line interface
+# Command-line interface reference
 
 Jupyter Book comes with a command-line interface that makes it easy to
 build your books and run a few common functions. This page contains information
