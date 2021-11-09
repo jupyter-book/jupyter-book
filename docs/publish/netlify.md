@@ -1,5 +1,5 @@
 (publish/netlify)=
-# Publish with Netlify
+# Netlify
 
 [Netlify](https://www.netlify.com/) is a continuous deployment service that can
 **automatically build an updated copy of your Jupyter Book** as you push new content.

@@ -88,14 +88,9 @@ def test_config_sphinx_command_only_build_toc_files(
     temp_with_override.joinpath("_toc.yml").write_text("root: intro\n", encoding="utf8")
     result = cli.invoke(sphinx, temp_with_override.as_posix())
 
-    assert result.exit_code == 0, result.exception
-    # remove global_toc which is path dependent
-    output = "\n".join(
-        line
-        for line in result.output.splitlines()
-        if not line.startswith("external_toc_path")
-    )
-
+    assert result.exit_code == 2, result.exception
+    assert temp_with_override.joinpath("conf.py").exists()
+    output = temp_with_override.joinpath("conf.py").read_text(encoding="utf8")
     file_regression.check(output, encoding="utf8")
 
 
@@ -105,13 +100,9 @@ def test_config_sphinx_command(cli, temp_with_override, file_regression):
     )
     temp_with_override.joinpath("_toc.yml").write_text("root: intro\n", encoding="utf8")
     result = cli.invoke(sphinx, temp_with_override.as_posix())
-    assert result.exit_code == 0, result.exception
-    # remove global_toc which is path dependent
-    output = "\n".join(
-        line
-        for line in result.output.splitlines()
-        if not line.startswith("external_toc_path")
-    )
+    assert result.exit_code == 2, result.exception
+    assert temp_with_override.joinpath("conf.py").exists()
+    output = temp_with_override.joinpath("conf.py").read_text(encoding="utf8")
     file_regression.check(output, encoding="utf8")
 
 

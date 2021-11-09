@@ -1,5 +1,5 @@
 (structure:index)=
-# Structure and organize your content
+# Structure and organize content
 
 These sections describe how to organize the structure of your book or article.
 
