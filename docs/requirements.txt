@@ -1,4 +1,5 @@
 # Copied from 'sphinx' extra of setup.cfg
+sphinx>=3,<4.3
 altair
 bokeh
 folium
