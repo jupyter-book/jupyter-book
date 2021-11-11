@@ -6,6 +6,7 @@ substitutions:
 
 {{RTD}} is a web service for hosting documentation online.
 They offer free web hosting for open source projects, sustained by [ethical advertising](https://docs.readthedocs.io/en/stable/advertising/ethical-advertising.html) that is inserted into pages.
+These ads can also be removed with a [small monthly payment](https://readthedocs.org/sustainability/) to help sustain the project.
 
 {{RTD}} builds Sphinx websites, and does not support Jupyter Book directly.
 However, you can [convert your book to a Sphinx website](../sphinx/index.md) in order to publish with {{RTD}}.
