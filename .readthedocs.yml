@@ -6,7 +6,7 @@ python:
       - method: pip
         path: .
         extra_requirements:
-        - sphinx
+        - sphinx<=4.2
 
 sphinx:
   builder: html
