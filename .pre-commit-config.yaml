@@ -4,6 +4,7 @@
 exclude: >
     (?x)^(
       \.vscode/settings\.json|
+      docs/conf\.py|
       tests/test_tocdirective/.*|
       tests/test_sphinx_jupyterbook_latex/.*|
     )$
@@ -53,7 +54,7 @@ repos:
     - id: isort
 
   - repo: https://github.com/psf/black
-    rev: 21.9b0
+    rev: 21.10b0
     hooks:
     - id: black
 

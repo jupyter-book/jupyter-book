@@ -12,6 +12,7 @@ exclude scripts
 recursive-exclude scripts *
 
 exclude .pre-commit-config.yaml
+exclude .pre-commit-hooks.yaml
 exclude .readthedocs.yml
 exclude tox.ini
 exclude codecov.yml

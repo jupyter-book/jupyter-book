@@ -129,7 +129,7 @@ Check out the other content in your configuration file, and reference it against
 
 ## Your book's table of contents
 
-Finally, your book also has a **Table of Contents** that tells Jupyter Book where each of your content source files should go.
+Finally, your book also has a **Table of Contents** (`_toc.yml`) that tells Jupyter Book where each of your content source files should go.
 
 ```yaml
 format: jb-book

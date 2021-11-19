@@ -115,3 +115,4 @@ sphinx:
     - sphinx_click.ext
     - sphinx_inline_tabs
     - sphinxext.rediraffe
+    - sphinx_proof
