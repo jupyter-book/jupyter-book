@@ -1,5 +1,15 @@
 # Change Log
 
+## v0.12.1
+
+This release provides bug fixes and updates when building PDF via LaTeX including improved styling for
+code output cells. It also includes infrastructure for using Jupyter Book with ReadTheDocs.
+
+## New
+
+- ✨ NEW: Allow running on ReadTheDocs [PR #1422](https://github.com/executablebooks/jupyter-book/pull/1422)
+- ✨ NEW: Upgrade to sphinx-jupyterbook-latex~=0.4.6 [PR #1538](https://github.com/executablebooks/jupyter-book/pull/1538)
+
 ## v0.12.0
 
 ### New
