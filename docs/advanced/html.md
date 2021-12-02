@@ -32,7 +32,7 @@ should overwrite pre-existing rules and behaviour.
 
 ### An example: justify the text
 
-If you want the text of you book to be justified instead of left aligned then create `myfile.css` under `mybook/_static` with the following CSS:
+If you want the text of your book to be justified instead of left aligned then create `myfile.css` under `mybook/_static` with the following CSS:
 
 ```css
 p {
@@ -40,6 +40,42 @@ p {
 }
 ```
 
+(custom-admonitions)=
+### An Example: custom admonitions
+
+:::{warning}
+Styling custom admonitions in this way is not officially supported by Jupyter Book or Sphinx, so its behavior may change unexpectedly.
+A more verbose but "stable" approach is to use the `:class:` keyword argument when creating your admonitions, and defining CSS rules for that class.
+:::
+
+Currently, using the `{admonition}` directive with a title creates a CSS class based on the title of the admonition.
+For example, an admonition title of `Here's my title` will result in a class name of `admonition-heres-my-title`.
+
+You can leverage this pattern to quickly create custom admonitions.
+For example, create a `myadmonitions.css` under `mybook/_static` with the following CSS:
+
+```css
+.admonition-extra-credit {
+    border-left-color: rgba(0, 246, 16, 1);
+}
+.admonition-extra-credit .admonition-title {
+    background-color: rgba(0, 246, 16, .1);
+}
+.admonition-extra-credit .admonition-title:before {
+    color: rgba(0, 246, 16, 1);
+    content: '\f19d';
+}
+```
+
+then in your book, define an admonition like so:
+
+````md
+```{admonition} Extra credit
+An "extra credit" exercise is presented here.
+```
+````
+
+The admonitions should be styled according to your CSS rules when you build your book.
 ## Enable Google Analytics
 
 If you have a Google account, you can use Google Analytics to collect some

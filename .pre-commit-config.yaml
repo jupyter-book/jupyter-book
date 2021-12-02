@@ -49,12 +49,12 @@ repos:
       entry: python scripts/check_doc_requirements.py
 
   - repo: https://github.com/pycqa/isort
-    rev: 5.9.3
+    rev: 5.10.1
     hooks:
     - id: isort
 
   - repo: https://github.com/psf/black
-    rev: 21.10b0
+    rev: 21.11b1
     hooks:
     - id: black
 
