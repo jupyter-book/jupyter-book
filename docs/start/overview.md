@@ -24,6 +24,11 @@ You can install Jupyter Book [via `pip`](https://pip.pypa.io/en/stable/):
 ```bash
 pip install -U jupyter-book
 ```
+or via [`conda-forge`](https://conda-forge.org/):
+
+```bash
+conda install -c conda-forge jupyter-book
+```
 
 This will install everything you need to build a Jupyter Book locally.
 
