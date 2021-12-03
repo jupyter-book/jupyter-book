@@ -156,8 +156,8 @@ The primary difference is that the `jb-book` format uses `parts:` and `chapters:
 
 To build an article (or a book) that is comprised of multiple files
 so that it is rendered as a single HTML document containing all the content,
-you can use of the 
-[singlehtml builder](https://www.sphinx-doc.org/en/master/usage/builders/index.html#sphinx.builders.singlehtml.SingleFileHTMLBuilder). 
+you can use of the
+[singlehtml builder](https://www.sphinx-doc.org/en/master/usage/builders/index.html#sphinx.builders.singlehtml.SingleFileHTMLBuilder).
 
 For example:
 
