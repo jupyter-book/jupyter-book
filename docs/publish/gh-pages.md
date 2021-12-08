@@ -152,7 +152,7 @@ on:
     # paths:
     # - some-subfolder/**
 
-# This job installs dependencies, build the book, and pushes it to `gh-pages`
+# This job installs dependencies, builds the book, and pushes it to `gh-pages`
 jobs:
   deploy-book:
     runs-on: ubuntu-latest
@@ -183,3 +183,17 @@ jobs:
 ```
 
 If you want to deploy your site to GitHub Pages at a User and Organization repository (`<username>.github.io`), check another example workflow and available options at the README of [peaceiris/actions-gh-pages](https://github.com/peaceiris/actions-gh-pages).
+
+## Use a custom domain with GitHub Pages
+
+By default, GitHub Pages will host your book at a URL like `githubusername.github.io/yourbookname`.
+If instead you'd like to use a custom domain with your book, you'll need to take an extra step in the instructions provided above.
+In both cases, you'll need to manually add a `CNAME` file that indicates the custom URL for your book.
+To do so, follow these steps:
+
+- [Follow the instructions for setting up a custom domain with your repository](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-an-apex-domain).
+- The result of this will generate a `CNAME` file in your repository's filesystem.
+  This is the file that tells GitHub pages where your site lives, but it will be *overwritten* if you build and push your book's HTML a second time.
+- Copy the contents of that CNAME file, and manually add the CNAME using either `ghp-import` or the GitHub Action described above.
+  - For `ghp-import`, see [the CNAME flag instructions](https://github.com/c-w/ghp-import#usage).
+  - For the GitHub Action above, see [the CNAME configuration instructions](https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-add-cname-file-cname).

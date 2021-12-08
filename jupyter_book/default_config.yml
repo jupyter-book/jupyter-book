@@ -40,8 +40,9 @@ parse:
     # - replacements
     # - smartquotes
     - substitution
-
-  myst_url_schemes          : [mailto, http, https]  # URI schemes that will be recognised as external URLs in Markdown links
+    - tasklist
+  myst_url_schemes: [mailto, http, https] # URI schemes that will be recognised as external URLs in Markdown links
+  myst_dmath_double_inline: true  # Allow display math ($$) within an inline context
 
 #######################################################################################
 # HTML-specific settings

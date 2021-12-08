@@ -67,7 +67,7 @@ sphinx:
     # TODO: #917 this path will be the default in sphinx v4
     # mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
     # However, it is incompatible with the mathjax config below for macros
-    mathjax_config:
+    mathjax3_config:
       TeX:
         Macros:
           "N": "\\mathbb{N}"
@@ -116,3 +116,4 @@ sphinx:
     - sphinx_click.ext
     - sphinx_inline_tabs
     - sphinxext.rediraffe
+    - sphinx_proof

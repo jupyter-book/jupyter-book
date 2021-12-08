@@ -97,7 +97,7 @@ Here's a warning! It was created with:
 ````
 `````
 
-For a complete list of options, see [the `sphinx-book-theme` documentation](https://sphinx-book-theme.readthedocs.io/en/latest/reference/demo.html#admonitions).
+For a complete list of options, see [the `sphinx-book-theme` documentation](https://sphinx-book-theme.readthedocs.io/en/latest/reference/kitchen-sink/paragraph-markup.html#admonitions).
 
 ### Blocks of text with custom titles
 
