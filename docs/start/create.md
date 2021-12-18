@@ -97,7 +97,7 @@ This controls the behavior of your book in many ways.
 A few decisions have been made for you.
 Let's take a look at a few examples:
 
-This snippet configures some metadata about your book, and determins the logo displayed in the top left:
+This snippet configures some metadata about your book, and determines the logo displayed in the top left:
 
 ```yaml
 # Book settings
