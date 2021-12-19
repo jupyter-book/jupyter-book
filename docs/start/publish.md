@@ -74,6 +74,7 @@ files in your book's `_build/html` folder.
 ```{warning}
 Make sure that you included the `-n` - this tells GitHub *not* to build your book with
 [Jekyll](https://jekyllrb.com/), which we don't want because our HTML is already built!
+If you do not do this you may see 404 not found for your deployed content
 ```
 
 Typically after a few minutes your site should be viewable online at a url such as: `https://<user>.github.io/<myonlinebook>/`. If not, check your repository settings under **Options** -> **GitHub Pages** to ensure that the `gh-pages` branch is configured as the build source for GitHub Pages and/or to find the url address GitHub is building for you.
