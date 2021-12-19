@@ -152,6 +152,10 @@ jobs:
         key: ${{ runner.os }}-pip-${{ hashFiles('setup.py') }}
         restore-keys: |
           ${{ runner.os }}-pip-
+    # On OSX, we'll hit errors with fonts unless libmagic is installed.
+    # See https://stackoverflow.com/questions/62279920/python-macos-error-unable-to-revert-mtime-library-fonts
+    - name: Install libmagic
+      run: sudo apt-get install -y libmagic
     - name: Install Python dependencies
       run: |
         python -m pip install --upgrade pip
