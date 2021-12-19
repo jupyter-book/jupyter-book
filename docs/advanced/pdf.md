@@ -4,7 +4,7 @@ It is possible to build a single PDF that contains all of your book's content. T
 page describes a couple ways to do so.
 
 :::{warning}
-PDF building is experimental, and may change or have bugs.
+PDF building is in active development, and may change or have bugs.
 :::
 
 There are two approaches to building PDF files.
@@ -82,18 +82,51 @@ The right Table of Contents would be present in your live website, but hidden wh
 ## Build a PDF using LaTeX
 
 You can also use LaTeX to build a PDF of your book.
-This can behave differently depending on your operating system and `tex` setup.
+This process requires you to have `tex` setup on your system.
+Jupyter Book will construct a LaTeX file and then use the system `latex` to build that LaTeX file.
+
+:::{margin}
+The LaTeX file that `jupyter-book` produces is not particularly easy to edit primarily
+because it contains `sphinx` and `pygments` markup to enable syntax highlighting for
+code cells etc. This is an area we would like to improve so that the LaTeX file is more
+human readable to enable customization.
+
+See [#1497](https://github.com/executablebooks/jupyter-book/issues/1497)
+:::
+
 This section tries to recommend a few best-practices.
 
 :::{note}
 We recommend using the [texlive](https://www.tug.org/texlive/) distribution
 :::
 
-The default is to build your project as a single PDF file, however it is possible to build
-individual PDF files for each page of the project by enabling the `--individualpages` option
-when using the `pdflatex` builder.
+`jupyter-book` uses the
+[sphinx-jupyterbook-latex](https://github.com/executablebooks/sphinx-jupyterbook-latex) package,
+which handles much of the customised LaTeX infrastructure. A full list of features can be found
+[the `sphinx-jupyterbook-latex` features list](https://github.com/executablebooks/sphinx-jupyterbook-latex/blob/master/docs/intro.md#feature-list).
 
-### Installation
+Some of these features include:
+
+1. This package enables building `pdf` files by providing support of the various
+   [structures that are defined in the _toc.yml](https://jupyterbook.org/customize/toc.html). This also
+   enables `pdf` files to be constructed in a way that is harmonised with the `html` output.
+2. the `masterdoc` or `root` document for `jupyter-book` is treated as `frontmatter` in LaTeX
+3. update fonts so that `unicode` characters can be used without breaking LaTeX builds (`xelatex` is used
+   by default)
+4. support for `png` and `gif` images using `sphinx.ext.imgconverter`
+5. support for `jupyter-book` tags such as `hide-cell`
+
+::::{note}
+This functionality is enabled by default, but if you need to **turn off** this package,
+you need add the following config to your `_config.yml`:
+
+```yaml
+latex:
+  use_jupyterbook_latex: false
+```
+::::
+
+### Installation and Setup
 
 For `Debian`-based `Linux` platforms it is recommended to install the following packages:
 
@@ -112,20 +145,7 @@ For `Windows` users, please install [TeX Live](https://www.tug.org/texlive/windo
 
 ### Build
 
-`jupyter-book` uses the [sphinx-jupyterbook-latex](https://github.com/executablebooks/sphinx-jupyterbook-latex) package
-which handles much of the customised LaTeX infrastructure. A feature list of this package can be found
-[here](https://github.com/executablebooks/sphinx-jupyterbook-latex/blob/master/docs/intro.md#feature-list).
-
-This package enables building `pdf` files with full support for the `file` and `part/chapter`
-[structures that are defined in the _toc.yml](https://jupyterbook.org/customize/toc.html). This builds
-`pdf` files that are similar in structure to the `html` output.
-
-If you need to **turn off** this package, the following config is required:
-
-```yaml
-latex:
-  use_jupyterbook_latex: false
-```
+#### Book Style PDF
 
 To build a PDF of your project using LaTeX, use the following command:
 
@@ -148,7 +168,17 @@ jb build mybookname/ --builder latex
 
 ::::
 
-**Individual PDF Files:**
+#### Individual PDF Files
+
+It is possible to build
+individual PDF files for each page of the project by enabling the `--individualpages` option
+when using the `pdflatex` builder.
+
+```bash
+jupyter-book build mybookname/ --builder pdflatex --individualpages
+```
+
+This `option` is only enabled for the `pdflatex` builder.
 
 :::{warning}
 The current implementation of `--individualpages` does **not** make use of the improvements
@@ -158,21 +188,20 @@ We are currently working on making improvements to how `--individualpages` are c
 You can track progress [here](https://github.com/executablebooks/sphinx-jupyterbook-latex/issues/41)
 :::
 
-To build PDF files for each page of the project,
-you can specify the option `--individualpages` for `--builder=pdflatex`.
-
 The individual PDF files will be available in the `_build/latex` build folder.
-These files will have the same name as the source file or, if nested in folders, will be named `{folder}-{filename}.pdf`.
+These files will have the same name as the source file or, if nested in folders, will be named `{folder}-{filename}.pdf` in a flat structure.
 
 :::{note}
-When specifying a page using the `build` command,
+When specifying a single page using the `build` command,
 the `--individualpages` will automatically be set to `True`.
 
 In the future we intend for this to produce latex documents more suitable to single pages
 (see [issue #904](https://github.com/executablebooks/jupyter-book/issues/904)).
 :::
 
-### Updating the name of the Global PDF file
+### Configuration
+
+#### Updating the name of the book style PDF file
 
 To update the name of your `PDF` file you can set the following in `_config.yml`
 
@@ -183,11 +212,11 @@ latex:
 ```
 
 This will act as an automatic `override` when Sphinx builds the
-[latex_documents](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-latex_documents). It is typically inferred by `Sphinx` but when
-using `jupyter-book` naming the file in the `_config.yml` generally makes it
-easier to find.
+[latex_documents](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-latex_documents).
+It is typically inferred by `Sphinx` but when using `jupyter-book` naming the file in the `_config.yml`
+generally makes it easier to find.
 
-### Using a different LaTeX engine
+#### Choose a different LaTeX compiler
 
 The current default is to use `xelatex` to build `pdf` files.
 
@@ -195,26 +224,35 @@ The current default is to use `xelatex` to build `pdf` files.
 The `--individualpages` option currently uses `pdflatex` by default.
 :::
 
-Some users may want to switch to using a different LaTeX engine such as `pdflatex`.
-To revert the `LaTeX` engine to `pdflatex` you can add the following to your `_config.yml`
+You may choose a different LaTeX engine such as `pdflatex` or `lualatex`.
+For example, to use `pdflatex` engine for `LaTeX`, add the following to your `_config.yml`:
 
 ```yaml
 latex:
   latex_engine: pdflatex
 ```
 
-:::{note}
-The Sphinx documentation [for available builders](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-latex_engine)
+:::{seealso}
+The Sphinx [documentation for available builders](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-latex_engine)
 contains a full list of supported `latex` builders.
 :::
 
-### Other Sphinx LaTeX settings
+#### Customize LaTeX via Sphinx
 
-Other [LaTeX settings](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-latex_engine) available
-to Sphinx can be passed through using the config section
-of `Sphinx` in the `_config.yml` file for your project.
+The current focus of the EBP project has been to automate the process of building `pdf` files
+from `myst:md` sources and to ensure the resulting `pdf` files are syncronised (in structure)
+with the `html` output. We are actively looking at ways to enable more `LaTeX` configuration and
+customization.
 
-For example, if you would like to set the [latex_toplevel_sectioning](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-latex_toplevel_sectioning) option to use `part` instead of `chapter` you would use:
+The majority of customization offered is via `Sphinx`, the underlying build engine that powers
+`jupyter-book`.
+
+Configuration via [Sphinx LaTeX settings](https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-latex-output) can be passed through using the `config` section
+of `sphinx` in the `_config.yml` file for your project.
+
+For example, if you would like to set the
+[latex_toplevel_sectioning](https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-latex_toplevel_sectioning)
+option to use `part` instead of `chapter` you would use:
 
 ```yaml
 sphinx:

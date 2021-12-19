@@ -24,6 +24,11 @@ You can install Jupyter Book [via `pip`](https://pip.pypa.io/en/stable/):
 ```bash
 pip install -U jupyter-book
 ```
+or via [`conda-forge`](https://conda-forge.org/):
+
+```bash
+conda install -c conda-forge jupyter-book
+```
 
 This will install everything you need to build a Jupyter Book locally.
 
@@ -140,22 +145,18 @@ file in each folder in order for any sub-folders to be parsed.
 
 ```yaml
 # In _toc.yml
-- file: landing-page
+format: jb-book
+root: landing-page
+chapters:
 - file: page1
 ```
 
-Each item in the `_toc.yml` file points to a single file. The links
-should be **relative to your book's folder and with no extension.**
-Think of the top-most level of your TOC file as **book chapters** (excluding the landing page). The title of each chapter will be inferred from the title in your files.
+The `_toc.yml` is arranged with a `format` such as `jb-article`, or `jb-book`.
+The `root` item is considered the landing page (for `html` builds) and is used as front matter (for `latex` builds).
+For `jb-book`, subsequent chapters can be added under the `chapters:` section in the `yml` file.
 
-The first file specifies the **landing page** of your book (in this case, it is a **markdown file**).
-The landing page is the highest page in your book's content hierarchy.
-The second file specifies a **content page** of your book (in this case, it is a **Jupyter Notebook**).
-
-```{margin}
-For more information about how section structure maps onto book structure,
-see [](toc/structure).
-```
+Each entry relates to a file, and they should be added as names with **no extensions** and **relative to your book's root folder.**
+The title of each chapter will be inferred from the title in your files.
 
 :::{admonition} More about `_toc.yml`
 :class: tip

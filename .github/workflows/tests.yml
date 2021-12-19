@@ -12,9 +12,7 @@ on:
 jobs:
 
   pre-commit:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.8
@@ -22,6 +20,22 @@ jobs:
       with:
         python-version: 3.8
     - uses: pre-commit/action@v2.0.0
+
+  pre-commit-hook:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install pre-commit
+      run: pip install pre-commit
+    # Run pre-commit with try-repo to test the local version of the pre-commit hook
+    # because we cannot initialize a local repo easily with the normal configuration file.
+    # See https://pre-commit.com/#developing-hooks-interactively for details.
+    - name: run pre-commit
+      run: pre-commit try-repo -v -a --show-diff-on-failure .
 
   # for speed, we run a test matrix against only the tests that do not require TeX,
   # then test-with-cov for all tests, for a single environment
@@ -83,11 +97,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.6, 3.7]
-        sphinx: [">=3,<4"]
-        include:
-          - python-version: 3.8
-            sphinx: ">=2,<3"
+        python-version: ["3.6", "3.7", "3.8"]
+        sphinx: [">=3,<4", ">=4,<5"]
 
     steps:
     - uses: actions/checkout@v2
@@ -114,19 +125,22 @@ jobs:
 
     name: Tests on Windows
     runs-on: windows-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 3.7
+    - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
-        python-version: 3.7
+        python-version: 3.8
     - uses: actions/cache@v2
       with:
         path: ~\AppData\Local\pip\Cache
-        key: ${{ runner.os }}-pip-${{ hashFiles('setup.py') }}
+        key: ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('setup.py') }}
         restore-keys: |
-          ${{ runner.os }}-pip-
+          ${{ runner.os }}-${{ matrix.python-version }}-pip-
     - name: Install Python dependencies
       run: |
         python -m pip install --upgrade pip
@@ -139,21 +153,24 @@ jobs:
   build-book-osx:
     name: Build docs on OSX
     runs-on: macos-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 3.7
+    - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
-        python-version: 3.7
+        python-version: 3.8
     - uses: actions/cache@v2
       with:
         path: ~\AppData\Local\pip\Cache
-        key: ${{ runner.os }}-pip-${{ hashFiles('setup.py') }}
+        key: ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('setup.py') }}
         restore-keys: |
-          ${{ runner.os }}-pip-
+          ${{ runner.os }}-${{ matrix.python-version }}-pip-
     # On OSX, we'll hit errors with fonts unless libmagic is installed.
-    # See https://stackoverflow.com/questions/62279920/python-macos-error-unable-to-revert-mtime-library-fonts  # noqa: E501
+    # See https://stackoverflow.com/questions/62279920/python-macos-error-unable-to-revert-mtime-library-fonts
     - name: Install libmagic
       run: sudo apt-get install -y libmagic
     - name: Install Python dependencies
@@ -175,10 +192,10 @@ jobs:
     steps:
       - name: Checkout source
         uses: actions/checkout@v2
-      - name: Set up Python 3.7
+      - name: Set up Python 3.8
         uses: actions/setup-python@v1
         with:
-          python-version: 3.7
+          python-version: 3.8
       - name: Build package
         run: |
           pip install wheel
