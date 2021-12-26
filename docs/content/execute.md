@@ -190,7 +190,7 @@ This global value can also be overridden per notebook by adding this to your not
 {
  "metadata": {
   "execution": {
-      "allow_errors": false
+      "allow_errors": "false"
   }
 }
 ```
