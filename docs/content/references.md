@@ -43,7 +43,7 @@ For example, we've added the following label above the header for this section w
 
 ```md
 (content:references:labels)=
-## Cross-references and labels
+## Reference section labels
 ```
 
 You can insert cross-references to labels in your content with two kinds of syntax:
