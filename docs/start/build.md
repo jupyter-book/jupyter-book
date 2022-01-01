@@ -26,9 +26,23 @@ jupyter-book build mybookname/
 ```
 
 This will generate a fully-functioning HTML site using a **static site generator**.
-The site will be placed in the `_build/html` folder. You can then open the pages
-in the site by navigating to that folder and opening the `html` files with your
-web browser.
+The site will be placed in the `_build/html` folder, something like this:
+
+```bash
+mybookname
+ └──_build
+    └── html
+       ├── _images
+       ├── _static
+       ├── index.html
+       ├── intro.html
+       ...
+```
+
+These are the static files for a standalone website!
+They contain the HTML and all assets needed to view your book in a browser.
+
+You can open the pages in the site by navigating to that folder and opening the `html` files with your web browser.
 
 :::{note}
 You can also use the short-hand `jb` for `jupyter-book`. E.g.,:
@@ -36,7 +50,7 @@ You can also use the short-hand `jb` for `jupyter-book`. E.g.,:
 :::
 
 
-## Source vs build files
+## Aside: Source vs build files
 
 At this point, you have created a combination of Jupyter notebooks, markdown files, and configuration files, including `_toc.yml` and `_config.yml`.
 These files are your __source__ files.
@@ -77,8 +91,6 @@ Take a look at the web page that was generated from the markdown page that you c
 Note how the links you inserted were automatically **resolved** to point to the right place.
 This is how you can keep consistent pointers from one section of your book to another.
 
+## Create your own content
 
-## Next step: publish your book
-
-Now that you've created the HTML for your book, it's time to publish it online.
-That's covered in the [next section](./publish.md).
+Now that you've built a simple HTML site from your demo book, we'll create some new content so that you can get the hang of adding new files. See [](new-file.md) for the next step.
