@@ -1,0 +1,3 @@
+sphinx:
+  extra_extensions:
+    - jupyterbook_latex

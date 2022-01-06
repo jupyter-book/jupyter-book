@@ -1,3 +1,4 @@
+(interactive:comments)=
 # Commenting and annotating
 
 ```{danger}

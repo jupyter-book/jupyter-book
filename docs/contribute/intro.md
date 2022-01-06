@@ -2,9 +2,36 @@
 
 Welcome to the `jupyter-book` repository! We're excited you're here and want to contribute. ✨
 
+:::{admonition} Be sure to check out our Code of Conduct
+The Executable Books community follows [this Code of Conduct](https://github.com/executablebooks/.github/blob/master/CODE_OF_CONDUCT.md) to ensure that our online spaces are enjoyable, inclusive, and productive for all contributors.
+:::
+
 ## Development guidelines
 
 For information about development conventions, practices, and infrastructure, please see [the `executablebooks/` development guidelines](https://github.com/executablebooks/.github/blob/master/CONTRIBUTING.md).
+
+## Documentation guidelines
+
+The documentation of Jupyter Book is inspired by the [Diataxis Documentation Framework](https://diataxis.fr/).
+This separates documentation into four main areas:
+
+- **Tutorials** are step-by-step guides that are learning-oriented.
+  They give the learner a feel for how a tool works, and get them excited about learning more.
+  Tutorials live in a dedicated section of the documentation.
+- **How-To guides** are shorter guides that tell the reader how to do something.
+  They assume more background knowledge of Jupyter Book (often, that they have read the tutorial).
+  They are focused on "doing things" rather than long explanations.
+  How-To guides make up most of Jupyter Book's documentation, and are separated into sections for various topics.
+- **Reference** documentation _describes_ Jupyter Book's structure and functionality in a complete sense.
+  It is more programmatic, less narrative, and more interested in covering all configuration and options in Jupyter Book rather than describing how and when to use them.
+  Jupyter Book has a reference section after our topic sections.
+  In addition, it has an organization-level reference section just underneath.
+- **Explanations** are higher-level discussions about topics and concepts related to Jupyter Book.
+  They are less focused on doing things, and more focused on gaining a conceptual framework for how Jupyter Book works.
+  Jupyter Book currently has no dedicated explanation section, but welcomes the addition of explanatory content and potentially a dedicated section.
+
+These four areas are not **strict rules** for the Jupyter Book documentation, but should serve as inspiration in deciding what to document, and where.
+Any contributions to the documentation that fall within this framework (e.g., adding a new tutorial, adding a How To section) are most-welcome!
 
 ## Getting started
 
@@ -20,7 +47,7 @@ cd jupyter-book
 Next, install:
 
 ```bash
-pip install -e .[all]
+python -m pip install -e .[testing,code_style]
 ```
 
 This will install Jupyter Book locally, along with the packages needed to test it
@@ -44,7 +71,7 @@ code looks correct according to a few checks.
 
 ### Run the tests
 
-For code tests, Jupyter Book uses [pytest](https://docs.pytest.org)).
+For code tests, Jupyter Book uses [pytest](https://docs.pytest.org).
 You may run all the tests, or only ones that do not require additional installations, with the following command:
 
 ```shell
@@ -150,5 +177,5 @@ what kinds of functionality they support:
   It also allows [inserting code outputs into content](content:code-outputs:glue).
 * {term}`Jupyter-Cache` manages the execution and cacheing of notebook content at
   build time. It is controlled by {term}`MyST-NB`.
-* The {term}`Sphinx-Book-Theme` defines the look and feel of Jupyter Book, and is
+* The {term}`Sphinx Book Theme` defines the look and feel of Jupyter Book, and is
   where most of the CSS rules are defined.

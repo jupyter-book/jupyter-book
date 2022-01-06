@@ -1,0 +1,27 @@
+<document>
+    <section classes="tex2jax_ignore mathjax_ignore" docname="intro" header_level="1" ids="this-is-the-intro" names="this\ is\ the\ intro">
+        <title>
+            This is the intro
+        <paragraph>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel nunc vestibulum, pretium urna ac, hendrerit diam. Nulla ut mi sit amet dui placerat tempor at quis magna. Sed porttitor blandit consequat. Fusce efficitur mi eget pharetra cursus. Sed vel blandit dui, et pharetra velit. Ut eget erat rutrum, maximus felis ullamcorper, congue urna. Ut pellentesque, orci vel consectetur aliquam, velit elit vehicula libero, eu blandit tellus risus rhoncus massa. Curabitur id libero ut sapien aliquet dapibus nec et dolor. Pellentesque tincidunt iaculis ipsum vitae pretium. Quisque et egestas orci, sed dignissim sem. Vestibulum sed commodo dui. Nulla rutrum vulputate nisl nec interdum. Cras pharetra quam et tellus convallis, ut hendrerit mi mollis. Integer finibus tellus porttitor tellus bibendum, a auctor purus dapibus. Etiam mauris est, blandit ut dapibus eget, rutrum et dolor.
+        <section docname="intro" header_level="2" ids="this-is-h2" names="this\ is\ h2">
+            <title>
+                This is H2
+            <paragraph>
+                Etiam interdum tempor augue at volutpat. Nulla sit amet volutpat elit. In vehicula dapibus velit, a placerat neque blandit et. Etiam non mollis nibh. Mauris tortor purus, semper vel libero at, faucibus mattis enim. Sed elit mi, vestibulum sit amet porttitor in, elementum a sem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec gravida faucibus enim, at venenatis ante. Curabitur viverra neque vel nulla condimentum ultrices quis a ipsum.
+            <HiddenCellNode caption="part1" classes="latex-tableofcontents" entries="(None,\ 'part1/chap1') (None,\ 'part1/chap2')" glob="False" hidden="False" includefiles="part1/chap1 part1/chap2" includehidden="False" maxdepth="-1" numbered="0" parent="intro" rawcaption="part1" titlesonly="True">
+            <compound caption="part1" classes="toctree-wrapper" docname="intro">
+                <toctree caption="part1" classes="latex-tableofcontents" entries="(None,\ 'part1/chap1') (None,\ 'part1/chap2')" glob="False" hidden="False" includefiles="part1/chap1 part1/chap2" includehidden="False" maxdepth="-1" numbered="0" parent="intro" rawcaption="part1" titlesonly="True">
+            <HiddenCellNode caption="part2" classes="latex-tableofcontents" entries="('Gallery\ of\ Jupyter\ Books',\ 'https://executablebooks.org/en/latest/gallery.html') (None,\ 'part2/chap3')" glob="False" hidden="False" includefiles="part2/chap3" includehidden="False" maxdepth="-1" numbered="0" parent="intro" rawcaption="part2" titlesonly="True">
+            <compound caption="part2" classes="toctree-wrapper" docname="intro">
+                <toctree caption="part2" classes="latex-tableofcontents" entries="('Gallery\ of\ Jupyter\ Books',\ 'https://executablebooks.org/en/latest/gallery.html') (None,\ 'part2/chap3')" glob="False" hidden="False" includefiles="part2/chap3" includehidden="False" maxdepth="-1" numbered="0" parent="intro" rawcaption="part2" titlesonly="True">
+            <section docname="intro" header_level="3" ids="this-is-h3" names="this\ is\ h3">
+                <title>
+                    This is H3
+                <paragraph>
+                    Sed elit mi, vestibulum sit amet porttitor in, elementum a sem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec gravida faucibus enim, at venenatis ante. Curabitur viverra neque vel nulla condimentum ultrices quis a ipsum.
+                <section docname="intro" header_level="4" ids="this-is-h4" names="this\ is\ h4">
+                    <title>
+                        This is H4
+                    <paragraph>
+                        Ipso facto

@@ -97,7 +97,7 @@ Here's a warning! It was created with:
 ````
 `````
 
-For a complete list of options, see [the `sphinx-book-theme` documentation](https://sphinx-book-theme.readthedocs.io/en/latest/reference/demo.html#admonitions).
+For a complete list of options, see [the `sphinx-book-theme` documentation](https://sphinx-book-theme.readthedocs.io/en/latest/reference/kitchen-sink/paragraph-markup.html#admonitions).
 
 ### Blocks of text with custom titles
 
@@ -233,6 +233,28 @@ This is the *content*
 
 See [](myst-parser:syntax/html-admonition) for more information about HTML admonitions.
 
+(content-blocks:warning-headers-admonitions)=
+### Do not embed headings inside admonitions
+
+You should **not** embed headings (lines starting with `#`) inside of admonitions, dropdowns, or other content blocks such as this.
+Sphinx (and thus Jupyter Book) uses headings to define the major top-level sections of a document.
+For this reason, nesting a heading within a block will cause unpredictable breakage of the document structure.
+
+`````{admonition} Do not do this
+:class: warning
+For example, **do not do this**:
+
+````
+```{note}
+## This heading is inside an admonition, and will mess things up!
+
+Don't do this!
+```
+````
+`````
+
+To achieve a similar effect, write some **bold text** instead of using a markdown header.
+
 (content/panels)=
 ## Panels
 
@@ -305,7 +327,7 @@ Content of the left panel.
 `````
 
 ```{seealso}
-See the [Sphinx Panels card layout documentaiton](https://sphinx-panels.readthedocs.io/en/latest/#card-layout) for more information.
+See the [Sphinx Panels card layout documentation](https://sphinx-panels.readthedocs.io/en/latest/#card-layout) for more information.
 ```
 
 ### Controlling the look and feel of panels
@@ -358,6 +380,7 @@ Body C
 ````
 `````
 
+(content:dropdowns)=
 ## Dropdowns
 
 Dropdowns allows you to hide content behind a title and a button.
@@ -827,7 +850,7 @@ You can also define book-level substitution variables with the following configu
 
 ```yaml
 parse:
-  substitutions:
+  myst_substitutions:
     key: value
 ```
 

@@ -1,6 +1,5 @@
 (advanced/sphinx-config)=
-
-# Custom Sphinx configuration
+# Advanced Sphinx usage
 
 Jupyter Book uses the excellent documentation tool [Sphinx](http://www.sphinx-doc.org/)
 to build your book and manage citations, cross-references, and extensibility.
@@ -135,53 +134,24 @@ int main() {
 ```
 ````
 
+(config:sphinx:local_extensions)=
 ### Local Sphinx Extensions
 
 [Sphinx is able to use local extensions](https://www.sphinx-doc.org/en/master/development/tutorials/helloworld.html#using-the-extension) by adding additional directories to the [Python path](https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH). You can use local extensions by
-specifying them as [local_extensions](config:sphinx:local_extensions) in the `_config.yml` file.
+specifying them as `local_extensions` in the `_config.yml` file.
 
-(custom-assets)=
-## Custom CSS or JavaScript
+To add a local extension that requires a path, use:
 
-If you'd like to include custom CSS rules or JavaScript scripts in your book,
-you can do so by adding them to a folder called `_static` in your book's folder.
-Any files that end in `.css` or `.js` in this folder will automatically be copied
-into your built book HTML and linked in the header of each page.
-
-For example, to include a custom CSS file `myfile.css` in a Jupyter Book folder with
-the following structure:
-
-```
-mybook/
-├── _config.yml
-├── _toc.yml
-└── page1.md
+```yaml
+sphinx:
+  local_extensions:
+    <name>: <path>
 ```
 
-Add the static file here:
+This will **append to the list of extensions already loaded by Jupyter Book** and update the `sys.path` so
+the local extension can be found.
 
-```
-├── _config.yml
-├── _toc.yml
-├── page1.md
-└── _static
-    └── myfile.css
-```
-
-The rules should then automatically be applied to your site. In general, these
-CSS and JS files will be loaded *after* others are loaded on your page, so they
-should overwrite pre-existing rules and behaviour.
-
-### An example: justify the text
-
-If you want the text of you book to be justified instead of left aligned then create `myfile.css` under `mybook/_static` with the following CSS:
-
-```css
-p {
-    text-align: justify;
-}
-```
-
+(sphinx:configuration)=
 ## Manual Sphinx configuration
 
 You may also directly override the key-value pairs that Sphinx normally has
@@ -189,7 +159,7 @@ you configure in `conf.py`. To do so, use the following section of `_config.yml`
 
 ```yaml
 sphinx:
-config:
+  config:
     key1: value1
     key2: value2
 ```
@@ -209,6 +179,35 @@ jb config sphinx mybookname/
 
 :::
 
+### Choose a custom Sphinx theme
+
+Sphinx provides support for many different themes to control the look and feel of the output.
+Jupyter Book uses the [Sphinx Book Theme](https://sphinx-book-theme.readthedocs.io/) by default, but it is possible to use *any* Sphinx theme for your Jupyter Book by directly configuring Sphinx.
+
+For example, if you wished to use the [PyData Sphinx Theme](https://pydata-sphinx-theme.readthedocs.io/), you could install the theme with:
+
+```bash
+pip install pydata-sphinx-theme
+```
+
+and then configure your book like so:
+
+```yaml
+...
+sphinx:
+  config:
+    html_theme: pydata_sphinx_theme
+...
+```
+
+When you build your book, the PyData theme will be used.
+In this case, you should [consult the PyData theme documentation](https://pydata-sphinx-theme.readthedocs.io/en/latest/user_guide/index.html) for information about how to configure it.
+
+:::{warning}
+While you may choose any theme, there is some Jupyter Book configuration that only works with the Sphinx Book Theme, so some functionality may not be present if you choose a custom theme.
+For example, the [Launch Buttons](launchbuttons/binder) are not supported in most Sphinx themes.
+:::
+
 ### Fine control of parsing and execution
 
 As discussed in [the components of Jupyter Book](intro/jupyter-book-components), two of the main components of Jupyter Book are Sphinx extensions;
@@ -217,8 +216,8 @@ MyST-Parser for Markdown parsing, and MyST-NB for notebook execution and output 
 These two extensions are highly customizable *via* Sphinx configuration.
 Some of their configuration is already exposed in the `_config.yml`, but you can also directly set configuration, see:
 
-* the [MyST-Parser configuration options](myst-parser:intro/config-options)
-* the [MyST-NB configuration options](myst-nb:start/config-options)
+* the [MyST-Parser configuration options](myst-parser:sphinx/config-options)
+* the [MyST-NB configuration options](myst-nb:config/reference)
 
 (sphinx/tex-macros)=
 ### Defining TeX macros
@@ -296,3 +295,41 @@ which renders as
 \end{equation}
 
 :::
+
+## Enable a custom Sphinx builder from the CLI
+
+You can initiate builds for a custom builder using:
+
+```bash
+jb build <project> --builder=custom --custom-builder=<builder-name>
+```
+
+Advanced `sphinx` users may find an extension that builds a different type of output from
+the Sphinx AST such as [sphinx-tojupyter](https://github.com/QuantEcon/sphinx-tojupyter)
+which is an extension for building notebooks that only includes `basic` markdown.
+
+```{warning}
+[sphinx-tojupyter](https://github.com/QuantEcon/sphinx-tojupyter) will be deprecated once
+`myst` syntax rendering support is available in jupyter notebooks.
+```
+
+You can enable the `jupyter` builder by adding it to the `_config.yml`
+
+```
+sphinx:
+  extra_extensions: [sphinx_tojupyter]
+```
+
+and using the `custom` option via `jupyter-book`:
+
+```bash
+jb build <project> --builder=custom --custom-builder=jupyter
+```
+
+```{warning}
+**Developers:** When using other output targets, the package will need to support specifying the
+`mime` type priority for `myst_nb` compatibility.
+
+See [this code](https://github.com/QuantEcon/sphinx-tojupyter/blob/ef85226e5e3e30903b62ddda24d8a32d36687944/sphinx_tojupyter/__init__.py#L124) for
+further details
+```

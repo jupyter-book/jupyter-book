@@ -1,4 +1,4 @@
-# The command-line interface
+# Command-line interface reference
 
 Jupyter Book comes with a command-line interface that makes it easy to
 build your books and run a few common functions. This page contains information
@@ -17,7 +17,7 @@ For example: `jupyter-book build mybook/` is equivalent to ``jb build mybook/``.
 **See below for the full command-line reference**
 
 ```{eval-rst}
-.. click:: jupyter_book.commands:main
+.. click:: jupyter_book.cli.main:main
    :prog: jupyter-book
    :nested: full
 ```

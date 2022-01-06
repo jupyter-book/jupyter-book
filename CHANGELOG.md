@@ -1,5 +1,134 @@
 # Change Log
 
+## v0.12.1
+
+This release provides bug fixes and updates when building PDF via LaTeX including improved styling for
+code output cells. It also includes infrastructure for using Jupyter Book with ReadTheDocs.
+
+## New
+
+- ✨ NEW: Allow running on ReadTheDocs [PR #1422](https://github.com/executablebooks/jupyter-book/pull/1422)
+- ✨ NEW: Upgrade to sphinx-jupyterbook-latex~=0.4.6 [PR #1538](https://github.com/executablebooks/jupyter-book/pull/1538)
+
+## v0.12.0
+
+### New
+
+The primary change in this release is to update the requirements of `jupyter-book` from `sphinx>=2,4` to `sphinx>=3,<5` to support `sphinx>=4` via [#1448](https://github.com/executablebooks/jupyter-book/pull/1448).
+
+This includes upgrades to underlying packages:
+
+- `myst-nb` has been upgrade from `myst-nb~=0.12.0` to `myst-nb~=0.13.1`. Some new features were added in `v0.13+` and can
+  be seen in the [myst-nb changelog](https://github.com/executablebooks/MyST-NB/blob/master/CHANGELOG.md#change-log)
+- additional projects such as [jupytext](https://github.com/mwouts/jupytext), [sphinx-external-toc](https://github.com/executablebooks/sphinx-external-toc), [sphinx-jupyterbook-latex](https://github.com/executablebooks/sphinx-jupyterbook-latex), [sphinx-panels](https://github.com/executablebooks/sphinx-panels), and [sphinx-book-theme](https://github.com/executablebooks/sphinx-book-theme) were also upgraded as part of this release.
+
+Documentation has also received updates and fixes.
+
+Thanks to @bryanwweber, @chrisjsewell, @choldgraf, @gabri470, @jmshea, @joelostblom, @mmcky, @patrickmineault, @TomasBeuzen
+
+### Deprecations from upgrade to `myst-parser`
+
+- The [deprecations made to extension configurations and colon fences in `0.13.0`](https://github.com/executablebooks/MyST-Parser/blob/master/CHANGELOG.md#remove-v013-deprecations-%EF%B8%8F) have now been removed
+
+## v0.11.3
+
+This release enables the use of the [singlehtml builder](https://www.sphinx-doc.org/en/master/usage/builders/index.html#sphinx.builders.singlehtml.SingleFileHTMLBuilder) and updates [sphinx-thebe](https://github.com/executablebooks/sphinx-thebe) and [sphinx-book-theme](https://github.com/executablebooks/sphinx-book-theme)
+
+### New
+
+1. [builders] Add access to the [singlehtml](https://www.sphinx-doc.org/en/master/usage/builders/index.html#sphinx.builders.singlehtml.SingleFileHTMLBuilder) builder via the CLI [[PR #1418](https://github.com/executablebooks/jupyter-book/pull/1418)]
+
+### Upgrade
+
+1. [sphinx-thebe](https://sphinx-thebe.readthedocs.io/en/latest/changelog.html#v0-0-10-2021-08-24) is now version `0.0.10`
+2. [sphinx-book-theme](https://github.com/executablebooks/sphinx-book-theme/blob/master/CHANGELOG.md#v013---2021-08-25) is now version `0.1.3`
+
+
+## v0.11.2
+
+This release introduces [sphinx-multitoc-numbering](https://github.com/executablebooks/sphinx-multitoc-numbering) for consistent numbering across a `part/chapter` book structure. It also includes improvements to `pdflatex` output, updates to the documentation and various maintenance tasks.
+
+### New
+
+- [html] Add `sphinx-multitoc-numbering` package to provide consistent numbering when organising a book by `parts` and `chapters`.
+  This is enabled by **default*** but can be switched off in [the _config.yml file](https://jupyterbook.org/structure/configure.html?highlight=sphinx%20multitoc%20numbering#number-your-chapters-and-sections). [[PR #1326](https://github.com/executablebooks/jupyter-book/pull/1326)]
+
+### Upgrade
+
+- [pdflatex] UPGRADE: Upgrade to `sphinx-jupyterbook-latex==0.4.2` which enables support for the `tableofcontents` directives and improvements
+  to `pdf` compilation via `LaTeX`.
+
+
+## v0.11.1
+
+This release included two minor patches brought in via updates to `sphinx-external-toc` and `jupyterbook-latex`.
+
+## v0.11.0
+
+([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.10.2...d43216c57a2710eaeb2363f21d2b3aadf914feca)) | [GitHub contributors page for this release](https://github.com/executablebooks/jupyter-book/graphs/contributors?from=2021-04-04&to=2021-05-11&type=c)
+
+This is primarily a documentation and under-the-hood update, but it comes with an important change to the way that **Table of Contents** are structured. See below for more information.
+
+### Breaking ‼
+
+- **Table of Contents**. The Table of Contents infrastructure is now handled by the Sphinx extension [`sphinx-external-toc`](https://github.com/executablebooks/sphinx-external-toc). This comes with a more structured format for `_toc.yaml` through the introduction of `jb-article` and `jb-book` formats. In order to convert your book's TOC to the new format, you may run the following command:
+
+  ```
+  jupyter-book toc migrate _toc.yml -o _toc.yml
+  ```
+
+  This command includes `-o` which will update your current `_toc.yml` file to work with the latest `jupyter-book` release.
+
+  See the [Table of Contents documentation](https://jupyterbook.org/customize/toc.html) for more information.
+
+### New
+
+- The `_toc.yml` file now has support to use `glob` to add files based on a pattern to the table of contents. This
+  is added using the `glob` key where you would usually specify a `file` or `url`.
+
+  ```yaml
+  root: intro
+  subtrees:
+  - entries:
+    - file: doc1
+    - url: https://example.com
+    - glob: subfolder/other*
+  ```
+
+  this matches any documents that start with `other` that are contained in `subfolder`. [Fixes [Issue #1038](https://github.com/executablebooks/jupyter-book/issues/1038)]
+
+- Input files to the `_toc.yml` no longer need to be just `ipynb`, `md`, `rst`. You can now use [custom file types](https://jupyterbook.org/file-types/jupytext.html#file-types-custom) as an input such as `py` files. (Fixes [Issue #1064](https://github.com/executablebooks/jupyter-book/issues/1064), [Issue #1175](https://github.com/executablebooks/jupyter-book/issues/1175))
+
+- The `jupyterbook toc` command has now been converted to a collection of tools. It was originally setup to read a collection of files and then build a `_toc.yml`. The equivalent of this command is now:
+
+  ```bash
+  jupyter-book toc from-project
+  ```
+
+  There is also an additional helper tool that builds a collection of files from a user written `_toc.yml` file using
+
+  ```bash
+  jupyter-book toc to-project
+  ```
+
+## v0.10.1 2021-03-02
+
+[full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.10.0...a73538c22d6c8c7b7b198db79ada0f801d685856) | [GitHub contributors page for this release](https://github.com/executablebooks/jupyter-book/graphs/contributors?from=2021-01-30&to=2021-03-02&type=c)
+
+This is a minor update to include recent improvements made to [MyST-NB](https://github.com/executablebooks/myst-nb)
+
+### New
+
+1. An **experimental** MyST-NB feature that enables loading of code from a file for `code-cell` directives using a `:load: <file>` option. Additional information is available in the [myst-nb documentation](https://myst-nb.readthedocs.io/en/latest/use/markdown.html#syntax-for-code-cells)
+
+### Upgrades
+
+* ⬆ UPGRADE: myst-nb v0.12.0 ([#1238](https://github.com/executablebooks/jupyter-book/pull/1238), [@mmcky](https://github.com/mmcky))
+
+### Maintain
+
+* 🔧 MAINTAIN: Expand `jupytext` version pinning ([#1221](https://github.com/executablebooks/jupyter-book/pull/1221), [@bollwyvl](https://github.com/bollwyvl))
+
 ## v0.10.0 2021-02-01
 
 [full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.9.1...d3c78097edda4fefb672e32344c3806c9cdc7a72) | [GitHub contributors page for this release](https://github.com/executablebooks/jupyter-book/graphs/contributors?from=2020-12-22&to=2021-01-30&type=c)
@@ -119,7 +248,7 @@ This release includes a number of new features, improvements and bug fixes. Ther
 * 👌 IMPROVE: Option to exclude every file not in the toc. ([docs](docs/customize/config.md), [#1123](https://github.com/executablebooks/jupyter-book/pull/1123), [@alex-treebeard](https://github.com/alex-treebeard))
 *  ✨ NEW: Enable the use of local Sphinx extension via _config.yml. ([docs](docs/customize/config.md), [#1102](https://github.com/executablebooks/jupyter-book/pull/1102), [@mmcky](https://github.com/mmcky))
 * ✨ NEW: Enable custom builder passthrough. This is an **advanced feature**
-  that enables the use of additional sphinx builders via jupyter-book that may be provided by an extension. ([docs](docs/advanced/advanced.md), [#1094]([#1094](https://github.com/executablebooks/jupyter-book/pull/1094)), [@mmcky](https://github.com/mmcky))
+  that enables the use of additional sphinx builders via jupyter-book that may be provided by an extension. ([docs](docs/advanced/sphinx.md), [#1094]([#1094](https://github.com/executablebooks/jupyter-book/pull/1094)), [@mmcky](https://github.com/mmcky))
 
 **HTML:**
 
@@ -233,7 +362,7 @@ Here's the headlines:
 
 Windows support
 : Continuous Integration (CI) testing is now run against Windows OS throughout the EBP stack.
-  The fixes this entailed, mean that Jupyter Book can now be run on Windows with minimal issue (see [Working on Windows](docs/advanced/advanced.md))
+  The fixes this entailed, mean that Jupyter Book can now be run on Windows with minimal issue (see [Working on Windows](docs/advanced/windows.md))
 
 Extended "Markdown friendly" syntaxes
 : MyST Markdown directives offer a high degree of extensibility, to add all the features we might need to create a scientific document.

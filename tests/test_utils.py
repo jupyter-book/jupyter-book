@@ -1,7 +1,7 @@
-from click.testing import CliRunner
 import pytest
+from click.testing import CliRunner
 
-from jupyter_book.commands import init as myst_init
+from jupyter_book.cli.main import init as myst_init
 from jupyter_book.utils import init_myst_file
 
 

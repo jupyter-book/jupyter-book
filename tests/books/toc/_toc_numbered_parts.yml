@@ -1,7 +1,9 @@
-- file: index
-  title: Toc
+format: jb-book
+root: index
+title: Toc
+parts:
+- caption: Chapter 1
   numbered: true
-- part: Chapter 1
   chapters:
   - file: content1
     title: Content1
@@ -10,7 +12,8 @@
     sections:
     - file: subfolder/asubpage
       title: Asubpage
-- part: Chapter 2
+- caption: Chapter 2
+  numbered: true
   chapters:
   - file: content2
     title: Content2

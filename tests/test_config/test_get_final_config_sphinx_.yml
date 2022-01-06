@@ -15,7 +15,7 @@ final:
   comments_config:
     hypothesis: false
     utterances: false
-  copyright: '2020'
+  copyright: '2021'
   exclude_patterns:
   - '**.ipynb_checkpoints'
   - .DS_Store
@@ -32,12 +32,14 @@ final:
   - jupyter_book
   - sphinx_thebe
   - sphinx_comments
+  - sphinx_external_toc
   - sphinx.ext.intersphinx
   - sphinx_panels
   - sphinx_book_theme
   - other
   - helloworld
-  html_add_permalinks: ¶
+  - sphinx_jupyterbook_latex
+  external_toc_exclude_missing: false
   html_baseurl: ''
   html_favicon: ''
   html_logo: ''
@@ -56,6 +58,7 @@ final:
   - dollarmath
   - linkify
   - substitution
+  - tasklist
   myst_url_schemes:
   - mailto
   - http
@@ -67,6 +70,8 @@ final:
   pygments_style: sphinx
   suppress_warnings:
   - myst.domains
+  use_jupyterbook_latex: true
+  use_multitoc_numbering: true
 metadata:
   latex_doc_overrides:
     title: My Jupyter Book

@@ -37,7 +37,7 @@ Directives customize the look, feel, and behaviour of your book.
 They are kind of like *functions*, and come in a variety of names with different behaviour.
 This section covers how to structure and use them.
 
-At its simplest, you can use directive in your book like so:
+At its simplest, you can use directives in your book like so:
 
 ````md
 ```{mydirectivename}

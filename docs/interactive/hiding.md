@@ -43,6 +43,12 @@ There are two ways to hide Markdown content
 Both allow you to wrap chunks of Markdown in a button that lets users show
 and hide the content.
 
+:::{caution}
+
+Don't put markdown headers inside of toggle or dropdown content, see [](content-blocks:warning-headers-admonitions) for more information.
+
+:::
+
 ### The `{toggle}` directive
 
 You can activate a toggleable behavior in Markdown with the `{toggle}`
@@ -157,7 +163,7 @@ add the following tag to your cell:
 ```json
 {
     "tags": [
-        "hide-output",
+        "hide-output"
     ]
 }
 ```
@@ -179,7 +185,7 @@ tag to the cell metadata, like so:
 ```json
 {
     "tags": [
-        "hide-cell",
+        "hide-cell"
     ]
 }
 ```
@@ -230,7 +236,7 @@ of a cell with `remove-output`:
 ```json
 {
     "tags": [
-        "remove-output",
+        "remove-output"
     ]
 }
 ```
@@ -249,7 +255,7 @@ of the cell. Here's an example of cell metadata that would trigger the "remove c
 ```json
 {
     "tags": [
-        "remove-cell",
+        "remove-cell"
     ]
 }
 ```
