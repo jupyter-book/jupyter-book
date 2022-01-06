@@ -319,7 +319,6 @@ Another alternative is to use Markdown syntax:
   - ````md
     ```{list-table}
     :header-rows: 1
-    :name: example-table
 
     * - Training
       - Validation
@@ -329,9 +328,8 @@ Another alternative is to use Markdown syntax:
       - 2744
     ```
     ````
-  - ```{list-table} My table title
+  - ```{list-table}
     :header-rows: 1
-    :name: example-table
 
     * - Training
       - Validation
@@ -343,6 +341,7 @@ Another alternative is to use Markdown syntax:
 * - ````md
     ```{list-table} Table title
     :header-rows: 1
+    :name: label-to-reference
 
     * - Col1
       - Col2
@@ -355,6 +354,7 @@ Another alternative is to use Markdown syntax:
   - ````md
     ```{list-table} This table title
     :header-rows: 1
+    :name: example-table
 
     * - Training
       - Validation
@@ -366,6 +366,7 @@ Another alternative is to use Markdown syntax:
     ````
   - ```{list-table} This table title
     :header-rows: 1
+    :name: example-table
 
     * - Training
       - Validation
