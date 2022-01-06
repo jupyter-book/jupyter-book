@@ -31,7 +31,6 @@ final:
   - sphinx_book_theme
   - sphinx_jupyterbook_latex
   external_toc_exclude_missing: false
-  html_add_permalinks: ¶
   html_baseurl: ''
   html_favicon: ''
   html_logo: ''
@@ -65,6 +64,7 @@ final:
   - dollarmath
   - linkify
   - substitution
+  - tasklist
   myst_url_schemes:
   - mailto
   - http
