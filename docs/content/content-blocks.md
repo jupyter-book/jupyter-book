@@ -233,6 +233,28 @@ This is the *content*
 
 See [](myst-parser:syntax/html-admonition) for more information about HTML admonitions.
 
+(content-blocks:warning-headers-admonitions)=
+### Do not embed headings inside admonitions
+
+You should **not** embed headings (lines starting with `#`) inside of admonitions, dropdowns, or other content blocks such as this.
+Sphinx (and thus Jupyter Book) uses headings to define the major top-level sections of a document.
+For this reason, nesting a heading within a block will cause unpredictable breakage of the document structure.
+
+`````{admonition} Do not do this
+:class: warning
+For example, **do not do this**:
+
+````
+```{note}
+## This heading is inside an admonition, and will mess things up!
+
+Don't do this!
+```
+````
+`````
+
+To achieve a similar effect, write some **bold text** instead of using a markdown header.
+
 (content/panels)=
 ## Panels
 
