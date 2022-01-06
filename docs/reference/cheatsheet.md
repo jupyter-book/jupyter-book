@@ -329,7 +329,7 @@ Another alternative is to use Markdown syntax:
       - 2744
     ```
     ````
-  - ```{list-table} My table title
+  - ```{list-table}
     :header-rows: 1
     :name: example-table
 
