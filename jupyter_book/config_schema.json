@@ -206,6 +206,9 @@
                         "object"
                     ]
                 },
+                "overwrite_config": {
+                    "type": "boolean"
+                },
                 "config": {
                     "type": [
                         "null",
