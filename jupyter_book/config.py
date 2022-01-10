@@ -166,8 +166,8 @@ def get_final_config(
             # Automatically make the configuration name substitution so older projects build
             user_yaml_update["mathjax3_config"] = user_yaml_update.pop("mathjax_config")
 
-    # Value set in `sphinx: config: ...` are a special case,
-    # and completely override any defaults (sphinx and yaml)
+    # Recursively update sphinx config if option is specified,
+    # otherwise forcefully override options non-recursively
     if sphinx_config.pop("recursive_update"):
         _recursive_update(sphinx_config, user_yaml_update)
     else:
