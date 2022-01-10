@@ -389,7 +389,9 @@ def yaml_to_sphinx(yaml: dict):
 
     # Overwrite sphinx config or not
     if "recursive_update" in yaml.get("sphinx", {}):
-        sphinx_config["recursive_update"] = yaml.get("sphinx", {}).get("recursive_update")
+        sphinx_config["recursive_update"] = yaml.get("sphinx", {}).get(
+            "recursive_update"
+        )
 
     # Citations
     sphinxcontrib_bibtex_configs = ["bibtex_bibfiles", "bibtex_reference_style"]

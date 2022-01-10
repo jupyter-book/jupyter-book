@@ -67,7 +67,7 @@ SPHINX_VERSION = f".sphinx{sphinx_build.version_info[0]}"
         "repository",
         "exclude_patterns",
         "sphinx-default",
-        "sphinx-recurse"
+        "sphinx-recurse",
     ],
 )
 def test_get_final_config(user_config, data_regression):
