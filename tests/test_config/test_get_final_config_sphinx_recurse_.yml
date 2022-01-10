@@ -10,7 +10,7 @@ _user_config:
     - other
     local_extensions:
       helloworld: ./ext
-    overwrite_config: false
+    recursive_update: true
 final:
   author: The Jupyter Book community
   comments_config:

@@ -45,7 +45,7 @@ SPHINX_VERSION = f".sphinx{sphinx_build.version_info[0]}"
             "sphinx": {
                 "extra_extensions": ["other"],
                 "local_extensions": {"helloworld": "./ext"},
-                "overwrite_config": False,
+                "recursive_update": True,
                 "config": {
                     "html_theme_options": {
                         "launch_buttons": {"binderhub_url": "other"}
@@ -66,8 +66,8 @@ SPHINX_VERSION = f".sphinx{sphinx_build.version_info[0]}"
         "launch_buttons",
         "repository",
         "exclude_patterns",
-        "sphinx-overwrite",
-        "sphinx-update"
+        "sphinx-default",
+        "sphinx-recurse"
     ],
 )
 def test_get_final_config(user_config, data_regression):

@@ -206,7 +206,7 @@
                         "object"
                     ]
                 },
-                "overwrite_config": {
+                "recursive_update": {
                     "type": "boolean"
                 },
                 "config": {
