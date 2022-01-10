@@ -164,10 +164,16 @@ sphinx:
     key2: value2
 ```
 
-:::{warning}
-Any options set in this section will **override** default configurations set by Jupyter Book.
-Use at your own risk!
-:::
+By default, any options set in this section will **override** default configurations set by Jupyter Book *non-recursively*.  That is, if you add a theme option to the `html_theme_options` dictionary in this section, it will replace the entire `html_theme_options` dictionary with the contents from this section.  Thus, default configurations set by Jupyter Book will be lost.
+
+Alternatively, you can choose to have Jupyter Book override default configurations *recursively* with the `apply_updates_recursively` option in the `sphinx:` section, like so:
+
+```yaml
+sphinx:
+  apply_updates_recursively: true
+```
+
+This option defaults to `false`.
 
 :::{tip}
 If you wish to inspect a `conf.py` representation of the generated configuration,
