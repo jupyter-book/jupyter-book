@@ -168,7 +168,7 @@ def get_final_config(
 
     # Recursively update sphinx config if option is specified,
     # otherwise forcefully override options non-recursively
-    if sphinx_config.pop("recursive_update"):
+    if sphinx_config.pop("recursive_update") is True:
         _recursive_update(sphinx_config, user_yaml_update)
     else:
         sphinx_config.update(user_yaml_update)
