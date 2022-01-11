@@ -167,7 +167,9 @@ sphinx:
 By default, any values in your `sphinx: config:` section will **entirely replace** the default configurations set by Jupyter Book.
 For example, if values are dictionaries, the whole dictionary will be replaced, not just the keys that you specify in `_config.yml`.
 
-Alternatively, you can choose to have Jupyter Book override default configurations *recursively* with the `recursive_update` option in the `sphinx:` section, like so:
+Alternatively, you can override default configurations *recursively* with the `recursive_update` option in the `sphinx:` section.
+In this case, *only the values you specify* in `sphinx: config:` will overwrite their defaults, and the configuration you do not specify will remain.
+You can trigger this behavior like so:
 
 ```yaml
 sphinx:
