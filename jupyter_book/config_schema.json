@@ -206,6 +206,9 @@
                         "object"
                     ]
                 },
+                "recursive_update": {
+                    "type": "boolean"
+                },
                 "config": {
                     "type": [
                         "null",

@@ -40,6 +40,7 @@ def get_default_sphinx_config():
         html_theme_options={"search_bar_text": "Search this book..."},
         html_sourcelink_suffix="",
         numfig=True,
+        recursive_update=False,
         panels_add_bootstrap_css=False,
         suppress_warnings=["myst.domains"],
     )
@@ -165,9 +166,12 @@ def get_final_config(
             # Automatically make the configuration name substitution so older projects build
             user_yaml_update["mathjax3_config"] = user_yaml_update.pop("mathjax_config")
 
-    # Value set in `sphinx: config: ...` are a special case,
-    # and completely override any defaults (sphinx and yaml)
-    sphinx_config.update(user_yaml_update)
+    # Recursively update sphinx config if option is specified,
+    # otherwise forcefully override options non-recursively
+    if sphinx_config.pop("recursive_update") is True:
+        _recursive_update(sphinx_config, user_yaml_update)
+    else:
+        sphinx_config.update(user_yaml_update)
 
     # This is to deal with a special case, where the override needs to be applied after
     # the sphinx app is initialised (since the default is a function)
@@ -382,6 +386,12 @@ def yaml_to_sphinx(yaml: dict):
                 sphinx_config["extensions"].append(extension)
             if path not in sys.path:
                 add_paths.append(path)
+
+    # Overwrite sphinx config or not
+    if "recursive_update" in yaml.get("sphinx", {}):
+        sphinx_config["recursive_update"] = yaml.get("sphinx", {}).get(
+            "recursive_update"
+        )
 
     # Citations
     sphinxcontrib_bibtex_configs = ["bibtex_bibfiles", "bibtex_reference_style"]
