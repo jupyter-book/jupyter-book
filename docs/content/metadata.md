@@ -27,7 +27,7 @@ There are two straightforward ways to add metadata to cells:
 2. **Use the JupyterLab Cell Tags plugin**. JupyterLab is an IDE-like Jupyter
    environment that runs in your browser. It has an official "cell tags" plugin,
    which exposes a user interface that lets you quickly insert cell tags.
-   
+
    New users install the [@jupyterlab/celltags](https://github.com/jupyterlab/jupyterlab) plugin from the extension menu.
 
    You'll find tags under the "wrench" menu section.
