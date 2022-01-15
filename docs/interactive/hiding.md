@@ -43,6 +43,12 @@ There are two ways to hide Markdown content
 Both allow you to wrap chunks of Markdown in a button that lets users show
 and hide the content.
 
+:::{caution}
+
+Don't put markdown headers inside of toggle or dropdown content, see [](content-blocks:warning-headers-admonitions) for more information.
+
+:::
+
 ### The `{toggle}` directive
 
 You can activate a toggleable behavior in Markdown with the `{toggle}`

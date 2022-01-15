@@ -47,7 +47,7 @@ cd jupyter-book
 Next, install:
 
 ```bash
-pip install -e .[all]
+python -m pip install -e .[testing,code_style]
 ```
 
 This will install Jupyter Book locally, along with the packages needed to test it
@@ -71,7 +71,7 @@ code looks correct according to a few checks.
 
 ### Run the tests
 
-For code tests, Jupyter Book uses [pytest](https://docs.pytest.org)).
+For code tests, Jupyter Book uses [pytest](https://docs.pytest.org).
 You may run all the tests, or only ones that do not require additional installations, with the following command:
 
 ```shell
