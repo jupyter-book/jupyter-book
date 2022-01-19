@@ -63,7 +63,7 @@ Follow these steps to use a `pre-commit` hook that converts your Jupyter Book in
    ```yaml
    repos:
    - repo: https://github.com/executablebooks/jupyter-book
-     rev: v0.11.2
+     rev: v0.12.1
      hooks:
      - id: jb-to-sphinx
        args: ["path/to/book"]
