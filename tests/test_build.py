@@ -309,3 +309,42 @@ def test_toc_numbered(
         basename=toc_file.split(".")[0],
         extension=f"{SPHINX_VERSION}.html",
     )
+
+def test_only(pages, cli):
+    """Test {only} content is not built."""
+    page = pages.joinpath("single_page.ipynb")
+    html = pages.joinpath("_build", "_page", "single_page", "html")
+    index = html.joinpath("index.html")
+    result = cli.invoke(commands.build, [page.as_posix(), "-n", "-W", "--keep-going"])
+    assert result.exit_code == 0, result.output
+    assert html.joinpath("single_page.html").exists()
+    outpage = html.joinpath("single_page.html")
+    assert not html.joinpath("extra_page.html").exists()
+    assert 'slickers' not in outpage.read_text(encoding="utf8")
+    assert 'cowgirls' not in outpage.read_text(encoding="utf8")
+
+def test_only_tag(pages, cli):
+    """Test tag cli builds {only} content."""
+    page = pages.joinpath("single_page.ipynb")
+    html = pages.joinpath("_build", "_page", "single_page", "html")
+    index = html.joinpath("index.html")
+    result = cli.invoke(commands.build, [page.as_posix(), "-n", "-W", "--keep-going", "--tag", "cowboy"])
+    assert result.exit_code == 0, result.output
+    assert html.joinpath("single_page.html").exists()
+    outpage = html.joinpath("single_page.html")
+    assert not html.joinpath("extra_page.html").exists()
+    assert 'slickers' in outpage.read_text(encoding="utf8")
+    assert 'cowgirls' not in outpage.read_text(encoding="utf8")
+
+def test_both_tags(pages, cli):
+    """Test multiple tag creates boolean condition."""
+    page = pages.joinpath("single_page.ipynb")
+    html = pages.joinpath("_build", "_page", "single_page", "html")
+    index = html.joinpath("index.html")
+    result = cli.invoke(commands.build, [page.as_posix(), "-n", "-W", "--keep-going", "--tag", "cowboy", "--tag", "cowgirl"])
+    assert result.exit_code == 0, result.output
+    assert html.joinpath("single_page.html").exists()
+    outpage = html.joinpath("single_page.html")
+    assert not html.joinpath("extra_page.html").exists()
+    assert 'slickers' in outpage.read_text(encoding="utf8")
+    assert 'cowgirls' in outpage.read_text(encoding="utf8")

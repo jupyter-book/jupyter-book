@@ -125,6 +125,12 @@ BUILDER_OPTS = {
     "https://www.sphinx-doc.org/en/master/man/sphinx-build.html",
 )
 @click.option(
+    "--tag",
+    multiple=True,
+    default=None,
+    help="Identify tag for including conditional content using the only directive.",
+)
+@click.option(
     "-v", "--verbose", count=True, help="increase verbosity (can be repeated)"
 )
 @click.option(
@@ -150,6 +156,7 @@ def build(
     freshenv,
     builder,
     custom_builder,
+    tag,
     verbose,
     quiet,
     individualpages,
@@ -302,6 +309,10 @@ def build(
         click.style("Output Path: ", bold=True, fg="blue")
         + click.format_filename(f"{OUTPUT_PATH}")
     )
+    click.echo(
+        click.style("Including tag: ", bold=True, fg="blue")
+        + click.style(f"{tag}")
+    )
 
     # Now call the Sphinx commands to build
     result = build_sphinx(
@@ -312,6 +323,7 @@ def build(
         path_config=path_config,
         confoverrides=config_overrides,
         builder=BUILDER_OPTS[builder],
+        tags=tag,
         warningiserror=warningiserror,
         keep_going=keep_going,
         freshenv=freshenv,
