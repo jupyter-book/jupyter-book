@@ -1,12 +1,12 @@
 # Sphinx usage and customization
 
-Jupyter Book uses [the Sphinx documentation engine](https://sphinx-doc.org) to build a rich document model from your source files.
+Jupyter Book uses [the Sphinx documentation engine](https://www.sphinx-doc.org) to build a rich document model from your source files.
 This also allows for some extra customization under the hood.
 This chapter covers a few ways to customize Sphinx or to directly use it in building your book.
 
 :::{caution}
 
-Manually customizing Sphinx is considered **advanced usage** - it is highly recommended that you read the [Sphinx documentation](https://sphinx-doc.org).
+Manually customizing Sphinx is considered **advanced usage** - it is highly recommended that you read the [Sphinx documentation](https://www.sphinx-doc.org).
 
 :::
 
