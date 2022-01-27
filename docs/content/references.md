@@ -213,7 +213,7 @@ Here's {numref}`Custom Table %s text <my-table-ref>`.
 ```
 
 **Result**
-Here's {numref}`Custom Table %s text <my-table-ref>`.  
+Here's {numref}`Custom Table %s text <my-table-ref>`.
 ::::
 
 See more examples in the sections linked above.
