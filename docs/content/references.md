@@ -199,10 +199,31 @@ For example, see the following references:
 
 ## Number your references
 
-You can add **numbered references** to either [tables](references:tables) or [figures](references:figures). To add a numbered reference to a table or figure, use the `{numref}` role. If you wish to [use custom text](references:custom-text), add `%s` as a placeholder for the number.
+You can add **numbered references** to [tables](references:tables), [figures](references:figures), or [sections](references:numbered-sectinos).
+To add a numbered reference to a table or figure, use the `{numref}` role.
 
-See the examples in each section below for usage.
+### Use custom text with numbered references
 
+If you are [using custom text](references:custom-text) with your references, use `%s` as a placeholder for the number.
+
+::::{admonition} Example
+:::{list-table}
+* - Markdown
+  - Result
+* - ```md
+    Here's {numref}`My figure number %s <my-table-ref>`.
+    ```
+  - Here's {numref}`My figure number %s <my-table-ref>`.
+:::
+::::
+
+See more examples in the sections linked above.
+
+(references:numbered-sections)=
+### Reference numbered sections
+
+To reference numbered sections, you should first [enable numbered sections in your Table of Contents](toc/numbering).
+Then, you may use the `{numref}` role in the same way that you use it for Figures or Tables.
 
 (references:markdown-syntax)=
 ## Reference with markdown link syntax
