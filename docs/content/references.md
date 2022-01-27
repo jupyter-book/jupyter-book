@@ -208,11 +208,13 @@ If you are [using custom text](references:custom-text) with your references, use
 
 ::::{admonition} Example
 **Markdown**
+
 ```md
 Here's {numref}`Custom Table %s text <my-table-ref>`.
 ```
 
 **Result**
+
 Here's {numref}`Custom Table %s text <my-table-ref>`.
 ::::
 
