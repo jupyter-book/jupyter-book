@@ -207,11 +207,13 @@ To add a numbered reference to a table or figure, use the `{numref}` role.
 If you are [using custom text](references:custom-text) with your references, use `%s` as a placeholder for the number.
 
 ::::{admonition} Example
-**Markdown**
-
 Markdown
 : ```md
   Here's {numref}`Custom Table %s text <my-table-ref>`.
+  ```
+
+Result
+: Here's {numref}`Custom Table %s text <my-table-ref>`.
 ::::
 
 See more examples in the sections linked above.
