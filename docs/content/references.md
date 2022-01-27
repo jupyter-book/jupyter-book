@@ -127,7 +127,7 @@ Here are several ways to reference this content:
 | `` Here is [](my-table-ref) ``               | Here is [](my-table-ref)               |
 | `` Here is [My cool table](my-table-ref) `` | Here is [My cool table](my-table-ref)              |
 | `` Here is {numref}`my-table-ref` ``            | Here is {numref}`my-table-ref`            |
-| `` Here is {numref}`Custom Table %s text ` `` | Here is {numref}`Custom Table %s text <my-table-ref>` |
+| `` Here is {numref}`Custom Table %s text <my-table-ref>` `` | Here is {numref}`Custom Table %s text <my-table-ref>` |
 
 
 ## Reference content files
@@ -207,14 +207,13 @@ To add a numbered reference to a table or figure, use the `{numref}` role.
 If you are [using custom text](references:custom-text) with your references, use `%s` as a placeholder for the number.
 
 ::::{admonition} Example
-:::{list-table}
-* - Markdown
-  - Result
-* - ```md
-    Here's {numref}`My figure number %s <my-table-ref>`.
-    ```
-  - Here's {numref}`My figure number %s <my-table-ref>`.
-:::
+**Markdown**
+```md
+Here's {numref}`Custom Table %s text <my-table-ref>`.
+```
+
+**Result**
+Here's {numref}`Custom Table %s text <my-table-ref>`.  
 ::::
 
 See more examples in the sections linked above.
