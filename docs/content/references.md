@@ -199,7 +199,7 @@ For example, see the following references:
 
 ## Number your references
 
-You can add **numbered references** to [tables](references:tables), [figures](references:figures), or [sections](references:numbered-sectinos).
+You can add **numbered references** to [tables](references:tables), [figures](references:figures), or [sections](references:numbered-sections).
 To add a numbered reference to a table or figure, use the `{numref}` role.
 
 ### Use custom text with numbered references
