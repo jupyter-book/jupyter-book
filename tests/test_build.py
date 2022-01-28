@@ -315,7 +315,6 @@ def test_only(pages, cli):
     """Test {only} content is not built."""
     page = pages.joinpath("single_page.ipynb")
     html = pages.joinpath("_build", "_page", "single_page", "html")
-    index = html.joinpath("index.html")
     result = cli.invoke(commands.build, [page.as_posix(), "-n", "-W", "--keep-going"])
     assert result.exit_code == 0, result.output
     assert html.joinpath("single_page.html").exists()
@@ -329,7 +328,6 @@ def test_only_tag(pages, cli):
     """Test tag cli builds {only} content."""
     page = pages.joinpath("single_page.ipynb")
     html = pages.joinpath("_build", "_page", "single_page", "html")
-    index = html.joinpath("index.html")
     result = cli.invoke(
         commands.build, [page.as_posix(), "-n", "-W", "--keep-going", "--tag", "cowboy"]
     )
@@ -345,7 +343,6 @@ def test_both_tags(pages, cli):
     """Test multiple tag creates boolean condition."""
     page = pages.joinpath("single_page.ipynb")
     html = pages.joinpath("_build", "_page", "single_page", "html")
-    index = html.joinpath("index.html")
     result = cli.invoke(
         commands.build,
         [
