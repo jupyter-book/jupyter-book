@@ -310,8 +310,7 @@ def build(
         + click.format_filename(f"{OUTPUT_PATH}")
     )
     click.echo(
-        click.style("Including tag: ", bold=True, fg="blue")
-        + click.style(f"{tag}")
+        click.style("Including tag: ", bold=True, fg="blue") + click.style(f"{tag}")
     )
 
     # Now call the Sphinx commands to build
