@@ -30,7 +30,6 @@ final:
   - sphinx_copybutton
   - myst_nb
   - jupyter_book
-  - sphinx_thebe
   - sphinx_comments
   - sphinx_external_toc
   - sphinx.ext.intersphinx

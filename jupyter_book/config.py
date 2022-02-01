@@ -27,7 +27,6 @@ def get_default_sphinx_config():
             "sphinx_copybutton",
             "myst_nb",
             "jupyter_book",
-            "sphinx_thebe",
             "sphinx_comments",
             "sphinx_external_toc",
             "sphinx.ext.intersphinx",
@@ -192,6 +191,15 @@ def get_final_config(
         paths_static = sphinx_config.get("html_static_path", [])
         paths_static.append("_static")
         sphinx_config["html_static_path"] = paths_static
+
+    # Load Sphinx Thebe if the user wishes to use it
+    if (
+        sphinx_config.get("html_theme_options", {})
+        .get("launch_buttons", {})
+        .get("thebe")
+        is True
+    ):
+        sphinx_config["extensions"].append("sphinx_thebe")
 
     if not use_external_toc:
         # TODO perhaps a better logic for this?

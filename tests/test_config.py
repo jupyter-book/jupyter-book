@@ -279,3 +279,31 @@ def test_mathjax_config_warning_mathjax2path(data_regression):
         {"_user_config": user_config, "final": final_config, "metadata": metadata},
         basename=f"test_mathjax_config_warning_mathjax2path{SPHINX_VERSION}",
     )
+
+
+def test_thebe_activation(data_regression):
+    # With thebe activated, we load `sphinx_thebe` so the JS is present
+    user_config = {"launch_buttons": {"thebe": True}}
+    cli_config = {"latex_individualpages": False}
+    final_config, _ = get_final_config(
+        user_yaml=user_config,
+        cli_config=cli_config,
+        validate=True,
+        raise_on_invalid=True,
+    )
+    theme_options = final_config["html_theme_options"]
+    assert theme_options["launch_buttons"]["thebe"] is True
+    assert "sphinx_thebe" in final_config["extensions"]
+
+    # Without thebe: True, the extension should not be loaded, and config false
+    user_config = {"launch_buttons": {"thebe": False}}
+    cli_config = {"latex_individualpages": False}
+    final_config, _ = get_final_config(
+        user_yaml=user_config,
+        cli_config=cli_config,
+        validate=True,
+        raise_on_invalid=True,
+    )
+    theme_options = final_config["html_theme_options"]
+    assert theme_options["launch_buttons"]["thebe"] is False
+    assert "sphinx_thebe" not in final_config["extensions"]
