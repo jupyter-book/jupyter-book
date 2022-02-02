@@ -650,6 +650,47 @@ To reference terms in your glossary, use the `{term}` role. For example,
 `` {term}`Term one` `` becomes {term}`Term one` and `` {term}`A second term` ``
 becomes {term}`A second term`.
 
+(content:indexes)=
+## Indexes
+
+Indexes allow you to define index items that link from an automatically generated index page back to locations throughout your document. You can create an index entry at a particular location in your document with the following syntax:
+
+````md
+```{index} Jupyter Book
+```
+````
+
+The locator reference name can be explicitly defined by setting the `:name:` parameter:
+
+````md
+```{index} Thebe
+:name: sphinx-thebe
+```
+````
+
+To generate the actual index, create a file named `genindex` with an appropriate content header (for example, `# Index`) and add a `- file: genindex` entry to `_toc.yml`. The index will be automatically generated when your book is built.
+
+The Sphinx [*Index-generating markup*](https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html?highlight=index#index-generating-markup) describes the full range of indexing possibilites. This includes the ability to construct nested headings using the `;` separator to represent a change in index level:
+
+````md
+```{index} single: Jupyter Book ; installation
+```
+````
+
+Multiple index entry terms can be created from a single reference. For example, we can create entries `references ; index terms` and `index terms ; references` from the following entry:
+
+````md
+```{index} double: references ; index terms
+```
+````
+
+Readers can be directed towards alternative index terms within the index itself by using `see` or `seealso`, as in the following example which adds an entry for `citations` to also refer to `bibliographies`:
+
+````md
+```{index} seealso: citations ; bibliographies
+```
+````
+
 (content:tabs)=
 ## Tabbed content
 
