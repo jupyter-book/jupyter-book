@@ -650,6 +650,8 @@ To reference terms in your glossary, use the `{term}` role. For example,
 `` {term}`Term one` `` becomes {term}`Term one` and `` {term}`A second term` ``
 becomes {term}`A second term`.
 
+If an [index](content:indexes) is included, glossary terms will be automatically added to it.
+
 (content:indexes)=
 ## Indexes
 
@@ -668,7 +670,7 @@ The locator reference name can be explicitly defined by setting the `:name:` par
 ```
 ````
 
-To generate the actual index, create a file named `genindex` with an appropriate content header (for example, `# Index`) and add a `- file: genindex` entry to `_toc.yml`. The index will be automatically generated when your book is built.
+To generate the actual index, create a file named `genindex.md` at the top level of the book, with an appropriate content header (for example, `# Index`); then add a `- file: genindex` entry to `_toc.yml`. The index will be automatically generated when your book is built.
 
 The Sphinx [*Index-generating markup*](https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html?highlight=index#index-generating-markup) describes the full range of indexing possibilites. This includes the ability to construct nested headings using the `;` separator to represent a change in index level:
 
@@ -690,6 +692,8 @@ Readers can be directed towards alternative index terms within the index itself 
 ```{index} seealso: citations ; bibliographies
 ```
 ````
+
+Glossary terms are automatically added to the index.
 
 (content:tabs)=
 ## Tabbed content
