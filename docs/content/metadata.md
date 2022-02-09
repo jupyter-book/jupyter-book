@@ -31,7 +31,7 @@ There are two straightforward ways to add metadata to cells:
    Edit tags under the "Property Inspector" menu with the gears icon ({fa}`cog`) at the top-right corner.
    Here's what the tags UI in JupyterLab looks like.
 
-   ![tags_jupyterlab](../images/tags_jupyterlab.png)
+   ![The Tags UI in JupyterLab](../images/tags_jupyterlab.jpg)
 
 Tags are actually just a special section of cell level metadata.
 There are three levels of metadata:
