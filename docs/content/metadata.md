@@ -28,7 +28,7 @@ There are two straightforward ways to add metadata to cells:
    environment that runs in your browser. It has a "cell tags" plugin built-in,
    which exposes a user interface that lets you quickly insert cell tags.
 
-   Edit tags under the "Property Inspector" menu with the gears icon at the top-right corner.
+   Edit tags under the "Property Inspector" menu with the gears icon ({fa}`cog`) at the top-right corner.
    Here's what the tags UI in JupyterLab looks like.
 
    ![tags_jupyterlab](../images/tags_jupyterlab.png)
