@@ -22,16 +22,20 @@ There are two straightforward ways to add metadata to cells:
    To enable the cell tag editor, click `View -> Cell Toolbar -> Tags`. This
    will enable the tags UI. Here's what the menu looks like.
 
-   ![tags_notebook](../images/tags_notebook.png)
+   ```{figure} ../images/tags_notebook.png
+   The Jupyter Notebook interface for adding tags to a cell.
+   ```
 
 2. **Use the JupyterLab Cell Tags plugin**. JupyterLab is an IDE-like Jupyter
    environment that runs in your browser. It has a "cell tags" plugin built-in,
    which exposes a user interface that lets you quickly insert cell tags.
 
-   You'll find tags under the "wrench" menu section.
+   Edit tags under the "Property Inspector" menu with the gears icon ({fa}`cog`) at the top-right corner.
    Here's what the tags UI in JupyterLab looks like.
 
-   ![tags_jupyterlab](../images/tags_jupyterlab.png)
+   ```{figure} ../images/tags_jupyterlab.jpg
+   The Jupyter Lab interface for adding tags to a cell.
+   ```
 
 Tags are actually just a special section of cell level metadata.
 There are three levels of metadata:
@@ -40,7 +44,9 @@ There are three levels of metadata:
 * For cell level: in the Jupyter Notebook Toolbar go to `View -> Cell Toolbar -> Edit Metadata` and a button will appear above each cell.
 * For output level: using e.g. `IPython.display.display(obj,metadata={"tags": [])`, you can set metadata specific to a certain output (but Jupyter Book does not utilize this just yet).
 
-![NB Metadata GIF](../images/metadata_edit.*)
+```{figure} ../images/metadata_edit.*
+Toggling the cell metadata UI in the Jupyter Notebook Interface.
+```
 
 ### Add tags using MyST Markdown notebooks
 
