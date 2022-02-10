@@ -620,6 +620,7 @@ Here is a cool quotation.
 ```
 `````
 
+(content-blocks:glossaries)=
 ## Glossaries
 
 Glossaries allow you to define terms in a glossary so you can then link back to it
@@ -650,36 +651,87 @@ To reference terms in your glossary, use the `{term}` role. For example,
 `` {term}`Term one` `` becomes {term}`Term one` and `` {term}`A second term` ``
 becomes {term}`A second term`.
 
-If an [index](content:indexes) is included, glossary terms will be automatically added to it.
+:::{note}
+Glossary terms are automatically added to [your book's index page](content:indexes).
+:::
 
 (content:indexes)=
 ## Indexes
 
-Indexes allow you to define index items that link from an automatically generated index page back to locations throughout your document. You can create an index entry at a particular location in your document with the following syntax:
+Indexes allow you to define index items (terms, phrases, keywords, etc) that are collected in a single page, with links back to their location in your content.
+This is called the **General Index**.
+
+```{index} General Index
+```
+
+When you build your book, a general index page will automatically be generated.
+
+### Reference your general index
+
+To create a reference / link to your general index, use the `genindex` keyword.
+For example:
+
+- `` {ref}`using a ref role <genindex>` ``: {ref}`using a ref role <genindex>`
+- `[using markdown link syntax](genindex)`: [using markdown link syntax](genindex)
+- `[](genindex)`: [](genindex) (to demonstrate the title of the general index)
+
+
+### The `{index}` directive
+
+You can add items to your general index with the `{index}` directive.
+It has the following syntax:
 
 ````md
-```{index} Jupyter Book
+```{index} Entry name
 ```
 ````
 
-The locator reference name can be explicitly defined by setting the `:name:` parameter:
+This will not insert anything into your final page's content, but will add a link to this section in your general index.
+For example, we've added the following index directive below:
 
-````md
-```{index} Thebe
-:name: sphinx-thebe
+````
+```{index} index directive
 ```
 ````
 
-To generate the actual index, create a file named `genindex.md` at the top level of the book, with an appropriate content header (for example, `# Index`); then add a `- file: genindex` entry to `_toc.yml`. The index will be automatically generated when your book is built.
+```{index} index directive
+```
 
-The Sphinx [*Index-generating markup*](https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html?highlight=index#index-generating-markup) describes the full range of indexing possibilites. This includes the ability to construct nested headings using the `;` separator to represent a change in index level:
+You can [find this term in the index](genindex).
+
+#### Add a label to your `{index}` directive
+
+You can customize the name for an index entry by setting the `:name:` parameter.
+For example:
+
+````md
+```{index} Index names
+:name: index-names
+```
+````
+
+```{index} Index names
+:name: index-names
+```
+
+You can then reference this index in your book.
+For example:
+
+- `` {ref}`See index names <index-names>` ``: {ref}`See index names <index-names>`
+- `[See index names](index-names)`: [See index names](index-names)
+
+#### Create more complex index entries
+
+The Sphinx [*Index-generating markup*](https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html?highlight=index#index-generating-markup) page describes the full range of indexing possibilites.
+This includes the ability to construct nested headings using the `;` separator to represent a change in index level:
 
 ````md
 ```{index} single: Jupyter Book ; installation
 ```
 ````
 
-Multiple index entry terms can be created from a single reference. For example, we can create entries `references ; index terms` and `index terms ; references` from the following entry:
+Multiple index entry terms can be created from a single reference.
+For example, we can create entries `references ; index terms` and `index terms ; references` from the following entry:
 
 ````md
 ```{index} double: references ; index terms
@@ -693,7 +745,29 @@ Readers can be directed towards alternative index terms within the index itself 
 ```
 ````
 
-Glossary terms are automatically added to the index.
+### Create index entries with other extensions
+
+You can also create index entries through the use of other Sphinx extensions.
+For example, any term you define [in a Glossary](content-blocks:glossaries) will also be inserted into the index.
+
+### Add the general index to your table of contents
+
+To add your general index to your book's table of contents, take the following steps:
+
+- Create a file in the root of your book called `genindex.md`.
+- It **must have a title** but the rest can be blank.
+  The title will actually be replaced with `Index` when your book is built, but it is needed in your source file to avoid errors.
+- Add an entry for this page in [your table of contents](structure:book).
+  For example:
+
+  ```yaml
+  format: jb-book
+  root: index
+  chapters:
+  - file: path/to/chapter1
+  - file: path/to/chapter2
+  - file: genindex
+  ```
 
 (content:tabs)=
 ## Tabbed content
