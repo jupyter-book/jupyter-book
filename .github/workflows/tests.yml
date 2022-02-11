@@ -171,11 +171,14 @@ jobs:
         key: ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('setup.py') }}
         restore-keys: |
           ${{ runner.os }}-${{ matrix.python-version }}-pip-
+    # We install libmagic to avoid a flaky Fonts error with matplotlib
+    # ref: https://stackoverflow.com/questions/62279920/python-macos-error-unable-to-revert-mtime-library-fonts
     - name: Install Python dependencies
       run: |
         python -m pip install --upgrade pip
         pip install wheel
         pip install --upgrade-strategy eager -e .[sphinx]
+        brew install libmagic
 
     - name: Build the book
       run: |
