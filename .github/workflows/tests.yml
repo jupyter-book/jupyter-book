@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.9]
+        python-version: [3.8]
 
     steps:
     - uses: actions/checkout@v2
@@ -87,7 +87,7 @@ jobs:
       if: github.repository == 'executablebooks/jupyter-book'
       uses: codecov/codecov-action@v1
       with:
-        name: ebp-jupyter-book-pytests-py3.8  # Unclear if it needs to be 3.8 so leaving as-is even though we're running 3.9 now
+        name: ebp-jupyter-book-pytests-py3.8
         flags: pytests
         file: ./coverage.xml
         fail_ci_if_error: true
@@ -127,6 +127,8 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
+        # Using the default python in the Windows 2022 github actions runner
+        # ref: https://github.com/actions/virtual-environments/issues/4856
         python-version: [3.9]
 
     steps:
