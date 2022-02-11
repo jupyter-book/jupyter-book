@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.8]
+        python-version: [3.9]
 
     steps:
     - uses: actions/checkout@v2
@@ -87,7 +87,7 @@ jobs:
       if: github.repository == 'executablebooks/jupyter-book'
       uses: codecov/codecov-action@v1
       with:
-        name: ebp-jupyter-book-pytests-py3.8
+        name: ebp-jupyter-book-pytests-py3.8  # Unclear if it needs to be 3.8 so leaving as-is even though we're running 3.9 now
         flags: pytests
         file: ./coverage.xml
         fail_ci_if_error: true
@@ -127,14 +127,14 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        python-version: [3.8]
+        python-version: [3.9]
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 3.8
+    - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
-        python-version: 3.8
+        python-version: ${{ matrix.python-version }}
     - uses: actions/cache@v2
       with:
         path: ~\AppData\Local\pip\Cache
@@ -155,14 +155,14 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        python-version: [3.8]
+        python-version: [3.9]
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 3.8
+    - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
-        python-version: 3.8
+        python-version: ${{ matrix.python-version }}
     - uses: actions/cache@v2
       with:
         path: ~\AppData\Local\pip\Cache
