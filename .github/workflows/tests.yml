@@ -194,15 +194,15 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v2
       - name: Set up Python 3.8
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2
         with:
           python-version: 3.8
       - name: Build package
         run: |
-          pip install wheel
-          python setup.py sdist bdist_wheel
+          pip install build
+          python -m build
       - name: Publish
-        uses: pypa/gh-action-pypi-publish@v1.1.0
+        uses: pypa/gh-action-pypi-publish@v1
         with:
           user: __token__
           password: ${{ secrets.PYPI_KEY }}
