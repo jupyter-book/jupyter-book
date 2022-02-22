@@ -1,11 +1,29 @@
 # Change Log
 
+## v0.12.2 - 2022-02-21
+
+This is a minor release that bumps the versions of several dependencies in Jupyter Book (see below for details).
+
+([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.12.1...419c863eb669efbbdaea82017902f592e7eaa8b1))
+
+### Enhancements made
+
+- Allow recursively updating the sphinx configuration instead of totally over-writing it, see [the sphinx configuration docs](docs/advanced/sphinx.md) for details [#1599](https://github.com/executablebooks/jupyter-book/pull/1599) ([@kmpaul](https://github.com/kmpaul))
+
+### Updated dependencies
+
+- sphinxcontrib-bibtex `v0.4.*` [#1513](https://github.com/executablebooks/jupyter-book/pull/1513) ([@bryanwweber](https://github.com/bryanwweber))
+- sphinx-thebe `v0.1.*` [#1634](https://github.com/executablebooks/jupyter-book/pull/1634) ([@choldgraf](https://github.com/choldgraf))
+- click `v8.*` [#1623](https://github.com/executablebooks/jupyter-book/pull/1623) ([@lukasbindreiter](https://github.com/lukasbindreiter))
+- Remove Python 3.6 and add Python 3.9 [#1626](https://github.com/executablebooks/jupyter-book/pull/1626) ([@choldgraf](https://github.com/choldgraf))
+
+
 ## v0.12.1
 
 This release provides bug fixes and updates when building PDF via LaTeX including improved styling for
 code output cells. It also includes infrastructure for using Jupyter Book with ReadTheDocs.
 
-## New
+### New
 
 - ✨ NEW: Allow running on ReadTheDocs [PR #1422](https://github.com/executablebooks/jupyter-book/pull/1422)
 - ✨ NEW: Upgrade to sphinx-jupyterbook-latex~=0.4.6 [PR #1538](https://github.com/executablebooks/jupyter-book/pull/1538)
