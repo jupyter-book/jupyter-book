@@ -60,7 +60,7 @@ parts:
     - file: path/to/part2/chapter2
 ```
 
-In this case, the `numbered:` *only applues to Part 1*, and not Part 2.
+In this case, the `numbered:` *only applies to Part 1*, and not Part 2.
 If you want all parts to be numbered, you will need to add `numbered: true` to all `parts` entries.
 
 :::{warning}

@@ -106,6 +106,7 @@ sphinx:
       content-types/myst-notebooks.md: file-types/myst-notebooks.md
       content-types/jupytext.md: file-types/jupytext.Rmd
       content-types/restructuredtext.md: file-types/restructuredtext.md
+      customize/toc.md: structure/toc.md
     language: en
     html_extra_path:
       - images/badge.svg
