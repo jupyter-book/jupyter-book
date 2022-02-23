@@ -69,6 +69,7 @@ sphinx = [
     "bokeh",
     "folium",
     "ipywidgets",
+    "jupytext",
     "matplotlib",
     "nbclient",
     "numpy",
