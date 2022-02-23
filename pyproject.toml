@@ -3,7 +3,7 @@ requires = ["flit_core >=3.5,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "jupyter_book"
+name = "jupyter-book"
 authors = [{name = "Executable Book Project", email = "executablebooks@gmail.com"}]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -31,8 +31,6 @@ dependencies = [
     "click>=7.1,<9",
     "docutils>=0.15,<0.18",
     "jsonschema<4",
-    # Include Jupytext to ensure users have the right version, even if not strictly necessary
-    "jupytext>=1.11.2,<1.12", # markdown-it-py~=1 required and support from 1.11.2
     "linkify-it-py~=1.0.1",
     "myst-nb~=0.13.1",
     "pyyaml",
@@ -103,6 +101,9 @@ testing = [
 [project.scripts]
 jb = "jupyter_book.cli.main:main"
 jupyter-book = "jupyter_book.cli.main:main"
+
+[tool.flit.module]
+name = "jupyter_book"
 
 [tool.flit.sdist]
 exclude = [
