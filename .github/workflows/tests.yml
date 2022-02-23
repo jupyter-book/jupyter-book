@@ -197,12 +197,13 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.8
-      - name: Build package
+      - name: Install flit
         run: |
-          pip install build
-          python -m build
-      - name: Publish
-        uses: pypa/gh-action-pypi-publish@v1
-        with:
-          user: __token__
-          password: ${{ secrets.PYPI_KEY }}
+          pip install flit~=3.6
+
+      - name: Build and publish
+        run: |
+          flit publish
+        env:
+          FLIT_USERNAME: __token__
+          FLIT_PASSWORD: ${{ secrets.PYPI_KEY }}

@@ -19,28 +19,16 @@ repos:
     - id: end-of-file-fixer
     - id: trailing-whitespace
 
-  # this is not used for now,
-  # since it converts jupyter-book to jupyter_book and removes comments
-  # - repo: https://github.com/asottile/setup-cfg-fmt
-  #   rev: v1.17.0
-  #   hooks:
-  #   - id: setup-cfg-fmt
-
-  - repo: https://github.com/mgedmin/check-manifest
-    rev: "0.47"
-    hooks:
-    - id: check-manifest
-      args: [--no-build-isolation]
-      additional_dependencies: [setuptools>=46.4.0]
-
   - repo: local
     hooks:
     - id: check-doc-req
       name: Check docs/requirements.txt up-to-date
       pass_filenames: false
+      additional_dependencies:
+      - tomli
       files: >-
           (?x)^(
-              setup.cfg|
+              pyproject.toml|
               docs/requirements.txt|
               scripts/check_doc_requirements.py|
           )$
