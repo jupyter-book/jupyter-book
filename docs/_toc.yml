@@ -17,7 +17,7 @@ parts:
   chapters:
   - file: basics/organize
     sections:
-    - file: customize/toc
+    - file: structure/toc
     - file: structure/configure
     - file: file-types/index
       sections:

@@ -112,7 +112,7 @@ The title of each chapter will be inferred from the title in your files.
 
 :::{admonition} More about `_toc.yml`
 :class: tip
-You can specify more complex book configurations with your `_toc.yml` file. For example, you can specify **parts**, **sections**, and control **custom titles**. For more information about your book's table of contents file, see [](../customize/toc.md).
+You can specify more complex book configurations with your `_toc.yml` file. For example, you can specify **parts**, **sections**, and control **custom titles**. For more information about your book's table of contents file, see [](../structure/toc.md).
 :::
 
 ### Book content
