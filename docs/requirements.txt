@@ -1,8 +1,9 @@
-# Copied from 'sphinx' extra of setup.cfg
+# Copied from 'sphinx' extra of pyproject.toml
 altair
 bokeh
 folium
 ipywidgets
+jupytext
 matplotlib
 nbclient
 numpy
