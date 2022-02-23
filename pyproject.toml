@@ -87,6 +87,7 @@ testing = [
     "beautifulsoup4",
     "cookiecutter",
     "coverage",
+    "jupytext",
     "matplotlib",
     "pyppeteer",
     "pytest>=6.2.4",
