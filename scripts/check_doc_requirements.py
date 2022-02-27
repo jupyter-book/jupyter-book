@@ -5,7 +5,7 @@ from pathlib import Path
 import tomli
 
 
-def check_reqs(pyproject_path="pyproject.toml", req_path="docs/requirements.txt"):
+def check_reqs(pyproject_path="pyproject.toml", req_path=".binder/requirements.txt"):
     with open(pyproject_path, "rb") as f:
         toml_dict = tomli.load(f)
 

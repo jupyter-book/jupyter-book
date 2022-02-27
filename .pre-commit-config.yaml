@@ -22,14 +22,14 @@ repos:
   - repo: local
     hooks:
     - id: check-doc-req
-      name: Check docs/requirements.txt up-to-date
+      name: Check .binder/requirements.txt up-to-date
       pass_filenames: false
       additional_dependencies:
       - tomli
       files: >-
           (?x)^(
               pyproject.toml|
-              docs/requirements.txt|
+              .binder/requirements.txt|
               scripts/check_doc_requirements.py|
           )$
       language: python
