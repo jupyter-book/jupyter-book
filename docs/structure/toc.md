@@ -124,7 +124,7 @@ This section contains more information about how to do this.
 :::{admonition} Work in progress
 Article building functionality for Jupyter Book is still under design and development.
 This functionality may change over time!
-If you have ideas, suggestions, or would like to help out, please [see the contributing guide](../contribute/intro.md).
+If you have ideas, suggestions, or would like to help out, please [see the contributing guide](../contribute/index.md).
 :::
 
 ### Build an article from a single file

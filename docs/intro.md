@@ -34,9 +34,9 @@ Even [save notebook outputs and insert them into other pages](content:code-outpu
 Create interactive content blocks such as [](content:tabs), [](content:dropdowns). [Toggle cell visibility](interactive/hiding) and include [interactive cell outputs](interactive/interactive) with Jupyter notebooks. [Launch interactive sessions](interactive/launchbuttons) with Binder or Colab, [make your code executable with Thebe](launch:thebe), or [connect with commenting services like Hypothes.is](interactive:comments).
 
 ---
-**[Build books and articles in many formats](start/build)** 🎁
+**[Build books and articles in many formats](tutorials/start/build.md)** 🎁
 ^^^
-Build [multi-page books](structure:book) or [single articles](structure:article), and generate many kinds of outputs from them, such as [HTML websites](start/build) or [PDF outputs](advanced/pdf). Jupyter Book uses [the Sphinx Documentation engine](https://www.sphinx-doc.org) which supports [a variety of output types](https://www.sphinx-doc.org/en/master/usage/builders/index.html).
+Build [multi-page books](structure:book) or [single articles](structure:article), and generate many kinds of outputs from them, such as [HTML websites](tutorials/start/build.md) or [PDF outputs](advanced/pdf). Jupyter Book uses [the Sphinx Documentation engine](https://www.sphinx-doc.org) which supports [a variety of output types](https://www.sphinx-doc.org/en/master/usage/builders/index.html).
 
 :::
 
@@ -62,10 +62,10 @@ Explore the chapters to the left to learn more!
 : The community provides feedback by adding a 👍 reaction to issues in our repositories.
   You can find a list of the top issues [in the Executable Books issue leader board](ebp:feature-note).
 
-🙌 [Join the community](contribute/intro.md)
+🙌 [Join the community](contribute/index.md)
 : Jupyter Book is developed by the [Executable Books community](https://executablebooks.org).
   We welcome anyone to join us in improving Jupyter Book and helping one another learn and create their books.
-  To join, check out our [contributing guide](contribute/intro.md).
+  To join, check out our [contributing guide](contribute/index.md).
 :::
 
 
@@ -81,7 +81,7 @@ Here are a few pointers to help you get started.
 **Get started**
 ^^^
 
-**[](start/your-first-book.md)**: a step-by-step tutorial to get started.
+**[](tutorials/start/index.md)**: a step-by-step tutorial to get started.
 
 **[](create-a-template-book)**: get started with a simple template book.
 

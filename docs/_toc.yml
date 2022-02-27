@@ -3,14 +3,14 @@ root: intro
 parts:
 - caption: Tutorials
   chapters:
-  - file: start/your-first-book
+  - file: tutorials/start/index
     sections:
-    - file: start/overview
-    - file: start/create
-    - file: start/build
-    - file: start/new-file
-    - file: start/publish
-    - file: start/example-book
+    - file: tutorials/start/overview
+    - file: tutorials/start/create
+    - file: tutorials/start/build
+    - file: tutorials/start/new-file
+    - file: tutorials/start/publish
+    - file: tutorials/start/example-book
   - file: tutorials/references
 
 - caption: Topic Guides
@@ -79,7 +79,10 @@ parts:
   - file: advanced/index
     sections:
     - file: advanced/windows
-  - file: contribute/intro
+  - file: contribute/index
+    sections:
+    - file: contribute/code
+    - file: contribute/documentation
 
 - caption: Reference
   chapters:

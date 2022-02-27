@@ -28,7 +28,7 @@ considerably!
 
 Notice some inefficient CSS? A typo in the text? Want to add a cool feature so that others
 can enjoy the improvements to Jupyter Books? Check out the [Jupyter Book Contributor's
-Guide](https://jupyterbook.org/contribute/intro.html). We'd love your help!
+Guide](https://jupyterbook.org/contribute/index.html). We'd love your help!
 
 ## Acknowledgements
 

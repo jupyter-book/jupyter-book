@@ -100,6 +100,7 @@ sphinx:
         - null
     rediraffe_branch: 'master'
     rediraffe_redirects:
+    # TODO: deprecate all below with 0.15
       content-types/index.md: file-types/index.md
       content-types/markdown.md: file-types/markdown.md
       content-types/notebooks.ipynb: file-types/notebooks.ipynb
@@ -107,6 +108,14 @@ sphinx:
       content-types/jupytext.md: file-types/jupytext.Rmd
       content-types/restructuredtext.md: file-types/restructuredtext.md
       customize/toc.md: structure/toc.md
+      start/build.md: tutorials/start/build.md
+      start/create.md: tutorials/start/create.md
+      start/example-book.md: tutorials/start/example-book.md
+      start/new-file.md: tutorials/start/new-file.md
+      start/overview.md: tutorials/start/overview.md
+      start/publish.md: tutorials/start/publish.md
+      start/your-first-book.md: tutorials/start/index.md
+      contribute/intro.md: contribute/index.md
     language: en
     html_extra_path:
       - images/badge.svg

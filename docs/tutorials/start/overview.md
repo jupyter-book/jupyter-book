@@ -62,7 +62,7 @@ For more complete information about the CLI, see [](../reference/cli.md).
 
 Building a Jupyter Book broadly consists of these steps:
 
-1. **Create your book's content**. You structure your book with a collection of folders, files, and configuration. See [](anatomy-of-a-book).
+1. **Create your book's content**. You structure your book with a collection of folders, files, and configuration. See [](inspect-book-structure).
 2. **Build your book**. Using Jupyter Book's command-line interface you can
    convert your pages into either an HTML or a PDF book. See [](build.md).
 3. **Publish your book online**. Once your book is built, you can share it with others. Most common is to build HTML, and host it as a public website. See [](publish.md).

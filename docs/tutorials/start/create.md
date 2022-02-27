@@ -11,12 +11,16 @@ Create a sample book by running the following command:
 $ jupyter-book create mynewbook/
 ```
 
-This will generate a mini Jupyter Book that you can both build and explore locally. It will have a few decisions made for you, and you can explore the configuration of the book in `_config.yml` and its structure in `_toc.yml`. Use this book as inspiration, or as a starting point to work from.
+This will generate a mini Jupyter Book that you can both build and explore locally.
+It will have a few decisions made for you, and you can explore the configuration of the book in `_config.yml` and its structure in `_toc.yml`.
+Use this book as inspiration, or as a starting point to work from.
 
-(anatomy-of-a-book)=
-## Anatomy of a Jupyter Book
+(inspect-book-structure)=
+## Inspect your book's structure
 
-There are three things that you need in order to build a Jupyter Book, each of which was just created by running `jupyter-book create`:
+Take a moment to look at the structure of the book you just created.
+
+There are three things needed in order to build a Jupyter Book, each of which was just created by running `jupyter-book create`:
 - A configuration file (`_config.yml`)
 - A table of contents file (`_toc.yml`)
 - Your book's content
@@ -127,7 +131,10 @@ In the above example, there were three files listed:
 
 We'll cover each in the next section.
 
-## Content files
+## Inspect your content files
+
+Take a look at the text within each content file you've created.
+There are a few different files, corresponding to different kinds of content and use-cases.
 
 Below is a quick description of a few major content files in Jupyter Book.
 
@@ -209,6 +216,18 @@ This allows you to write the structure of a Jupyter Notebook entirely with text.
 This requires the use of a special YAML metadata blog that tells Jupyter Book (via a tool called [Jupytext](https://jupytext.readthedocs.io/)) to create a notebook for the page and execute its content.
 
 For more information about MyST Markdown notebooks, see [](file-types:myst-notebooks).
+
+## Install the requirements for this book
+
+Jupyter Book can execute computational content when it builds your book, and inserts that content into the final output.
+In order to execute the content, you need to ensure the proper **environment** is installed.
+There are many ways to do this, depending on the language of your computational content.
+The template book uses [a `requirements.txt` file](https://pip.pypa.io/en/stable/reference/requirements-file-format/), the standard way to define environments in Python.
+To install the environment for this file, run the command:
+
+```console
+$ pip install -r requirements.txt
+```
 
 ## Next step: build your book
 
