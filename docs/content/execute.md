@@ -26,10 +26,17 @@ you can use the `{code-cell}` directive in MyST Markdown.
 See [](../file-types/myst-notebooks.md) for more information.
 :::
 
+:::{warning}
+By default Jupyter Book will execute all `.ipynb` files that it finds inside of your book's root directory.
+If you have **hidden folders with `ipynb` files** (such as `.venv` or `.tox`), you may wish to exclude them from execution.
+See [](execute/exclude).
+:::
+
 ## Trigger notebook execution
 
 By default, Jupyter Book will execute any content files that have a notebook structure
-and that are missing at least one output. This is equivalent to the following configuration in _config.yml`:
+and that are missing at least one output.
+This is equivalent to the following configuration in _config.yml`:
 
 ```yaml
 execute:
@@ -39,15 +46,19 @@ execute:
 This will only execute notebooks that are missing at least one output.
 If the notebook has *all* of its outputs populated, then it will not be executed.
 
-**To force the execution of all notebooks, regardless of their outputs**, change the
+### Force execution of all notebooks
+
+To force the execution of all notebooks, regardless of their outputs, change the
 above configuration value to:
 
 ```yaml
 execute_notebooks: force
 ```
 
-**To cache execution outputs with [jupyter-cache]**, change the above configuration
-value to:
+### Cache execution outputs with [jupyter-cache]
+
+You can cache the execution outputs so that subsequent builds take less time to execute your content.
+To enable this, change the above configuration value to:
 
 ```yaml
 execute:

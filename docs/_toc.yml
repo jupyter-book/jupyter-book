@@ -76,9 +76,6 @@ parts:
     - file: advanced/developers
     - file: explain/sphinx
 
-  - file: advanced/index
-    sections:
-    - file: advanced/windows
   - file: contribute/index
     sections:
     - file: contribute/code

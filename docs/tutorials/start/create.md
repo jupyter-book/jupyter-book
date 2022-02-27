@@ -217,6 +217,7 @@ This requires the use of a special YAML metadata blog that tells Jupyter Book (v
 
 For more information about MyST Markdown notebooks, see [](file-types:myst-notebooks).
 
+(create:install-environment)=
 ## Install the requirements for this book
 
 Jupyter Book can execute computational content when it builds your book, and inserts that content into the final output.

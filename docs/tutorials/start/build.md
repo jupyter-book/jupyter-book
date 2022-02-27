@@ -14,6 +14,7 @@ In this tutorial, we'll focus on building HTML outputs.
 In order to build the HTML for each page, you should have followed the steps
 in [](overview.md) and [](create.md).
 You should have a collection of notebook/Markdown files in your `mybookname/` folder, a `_toc.yml` file that defines the structure of your book, and any configuration you'd like in the `_config.yml` file.
+You should also have the right **environment** installed in order to execute the book's contents (see [](create:install-environment)).
 
 ## Build your book's HTML
 
@@ -44,7 +45,7 @@ They contain the HTML and all assets needed to view your book in a browser.
 
 You can open the pages in the site by navigating to that folder and opening the `html` files with your web browser.
 
-:::{note}
+:::{margin}
 You can also use the short-hand `jb` for `jupyter-book`. E.g.,:
 `jb build mybookname/`.
 :::

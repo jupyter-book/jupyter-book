@@ -138,10 +138,10 @@ sudo apt-get install texlive-latex-recommended texlive-latex-extra \
 
 Alternatively you can install the full [TeX Live](https://www.tug.org/texlive/quickinstall.html) distribution.
 
-For `OSX` you may want to use [MacTeX](http://www.tug.org/mactex/) which is a more
+**Mac / OSX users**: you may want to use [MacTeX](http://www.tug.org/mactex/) which is a more
 user friendly approach. Alternatively you may also use [TeX Live](https://www.tug.org/texlive/quickinstall.html).
 
-For `Windows` users, please install [TeX Live](https://www.tug.org/texlive/windows.html).
+**Windows users**: please install [TeX Live](https://www.tug.org/texlive/windows.html).
 
 ### Build
 
