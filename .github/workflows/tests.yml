@@ -19,7 +19,6 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.8
-        cache: "pip"
     - uses: pre-commit/action@v2.0.3
 
   pre-commit-hook:
@@ -30,7 +29,6 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.8
-        cache: "pip"
     - name: Install pre-commit
       run: pip install pre-commit
     # Run pre-commit with try-repo to test the local version of the pre-commit hook
@@ -203,7 +201,6 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.8
-          cache: "pip"
       - name: Install flit
         run: |
           pip install flit~=3.6
