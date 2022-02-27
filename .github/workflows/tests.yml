@@ -53,6 +53,7 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+        cache: "pip"
     - name: Install Python dependencies
       run: |
         python -m pip install --upgrade pip
@@ -106,6 +107,7 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+        cache: "pip"
     - name: Install Python dependencies
       run: |
         python -m pip install --upgrade pip
@@ -137,6 +139,7 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+        cache: "pip"
     - uses: actions/cache@v2
       with:
         path: ~\AppData\Local\pip\Cache
@@ -165,6 +168,7 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+        cache: "pip"
     - uses: actions/cache@v2
       with:
         path: ~\AppData\Local\pip\Cache
