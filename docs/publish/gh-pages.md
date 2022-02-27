@@ -20,7 +20,7 @@ There are two ways to do so
 :class: warning
 Before you do any of the following, make sure that these two steps are completed:
 
-1. Build HTML for your book (see [](../start/build.md)).
+1. Build HTML for your book (see [](../tutorials/start/build.md)).
    There should be a collection of HTML files in your book's `_build/html` folder.
 2. Configure your GitHub repository to serve a website via GitHub Pages at the location of your choice (either a branch or the `docs/` folder).
    See [the GitHub Pages documentation](https://docs.github.com/en/github/working-with-github-pages) for more information.

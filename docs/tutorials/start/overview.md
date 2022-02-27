@@ -56,7 +56,7 @@ jupyter-book --help
 !jupyter-book --help
 ```
 
-For more complete information about the CLI, see [](../reference/cli.md).
+For more complete information about the CLI, see [](../../reference/cli.md).
 
 ## The book building process
 

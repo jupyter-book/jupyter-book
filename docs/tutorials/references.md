@@ -15,7 +15,7 @@ Note that this documentation is written with rST syntax in mind and you'll need 
 
 ## Prerequisites
 
-This tutorial assumes that you've either created a demo Jupyter Book from [](../start/your-first-book.md), or that you've got your own Jupyter Book to work from.
+This tutorial assumes that you've either created a demo Jupyter Book from [](../tutorials/start/index.md), or that you've got your own Jupyter Book to work from.
 
 ## Basic structure of a reference
 

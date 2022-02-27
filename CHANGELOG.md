@@ -271,7 +271,7 @@ This release includes a number of new features, improvements and bug fixes. Ther
 **HTML:**
 
 * 👌 NEW: Add `dirhtml` builder. This enables the use
-  of the `dirhtml` sphinx builder when using jupyter book. ([docs](docs/start/build.md), [#1092](https://github.com/executablebooks/jupyter-book/pull/1092), [@choldgraf](https://github.com/choldgraf))
+  of the `dirhtml` sphinx builder when using jupyter book. ([docs](docs/tutorials/start/build.md), [#1092](https://github.com/executablebooks/jupyter-book/pull/1092), [@choldgraf](https://github.com/choldgraf))
 
 **LaTeX:**
 
@@ -356,7 +356,7 @@ The `jupyter-book`/`jb` executable should work almost identically to in v0.7.5, 
 
 The key change is that `jupyter-book page` is no longer available.
 Instead you can now pass a single file path to `jupyter-book build`, as opposed to a directory, and it will build your single page (thanks to [@AakashGfude](https://github.com/AakashGfude)).
-See [Build a standalone page](docs/start/build.md).
+See [Build a standalone page](docs/tutorials/start/build.md).
 
 Another thing to note, is that if you are using "bare" LaTeX math in your documentation,
 then this will only render if you activate in your `_config.yml`:

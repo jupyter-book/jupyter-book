@@ -5,7 +5,7 @@ build your books and run a few common functions. This page contains information
 on what you can do with the CLI.
 
 This page is a complete reference for the CLI. For newcomers who would like to
-get started with the Jupyter Book CLI, we recommend starting with [](../start/overview.md)
+get started with the Jupyter Book CLI, we recommend starting with [](../tutorials/start/overview.md)
 
 :::{note}
 

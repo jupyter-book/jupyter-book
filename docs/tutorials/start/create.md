@@ -56,7 +56,7 @@ a book logo, turn on different "interactive" buttons (such as a
 
 ```{margin}
 For more information about your book's configuration file, see
-[](../customize/config.md).
+[](../../customize/config.md).
 ```
 
 Here's an example of a simple `_config.yml` file:
@@ -77,14 +77,14 @@ bibtex_bibfiles:
 - `title:` defines a title for the book. It will show up in the left sidebar.
 - `author:` adds the author's name to your book template, for attribution.
 - `logo:` defines a path to an image file for your book's logo (it will also show up in the sidebar).
-- `execute:` contains a collection of configuration options to control [execution and cacheing](../content/execute.md).
+- `execute:` contains a collection of configuration options to control [execution and cacheing](../../content/execute.md).
   - `execute_notebooks: "force"` tells Jupyter Book **force execute** any computational content each time it builds the book. By default, Jupyter Book executes and **caches** all book content.
 - `bibtex_bibfiles:`is a section to define bibliography files for your Jupyter Book.
-  This configuration activates **citations** for your book (see [](../tutorials/references.md) for getting started with citations and references).
+  This configuration activates **citations** for your book (see [](../../tutorials/references.md) for getting started with citations and references).
 
 :::{admonition} More about `_config.yml`
 :class: tip
-There is much more that you can do with the `_config.yml` file. For example, you can [](source-repository-button) or add [](../interactive/interactive.ipynb). For a complete list of fields for `_config.yml`, see [](../customize/config.md).
+There is much more that you can do with the `_config.yml` file. For example, you can [](source-repository-button) or add [](../../interactive/interactive.ipynb). For a complete list of fields for `_config.yml`, see [](../../customize/config.md).
 :::
 
 Check out the other content in your configuration file, and reference it against the pages in this documentation to see what it does.
@@ -116,12 +116,12 @@ The title of each chapter will be inferred from the title in your files.
 
 :::{admonition} More about `_toc.yml`
 :class: tip
-You can specify more complex book configurations with your `_toc.yml` file. For example, you can specify **parts**, **sections**, and control **custom titles**. For more information about your book's table of contents file, see [](../structure/toc.md).
+You can specify more complex book configurations with your `_toc.yml` file. For example, you can specify **parts**, **sections**, and control **custom titles**. For more information about your book's table of contents file, see [](../../structure/toc.md).
 :::
 
 ### Book content
 
-A collection of text files make up your book's content. These can be one of several types of files, such as markdown (`.md`), Jupyter Notebooks (`.ipynb`) or reStructuredText (`.rst`) files (see [](../file-types/index.md) for a full list).
+A collection of text files make up your book's content. These can be one of several types of files, such as markdown (`.md`), Jupyter Notebooks (`.ipynb`) or reStructuredText (`.rst`) files (see [](../../file-types/index.md) for a full list).
 
 In the above example, there were three files listed:
 
@@ -147,7 +147,7 @@ Markdown files come in slight variations, often called *flavors of markdown*.
 There are two flavors of markdown that Jupyter Book supports:
 
 - [CommonMark markdown](https://commonmark.org/) - a markdown standard that is very common.
-- [MyST Markdown](../content/myst.md) - an extension of CommonMark with extra functionality for enriched documents.
+- [MyST Markdown](../../content/myst.md) - an extension of CommonMark with extra functionality for enriched documents.
 
 Let's take a look at one of the markdown files in the template book, `intro.md`:
 
@@ -189,7 +189,7 @@ Above you see several different kinds of structure:
 
 All content files must have a page title (specified as the first header). All subsequent headers must increase linearly (so no jumps from H1 to H3). See [](rules-all-content-types) for more rules that all content must adhere to.
 
-For more information about MyST markdown and all the things you can do with it, see [](../content/myst.md).
+For more information about MyST markdown and all the things you can do with it, see [](../../content/myst.md).
 
 
 ### Jupyter Notebooks (`.ipynb`)
@@ -201,12 +201,12 @@ Each notebook is associated with a **kernel** (aka, Python, R, Julia, etc) that 
 By default, when Jupyter Book builds your book, **notebooks will be executed and their outputs cached**. On subsequent builds, notebook pages will be re-executed only if their code has changed.
 
 :::{margin} ✨Notebooks with text files✨
-You can also store Jupyter Notebooks as markdown files or other text files. See [](../file-types/myst-notebooks.md) and [](../file-types/jupytext.Rmd).
+You can also store Jupyter Notebooks as markdown files or other text files. See [](../../file-types/myst-notebooks.md) and [](../../file-types/jupytext.Rmd).
 :::
 
-Any outputs generated by the notebook will be inserted into your built book (though they may not be in your input notebook). This way you do not need to store the notebook's outputs with your repository. See [](../content/execute.md) for more information.
+Any outputs generated by the notebook will be inserted into your built book (though they may not be in your input notebook). This way you do not need to store the notebook's outputs with your repository. See [](../../content/execute.md) for more information.
 
-There are many other interesting things that you can do with notebook content as a part of your book. We recommend checking out [](../content/code-outputs.md) as well as [](../interactive/interactive.md) to get started with Jupyter notebooks.
+There are many other interesting things that you can do with notebook content as a part of your book. We recommend checking out [](../../content/code-outputs.md) as well as [](../../interactive/interactive.md) to get started with Jupyter notebooks.
 
 
 ### MyST Markdown Notebooks (`.md`, and other text formats)

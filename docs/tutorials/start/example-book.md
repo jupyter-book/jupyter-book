@@ -20,7 +20,7 @@ For more inspiration and example books, see [the Jupyter Book gallery](https://e
 
 The source files can be [found on GitHub](https://github.com/executablebooks/quantecon-mini-example/)
 in the [docs directory](https://github.com/executablebooks/quantecon-mini-example/tree/master/mini_book/docs).
-These files are written in [MyST Markdown](../content/myst.md), an
+These files are written in [MyST Markdown](../../content/myst.md), an
 extension of the Jupyter Notebook Markdown, that allows for additional scientific markup.
 They could alternatively have been written directly as Jupyter notebooks.
 
@@ -43,7 +43,7 @@ You can build this book locally on the command line via the following steps:
     ```bash
     pip install -U jupyter-book
     ```
-    See [the getting started page](../start/overview.md) for more information.
+    See [the getting started page](./index.md) for more information.
     ````
 
 3. Install the Python libraries needed to run the code in this particular example
