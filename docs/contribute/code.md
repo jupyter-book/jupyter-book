@@ -1,16 +1,16 @@
-
 # Contribute to code
 
 This page has sections that cover how to contribute code and work with the codebase in Jupyter Book.
 
 ## Development guidelines
 
-For information about development conventions, practices, and infrastructure, please see [the `executablebooks/` development guidelines](https://github.com/executablebooks/.github/blob/master/CONTRIBUTING.md).
+For information about development conventions, practices, and infrastructure, please see [the `executablebooks/` development guidelines](https://executablebooks.org/en/latest/contributing.html).
 
 ## Run the tests
 
 For code tests, Jupyter Book uses [pytest](https://docs.pytest.org).
 The easiest way to run the tests is with [tox](https://tox.readthedocs.io).
+For example:
 
 ```console
 $ tox

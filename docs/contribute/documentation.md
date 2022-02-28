@@ -22,7 +22,8 @@ $ tox -e docs-live
 ## Documentation guidelines
 
 The documentation of Jupyter Book is inspired by the [Diataxis Documentation Framework](https://diataxis.fr/).
-This separates documentation into four main areas:
+There are roughly **four types of documentation** in the Jupyter Book docs.
+They are somewhat reflected in the documentation's top-level structure, although some of them (particularly `how to` and `explanation` guides are combined together under `topic guides`.
 
 - **Tutorials** are step-by-step guides that are learning-oriented.
   They give the learner a feel for how a tool works, and get them excited about learning more.
