@@ -89,7 +89,7 @@ Analytics account and create a new *property* for your Jupyter Book. The
 next steps depend on the version of Google Analytics you are using:
 * If using Google Analytics 4 (GA4), you will also have to create a *stream*
 associated with your property. Choose to make a web stream and provide the URL of
-your Jupyter book. You will need to copy the *Measurement ID* associated 
+your Jupyter book. You will need to copy the *Measurement ID* associated
 with that stream. This is typically an alphanumeric code beginning with the prefix **G-**.
 Copy the measurement ID, including the **G-** prefix.
 * In older versions of Google Analytics, such as Google Analytics 3, you will provide your
