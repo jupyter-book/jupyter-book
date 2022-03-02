@@ -81,15 +81,24 @@ The admonitions should be styled according to your CSS rules when you build your
 If you have a Google account, you can use Google Analytics to collect some
 information on the traffic to your Jupyter Book. With this tool, you can find
 out how many people are using your book, where they come from and how they
-access it, whether they are using the desktop or the mobile version etc.
+access it, whether they are using the desktop or the mobile version, etc.
 
-To add Google Analytics to your Jupyter Book, navigate to
-[Google Analytics](https://analytics.google.com/analytics/web/), create a new
-Google Analytics account and add the url of your Jupyter Book to a new
-*property*. Once you have set everything up, your Google Analytics property
-will have a so-called Tracking-ID, that typically starts with the letters UA.
-All that you need to do is to copy this ID and paste it into your
-configuration file:
+To add Google Analytics to your Jupyter Book, navigate to [Google
+Analytics](https://analytics.google.com/analytics/web/), create a new Google
+Analytics account and create a new *property* for your Jupyter Book. The
+next steps depend on the version of Google Analytics you are using:
+* If using Google Analytics 4 (GA4), you will also have to create a *stream*
+associated with your property. Choose to make a web stream and provide the URL of
+your Jupyter book. You will need to copy the *Measurement ID* associated 
+with that stream. This is typically an alphanumeric code beginning with the prefix **G-**.
+Copy the measurement ID, including the **G-** prefix.
+* In older versions of Google Analytics, such as Google Analytics 3, you will provide your
+Jupyter Book's URL when you create your property.  Each property has
+a universal analytics tracking ID, which is typically a numeric code that begins with
+**UA-**. Copy the tracking ID, including the **UA-** prefix.
+
+Paste the measurement ID (GA4) or tracking ID (previous versions of Google
+Analytics) into the following directive in your configuration file:
 
 ```yaml
 html:
