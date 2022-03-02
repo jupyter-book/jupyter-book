@@ -2,11 +2,13 @@
 
 import jsonschema
 import pytest
+import sphinx as sphinx_build
 
 from jupyter_book.cli.main import sphinx
 from jupyter_book.config import get_final_config, validate_yaml
 
 pytest_plugins = "pytester"
+SPHINX_VERSION = f".sphinx{sphinx_build.version_info[0]}"
 
 
 @pytest.mark.parametrize(
@@ -16,7 +18,12 @@ pytest_plugins = "pytester"
         {"title": "hallo"},
         {"html": {"extra_footer": ""}},
         {"execute": {"execute_notebooks": "cache"}},
-        {"parse": {"myst_enable_extensions": ["linkify"]}},
+        {
+            "parse": {
+                "myst_enable_extensions": ["linkify"],
+                "myst_dmath_double_inline": True,
+            }
+        },
         {"latex": {"latex_documents": {"targetname": "book.tex", "title": "other"}}},
         {"launch_buttons": {"binderhub_url": "other"}},
         {"repository": {"url": "other"}},
@@ -25,6 +32,20 @@ pytest_plugins = "pytester"
             "sphinx": {
                 "extra_extensions": ["other"],
                 "local_extensions": {"helloworld": "./ext"},
+                "config": {
+                    "html_theme_options": {
+                        "launch_buttons": {"binderhub_url": "other"}
+                    },
+                    "html_theme": "other",
+                    "new": "value",
+                },
+            }
+        },
+        {
+            "sphinx": {
+                "extra_extensions": ["other"],
+                "local_extensions": {"helloworld": "./ext"},
+                "recursive_update": True,
                 "config": {
                     "html_theme_options": {
                         "launch_buttons": {"binderhub_url": "other"}
@@ -45,7 +66,8 @@ pytest_plugins = "pytester"
         "launch_buttons",
         "repository",
         "exclude_patterns",
-        "sphinx",
+        "sphinx-default",
+        "sphinx-recurse",
     ],
 )
 def test_get_final_config(user_config, data_regression):
@@ -81,14 +103,9 @@ def test_config_sphinx_command_only_build_toc_files(
     temp_with_override.joinpath("_toc.yml").write_text("root: intro\n", encoding="utf8")
     result = cli.invoke(sphinx, temp_with_override.as_posix())
 
-    assert result.exit_code == 0, result.exception
-    # remove global_toc which is path dependent
-    output = "\n".join(
-        line
-        for line in result.output.splitlines()
-        if not line.startswith("external_toc_path")
-    )
-
+    assert result.exit_code == 2, result.exception
+    assert temp_with_override.joinpath("conf.py").exists()
+    output = temp_with_override.joinpath("conf.py").read_text(encoding="utf8")
     file_regression.check(output, encoding="utf8")
 
 
@@ -98,13 +115,9 @@ def test_config_sphinx_command(cli, temp_with_override, file_regression):
     )
     temp_with_override.joinpath("_toc.yml").write_text("root: intro\n", encoding="utf8")
     result = cli.invoke(sphinx, temp_with_override.as_posix())
-    assert result.exit_code == 0, result.exception
-    # remove global_toc which is path dependent
-    output = "\n".join(
-        line
-        for line in result.output.splitlines()
-        if not line.startswith("external_toc_path")
-    )
+    assert result.exit_code == 2, result.exception
+    assert temp_with_override.joinpath("conf.py").exists()
+    output = temp_with_override.joinpath("conf.py").read_text(encoding="utf8")
     file_regression.check(output, encoding="utf8")
 
 
@@ -220,3 +233,49 @@ def test_get_final_config_bibtex(data_regression):
         raise_on_invalid=True,
     )
     assert "sphinxcontrib.bibtex" in final_config["extensions"]
+
+
+def test_mathjax_config_warning(data_regression):
+    mathjax_config = {
+        "sphinx": {
+            "config": {
+                "mathjax_config": {"TeX": {"Macros": {"argmax": "arg\\,max"}}},
+            }
+        }
+    }
+    cli_config = {"latex_individualpages": False}
+    user_config = mathjax_config
+    final_config, metadata = get_final_config(
+        user_yaml=user_config,
+        cli_config=cli_config,
+        validate=True,
+        raise_on_invalid=True,
+    )
+    data_regression.check(
+        {"_user_config": user_config, "final": final_config, "metadata": metadata},
+        basename=f"test_mathjax_config_warning{SPHINX_VERSION}",
+    )
+
+
+def test_mathjax_config_warning_mathjax2path(data_regression):
+    mathjax_config = {
+        "sphinx": {
+            "config": {
+                "mathjax_config": {"TeX": {"Macros": {"argmax": "arg\\,max"}}},
+                "mathjax_path": "https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_CHTML",  # noqa: E501
+            }
+        }
+    }
+
+    cli_config = {"latex_individualpages": False}
+    user_config = mathjax_config
+    final_config, metadata = get_final_config(
+        user_yaml=user_config,
+        cli_config=cli_config,
+        validate=True,
+        raise_on_invalid=True,
+    )
+    data_regression.check(
+        {"_user_config": user_config, "final": final_config, "metadata": metadata},
+        basename=f"test_mathjax_config_warning_mathjax2path{SPHINX_VERSION}",
+    )

@@ -4,42 +4,32 @@
 exclude: >
     (?x)^(
       \.vscode/settings\.json|
-      tests/test_tocdirective/.*
+      docs/conf\.py|
+      tests/test_tocdirective/.*|
+      tests/test_sphinx_jupyterbook_latex/.*|
     )$
 
 repos:
 
   - repo: git://github.com/pre-commit/pre-commit-hooks
-    rev: v2.2.3
+    rev: v4.1.0
     hooks:
     - id: check-json
     - id: check-yaml
     - id: end-of-file-fixer
     - id: trailing-whitespace
 
-  # this is not used for now,
-  # since it converts jupyter-book to jupyter_book and removes comments
-  # - repo: https://github.com/asottile/setup-cfg-fmt
-  #   rev: v1.17.0
-  #   hooks:
-  #   - id: setup-cfg-fmt
-
-  - repo: https://github.com/mgedmin/check-manifest
-    rev: "0.46"
-    hooks:
-    - id: check-manifest
-      args: [--no-build-isolation]
-      additional_dependencies: [setuptools>=46.4.0]
-
   - repo: local
     hooks:
     - id: check-doc-req
-      name: Check docs/requirements.txt up-to-date
+      name: Check .binder/requirements.txt up-to-date
       pass_filenames: false
+      additional_dependencies:
+      - tomli
       files: >-
           (?x)^(
-              setup.cfg|
-              docs/requirements.txt|
+              pyproject.toml|
+              .binder/requirements.txt|
               scripts/check_doc_requirements.py|
           )$
       language: python
@@ -47,16 +37,16 @@ repos:
       entry: python scripts/check_doc_requirements.py
 
   - repo: https://github.com/pycqa/isort
-    rev: 5.8.0
+    rev: 5.10.1
     hooks:
     - id: isort
 
   - repo: https://github.com/psf/black
-    rev: 20.8b1
+    rev: 22.1.0
     hooks:
     - id: black
 
-  - repo: https://gitlab.com/pycqa/flake8
-    rev: 3.8.4
+  - repo: https://github.com/PyCQA/flake8
+    rev: 4.0.1
     hooks:
     - id: flake8

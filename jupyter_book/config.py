@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Optional, Union
 
 import jsonschema
+import sphinx
 import yaml
 
 from .utils import _message_box
@@ -37,9 +38,9 @@ def get_default_sphinx_config():
         pygments_style="sphinx",
         html_theme="sphinx_book_theme",
         html_theme_options={"search_bar_text": "Search this book..."},
-        html_add_permalinks="¶",
         html_sourcelink_suffix="",
         numfig=True,
+        recursive_update=False,
         panels_add_bootstrap_css=False,
         suppress_warnings=["myst.domains"],
     )
@@ -137,9 +138,40 @@ def get_final_config(
     # then merge this into the default sphinx config
     _recursive_update(sphinx_config, yaml_config)
 
-    # Value set in `sphinx: config: ...` are a special case,
-    # and completely override any defaults (sphinx and yaml)
-    sphinx_config.update(user_yaml_update)
+    # TODO: deprecate this in version 0.14
+    # Check user specified mathjax_config for sphinx >= 4
+    # https://github.com/executablebooks/jupyter-book/issues/1502
+    if sphinx.version_info[0] >= 4 and "mathjax_config" in user_yaml_update:
+        # Switch off warning if user has specified mathjax v2
+        if (
+            "mathjax_path" in user_yaml_update
+            and "@2" in user_yaml_update["mathjax_path"]
+        ):
+            # use mathjax2_config so not to tigger deprecation warning in future
+            user_yaml_update["mathjax2_config"] = user_yaml_update.pop("mathjax_config")
+        else:
+            _message_box(
+                (
+                    f"[Warning] Mathjax configuration has changed for sphinx>=4.0 [Using sphinx: {sphinx.__version__}]\n"  # noqa: E501
+                    "Your _config.yml needs to be updated:\n"  # noqa: E501
+                    "mathjax_config -> mathjax3_config\n"  # noqa: E501
+                    "To continue using `mathjax v2` you will need to use the `mathjax_path` configuration\n"  # noqa: E501
+                    "\n"
+                    "See Sphinx Documentation:\n"
+                    "https://www.sphinx-doc.org/en/master/usage/extensions/math.html#module-sphinx.ext.mathjax"  # noqa: E501
+                ),
+                color="orange",
+                print_func=print,
+            )
+            # Automatically make the configuration name substitution so older projects build
+            user_yaml_update["mathjax3_config"] = user_yaml_update.pop("mathjax_config")
+
+    # Recursively update sphinx config if option is specified,
+    # otherwise forcefully override options non-recursively
+    if sphinx_config.pop("recursive_update") is True:
+        _recursive_update(sphinx_config, user_yaml_update)
+    else:
+        sphinx_config.update(user_yaml_update)
 
     # This is to deal with a special case, where the override needs to be applied after
     # the sphinx app is initialised (since the default is a function)
@@ -354,6 +386,12 @@ def yaml_to_sphinx(yaml: dict):
                 sphinx_config["extensions"].append(extension)
             if path not in sys.path:
                 add_paths.append(path)
+
+    # Overwrite sphinx config or not
+    if "recursive_update" in yaml.get("sphinx", {}):
+        sphinx_config["recursive_update"] = yaml.get("sphinx", {}).get(
+            "recursive_update"
+        )
 
     # Citations
     sphinxcontrib_bibtex_configs = ["bibtex_bibfiles", "bibtex_reference_style"]

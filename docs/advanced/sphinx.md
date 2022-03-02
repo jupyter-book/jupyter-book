@@ -164,10 +164,21 @@ sphinx:
     key2: value2
 ```
 
-:::{warning}
-Any options set in this section will **override** default configurations set by Jupyter Book.
-Use at your own risk!
-:::
+By default, any values in your `sphinx: config:` section will **entirely replace** the default configurations set by Jupyter Book.
+For example, if values are dictionaries, the whole dictionary will be replaced, not just the keys that you specify in `_config.yml`.
+
+Alternatively, you can override default configurations *recursively* with the `recursive_update` option in the `sphinx:` section.
+In this case, *only the values you specify* in `sphinx: config:` will overwrite their defaults, and the configuration you do not specify will remain.
+You can trigger this behavior like so:
+
+```yaml
+sphinx:
+  recursive_update: true
+  config:
+    # Sphinx Configuration options to be added recursively
+```
+
+This option defaults to `false`.
 
 :::{tip}
 If you wish to inspect a `conf.py` representation of the generated configuration,
@@ -217,7 +228,7 @@ These two extensions are highly customizable *via* Sphinx configuration.
 Some of their configuration is already exposed in the `_config.yml`, but you can also directly set configuration, see:
 
 * the [MyST-Parser configuration options](myst-parser:sphinx/config-options)
-* the [MyST-NB configuration options](myst-nb:start/config-options)
+* the [MyST-NB configuration options](myst-nb:config/reference)
 
 (sphinx/tex-macros)=
 ### Defining TeX macros

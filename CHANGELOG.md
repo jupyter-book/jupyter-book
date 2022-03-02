@@ -1,5 +1,53 @@
 # Change Log
 
+## v0.12.2 - 2022-02-21
+
+This is a minor release that bumps the versions of several dependencies in Jupyter Book (see below for details).
+
+([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.12.1...419c863eb669efbbdaea82017902f592e7eaa8b1))
+
+### Enhancements made
+
+- Allow recursively updating the sphinx configuration instead of totally over-writing it, see [the sphinx configuration docs](docs/advanced/sphinx.md) for details [#1599](https://github.com/executablebooks/jupyter-book/pull/1599) ([@kmpaul](https://github.com/kmpaul))
+
+### Updated dependencies
+
+- sphinxcontrib-bibtex `v0.4.*` [#1513](https://github.com/executablebooks/jupyter-book/pull/1513) ([@bryanwweber](https://github.com/bryanwweber))
+- sphinx-thebe `v0.1.*` [#1634](https://github.com/executablebooks/jupyter-book/pull/1634) ([@choldgraf](https://github.com/choldgraf))
+- click `v8.*` [#1623](https://github.com/executablebooks/jupyter-book/pull/1623) ([@lukasbindreiter](https://github.com/lukasbindreiter))
+- Remove Python 3.6 and add Python 3.9 [#1626](https://github.com/executablebooks/jupyter-book/pull/1626) ([@choldgraf](https://github.com/choldgraf))
+
+
+## v0.12.1
+
+This release provides bug fixes and updates when building PDF via LaTeX including improved styling for
+code output cells. It also includes infrastructure for using Jupyter Book with ReadTheDocs.
+
+### New
+
+- ✨ NEW: Allow running on ReadTheDocs [PR #1422](https://github.com/executablebooks/jupyter-book/pull/1422)
+- ✨ NEW: Upgrade to sphinx-jupyterbook-latex~=0.4.6 [PR #1538](https://github.com/executablebooks/jupyter-book/pull/1538)
+
+## v0.12.0
+
+### New
+
+The primary change in this release is to update the requirements of `jupyter-book` from `sphinx>=2,4` to `sphinx>=3,<5` to support `sphinx>=4` via [#1448](https://github.com/executablebooks/jupyter-book/pull/1448).
+
+This includes upgrades to underlying packages:
+
+- `myst-nb` has been upgrade from `myst-nb~=0.12.0` to `myst-nb~=0.13.1`. Some new features were added in `v0.13+` and can
+  be seen in the [myst-nb changelog](https://github.com/executablebooks/MyST-NB/blob/master/CHANGELOG.md#change-log)
+- additional projects such as [jupytext](https://github.com/mwouts/jupytext), [sphinx-external-toc](https://github.com/executablebooks/sphinx-external-toc), [sphinx-jupyterbook-latex](https://github.com/executablebooks/sphinx-jupyterbook-latex), [sphinx-panels](https://github.com/executablebooks/sphinx-panels), and [sphinx-book-theme](https://github.com/executablebooks/sphinx-book-theme) were also upgraded as part of this release.
+
+Documentation has also received updates and fixes.
+
+Thanks to @bryanwweber, @chrisjsewell, @choldgraf, @gabri470, @jmshea, @joelostblom, @mmcky, @patrickmineault, @TomasBeuzen
+
+### Deprecations from upgrade to `myst-parser`
+
+- The [deprecations made to extension configurations and colon fences in `0.13.0`](https://github.com/executablebooks/MyST-Parser/blob/master/CHANGELOG.md#remove-v013-deprecations-%EF%B8%8F) have now been removed
+
 ## v0.11.3
 
 This release enables the use of the [singlehtml builder](https://www.sphinx-doc.org/en/master/usage/builders/index.html#sphinx.builders.singlehtml.SingleFileHTMLBuilder) and updates [sphinx-thebe](https://github.com/executablebooks/sphinx-thebe) and [sphinx-book-theme](https://github.com/executablebooks/sphinx-book-theme)
@@ -133,7 +181,7 @@ Citations and references configuration
 TOC depth numbering
 
 : You can now set the depth of numbering (e.g., 3.2 vs. 3.2.1) via the the `numbered` flag in your Table of Contents.
-  See [the table of contents documentation](docs/customize/toc.md) for more information.
+  See [the table of contents documentation](docs/structure/toc.md) for more information.
 
 
 ### New MyST syntax

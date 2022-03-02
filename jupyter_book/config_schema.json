@@ -40,6 +40,10 @@
                     "items": {
                         "type": "string"
                     }
+                },
+                "myst_dmath_double_inline": {
+                    "type": "boolean",
+                    "default": true
                 }
             }
         },
@@ -201,6 +205,9 @@
                         "null",
                         "object"
                     ]
+                },
+                "recursive_update": {
+                    "type": "boolean"
                 },
                 "config": {
                     "type": [
