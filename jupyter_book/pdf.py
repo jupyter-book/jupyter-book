@@ -55,9 +55,9 @@ def _launch_browser(playwright):
     try:
         browser = playwright.chromium.launch()
     except Exception:
-        _message_box("Browser not installed, installing now...")
         from subprocess import run
 
+        _message_box("Browser not installed, installing now...")
         run(["playwright", "install", "chromium"])
 
     browser = playwright.chromium.launch()
