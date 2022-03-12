@@ -98,10 +98,9 @@ For example: `pytest -n 4`. This makes the tests run much faster.
 If you'd like to test (or try out) the generation of PDFs, take the following steps:
 
 **To generate PDFs via HTML**, make sure you install Jupyter Book with
-`pip install -e .[pdfhtml]`. This will install [`pyppeteer`](https://github.com/pyppeteer/pyppeteer),
-which runs a headless chrome session to convert your book to PDF. Next, follow
-the installation instructions at {ref}`pdf:html`. You should then be able to build your
-book's PDF through HTML.
+`pip install -e .[pdfhtml]`. This will install [`playwright-python`](https://github.com/microsoft/playwright-python),
+which runs a headless chrome session to convert your book to PDF.
+You should then be able to build your book's PDF through HTML.
 
 **To generate PDFs via LaTeX**, make sure you install a working LaTeX distribution locally.
 Do so by following the instructions in {ref}`pdf:latex`.
