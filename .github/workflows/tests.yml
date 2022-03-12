@@ -62,8 +62,7 @@ jobs:
 
     - name: Install Headless Chrome dependencies
       run: |
-        sudo apt-get update
-        sudo apt-get install -yq $(cat .github/workflows/pyppeteer_reqs.txt)
+        playwright install chromium
 
     - name: Install latex dependencies
       run: |
@@ -114,11 +113,6 @@ jobs:
         pip install wheel
         pip install "sphinx${{ matrix.sphinx }}"
         pip install -e .[testing]
-
-    - name: Install Headless Chrome dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -yq $(cat .github/workflows/pyppeteer_reqs.txt)
 
     - name: Run pytest
       run: pytest --durations=10 -m 'not requires_tex'

@@ -10,32 +10,25 @@ PDF building is in active development, and may change or have bugs.
 There are two approaches to building PDF files.
 
 (pdf:html)=
-## Build a PDF from your book HTML
+## Build a PDF from HTML
 
-It is possible to build a single PDF from your book's HTML. This starts by
-converting all of your book's content into a single HTML file, and then renders
-it as a PDF by emulating a browser from the command-line.
+It is possible to build a single PDF from your book's HTML.
+This starts by converting all of your book's content into a single HTML file, and then renders it as a PDF by emulating a browser from the command-line.
 
 ### Installation
 
-Your system will need to use `pyppeteer` to parse the generated HTML for
-conversion to PDF.
+Jupyter Book uses `playwright` to parse the generated HTML for conversion to PDF.
 
-You can install it like so:
+You can install it bundled with `jupyter-book`:
 
-```bash
-pip install pyppeteer
+```console
+$ pip install jupyter-book[pdfhtml]
 ```
 
-You may also need to install this bundle of packages below (on *nix systems):
+or on its own:
 
-```{literalinclude} ../../.github/workflows/pyppeteer_reqs.txt
-```
-
-```{margin}
-In addition, if you get errors about libraries that don't exist, check out
-[these install commands](https://circleci.com/orbs/registry/orb/threetreeslight/puppeteer)
-to see if that fixes it. We warned you it was an experimental feature :-)
+```console
+$ pip install playwright
 ```
 
 ### Build
@@ -46,32 +39,21 @@ To build a single PDF from your book's HTML, use the following command:
 jupyter-book build mybookname/ --builder pdfhtml
 ```
 
-or
-
-```bash
-jb build mybookname/ --builder pdfhtml
-```
-
-:::{warning}
-If you get a "MaxRetryError" and see mentions of SSL in the error message when building the PDF,
-this could be due to a bug in `pyppeteer` as it downloads Chromium for the first time.
-See [this GitHub comment](https://github.com/miyakogi/pyppeteer/issues/258#issuecomment-563075764)
-for a potential fix, and [this Jupyter Book issue](https://github.com/executablebooks/jupyter-book/issues/593)
-where we're tracking the issue.
-:::
-
 ### Control the look of PDF via HTML
 
-Because you are using HTML as an intermediary for your book's PDF, you can control the look and feel of the HTML via your own CSS rules. Most CSS changes that you make to your HTML website will also persist in the PDF version of that website. For information about how to define your own CSS rules, see [](custom-assets).
+Because you are using HTML as an intermediary for your book's PDF, you can control the look and feel of the HTML via your own CSS rules.
+Most CSS changes that you make to your HTML website will also persist in the PDF version of that website.
+For information about how to define your own CSS rules, see [](custom-assets).
 
-To add CSS rules that **only apply to the printed PDF**, use the `@media print` CSS pattern to define print-specific rules. These will *only* be applied when the HTML is being printed, and will not show up in your non-PDF website.
+To add CSS rules that **only apply to the printed PDF**, use the `@media print` CSS pattern to define print-specific rules.
+These will *only* be applied when the HTML is being printed, and will not show up in your non-PDF website.
 
 For example, to **hide the right table of contents** at print time, you could add this rule:
 
 ```scss
 @media print {
     .bd-toc {
-        visibility: hidden;
+        display: none;
     }
 }
 ```
