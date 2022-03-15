@@ -86,12 +86,12 @@ access it, whether they are using the desktop or the mobile version, etc.
 To add Google Analytics to your Jupyter Book, navigate to [Google Analytics](https://analytics.google.com/analytics/web/), create a new Google Analytics account and create a new *property* for your Jupyter Book.
 The next steps depend on the version of Google Analytics you are using:
 
-- If using [Google Analytics 4](https://support.google.com/analytics/answer/10089681?hl=en) (GA4)
+- If using [Google Analytics 4](https://support.google.com/analytics/answer/10089681?hl=en) (GA4):
   - You will also have to create a *stream* associated with your property.
   - Choose to make a web stream and provide the URL of your Jupyter book.
   - Copy the **Measurement ID** associated with that stream.
   This is an alphanumeric code that looks like **`G-XXXXXXX`**.
-- If using older versions of Google Analytics, such as Google Analytics 3.
+- If using older versions of Google Analytics, such as Google Analytics 3:
   - You will provide your Jupyter Book's URL when you create your property.
   - Copy the analytics "**tracking ID**" for your property. This is a numeric code that looks like **`UA-XXXXXX-X`**.
 
