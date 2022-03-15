@@ -83,27 +83,29 @@ information on the traffic to your Jupyter Book. With this tool, you can find
 out how many people are using your book, where they come from and how they
 access it, whether they are using the desktop or the mobile version, etc.
 
-To add Google Analytics to your Jupyter Book, navigate to [Google
-Analytics](https://analytics.google.com/analytics/web/), create a new Google
-Analytics account and create a new *property* for your Jupyter Book. The
-next steps depend on the version of Google Analytics you are using:
-* If using Google Analytics 4 (GA4), you will also have to create a *stream*
-associated with your property. Choose to make a web stream and provide the URL of
-your Jupyter book. You will need to copy the *Measurement ID* associated
-with that stream. This is typically an alphanumeric code beginning with the prefix **G-**.
-Copy the measurement ID, including the **G-** prefix.
-* In older versions of Google Analytics, such as Google Analytics 3, you will provide your
-Jupyter Book's URL when you create your property.  Each property has
-a universal analytics tracking ID, which is typically a numeric code that begins with
-**UA-**. Copy the tracking ID, including the **UA-** prefix.
+To add Google Analytics to your Jupyter Book, navigate to [Google Analytics](https://analytics.google.com/analytics/web/), create a new Google Analytics account and create a new *property* for your Jupyter Book.
+The next steps depend on the version of Google Analytics you are using:
+
+- If using [Google Analytics 4](https://support.google.com/analytics/answer/10089681?hl=en) (GA4)
+  - You will also have to create a *stream* associated with your property.
+  - Choose to make a web stream and provide the URL of your Jupyter book.
+  - Copy the **Measurement ID** associated with that stream.
+  This is an alphanumeric code that looks like **`G-XXXXXXX`**.
+- If using older versions of Google Analytics, such as Google Analytics 3.
+  - You will provide your Jupyter Book's URL when you create your property.
+  - Copy the analytics "**tracking ID**" for your property. This is a numeric code that looks like **`UA-XXXXXX-X`**.
 
 Paste the measurement ID (GA4) or tracking ID (previous versions of Google
 Analytics) into the following directive in your configuration file:
 
 ```yaml
 html:
-  google_analytics_id: UA-XXXXXXXXX-X
+  google_analytics_id: G-XXXXXXX
 ```
+
+:::{seealso}
+See [the Google Analytics documentation](https://analytics.google.com/analytics/web/) for more information.
+:::
 
 (html:link-check)=
 ## Check external links in your book
