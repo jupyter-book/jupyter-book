@@ -140,7 +140,7 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
         cache: "pip"
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       with:
         path: ~\AppData\Local\pip\Cache
         key: ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('setup.py') }}
@@ -169,7 +169,7 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
         cache: "pip"
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       with:
         path: ~\AppData\Local\pip\Cache
         key: ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('setup.py') }}
