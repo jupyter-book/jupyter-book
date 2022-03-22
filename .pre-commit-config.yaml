@@ -11,7 +11,7 @@ exclude: >
 
 repos:
 
-  - repo: git://github.com/pre-commit/pre-commit-hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.1.0
     hooks:
     - id: check-json
