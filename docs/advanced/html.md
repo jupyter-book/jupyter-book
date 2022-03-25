@@ -104,7 +104,8 @@ html:
 ```
 
 :::{seealso}
-See [the Google Analytics documentation](https://analytics.google.com/analytics/web/) for more information.
+- For more about Google Analytics, see [the Google Analytics documentation](https://analytics.google.com/analytics/web/) for more information.
+- To use **other analytics services**, like [Plausible analytics](https://plausible.io/), you should link the relevant libraries via the instructions in [](custom-assets).
 :::
 
 (html:link-check)=
