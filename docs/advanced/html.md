@@ -81,20 +81,32 @@ The admonitions should be styled according to your CSS rules when you build your
 If you have a Google account, you can use Google Analytics to collect some
 information on the traffic to your Jupyter Book. With this tool, you can find
 out how many people are using your book, where they come from and how they
-access it, whether they are using the desktop or the mobile version etc.
+access it, whether they are using the desktop or the mobile version, etc.
 
-To add Google Analytics to your Jupyter Book, navigate to
-[Google Analytics](https://analytics.google.com/analytics/web/), create a new
-Google Analytics account and add the url of your Jupyter Book to a new
-*property*. Once you have set everything up, your Google Analytics property
-will have a so-called Tracking-ID, that typically starts with the letters UA.
-All that you need to do is to copy this ID and paste it into your
-configuration file:
+To add Google Analytics to your Jupyter Book, navigate to [Google Analytics](https://analytics.google.com/analytics/web/), create a new Google Analytics account and create a new *property* for your Jupyter Book.
+The next steps depend on the version of Google Analytics you are using:
+
+- If using [Google Analytics 4](https://support.google.com/analytics/answer/10089681?hl=en) (GA4):
+  - You will also have to create a *stream* associated with your property.
+  - Choose to make a web stream and provide the URL of your Jupyter book.
+  - Copy the **Measurement ID** associated with that stream.
+  This is an alphanumeric code that looks like **`G-XXXXXXX`**.
+- If using older versions of Google Analytics, such as Google Analytics 3:
+  - You will provide your Jupyter Book's URL when you create your property.
+  - Copy the analytics "**tracking ID**" for your property. This is a numeric code that looks like **`UA-XXXXXX-X`**.
+
+Paste the measurement ID (GA4) or tracking ID (previous versions of Google
+Analytics) into the following directive in your configuration file:
 
 ```yaml
 html:
-  google_analytics_id: UA-XXXXXXXXX-X
+  google_analytics_id: G-XXXXXXX
 ```
+
+:::{seealso}
+- For more about Google Analytics, see [the Google Analytics documentation](https://analytics.google.com/analytics/web/) for more information.
+- To use **other analytics services**, like [Plausible analytics](https://plausible.io/), you should link the relevant libraries via the instructions in [](custom-assets).
+:::
 
 (html:link-check)=
 ## Check external links in your book
