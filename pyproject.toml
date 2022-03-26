@@ -32,7 +32,7 @@ dependencies = [
     "docutils>=0.15,<0.18",
     # TODO: Remove when we drop Sphinx 3 support. Jinja 3.1 breaks Sphinx 3 builds.
     # ref: https://github.com/executablebooks/jupyter-book/issues/1676
-    "jinja<3.1",
+    "Jinja2<3.1",
     "jsonschema<4",
     "linkify-it-py~=1.0.1",
     "myst-nb~=0.13.1",
