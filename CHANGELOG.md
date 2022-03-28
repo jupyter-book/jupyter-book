@@ -1,5 +1,16 @@
 # Change Log
 
+## v0.12.3 - 2022-03-28
+
+([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.12.2...5e12cb324afca1192f2354689d9d5755329e1c9d))
+
+This is a minor release, primarily to fix a bug where incorrect Jinja version pinning leads to broken builds. It also updates our build system to use `flit` and follow the `pyproject.toml` standard.
+
+Here are the main merged PRs:
+
+- PIN: Jinja < 3.1 [#1678](https://github.com/executablebooks/jupyter-book/pull/1678) ([@choldgraf](https://github.com/choldgraf))
+- 🔧 MAINTAIN: Move to flit for PEP 621 package builds [#1645](https://github.com/executablebooks/jupyter-book/pull/1645) ([@choldgraf](https://github.com/choldgraf))
+
 ## v0.12.2 - 2022-02-21
 
 This is a minor release that bumps the versions of several dependencies in Jupyter Book (see below for details).
