@@ -220,6 +220,23 @@ To control the maximum depth of the Table of Contents that you insert, use the `
   ...
 ```
 
+## Add a table of contents to a section
+
+The `tableofcontents` directive introduced above is for listing sub-pages underneath the current page. The sub-pages must already be listed under the `sections` in the `_toc.yml` file. If you want to add a table of contents to a page that does not have sub-pages listed in `_toc.yml`, you can use the `{contents}` directive as follows:
+
+````md
+```{contents}
+```
+````
+
+By default, the `{contents}` directive will include all heading levels in the table of contents, including heading level 1 (i.e., the title of the page). To remove the title from the table of contents, use the `:local:` argument. You can also control the depth of the table of contents with the `maxdepth:` argument. For example, the following will remove the title and only include all top-level sections (i.e., heading level 2) in the table of contents:
+
+````md
+```{contents}
+:local:
+:depth: 2
+```
+````
 
 ## Exclude pages from your build
 
