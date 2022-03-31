@@ -220,6 +220,70 @@ To control the maximum depth of the Table of Contents that you insert, use the `
   ...
 ```
 
+## Add a within-page Table of Contents
+
+A within-page Table of Contents shows the _sections that are present on the current page_ (as opposed to the sub-pages listed in `_toc.yml`, as inserted by the `{tableofcontents}` directive introduced above).
+
+To insert a within-page Table of Contents, use the `{contents}` directive.
+For example, to insert a list of all sections on the current page (including the page title):
+
+````md
+# Page title
+
+```{contents}
+```
+````
+
+By default, the `{contents}` directive will include all heading levels in the current page, including heading level 1 (i.e., the title of the page).
+
+### Add a section-specific list of contents
+
+To only list the section titles for sub-sections of a specific parent section, add the `:local:` argument to the `{contents}` directive.
+For example, to list only the contents of second-level sections on a page (and exclude the title):
+
+````md
+# Page title
+
+```{contents}
+:local:
+```
+
+## Section 1 (will be listed)
+
+### Sub-section 1 (will be listed)
+
+## Section 2 (will be listed)
+````
+
+To list only the contents of the `## Section 1` section:
+
+````md
+# Page title
+
+## Section 1 (will not be listed)
+
+```{contents}
+:local:
+```
+
+### Sub-section 1 (will be listed)
+
+## Section 1 (will not be listed)
+````
+
+### Limit the depth of the in-page contents
+
+You can control the depth of the within-page Table of Contents with the `:maxdepth:` argument.
+For example, the following usage lists only the top-level sections underneath the title, even if there are deeper sub-sections (i.e., `##` headings, but no `###` headings or deeper).
+
+````md
+# Page title
+
+```{contents}
+:local:
+:depth: 1
+```
+````
 
 ## Exclude pages from your build
 
