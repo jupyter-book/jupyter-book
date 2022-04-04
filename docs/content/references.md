@@ -87,7 +87,7 @@ Then, reference the figure by its `:name:` value. For example:
 | `` Here is [](my-fig-ref) ``               | Here is [](my-fig-ref)               |
 | `` Here is [My cool fig](my-fig-ref) `` | Here is [My cool fig](my-fig-ref)              |
 | `` Here is {numref}`my-fig-ref` ``            | Here is {numref}`my-fig-ref`            |
-| `` Here is {numref}`Custom Figure %s text ` `` | Here is {numref}`Custom Figure %s text <my-fig-ref>` |
+| `` Here is {numref}`Custom Figure %s text <my-fig-ref>` `` | Here is {numref}`Custom Figure %s text <my-fig-ref>` |
 
 (references:tables)=
 ## Reference tables
