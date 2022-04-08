@@ -30,14 +30,12 @@ requires-python = ">=3.7"
 dependencies = [
     "click>=7.1,<9",
     "docutils>=0.15,<0.18",
-    # TODO: Remove when we drop Sphinx 3 support. Jinja 3.1 breaks Sphinx 3 builds.
-    # ref: https://github.com/executablebooks/jupyter-book/issues/1676
-    "Jinja2<3.1",
+    "Jinja2",
     "jsonschema<4",
     "linkify-it-py~=1.0.1",
     "myst-nb~=0.13.1",
     "pyyaml",
-    "sphinx>=3,<5",
+    "sphinx>=4,<5",
     "sphinx-comments",
     "sphinx-copybutton",
     "sphinx-external-toc~=0.2.3",
