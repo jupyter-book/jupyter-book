@@ -15,20 +15,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Python 3.8
+    - name: Set up Python 3.9
       uses: actions/setup-python@v3
       with:
-        python-version: 3.8
+        python-version: 3.9
     - uses: pre-commit/action@v2.0.3
 
   pre-commit-hook:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Python 3.8
+    - name: Set up Python 3.9
       uses: actions/setup-python@v3
       with:
-        python-version: 3.8
+        python-version: 3.9
     - name: Install pre-commit
       run: pip install pre-commit
     # Run pre-commit with try-repo to test the local version of the pre-commit hook
@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.8]
+        python-version: [3.9]
 
     steps:
     - uses: actions/checkout@v3
@@ -88,7 +88,7 @@ jobs:
       if: github.repository == 'executablebooks/jupyter-book'
       uses: codecov/codecov-action@v2.1.0
       with:
-        name: ebp-jupyter-book-pytests-py3.8
+        name: ebp-jupyter-book-pytests-py3.9
         flags: pytests
         file: ./coverage.xml
         fail_ci_if_error: true
@@ -99,7 +99,7 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.7", "3.8", "3.9"]
-        sphinx: [">=3,<4", ">=4,<5"]
+        sphinx: [">=4,<5"]
 
     steps:
     - uses: actions/checkout@v3
@@ -197,10 +197,10 @@ jobs:
     steps:
       - name: Checkout source
         uses: actions/checkout@v3
-      - name: Set up Python 3.8
+      - name: Set up Python 3.9
         uses: actions/setup-python@v3
         with:
-          python-version: 3.8
+          python-version: 3.9
       - name: Install flit
         run: |
           pip install flit~=3.6
