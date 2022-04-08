@@ -60,6 +60,7 @@ html:
   comments:
     hypothesis              : false
     utterances              : false
+  announcement              : "" # A banner announcement at the top of the site.
 
 #######################################################################################
 # LaTeX-specific settings
