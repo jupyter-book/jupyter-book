@@ -6,8 +6,6 @@ on:
     tags:
       - 'v*'
   pull_request:
-  schedule:
-    - cron:  '0 0 * * *'
 
 jobs:
 
@@ -123,75 +121,10 @@ jobs:
     - name: Run pytest
       run: pytest --durations=10 -m 'not requires_tex'
 
-  windows:
-
-    name: Tests on Windows
-    runs-on: windows-latest
-    strategy:
-      matrix:
-        # Using the default python in the Windows 2022 github actions runner
-        # ref: https://github.com/actions/virtual-environments/issues/4856
-        python-version: [3.9]
-
-    steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
-      with:
-        python-version: ${{ matrix.python-version }}
-        cache: "pip"
-    - uses: actions/cache@v3
-      with:
-        path: ~\AppData\Local\pip\Cache
-        key: ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('setup.py') }}
-        restore-keys: |
-          ${{ runner.os }}-${{ matrix.python-version }}-pip-
-    - name: Install Python dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install wheel
-        pip install --upgrade-strategy eager -e .[testing]
-    - name: Run pytest
-      run: pytest --durations=10 -m 'not requires_chrome and not requires_tex' --jb-tempdir local_path
-
-  # Build the book on OSX to make sure that building the docs works there too
-  build-book-osx:
-    name: Build docs on OSX
-    runs-on: macos-latest
-    strategy:
-      matrix:
-        python-version: [3.9]
-
-    steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
-      with:
-        python-version: ${{ matrix.python-version }}
-        cache: "pip"
-    - uses: actions/cache@v3
-      with:
-        path: ~\AppData\Local\pip\Cache
-        key: ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('setup.py') }}
-        restore-keys: |
-          ${{ runner.os }}-${{ matrix.python-version }}-pip-
-    # We install libmagic to avoid a flaky Fonts error with matplotlib
-    # ref: https://stackoverflow.com/questions/62279920/python-macos-error-unable-to-revert-mtime-library-fonts
-    - name: Install Python dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install wheel
-        pip install --upgrade-strategy eager -e .[sphinx]
-        brew install libmagic
-
-    - name: Build the book
-      run: |
-        jb build -W -n --keep-going --builder html docs/
-
   publish:
 
     name: Publish to PyPi
-    needs: [pre-commit, tests, test-with-cov, build-book-osx]
+    needs: [pre-commit, test-with-cov, tests]
     if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
     runs-on: ubuntu-latest
     steps:
