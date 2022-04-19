@@ -165,7 +165,9 @@ def test_toc_latex_parts(cli: CliRunner, temp_with_override, file_regression):
     # reading the tex file
     path_output_file = path_output.joinpath("_build", "latex", "python.tex")
     file_content = TexSoup(path_output_file.read_text())
-    file_regression.check(str(file_content.document), extension=".tex", encoding="utf8")
+
+    # checking the table of contents which is a list with the first '\begin{itemize}'
+    file_regression.check(str(file_content.itemize), extension=".tex", encoding="utf8")
 
 
 @pytest.mark.requires_tex
@@ -192,4 +194,6 @@ def test_toc_latex_urllink(cli: CliRunner, temp_with_override, file_regression):
     # reading the tex file
     path_output_file = path_output.joinpath("_build", "latex", "python.tex")
     file_content = TexSoup(path_output_file.read_text())
-    file_regression.check(str(file_content.document), extension=".tex", encoding="utf8")
+
+    # checking the table of contents which is a list with the first '\begin{itemize}'
+    file_regression.check(str(file_content.itemize), extension=".tex", encoding="utf8")
