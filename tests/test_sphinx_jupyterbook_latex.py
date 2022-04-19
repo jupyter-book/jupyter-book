@@ -18,19 +18,13 @@ def test_toc(cli, build_resources, file_regression):
     path_output_file = path_parts_toc.joinpath("_build", "latex", "book.tex")
     file_content = TexSoup(path_output_file.read_text())
 
-    # checking if parts, chapters, sections are present
+    # checking if correct no. of parts, chapters, sections are present
     parts = list(file_content.find_all("part"))
     chapters = list(file_content.find_all("chapter"))
     sections = list(file_content.find_all("section"))
     assert len(parts) == 2
     assert len(chapters) == 3
     assert len(sections) == 4
-
-    # checking if tableofcontents are well formed
-    itemizes = file_content.find_all("itemize")
-    file_regression.check(
-        str(itemizes[0]) + "\n" + str(itemizes[1]), extension=".tex", encoding="utf-8"
-    )  # 0, 1 indices are the top toc
 
     # reading the xml file
     doctree_path = path_parts_toc.joinpath("_build", ".doctrees", "intro.doctree")
