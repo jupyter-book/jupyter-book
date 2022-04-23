@@ -31,7 +31,7 @@ def get_default_sphinx_config():
             "sphinx_comments",
             "sphinx_external_toc",
             "sphinx.ext.intersphinx",
-            "sphinx_panels",
+            "sphinx_design",
             "sphinx_book_theme",
         ],
         language=None,
