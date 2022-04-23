@@ -184,7 +184,11 @@ print("AB\x1b[43mCD\x1b[35mEF\x1b[1mGH\x1b[4mIJ\x1b[7m"
       "KL\x1b[49mMN\x1b[39mOP\x1b[22mQR\x1b[24mST\x1b[27mUV")
 ```
 
-This uses the built-in {py:class}`~myst-nb:myst_nb.ansi_lexer.AnsiColorLexer` [pygments lexer](https://pygments.org/).
+% NOTE: This used to be {py:class}`~myst-nb:myst_nb.ansi_lexer.AnsiColorLexer`%
+% but it started throwing Sphinx errors like:
+% /Users/runner/work/jupyter-book/jupyter-book/docs/content/code-outputs.md:187: WARNING: py:class reference target not found: myst-nb:myst_nb.ansi_lexer.AnsiColorLexer
+% so temporarily hard-coding the link until we figure out how to fix it.
+This uses the built-in [AnsiColorLexer](https://myst-nb.readthedocs.io/en/latest/api/index.html?highlight=colorlexer#myst_nb.core.lexers.AnsiColorLexer) [pygments lexer](https://pygments.org/).
 You can change the lexer used in the `_config.yml`, for example to turn off lexing:
 
 ```yaml
