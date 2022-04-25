@@ -97,6 +97,16 @@ Here's a warning! It was created with:
 ````
 `````
 
+You can also create **dropdown admonitions** by adding a `dropdown` class to an admonition.
+For example:
+
+:::{note}
+:class: dropdown
+Here's a dropdown note!
+See [](content:dropdowns) for more details.
+:::
+
+
 For a complete list of options, see [the `sphinx-book-theme` documentation](https://sphinx-book-theme.readthedocs.io/en/latest/reference/kitchen-sink/paragraph-markup.html#admonitions).
 
 ### Blocks of text with custom titles
@@ -215,7 +225,9 @@ parse:
 
 Then, you may define admonitions in your book like so:
 
-:::{tabbed} Markdown Input
+::::{tab-set}
+
+:::{tab-item} Markdown Input
 ```html
 <div class="admonition note" name="html-admonition" style="background: lightgreen; padding: 10px">
 <p class="title">This is the **title**</p>
@@ -224,12 +236,14 @@ This is the *content*
 ```
 :::
 
-:::{tabbed} Rendered Output
+:::{tab-item} Rendered Output
 <div class="admonition note" name="html-admonition" style="background: lightgreen; padding: 10px">
 <p class="title">This is the **title**</p>
 This is the *content*
 </div>
 :::
+
+::::
 
 See [](myst-parser:syntax/html-admonition) for more information about HTML admonitions.
 
@@ -254,211 +268,6 @@ Don't do this!
 `````
 
 To achieve a similar effect, write some **bold text** instead of using a markdown header.
-
-(content/panels)=
-## Panels
-
-Panels provide an easy way for you to organize chunks of content into flexible containers on your page.
-They are useful for creating card-like layouts, flexible columns, and grids.
-Panels are based off of [Bootstrap CSS](https://getbootstrap.com/docs/4.5/components/card/), and utilize Bootstrap's classes to control the look and feel of panels.
-
-Here is an example that creates two panels:
-
-`````
-````{panels}
-Panel header 1
-^^^
-Panel body 1
-+++
-Panel footer 1
----
-
-Panel header 2
-^^^
-Panel body 2
-+++
-Panel footer 2
-````
-`````
-
-- `---` separates each panel
-- `^^^` defines the panel header
-- `+++` defines the panel footer
-
-```{note}
-Panel headers and footers are optional.
-If you don't include `^^^` or `+++` in your panel, they will not show up.
-```
-
-You can embed all kinds of content inside of panels. For example, the following panels:
-
-````{panels}
-Content of the left panel.
-
-{badge}`example-badge,badge-primary`
-
----
-
-```{link-button} content/panels
-:text: Clickable right panel
-:type: ref
-:classes: stretched-link
-```
-````
-
-were created with:
-
-
-`````md
-````{panels}
-Content of the left panel.
-
-{badge}`example-badge,badge-primary`
-
----
-
-```{link-button} content/panels
-:text: Clickable right panel
-:type: ref
-:classes: stretched-link
-```
-
-````
-`````
-
-```{seealso}
-See the [Sphinx Panels card layout documentation](https://sphinx-panels.readthedocs.io/en/latest/#card-layout) for more information.
-```
-
-### Controlling the look and feel of panels
-
-You can control the look and feel of panels by passing attaching bootstrap classes to panel headers/body/footers.
-You do this by passing configuration options to your  `{panels}` directive.
-
-For example:
-
-
-```{seealso}
-See the [Panels card styling documentation](https://sphinx-panels.readthedocs.io/en/latest/#card-styling) for more information.
-```
-
-For example, you can control how many columns are in your panels by using [Bootstrap column classes](https://getbootstrap.com/docs/4.0/layout/grid/). These panels:
-
-````{panels}
-:column: col-4
-:card: border-2
-Header A
-^^^
-Body A
----
-Header B
-^^^
-Body B
----
-Header C
-^^^
-Body C
-````
-
-Were created by this code:
-
-`````
-````{panels}
-:column: col-4
-:card: border-2
-Header A
-^^^
-Body A
----
-Header B
-^^^
-Body B
----
-Header C
-^^^
-Body C
-````
-`````
-
-(content:dropdowns)=
-## Dropdowns
-
-Dropdowns allows you to hide content behind a title and a button.
-There are two kinds of dropdowns in Jupyter Book:
-
-### The `{dropdown}` directive
-
-Use the `{dropdown}` directive to create a clickable dropdown with a title.
-
-For example:
-
-`````{panels}
-source
-^^^
-````
-```{dropdown} Here's my dropdown
-And here's my dropdown content
-```
-````
----
-result
-^^^
-```{dropdown} Here's my dropdown
-And here's my dropdown content
-```
-`````
-
-(content/toggle-admonitions)=
-### Dropdown admonitions
-
-You can also hide the body of your admonition blocks so that users must click a button to reveal their content.
-This is helpful if you'd like to include some text that isn't immediately visible to the user.
-
-To turn an admonition into a dropdown, add the `dropdown` class to them. For example:
-
-`````{panels}
-source
-^^^
-````md
-```{note}
-:class: dropdown
-The note body will be hidden!
-```
-````
----
-result
-^^^
-```{note}
-:class: dropdown
-The note body will be hidden!
-```
-`````
-
-You can use this in conjunction with `{admonition}` directives to include your
-own titles and stylings. For example:
-
-`````{panels}
-source
-^^^
-````md
-:::{admonition} Click here!
-:class: tip, dropdown
-Here's what's inside!
-:::
-````
----
-result
-^^^
-:::{admonition} Click here!
-:class: tip, dropdown
-Here's what's inside!
-:::
-`````
-
-:::{important}
-Admonition dropdowns require JavaScript to be enabled on the browser which they are viewed.
-By contrast, the [dropdown directive](content/panels) below works purely *via* HTML+CSS.
-:::
 
 
 (content/definition-lists)=
@@ -769,134 +578,6 @@ To add your general index to your book's table of contents, take the following s
   - file: genindex
   ```
 
-(content:tabs)=
-## Tabbed content
-
-You can also use [`sphinx-panels`](sphinx-panels:panels/usage) to produce [**tabbed content**](sphinx-panels:components-tabbed).
-This allows you to display a variety of tabbed content blocks that users can click on.
-
-For example, here's a group of tabs showing off code in a few different languages:
-
-````{tabbed} c++
-
-```{code-block} c++
-
-int main(const int argc, const char **argv) {
-  return 0;
-}
-```
-````
-
-````{tabbed} python
-
-```{code-block} python
-
-def main():
-    return
-```
-````
-
-````{tabbed} java
-
-```{code-block} java
-
-class Main {
-    public static void main(String[] args) {
-    }
-}
-```
-````
-
-````{tabbed} julia
-
-```{code-block} julia
-
-function main()
-end
-```
-````
-
-````{tabbed} fortran
-
-```{code-block} fortran
-
-PROGRAM main
-END PROGRAM main
-```
-````
-
-You can use this functionality with the `{tabbed}` directive. You can provide a sequence of `{tabbed}` directives, and each one will be used to generate a new tab (unless the `:new-group:` option is added to a `{tabbed}` directive.)
-
-For example, the following code:
-
-````
-```{tabbed} Tab 1 title
-My first tab
-```
-
-```{tabbed} Tab 2 title
-My second tab with `some code`!
-```
-````
-
-produces
-
-```{tabbed} Tab 1 title
-My first tab
-```
-
-```{tabbed} Tab 2 title
-My second tab with `some code`!
-```
-
-**Insert code outputs in your tabs** with the [`glue` functionality](glue/gluing).
-
-For example, the following tabs use this functionality to glue images and tables generated somewhere else in these docs:
-
-````{tabbed} A histogram
-```{glue:figure} boot_fig
-:figwidth: 300px
-:name: "fig-boot-tab"
-
-This is a **caption**, with an embedded `{glue:text}` element: {glue:text}`boot_mean:.2f`!
-```
-````
-````{tabbed} A table
-```{glue:figure} df_tbl
-:figwidth: 300px
-:name: "tbl:df-tab"
-
-A caption for a pandas table.
-```
-````
-``````{tabbed} Code to generate this
-`````
-````{tabbed} A histogram
-```{glue:figure} boot_fig
-:figwidth: 300px
-:name: "fig-boot-tab"
-
-This is a **caption**, with an embedded `{glue:text}` element: {glue:text}`boot_mean:.2f`!
-```
-````
-
-````{tabbed} A table
-```{glue:figure} df_tbl
-:figwidth: 300px
-:name: "tbl:df-tab"
-
-A caption for a pandas table.
-```
-````
-
-````{tabbed} Code to generate this
-`{ code block here }`
-````
-`````
-``````
-
-See the [`sphinx-panels` tabbed](sphinx-panels:components-tabbed) documentation for more information on how to use this.
-
 (content:substitutions)=
 ## Substitutions and variables in markdown
 
@@ -1043,7 +724,7 @@ You can add citations and cross-references to your book. See
 You can thoroughly customise the look of figures in your book. See {doc}`figures` for
 more information.
 
-## Page layout and sidebar content
+## Sidebar content
 
 You can also use MyST to control various aspects of the page layout. For more
 information on this, see {doc}`layout`.
@@ -1070,25 +751,3 @@ at the bottom of this page.
 [^mynote2]: And the text of my second note.
             Note that
             [you can include Markdown footnote definitions](https://executablebooks.org).
-
-(custom-div-blocks)=
-## Custom `<div>` blocks
-
-You can add custom `div` blocks along with whatever classes you'd like using
-the `{div}` directive. The `{div}` directive will wrap everything inside in a single `<div>` with the classes you provide. For example:
-
-````md
-```{div} my-class
-**Some content.**
-```
-````
-
-Will result in the following HTML when your book is built:
-
-```html
-<div class="my-class">
-  <strong>Some content.</strong>
-</div>
-```
-
-This can be useful if you'd like to style your book with [custom CSS or JavaScript](custom-assets).

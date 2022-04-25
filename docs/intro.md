@@ -3,7 +3,6 @@
 ---
 
 ::::{grid} 2
-
 :reverse:
 
 :::{grid-item}
@@ -14,7 +13,7 @@
 :::{grid-item}
 :columns: 9
 :class: sd-fs-3
-Jupyter Book is an open source project for building beautiful, publication-quality books and documents from computational material.
+Build beautiful, publication-quality books and documents from computational content.
 :::
 
 ::::
