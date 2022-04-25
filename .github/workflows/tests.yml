@@ -12,7 +12,7 @@ on:
 env:
   # Force colors for logs
   PY_COLORS: 1
-  COLORTERM: True
+  FORCE_COLOR: True
 
 jobs:
 
