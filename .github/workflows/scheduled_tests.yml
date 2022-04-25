@@ -37,7 +37,7 @@ jobs:
     - name: Run pytest
       run: pytest --durations=10 -m 'not requires_tex'
 
-  windows:
+  tests-windows:
     name: Tests on Windows
     runs-on: windows-latest
     strategy:
