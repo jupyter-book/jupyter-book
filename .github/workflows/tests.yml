@@ -9,6 +9,11 @@ on:
   schedule:
     - cron:  '0 0 * * *'
 
+env:
+  # Force colors for logs
+  PY_COLORS: 1
+  COLORTERM: True
+
 jobs:
 
   pre-commit:
