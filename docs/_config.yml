@@ -99,6 +99,7 @@ sphinx:
       sphinx-panels:
         - https://sphinx-panels.readthedocs.io/en/sphinx-book-theme/
         - null
+    execution_show_tb: True
     rediraffe_branch: 'master'
     rediraffe_redirects:
       content-types/index.md: file-types/index.md
