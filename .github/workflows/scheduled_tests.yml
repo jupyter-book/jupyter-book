@@ -2,6 +2,7 @@ name: scheduled-tests
 
 on:
   schedule:
+    # Run at the beginning of each day
     - cron:  '0 0 * * *'
 
 jobs:
