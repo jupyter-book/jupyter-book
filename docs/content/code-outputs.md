@@ -184,7 +184,7 @@ print("AB\x1b[43mCD\x1b[35mEF\x1b[1mGH\x1b[4mIJ\x1b[7m"
       "KL\x1b[49mMN\x1b[39mOP\x1b[22mQR\x1b[24mST\x1b[27mUV")
 ```
 
-This uses the built-in {py:class}`~myst-nb:myst_nb.ansi_lexer.AnsiColorLexer` [pygments lexer](https://pygments.org/).
+This uses the built-in {py:class}`~myst-nb:myst_nb.core.lexers.AnsiColorLexer` [pygments lexer](https://pygments.org/).
 You can change the lexer used in the `_config.yml`, for example to turn off lexing:
 
 ```yaml
