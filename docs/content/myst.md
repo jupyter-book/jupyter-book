@@ -1,3 +1,4 @@
+(content:myst)=
 # MyST Markdown overview
 
 In addition to [Jupyter Notebook Markdown](../file-types/notebooks.ipynb),
