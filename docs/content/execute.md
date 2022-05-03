@@ -291,7 +291,7 @@ These outputs may appear in a mixed order and you may want them to be grouped an
 to display the correct `logical` ordering.
 
 This can be achieved using the [nb_merge_streams feature contained in
-`myst_nb`](myst-nb:use/format/group-stderr-stdout).
+`myst_nb`](myst-nb:render/output/stdout-stderr).
 
 You can enable this in your `_config.yml`:
 
@@ -321,3 +321,19 @@ produces:
 
 ```{nb-exec-table}
 ```
+
+(execute:tracebacks)=
+## Execution tracebacks in the terminal
+
+It is possible to print tracebacks for execution errors directly into the terminal, instead of saving them to a log file.
+This is particularly useful if you're executing your book as part of an online build process (for example, via [GitHub Pages](../publish/gh-pages.md), [ReadTheDocs](../publish/readthedocs.md), or [Netlify](../publish/netlify.md)).
+
+Enable activate execution tracebacks, in your `_config.yml`:
+
+```yaml
+sphinx:
+  config:
+    execution_show_tb: True
+```
+
+See [the MyST-NB documentation](https://myst-nb.readthedocs.io) for more information.
