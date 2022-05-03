@@ -2,6 +2,7 @@ name: scheduled-tests
 
 on:
   schedule:
+    # Run at the beginning of each day
     - cron:  '0 0 * * *'
 
 jobs:
@@ -37,7 +38,7 @@ jobs:
       run: pytest --durations=10 -m 'not requires_chrome and not requires_tex' --jb-tempdir local_path
 
 
-  osx:
+  tests-osx:
     name: Run Tests on OS X
     runs-on: macos-latest
     strategy:
