@@ -83,7 +83,6 @@ final:
   nb_output_stderr: show
   new: value
   numfig: true
-  panels_add_bootstrap_css: false
   pygments_style: sphinx
   suppress_warnings:
   - myst.domains

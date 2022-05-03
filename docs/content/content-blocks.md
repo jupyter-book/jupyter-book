@@ -21,6 +21,14 @@ A common use of directives and roles is to designate "special blocks" of your co
 This allows you to include more complex information such as warnings and notes, citations, and figures.
 This section covers a few common ones.
 
+% REMOVE when version is >= 0.14
+:::{admonition} Upgrading from `sphinx-panels`
+Previous versions of Jupyter Book used `sphinx-panels` to define major UI elements.
+These now use [Sphinx Design instead](https://sphinx-design.readthedocs.io).
+Documentation for these UI elements is now in [](components.md).
+See [the migration guide](https://sphinx-design.readthedocs.io/en/latest/get_started.html#migrating-from-sphinx-panels) and [this migration discussion issue](https://github.com/executablebooks/sphinx-design/issues/51) for more information.
+:::
+
 (content-blocks:myst-extensions)=
 ## MyST syntax extensions
 
@@ -62,19 +70,13 @@ For a list of syntax extensions in MyST, see [the MyST documentation](https://my
 Let's say you wish to highlight a particular block of text that exists slightly apart from the narrative of your page.
 You can use the **`{note}`** directive for this.
 
-For example, the following text:
+For example:
 
-````md
+````{example}
 ```{note}
 Here is a note!
 ```
 ````
-
-Results in the following output:
-
-```{note}
-Here is a note!
-```
 
 ````{margin} A note on nesting
 You can nest admonitions (and other content blocks) inside one another. For example:
@@ -103,42 +105,31 @@ For example:
 :::{note}
 :class: dropdown
 Here's a dropdown note!
-See [](content:dropdowns) for more details.
+See [](components:dropdowns) for more details.
 :::
-
 
 For a complete list of options, see [the `sphinx-book-theme` documentation](https://sphinx-book-theme.readthedocs.io/en/latest/reference/kitchen-sink/paragraph-markup.html#admonitions).
 
 ### Blocks of text with custom titles
 
 You can also choose the title of your message box by using the
-**`{admonition}`** directive. For example, the following text:
+**`{admonition}`** directive. For example:
 
-````md
+````{example}
 ```{admonition} Here's your admonition
 Here's the admonition content
 ```
 ````
-
-Results in the following output:
-
-```{admonition} Here's your admonition
-Here's the admonition content
-```
 
 If you'd like to **style these blocks**, then use the `:class:` option. For
 example:
 
+``````{example}
 `````{admonition} This admonition was styled...
 :class: tip
-Using the following pattern:
-````
-```{admonition} My title
-:class: tip
-My content
-```
-````
+With a tip class!
 `````
+``````
 
 (admonitions:colons)=
 ### Markdown-friendly directives with `:::`
@@ -150,31 +141,21 @@ Many directives contain markdown inside, and if you'd like this markdown to rend
 
 For example:
 
-```md
+````{example}
 :::{note}
 This text is **standard** _Markdown_
 :::
-```
-
-:::{note}
-This text is **standard** _Markdown_
-:::
+````
 
 Similar to normal directives, these admonitions can also be nested:
 
-```md
+`````{example}
 ::::{important}
 :::{note}
 This text is **standard** _Markdown_
 :::
 ::::
-```
-
-::::{important}
-:::{note}
-This text is **standard** _Markdown_
-:::
-::::
+`````
 
 :::{note}
 You can use this syntax for any kind of directive, though it is generally recommended to use only with directives that contain pure markdown in their content.
@@ -187,21 +168,14 @@ If you'd like to insert the outputs of running code *inside* admonition
 blocks, we recommend using [`glue` functionality](content:code-outputs:glue).
 For example, we'll insert one of the outputs that was glued into the book from the [code outputs page](./code-outputs.md).
 
-The code below:
+For example:
 
-````md
+````{example}
 ```{note}
 Here's my figure:
 {glue:figure}`sorted_means_fig`
 ```
 ````
-
-generates:
-
-```{note}
-Here's my figure:
-{glue:}`sorted_means_fig`
-```
 
 See [](content:code-outputs:glue) for more information on how to use `glue` to insert your outputs directly into your content.
 
@@ -225,25 +199,14 @@ parse:
 
 Then, you may define admonitions in your book like so:
 
-::::{tab-set}
-
-:::{tab-item} Markdown Input
+````{example}
 ```html
 <div class="admonition note" name="html-admonition" style="background: lightgreen; padding: 10px">
 <p class="title">This is the **title**</p>
 This is the *content*
 </div>
 ```
-:::
-
-:::{tab-item} Rendered Output
-<div class="admonition note" name="html-admonition" style="background: lightgreen; padding: 10px">
-<p class="title">This is the **title**</p>
-This is the *content*
-</div>
-:::
-
-::::
+````
 
 See [](myst-parser:syntax/html-admonition) for more information about HTML admonitions.
 
@@ -269,7 +232,6 @@ Don't do this!
 
 To achieve a similar effect, write some **bold text** instead of using a markdown header.
 
-
 (content/definition-lists)=
 
 ## Definition lists
@@ -288,19 +250,7 @@ Definition lists utilise the [markdown-it-py deflist plugin](https://markdown-it
 
 Here's an example:
 
-````{panels}
-source
-^^^
-```md
-Term 1
-: Definition
-
-Term 2
-: Definition
-```
----
-result
-^^^
+````{example}
 Term 1
 : Definition
 
@@ -317,6 +267,7 @@ From the [Pandoc documentation](https://pandoc.org/MANUAL.html#definition-lists)
 
 Here is a more complex example, demonstrating some of these features:
 
+```{example}
 Term *with Markdown*
 : Definition [with reference](content/definition-lists)
 
@@ -333,27 +284,6 @@ Term 3
 : A final definition, that can even include images:
 
   <img src="../images/fun-fish.png" alt="fishy" width="200px">
-
-This was created with the following Markdown:
-
-```md
-Term *with Markdown*
-: Definition [with reference](ontent/definition-lists)
-
-  A second paragraph
-
-Term 2
-  ~ Definition 2a
-  ~ Definition 2b
-
-Term 3
-:     A code block
-
-: > A quote
-
-: A final definition, that can even include images:
-
-  <img src="../images/fun-fish.png" alt="fishy" width="200px">
 ```
 
 ## Quotations and epigraphs
@@ -365,17 +295,7 @@ Quotations and epigraphs provide ways to highlight information given by others.
 **Regular quotations** are controlled with standard Markdown syntax, i.e., by
 inserting a caret (`>`) symbol in front of one or more lines of text. For example:
 
-````{panels}
-source
-^^^
-```md
-> Here is a cool quotation.
->
-> From me, Jo the Jovyan
-```
----
-result
-^^^
+````{example}
 > Here is a cool quotation.
 >
 > From me, Jo the Jovyan
@@ -387,19 +307,7 @@ result
 keep these relatively short so that they don't take up too much vertical space. Here's
 how an epigraph looks:
 
-`````{panels}
-source
-^^^
-````md
-```{epigraph}
-Here is a cool quotation.
-
-From me, Jo the Jovyan
-```
-````
----
-result
-^^^
+`````{example}
 ```{epigraph}
 Here is a cool quotation.
 
@@ -409,19 +317,7 @@ From me, Jo the Jovyan
 
 You can provide an **attribution** to an epigraph by adding `--` to the final line, followed by the quote author. For example:
 
-`````{panels}
-source
-^^^
-````md
-```{epigraph}
-Here is a cool quotation.
-
--- Jo the Jovyan
-```
-````
----
-result
-^^^
+`````{example}
 ```{epigraph}
 Here is a cool quotation.
 
@@ -436,7 +332,7 @@ Glossaries allow you to define terms in a glossary so you can then link back to 
 throughout your content. You can create a glossary with the following
 syntax:
 
-````md
+````{example}
 ```{glossary}
 Term one
   An indented explanation of term 1
@@ -445,16 +341,6 @@ A second term
   An indented explanation of term2
 ```
 ````
-
-which creates:
-
-```{glossary}
-Term one
-  An indented explanation of term 1
-
-A second term
-  An indented explanation of term2
-```
 
 To reference terms in your glossary, use the `{term}` role. For example,
 `` {term}`Term one` `` becomes {term}`Term one` and `` {term}`A second term` ``
@@ -496,15 +382,12 @@ It has the following syntax:
 ````
 
 This will not insert anything into your final page's content, but will add a link to this section in your general index.
-For example, we've added the following index directive below:
+For example"
 
-````
+````{example}
 ```{index} index directive
 ```
 ````
-
-```{index} index directive
-```
 
 You can [find this term in the index](genindex).
 
@@ -513,15 +396,11 @@ You can [find this term in the index](genindex).
 You can customize the name for an index entry by setting the `:name:` parameter.
 For example:
 
-````md
+````{example}
 ```{index} Index names
 :name: index-names
 ```
 ````
-
-```{index} Index names
-:name: index-names
-```
 
 You can then reference this index in your book.
 For example:
@@ -603,9 +482,7 @@ substitutions:
 
 You can use these substitutions inline or as blocks, and you can even nest substitutions in other substitutions (but circular references are prohibited):
 
-:::{tabbed} Markdown Input
-
-```md
+```{example}
 Inline: {{ key1 }}
 
 Block level:
@@ -613,32 +490,14 @@ Block level:
 {{ key2 }}
 
 ```
-:::
-
-:::{tabbed} Rendered Output
-Inline: {{ key1 }}
-
-Block level:
-
-{{ key2 }}
-:::
 
 You can also insert substitutions inside of other markdown structures like tables:
 
-:::{tabbed} Markdown Input
-
-```md
+````{example}
 | col1     | col2      |
 | -------- | --------- |
 | {{key2}} | {{fishy}} |
-```
-:::
-
-:::{tabbed} Rendered Output
-| col1     | col2      |
-| -------- | --------- |
-| {{key2}} | {{fishy}} |
-:::
+````
 
 :::{seealso}
 For more information about Substitutions, see [](myst-parser:syntax/substitutions).
@@ -660,59 +519,35 @@ These substitutions will be available throughout your book. For example, the glo
 
 MyST substitutions use {{ jinja }} in order to substite in key / values. This means that you can apply any standard Jinja formatting to your substitutions. For example, you can **replace text in your substitutions** like so:
 
-:::{tabbed} Markdown Input
-
-```md
+```{example}
 The original key1: {{ key1 }}
 
 {{ key1 | replace("a substitution", "the best substitution")}}
 ```
-:::
-
-:::{tabbed} Rendered Output
-The original key1: {{ key1 }}
-
-{{ key1 | replace("a **substitution**", "**the best substitution**")}}
-:::
 
 ### Using substitutions in links
 
 If you'd like to use substitutions to insert and modify **links** in your book, here are two options to explore:
 
 1. **Define the entire markdown link as a variable**. For example:
-
-   :::{tabbed} Markdown Input
-
    ```yaml
    substitutions:
      repo_url: [my repo url](https://github.com/executablebooks/jupyter-book)
    ```
-   ```md
+
+   ```{example}
    Here's my link: {{ repo_url }}
    ```
-   :::
-
-   :::{tabbed} Rendered Output
-   Here's my link: {{ repo_url }}
-   :::
 2. Use Jinja features to insert the variable.
    Because substitutions use {{ jinja }}, you also have access to **Python formatting** operations in your substitution.
    For example:
-
-   :::{tabbed} Markdown Input
-
    ```yaml
    substitutions:
      repo_name: jupyter-book
    ```
-   ```md
+   ```{example}
    Here's my link: {{ '[my repo: `{repo}`](https://github.com/executablebooks/{repo})'.format(repo=repo_name) }}
    ```
-   :::
-
-   :::{tabbed} Rendered Output
-   Here's my link: {{ '[my repo: `{repo}`](https://github.com/executablebooks/{repo})'.format(repo=repo_name) }}
-   :::
 
 ## Citations and cross-references
 

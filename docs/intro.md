@@ -6,14 +6,27 @@
 :reverse:
 
 :::{grid-item}
-:columns: 3
+:columns: 4
+:class: sd-m-auto
+
 <img src="images/logo-square.svg" />
+
 :::
 
 :::{grid-item}
-:columns: 9
+:columns: 8
 :class: sd-fs-3
 Build beautiful, publication-quality books and documents from computational content.
+
+```{button-ref} start/your-first-book
+:ref-type: doc
+:color: primary
+:class: sd-rounded-pill
+
+
+Get started
+```
+
 :::
 
 ::::
@@ -23,6 +36,8 @@ Build beautiful, publication-quality books and documents from computational cont
 [![Jupyter Book Badge](images/badge.svg)](https://jupyterbook.org)
 ```
 
+---
+
 Jupyter Book is an open source project for building beautiful,
 publication-quality books and documents from computational material.
 
@@ -30,27 +45,54 @@ Here are some of the features of Jupyter Book:
 
 ::::{grid} 1 1 2 2
 :class-container: text-center
+:gutter: 3
 
-:::{grid-item-card} **TEST** [Publication-quality content](file-types:markdown) ✍
-Write in either Jupyter Markdown, MyST Markdown for more [publishing features](content/myst), [reStructuredText](file-types:rst), [Jupyter Notebooks](file-types:notebooks), or [any Jupytext format](file-types:custom).
-Includes support for rich syntax such as [citations and cross-references](content/citations), [math and equations](content/math), and [figures](content/figures).
+:::{grid-item-card}
+:link: content/index.md
+:class-header: bg-light
+
+Publication-quality content ✍
+^^^
+
+Write in MyST Markdown.
+Directives and Roles for flexible markdown content.
 :::
 
-:::{grid-item-card} **[Execute, cache, and insert computational content](content/execute)** 🚀
-Execute notebook cells, then [format and insert the latest outputs](content:code-outputs) into your book.
-[Cache outputs to save time in re-building later](execute/cache).
-Even [save notebook outputs and insert them into other pages](content:code-outputs:glue).
+:::{grid-item-card}
+:link: content/executable/index.md
+:class-header: bg-light
+
+Computational content 🚀
+^^^
+
+Execute notebook cells and format outputs.
+Save and insert outputs across pages.
 
 :::
 
-:::{grid-item-card} **[Add interactivity to content and outputs](interactive/launchbuttons)** ✨
+:::{grid-item-card}
+:link: content/components.md
+:class-header: bg-light
 
-Create interactive content blocks such as [](content:tabs), [](content:dropdowns). [Toggle cell visibility](interactive/hiding) and include [interactive cell outputs](interactive/interactive) with Jupyter notebooks. [Launch interactive sessions](interactive/launchbuttons) with Binder or Colab, [make your code executable with Thebe](launch:thebe), or [connect with commenting services like Hypothes.is](interactive:comments).
+Flexible UI components ✨
+^^^
+
+Create interactive and reactive components and outputs.
+Embed web-native services like comments.
+
 :::
 
-:::{grid-item-card} **[Build books and articles in many formats](start/build)** 🎁
-Build [multi-page books](structure:book) or [single articles](structure:article), and generate many kinds of outputs from them, such as [HTML websites](start/build) or [PDF outputs](advanced/pdf). Jupyter Book uses [the Sphinx Documentation engine](https://www.sphinx-doc.org) which supports [a variety of output types](https://www.sphinx-doc.org/en/master/usage/builders/index.html).
+:::{grid-item-card}
+:link: basics/build/index.md
+:class-header: bg-light
+
+Build and publish content 🎁
+^^^
+
+Build multi- or single-page outputs in many formats.
+Publish your outputs online.
 :::
+
 ::::
 
 This documentation is organized into a few major sections.
@@ -80,43 +122,6 @@ Explore the chapters to the left to learn more!
   We welcome anyone to join us in improving Jupyter Book and helping one another learn and create their books.
   To join, check out our [contributing guide](contribute/intro.md).
 :::
-
-# Find the right documentation resources
-
-Here are a few pointers to help you get started.
-
-::::{grid} 1 1 3 3
-:class-container: full-width
-
-:::{grid-item-card} **Get started**
-:class-item: bg-jb-one
-**[](start/your-first-book.md)**: a step-by-step tutorial to get started.
-
-**[](create-a-template-book)**: get started with a simple template book.
-
-:::
-
-:::{grid-item-card} **Learn more**
-
-:class-item: bg-jb-two
-
-**[](structure:index)**: Learn how to structure and organize your content.
-
-**[](content/index.md)**: Learn how to write rich narrative content.
-
-**[](content/executable/index.md)**: Write computational content.
-
-:::
-
-:::{grid-item-card} **Be inspired**
-:class-item: bg-jb-three
-
-[**The Jupyter Book Gallery**](http://gallery.jupyterbook.org): A gallery of community books that have been created with Jupyter Book.
-
-[**The QuantEcon Python Lectures**](https://python.quantecon.org/intro.html): A full mathematical textbook built with a custom Jupyter Book theme.
-
-:::
-::::
 
 # Acknowledgements
 

@@ -8,6 +8,13 @@ This is inspired heavily by [Bootstrap 5](https://getbootstrap.com/docs/5.0/gett
 See the [sphinx-design documentation](https://sphinx-design.readthedocs.io/en/latest/index.html) for more details.
 :::
 
+% REMOVE when version is >= 0.14
+:::{admonition} Upgrading from `sphinx-panels`
+Previous versions of Jupyter Book used `sphinx-panels` to define major UI elements.
+These now use [Sphinx Design instead](https://sphinx-design.readthedocs.io).
+Documentation for these UI elements is now in [](components.md).
+See [the migration guide](https://sphinx-design.readthedocs.io/en/latest/get_started.html#migrating-from-sphinx-panels) and [this migration discussion issue](https://github.com/executablebooks/sphinx-design/issues/51) for more information.
+:::
 
 ## Grids
 
@@ -16,103 +23,109 @@ You can also control things like the width of columns, the "gutters" between col
 
 To generate a grid, use the ` ```{grid} ` wrapper directive along with ` ```{grid-item} ` directives inside.
 
-For example, to generate a 4-column grid of content:
+For example:
 
+```{example}
+
+::::{grid}
+:gutter: 2
+
+:::{grid-item}
+:outline:
+A
+:::
+:::{grid-item}
+:outline:
+B
+:::
+:::{grid-item}
+:outline:
+C
+:::
+:::{grid-item}
+:outline:
+D
+:::
+
+::::
 ```
+
+### Control columns of a grid
+
+You can control how many columns are in each grid item with the `:columns:` option.
+Grids are split into 12 units of length, and this can be used to split up items as you wish. For example:
+
+````{example}
+
 ::::{grid}
 
 :::{grid-item}
+:outline:
+:columns: 3
 A
 :::
 :::{grid-item}
+:outline:
+:columns: 9
 B
 :::
 :::{grid-item}
+:outline:
+:columns: 6
 C
 :::
 :::{grid-item}
+:outline:
+:columns: 6
 D
 :::
 
+::::
+
+````
+
+### Create grids of cards
+
+There is a short-hand for adding grids made up of cards, by using the `{grid-item-card}` directive. For example:
+
+```{example}
+
+::::{grid}
+:gutter: 3
+
+:::{grid-item-card} One!
+Here's the first card.
+:::
+
+:::{grid-item-card} Two!
+Here's the second card.
+:::
+
+:::{grid-item-card} Three!
+Here's the third card.
+:::
 ::::
 ```
 
-Results in:
+See [](content/cards) for more information about styling cards.
 
-::::{grid} 1 2 3 4
+### Learn more about grids
 
-:::{grid-item}
-A
-:::
-:::{grid-item}
-B
-:::
-:::{grid-item}
-C
-:::
-:::{grid-item}
-D
-:::
-
-::::
-
-
-
-For example, you can control how many columns are in your panels by using [Bootstrap column classes](https://getbootstrap.com/docs/4.0/layout/grid/). These panels:
-
-````{panels}
-:column: col-4
-:card: border-2
-Header A
-^^^
-Body A
----
-Header B
-^^^
-Body B
----
-Header C
-^^^
-Body C
-````
-
-Were created by this code:
-
-`````
-````{panels}
-:column: col-4
-:card: border-2
-Header A
-^^^
-Body A
----
-Header B
-^^^
-Body B
----
-Header C
-^^^
-Body C
-````
-`````
-
-### Customize the look of grids
-
-There are many ways to customize
-
-% TODO: Add grids documentation here
+For more information about grids, see the {doc}`Sphinx Design documentation <sd:index>`.
 
 (content/cards)=
 ## Cards
 
 Cards provide an easy way for you to organize chunks of content into flexible containers on your page.
 They are useful for creating flexible columns and grids.
-Cards use the [sphinx-design extension](https://sphinx-design.readthedocs.io) and are based off of [Bootstrap CSS](https://getbootstrap.com/docs/4.5/components/card/).
+Cards use the [sphinx-design extension](https://sphinx-design.readthedocs.io) and are based off of [Bootstrap CSS](https://getbootstrap.com/docs/5.0/components/card/).
 
 Here is an example that creates two cards:
 
-`````
+:::{example}
+
 ````{card}
+
 Card header 1
 ^^^
 Card body 1
@@ -121,13 +134,17 @@ Card footer 1
 ````
 
 ````{card}
+
 Card header 2
 ^^^
 Card body 2
 +++
 Card footer 2
 ````
-`````
+
+:::
+
+In the example above:
 
 - `^^^` defines the card header
 - `+++` defines the card footer
@@ -137,33 +154,13 @@ Card headers and footers are optional.
 If you don't include `^^^` or `+++` in your card, they will not show up.
 ```
 
-You can embed all kinds of content inside of cards. For example, the following cards:
+You can embed all kinds of content inside of cards. For example:
 
+`````{example}
 ````{card}
 Content of the left card.
 
 {bdg-primary}`example-badge`
-
-````
-
-````{card}
-
-```{button-ref} content/cards
-:class: stretched-link
-
-Clickable right card
-```
-
-````
-
-were created with:
-
-
-`````md
-````{card}
-Content of the left card.
-
-{bdg}`example-badge`
 
 ````
 
@@ -182,20 +179,12 @@ Clickable right card
 See the [Sphinx Design card layout documentation](https://sphinx-design.readthedocs.io/en/stable/cards.html) for more information.
 ```
 
-### Controlling the look and feel of cards
+### Learn more about cards
 
-You can control the look and feel of panels by passing attaching bootstrap classes to panel headers/body/footers.
-You do this by passing configuration options to your  `{panels}` directive.
-
-For example:
+See the [Sphinx Design card styling documentation](https://sphinx-design.readthedocs.io/en/sbt-theme/cards.html) for more information.
 
 
-```{seealso}
-See the [Panels card styling documentation](https://sphinx-panels.readthedocs.io/en/latest/#card-styling) for more information.
-```
-
-
-(content:dropdowns)=
+(components:dropdowns)=
 ## Dropdowns
 
 Dropdowns allow you to hide content behind a title and a button.
@@ -207,39 +196,11 @@ Use the `{dropdown}` directive to create a clickable dropdown with a title.
 
 For example:
 
-::::{grid} 1
-:::{grid-item-card}
-Source
-^^^
-````
-```{dropdown} Here's my dropdown
-And here's my dropdown content
-```
-:::
-:::{grid-item-card}
-Result
-^^^
-```{dropdown} Here's my dropdown
-And here's my dropdown content
-```
-:::
-::::
-
-`````{panels}
-source
-^^^
-````
+````{example}
 ```{dropdown} Here's my dropdown
 And here's my dropdown content
 ```
 ````
----
-result
-^^^
-```{dropdown} Here's my dropdown
-And here's my dropdown content
-```
-`````
 
 (content/toggle-admonitions)=
 ### Dropdown admonitions
@@ -249,18 +210,7 @@ This is helpful if you'd like to include some text that isn't immediately visibl
 
 To turn an admonition into a dropdown, add the `dropdown` class to them. For example:
 
-`````{panels}
-source
-^^^
-````md
-```{note}
-:class: dropdown
-The note body will be hidden!
-```
-````
----
-result
-^^^
+`````{example}
 ```{note}
 :class: dropdown
 The note body will be hidden!
@@ -270,23 +220,15 @@ The note body will be hidden!
 You can use this in conjunction with `{admonition}` directives to include your
 own titles and stylings. For example:
 
-`````{panels}
-source
-^^^
-````md
+
+````{example}
+
 :::{admonition} Click here!
 :class: tip, dropdown
 Here's what's inside!
 :::
+
 ````
----
-result
-^^^
-:::{admonition} Click here!
-:class: tip, dropdown
-Here's what's inside!
-:::
-`````
 
 :::{important}
 Admonition dropdowns require JavaScript to be enabled on the browser which they are viewed.
@@ -294,15 +236,33 @@ By contrast, the [dropdown directive](content/cards) below works purely *via* HT
 :::
 
 
-(content:tabs)=
-## Tabbed content
+(components:tabs)=
+## Tab content
 
-You can also use [`sphinx-panels`](sphinx-panels:panels/usage) to produce [**tabbed content**](sphinx-panels:components-tabbed).
+You can also produce [**tabbed content**](sd:sd-tabs).
 This allows you to display a variety of tabbed content blocks that users can click on.
 
-For example, here's a group of tabs showing off code in a few different languages:
+To do so, create a `{tab-set}` wrapper directive, and put `{tab-item}` directives inside.
 
-````{tabbed} c++
+For example:
+
+`````{example}
+````{tab-set}
+```{tab-item} Tab 1 title
+My first tab
+```
+
+```{tab-item} Tab 2 title
+My second tab with `some code`!
+```
+````
+`````
+
+This can be used to show off many different view of the same content, such as providing multiple language examples.
+For example:
+
+`````{tab-set}
+````{tab-item} c++
 
 ```{code-block} c++
 
@@ -312,7 +272,7 @@ int main(const int argc, const char **argv) {
 ```
 ````
 
-````{tabbed} python
+````{tab-item} python
 
 ```{code-block} python
 
@@ -321,7 +281,7 @@ def main():
 ```
 ````
 
-````{tabbed} java
+````{tab-item} java
 
 ```{code-block} java
 
@@ -332,7 +292,7 @@ class Main {
 ```
 ````
 
-````{tabbed} julia
+````{tab-item} julia
 
 ```{code-block} julia
 
@@ -341,7 +301,7 @@ end
 ```
 ````
 
-````{tabbed} fortran
+````{tab-item} fortran
 
 ```{code-block} fortran
 
@@ -349,79 +309,11 @@ PROGRAM main
 END PROGRAM main
 ```
 ````
-
-You can use this functionality with the `{tabbed}` directive. You can provide a sequence of `{tabbed}` directives, and each one will be used to generate a new tab (unless the `:new-group:` option is added to a `{tabbed}` directive.)
-
-For example, the following code:
-
-````
-```{tabbed} Tab 1 title
-My first tab
-```
-
-```{tabbed} Tab 2 title
-My second tab with `some code`!
-```
-````
-
-produces
-
-```{tabbed} Tab 1 title
-My first tab
-```
-
-```{tabbed} Tab 2 title
-My second tab with `some code`!
-```
-
-**Insert code outputs in your tabs** with the [`glue` functionality](glue/gluing).
-
-For example, the following tabs use this functionality to glue images and tables generated somewhere else in these docs:
-
-````{tabbed} A histogram
-```{glue:figure} boot_fig
-:figwidth: 300px
-:name: "fig-boot-tab"
-
-This is a **caption**, with an embedded `{glue:text}` element: {glue:text}`boot_mean:.2f`!
-```
-````
-````{tabbed} A table
-```{glue:figure} df_tbl
-:figwidth: 300px
-:name: "tbl:df-tab"
-
-A caption for a pandas table.
-```
-````
-``````{tabbed} Code to generate this
 `````
-````{tabbed} A histogram
-```{glue:figure} boot_fig
-:figwidth: 300px
-:name: "fig-boot-tab"
 
-This is a **caption**, with an embedded `{glue:text}` element: {glue:text}`boot_mean:.2f`!
-```
-````
+### Learn more about tabs
 
-````{tabbed} A table
-```{glue:figure} df_tbl
-:figwidth: 300px
-:name: "tbl:df-tab"
-
-A caption for a pandas table.
-```
-````
-
-````{tabbed} Code to generate this
-`{ code block here }`
-````
-`````
-``````
-
-See the [`sphinx-panels` tabbed](sphinx-panels:components-tabbed) documentation for more information on how to use this.
-
+See the [`sphinx-design` tabs documentation](sd:sd-tabs) for more information on how to use this.
 
 (custom-div-blocks)=
 ## Custom `<div>` blocks

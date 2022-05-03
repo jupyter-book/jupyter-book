@@ -78,7 +78,6 @@ final:
   - https
   nb_output_stderr: show
   numfig: true
-  panels_add_bootstrap_css: false
   pygments_style: sphinx
   suppress_warnings:
   - myst.domains

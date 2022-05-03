@@ -41,7 +41,6 @@ def get_default_sphinx_config():
         html_sourcelink_suffix="",
         numfig=True,
         recursive_update=False,
-        panels_add_bootstrap_css=False,
         suppress_warnings=["myst.domains"],
     )
 
@@ -187,11 +186,24 @@ def get_final_config(
     # finally merge in CLI configuration
     _recursive_update(sphinx_config, cli_config or {})
 
-    # Add the `_static` folder to html_static_path, only if it exists
+    # Initialize static files
     if sourcedir and Path(sourcedir).joinpath("_static").is_dir():
+        # Add the `_static` folder to html_static_path, only if it exists
         paths_static = sphinx_config.get("html_static_path", [])
         paths_static.append("_static")
         sphinx_config["html_static_path"] = paths_static
+
+        # Search the static files paths and initialize any CSS of JS files.
+        for path in paths_static:
+            path = Path(sourcedir).joinpath(path)
+            for path_css in path.rglob("*.css"):
+                css_files = sphinx_config.get("html_css_files", [])
+                css_files.append((path_css.relative_to(path)).as_posix())
+                sphinx_config["html_css_files"] = css_files
+            for path_js in path.rglob("*.js"):
+                js_files = sphinx_config.get("html_js_files", [])
+                js_files.append((path_js.relative_to(path)).as_posix())
+                sphinx_config["html_js_files"] = js_files
 
     if not use_external_toc:
         # TODO perhaps a better logic for this?

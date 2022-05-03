@@ -98,8 +98,8 @@ sphinx:
       nbformat:
         - "https://nbformat.readthedocs.io/en/latest"
         - null
-      sphinx-panels:
-        - https://sphinx-panels.readthedocs.io/en/sphinx-book-theme/
+      sd:
+        - https://sphinx-design.readthedocs.io/en/latest
         - null
     rediraffe_branch: 'master'
     rediraffe_redirects:
@@ -120,4 +120,4 @@ sphinx:
     - sphinx_inline_tabs
     - sphinxext.rediraffe
     - sphinx_proof
-    - sphinx_design
+    - sphinx_examples
