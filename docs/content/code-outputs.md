@@ -163,7 +163,7 @@ The parsed Markdown is then integrated into the wider context of the document. T
 
 ```{code-cell} ipython3
 from IPython.display import display, Markdown
-display(Markdown('**_some_ markdown** and an [internal reference](content:myst)!'))
+display(Markdown('**_some_ markdown** and an [internal reference](render/output/markdown)!'))
 ```
 
 and even internal images can be rendered, as the code below exemplifies:

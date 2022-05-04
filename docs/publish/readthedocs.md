@@ -10,20 +10,25 @@ These ads can also be removed with a [small monthly payment](https://readthedocs
 
 {{RTD}} builds Sphinx websites, and does not support Jupyter Book directly.
 However, you can [convert your book to a Sphinx website](../sphinx/index.md) in order to publish with {{RTD}}.
+This can be automated with a {{RTD}} `pre_build` job.
 
 To publish your book with {{RTD}}, follow these steps:
 
 1. **Get started with Read the Docs**.
    To do so, follow [the Read the Docs tutorial](https://docs.readthedocs.io/en/stable/tutorial/index.html).
    Configure {{RTD}} to host a website from your book's repository.
-2. **Convert your book into a Sphinx site**.
-   There are two ways to do this using the Jupyter Book CLI.
+2. **Create a `.readthedocs.yml` file**.
+   This file can configure the behavior of {{RTD}}.
+   See [the ReadTheDocs documentation on its use](https://docs.readthedocs.io/en/stable/config-file/v2.html).
+3. **Add a `pre_build` job to your `.readthedocs.yml` file**.
+   ReadTheDocs allows you to run extra scripts before and after your documentation is built.
+   You can use this to [generate the Sphinx configuration](sphinx:convert) for your Jupyter Book before {{RTD}} tries to build it.
+   For example, see the ReadTheDocs configuration that is used to build this book:
 
-   - [Manually convert your book to a Sphinx site](sphinx:convert).
-   - [Use `pre-commit` to automatically convert your book to sphinx](sphinx:convert:pre-commit).
+   ```{literalinclude} ../../.readthedocs.yml
+   :emphasize-lines: 7-10
+   ```
 
-   In either case, it will generate a `conf.py` file along with your book's source files.
-   This is the file Sphinx uses to build your book.
-3. **Commit the `conf.py` file and push to your online repository**.
+   See [the ReadTheDocs jobs documentation](https://docs.readthedocs.io/en/stable/config-file/v2.html#build-jobs) for more information.
 
-If you've configured {{RTD}} correctly, it should now automatically build your book's HTML and host it online.
+{{RTD}} should now automatically generate the Sphinx configuration for your book and build your book's HTML to host it online.
