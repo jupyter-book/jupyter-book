@@ -7,7 +7,7 @@ on:
 
 jobs:
 
-  windows:
+  tests-windows:
     name: Run tests and build docs on Windows
     runs-on: windows-latest
     strategy:
