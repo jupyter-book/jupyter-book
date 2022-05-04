@@ -239,8 +239,8 @@ You can add LaTeX macros for the whole book by defining them under the `Macros` 
 sphinx:
   config:
     mathjax_config:
-      TeX:
-        Macros:
+      tex:
+        macros:
           "N": "\\mathbb{N}"
           "floor": ["\\lfloor#1\\rfloor", 1]
           "bmat" : ["\\left[\\begin{array}"]
