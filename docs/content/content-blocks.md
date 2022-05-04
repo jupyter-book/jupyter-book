@@ -142,6 +142,7 @@ Many directives contain markdown inside, and if you'd like this markdown to rend
 For example:
 
 ````{example}
+
 :::{note}
 This text is **standard** _Markdown_
 :::
@@ -150,6 +151,7 @@ This text is **standard** _Markdown_
 Similar to normal directives, these admonitions can also be nested:
 
 `````{example}
+
 ::::{important}
 :::{note}
 This text is **standard** _Markdown_
@@ -161,7 +163,6 @@ This text is **standard** _Markdown_
 You can use this syntax for any kind of directive, though it is generally recommended to use only with directives that contain pure markdown in their content.
 :::
 
-
 ### Insert code cell outputs into admonitions
 
 If you'd like to insert the outputs of running code *inside* admonition
@@ -171,10 +172,13 @@ For example, we'll insert one of the outputs that was glued into the book from t
 For example:
 
 ````{example}
+
 ```{note}
 Here's my figure:
-{glue:figure}`sorted_means_fig`
+
+```{glue:figure} sorted_means_fig
 ```
+
 ````
 
 See [](content:code-outputs:glue) for more information on how to use `glue` to insert your outputs directly into your content.
