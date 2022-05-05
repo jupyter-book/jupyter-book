@@ -19,7 +19,7 @@ Below we give examples of how to format particular outputs and even insert outpu
 The [MyST cheat sheet](myst_cheatsheet) provides a [list of `code-cell` tags available](myst_cheatsheet:code-cell:tags)
 
 :::{seealso}
-The [MyST-NB documentation](myst-nb:use/format/cutomise), for how to fully customize the output renderer.
+The [MyST-NB documentation](myst-nb:render/output/cutomise), for how to fully customize the output renderer.
 :::
 
 (content:code-outputs:library-outputs)=
@@ -163,7 +163,7 @@ The parsed Markdown is then integrated into the wider context of the document. T
 
 ```{code-cell} ipython3
 from IPython.display import display, Markdown
-display(Markdown('**_some_ markdown** and an [internal reference](use/format/markdown)!'))
+display(Markdown('**_some_ markdown** and an [internal reference](render/output/markdown)!'))
 ```
 
 and even internal images can be rendered, as the code below exemplifies:
@@ -184,7 +184,7 @@ print("AB\x1b[43mCD\x1b[35mEF\x1b[1mGH\x1b[4mIJ\x1b[7m"
       "KL\x1b[49mMN\x1b[39mOP\x1b[22mQR\x1b[24mST\x1b[27mUV")
 ```
 
-This uses the built-in {py:class}`~myst-nb:myst_nb.ansi_lexer.AnsiColorLexer` [pygments lexer](https://pygments.org/).
+This uses the built-in {py:class}`~myst-nb:myst_nb.core.lexers.AnsiColorLexer` [pygments lexer](https://pygments.org/).
 You can change the lexer used in the `_config.yml`, for example to turn off lexing:
 
 ```yaml

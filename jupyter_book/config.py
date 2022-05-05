@@ -278,6 +278,7 @@ def yaml_to_sphinx(yaml: dict):
             # Deprecate navbar_footer_text after a release cycle
             ("extra_footer", "extra_footer"),
             ("home_page_in_toc", "home_page_in_navbar"),
+            ("announcement", "announcement"),
         ]:
             if yml_key in html:
                 theme_options[spx_key] = html[yml_key]

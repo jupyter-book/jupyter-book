@@ -228,7 +228,7 @@ These two extensions are highly customizable *via* Sphinx configuration.
 Some of their configuration is already exposed in the `_config.yml`, but you can also directly set configuration, see:
 
 * the [MyST-Parser configuration options](myst-parser:sphinx/config-options)
-* the [MyST-NB configuration options](myst-nb:config/reference)
+* the [MyST-NB configuration options](myst-nb:config/intro)
 
 (sphinx/tex-macros)=
 ### Defining TeX macros
@@ -239,8 +239,8 @@ You can add LaTeX macros for the whole book by defining them under the `Macros` 
 sphinx:
   config:
     mathjax_config:
-      TeX:
-        Macros:
+      tex:
+        macros:
           "N": "\\mathbb{N}"
           "floor": ["\\lfloor#1\\rfloor", 1]
           "bmat" : ["\\left[\\begin{array}"]

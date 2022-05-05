@@ -479,12 +479,8 @@ def sphinx(ctx, path_source, config, toc):
     content = "\n".join(lines).rstrip() + "\n"
 
     out_folder = Path(path_config).parent if path_config else Path(full_path_source)
-    existed = out_folder.joinpath("conf.py").exists()
     out_folder.joinpath("conf.py").write_text(content, encoding="utf8")
     click.secho(f"Wrote conf.py to {out_folder}", fg="green")
-    if not existed:
-        # indicate to pre-commit that the file changed
-        sys.exit(2)
 
 
 # utility functions

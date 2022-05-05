@@ -142,6 +142,9 @@
                             ]
                         }
                     }
+                },
+                "announcement": {
+                    "type": "string"
                 }
             }
         },

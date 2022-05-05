@@ -17,6 +17,7 @@ execute:
   execute_notebooks: cache
 
 html:
+  announcement: "⚠️The latest release refactored our HTML, so double-check your custom CSS rules!⚠️"
   favicon: images/favicon.ico
   google_analytics_id: UA-52617120-7
   home_page_in_navbar: false
@@ -63,12 +64,14 @@ sphinx:
         - jupytext.reads
         - fmt: Rmd
     bibtex_reference_style: author_year  # or label, super, \supercite
+    execution_show_tb: True
+    execution_timeout: 60
     # TODO: #917 this path will be the default in sphinx v4
     # mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
     # However, it is incompatible with the mathjax config below for macros
     mathjax3_config:
-      TeX:
-        Macros:
+      tex:
+        macros:
           "N": "\\mathbb{N}"
           "floor": ["\\lfloor#1\\rfloor", 1]
           "bmat": ["\\left[\\begin{array}"]
