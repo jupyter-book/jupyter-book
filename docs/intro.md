@@ -2,7 +2,6 @@
 :title: Books with Jupyter
 ---
 
-:::::{only} html
 ::::{grid} 2
 :reverse:
 
@@ -28,13 +27,15 @@ Build beautiful, publication-quality books and documents from computational cont
 Get started
 ```
 
+% The SVG rendering breaks latex builds for the GitHub badge, so only include in HTML
+```{only} html
 [![](https://img.shields.io/github/stars/executablebooks/jupyter-book?style=social)](https://github.com/executablebooks/jupyter-book)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2561065.svg)](https://doi.org/10.5281/zenodo.2561065)
+```
 
 :::
 
 ::::
-:::::
 
 ::::{grid} 1 1 2 3
 :class-container: text-center
