@@ -2,6 +2,7 @@
 :title: Books with Jupyter
 ---
 
+:::::{only} html
 ::::{grid} 2
 :reverse:
 
@@ -33,6 +34,7 @@ Get started
 :::
 
 ::::
+:::::
 
 ::::{grid} 1 1 2 3
 :class-container: text-center
@@ -113,7 +115,7 @@ This documentation is organized into a few major sections.
 Below are some books that have been built with Jupyter Book.
 You can find more in [{bdg-primary}`the Jupyter Book Gallery`](https://executablebooks.org/en/latest/gallery.html).
 
-:::::{only} html
+
 ::::{card-carousel} 3
 
 :::{card}
@@ -234,7 +236,7 @@ Solving geographic data problems with modern open source tools.
 Explore this book {fas}`arrow-right`
 :::
 ::::
-:::::
+
 
 # Connect with us
 
