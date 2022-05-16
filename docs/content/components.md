@@ -116,15 +116,22 @@ For more information about grids, see the {doc}`Sphinx Design documentation <sd:
 (content/cards)=
 ## Cards
 
-Cards provide an easy way for you to organize chunks of content into flexible containers on your page.
-They are useful for creating flexible columns and grids.
+Cards provide an easy way for you to content into a standard "header", "body", "footer" structure that has a similar alignment and visual style.
+It is useful for creating galleries or high-visibility collections of links and information.
 Cards use the [sphinx-design extension](https://sphinx-design.readthedocs.io) and are based off of [Bootstrap CSS](https://getbootstrap.com/docs/5.0/components/card/).
 
-Here is an example that creates two cards:
+Cards have four main sections, and uses special characters to separate certain sections:
+
+- **A card title**: The argument given to the directive.
+- **A card header**: Any content that precedes a line with `^^^`.
+- **A card footer**: Any content that comes after a line with `+++`.
+- **A card body**: Any content that comes in between `^^^` and `+++`.
+
+Here is an example card (note the use of `^^^` and `+++` to separate the header, body, and footer):
 
 :::{example}
 
-````{card}
+````{card} Card 1 title
 
 Card header 1
 ^^^
@@ -132,22 +139,8 @@ Card body 1
 +++
 Card footer 1
 ````
-
-````{card}
-
-Card header 2
-^^^
-Card body 2
-+++
-Card footer 2
-````
-
 :::
 
-In the example above:
-
-- `^^^` defines the card header
-- `+++` defines the card footer
 
 ```{note}
 Card headers and footers are optional.
@@ -158,7 +151,7 @@ You can embed all kinds of content inside of cards. For example:
 
 `````{example}
 ````{card}
-Content of the left card.
+Content of the top card.
 
 {bdg-primary}`example-badge`
 
@@ -169,15 +162,11 @@ Content of the left card.
 ```{button-ref} content/cards
 :class: stretched-link
 
-Clickable right card
+Clickable bottom card
 ```
 
 ````
 `````
-
-```{seealso}
-See the [Sphinx Design card layout documentation](https://sphinx-design.readthedocs.io/en/stable/cards.html) for more information.
-```
 
 ### Learn more about cards
 

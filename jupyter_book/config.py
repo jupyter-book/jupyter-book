@@ -193,7 +193,7 @@ def get_final_config(
         paths_static.append("_static")
         sphinx_config["html_static_path"] = paths_static
 
-        # Search the static files paths and initialize any CSS of JS files.
+        # Search the static files paths and initialize any CSS or JS files.
         for path in paths_static:
             path = Path(sourcedir).joinpath(path)
             for path_css in path.rglob("*.css"):
