@@ -17,7 +17,7 @@ you'll write in the same flavour of **MyST Markdown**. Jupyter Book will know ho
 
 This page contains a few pieces of information about MyST Markdown and how it relates to Jupyter Book.
 You can find much more information about this flavour of Markdown at
-[the Myst Parser documentation](myst-parser:example_syntax).
+[the Myst Parser documentation](myst-parser:syntax/core).
 
 :::{admonition} Want to use RMarkdown directly?
 :class: tip
