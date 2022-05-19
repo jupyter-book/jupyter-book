@@ -34,7 +34,7 @@ final:
   - sphinx_comments
   - sphinx_external_toc
   - sphinx.ext.intersphinx
-  - sphinx_panels
+  - sphinx_design
   - sphinx_book_theme
   - other
   - helloworld
@@ -66,7 +66,6 @@ final:
   nb_output_stderr: show
   new: value
   numfig: true
-  panels_add_bootstrap_css: false
   pygments_style: sphinx
   suppress_warnings:
   - myst.domains

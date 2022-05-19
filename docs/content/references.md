@@ -58,25 +58,13 @@ For example, the syntax `` {ref}`content:references:labels` `` or `[](content:re
 
 To reference a figure in your book, first add a figure and ensure that it has both a `name` as well as a caption associated with it:
 
-`````{panels}
-source
-^^^
-````md
+````{example}
 ```{figure} ../images/cool.jpg
 :name: my-fig-ref
 
 My figure title.
 ```
 ````
----
-result
-^^^
-```{figure} ../images/cool.jpg
-:name: my-fig-ref
-
-My figure title.
-```
-`````
 
 Then, reference the figure by its `:name:` value. For example:
 
@@ -94,10 +82,7 @@ Then, reference the figure by its `:name:` value. For example:
 
 To reference a table, first create a table and ensure that it has a `:name:` and a title:
 
-`````{panels}
-source
-^^^
-````md
+````{example}
 ```{table} My table title
 :name: my-table-ref
 
@@ -106,17 +91,6 @@ source
 | 3 | 4 |
 ```
 ````
----
-result
-^^^
-```{table} My table title
-:name: my-table-ref
-
-| header 1 | header 2 |
-|---|---|
-| 3 | 4 |
-```
-`````
 
 Here are several ways to reference this content:
 
@@ -145,23 +119,12 @@ To reference other files of book content, use the `{doc}` role, or link directly
 
 To reference equations, first insert an equation with a label like so:
 
-`````{panels}
-source
-^^^
-````md
+````{example}
 ```{math}
 :label: my-math-ref
 w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
 ```
 ````
----
-rendered
-^^^
-```{math}
-:label: my-math-ref
-w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
-```
-`````
 
 To reference equations, use the `{eq}` role. It will automatically insert the number of the equation.
 Note that you cannot modify the text of equation links.
@@ -185,17 +148,10 @@ Above, `reference-target` is the reference to which you are referring, and `your
 
 For example, see the following references:
 
-```{list-table}
-:header-rows: 1
-
-* - Raw text
-  - Rendered text
-* - ``{ref}`Here's another references section <content:references:labels>` ``
-  - {ref}`Here's another references section <content:references:labels>`
-* - ``{doc}`Here's the code outputs section <code-outputs>` ``
-  - {doc}`Here's the code outputs section <code-outputs>`
+```{example}
+- {ref}`Here's another references section <content:references:labels>`
+- {doc}`Here's the code outputs section <code-outputs>`
 ```
-
 
 ## Number your references
 
@@ -206,17 +162,9 @@ To add a numbered reference to a table or figure, use the `{numref}` role.
 
 If you are [using custom text](references:custom-text) with your references, use `%s` as a placeholder for the number.
 
-::::{admonition} Example
-**Markdown**:
-
-```md
+```{example}
 Here's {numref}`Custom Table %s text <my-table-ref>`.
 ```
-
-**Result**:
-
-Here's {numref}`Custom Table %s text <my-table-ref>`.
-::::
 
 See more examples in the sections linked above.
 
@@ -233,30 +181,17 @@ If you wish to use Markdown style syntax, then MyST Markdown will try to find a 
 
 This has an advantage, in that you can used nested markdown syntax in your text, for example:
 
-```{list-table}
-:header-rows: 1
+```{example}
 
-- * Raw text
-  * Rendered text
-- * ```md
-    [A **bolded _reference_** to a page](./myst.md)
-
-    [A reference to a header](content:references:labels)
-    ```
-  * [A **bolded _reference_** to a page](./myst.md)
-
-    [A reference to a header](content:references:labels)
+- [A **bolded _reference_** to a page](./myst.md)
+- [A reference to a header](content:references:labels)
 ```
 
-Leaving the title empty will mean the reference uses the target as text, for example the syntax
+Leaving the title empty will mean the reference uses the target as text, for example:
 
-```md
+```{example}
 [](./myst.md)
 ```
-
-will link to a section and use its header text as the link text itself:
-
-[](./myst.md)
 
 :::{admonition} Internal vs. External URLs
 :class: tip

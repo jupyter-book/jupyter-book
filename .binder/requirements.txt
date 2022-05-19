@@ -10,7 +10,8 @@ numpy
 pandas
 plotly
 sphinx-click
+sphinx-examples
 sphinx_inline_tabs
+sphinx-proof
 sphinxext-rediraffe~=0.2.3
 sympy
-sphinx-proof

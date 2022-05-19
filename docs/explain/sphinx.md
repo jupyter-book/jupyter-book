@@ -68,7 +68,7 @@ Here's a short overview of the Sphinx extensions that are activated by Jupyter B
 
 - **[MyST-NB](https://myst-nb.readthedocs.io)** - Functionality for reading in Jupyter Notebooks in Sphinx, as well as executing them.
 - **[MyST Parser](https://myst-parser.readthedocs.io)** - Functionality for parsing CommonMark and MyST Markdown files into Sphinx. This is not explicitly provided, but is activated by MyST-NB.
-- **[sphinx panels](https://sphinx-panels.readthedocs.io/en/latest/)** - Provide Sphinx directives for "Bootstrap Cards" that are used throughout the Jupyter Book docs.
+- **[Sphinx Design](https://sphinx-design.readthedocs.io/en/latest/)** - Provide Sphinx directives for UI components that are used throughout the Jupyter Book docs.
 - **[Sphinx Book Theme](https://sphinx-book-theme.readthedocs.io/)** - A Sphinx theme that defines the look and feel of Jupyter Book, and its general layout.
 
 To understand how Jupyter Book configures Sphinx, you should check out [the `config.py` module](https://github.com/executablebooks/jupyter-book/blob/master/jupyter_book/config.py). For example, [here is the line that defines the default Sphinx configuration](https://github.com/executablebooks/jupyter-book/blob/421f6198728b21c94726a10b61776fb4cc097d72/jupyter_book/config.py#L23).
