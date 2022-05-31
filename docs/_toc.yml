@@ -33,6 +33,7 @@ parts:
     sections:
     - file: content/myst
     - file: content/content-blocks
+    - file: content/components
     - file: content/references
     - file: content/layout
     - file: content/citations

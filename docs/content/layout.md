@@ -120,7 +120,8 @@ which we'll cover below.
 You can make a code cell move to the right margin by adding `margin` to your
 cell's tags.
 
-````{tabbed} Jupyter Notebook
+``````{tab-set}
+`````{tab-item} Jupyter Notebook
 Here's what the cell metadata for a margin cell looks like:
 ```json
 {
@@ -132,9 +133,9 @@ Here's what the cell metadata for a margin cell looks like:
 :::{seealso}
 [](jupyter-cell-tags)
 :::
-````
+`````
 
-`````{tabbed} MyST Text File
+`````{tab-item} MyST Text File
 For a MyST text file these tags can be added to the `code-cell`
 ````md
 ```{code-cell} <language>
@@ -142,6 +143,7 @@ For a MyST text file these tags can be added to the `code-cell`
 ```
 ````
 `````
+``````
 
 For example, we'll re-display the figure above, and add a `margin` tag to the code cell.
 

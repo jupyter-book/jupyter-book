@@ -36,7 +36,7 @@ how to build the extensions.
 
 ### An example: `sphinx-inline-tabs`
 
-By default, Jupyter Book ships with [tabs via `sphinx-panels`](content:tabs).
+By default, Jupyter Book ships with [tabs via `sphinx-design`](components:tabs).
 There are other packages for tabs in the Sphinx ecosystem with different functionality.
 One-such package is [`sphinx-inline-tabs`](https://sphinx-inline-tabs.readthedocs.io/en/latest/), which allows for _syncronized tabs_ in case you'd like your tabs to shift across the page at the same time.
 

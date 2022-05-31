@@ -44,7 +44,8 @@ Any headers in `chapter1section` will be treated as a "next-header-deeper" secti
 
 In other words, if `chapter1` and `chapter1section` look like this:
 
-````{panels}
+`````{grid}
+````{grid-item-card}
 `chapter1.md`
 ^^^^^^^^^^^^^
 ```md
@@ -52,7 +53,8 @@ In other words, if `chapter1` and `chapter1section` look like this:
 
 ## Chapter 1 second header
 ```
----
+````
+````{grid-item-card}
 `chapter1section.md`
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -62,6 +64,8 @@ In other words, if `chapter1` and `chapter1section` look like this:
 ## Chapter 1 section second header
 ```
 ````
+`````
+
 Then your book will treat them like so:
 
 ```md
@@ -76,7 +80,8 @@ Then your book will treat them like so:
 
 However, if `chapter1.md` had an extra third-level header, like so:
 
-````{panels}
+`````{grid}
+````{grid-item-card}
 `chapter1.md`
 ^^^^^^^^^^^^^
 ```md
@@ -86,7 +91,9 @@ However, if `chapter1.md` had an extra third-level header, like so:
 
 ### Chapter 1 third header
 ```
----
+````
+
+````{grid-item-card}
 `chapter1section.md`
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -96,6 +103,7 @@ However, if `chapter1.md` had an extra third-level header, like so:
 ## Chapter 1 section second header
 ```
 ````
+`````
 
 Then your book would treat them like so:
 

@@ -1,3 +1,10 @@
+:root {
+    --sd-color-primary: #f37726;
+    --sd-color-primary-highlight: #da864e;
+    --sd-color-secondary: #267bf3;
+    --sd-color-secondary-highlight: #4e88da;
+}
+
 .bg-jb-one {
     background-color: #52d16f3b;
 }

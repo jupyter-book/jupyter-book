@@ -40,7 +40,7 @@ dependencies = [
     "sphinx-copybutton",
     "sphinx-external-toc~=0.2.3",
     "sphinx-jupyterbook-latex~=0.4.6",
-    "sphinx-panels~=0.6.0",
+    "sphinx-design~=0.1.0",
     "sphinx-thebe~=0.1.1",
     "sphinx_book_theme~=0.3.2",
     "sphinx_togglebutton",
@@ -77,10 +77,11 @@ sphinx = [
     "pandas",
     "plotly",
     "sphinx-click",
+    "sphinx-examples",
     "sphinx_inline_tabs",
+    "sphinx-proof",
     "sphinxext-rediraffe~=0.2.3",
     "sympy",
-    "sphinx-proof",
 ]
 testing = [
     "altair",

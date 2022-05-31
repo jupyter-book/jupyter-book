@@ -24,7 +24,7 @@ final:
   - sphinx_comments
   - sphinx_external_toc
   - sphinx.ext.intersphinx
-  - sphinx_panels
+  - sphinx_design
   - sphinx_book_theme
   - sphinx_jupyterbook_latex
   external_toc_exclude_missing: false
@@ -69,7 +69,6 @@ final:
   - https
   nb_output_stderr: show
   numfig: true
-  panels_add_bootstrap_css: false
   pygments_style: sphinx
   suppress_warnings:
   - myst.domains
