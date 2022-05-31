@@ -14,7 +14,7 @@ in the Sphinx ecosystem.
 
 For more about MyST, see [the MyST Markdown Overview](https://jupyterbook.org/content/myst.html).
 
-## Sample Roles and Directivs
+## Sample Roles and Directives
 
 Roles and directives are two of the most powerful tools in Jupyter Book. They
 are kind of like functions, but written in a markup language. They both
