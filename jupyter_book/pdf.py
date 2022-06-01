@@ -4,31 +4,17 @@ import os
 from copy import copy
 from pathlib import Path
 
-import sphinx
-
 from .utils import _error, _message_box
 
 # LaTeX Documents Tuple Spec
-if sphinx.__version__ >= "3.0.0":
-    # https://www.sphinx-doc.org/en/3.x/usage/configuration.html#confval-latex_documents
-    LATEX_DOCUMENTS = (
-        "startdocname",
-        "targetname",
-        "title",
-        "author",
-        "theme",
-        "toctree_only",
-    )
-else:
-    # https://www.sphinx-doc.org/en/2.0/usage/configuration.html#confval-latex_documents
-    LATEX_DOCUMENTS = (
-        "startdocname",
-        "targetname",
-        "title",
-        "author",
-        "documentclass",
-        "toctree_only",
-    )
+LATEX_DOCUMENTS = (
+    "startdocname",
+    "targetname",
+    "title",
+    "author",
+    "theme",
+    "toctree_only",
+)
 
 
 def html_to_pdf(html_file, pdf_file):

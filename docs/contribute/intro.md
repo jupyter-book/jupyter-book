@@ -81,7 +81,7 @@ You may run all the tests, or only ones that do not require additional installat
 You can alternatively use [tox](https://tox.readthedocs.io) to run the tests in multiple isolated environments, and also without the need for the initial dependencies install (see the `tox.ini` file for available test environments and further explanation):
 
 ```shell
->> tox -e py38-sphinx3 -- -m 'not requires_chrome and not requires_tex'
+>> tox -e py39-sphinx4 -- -m 'not requires_chrome and not requires_tex'
 ```
 
 Either will run the Jupyter Book test suite, *except for the PDF tests*.
