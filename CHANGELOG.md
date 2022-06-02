@@ -1,5 +1,22 @@
 # Change Log
 
+## v0.13.0 - 2022-06-02
+
+([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.12.3...a2d441633d5aafed4e94bbc544183cf866213f3a))
+
+This release contains breaking changes as we have migrated from [sphinx-panels](https://github.com/executablebooks/sphinx-panels)
+to [sphinx-design](https://github.com/executablebooks/sphinx-design) as that will be the package being maintained into the future
+to provide design and layout customization elements for `html` builds.
+
+### New and Breaking ‼
+
+1. [#1442 Use Sphinx Design instead of Sphinx Panels](https://github.com/executablebooks/jupyter-book/pull/1442).
+2. [#1693 Removes support for `sphinx<=4`>](https://github.com/executablebooks/jupyter-book/pull/1693).
+3. [#1679 Update Sphinx Book Theme to v0.3](https://github.com/executablebooks/jupyter-book/pull/1679). This update includes some breaking changes for the `HTML` structure of some major theme sections (i.e. sidebars and top-bar) which will impact custom css.
+
+The full set of changes to sphinx-book-theme
+are available on [the sphinx-book-theme changelog](https://github.com/executablebooks/sphinx-book-theme/blob/master/CHANGELOG.md#v030---2022-03-25).
+
 ## v0.12.3 - 2022-03-28
 
 ([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.12.2...5e12cb324afca1192f2354689d9d5755329e1c9d))
