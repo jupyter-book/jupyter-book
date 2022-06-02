@@ -11,7 +11,7 @@ to provide design and layout customization elements for `html` builds.
 ### New and Breaking ‼
 
 1. [#1442 Use Sphinx Design instead of Sphinx Panels](https://github.com/executablebooks/jupyter-book/pull/1442).
-2. [#1693 Removes support for `sphinx<=4`>](https://github.com/executablebooks/jupyter-book/pull/1693).
+2. [#1693 Removes support for `sphinx<=4`](https://github.com/executablebooks/jupyter-book/pull/1693).
 3. [#1679 Update Sphinx Book Theme to v0.3](https://github.com/executablebooks/jupyter-book/pull/1679). This update includes some breaking changes for the `HTML` structure of some major theme sections (i.e. sidebars and top-bar) which will impact custom css.
 
 The full set of changes to sphinx-book-theme
