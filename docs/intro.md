@@ -42,7 +42,8 @@ Get started
 :gutter: 3
 
 :::{grid-item-card}
-:link: basics/organize.md
+:link: basics/organize
+:link-type: doc
 :class-header: bg-light
 
 Text content ✏️
@@ -52,7 +53,8 @@ Structure books with text files and Jupyter Notebooks with minimal configuration
 :::
 
 :::{grid-item-card}
-:link: content/myst.md
+:link: content/myst
+:link-type: doc
 :class-header: bg-light
 
 MyST Markdown ✨
@@ -63,7 +65,8 @@ Write MyST Markdown to create enriched documents with publication-quality featur
 :::
 
 :::{grid-item-card}
-:link: content/executable/index.md
+:link: content/executable/index
+:link-type: doc
 :class-header: bg-light
 
 Executable content 🔁
@@ -74,7 +77,8 @@ Execute notebook cells, store results, and insert outputs across pages.
 :::
 
 :::{grid-item-card}
-:link: interactive/launchbuttons.md
+:link: interactive/launchbuttons
+:link-type: doc
 :class-header: bg-light
 
 Live environments 🚀
@@ -84,7 +88,8 @@ Connect your book with Binder, JupyterHub, and other live environments
 :::
 
 :::{grid-item-card}
-:link: build/publish/web.md
+:link: publish/web
+:link-type: doc
 :class-header: bg-light
 
 Build and publish 🎁
@@ -94,7 +99,8 @@ Share your built books via web services and hosted websites.
 :::
 
 :::{grid-item-card}
-:link: content/components.md
+:link: content/components
+:link-type: doc
 :class-header: bg-light
 
 UI components ⚡
