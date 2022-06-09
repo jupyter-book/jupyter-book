@@ -61,7 +61,6 @@ final:
   html_title: My Jupyter Book
   jupyter_cache: ''
   jupyter_execute_notebooks: auto
-  language: null
   latex_engine: pdflatex
   mathjax2_config:
     TeX:
