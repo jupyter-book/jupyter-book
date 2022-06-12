@@ -808,8 +808,7 @@ print(node)
 or
 
 ```none
-No syntax highlighting if no language
-is indicated.
+No syntax highlighting.
 ```
 
 ### Executable code
