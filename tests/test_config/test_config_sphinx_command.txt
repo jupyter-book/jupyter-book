@@ -23,7 +23,6 @@ html_theme_options = {'search_bar_text': 'Search this book...', 'launch_buttons'
 html_title = 'test'
 jupyter_cache = ''
 jupyter_execute_notebooks = 'auto'
-language = None
 latex_engine = 'pdflatex'
 myst_enable_extensions = ['colon_fence', 'dollarmath', 'linkify', 'substitution', 'tasklist']
 myst_url_schemes = ['mailto', 'http', 'https']

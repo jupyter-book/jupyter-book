@@ -58,7 +58,6 @@ final:
   html_title: My Jupyter Book
   jupyter_cache: ''
   jupyter_execute_notebooks: auto
-  language: null
   latex_engine: pdflatex
   myst_enable_extensions:
   - linkify
