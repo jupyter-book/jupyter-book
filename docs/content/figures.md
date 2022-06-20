@@ -218,6 +218,13 @@ the sequences "%s" and "{number}" will be replaced with the figure number, while
 
 For example, ``{numref}`Figure {number}: {name} <directive-fig>` `` will produce {numref}`Figure {number}: {name} <directive-fig>`.
 
+(figures:listoffigures)=
+### Creating a list of figures
+If you are writing a large document such as a thesis or book, you might be looking for ways to create a "List of Figures" or "List of Tables" index in the LaTeX build output.
+For this it is often necessary to set "short titles" in the figure/table captions, which is currently not supported by the figure directive.
+
+But there is a workaround described in [this GitHub comment](https://github.com/sphinx-doc/sphinx/issues/10540#issuecomment-1159757219).
+
 ## Margin captions and figures
 
 You can include a figure caption on the margin using `:figclass: margin-caption`, as seen in {numref}`margin_caption_figure`:
