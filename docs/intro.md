@@ -1,5 +1,5 @@
 ---
-:title: Books with Jupyter
+title: Books with Jupyter
 ---
 
 ::::{grid} 2

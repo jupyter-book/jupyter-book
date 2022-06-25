@@ -34,7 +34,6 @@ def get_default_sphinx_config():
             "sphinx_design",
             "sphinx_book_theme",
         ],
-        language=None,
         pygments_style="sphinx",
         html_theme="sphinx_book_theme",
         html_theme_options={"search_bar_text": "Search this book..."},
