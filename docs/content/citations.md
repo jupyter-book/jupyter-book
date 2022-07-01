@@ -53,6 +53,7 @@ To set the reference style, use the `bibtex_reference_style` field in your book'
 sphinx:
   config:
     bibtex_reference_style: author_year
+    bibtex_bibfiles: "your_reference_file.bib"
 ```
 
 There are a few options for your in-line citation style such as `label`, `super`, and `author-year`.
