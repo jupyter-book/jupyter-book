@@ -142,8 +142,8 @@ def build_sphinx(
 
             # set the below flag to always to enable maths in singlehtml builder
             if app.builder.name == "singlehtml":
-                app.set_html_assets_policy("always")            
-            
+                app.set_html_assets_policy("always")
+
             # setting up sphinx-multitoc-numbering
             if app.config["use_multitoc_numbering"]:
                 # if sphinx-external-toc is used
