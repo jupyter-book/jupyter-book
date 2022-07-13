@@ -57,7 +57,7 @@ For example, a custom class defined as `my-custom-class` will result in a class 
 You can leverage this pattern to quickly create custom admonitions.
 For example, create a `myadmonitions.css` under `mybook/_static` with the following CSS:
 
-#### Using the `{admonition}` directive with a title 
+#### Using the `{admonition}` directive with a title
 
 ```css
 div.admonition-extra-credit {
