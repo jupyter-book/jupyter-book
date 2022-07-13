@@ -49,25 +49,30 @@ A more verbose but "stable" approach is to use the `:class:` keyword argument wh
 :::
 
 Currently, using the `{admonition}` directive with a title creates a CSS class based on the title of the admonition.
-For example, an admonition title of `Here's my title` will result in a class name of `admonition-heres-my-title`.
+For example, an admonition title of `Here's my title` will result in a class name of `admonition-here-s-my-title`.
+
+On the other hand, by using the `:class:` keyword argument, it will create a class with the keyword previously chosen.
+For example, a custom class defined as `my-custom-class` will result in a class named as `my-custom-class`.
 
 You can leverage this pattern to quickly create custom admonitions.
 For example, create a `myadmonitions.css` under `mybook/_static` with the following CSS:
 
+#### Using the `{admonition}` directive with a title 
+
 ```css
-.admonition-extra-credit {
+div.admonition-extra-credit {
     border-left-color: rgba(0, 246, 16, 1);
 }
-.admonition-extra-credit .admonition-title {
+div.admonition-extra-credit .admonition-title {
     background-color: rgba(0, 246, 16, .1);
 }
-.admonition-extra-credit .admonition-title:before {
+div.admonition-extra-credit .admonition-title:before {
     color: rgba(0, 246, 16, 1);
     content: '\f19d';
 }
 ```
 
-then in your book, define an admonition like so:
+Then, in your book, define an admonition like so:
 
 ````md
 ```{admonition} Extra credit
@@ -75,7 +80,31 @@ An "extra credit" exercise is presented here.
 ```
 ````
 
-The admonitions should be styled according to your CSS rules when you build your book.
+#### Using the `:class:` keyword argument
+
+```css
+div.extra-credit {
+    border-left-color: rgba(var(--pst-color-success), 1);
+}
+div.extra-credit .admonition-title {
+    background-color: rgba(var(--pst-color-success), .1)
+}
+div.extra-credit .admonition-title:before {
+    color: rgba(var(--pst-color-success), 1);
+    content: '\f19d';
+}
+```
+
+Then, in your book, define an admonition like so:
+
+````md
+```{admonition} An extra exercise
+:class: extra-credit
+An "extra credit" exercise is presented here.
+```
+````
+
+On both cases the admonitions should be styled according to your CSS rules when you build your book.
 ## Enable Google Analytics
 
 If you have a Google account, you can use Google Analytics to collect some
