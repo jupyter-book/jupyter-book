@@ -131,8 +131,8 @@ latex:
 For `Debian`-based `Linux` platforms it is recommended to install the following packages:
 
 ```bash
-sudo apt-get install texlive-latex-recommended texlive-latex-extra \
-                     texlive-fonts-recommended texlive-fonts-extra \
+sudo apt-get install texlive-latex-extra \
+                     texlive-fonts-extra \
                      texlive-xetex latexmk
 ```
 
