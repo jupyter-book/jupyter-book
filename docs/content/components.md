@@ -212,10 +212,10 @@ own titles and stylings. For example:
 
 ````{example}
 
-:::{admonition} Click here!
+```{admonition} Click here!
 :class: tip, dropdown
 Here's what's inside!
-:::
+```
 
 ````
 
