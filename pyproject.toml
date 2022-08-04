@@ -33,7 +33,7 @@ dependencies = [
     "Jinja2",
     "jsonschema<4",
     "linkify-it-py~=1.0.1",
-    "myst-nb~=0.13.1",
+    "myst-nb",
     "pyyaml",
     "sphinx>=4,<5",
     "sphinx-comments",
