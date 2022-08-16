@@ -1,6 +1,6 @@
 """Build a book with Jupyter Notebooks and Sphinx."""
 
-__version__ = "0.13.0"
+__version__ = "0.13.1"
 
 
 # We connect this function to the step after the builder is initialized
