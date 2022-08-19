@@ -120,7 +120,7 @@ The requirement to use Plausible.io is to add a snippet into the `<head>` sectio
 % TODO: When we update our dependency to PyData 0.10 there will be native support for Plausible
 % ref: https://pydata-sphinx-theme.readthedocs.io/en/latest/user_guide/analytics.html#plausible-analytics
 It is not yet possible in JupyterBook to directly inject `html` code into the site `<head>`, but it is possible to add [](custom-assets).
-To use Plausible Analytics in your JupyterBook, simply add this code into an arbitrarily named `.js` file in the `_static` directory (create the directory in the root of your book if it does not already exist):
+To use Plausible Analytics in your JupyterBook, add this code into an arbitrarily-named `.js` file in the `_static` directory (create the directory in the root of your book if it does not already exist):
 
 ```
 var script = document.createElement('script');
