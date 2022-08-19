@@ -134,7 +134,7 @@ script.dataset.domain = "YOUR-DATA-DOMAIN";
 document.getElementsByTagName('head')[0].appendChild(script);
 ```
 
-This should inject the approrpiate code into the <head> via javascript, and you will be able to get analytics on your website through either the commercial company-hosted dashboard, or a [self-hosted instance](https://plausible.io/docs/self-hosting).
+This should inject the approrpiate code into the `<head>` via javascript, and you will be able to get analytics on your website through either the commercial company-hosted dashboard, or a [self-hosted instance](https://plausible.io/docs/self-hosting).
 
 
 (html:link-check)=
