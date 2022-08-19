@@ -122,7 +122,7 @@ The requirement to use Plausible.io is to add a snippet into the `<head>` sectio
 It is not yet possible in JupyterBook to directly inject `html` code into the site `<head>`, but it is possible to add [](custom-assets).
 To use Plausible Analytics in your JupyterBook, add this code into an arbitrarily-named `.js` file in the `_static` directory (create the directory in the root of your book if it does not already exist):
 
-```
+```javascript
 var script = document.createElement('script');
 script.defer = true;
 script.src = "https://plausible.io/js/script.js";
