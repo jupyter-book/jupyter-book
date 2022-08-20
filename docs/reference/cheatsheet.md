@@ -793,9 +793,8 @@ print(node)
 or
 
 ````md
-```
-No syntax highlighting if no language
-is indicated.
+```none
+No syntax highlighting.
 ```
 ````
 
@@ -808,9 +807,8 @@ print(node)
 
 or
 
-```
-No syntax highlighting if no language
-is indicated.
+```none
+No syntax highlighting.
 ```
 
 ### Executable code
