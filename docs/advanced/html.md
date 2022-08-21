@@ -105,8 +105,37 @@ html:
 
 :::{seealso}
 - For more about Google Analytics, see [the Google Analytics documentation](https://analytics.google.com/analytics/web/) for more information.
-- To use **other analytics services**, like [Plausible analytics](https://plausible.io/), you should link the relevant libraries via the instructions in [](custom-assets).
 :::
+
+
+## Use Plausible Analytics
+
+[Plausible Analytics](https://plausible.io) is a lightweight, open source, [privacy-focused](https://plausible.io/privacy-focused-web-analytics) analytics service that can be used as a more ethical alternative (or, in addition to) to Google Analytics.
+The requirement to use Plausible.io is to add a snippet into the `<head>` section of every html page:
+
+```
+<script defer data-domain="YOUR-DATA-DOMAIN" src="https://plausible.io/js/plausible.js"></script>
+```
+
+% TODO: When we update our dependency to PyData 0.10 there will be native support for Plausible
+% ref: https://pydata-sphinx-theme.readthedocs.io/en/latest/user_guide/analytics.html#plausible-analytics
+It is not yet possible in JupyterBook to directly inject `html` code into the site `<head>`, but it is possible to add [](custom-assets).
+To use Plausible Analytics in your JupyterBook, add this code into an arbitrarily-named `.js` file in the `_static` directory (create the directory in the root of your book if it does not already exist):
+
+```javascript
+var script = document.createElement('script');
+script.defer = true;
+script.src = "https://plausible.io/js/script.js";
+script.dataset.domain = "YOUR-DATA-DOMAIN";
+
+// optional if using proxy, see Plausible.io documentation for more about this
+// script.dataset.api = 'https://yourproxy.com/api/event';
+
+document.getElementsByTagName('head')[0].appendChild(script);
+```
+
+This should inject the appropriate code into the `<head>` via javascript, and you will be able to get analytics on your website through either the commercial company-hosted dashboard, or a [self-hosted instance](https://plausible.io/docs/self-hosting).
+
 
 (html:link-check)=
 ## Check external links in your book
