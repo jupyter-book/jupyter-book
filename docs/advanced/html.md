@@ -54,10 +54,11 @@ For example, an admonition title of `Here's my title` will result in a class nam
 On the other hand, by using the `:class:` keyword argument, it will create a class with the keyword previously chosen.
 For example, a custom class defined as `my-custom-class` will result in a class named as `my-custom-class`.
 
-You can leverage this pattern to quickly create custom admonitions.
-For example, create a `myadmonitions.css` under `mybook/_static` with the following CSS:
+You can leverage either of these patterns to quickly create custom admonitions.
+There is an example of each below.
+In each case, begin by creating a `myadmonitions.css` file under `mybook/_static` and add CSS rules to it.
 
-#### Using the `{admonition}` directive with a title
+**Using the `{admonition}` directive with a title**
 
 ```css
 div.admonition-extra-credit {
@@ -80,7 +81,7 @@ An "extra credit" exercise is presented here.
 ```
 ````
 
-#### Using the `:class:` keyword argument
+**Using the `:class:` keyword argument**
 
 ```css
 div.extra-credit {
@@ -104,7 +105,8 @@ An "extra credit" exercise is presented here.
 ```
 ````
 
-On both cases the admonitions should be styled according to your CSS rules when you build your book.
+In both cases the admonitions should be styled according to your CSS rules when you build your book.
+
 ## Enable Google Analytics
 
 If you have a Google account, you can use Google Analytics to collect some
