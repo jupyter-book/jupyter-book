@@ -344,20 +344,20 @@ def yaml_to_sphinx(yaml: dict):
     execute = yaml.get("execute")
     if execute:
         for spx_key, yml_key in [
-            ("execution_allow_errors", "allow_errors"),
-            ("execution_in_temp", "run_in_temp"),
+            ("nb_execution_allow_errors", "allow_errors"),
+            ("nb_execution_in_temp", "run_in_temp"),
             ("nb_output_stderr", "stderr_output"),
-            ("execution_timeout", "timeout"),
-            ("jupyter_cache", "cache"),
-            ("jupyter_execute_notebooks", "execute_notebooks"),
-            ("execution_excludepatterns", "exclude_patterns"),
+            ("nb_execution_timeout", "timeout"),
+            ("nb_execution_cache_path", "cache"),
+            ("nb_execution_mode", "execute_notebooks"),
+            ("nb_execution_excludepatterns", "exclude_patterns"),
         ]:
             if yml_key in execute:
                 sphinx_config[spx_key] = execute[yml_key]
 
-        if sphinx_config.get("jupyter_execute_notebooks") is False:
+        if sphinx_config.get("nb_execution_mode") is False:
             # Special case because YAML treats `off` as "False".
-            sphinx_config["jupyter_execute_notebooks"] = "off"
+            sphinx_config["nb_execution_mode"] = "off"
 
     # LaTeX
     latex = yaml.get("latex")

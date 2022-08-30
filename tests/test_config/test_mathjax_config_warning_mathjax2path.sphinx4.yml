@@ -17,10 +17,6 @@ final:
   - .DS_Store
   - Thumbs.db
   - _build
-  execution_allow_errors: false
-  execution_excludepatterns: []
-  execution_in_temp: false
-  execution_timeout: 30
   extensions:
   - sphinx_togglebutton
   - sphinx_copybutton
@@ -59,8 +55,6 @@ final:
     use_issues_button: false
     use_repository_button: false
   html_title: My Jupyter Book
-  jupyter_cache: ''
-  jupyter_execute_notebooks: auto
   latex_engine: pdflatex
   mathjax2_config:
     TeX:
@@ -77,6 +71,12 @@ final:
   - mailto
   - http
   - https
+  nb_execution_allow_errors: false
+  nb_execution_cache_path: ''
+  nb_execution_excludepatterns: []
+  nb_execution_in_temp: false
+  nb_execution_mode: auto
+  nb_execution_timeout: 30
   nb_output_stderr: show
   numfig: true
   pygments_style: sphinx

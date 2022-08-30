@@ -241,8 +241,8 @@ def test_execution_timeout(pages, build_resources, cli):
             "--keep-going",
         ],
     )
-    assert "Execution Failed" in result.stdout
-    assert path_html.joinpath("reports", "loop_unrun.log").exists()
+    assert "Executing notebook failed:" in result.stdout
+    assert path_html.joinpath("reports", "loop_unrun.err.log").exists()
 
 
 def test_build_using_custom_builder(cli, build_resources):
