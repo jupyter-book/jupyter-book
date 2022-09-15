@@ -560,6 +560,22 @@ must also include a table title. See example above.
   - ```{important} This is an example
     of an important directive.
     ```
+* - ````md
+    ```{admonition} Title
+    :class: warning
+    text
+    ```
+    ````
+  - ````md
+    ```{admonition} This is a title
+    :class: warning
+    An example of an admonition with a title and a warning style.
+    ```
+    ````
+  - ```{admonition} This is a title
+    :class: warning
+    An example of an admonition with a title and a warning style.
+    ```
 ``````
 
 ## Figures and images
