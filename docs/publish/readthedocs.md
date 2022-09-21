@@ -1,5 +1,5 @@
 ---
-myst:
+substitutions:
     RTD: "[Read the Docs](https://readthedocs.org)"
 ---
 # Read the Docs

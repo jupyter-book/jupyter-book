@@ -1,5 +1,5 @@
 ---
-myst:
+substitutions:
   key1: "I'm a **substitution**"
   key2: |
     ```{note}

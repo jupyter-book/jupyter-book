@@ -134,7 +134,7 @@ produces the following code cell and figure:
 
 ```{code-cell} ipython3
 ---
-mystnb:
+render:
   image:
     width: 300px
     alt: fun-fish
