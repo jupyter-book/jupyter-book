@@ -112,7 +112,7 @@ glue("boot_chi_notdisplayed", chi, display=False)
 You can also glue visualizations, such as Matplotlib figures (here we use `display=False` to ensure that the figure isn't plotted twice):
 
 ```{code-cell} ipython3
-# Visualize the historgram with the intervals
+# Visualize the histogram with the intervals
 fig, ax = plt.subplots()
 ax.hist(means)
 for ln in [clo, chi]:
