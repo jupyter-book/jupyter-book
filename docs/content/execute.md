@@ -333,7 +333,7 @@ Enable activate execution tracebacks, in your `_config.yml`:
 ```yaml
 sphinx:
   config:
-    execution_show_tb: True
+    nb_execution_show_tb: True
 ```
 
 See [the MyST-NB documentation](https://myst-nb.readthedocs.io) for more information.
