@@ -1,19 +1,19 @@
 ---
-file_format: mystnb
-mystnb:
-  key1: "I'm a **substitution**"
-  key2: |
-    ```{note}
-    {{ key1 }}
-    ```
-  fishy: |
-    ```{image} /images/fun-fish.png
-    :alt: fishy
-    :width: 200px
-    ```
-  jinja: "[Jinja templates](https://jinja.palletsprojects.com/en/2.11.x/)"
-  repo_name: "jupyter-book"
-  repo_url: "[my repo url](https://github.com/executablebooks/jupyter-book)"
+myst:
+  substitutions:
+    key1: "I'm a **substitution**"
+    key2: |
+      ```{note}
+      {{ key1 }}
+      ```
+    fishy: |
+      ```{image} /images/fun-fish.png
+      :alt: fishy
+      :width: 200px
+      ```
+    jinja: "[Jinja templates](https://jinja.palletsprojects.com/en/2.11.x/)"
+    repo_name: "jupyter-book"
+    repo_url: "[my repo url](https://github.com/executablebooks/jupyter-book)"
 ---
 
 # Special content blocks
