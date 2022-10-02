@@ -115,7 +115,7 @@ We can also set a caption (which is rendered as [CommonMark](https://commonmark.
 ````md
 ```{code-cell} ipython3
 ---
-render:
+mystnb:
   image:
     width: 200px
     alt: fun-fish
@@ -134,7 +134,7 @@ produces the following code cell and figure:
 
 ```{code-cell} ipython3
 ---
-render:
+mystnb:
   image:
     width: 300px
     alt: fun-fish

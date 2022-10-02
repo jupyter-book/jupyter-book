@@ -1,5 +1,6 @@
 ---
-substitutions:
+file_format: mystnb
+mystnb:
   key1: "I'm a **substitution**"
   key2: |
     ```{note}
