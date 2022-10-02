@@ -177,7 +177,8 @@ For example:
 ```{note}
 Here's my figure:
 
-```{glue:figure} sorted_means_fig
+```{glue} sorted_means_fig
+:doc: executable/output-insert.md
 ```
 
 ````
