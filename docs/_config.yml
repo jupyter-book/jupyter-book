@@ -64,6 +64,7 @@ sphinx:
         - jupytext.reads
         - fmt: Rmd
     bibtex_reference_style: author_year  # or label, super, \supercite
+    suppress_warnings: ["mystnb.unknown_mime_type", "myst.domains"] # application/vnd.plotly.v1+json and application/vnd.bokehjs_load.v0+json
     nb_execution_show_tb: True
     nb_execution_timeout: 120
     # TODO: #917 this path will be the default in sphinx v4
