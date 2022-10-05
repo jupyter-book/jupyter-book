@@ -472,17 +472,18 @@ To use a substitution, first add front-matter content to the top of a page like 
 
 ````yaml
 ---
-substitutions:
-  key1: "I'm a **substitution**"
-  key2: |
-    ```{note}
-    {{ key1 }}
-    ```
-  fishy: |
-    ```{image} img/fun-fish.png
-    :alt: fishy
-    :width: 200px
-    ```
+myst:
+  substitutions:
+    key1: "I'm a **substitution**"
+    key2: |
+      ```{note}
+      {{ key1 }}
+      ```
+    fishy: |
+      ```{image} img/fun-fish.png
+      :alt: fishy
+      :width: 200px
+      ```
 ---
 ````
 
@@ -523,7 +524,7 @@ These substitutions will be available throughout your book. For example, the glo
 
 ### Formatting substitutions
 
-MyST substitutions use {{ jinja }} in order to substite in key / values. This means that you can apply any standard Jinja formatting to your substitutions. For example, you can **replace text in your substitutions** like so:
+MyST substitutions use {{ jinja }} in order to substitute in key / values. This means that you can apply any standard Jinja formatting to your substitutions. For example, you can **replace text in your substitutions** like so:
 
 ```{example}
 The original key1: {{ key1 }}
