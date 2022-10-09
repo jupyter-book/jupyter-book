@@ -74,7 +74,7 @@ execute:
   execute_notebooks: inline
 ```
 
-See {ref}`https://myst-nb.readthedocs.io/en/latest/render/inline.html#render-eval` for more information. 
+See {ref}`https://myst-nb.readthedocs.io/en/latest/render/inline.html#render-eval` for more information.
 
 **To turn off notebook execution**, change the above configuration value to:
 
