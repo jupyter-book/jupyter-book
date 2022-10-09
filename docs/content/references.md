@@ -179,7 +179,7 @@ Then, you may use the `{numref}` role in the same way that you use it for Figure
 
 If you wish to use Markdown style syntax, then MyST Markdown will try to find a reference from any of the above reference types (and more!).
 
-This has an advantage, in that you can used nested markdown syntax in your text, for example:
+This has an advantage, in that you can use nested markdown syntax in your text, for example:
 
 ```{example}
 
