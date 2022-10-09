@@ -36,6 +36,16 @@ execute:
   execute_notebooks: auto
 ```
 
+or equivalently:
+
+```yaml
+sphinx:
+  config:
+    nb_execution_mode: auto
+```
+
+Both of the above configuration are global, for per-file use `execution_mode` key.
+
 This will only execute notebooks that are missing at least one output.
 If the notebook has *all* of its outputs populated, then it will not be executed.
 
@@ -43,7 +53,8 @@ If the notebook has *all* of its outputs populated, then it will not be executed
 above configuration value to:
 
 ```yaml
-execute_notebooks: force
+execute:
+  execute_notebooks: force
 ```
 
 **To cache execution outputs with [jupyter-cache]**, change the above configuration
@@ -55,6 +66,15 @@ execute:
 ```
 
 See {ref}`execute/cache` for more information.
+
+**To execute notebooks inline during parsing**, change the above configuration value to:
+
+```yaml
+execute:
+  execute_notebooks: inline
+```
+
+See {ref}`https://myst-nb.readthedocs.io/en/latest/render/inline.html#render-eval` for more information. 
 
 **To turn off notebook execution**, change the above configuration value to:
 
