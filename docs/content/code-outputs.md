@@ -234,15 +234,16 @@ For example, this is the default priority list for HTML:
 ```yaml
 sphinx:
   config:
-    nb_render_priority:
-      html:
-      - "application/vnd.jupyter.widget-view+json"
-      - "application/javascript"
-      - "text/html"
-      - "image/svg+xml"
-      - "image/png"
-      - "image/jpeg"
-      - "text/markdown"
-      - "text/latex"
-      - "text/plain"
+    nb_mime_priority_overrides: [
+      ['html', 'application/vnd.jupyter.widget-view+json', 10],
+      ['html', 'application/javascript', 20],
+      ['html', 'text/html', 30],
+      ['html', 'image/svg+xml', 40],
+      ['html', 'image/png', 50],
+      ['html', 'image/gif', 60],
+      ['html', 'image/jpeg', 70],
+      ['html', 'text/markdown', 80],
+      ['html', 'text/latex', 90],
+      ['html', 'text/plain', 100]
+    ]
 ```
