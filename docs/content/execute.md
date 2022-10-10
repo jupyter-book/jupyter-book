@@ -44,7 +44,7 @@ sphinx:
     nb_execution_mode: auto
 ```
 
-Both of the above configuration are global, for per-file use `execution_mode` key.
+Both of the above configurations are global, for per-file use `execution_mode` key.
 
 This will only execute notebooks that are missing at least one output.
 If the notebook has *all* of its outputs populated, then it will not be executed.
