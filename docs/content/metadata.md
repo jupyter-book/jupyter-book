@@ -102,7 +102,3 @@ for ipath in notebooks:
 
     nbf.write(ntbk, ipath)
 ```
-
-## Add metadata to notebook cells
-
-Stuff about tags etc
