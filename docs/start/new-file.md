@@ -55,4 +55,3 @@ If you don't see an updated table of contents after changing the `_toc.yml` afte
 ```console
 % jupyter-book build --all mybookname
 ```
-
