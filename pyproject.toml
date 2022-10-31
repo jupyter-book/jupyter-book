@@ -32,7 +32,7 @@ dependencies = [
     "docutils>=0.15,<0.18",
     "Jinja2",
     "jsonschema<4",
-    "linkify-it-py~=1.0.1",
+    "linkify-it-py~=2.0.0",
     "myst-nb~=0.13.1",
     "pyyaml",
     "sphinx>=4,<5",
