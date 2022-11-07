@@ -96,6 +96,6 @@ parts:
     title: Gallery of Jupyter Books
   - file: explain/components
   - file: cite
-  - file: migration
+  - file: explain/migration
   - file: reference/_changelog
     title: Change log
