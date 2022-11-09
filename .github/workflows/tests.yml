@@ -86,7 +86,7 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.7", "3.8", "3.9"]
-        sphinx-version: [">=4,<5", ">=5,<6"]
+        sphinx: [">=4,<5", ">=5,<6"]
 
     steps:
     - uses: actions/checkout@v3
@@ -99,7 +99,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install wheel
-        pip install "sphinx${{ matrix.sphinx }}"
+        pip install --no-cache-dir "sphinx${{ matrix.sphinx }}"
         pip install -e .[testing]
 
     - name: Install Headless Chrome dependencies
