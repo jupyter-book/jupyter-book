@@ -19,7 +19,7 @@ so it is worth noting these resources when updating any options you may be using
 ## Common Configuration Updates
 
 A number of configuration option names have been updated. Some of the more commonly used options
-include those that control execution of `jupyter` notebooks. The majority of options concerning notebooks 
+include those that control execution of `jupyter` notebooks. The majority of options concerning notebooks
 have an `nb_` prefix added to the pre-existing option name, however there are some cases where the
 option name has been changed.
 
@@ -34,9 +34,9 @@ The warning now includes the software that is responsible as can be seen in the 
 In this case this warning is issued by `myst-nb`. This helps to identify where your warning
 is coming from and using the `myst-nb` documentation may be the best source of information.
 
-We will highlight some of the configuration changes here, which we found useful when updating our 
-projects. It should be noted that these are only a handful of examples, please refer to the doc links 
-mentioned above for the full picture.  
+We will highlight some of the configuration changes here, which we found useful when updating our
+projects. It should be noted that these are only a handful of examples, please refer to the doc links
+mentioned above for the full picture.
 
 ### Global configuration
 
@@ -45,14 +45,14 @@ Few of the noteworthy configuration changes which effected most of our projects 
 
 1. `jupyter_execute_notebooks` is renamed to  `nb_execution_mode`.
 2. `nb_render_priority` is renamed to `nb_mime_priority_overrides` and it accepts a sequence of tuples now.
-    Each tuple takes three mandatory entries namely builder name, mime type, and priority. 
+    Each tuple takes three mandatory entries namely builder name, mime type, and priority.
 
 
 ### File level configuration
 
-If the configurations options belong to **Myst-nb**, overriding the default configuration at a per-file level 
-now requires them to under the `mystnb` key. If they belong to **Myst-parser**, then they should be under the 
-`myst` key. 
+If the configurations options belong to **Myst-nb**, overriding the default configuration at a per-file level
+now requires them to under the `mystnb` key. If they belong to **Myst-parser**, then they should be under the
+`myst` key.
 
 #### Myst-nb
 
@@ -92,9 +92,9 @@ myst:
 
 ### Cell level configuration
 
-Similarly, overriding the default configuration at a per-cell level 
+Similarly, overriding the default configuration at a per-cell level
 now requires them to be under the `mystnb` key. Since cell-level operations are in myst-nb domain,
-we don't have to worry about **Myst-parser** here. This now changes the previous way of putting it 
+we don't have to worry about **Myst-parser** here. This now changes the previous way of putting it
 under the `render` object. Replace the `render` cell-level object with `mystnb` object.
 
 ````md
@@ -115,7 +115,7 @@ Image("../images/fun-fish.png")
 ```
 ````
 
-Other features of `myst-nb`, like `glue`, also have slight changes. For example, Using `glue` directive 
+Other features of `myst-nb`, like `glue`, also have slight changes. For example, Using `glue` directive
 to paste content from other notebooks now requires a `:doc:` key, which specifies the relative path of the
 notebook. Otherwise, the `glue` roles and directives now only identify keys in the same notebook, by default.
 
@@ -124,4 +124,3 @@ notebook. Otherwise, the `glue` roles and directives now only identify keys in t
 :doc: executable/output-insert.md
 ```
 ````
-
