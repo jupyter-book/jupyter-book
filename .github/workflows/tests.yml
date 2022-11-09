@@ -86,7 +86,7 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.7", "3.8", "3.9"]
-        sphinx: [">=4,<5", '>=5,<6']
+        sphinx-version: [">=4,<5", ">=5,<6"]
 
     steps:
     - uses: actions/checkout@v3
