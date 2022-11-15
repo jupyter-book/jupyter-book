@@ -73,7 +73,7 @@ jobs:
 
     - name: Upload to Codecov
       if: github.repository == 'executablebooks/jupyter-book'
-      uses: codecov/codecov-action@v3.1.0
+      uses: codecov/codecov-action@v3.1.1
       with:
         name: ebp-jupyter-book-pytests-py3.9
         flags: pytests
