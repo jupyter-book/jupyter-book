@@ -49,3 +49,11 @@ $ jupyter-book build mybookname
 ```
 
 This will re-build your book, and your new page will show up in the output.
+
+````{tip}
+If your book's Table of Contents doesn't update after changing the `_toc.yml` file, try:
+
+```console
+$ jupyter-book build --all mybookname
+```
+````
