@@ -31,7 +31,7 @@ dependencies = [
     "click>=7.1,<9",
     "docutils>=0.15,<0.18",
     "Jinja2",
-    "jsonschema<4",
+    "jsonschema<5",
     "linkify-it-py~=1.0.1",
     "myst-nb~=0.13.1",
     "pyyaml",
