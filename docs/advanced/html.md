@@ -49,25 +49,31 @@ A more verbose but "stable" approach is to use the `:class:` keyword argument wh
 :::
 
 Currently, using the `{admonition}` directive with a title creates a CSS class based on the title of the admonition.
-For example, an admonition title of `Here's my title` will result in a class name of `admonition-heres-my-title`.
+For example, an admonition title of `Here's my title` will result in a class name of `admonition-here-s-my-title`.
 
-You can leverage this pattern to quickly create custom admonitions.
-For example, create a `myadmonitions.css` under `mybook/_static` with the following CSS:
+On the other hand, by using the `:class:` keyword argument, it will create a class with the keyword previously chosen.
+For example, a custom class defined as `my-custom-class` will result in a class named as `my-custom-class`.
+
+You can leverage either of these patterns to quickly create custom admonitions.
+There is an example of each below.
+In each case, begin by creating a `myadmonitions.css` file under `mybook/_static` and add CSS rules to it.
+
+**Using the `{admonition}` directive with a title**
 
 ```css
-.admonition-extra-credit {
+div.admonition-extra-credit {
     border-left-color: rgba(0, 246, 16, 1);
 }
-.admonition-extra-credit .admonition-title {
+div.admonition-extra-credit .admonition-title {
     background-color: rgba(0, 246, 16, .1);
 }
-.admonition-extra-credit .admonition-title:before {
+div.admonition-extra-credit .admonition-title:before {
     color: rgba(0, 246, 16, 1);
     content: '\f19d';
 }
 ```
 
-then in your book, define an admonition like so:
+Then, in your book, define an admonition like so:
 
 ````md
 ```{admonition} Extra credit
@@ -75,7 +81,32 @@ An "extra credit" exercise is presented here.
 ```
 ````
 
-The admonitions should be styled according to your CSS rules when you build your book.
+**Using the `:class:` keyword argument**
+
+```css
+div.extra-credit {
+    border-left-color: rgba(var(--pst-color-success), 1);
+}
+div.extra-credit .admonition-title {
+    background-color: rgba(var(--pst-color-success), .1)
+}
+div.extra-credit .admonition-title:before {
+    color: rgba(var(--pst-color-success), 1);
+    content: '\f19d';
+}
+```
+
+Then, in your book, define an admonition like so:
+
+````md
+```{admonition} An extra exercise
+:class: extra-credit
+An "extra credit" exercise is presented here.
+```
+````
+
+In both cases the admonitions should be styled according to your CSS rules when you build your book.
+
 ## Enable Google Analytics
 
 If you have a Google account, you can use Google Analytics to collect some
@@ -111,27 +142,13 @@ html:
 ## Use Plausible Analytics
 
 [Plausible Analytics](https://plausible.io) is a lightweight, open source, [privacy-focused](https://plausible.io/privacy-focused-web-analytics) analytics service that can be used as a more ethical alternative (or, in addition to) to Google Analytics.
-The requirement to use Plausible.io is to add a snippet into the `<head>` section of every html page:
 
-```
-<script defer data-domain="YOUR-DATA-DOMAIN" src="https://plausible.io/js/plausible.js"></script>
-```
+You can do this by adding the following in your configuration file:
 
-% TODO: When we update our dependency to PyData 0.10 there will be native support for Plausible
-% ref: https://pydata-sphinx-theme.readthedocs.io/en/latest/user_guide/analytics.html#plausible-analytics
-It is not yet possible in JupyterBook to directly inject `html` code into the site `<head>`, but it is possible to add [](custom-assets).
-To use Plausible Analytics in your JupyterBook, add this code into an arbitrarily-named `.js` file in the `_static` directory (create the directory in the root of your book if it does not already exist):
-
-```javascript
-var script = document.createElement('script');
-script.defer = true;
-script.src = "https://plausible.io/js/script.js";
-script.dataset.domain = "YOUR-DATA-DOMAIN";
-
-// optional if using proxy, see Plausible.io documentation for more about this
-// script.dataset.api = 'https://yourproxy.com/api/event';
-
-document.getElementsByTagName('head')[0].appendChild(script);
+```yaml
+sphinx:
+  config:
+    html_js_files: [ ['https://plausible.io/js/script.js', {'defer': 'defer', 'data-domain': 'yourdomain.com'}] ]
 ```
 
 This should inject the appropriate code into the `<head>` via javascript, and you will be able to get analytics on your website through either the commercial company-hosted dashboard, or a [self-hosted instance](https://plausible.io/docs/self-hosting).

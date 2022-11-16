@@ -184,6 +184,17 @@ jobs:
 
 If you want to deploy your site to GitHub Pages at a User and Organization repository (`<username>.github.io`), check another example workflow and available options at the README of [peaceiris/actions-gh-pages](https://github.com/peaceiris/actions-gh-pages).
 
+
+### GitHub Pages Configuration
+
+The settings for GitHub Pages must be configured to reflect the method used to build the docs.
+Access a project's Pages settings at `Settings` -> `Pages`.
+Set `Source` to `Deploy from a branch` and set `Branch` to `gh-pages`.
+The build location should be `/ (root)` for each of the methods described here.
+However, you may choose to place the build files in `/docs` and configure Pages accordingly.
+
+![Screen Shot 2022-10-20 at 7 15 30 PM](https://user-images.githubusercontent.com/13797903/197082656-bf5cbea4-1ff4-49dd-9d01-15cfe4aff67e.png)
+
 ## Use a custom domain with GitHub Pages
 
 By default, GitHub Pages will host your book at a URL like `githubusername.github.io/yourbookname`.
