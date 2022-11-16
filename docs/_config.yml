@@ -118,6 +118,7 @@ sphinx:
     language: en
     html_extra_path:
       - images/badge.svg
+    sd_fontawesome_latex: True
 
 
   extra_extensions:
