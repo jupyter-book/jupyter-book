@@ -106,7 +106,7 @@ Here are several ways to reference this content:
 
 ## Reference content files
 
-To reference other files of book content, use the `{doc}` role, or link directly to another file with Markdown link syntax. For exmaple:
+To reference other files of book content, use the `{doc}` role, or link directly to another file with Markdown link syntax. For example:
 
 | source                                         | result                                   |
 |------------------------------------------------|------------------------------------------|
