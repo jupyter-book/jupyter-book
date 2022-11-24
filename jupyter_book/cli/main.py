@@ -105,7 +105,6 @@ BUILDER_OPTS = {
     "instead error on build completion",
 )
 @click.option(
-    "-f",
     "--fail-on-exception",
     is_flag=True,
     default=False,
