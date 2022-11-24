@@ -181,7 +181,7 @@ def build_sphinx(
                           "exceptions.\n")
                     print('\n'.join(failed))
 
-                    return len(failed)
+                    return 1
 
             return app.statuscode
 
