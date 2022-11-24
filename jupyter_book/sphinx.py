@@ -172,14 +172,21 @@ def build_sphinx(
             app.build(force_all, filenames)
 
             if fail_on_exception:
-                failed = [nb for nb, data in app.env.nb_execution_data.items()
-                          if not data['succeeded']]
+                failed = [
+                    nb
+                    for nb, data in app.env.nb_execution_data.items()
+                    if not data["succeeded"]
+                ]
 
                 if failed:
-                    print('\nThe following notebooks encountered unexpected exceptions.')
-                    print("Add the tag 'raises-exception' to the offending cells to ignore these "
-                          "exceptions.\n")
-                    print('\n'.join(failed))
+                    print(
+                        "\nThe following notebooks encountered unexpected exceptions."
+                    )
+                    print(
+                        "Add the tag 'raises-exception' to the offending cells to ignore these "
+                        "exceptions.\n"
+                    )
+                    print("\n".join(failed))
 
                     return 1
 
