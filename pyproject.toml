@@ -38,7 +38,7 @@ dependencies = [
     "sphinx>=4,<5",
     "sphinx-comments",
     "sphinx-copybutton",
-    "sphinx-external-toc~=0.2.3",
+    "sphinx-external-toc~=0.3.1",
     "sphinx-jupyterbook-latex~=0.4.6",
     "sphinx-design~=0.1.0",
     "sphinx-thebe~=0.1.1",
