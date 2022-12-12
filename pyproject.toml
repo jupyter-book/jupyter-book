@@ -28,24 +28,28 @@ keywords = [
 dynamic = ["description", "version"]
 requires-python = ">=3.7"
 dependencies = [
-    "click>=7.1,<9",
+    "click>=7.1",
+    # FIXME: remove upper bound on docutils or describe why its constrainted to
+    #        0.18.x
     "docutils>=0.15,<0.18",
-    "Jinja2",
-    "jsonschema<5",
-    "linkify-it-py~=2.0.0",
+    "jsonschema",
+    "linkify-it-py>=2",
     "myst-nb~=0.13.1",
-    "pyyaml",
+    # FIXME: remove upper bound on sphinx or describe why its constrainted to 4
     "sphinx>=4,<5",
-    "sphinx-comments",
-    "sphinx-copybutton",
+    # FIXME: remove upper bound on sphinx-external-toc or describe why its
+    #        constrainted to 0.2.x
     "sphinx-external-toc~=0.2.3",
+    # FIXME: remove upper bound on sphinx-jupyterbook-latex or describe why its
+    #        constrainted to 0.4.x
     "sphinx-jupyterbook-latex~=0.4.6",
+    # FIXME: remove upper bound on sphinx-design or describe why its
+    #        constrainted to 0.1.x
     "sphinx-design~=0.1.0",
-    "sphinx-thebe~=0.1.1",
-    "sphinx_book_theme~=0.3.2",
-    "sphinx_togglebutton",
-    "sphinxcontrib-bibtex>=2.2.0,<=2.5.0",
-    "sphinx-multitoc-numbering~=0.1.3",
+    "sphinx-thebe>=0.1.1",
+    "sphinx_book_theme>=0.3.2",
+    "sphinxcontrib-bibtex>=2.2.0",
+    "sphinx-multitoc-numbering>=0.1.3",
 ]
 
 [project.license]
