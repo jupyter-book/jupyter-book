@@ -35,7 +35,7 @@ dependencies = [
     "linkify-it-py~=2.0.0",
     "myst-nb~=0.13.1",
     "pyyaml",
-    "sphinx>=4,<5",
+    "sphinx>=4,<7",
     "sphinx-comments",
     "sphinx-copybutton",
     "sphinx-external-toc~=0.2.3",
