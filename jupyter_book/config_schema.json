@@ -111,14 +111,13 @@
                 "use_issues_button": {
                     "type": "boolean"
                 },
-                "extra_navbar": {
-                    "type": "string"
-                },
                 "extra_footer": {
                     "type": "string"
                 },
-                "google_analytics_id": {
-                    "type": "string"
+                "analytics": {
+                    "google_analytics_id": {
+                        "type": "string"
+                    }
                 },
                 "home_page_in_navbar": {
                     "type": "boolean"

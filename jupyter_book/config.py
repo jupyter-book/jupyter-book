@@ -283,9 +283,7 @@ def yaml_to_sphinx(yaml: dict):
                 sphinx_config[spx_key] = html[yml_key]
 
         for spx_key, yml_key in [
-            ("google_analytics_id", "google_analytics_id"),
             ("navbar_footer_text", "navbar_footer_text"),
-            ("extra_navbar", "extra_navbar"),
             # Deprecate navbar_footer_text after a release cycle
             ("extra_footer", "extra_footer"),
             ("home_page_in_toc", "home_page_in_navbar"),
@@ -294,6 +292,10 @@ def yaml_to_sphinx(yaml: dict):
             if yml_key in html:
                 theme_options[spx_key] = html[yml_key]
 
+        for spx_key, yml_key in [("google_analytics_id", "google_analytics_id")]:
+            if yml_key in html:
+                theme_options["analytics"] = {}
+                theme_options["analytics"][spx_key] = html[yml_key]
         # Pass through the buttons
         btns = ["use_repository_button", "use_edit_page_button", "use_issues_button"]
         use_buttons = {btn: html.get(btn) for btn in btns if btn in html}
