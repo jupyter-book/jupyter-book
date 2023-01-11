@@ -35,10 +35,10 @@ final:
   html_sourcelink_suffix: ''
   html_theme: sphinx_book_theme
   html_theme_options:
-    announcement: ''
-    extra_footer: ''
     analytics:
       google_analytics_id: ''
+    announcement: ''
+    extra_footer: ''
     home_page_in_toc: true
     launch_buttons:
       binderhub_url: https://mybinder.org

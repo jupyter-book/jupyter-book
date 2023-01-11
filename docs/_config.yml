@@ -28,6 +28,8 @@ html:
   use_repository_button: true
   use_issues_button: true
   baseurl: https://jupyterbook.org/
+  analytics:
+    google_analytics_id = ''
 
 repository:
   url: https://github.com/executablebooks/jupyter-book

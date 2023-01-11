@@ -3,6 +3,8 @@ _user_config:
     config:
       html_theme: other
       html_theme_options:
+        analytics:
+          google_analytics_id: ''
         launch_buttons:
           binderhub_url: other
       new: value
@@ -42,6 +44,8 @@ final:
   html_sourcelink_suffix: ''
   html_theme: other
   html_theme_options:
+    analytics:
+      google_analytics_id: ''
     launch_buttons:
       binderhub_url: other
   html_title: My Jupyter Book
