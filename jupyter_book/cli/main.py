@@ -217,7 +217,6 @@ def build(
         config_overrides = {
             "master_doc": PAGE_NAME,
             "exclude_patterns": to_exclude,
-            "html_theme_options": {"single_page": True},
             # --individualpages option set to True for page call
             "latex_individualpages": True,
         }
@@ -255,10 +254,6 @@ def build(
             if get_config_only
             else toc.as_posix()
         )
-
-        # Builder-specific overrides
-        if builder == "pdfhtml":
-            config_overrides["html_theme_options"] = {"single_page": True}
 
         # --individualpages option passthrough
         config_overrides["latex_individualpages"] = individualpages

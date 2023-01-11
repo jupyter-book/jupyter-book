@@ -34,7 +34,7 @@ def test_create_from_cookiecutter(temp_with_override: Path, cli):
     assert book.joinpath("my_book", "my_book", "_config.yml").exists()
     assert len(list(book.joinpath("my_book").iterdir())) == 7
     assert len(list(book.joinpath("my_book", ".github", "workflows").iterdir())) == 1
-    assert len(list(book.joinpath("my_book", "my_book").iterdir())) == 8
+    assert len(list(book.joinpath("my_book", "my_book").iterdir())) == 9
 
 
 def test_build_from_template(temp_with_override, cli):
@@ -87,7 +87,7 @@ def test_custom_config(cli, build_resources):
     assert result.exit_code == 0, result.output
     html = config.joinpath("_build", "html", "index.html").read_text(encoding="utf8")
     soup = BeautifulSoup(html, "html.parser")
-    assert '<h1 class="site-logo" id="site-title">TEST PROJECT NAME</h1>' in html
+    assert '<p class="title logo__title">TEST PROJECT NAME</p>' in html
     assert '<div class="sphinx-tabs docutils container">' in html
     assert '<link rel="stylesheet" type="text/css" href="_static/mycss.css" />' in html
     assert '<script src="_static/js/myjs.js"></script>' in html
@@ -264,7 +264,7 @@ def test_build_using_custom_builder(cli, build_resources):
     html = config.joinpath("_build", "mycustombuilder", "index.html").read_text(
         encoding="utf8"
     )
-    assert '<h1 class="site-logo" id="site-title">TEST PROJECT NAME</h1>' in html
+    assert '<p class="title logo__title">TEST PROJECT NAME</p>' in html
     assert '<link rel="stylesheet" type="text/css" href="_static/mycss.css" />' in html
     assert '<script src="_static/js/myjs.js"></script>' in html
 
