@@ -60,7 +60,7 @@ To parse raw HTML image syntax, enable the `html_image` extension to your list o
 parse:
   myst_enable_extensions:
     # don't forget to list any other extensions you want enabled,
-    # including those that are enabled by default!
+    # including those that are enabled by default! See here: https://jupyterbook.org/en/stable/customize/config.html
     - html_image
 ```
 
