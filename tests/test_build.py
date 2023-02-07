@@ -34,7 +34,7 @@ def test_create_from_cookiecutter(temp_with_override: Path, cli):
     assert book.joinpath("my_book", "my_book", "_config.yml").exists()
     assert len(list(book.joinpath("my_book").iterdir())) == 7
     assert len(list(book.joinpath("my_book", ".github", "workflows").iterdir())) == 1
-    assert len(list(book.joinpath("my_book", "my_book").iterdir())) == 8
+    assert len(list(book.joinpath("my_book", "my_book").iterdir())) == 9
 
 
 def test_build_from_template(temp_with_override, cli):
