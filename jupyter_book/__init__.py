@@ -5,7 +5,6 @@ __version__ = "0.13.1"
 
 # We connect this function to the step after the builder is initialized
 def setup(app):
-
     app.add_config_value("use_jupyterbook_latex", True, "env")
     app.add_config_value("use_multitoc_numbering", True, "env")
 
