@@ -1,5 +1,41 @@
 # Change Log
 
+## v0.13.2 -023-02-07
+
+([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.13.1...e52689156deeace6a34c8e27f77dfa7ec65720ab))
+
+### Bugs fixed
+
+- FIX: Address typo in docs [#1841](https://github.com/executablebooks/jupyter-book/pull/1841) ([@mmcky](https://github.com/mmcky))
+
+### Maintenance and upkeep improvements
+
+- MAINT: Remove `cell_metadata_filter: -all` from template [#1910](https://github.com/executablebooks/jupyter-book/pull/1910) ([@maxbane](https://github.com/maxbane))
+- MAINT: Move pypi publish to dedicated workflow [#1878](https://github.com/executablebooks/jupyter-book/pull/1878) ([@choldgraf](https://github.com/choldgraf))
+
+### Documentation improvements
+
+- DOCS: Fix typo [#1879](https://github.com/executablebooks/jupyter-book/pull/1879) ([@fortierq](https://github.com/fortierq))
+- DOCS: Add copybutton console prefix [#1877](https://github.com/executablebooks/jupyter-book/pull/1877) ([@choldgraf](https://github.com/choldgraf))
+- DOCS: Fix broken link in pdf.md [#1876](https://github.com/executablebooks/jupyter-book/pull/1876) ([@stoffprof](https://github.com/stoffprof))
+- DOCS: document an easier method of plausible analytics [#1867](https://github.com/executablebooks/jupyter-book/pull/1867) ([@rkdarst](https://github.com/rkdarst))
+- DOCS: Clarify toc update tip [#1861](https://github.com/executablebooks/jupyter-book/pull/1861) ([@root-11](https://github.com/root-11))
+- DOC: Add guidance for configuring gh-pages [#1859](https://github.com/executablebooks/jupyter-book/pull/1859) ([@rafmudaf](https://github.com/rafmudaf))
+- DOCS: Remove incomplete documentation section on adding metadata [#1854](https://github.com/executablebooks/jupyter-book/pull/1854) ([@MaxGhenis](https://github.com/MaxGhenis))
+- DOCS: Updates to Read the Docs instructions [#1849](https://github.com/executablebooks/jupyter-book/pull/1849) ([@benjaoming](https://github.com/benjaoming))
+- DOCS: Add an example of admonition with warning style [#1834](https://github.com/executablebooks/jupyter-book/pull/1834) ([@paugier](https://github.com/paugier))
+- DOCS: Add documentation on enabling Plausible Analytics [#1814](https://github.com/executablebooks/jupyter-book/pull/1814) ([@firasm](https://github.com/firasm))
+- DOCS: Improve custom admonitions documentation [#1777](https://github.com/executablebooks/jupyter-book/pull/1777) ([@leodrivera](https://github.com/leodrivera))
+- DOCS: Change syntax highlighting example [#1752](https://github.com/executablebooks/jupyter-book/pull/1752) ([@fmaussion](https://github.com/fmaussion))
+- DOCS: Add link to default myst extensions [#1908](https://github.com/executablebooks/jupyter-book/pull/1908) ([@jbusecke](https://github.com/jbusecke))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/executablebooks/jupyter-book/graphs/contributors?from=2022-08-16&to=2023-02-07&type=c))
+
+[@AakashGfude](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3AAakashGfude+updated%3A2022-08-16..2023-02-07&type=Issues) | [@alcrene](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aalcrene+updated%3A2022-08-16..2023-02-07&type=Issues) | [@benjaoming](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Abenjaoming+updated%3A2022-08-16..2023-02-07&type=Issues) | [@choldgraf](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Acholdgraf+updated%3A2022-08-16..2023-02-07&type=Issues) | [@chrisjsewell](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Achrisjsewell+updated%3A2022-08-16..2023-02-07&type=Issues) | [@codecov](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Acodecov+updated%3A2022-08-16..2023-02-07&type=Issues) | [@da5nsy](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Ada5nsy+updated%3A2022-08-16..2023-02-07&type=Issues) | [@dependabot](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Adependabot+updated%3A2022-08-16..2023-02-07&type=Issues) | [@firasm](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Afirasm+updated%3A2022-08-16..2023-02-07&type=Issues) | [@fmaussion](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Afmaussion+updated%3A2022-08-16..2023-02-07&type=Issues) | [@fortierq](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Afortierq+updated%3A2022-08-16..2023-02-07&type=Issues) | [@jbusecke](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Ajbusecke+updated%3A2022-08-16..2023-02-07&type=Issues) | [@jedbrown](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Ajedbrown+updated%3A2022-08-16..2023-02-07&type=Issues) | [@leodrivera](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aleodrivera+updated%3A2022-08-16..2023-02-07&type=Issues) | [@matthew-brett](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Amatthew-brett+updated%3A2022-08-16..2023-02-07&type=Issues) | [@maxbane](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Amaxbane+updated%3A2022-08-16..2023-02-07&type=Issues) | [@MaxGhenis](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3AMaxGhenis+updated%3A2022-08-16..2023-02-07&type=Issues) | [@mmcky](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Ammcky+updated%3A2022-08-16..2023-02-07&type=Issues) | [@paugier](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Apaugier+updated%3A2022-08-16..2023-02-07&type=Issues) | [@phockett](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aphockett+updated%3A2022-08-16..2023-02-07&type=Issues) | [@pradyunsg](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Apradyunsg+updated%3A2022-08-16..2023-02-07&type=Issues) | [@pre-commit-ci](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Apre-commit-ci+updated%3A2022-08-16..2023-02-07&type=Issues) | [@rafmudaf](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Arafmudaf+updated%3A2022-08-16..2023-02-07&type=Issues) | [@rkdarst](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Arkdarst+updated%3A2022-08-16..2023-02-07&type=Issues) | [@root-11](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aroot-11+updated%3A2022-08-16..2023-02-07&type=Issues) | [@salma-emara](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Asalma-emara+updated%3A2022-08-16..2023-02-07&type=Issues) | [@stevejpurves](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Astevejpurves+updated%3A2022-08-16..2023-02-07&type=Issues) | [@stoffprof](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Astoffprof+updated%3A2022-08-16..2023-02-07&type=Issues) | [@welcome](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Awelcome+updated%3A2022-08-16..2023-02-07&type=Issues) | [@Zethson](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3AZethson+updated%3A2022-08-16..2023-02-07&type=Issues)
+
+
 ## v0.13.1 - 2022-08-16
 
 ([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.13.0...8a74127748066eac5e0e788a584cb31d18b66058))
