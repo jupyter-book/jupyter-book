@@ -272,7 +272,6 @@ def yaml_to_sphinx(yaml: dict):
     # HTML
     html = yaml.get("html")
     if html:
-
         for spx_key, yml_key in [
             ("html_favicon", "favicon"),
             ("html_baseurl", "baseurl"),
