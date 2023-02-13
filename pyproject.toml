@@ -63,7 +63,7 @@ Source = "https://github.com/executablebooks/jupyter-book/"
 Tracker = "https://github.com/executablebooks/jupyter-book/issues"
 
 [project.optional-dependencies]
-code_style = ["pre-commit~=2.12"]
+code_style = ["pre-commit~=3.0"]
 pdfhtml = ["pyppeteer"]
 sphinx = [
     "altair",
