@@ -69,7 +69,7 @@ You can then insert it into your text. Adding
 `` {glue:}`cool_text` `` to your content results in the
 following: {glue:}`cool_text`.
 
-### Gluing numbers, plots, and tables
+### Gluing numbers, plots, math, and tables
 
 You can glue anything in your notebook (or page) and display it later with `{glue:}`. Here
 we'll show how to glue and paste **numbers and images**. We'll simulate some

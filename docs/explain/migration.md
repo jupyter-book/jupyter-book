@@ -187,15 +187,15 @@ which specifies the relative path to the notebook.
 An example:
 
 ````md
-```{glue} sorted_means_fig
-:doc: executable/output-insert.md
+```{glue} cool_text
+:doc: /content/executable/output-insert.md
 ```
 ````
 
-This will glue in the figure `sorted_means_fig` from the `executable/output-insert.md` document
+will render as
 
-```{glue} sorted_means_fig
-:doc: executable/output-insert.md
+```{glue} cool_text
+:doc: /content/executable/output-insert.md
 ```
 
 ```{tip}
@@ -203,3 +203,43 @@ The `file extension` of the document needs to be specified. So you need to use
 `executable/output-insert.md` rather than `executable/output-insert` as can be the case
 in some other `sphinx/docutils` directives
 ```
+
+**DataFrames:**
+
+```{glue} df_tbl
+:doc: /content/executable/output-insert.md
+```
+
+#### Limitations for Figures and Math
+
+There are current limitations based on the `mime` types for `Figures` and `Math`
+
+**Math:**
+
+Using the `glue` directive between documents for math results in a text representation
+
+```{glue} sym_eq
+:doc: /content/executable/output-insert.md
+```
+
+**Figures:**
+
+Similary for Figures
+
+For example if you glue in the figure `sorted_means_fig` from the `executable/output-insert.md` document
+
+````md
+```{glue} sorted_means_fig
+:doc: /content/executable/output-insert.md
+```
+````
+
+will render as
+
+```{glue} sorted_means_fig
+:doc: /content/executable/output-insert.md
+```
+
+which is the text description of the image.
+
+These issues have been reported to the myst-nb team
