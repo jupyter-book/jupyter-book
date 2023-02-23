@@ -120,7 +120,7 @@ This documentation is organized into a few major sections.
 # Built with Jupyter Book
 
 Below are some books that have been built with Jupyter Book.
-You can find more in [{bdg-primary}`the Jupyter Book Gallery`](https://executablebooks.org/en/latest/gallery.html).
+You can find more in [{bdg-primary}`the Jupyter Book Gallery`](https://executablebooks.org/en/latest/gallery/).
 
 
 ::::{card-carousel} 3
