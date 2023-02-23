@@ -1105,7 +1105,7 @@ To glue a math equation try:
 :label: glue-eq-example
 ```
 
-See [](content:code-outputs:glue) for more information.
+See [](content:executable:output-insert) for more information.
 
 ## Reference documents
 

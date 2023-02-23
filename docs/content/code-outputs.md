@@ -93,6 +93,18 @@ for ii in range(40):
     print(f"this is output line {ii}")
 ```
 
+When writing MyST markdown documents you may use `:tags: ["output_scroll"]` as an option
+to the `code-cell` directive such as:
+
+````
+```{code-cell} ipython3
+:tags: [output_scroll]
+
+for ii in range(40):
+    print(f"this is output line {ii}")
+```
+````
+
 (content:code-outputs:images)=
 ## Images
 
