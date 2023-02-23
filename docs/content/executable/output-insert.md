@@ -20,18 +20,18 @@ or if you want to cite an analysis that you have run.
 Currently, `glue` only works with Python.
 ```
 
-```{seealso} 
+```{seealso}
 There have been changes in `jupyter-book>=0.14` in the way `glue`
 works. Please [see this page for more details](explain:migration).
 
-One of the major updates is that `glue` references between documents 
+One of the major updates is that `glue` references between documents
 now require to use `:doc:`. An example is [available here](explain:migration:glue)
 
 ```
 
 The `glue` tool from [MyST-NB](https://myst-nb.readthedocs.io/)
 allows you to add a key to variables in a notebook,
-then display those variables in your book by referencing the key. 
+then display those variables in your book by referencing the key.
 
 It follows a two-step process:
 
