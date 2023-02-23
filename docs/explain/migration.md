@@ -2,12 +2,12 @@
 # Migrating to `jupyter-book>=0.14`
 
 This release of `jupyter-book>=0.14` includes major updates to [myst-nb](https://myst-nb.readthedocs.io/en/latest/)
-and [myst-parser](https://myst-parser.readthedocs.io/en/latest/) that include some **breaking changes**. 
+and [myst-parser](https://myst-parser.readthedocs.io/en/latest/) that include some **breaking changes**.
 
 This update includes incorporating three major updates to [myst-nb](https://github.com/executablebooks/myst-nb) moving from `myst-nb~=0.13.1` to `myst-nb~=0.17.1`
 which incporates changes to the underlying [myst-parser](https://github.com/executablebooks/myst-parser) moving from `myst-parser~=0.15` to `myst-parser~=0.18`.
 
-While every effort has been made to enable backward compatibility there are some new warnings 
+While every effort has been made to enable backward compatibility there are some new warnings
 that may appear when upgrading to the latest version. This page has been put together to help explain
 these warnings and provides suggestions on how to fix them.
 
@@ -20,10 +20,10 @@ so it is worth referring to these resources when updating any options or using m
 
 ## Common Configuration Updates
 
-A number of configuration option names have been updated. 
+A number of configuration option names have been updated.
 
-Some of the more commonly used options include those that control execution of `jupyter` notebooks. 
-The majority of options concerning notebooks have an `nb_` prefix added to the pre-existing option name, 
+Some of the more commonly used options include those that control execution of `jupyter` notebooks.
+The majority of options concerning notebooks have an `nb_` prefix added to the pre-existing option name,
 however there are some cases where the option name has been changed.
 
 For example `jupyter_execute_notebooks` has become `nb_execution_mode`. Most of the old option
@@ -34,7 +34,7 @@ WARNING: 'jupyter_execute_notebooks' is deprecated for 'nb_execution_mode' [myst
 ```
 
 These warning messages now includes the software that is responsible as seen in the square brackets.
-This helps to identify where your warning is coming from and using the [myst-nb](https://github.com/executablebooks/myst-nb) 
+This helps to identify where your warning is coming from and using the [myst-nb](https://github.com/executablebooks/myst-nb)
 documentation may be a good source of information.
 
 Below we highlight some of the configuration changes here, which we found useful when updating our range
@@ -91,7 +91,7 @@ There are additional option name changes that should be notified to you via the 
 ### Configuration pass-through (file level)
 
 If you wish to specify a configuration options that is processed by [myst-nb](https://github.com/executablebooks/myst-nb),
-overriding the **default configuration** now requires them to under the `mystnb` key. Likewise, if a configuration option is 
+overriding the **default configuration** now requires them to under the `mystnb` key. Likewise, if a configuration option is
 processed by [myst-parser](https://github.com/executablebooks/myst-parser), then they should be under the `myst` key.
 
 Some examples follow:
@@ -142,9 +142,9 @@ myst:
 ### Configuration pass-through (cell level)
 
 Similarly, overriding the default configuration can also be done at the cell level
-and requires them to be under the `mystnb` key. 
+and requires them to be under the `mystnb` key.
 
-Since cell-level operations are in myst-nb domain, we don't have to worry about **Myst-parser** here. 
+Since cell-level operations are in myst-nb domain, we don't have to worry about **Myst-parser** here.
 
 This changes the way configuration was previously captured under the `render` title, replacing it with `mystnb`.
 
@@ -181,8 +181,8 @@ The `glue` behaviour is the same as previously **within the same** notebook (pag
 ```
 
 The `glue` roles and directives will only identify keys in the same notebook, by **default**.
-To reference a glue object in another notebook (page or document), now requires you to use a `:doc:` key, 
-which specifies the relative path to the notebook. 
+To reference a glue object in another notebook (page or document), now requires you to use a `:doc:` key,
+which specifies the relative path to the notebook.
 
 An example:
 
