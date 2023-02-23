@@ -230,7 +230,6 @@ def build(
         toc = PATH_SRC_FOLDER.joinpath("_toc.yml") if toc is None else Path(toc)
 
         if not get_config_only:
-
             if not toc.exists():
                 _error(
                     "Couldn't find a Table of Contents file. "
