@@ -43,7 +43,7 @@ final:
     google_analytics_id: ''
     home_page_in_toc: true
     launch_buttons:
-      binderhub_url: https://mybinder.org
+      binderhub_url: ''
       colab_url: ''
       jupyterhub_url: ''
       notebook_interface: classic
