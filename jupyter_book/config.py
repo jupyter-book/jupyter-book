@@ -282,9 +282,7 @@ def yaml_to_sphinx(yaml: dict):
                 sphinx_config[spx_key] = html[yml_key]
 
         for spx_key, yml_key in [
-            ("google_analytics_id", "google_analytics_id"),
             ("navbar_footer_text", "navbar_footer_text"),
-            ("extra_navbar", "extra_navbar"),
             # Deprecate navbar_footer_text after a release cycle
             ("extra_footer", "extra_footer"),
             ("home_page_in_toc", "home_page_in_navbar"),
@@ -293,6 +291,10 @@ def yaml_to_sphinx(yaml: dict):
             if yml_key in html:
                 theme_options[spx_key] = html[yml_key]
 
+        for spx_key, yml_key in [("google_analytics_id", "google_analytics_id")]:
+            if yml_key in html:
+                theme_options["analytics"] = {}
+                theme_options["analytics"][spx_key] = html[yml_key]
         # Pass through the buttons
         btns = ["use_repository_button", "use_edit_page_button", "use_issues_button"]
         use_buttons = {btn: html.get(btn) for btn in btns if btn in html}
@@ -343,20 +345,20 @@ def yaml_to_sphinx(yaml: dict):
     execute = yaml.get("execute")
     if execute:
         for spx_key, yml_key in [
-            ("execution_allow_errors", "allow_errors"),
-            ("execution_in_temp", "run_in_temp"),
+            ("nb_execution_allow_errors", "allow_errors"),
+            ("nb_execution_in_temp", "run_in_temp"),
             ("nb_output_stderr", "stderr_output"),
-            ("execution_timeout", "timeout"),
-            ("jupyter_cache", "cache"),
-            ("jupyter_execute_notebooks", "execute_notebooks"),
-            ("execution_excludepatterns", "exclude_patterns"),
+            ("nb_execution_timeout", "timeout"),
+            ("nb_execution_cache_path", "cache"),
+            ("nb_execution_mode", "execute_notebooks"),
+            ("nb_execution_excludepatterns", "exclude_patterns"),
         ]:
             if yml_key in execute:
                 sphinx_config[spx_key] = execute[yml_key]
 
-        if sphinx_config.get("jupyter_execute_notebooks") is False:
+        if sphinx_config.get("nb_execution_mode") is False:
             # Special case because YAML treats `off` as "False".
-            sphinx_config["jupyter_execute_notebooks"] = "off"
+            sphinx_config["nb_execution_mode"] = "off"
 
     # LaTeX
     latex = yaml.get("latex")

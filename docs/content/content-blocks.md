@@ -1,18 +1,19 @@
 ---
-substitutions:
-  key1: "I'm a **substitution**"
-  key2: |
-    ```{note}
-    {{ key1 }}
-    ```
-  fishy: |
-    ```{image} /images/fun-fish.png
-    :alt: fishy
-    :width: 200px
-    ```
-  jinja: "[Jinja templates](https://jinja.palletsprojects.com/en/2.11.x/)"
-  repo_name: "jupyter-book"
-  repo_url: "[my repo url](https://github.com/executablebooks/jupyter-book)"
+myst:
+  substitutions:
+    key1: "I'm a **substitution**"
+    key2: |
+      ```{note}
+      {{ key1 }}
+      ```
+    fishy: |
+      ```{image} /images/fun-fish.png
+      :alt: fishy
+      :width: 200px
+      ```
+    jinja: "[Jinja templates](https://jinja.palletsprojects.com/en/2.11.x/)"
+    repo_name: "jupyter-book"
+    repo_url: "[my repo url](https://github.com/executablebooks/jupyter-book)"
 ---
 
 # Special content blocks
@@ -166,7 +167,7 @@ You can use this syntax for any kind of directive, though it is generally recomm
 ### Insert code cell outputs into admonitions
 
 If you'd like to insert the outputs of running code *inside* admonition
-blocks, we recommend using [`glue` functionality](content:code-outputs:glue).
+blocks, we recommend using [`glue` functionality](content:executable:output-insert).
 For example, we'll insert one of the outputs that was glued into the book from the [code outputs page](./code-outputs.md).
 
 For example:
@@ -176,12 +177,13 @@ For example:
 ```{note}
 Here's my figure:
 
-```{glue:figure} sorted_means_fig
+```{glue} sorted_means_fig
+:doc: executable/output-insert.md
 ```
 
 ````
 
-See [](content:code-outputs:glue) for more information on how to use `glue` to insert your outputs directly into your content.
+See [](content:executable:output-insert) for more information on how to use `glue` to insert your outputs directly into your content.
 
 :::{tip}
 To hide code input and output that generated the variable you are inserting, use the `remove_cell` tag.
@@ -470,17 +472,18 @@ To use a substitution, first add front-matter content to the top of a page like 
 
 ````yaml
 ---
-substitutions:
-  key1: "I'm a **substitution**"
-  key2: |
-    ```{note}
-    {{ key1 }}
-    ```
-  fishy: |
-    ```{image} img/fun-fish.png
-    :alt: fishy
-    :width: 200px
-    ```
+myst:
+  substitutions:
+    key1: "I'm a **substitution**"
+    key2: |
+      ```{note}
+      {{ key1 }}
+      ```
+    fishy: |
+      ```{image} img/fun-fish.png
+      :alt: fishy
+      :width: 200px
+      ```
 ---
 ````
 
@@ -521,7 +524,7 @@ These substitutions will be available throughout your book. For example, the glo
 
 ### Formatting substitutions
 
-MyST substitutions use {{ jinja }} in order to substite in key / values. This means that you can apply any standard Jinja formatting to your substitutions. For example, you can **replace text in your substitutions** like so:
+MyST substitutions use {{ jinja }} in order to substitute in key / values. This means that you can apply any standard Jinja formatting to your substitutions. For example, you can **replace text in your substitutions** like so:
 
 ```{example}
 The original key1: {{ key1 }}

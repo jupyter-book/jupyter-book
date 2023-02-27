@@ -34,7 +34,8 @@ SPHINX_VERSION = f".sphinx{sphinx_build.version_info[0]}"
                 "local_extensions": {"helloworld": "./ext"},
                 "config": {
                     "html_theme_options": {
-                        "launch_buttons": {"binderhub_url": "other"}
+                        "launch_buttons": {"binderhub_url": "other"},
+                        "analytics": {"google_analytics_id": ""},
                     },
                     "html_theme": "other",
                     "new": "value",
