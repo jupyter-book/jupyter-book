@@ -27,7 +27,6 @@ A [migration assistance page](https://jupyterbook.org/en/stable/explain/migratio
 
 However this excludes the many major contributions in underlying projects which are documented in the table below.
 
-|---------|---------------|
 | Package | Contributions |
 |---------|---------------|
 | [myst-nb](https://github.com/executablebooks/MyST-NB) | [contributors](https://github.com/executablebooks/MyST-NB/graphs/contributors?from=2022-02-11&to=2023-02-28&type=c) |
