@@ -27,14 +27,13 @@ A [migration assistance page](https://jupyterbook.org/en/stable/explain/migratio
 
 However this excludes the many major contributions in underlying projects which are documented in the table below.
 
-|---------|---------------|
 | Package | Contributions |
 |---------|---------------|
 | [myst-nb](https://github.com/executablebooks/MyST-NB) | [contributors](https://github.com/executablebooks/MyST-NB/graphs/contributors?from=2022-02-11&to=2023-02-28&type=c) |
 | [myst-parser](https://github.com/executablebooks/myst-parser) | [contributors](https://github.com/executablebooks/myst-parser/graphs/contributors?from=2021-06-13&to=2023-02-28&type=c) |
 | [sphinx-design](https://github.com/executablebooks/sphinx-design) | [contributors](https://github.com/executablebooks/sphinx-design/graphs/contributors?from=2022-04-21&to=2023-02-28&type=c) |
-|| [sphinx-thebe](https://github.com/executablebooks/sphinx-thebe) | [contributors](https://github.com/executablebooks/sphinx-thebe/graphs/contributors?from=2022-04-30&to=2023-02-28&type=c) |
-|| [sphinx-book-theme](https://github.com/executablebooks/sphinx-book-theme) | [contributors](https://github.com/executablebooks/sphinx-book-theme/graphs/contributors?from=2022-03-28&to=2023-01-05&type=c) |
+| [sphinx-thebe](https://github.com/executablebooks/sphinx-thebe) | [contributors](https://github.com/executablebooks/sphinx-thebe/graphs/contributors?from=2022-04-30&to=2023-02-28&type=c) |
+| [sphinx-book-theme](https://github.com/executablebooks/sphinx-book-theme) | [contributors](https://github.com/executablebooks/sphinx-book-theme/graphs/contributors?from=2022-03-28&to=2023-01-05&type=c) |
 
 
 ## v0.13.2 - 2023-02-07
