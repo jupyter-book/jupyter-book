@@ -42,7 +42,7 @@ dependencies = [
     "sphinx-jupyterbook-latex~=0.5.2",
     "sphinx-design~=0.3.0",
     "sphinx-thebe~=0.2.0",
-    "sphinx-book-theme==0.4.0rc1",
+    "sphinx-book-theme==1.0.0",
     "sphinx_togglebutton",
     "sphinxcontrib-bibtex>=2.2.0,<=2.5.0",
     "sphinx-multitoc-numbering~=0.1.3",
