@@ -53,7 +53,7 @@ def test_build_from_template(temp_with_override, cli):
 
 
 def test_last_updated_fmt_is_not_None_from_default_template(temp_with_override, cli):
-    """Test building the book template and a few test configs."""
+    """Test that the date is properly rendered in the footer"""
     # Create the book from the template
     book = temp_with_override / "new_book"
     _ = cli.invoke(commands.create, book.as_posix())
