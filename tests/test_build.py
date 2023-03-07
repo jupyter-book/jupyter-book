@@ -52,7 +52,6 @@ def test_build_from_template(temp_with_override, cli):
     assert html.joinpath("intro.html").exists()
 
 
-@pytest.mark.xfail(strict=True)
 def test_last_updated_fmt_is_not_None_from_default_template(temp_with_override, cli):
     """Test building the book template and a few test configs."""
     # Create the book from the template
