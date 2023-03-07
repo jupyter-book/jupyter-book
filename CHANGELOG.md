@@ -1,8 +1,20 @@
 # Change Log
 
+## v0.14.1 - 2023-03-07
+
+([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.14.0...c0d3d0c640a709f84c23ef58b25c65d2e5a6e816))
+
+This release updates [sphinx-book-theme](https://sphinx-book-theme.readthedocs.io/en/latest/index.html) to version `1.0.0`
+
+- [#1953](https://github.com/executablebooks/jupyter-book/pull/1953)
+
+The full release notes for [sphinx-book-theme==1.0.0 can be found here](https://sphinx-book-theme.readthedocs.io/en/latest/changelog.html#v1-0-0-2023-03-01)
+
+Thanks to [all the contributors](https://github.com/executablebooks/sphinx-book-theme/graphs/contributors?from=2022-07-17&to=2023-02-19&type=c) that worked on this major update to [sphinx-book-theme](https://sphinx-book-theme.readthedocs.io/en/latest/index.html)
+
 ## v0.14.0 - 2023-02-28
 
-([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.13.2...e52689156deeace6a34c8e27f77dfa7ec65720ab))
+([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.13.2...1089b62c13c8aab264718d2cae15d65c7ddaba96))
 
 This release updates many of the underlying software packages used by `jupyter-book` including major updates to [myst-nb](https://github.com/executablebooks/myst-nb) and [myst-parser](https://github.com/executablebooks/myst-parser) which power `jupyter-book`. This release also brings compatibility with `sphinx v5`.
 
