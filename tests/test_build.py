@@ -1,3 +1,4 @@
+import re
 from pathlib import Path
 
 import pytest
@@ -49,6 +50,22 @@ def test_build_from_template(temp_with_override, cli):
     html = book.joinpath("_build", "html")
     assert html.joinpath("index.html").exists()
     assert html.joinpath("intro.html").exists()
+
+
+@pytest.mark.xfail(strict=True)
+def test_last_updated_fmt_is_not_None_from_default_template(temp_with_override, cli):
+    """Test building the book template and a few test configs."""
+    # Create the book from the template
+    book = temp_with_override / "new_book"
+    _ = cli.invoke(commands.create, book.as_posix())
+    build_result = cli.invoke(
+        commands.build, [book.as_posix(), "-n", "-W", "--keep-going"]
+    )
+    assert build_result.exit_code == 0, build_result.output
+    html = book.joinpath("_build", "html", "intro.html").read_text(encoding="utf8")
+    pattern = re.compile(r"Last updated on (?P<date>(\w+\s*)*)")
+    match = re.search(pattern, html)
+    assert match["date"] != "None"
 
 
 def test_build_dirhtml_from_template(temp_with_override, cli):
