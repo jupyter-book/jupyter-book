@@ -32,6 +32,7 @@ final:
   external_toc_exclude_missing: false
   html_baseurl: ''
   html_favicon: ''
+  html_last_updated_fmt: '%b %d, %Y'
   html_logo: ''
   html_sourcelink_suffix: ''
   html_theme: sphinx_book_theme
