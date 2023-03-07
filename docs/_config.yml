@@ -71,7 +71,6 @@ sphinx:
     suppress_warnings: ["mystnb.unknown_mime_type", "myst.domains", "mystnb.mime_priority"]
     copybutton_prompt_text: "$"
     nb_execution_show_tb: True
-    html_last_updated_fmt: "%b %d, %Y"
     nb_execution_timeout: 120
     html_extra_path:
       - images/badge.svg
