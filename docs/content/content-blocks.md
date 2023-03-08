@@ -22,7 +22,7 @@ A common use of directives and roles is to designate "special blocks" of your co
 This allows you to include more complex information such as warnings and notes, citations, and figures.
 This section covers a few common ones.
 
-% REMOVE when version is >= 0.14
+% REMOVE when version is >= 0.15
 :::{admonition} Upgrading from `sphinx-panels`
 Previous versions of Jupyter Book used `sphinx-panels` to define major UI elements.
 These now use [Sphinx Design instead](https://sphinx-design.readthedocs.io).
@@ -109,7 +109,7 @@ Here's a dropdown note!
 See [](components:dropdowns) for more details.
 :::
 
-For a complete list of options, see [the `sphinx-book-theme` documentation](https://sphinx-book-theme.readthedocs.io/en/latest/reference/kitchen-sink/paragraph-markup.html#admonitions).
+For a complete list of admonitions, see [the `sphinx-book-theme` documentation](https://sphinx-book-theme.readthedocs.io/en/stable/reference/kitchen-sink/admonitions.html).
 
 ### Blocks of text with custom titles
 
