@@ -266,7 +266,7 @@ We have community discussions, talk about ideas, and share general questions and
 :::
 
 :::{grid-item-card}
-:link: https://executablebooks.org/en/latest/feature-vote.html
+:link: https://executablebooks.org/en/latest/feature-vote/
 :class-header: bg-light
 
 👍 Vote for new features
