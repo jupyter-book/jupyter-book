@@ -266,7 +266,7 @@ We have community discussions, talk about ideas, and share general questions and
 :::
 
 :::{grid-item-card}
-:link: https://executablebooks.org/en/latest/feature-vote.html
+:link: https://executablebooks.org/en/latest/feature-vote/
 :class-header: bg-light
 
 👍 Vote for new features
@@ -277,7 +277,8 @@ You can find a list of the top issues in the Executable Books issue leader board
 :::
 
 :::{grid-item-card}
-:link: contribute/intro.md
+:link: contribute/intro
+:link-type: doc
 :class-header: bg-light
 
 🙌 Contribute to projects
