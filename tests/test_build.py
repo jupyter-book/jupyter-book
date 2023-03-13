@@ -80,9 +80,9 @@ def test_build_singlehtml_from_template(temp_with_override, cli):
         assert build_result.exit_code == 1, build_result.output
     else:
         assert build_result.exit_code == 0, build_result.output
-    html = book.joinpath("_build", "singlehtml")
-    assert html.joinpath("index.html").exists()
-    assert html.joinpath("intro.html").exists()
+        html = book.joinpath("_build", "singlehtml")
+        assert html.joinpath("index.html").exists()
+        assert html.joinpath("intro.html").exists()
 
 
 def test_custom_config(cli, build_resources):
