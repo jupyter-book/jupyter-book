@@ -277,7 +277,8 @@ You can find a list of the top issues in the Executable Books issue leader board
 :::
 
 :::{grid-item-card}
-:link: contribute/intro.md
+:link: contribute/intro
+:link-type: doc
 :class-header: bg-light
 
 🙌 Contribute to projects
