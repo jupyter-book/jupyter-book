@@ -7,7 +7,8 @@
 ### Bug
 
 This release is a minor update to alert users of `jupyter-book` to [sphinxcontrib-bibtex #322](https://github.com/mcmtroffaes/sphinxcontrib-bibtex/issues/322) when building bibliographies with `docutils>=0.18,<0.20` installed.
-is resolved.
+
+- [#1965](https://github.com/executablebooks/jupyter-book/pull/1965)
 
 **Bug:** Using `docutils>=0.18` results in breaking the page `html` layout when using `sphinx-book-theme` on pages
 that include a `bibliography` directive.
