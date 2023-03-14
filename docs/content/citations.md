@@ -1,6 +1,19 @@
 (content:citations)=
 # Citations and bibliographies
 
+:::{warning}
+If you are using `docutils<=0.18,<20` then the page containing the `bibliography` directive
+will not have the correct layout. While `docutils` is patched we recommend using `docutils==0.17.1`
+which can be installed by:
+
+```bash
+pip install docutils==0.17.1
+```
+
+This is due to [this issue](https://sourceforge.net/p/docutils/patches/195/)
+:::
+
+
 You can add citations and bibliographies using references that are stored in a `bibtex` file that is in your book's folder. You can then add a citation in-line in your Markdown with the `{cite}` role, and include the bibliography from your bibtex file with the `{bibliography}` directive.
 
 ```{seealso}
