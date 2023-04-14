@@ -5,11 +5,15 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Optional, Union
 
+import docutils
 import jsonschema
 import sphinx
 import yaml
+from sphinx.util import logging
 
 from .utils import _message_box
+
+logger = logging.getLogger(__name__)
 
 # Transform a "Jupyter Book" YAML configuration file into a Sphinx configuration file.
 # This is so that we can choose more user-friendly words for things than Sphinx uses.
@@ -408,11 +412,25 @@ def yaml_to_sphinx(yaml: dict):
 
     # Citations
     sphinxcontrib_bibtex_configs = ["bibtex_bibfiles", "bibtex_reference_style"]
-    if any(ii in yaml for ii in sphinxcontrib_bibtex_configs):
+    if any(bibtex_config in yaml for bibtex_config in sphinxcontrib_bibtex_configs):
         # Load sphincontrib-bibtex
         if "extensions" not in sphinx_config:
             sphinx_config["extensions"] = get_default_sphinx_config()["extensions"]
         sphinx_config["extensions"].append("sphinxcontrib.bibtex")
+
+        # Report Bug in Specific Docutils Versions
+        # TODO: Remove when docutils>=0.20 is pinned in jupyter-book
+        # https://github.com/mcmtroffaes/sphinxcontrib-bibtex/issues/322
+        if (0, 18) <= docutils.__version_info__ < (0, 20):
+            logger.warn(
+                "[sphinxcontrib-bibtex] Beware that docutils versions 0.18 and 0.19 "
+                "(you are running {}) are known to generate invalid html for citations. "
+                "If this issue affects you, please use docutils<0.18 (or >=0.20 once released) "
+                "instead. "
+                "For more details, see https://sourceforge.net/p/docutils/patches/195/".format(
+                    docutils.__version__
+                )
+            )
 
         # Pass through configuration
         if yaml.get("bibtex_bibfiles"):

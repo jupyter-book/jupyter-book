@@ -1,5 +1,19 @@
 # Change Log
 
+## v0.15.1 - 2023-03-13
+
+([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.15.0...aa0eedbc40691b5f0ea0dd5e80fdfb572e0ee91d))
+
+### Bug
+
+This release is a minor update to alert users of `jupyter-book` to [sphinxcontrib-bibtex #322](https://github.com/mcmtroffaes/sphinxcontrib-bibtex/issues/322) when building bibliographies with `docutils>=0.18,<0.20` installed.
+
+- [#1965](https://github.com/executablebooks/jupyter-book/pull/1965)
+
+**Bug:** Using `docutils>=0.18` results in breaking the page `html` layout when using `sphinx-book-theme` on pages
+that include a `bibliography` directive.
+
+
 ## v0.15.0 - 2023-03-07
 
 ([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.14.0...c0d3d0c640a709f84c23ef58b25c65d2e5a6e816))
