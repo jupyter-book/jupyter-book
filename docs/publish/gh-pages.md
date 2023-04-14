@@ -169,6 +169,16 @@ jobs:
       run: |
         pip install -r requirements.txt
 
+    # (optional) cache your executed notebooks between runs
+    # if you have config:
+    # execute:
+    #   execute_notebooks: cache
+    - name: cache executed notebooks
+      uses: actions/cache@v3
+      with:
+        path: _build/.jupyter_cache
+        key: jupyter-book-cache-${{ hashFiles('requirements.txt') }}
+
     # Build the book
     - name: Build the book
       run: |
