@@ -5,11 +5,15 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Optional, Union
 
+import docutils
 import jsonschema
 import sphinx
 import yaml
+from sphinx.util import logging
 
 from .utils import _message_box
+
+logger = logging.getLogger(__name__)
 
 # Transform a "Jupyter Book" YAML configuration file into a Sphinx configuration file.
 # This is so that we can choose more user-friendly words for things than Sphinx uses.
@@ -276,7 +280,6 @@ def yaml_to_sphinx(yaml: dict):
     # HTML
     html = yaml.get("html")
     if html:
-
         for spx_key, yml_key in [
             ("html_favicon", "favicon"),
             ("html_baseurl", "baseurl"),
@@ -287,9 +290,7 @@ def yaml_to_sphinx(yaml: dict):
                 sphinx_config[spx_key] = html[yml_key]
 
         for spx_key, yml_key in [
-            ("google_analytics_id", "google_analytics_id"),
             ("navbar_footer_text", "navbar_footer_text"),
-            ("extra_navbar", "extra_navbar"),
             # Deprecate navbar_footer_text after a release cycle
             ("extra_footer", "extra_footer"),
             ("home_page_in_toc", "home_page_in_navbar"),
@@ -298,6 +299,10 @@ def yaml_to_sphinx(yaml: dict):
             if yml_key in html:
                 theme_options[spx_key] = html[yml_key]
 
+        for spx_key, yml_key in [("google_analytics_id", "google_analytics_id")]:
+            if yml_key in html:
+                theme_options["analytics"] = {}
+                theme_options["analytics"][spx_key] = html[yml_key]
         # Pass through the buttons
         btns = ["use_repository_button", "use_edit_page_button", "use_issues_button"]
         use_buttons = {btn: html.get(btn) for btn in btns if btn in html}
@@ -348,20 +353,20 @@ def yaml_to_sphinx(yaml: dict):
     execute = yaml.get("execute")
     if execute:
         for spx_key, yml_key in [
-            ("execution_allow_errors", "allow_errors"),
-            ("execution_in_temp", "run_in_temp"),
+            ("nb_execution_allow_errors", "allow_errors"),
+            ("nb_execution_in_temp", "run_in_temp"),
             ("nb_output_stderr", "stderr_output"),
-            ("execution_timeout", "timeout"),
-            ("jupyter_cache", "cache"),
-            ("jupyter_execute_notebooks", "execute_notebooks"),
-            ("execution_excludepatterns", "exclude_patterns"),
+            ("nb_execution_timeout", "timeout"),
+            ("nb_execution_cache_path", "cache"),
+            ("nb_execution_mode", "execute_notebooks"),
+            ("nb_execution_excludepatterns", "exclude_patterns"),
         ]:
             if yml_key in execute:
                 sphinx_config[spx_key] = execute[yml_key]
 
-        if sphinx_config.get("jupyter_execute_notebooks") is False:
+        if sphinx_config.get("nb_execution_mode") is False:
             # Special case because YAML treats `off` as "False".
-            sphinx_config["jupyter_execute_notebooks"] = "off"
+            sphinx_config["nb_execution_mode"] = "off"
 
     # LaTeX
     latex = yaml.get("latex")
@@ -411,11 +416,25 @@ def yaml_to_sphinx(yaml: dict):
 
     # Citations
     sphinxcontrib_bibtex_configs = ["bibtex_bibfiles", "bibtex_reference_style"]
-    if any(ii in yaml for ii in sphinxcontrib_bibtex_configs):
+    if any(bibtex_config in yaml for bibtex_config in sphinxcontrib_bibtex_configs):
         # Load sphincontrib-bibtex
         if "extensions" not in sphinx_config:
             sphinx_config["extensions"] = get_default_sphinx_config()["extensions"]
         sphinx_config["extensions"].append("sphinxcontrib.bibtex")
+
+        # Report Bug in Specific Docutils Versions
+        # TODO: Remove when docutils>=0.20 is pinned in jupyter-book
+        # https://github.com/mcmtroffaes/sphinxcontrib-bibtex/issues/322
+        if (0, 18) <= docutils.__version_info__ < (0, 20):
+            logger.warn(
+                "[sphinxcontrib-bibtex] Beware that docutils versions 0.18 and 0.19 "
+                "(you are running {}) are known to generate invalid html for citations. "
+                "If this issue affects you, please use docutils<0.18 (or >=0.20 once released) "
+                "instead. "
+                "For more details, see https://sourceforge.net/p/docutils/patches/195/".format(
+                    docutils.__version__
+                )
+            )
 
         # Pass through configuration
         if yaml.get("bibtex_bibfiles"):

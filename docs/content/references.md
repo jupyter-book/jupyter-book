@@ -106,7 +106,7 @@ Here are several ways to reference this content:
 
 ## Reference content files
 
-To reference other files of book content, use the `{doc}` role, or link directly to another file with Markdown link syntax. For exmaple:
+To reference other files of book content, use the `{doc}` role, or link directly to another file with Markdown link syntax. For example:
 
 | source                                         | result                                   |
 |------------------------------------------------|------------------------------------------|
@@ -179,7 +179,7 @@ Then, you may use the `{numref}` role in the same way that you use it for Figure
 
 If you wish to use Markdown style syntax, then MyST Markdown will try to find a reference from any of the above reference types (and more!).
 
-This has an advantage, in that you can used nested markdown syntax in your text, for example:
+This has an advantage, in that you can use nested markdown syntax in your text, for example:
 
 ```{example}
 

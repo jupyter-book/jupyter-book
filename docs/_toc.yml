@@ -92,9 +92,10 @@ parts:
 
 - caption: About Jupyter Book
   chapters:
-  - url: https://executablebooks.org/en/latest/gallery.html
+  - url: https://executablebooks.org/en/latest/gallery
     title: Gallery of Jupyter Books
   - file: explain/components
   - file: cite
+  - file: explain/migration
   - file: reference/_changelog
     title: Change log

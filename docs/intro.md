@@ -120,7 +120,7 @@ This documentation is organized into a few major sections.
 # Built with Jupyter Book
 
 Below are some books that have been built with Jupyter Book.
-You can find more in [{bdg-primary}`the Jupyter Book Gallery`](https://executablebooks.org/en/latest/gallery.html).
+You can find more in [{bdg-primary}`the Jupyter Book Gallery`](https://executablebooks.org/en/latest/gallery/).
 
 
 ::::{card-carousel} 3
@@ -166,7 +166,7 @@ Explore this book {fas}`arrow-right`
 
 **The Turing Way**
 ^^^
-```{image} https://the-turing-way.netlify.app/_static/logo.jpg
+```{image} https://the-turing-way.netlify.app/_static/logo-detail-with-text.svg
 :height: 100
 ```
 
@@ -266,7 +266,7 @@ We have community discussions, talk about ideas, and share general questions and
 :::
 
 :::{grid-item-card}
-:link: https://executablebooks.org/en/latest/feature-vote.html
+:link: https://executablebooks.org/en/latest/feature-vote/
 :class-header: bg-light
 
 👍 Vote for new features
@@ -277,7 +277,8 @@ You can find a list of the top issues in the Executable Books issue leader board
 :::
 
 :::{grid-item-card}
-:link: contribute/intro.md
+:link: contribute/intro
+:link-type: doc
 :class-header: bg-light
 
 🙌 Contribute to projects

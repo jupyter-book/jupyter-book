@@ -15,6 +15,9 @@ bibtex_bibfiles:
 
 execute:
   execute_notebooks: cache
+  stderr_output: "remove"
+  allow_errors: true
+  timeout: 120
 
 html:
   announcement: "⚠️The latest release refactored our HTML, so double-check your custom CSS rules!⚠️"
@@ -25,6 +28,8 @@ html:
   use_repository_button: true
   use_issues_button: true
   baseurl: https://jupyterbook.org/
+  analytics:
+    google_analytics_id = ''
 
 repository:
   url: https://github.com/executablebooks/jupyter-book
@@ -59,29 +64,16 @@ latex:
 
 sphinx:
   config:
-    nb_custom_formats:
-      .Rmd:
-        - jupytext.reads
-        - fmt: Rmd
     bibtex_reference_style: author_year  # or label, super, \supercite
-    execution_show_tb: True
-    execution_timeout: 120
-    # TODO: #917 this path will be the default in sphinx v4
-    # mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-    # However, it is incompatible with the mathjax config below for macros
-    mathjax3_config:
-      tex:
-        macros:
-          "N": "\\mathbb{N}"
-          "floor": ["\\lfloor#1\\rfloor", 1]
-          "bmat": ["\\left[\\begin{array}"]
-          "emat": ["\\end{array}\\right]"]
-    latex_elements:
-        preamble: |
-          \newcommand\N{\mathbb{N}}
-          \newcommand\floor[1]{\lfloor#1\rfloor}
-          \newcommand{\bmat}{\left[\begin{array}}
-          \newcommand{\emat}{\end{array}\right]}
+    # unknown_mime_type - application/vnd.plotly.v1+json and application/vnd.bokehjs_load.v0+json
+    # domains - sphinx_proof.domain::prf needs to have `resolve_any_xref` method
+    # mime_priority - latex priority not set in myst_nb for text/html, application/javascript
+    suppress_warnings: ["mystnb.unknown_mime_type", "myst.domains", "mystnb.mime_priority"]
+    copybutton_prompt_text: "$"
+    nb_execution_show_tb: True
+    nb_execution_timeout: 120
+    html_extra_path:
+      - images/badge.svg
     intersphinx_mapping:
       ebp:
         - "https://executablebooks.org/en/latest/"
@@ -101,6 +93,27 @@ sphinx:
       sd:
         - https://sphinx-design.readthedocs.io/en/latest
         - null
+    language: en
+    latex_elements:
+        preamble: |
+          \newcommand\N{\mathbb{N}}
+          \newcommand\floor[1]{\lfloor#1\rfloor}
+          \newcommand{\bmat}{\left[\begin{array}}
+          \newcommand{\emat}{\end{array}\right]}
+    # TODO: #917 this path will be the default in sphinx v4
+    # mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+    # However, it is incompatible with the mathjax config below for macros
+    mathjax3_config:
+      tex:
+        macros:
+          "N": "\\mathbb{N}"
+          "floor": ["\\lfloor#1\\rfloor", 1]
+          "bmat": ["\\left[\\begin{array}"]
+          "emat": ["\\end{array}\\right]"]
+    nb_custom_formats:
+      .Rmd:
+        - jupytext.reads
+        - fmt: Rmd
     rediraffe_branch: 'master'
     rediraffe_redirects:
       content-types/index.md: file-types/index.md
@@ -110,9 +123,7 @@ sphinx:
       content-types/jupytext.md: file-types/jupytext.Rmd
       content-types/restructuredtext.md: file-types/restructuredtext.md
       customize/toc.md: structure/toc.md
-    language: en
-    html_extra_path:
-      - images/badge.svg
+    sd_fontawesome_latex: True
 
 
   extra_extensions:

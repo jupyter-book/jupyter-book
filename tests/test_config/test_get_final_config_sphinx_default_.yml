@@ -3,6 +3,8 @@ _user_config:
     config:
       html_theme: other
       html_theme_options:
+        analytics:
+          google_analytics_id: ''
         launch_buttons:
           binderhub_url: other
       new: value
@@ -21,10 +23,6 @@ final:
   - .DS_Store
   - Thumbs.db
   - _build
-  execution_allow_errors: false
-  execution_excludepatterns: []
-  execution_in_temp: false
-  execution_timeout: 30
   extensions:
   - sphinx_togglebutton
   - sphinx_copybutton
@@ -46,11 +44,11 @@ final:
   html_sourcelink_suffix: ''
   html_theme: other
   html_theme_options:
+    analytics:
+      google_analytics_id: ''
     launch_buttons:
       binderhub_url: other
   html_title: My Jupyter Book
-  jupyter_cache: ''
-  jupyter_execute_notebooks: auto
   latex_engine: pdflatex
   myst_enable_extensions:
   - colon_fence
@@ -62,6 +60,12 @@ final:
   - mailto
   - http
   - https
+  nb_execution_allow_errors: false
+  nb_execution_cache_path: ''
+  nb_execution_excludepatterns: []
+  nb_execution_in_temp: false
+  nb_execution_mode: auto
+  nb_execution_timeout: 30
   nb_output_stderr: show
   new: value
   numfig: true

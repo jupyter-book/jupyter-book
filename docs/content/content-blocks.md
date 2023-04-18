@@ -1,18 +1,19 @@
 ---
-substitutions:
-  key1: "I'm a **substitution**"
-  key2: |
-    ```{note}
-    {{ key1 }}
-    ```
-  fishy: |
-    ```{image} /images/fun-fish.png
-    :alt: fishy
-    :width: 200px
-    ```
-  jinja: "[Jinja templates](https://jinja.palletsprojects.com/en/2.11.x/)"
-  repo_name: "jupyter-book"
-  repo_url: "[my repo url](https://github.com/executablebooks/jupyter-book)"
+myst:
+  substitutions:
+    key1: "I'm a **substitution**"
+    key2: |
+      ```{note}
+      {{ key1 }}
+      ```
+    fishy: |
+      ```{image} /images/fun-fish.png
+      :alt: fishy
+      :width: 200px
+      ```
+    jinja: "[Jinja templates](https://jinja.palletsprojects.com/en/2.11.x/)"
+    repo_name: "jupyter-book"
+    repo_url: "[my repo url](https://github.com/executablebooks/jupyter-book)"
 ---
 
 # Special content blocks
@@ -21,7 +22,7 @@ A common use of directives and roles is to designate "special blocks" of your co
 This allows you to include more complex information such as warnings and notes, citations, and figures.
 This section covers a few common ones.
 
-% REMOVE when version is >= 0.14
+% REMOVE when version is >= 0.15
 :::{admonition} Upgrading from `sphinx-panels`
 Previous versions of Jupyter Book used `sphinx-panels` to define major UI elements.
 These now use [Sphinx Design instead](https://sphinx-design.readthedocs.io).
@@ -108,7 +109,7 @@ Here's a dropdown note!
 See [](components:dropdowns) for more details.
 :::
 
-For a complete list of options, see [the `sphinx-book-theme` documentation](https://sphinx-book-theme.readthedocs.io/en/latest/reference/kitchen-sink/paragraph-markup.html#admonitions).
+For a complete list of admonitions, see [the `sphinx-book-theme` documentation](https://sphinx-book-theme.readthedocs.io/en/stable/reference/kitchen-sink/admonitions.html).
 
 ### Blocks of text with custom titles
 
@@ -166,7 +167,7 @@ You can use this syntax for any kind of directive, though it is generally recomm
 ### Insert code cell outputs into admonitions
 
 If you'd like to insert the outputs of running code *inside* admonition
-blocks, we recommend using [`glue` functionality](content:code-outputs:glue).
+blocks, we recommend using [`glue` functionality](content:executable:output-insert).
 For example, we'll insert one of the outputs that was glued into the book from the [code outputs page](./code-outputs.md).
 
 For example:
@@ -176,12 +177,13 @@ For example:
 ```{note}
 Here's my figure:
 
-```{glue:figure} sorted_means_fig
+```{glue} sorted_means_fig
+:doc: executable/output-insert.md
 ```
 
 ````
 
-See [](content:code-outputs:glue) for more information on how to use `glue` to insert your outputs directly into your content.
+See [](content:executable:output-insert) for more information on how to use `glue` to insert your outputs directly into your content.
 
 :::{tip}
 To hide code input and output that generated the variable you are inserting, use the `remove_cell` tag.
@@ -470,17 +472,18 @@ To use a substitution, first add front-matter content to the top of a page like 
 
 ````yaml
 ---
-substitutions:
-  key1: "I'm a **substitution**"
-  key2: |
-    ```{note}
-    {{ key1 }}
-    ```
-  fishy: |
-    ```{image} img/fun-fish.png
-    :alt: fishy
-    :width: 200px
-    ```
+myst:
+  substitutions:
+    key1: "I'm a **substitution**"
+    key2: |
+      ```{note}
+      {{ key1 }}
+      ```
+    fishy: |
+      ```{image} img/fun-fish.png
+      :alt: fishy
+      :width: 200px
+      ```
 ---
 ````
 
@@ -521,7 +524,7 @@ These substitutions will be available throughout your book. For example, the glo
 
 ### Formatting substitutions
 
-MyST substitutions use {{ jinja }} in order to substite in key / values. This means that you can apply any standard Jinja formatting to your substitutions. For example, you can **replace text in your substitutions** like so:
+MyST substitutions use {{ jinja }} in order to substitute in key / values. This means that you can apply any standard Jinja formatting to your substitutions. For example, you can **replace text in your substitutions** like so:
 
 ```{example}
 The original key1: {{ key1 }}

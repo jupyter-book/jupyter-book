@@ -93,6 +93,18 @@ for ii in range(40):
     print(f"this is output line {ii}")
 ```
 
+When writing MyST markdown documents you may use `:tags: ["output_scroll"]` as an option
+to the `code-cell` directive such as:
+
+````
+```{code-cell} ipython3
+:tags: [output_scroll]
+
+for ii in range(40):
+    print(f"this is output line {ii}")
+```
+````
+
 (content:code-outputs:images)=
 ## Images
 
@@ -115,7 +127,7 @@ We can also set a caption (which is rendered as [CommonMark](https://commonmark.
 ````md
 ```{code-cell} ipython3
 ---
-render:
+mystnb:
   image:
     width: 200px
     alt: fun-fish
@@ -134,7 +146,7 @@ produces the following code cell and figure:
 
 ```{code-cell} ipython3
 ---
-render:
+mystnb:
   image:
     width: 300px
     alt: fun-fish
@@ -234,15 +246,16 @@ For example, this is the default priority list for HTML:
 ```yaml
 sphinx:
   config:
-    nb_render_priority:
-      html:
-      - "application/vnd.jupyter.widget-view+json"
-      - "application/javascript"
-      - "text/html"
-      - "image/svg+xml"
-      - "image/png"
-      - "image/jpeg"
-      - "text/markdown"
-      - "text/latex"
-      - "text/plain"
+    nb_mime_priority_overrides: [
+      ['html', 'application/vnd.jupyter.widget-view+json', 10],
+      ['html', 'application/javascript', 20],
+      ['html', 'text/html', 30],
+      ['html', 'image/svg+xml', 40],
+      ['html', 'image/png', 50],
+      ['html', 'image/gif', 60],
+      ['html', 'image/jpeg', 70],
+      ['html', 'text/markdown', 80],
+      ['html', 'text/latex', 90],
+      ['html', 'text/plain', 100]
+    ]
 ```
