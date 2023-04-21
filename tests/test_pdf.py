@@ -44,7 +44,7 @@ original_import = __import__
 def import_mock(name, *args, **kwargs):
     if name == "playwright.sync_api":
         raise ModuleNotFoundError(
-            f"No module named 'playwright'", name="playwright.sync_api"
+            "No module named 'playwright'", name="playwright.sync_api"
         )
     return original_import(name, *args, **kwargs)
 
