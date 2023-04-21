@@ -37,24 +37,32 @@ def test_pdfhtml(cli: CliRunner, temp_with_override: Path):
     assert path_html.joinpath("markdown.html").exists()
     assert path_pdf.joinpath("markdown.pdf").exists()
 
+
 original_import = __import__
+
+
 def import_mock(name, *args, **kwargs):
-    if name == 'playwright.sync_api':
-        raise ModuleNotFoundError(f"No module named 'playwright'", name='playwright.sync_api')
+    if name == "playwright.sync_api":
+        raise ModuleNotFoundError(
+            f"No module named 'playwright'", name="playwright.sync_api"
+        )
     return original_import(name, *args, **kwargs)
+
 
 @pytest.mark.requires_chrome
 def test_pdfhtml_playwright_missing(cli: CliRunner, temp_with_override: Path):
     path_output = temp_with_override.absolute()
 
     with mock.patch("builtins.__import__", side_effect=import_mock):
-
         # test for build
         path_template = path_tests.parent.joinpath("jupyter_book", "book_template")
         cmd = f"{path_template} --path-output {path_output} --builder pdfhtml"
         result = cli.invoke(build, cmd.split())
         assert result.exit_code == 1
-        assert "Generating PDF from book HTML requires the playwright package." in result.exception.args[0]
+        assert (
+            "Generating PDF from book HTML requires the playwright package."
+            in result.exception.args[0]
+        )
 
 
 # TODO: Update to include more detailed tests for pdflatex build chain
