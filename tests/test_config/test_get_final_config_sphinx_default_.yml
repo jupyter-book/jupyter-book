@@ -17,7 +17,7 @@ final:
   comments_config:
     hypothesis: false
     utterances: false
-  copyright: '2022'
+  copyright: '2023'
   exclude_patterns:
   - '**.ipynb_checkpoints'
   - .DS_Store
