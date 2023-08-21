@@ -76,7 +76,7 @@ def test_build_singlehtml_from_template(temp_with_override, cli):
     )
     # TODO: Remove when docutils>=0.20 is pinned in jupyter-book
     # https://github.com/mcmtroffaes/sphinxcontrib-bibtex/issues/322
-    if (0, 18) <= docutils.__version_info__ < (0, 20):
+    if (0, 18) <= docutils.__version_info__ < (0, 20, 1):
         assert build_result.exit_code == 1, build_result.output
     else:
         assert build_result.exit_code == 0, build_result.output
