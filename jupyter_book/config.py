@@ -421,11 +421,11 @@ def yaml_to_sphinx(yaml: dict):
         # Report Bug in Specific Docutils Versions
         # TODO: Remove when docutils>=0.20 is pinned in jupyter-book
         # https://github.com/mcmtroffaes/sphinxcontrib-bibtex/issues/322
-        if (0, 18) <= docutils.__version_info__ < (0, 20, 1):
+        if (0, 18) <= docutils.__version_info__ < (0, 20):
             logger.warn(
-                "[sphinxcontrib-bibtex] Beware that docutils versions 0.18, 0.19, and 0.20.0 "
+                "[sphinxcontrib-bibtex] Beware that docutils versions 0.18 and 0.19 "
                 "(you are running {}) are known to generate invalid html for citations. "
-                "If this issue affects you, please use docutils<0.18 or >=0.20.1 instead. "
+                "If this issue affects you, please use docutils<0.18 or >=0.20 instead. "
                 "For more details, see https://sourceforge.net/p/docutils/patches/195/".format(
                     docutils.__version__
                 )

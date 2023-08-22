@@ -29,7 +29,7 @@ dynamic = ["description", "version"]
 requires-python = ">=3.7"
 dependencies = [
     "click>=7.1,<9",
-    "docutils>=0.15,!=0.18.*,!=0.19.*,!=0.20.0",
+    "docutils>=0.15,!=0.18.*,!=0.19.*",
     "Jinja2",
     "jsonschema<5",
     "linkify-it-py~=2.0.0",
