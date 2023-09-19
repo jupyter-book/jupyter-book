@@ -140,11 +140,14 @@ for a Github Action that will publish your book to a `gh-pages` branch.
 ```yaml
 name: deploy-book
 
-# Only run this when the master branch changes
+name: deploy-book
+
+# Run this when the master or main branch changes
 on:
   push:
     branches:
     - master
+    - main
     # If your git repository has the Jupyter Book within some-subfolder next to
     # unrelated files, you can make this run only if a file within that specific
     # folder has been modified.
