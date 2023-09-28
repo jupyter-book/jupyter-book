@@ -60,7 +60,7 @@ files in your book's `_build/html` folder.
    ```
 2. Update the settings for your GitHub pages site:
 
-    a. Use the `gh-pages` branch to host your website. You may need to create this branch, first. You can do this by going to https://github.com/USERNAME/REPO_NAME/branches, replacing the variables in all caps with your username and repository name, respectively. Or, you could checkout a new branch locally from main, and then push that to the repository on GitHub: `git checkout master && git checkout -b gh-pages && git push origin gh-pages`, for instance. 
+    a. Use the `gh-pages` branch to host your website. You may need to create this branch, first. You can do this by going to https://github.com/USERNAME/REPO_NAME/branches, replacing the variables in all caps with your username and repository name, respectively. Or, you could checkout a new branch locally from main, and then push that to the repository on GitHub: `git checkout master && git checkout -b gh-pages && git push origin gh-pages`, for instance.
 
     b. Choose root directory `/` if you're building the book in it's own repository.
        Choose `/docs` directory if you're building documentation with jupyter-book.
