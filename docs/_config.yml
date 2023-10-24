@@ -20,7 +20,10 @@ execute:
   timeout: 120
 
 html:
-  announcement: "⚠️The latest release refactored our HTML, so double-check your custom CSS rules!⚠️"
+  # FIXME: surely we could allow internal or relative links somehow?
+  # (The documentation says only that HTML is allowed, nothing about the base URL is mentioned.)
+  # Then we could link to the changelog in the *same* build of the docs.
+  announcement: '⚠️The <a href="https://jupyterbook.org/en/stable/reference/_changelog.html#v0-13-0-2022-06-02">0.13 release</a> refactored our HTML, so double-check your custom CSS rules!⚠️'
   favicon: images/favicon.ico
   google_analytics_id: UA-52617120-7
   home_page_in_navbar: false
