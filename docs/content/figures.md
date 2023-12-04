@@ -198,7 +198,7 @@ which will replace the reference with the figure caption like so:
 ### Numbered references
 
 Another convenient way to create cross-references is with the `{numref}` role,
-which referes to the labelled objects by the numbers they automatically get.
+which refers to the labelled objects by the numbers they automatically get.
 For example, `` {numref}`directive-fig` `` will produce a reference like: {numref}`directive-fig`.
 
 If an explicit text is provided, this caption will serve as the title of the reference. For example,
