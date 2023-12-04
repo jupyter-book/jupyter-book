@@ -240,7 +240,7 @@ contains a full list of supported `latex` builders.
 #### Customize LaTeX via Sphinx
 
 The current focus of the EBP project has been to automate the process of building `pdf` files
-from `myst:md` sources and to ensure the resulting `pdf` files are syncronised (in structure)
+from `myst:md` sources and to ensure the resulting `pdf` files are synchronised (in structure)
 with the `html` output. We are actively looking at ways to enable more `LaTeX` configuration and
 customization.
 
