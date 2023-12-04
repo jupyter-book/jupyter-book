@@ -1,7 +1,7 @@
 (publish/gh-pages)=
 # GitHub Pages and Actions
 
-Once your content is on GitHub, you can easily host it as a [GitHub Pages](https://docs.github.com/en/github/working-with-github-pages) website. This is a service where GitHub hosts your static files as if they were a standalone website. The quickest way to get started with Jupyter Book on GitHub Pages is to use GitHub Actions to deploy the built HTML files.
+Once your content is on GitHub, you can easily host it as a [GitHub Pages](https://docs.github.com/en/pages/quickstart) website. This is a service where GitHub hosts your static files as if they were a standalone website. The quickest way to get started with Jupyter Book on GitHub Pages is to use GitHub Actions to deploy the built HTML files.
 
 [GitHub Actions](https://docs.github.com/en/actions) is a tool that allows you to automate things on GitHub.
 It is used for a variety of things, such as testing, publishing packages and continuous integration.
