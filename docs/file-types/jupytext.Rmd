@@ -74,9 +74,16 @@ This mapping allows for "true" error reporting, as described in [](myst-nb:myst/
 between Jupyter Notebook `.ipynb` files and
 [a variety of text-based files](https://jupytext.readthedocs.io/en/latest/formats.html).
 
-Jupyter Book natively supports the Jupytext file format: [notebooks with MyST Markdown](./myst-notebooks.md), but you can add other formats like [RMarkdown](https://rmarkdown.rstudio.com/) or Python files.
+Jupyter Book natively supports the Jupytext file format: [notebooks with MyST Markdown](./myst-notebooks.md).
 
-The configuration looks like:
+You can also add other formats like [RMarkdown](https://rmarkdown.rstudio.com/) or Python files.
+To do so, first ensure Jupytext is installed:
+
+```console
+$ pip install jupytext
+```
+
+Then configure Jupyter book like so:
 
 ```yaml
 sphinx:
@@ -101,9 +108,6 @@ Now you can use RMarkdown blocks:
 print("Hallo I'm an RMarkdown block!")
 ```
 
-:::{important}
-For full compatibility with `myst-parser`, it is necessary to use `jupytext>=1.6.0`.
-:::
 
 (file-types:custom:jupytext)=
 ## Convert a Jupytext file into a MyST notebook

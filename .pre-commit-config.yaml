@@ -11,37 +11,25 @@ exclude: >
 
 repos:
 
-  - repo: git://github.com/pre-commit/pre-commit-hooks
-    rev: v4.1.0
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
     hooks:
     - id: check-json
     - id: check-yaml
     - id: end-of-file-fixer
     - id: trailing-whitespace
 
-  # this is not used for now,
-  # since it converts jupyter-book to jupyter_book and removes comments
-  # - repo: https://github.com/asottile/setup-cfg-fmt
-  #   rev: v1.17.0
-  #   hooks:
-  #   - id: setup-cfg-fmt
-
-  - repo: https://github.com/mgedmin/check-manifest
-    rev: "0.47"
-    hooks:
-    - id: check-manifest
-      args: [--no-build-isolation]
-      additional_dependencies: [setuptools>=46.4.0]
-
   - repo: local
     hooks:
     - id: check-doc-req
-      name: Check docs/requirements.txt up-to-date
+      name: Check .binder/requirements.txt up-to-date
       pass_filenames: false
+      additional_dependencies:
+      - tomli
       files: >-
           (?x)^(
-              setup.cfg|
-              docs/requirements.txt|
+              pyproject.toml|
+              .binder/requirements.txt|
               scripts/check_doc_requirements.py|
           )$
       language: python
@@ -49,16 +37,29 @@ repos:
       entry: python scripts/check_doc_requirements.py
 
   - repo: https://github.com/pycqa/isort
-    rev: 5.10.1
+    rev: 5.12.0
     hooks:
     - id: isort
 
   - repo: https://github.com/psf/black
-    rev: 22.1.0
+    rev: 23.3.0
     hooks:
     - id: black
 
   - repo: https://github.com/PyCQA/flake8
-    rev: 4.0.1
+    rev: 6.0.0
     hooks:
     - id: flake8
+
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.2.6
+    hooks:
+    - id: codespell
+      # Allow inline ignores for spelling lines
+      args: ["--ignore-regex", "^.{1024}|^.*\\!ignore-spelling|RePEc:the:publsh:1367"]
+      exclude: >
+        (?x)^(
+            tests/.*|
+            .*\.bib|
+            CHANGELOG.md
+        )$

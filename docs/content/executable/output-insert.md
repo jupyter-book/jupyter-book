@@ -9,25 +9,35 @@ kernelspec:
   name: python3
 ---
 
-(content:code-outputs:glue)=
+(content:executable:output-insert)=
 # Store code outputs and insert into content
 
 You often wish to run analyses in one notebook and insert them in your
 documents elsewhere. For example, if you'd like to include a figure,
 or if you want to cite an analysis that you have run.
 
-```{margin}
+```{warning}
 Currently, `glue` only works with Python.
+```
+
+```{seealso}
+There have been changes in `jupyter-book>=0.14` in the way `glue`
+works. Please [see this page for more details](explain:migration).
+
+One of the major updates is that `glue` references between documents
+now require to use `:doc:`. An example is [available here](explain:migration:glue)
+
 ```
 
 The `glue` tool from [MyST-NB](https://myst-nb.readthedocs.io/)
 allows you to add a key to variables in a notebook,
-then display those variables in your book by referencing the key. It
-follows a two-step process:
+then display those variables in your book by referencing the key.
+
+It follows a two-step process:
 
 * **Glue a variable to a name**. Do this by using
   the `myst_nb.glue` function on a variable
-  that you'd like to re-use elsewhere in the book. You'll give the variable
+  that you'd like to reuse elsewhere in the book. You'll give the variable
   a name that can be referenced later.
 * **Reference that variable from your page's content**. Then, when you are
   writing your content, insert the variable into your text by using a
@@ -38,8 +48,6 @@ We'll cover each step in more detail below.
 :::{margin}
 For more information about roles, see [](../myst.md).
 :::
-
-+++
 
 (glue/gluing)=
 ## Gluing variables in your notebook
@@ -61,14 +69,12 @@ You can then insert it into your text. Adding
 `` {glue:}`cool_text` `` to your content results in the
 following: {glue:}`cool_text`.
 
-### Gluing numbers, plots, and tables
+### Gluing numbers, plots, math, and tables
 
-You can glue anything in your notebook and display it later with `{glue:}`. Here
+You can glue anything in your notebook (or page) and display it later with `{glue:}`. Here
 we'll show how to glue and paste **numbers and images**. We'll simulate some
 data and run a simple bootstrap on it. We'll hide most of this process below,
 to focus on the glueing part.
-
-+++
 
 ```{code-cell} ipython3
 :tags: [hide-cell]
@@ -112,7 +118,7 @@ glue("boot_chi_notdisplayed", chi, display=False)
 You can also glue visualizations, such as Matplotlib figures (here we use `display=False` to ensure that the figure isn't plotted twice):
 
 ```{code-cell} ipython3
-# Visualize the historgram with the intervals
+# Visualize the histogram with the intervals
 fig, ax = plt.subplots()
 ax.hist(means)
 for ln in [clo, chi]:

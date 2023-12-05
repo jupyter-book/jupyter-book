@@ -17,8 +17,9 @@ kernelspec:
 Your book's structure is determined by a **Table of Contents**.
 This is a YAML file (called `_toc.yml`) that defines a structure that Jupyter Book uses to create the order and nesting of pages.
 
+% DEPRECATE in 0.14
 :::{admonition} Migrate to the new Table of Contents structure
-:class: warning
+:class: warning, dropdown
 A new Table of Contents structure was introduced in `v0.11`.
 To migrate your old TOC structure to the new structure, you have a few options:
 
@@ -53,9 +54,14 @@ Here is a brief explanation of each key:
 `root:`
 : The first page of your book (aka, the "root page").
   It is the landing page for the HTML of your book.
+  All paths for chapters/sections will be relative to this root document.
 
 `chapters:`
 : A list of entries, each of which maps onto **chapters** of your book.
+
+`file:`
+: A path to a file that contains the content for a chapter / section.
+  These paths are _relative_ to the `root:` document.
 
 ### Use chapter sub-sections
 

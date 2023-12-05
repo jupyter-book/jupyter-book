@@ -217,7 +217,6 @@ def build(
         config_overrides = {
             "master_doc": PAGE_NAME,
             "exclude_patterns": to_exclude,
-            "html_theme_options": {"single_page": True},
             # --individualpages option set to True for page call
             "latex_individualpages": True,
         }
@@ -231,7 +230,6 @@ def build(
         toc = PATH_SRC_FOLDER.joinpath("_toc.yml") if toc is None else Path(toc)
 
         if not get_config_only:
-
             if not toc.exists():
                 _error(
                     "Couldn't find a Table of Contents file. "
@@ -255,10 +253,6 @@ def build(
             if get_config_only
             else toc.as_posix()
         )
-
-        # Builder-specific overrides
-        if builder == "pdfhtml":
-            config_overrides["html_theme_options"] = {"single_page": True}
 
         # --individualpages option passthrough
         config_overrides["latex_individualpages"] = individualpages
@@ -492,12 +486,8 @@ def sphinx(ctx, path_source, config, toc):
     content = "\n".join(lines).rstrip() + "\n"
 
     out_folder = Path(path_config).parent if path_config else Path(full_path_source)
-    existed = out_folder.joinpath("conf.py").exists()
     out_folder.joinpath("conf.py").write_text(content, encoding="utf8")
     click.secho(f"Wrote conf.py to {out_folder}", fg="green")
-    if not existed:
-        # indicate to pre-commit that the file changed
-        sys.exit(2)
 
 
 # utility functions

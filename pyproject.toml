@@ -1,6 +1,124 @@
 [build-system]
-requires = ["setuptools>=46.4.0", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["flit_core >=3.5,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "jupyter-book"
+authors = [{name = "Executable Book Project", email = "executablebooks@gmail.com"}]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Text Processing :: Markup",
+]
+keywords = [
+    "reproducible",
+    "science",
+    "environments",
+    "scholarship",
+    "notebook",
+]
+dynamic = ["description", "version"]
+requires-python = ">=3.7"
+dependencies = [
+    "click>=7.1,<9",
+    "docutils>=0.15,<0.19", # report issue for >=0.18,<0.20 until https://github.com/mcmtroffaes/sphinxcontrib-bibtex/issues/322 is fixed
+    "Jinja2",
+    "jsonschema<5",
+    "linkify-it-py~=2.0.0",
+    "myst-nb~=0.17.1",
+    "pyyaml",
+    "sphinx>=4,<6",
+    "sphinx-comments",
+    "sphinx-copybutton",
+    "sphinx-external-toc~=0.3.1",
+    "sphinx-jupyterbook-latex~=0.5.2",
+    "sphinx-design~=0.4.1",
+    "sphinx-thebe~=0.2.0",
+    "sphinx-book-theme~=1.0.0",
+    "sphinx_togglebutton",
+    "sphinxcontrib-bibtex>=2.2.0,<=2.5.0",
+    "sphinx-multitoc-numbering~=0.1.3",
+]
+
+[project.license]
+file = "LICENSE"
+
+[project.readme]
+file = "README.md"
+content-type = "text/markdown"
+
+[project.urls]
+Homepage = "https://executablebooks.org/"
+Documentation = "https://jupyterbook.org"
+Funding = "https://executablebooks.org"
+Source = "https://github.com/executablebooks/jupyter-book/"
+Tracker = "https://github.com/executablebooks/jupyter-book/issues"
+
+[project.optional-dependencies]
+code_style = ["pre-commit~=3.1"]
+pdfhtml = ["pyppeteer"]
+sphinx = [
+    "altair",
+    "bokeh",
+    "folium",
+    "ipywidgets",
+    "jupytext",
+    "matplotlib",
+    "nbclient",
+    "numpy",
+    "pandas",
+    "plotly",
+    "sphinx-click",
+    "sphinx-examples",
+    "sphinx_inline_tabs",
+    "sphinx-proof",
+    "sphinxext-rediraffe~=0.2.3",
+    "sympy",
+]
+testing = [
+    "altair",
+    "beautifulsoup4",
+    "beautifulsoup4",
+    "cookiecutter",
+    "coverage",
+    "jupytext",
+    "matplotlib",
+    "pyppeteer",
+    "pytest>=6.2.4",
+    "pytest-cov",
+    "pytest-regressions",
+    "pytest-timeout",
+    "pytest-xdist",
+    "sphinx_click",
+    "sphinx_tabs",
+    "texsoup",
+]
+
+[project.scripts]
+jb = "jupyter_book.cli.main:main"
+jupyter-book = "jupyter_book.cli.main:main"
+
+[tool.flit.module]
+name = "jupyter_book"
+
+[tool.flit.sdist]
+exclude = [
+  ".*",  # Any hidden folders or files
+  "docs/",
+  "tests/",
+  "scripts/",
+  "tox.ini",
+  "codecov.yml",
+  "conftest.py",
+]
 
 [tool.isort]
 profile = "black"

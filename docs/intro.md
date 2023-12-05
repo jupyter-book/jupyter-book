@@ -1,44 +1,115 @@
-# Books with Jupyter <img src="images/logo-square.svg" width=40 />
-
-```{only} html
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2561065.svg)](https://doi.org/10.5281/zenodo.2561065)
-[![Jupyter Book Badge](images/badge.svg)](https://jupyterbook.org)
-```
-
-Jupyter Book is an open source project for building beautiful,
-publication-quality books and documents from computational material.
-
-Here are some of the features of Jupyter Book:
-
-
-:::{panels}
-:container: +full-width text-center
-:column: col-lg-6 px-2 py-2
-:card:
-
-**[Publication-quality content](file-types:markdown)** ✍
-^^^
-Write in either Jupyter Markdown, MyST Markdown for more [publishing features](content/myst), [reStructuredText](file-types:rst), [Jupyter Notebooks](file-types:notebooks), or [any Jupytext format](file-types:custom).
-Includes support for rich syntax such as [citations and cross-references](content/citations), [math and equations](content/math), and [figures](content/figures).
-
 ---
-**[Execute, cache, and insert computational content](content/execute)** 🚀
-^^^
-Execute notebook cells, then [format and insert the latest outputs](content:code-outputs) into your book.
-[Cache outputs to save time in re-building later](execute/cache).
-Even [save notebook outputs and insert them into other pages](content:code-outputs:glue).
-
+title: Books with Jupyter
 ---
-**[Add interactivity to content and outputs](interactive/launchbuttons)** ✨
-^^^
-Create interactive content blocks such as [](content:tabs), [](content:dropdowns). [Toggle cell visibility](interactive/hiding) and include [interactive cell outputs](interactive/interactive) with Jupyter notebooks. [Launch interactive sessions](interactive/launchbuttons) with Binder or Colab, [make your code executable with Thebe](launch:thebe), or [connect with commenting services like Hypothes.is](interactive:comments).
 
----
-**[Build books and articles in many formats](start/build)** 🎁
-^^^
-Build [multi-page books](structure:book) or [single articles](structure:article), and generate many kinds of outputs from them, such as [HTML websites](start/build) or [PDF outputs](advanced/pdf). Jupyter Book uses [the Sphinx Documentation engine](https://www.sphinx-doc.org) which supports [a variety of output types](https://www.sphinx-doc.org/en/master/usage/builders/index.html).
+::::{grid} 2
+:reverse:
+
+:::{grid-item}
+:columns: 4
+:class: sd-m-auto
+
+<img src="images/logo-square.svg" />
 
 :::
+
+:::{grid-item}
+:columns: 8
+:class: sd-fs-3
+Build beautiful, publication-quality books and documents from computational content.
+
+```{button-ref} start/your-first-book
+:ref-type: doc
+:color: primary
+:class: sd-rounded-pill float-left
+
+
+Get started
+```
+
+% The SVG rendering breaks latex builds for the GitHub badge, so only include in HTML
+```{only} html
+[![](https://img.shields.io/github/stars/executablebooks/jupyter-book?style=social)](https://github.com/executablebooks/jupyter-book)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2561065.svg)](https://doi.org/10.5281/zenodo.2561065)
+```
+
+:::
+
+::::
+
+::::{grid} 1 1 2 3
+:class-container: text-center
+:gutter: 3
+
+:::{grid-item-card}
+:link: basics/organize
+:link-type: doc
+:class-header: bg-light
+
+Text content ✏️
+^^^
+
+Structure books with text files and Jupyter Notebooks with minimal configuration.
+:::
+
+:::{grid-item-card}
+:link: content/myst
+:link-type: doc
+:class-header: bg-light
+
+MyST Markdown ✨
+^^^
+
+Write MyST Markdown to create enriched documents with publication-quality features.
+
+:::
+
+:::{grid-item-card}
+:link: content/executable/index
+:link-type: doc
+:class-header: bg-light
+
+Executable content 🔁
+^^^
+
+Execute notebook cells, store results, and insert outputs across pages.
+
+:::
+
+:::{grid-item-card}
+:link: interactive/launchbuttons
+:link-type: doc
+:class-header: bg-light
+
+Live environments 🚀
+^^^
+
+Connect your book with Binder, JupyterHub, and other live environments
+:::
+
+:::{grid-item-card}
+:link: publish/web
+:link-type: doc
+:class-header: bg-light
+
+Build and publish 🎁
+^^^
+
+Share your built books via web services and hosted websites.
+:::
+
+:::{grid-item-card}
+:link: content/components
+:link-type: doc
+:class-header: bg-light
+
+UI components ⚡
+^^^
+
+Create interactive and web-native components and services.
+:::
+
+::::
 
 This documentation is organized into a few major sections.
 
@@ -46,72 +117,211 @@ This documentation is organized into a few major sections.
 - **Topic Guides** cover specific areas in more depth, and are organized as discrete "how-to" sections.
 - **Reference** sections describe the API/syntax/etc of Jupyter Book in detail.
 
-This website is built with Jupyter Book!
-Explore the chapters to the left to learn more!
+# Built with Jupyter Book
 
-:::{admonition} Learn more and get involved
-:class: tip full-width
+Below are some books that have been built with Jupyter Book.
+You can find more in [{bdg-primary}`the Jupyter Book Gallery`](https://executablebooks.org/en/latest/gallery/).
 
-💡 [Open an issue](https://github.com/executablebooks/jupyter-book/issues/new/choose)
-: We track enhancement requests, bug-reports, and to-do items via GitHub issues.
 
-💬 [Join the discussion](https://github.com/executablebooks/meta/discussions)
-: We have community discussions, talk about ideas, and share general questions and feedback in our [community forum](https://github.com/executablebooks/meta/discussions).
+::::{card-carousel} 3
 
-👍 [Vote for new features](ebp:feature-note)
-: The community provides feedback by adding a 👍 reaction to issues in our repositories.
-  You can find a list of the top issues [in the Executable Books issue leader board](ebp:feature-note).
+:::{card}
+:margin: 3
+:class-body: text-center
+:class-header: bg-light text-center
+:link: https://www.inferentialthinking.com/
+**Inferential Thinking**
+^^^
+```{image} https://inferentialthinking.com/_static/favicon.png
+:height: 100
+```
 
-🙌 [Join the community](contribute/intro.md)
-: Jupyter Book is developed by the [Executable Books community](https://executablebooks.org).
-  We welcome anyone to join us in improving Jupyter Book and helping one another learn and create their books.
-  To join, check out our [contributing guide](contribute/intro.md).
+The textbook used by UC Berkeley's popular Data 8 class.
++++
+Explore this book {fas}`arrow-right`
 :::
 
+:::{card}
+:margin: 3
+:class-body: text-center
+:class-header: bg-light text-center
+:link: https://python.quantecon.org/
 
-## Find the right documentation resources
-
-Here are a few pointers to help you get started.
-
-:::{panels}
-:container: +full-width
-:column: col-lg-4 px-2 py-2
----
-:header: bg-jb-one
-**Get started**
+**QuantEcon**
 ^^^
+```{image} https://python.quantecon.org/_static/qe-logo-large.png
+:height: 100
+```
 
-**[](start/your-first-book.md)**: a step-by-step tutorial to get started.
-
-**[](create-a-template-book)**: get started with a simple template book.
-
----
-:header: bg-jb-two
-
-**Learn more**
-^^^
-**[](structure:index)**: Learn how to structure and organize your content.
-
-**[](content/index.md)**: Learn how to write rich narrative content.
-
-**[](content/executable/index.md)**: Write computational content.
----
-:header: bg-jb-three
-
-**Be inspired**
-^^^
-[**The Jupyter Book Gallery**](http://gallery.jupyterbook.org): A gallery of community books that have been created with Jupyter Book.
-
-[**The QuantEcon Python Lectures**](https://python.quantecon.org/intro.html): A full mathematical textbook built with a custom Jupyter Book theme.
+A free online book to teach computational economics with open source tools.
++++
+Explore this book {fas}`arrow-right`
 :::
 
-## Acknowledgements
+:::{card}
+:margin: 3
+:class-body: text-center
+:class-header: bg-light text-center
+:link: https://the-turing-way.netlify.app
+
+**The Turing Way**
+^^^
+```{image} https://the-turing-way.netlify.app/_static/logo-detail-with-text.svg
+:height: 100
+```
+
+A guidebook for best-practices in reproducible and community-driven science.
++++
+Explore this book {fas}`arrow-right`
+:::
+
+:::{card}
+:margin: 3
+:class-body: text-center
+:class-header: bg-light text-center
+:link: https://inria.github.io/scikit-learn-mooc/
+
+**The SciKit Learn MOOC**
+^^^
+```{image} https://inria.github.io/scikit-learn-mooc/_static/scikit-learn-logo.png
+:height: 100
+```
+
+A large online course for machine learning with the PyData stack.
++++
+Explore this book {fas}`arrow-right`
+:::
+
+:::{card}
+:margin: 3
+:class-body: text-center
+:class-header: bg-light text-center
+:link: https://uwdata.github.io/visualization-curriculum/intro.html
+
+**Data Science @ UW**
+^^^
+```{image} https://uwdata.github.io/visualization-curriculum/_static/altair-hist.png
+:height: 100
+```
+
+Interactive data visualization with Python, as taught at the University of Washington.
++++
+Explore this book {fas}`arrow-right`
+:::
+
+:::{card}
+:margin: 3
+:class-body: text-center
+:class-header: bg-light text-center
+:link: https://py-pkgs.org/
+
+**Py-Pkgs**
+^^^
+```{image} https://d33wubrfki0l68.cloudfront.net/9ff174183b5af5c3a177bfccd4796454883bc1f7/86cde/_static/py-pkgs-hex.png
+:height: 100
+```
+
+A book describing how to create and use modern packages in the Python ecosystem.
++++
+Explore this book {fas}`arrow-right`
+:::
+
+:::{card}
+:margin: 3
+:class-body: text-center
+:class-header: bg-light text-center
+:link: https://geographicdata.science/book/intro.html
+
+**Geographic Data Science**
+^^^
+```{image} https://geographicdata.science/book/_static/logo.png
+:height: 100
+```
+
+Solving geographic data problems with modern open source tools.
++++
+Explore this book {fas}`arrow-right`
+:::
+::::
+
+
+# Connect with us
+
+We are an international open source community that welcomes discussion, feedback, and contributions of many kinds.
+Here are a few ways to connect more with us.
+
+::::{grid} 1 1 2 2
+:class-container: text-center
+:gutter: 3
+
+:::{grid-item-card}
+:link: https://github.com/orgs/executablebooks/discussions
+:class-header: bg-light
+
+💬 Ask and answer questions
+^^^
+
+We have community discussions, talk about ideas, and share general questions and feedback in our community forum.
+
+:::
+
+:::{grid-item-card}
+:link: https://executablebooks.org/en/latest/feature-vote/
+:class-header: bg-light
+
+👍 Vote for new features
+^^^
+Provides feedback by adding a 👍 reaction to issues in our repositories.
+You can find a list of the top issues in the Executable Books issue leader board.
+
+:::
+
+:::{grid-item-card}
+:link: contribute/intro
+:link-type: doc
+:class-header: bg-light
+
+🙌 Contribute to projects
+
+^^^
+
+We welcome anyone to join us in improving Jupyter Book and helping one another learn and create their books.
+To join, check out our contributing guide.
+:::
+
+:::{grid-item-card}
+:link: https://executablebooks.org
+:class-header: bg-light
+
+🌍 About our team
+
+^^^
+
+Jupyter Book is developed by the Executable Books community.
+Check out our community documentation to learn more about us and how we work.
+:::
+::::
+
+
+# Acknowledgements
 
 Jupyter Book is supported by an [open community of contributors](https://github.com/executablebooks/jupyter-book/graphs/contributors), many of whom come from [the Executable Books Community](https://executablebooks.org) and [the Jupyter community](https://jupyter.org/community).
 
-:::{image} https://sloan.org/storage/app/media/uploaded-files/Logo-1B-SMALL-Gold-Blue.png
-:class: float-left mr-2 rounded
-:width: 150px
+::::{grid} 2 2 2 2
+
+:::{grid-item}
+:columns: 4
+
+```{image} https://sloan.org/storage/app/media/uploaded-files/Logo-1B-SMALL-Gold-Blue.png
+:class: m-auto
+:width: 200px
+```
+
 :::
 
+:::{grid-item}
+:columns: 7
 Many thanks to the Sloan Foundation, which [provides support for the Executable Books Project](https://sloan.org/grant-detail/9231).
+:::
+
+::::

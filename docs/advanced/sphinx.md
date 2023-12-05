@@ -36,7 +36,7 @@ how to build the extensions.
 
 ### An example: `sphinx-inline-tabs`
 
-By default, Jupyter Book ships with [tabs via `sphinx-panels`](content:tabs).
+By default, Jupyter Book ships with [tabs via `sphinx-design`](components:tabs).
 There are other packages for tabs in the Sphinx ecosystem with different functionality.
 One-such package is [`sphinx-inline-tabs`](https://sphinx-inline-tabs.readthedocs.io/en/latest/), which allows for _syncronized tabs_ in case you'd like your tabs to shift across the page at the same time.
 
@@ -228,7 +228,7 @@ These two extensions are highly customizable *via* Sphinx configuration.
 Some of their configuration is already exposed in the `_config.yml`, but you can also directly set configuration, see:
 
 * the [MyST-Parser configuration options](myst-parser:sphinx/config-options)
-* the [MyST-NB configuration options](myst-nb:config/reference)
+* the [MyST-NB configuration options](myst-nb:config/intro)
 
 (sphinx/tex-macros)=
 ### Defining TeX macros
@@ -239,8 +239,8 @@ You can add LaTeX macros for the whole book by defining them under the `Macros` 
 sphinx:
   config:
     mathjax_config:
-      TeX:
-        Macros:
+      tex:
+        macros:
           "N": "\\mathbb{N}"
           "floor": ["\\lfloor#1\\rfloor", 1]
           "bmat" : ["\\left[\\begin{array}"]

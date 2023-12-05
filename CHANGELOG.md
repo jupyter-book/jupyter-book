@@ -1,11 +1,162 @@
 # Change Log
 
+## v0.15.1 - 2023-03-13
+
+([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.15.0...aa0eedbc40691b5f0ea0dd5e80fdfb572e0ee91d))
+
+### Bug
+
+This release is a minor update to alert users of `jupyter-book` to [sphinxcontrib-bibtex #322](https://github.com/mcmtroffaes/sphinxcontrib-bibtex/issues/322) when building bibliographies with `docutils>=0.18,<0.20` installed.
+
+- [#1965](https://github.com/executablebooks/jupyter-book/pull/1965)
+
+**Bug:** Using `docutils>=0.18` results in breaking the page `html` layout when using `sphinx-book-theme` on pages
+that include a `bibliography` directive.
+
+
+## v0.15.0 - 2023-03-07
+
+([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.14.0...c0d3d0c640a709f84c23ef58b25c65d2e5a6e816))
+
+This release updates [sphinx-book-theme](https://sphinx-book-theme.readthedocs.io/en/latest/index.html) to version `1.0.0`
+
+- [#1953](https://github.com/executablebooks/jupyter-book/pull/1953)
+
+The full release notes for [sphinx-book-theme==1.0.0 can be found here](https://sphinx-book-theme.readthedocs.io/en/latest/changelog.html#v1-0-0-2023-03-01)
+
+Thanks to [all the contributors](https://github.com/executablebooks/sphinx-book-theme/graphs/contributors?from=2022-07-17&to=2023-02-19&type=c) that worked on this major update to [sphinx-book-theme](https://sphinx-book-theme.readthedocs.io/en/latest/index.html)
+
+
+## v0.14.0 - 2023-02-28
+
+([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.13.2...e52689156deeace6a34c8e27f77dfa7ec65720ab))
+
+This release updates many of the underlying software packages used by `jupyter-book` including major updates to [myst-nb](https://github.com/executablebooks/myst-nb) and [myst-parser](https://github.com/executablebooks/myst-parser) which power `jupyter-book`. This release also brings compatibility with `sphinx v5`.
+
+A big **thank you** to all contributors and maintainers of these underlying packages. There have been many major updates that will flow through to `jupyter-book` with this release.
+
+A [migration assistance page](https://jupyterbook.org/en/stable/explain/migration.html) has been setup to assist users with updates to your `configuration` and highlights a few of the common `breaking changes` which are discussed with examples.
+
+### Package Updates
+
+- [#1842](https://github.com/executablebooks/jupyter-book/pull/1842) updates [myst-nb](https://github.com/executablebooks/MyST-NB) moving from `myst-nb~=0.13.1` to `myst-nb~=0.17.1`. This incorporates three major updates to [myst-nb](https://github.com/executablebooks/MyST-NB/releases) which in turn incorporates changes to the underlying [myst-parser](https://github.com/executablebooks/MyST-Parser/releases) moving from `myst-parser~=0.15` to `myst-parser~=0.18`.
+- [#1842](https://github.com/executablebooks/jupyter-book/pull/1842) enables compatibility with `docutils>=0.15,<0.19`
+- [#1842](https://github.com/executablebooks/jupyter-book/pull/1842) supports `sphinx5`
+- [#1842](https://github.com/executablebooks/jupyter-book/pull/1842) incorporates updates for `sphinx-design`, `sphinx-thebe` and `sphinx-book-theme`.
+
+### Docs
+
+- DOCS: Fix gallery URL [1933](https://github.com/executablebooks/jupyter-book/pull/1933) and [1937](https://github.com/executablebooks/jupyter-book/pull/1937)
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/executablebooks/jupyter-book/graphs/contributors?from=2023-02-07&to=2023-02-28&type=c))
+
+However this excludes the many major contributions in underlying projects which are documented in the table below.
+
+| Package | Contributions |
+|---------|---------------|
+| [myst-nb](https://github.com/executablebooks/MyST-NB) | [contributors](https://github.com/executablebooks/MyST-NB/graphs/contributors?from=2022-02-11&to=2023-02-28&type=c) |
+| [myst-parser](https://github.com/executablebooks/myst-parser) | [contributors](https://github.com/executablebooks/myst-parser/graphs/contributors?from=2021-06-13&to=2023-02-28&type=c) |
+| [sphinx-design](https://github.com/executablebooks/sphinx-design) | [contributors](https://github.com/executablebooks/sphinx-design/graphs/contributors?from=2022-04-21&to=2023-02-28&type=c) |
+| [sphinx-thebe](https://github.com/executablebooks/sphinx-thebe) | [contributors](https://github.com/executablebooks/sphinx-thebe/graphs/contributors?from=2022-04-30&to=2023-02-28&type=c) |
+| [sphinx-book-theme](https://github.com/executablebooks/sphinx-book-theme) | [contributors](https://github.com/executablebooks/sphinx-book-theme/graphs/contributors?from=2022-03-28&to=2023-01-05&type=c) |
+
+
+## v0.13.2 - 2023-02-07
+
+([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.13.1...e52689156deeace6a34c8e27f77dfa7ec65720ab))
+
+### Maintenance and upkeep improvements
+
+- MAINT: Remove `cell_metadata_filter: -all` from template [#1910](https://github.com/executablebooks/jupyter-book/pull/1910) ([@maxbane](https://github.com/maxbane))
+- MAINT: Move pypi publish to dedicated workflow [#1878](https://github.com/executablebooks/jupyter-book/pull/1878) ([@choldgraf](https://github.com/choldgraf))
+
+### Documentation improvements
+
+- DOCS: Address typo in docs [#1841](https://github.com/executablebooks/jupyter-book/pull/1841) ([@mmcky](https://github.com/mmcky))
+- DOCS: Fix typo [#1879](https://github.com/executablebooks/jupyter-book/pull/1879) ([@fortierq](https://github.com/fortierq))
+- DOCS: Add copybutton console prefix [#1877](https://github.com/executablebooks/jupyter-book/pull/1877) ([@choldgraf](https://github.com/choldgraf))
+- DOCS: Fix broken link in pdf.md [#1876](https://github.com/executablebooks/jupyter-book/pull/1876) ([@stoffprof](https://github.com/stoffprof))
+- DOCS: document an easier method of plausible analytics [#1867](https://github.com/executablebooks/jupyter-book/pull/1867) ([@rkdarst](https://github.com/rkdarst))
+- DOCS: Clarify toc update tip [#1861](https://github.com/executablebooks/jupyter-book/pull/1861) ([@root-11](https://github.com/root-11))
+- DOC: Add guidance for configuring gh-pages [#1859](https://github.com/executablebooks/jupyter-book/pull/1859) ([@rafmudaf](https://github.com/rafmudaf))
+- DOCS: Remove incomplete documentation section on adding metadata [#1854](https://github.com/executablebooks/jupyter-book/pull/1854) ([@MaxGhenis](https://github.com/MaxGhenis))
+- DOCS: Updates to Read the Docs instructions [#1849](https://github.com/executablebooks/jupyter-book/pull/1849) ([@benjaoming](https://github.com/benjaoming))
+- DOCS: Add an example of admonition with warning style [#1834](https://github.com/executablebooks/jupyter-book/pull/1834) ([@paugier](https://github.com/paugier))
+- DOCS: Add documentation on enabling Plausible Analytics [#1814](https://github.com/executablebooks/jupyter-book/pull/1814) ([@firasm](https://github.com/firasm))
+- DOCS: Improve custom admonitions documentation [#1777](https://github.com/executablebooks/jupyter-book/pull/1777) ([@leodrivera](https://github.com/leodrivera))
+- DOCS: Change syntax highlighting example [#1752](https://github.com/executablebooks/jupyter-book/pull/1752) ([@fmaussion](https://github.com/fmaussion))
+- DOCS: Add link to default myst extensions [#1908](https://github.com/executablebooks/jupyter-book/pull/1908) ([@jbusecke](https://github.com/jbusecke))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/executablebooks/jupyter-book/graphs/contributors?from=2022-08-16&to=2023-02-07&type=c))
+
+[@AakashGfude](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3AAakashGfude+updated%3A2022-08-16..2023-02-07&type=Issues) | [@alcrene](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aalcrene+updated%3A2022-08-16..2023-02-07&type=Issues) | [@benjaoming](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Abenjaoming+updated%3A2022-08-16..2023-02-07&type=Issues) | [@choldgraf](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Acholdgraf+updated%3A2022-08-16..2023-02-07&type=Issues) | [@chrisjsewell](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Achrisjsewell+updated%3A2022-08-16..2023-02-07&type=Issues) | [@codecov](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Acodecov+updated%3A2022-08-16..2023-02-07&type=Issues) | [@da5nsy](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Ada5nsy+updated%3A2022-08-16..2023-02-07&type=Issues) | [@dependabot](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Adependabot+updated%3A2022-08-16..2023-02-07&type=Issues) | [@firasm](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Afirasm+updated%3A2022-08-16..2023-02-07&type=Issues) | [@fmaussion](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Afmaussion+updated%3A2022-08-16..2023-02-07&type=Issues) | [@fortierq](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Afortierq+updated%3A2022-08-16..2023-02-07&type=Issues) | [@jbusecke](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Ajbusecke+updated%3A2022-08-16..2023-02-07&type=Issues) | [@jedbrown](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Ajedbrown+updated%3A2022-08-16..2023-02-07&type=Issues) | [@leodrivera](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aleodrivera+updated%3A2022-08-16..2023-02-07&type=Issues) | [@matthew-brett](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Amatthew-brett+updated%3A2022-08-16..2023-02-07&type=Issues) | [@maxbane](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Amaxbane+updated%3A2022-08-16..2023-02-07&type=Issues) | [@MaxGhenis](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3AMaxGhenis+updated%3A2022-08-16..2023-02-07&type=Issues) | [@mmcky](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Ammcky+updated%3A2022-08-16..2023-02-07&type=Issues) | [@paugier](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Apaugier+updated%3A2022-08-16..2023-02-07&type=Issues) | [@phockett](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aphockett+updated%3A2022-08-16..2023-02-07&type=Issues) | [@pradyunsg](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Apradyunsg+updated%3A2022-08-16..2023-02-07&type=Issues) | [@pre-commit-ci](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Apre-commit-ci+updated%3A2022-08-16..2023-02-07&type=Issues) | [@rafmudaf](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Arafmudaf+updated%3A2022-08-16..2023-02-07&type=Issues) | [@rkdarst](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Arkdarst+updated%3A2022-08-16..2023-02-07&type=Issues) | [@root-11](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Aroot-11+updated%3A2022-08-16..2023-02-07&type=Issues) | [@salma-emara](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Asalma-emara+updated%3A2022-08-16..2023-02-07&type=Issues) | [@stevejpurves](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Astevejpurves+updated%3A2022-08-16..2023-02-07&type=Issues) | [@stoffprof](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Astoffprof+updated%3A2022-08-16..2023-02-07&type=Issues) | [@welcome](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3Awelcome+updated%3A2022-08-16..2023-02-07&type=Issues) | [@Zethson](https://github.com/search?q=repo%3Aexecutablebooks%2Fjupyter-book+involves%3AZethson+updated%3A2022-08-16..2023-02-07&type=Issues)
+
+
+## v0.13.1 - 2022-08-16
+
+([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.13.0...8a74127748066eac5e0e788a584cb31d18b66058))
+
+This minor release includes improvements to the project documentation and includes the following fixes:
+
+### Fixes and Maintenance
+
+1. [#1750](https://github.com/executablebooks/jupyter-book/pull/1750) improves compatibility with sphinx>=5.
+2. [#1774](https://github.com/executablebooks/jupyter-book/pull/1774) fixes an issue that enables math when using the `singlehtml` builder
+
+
+## v0.13.0 - 2022-06-02
+
+([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.12.3...a2d441633d5aafed4e94bbc544183cf866213f3a))
+
+This release contains some major UI and visual style upgrades for HTML output, and introduces some breaking changes in a few directives and in the structure of the HTML. See below for major changes.
+
+### New and Breaking ‼
+
+1. [#1442 Use Sphinx Design instead of Sphinx Panels](https://github.com/executablebooks/jupyter-book/pull/1442). We have migrated from [sphinx-panels](https://github.com/executablebooks/sphinx-panels) to [sphinx-design](https://github.com/executablebooks/sphinx-design), as `sphinx-panels` is no longer actively maintained. This also brings in several improvements to the same component functionality that was in sphinx-panels. See [the components documentation](https://jupyterbook.org/en/latest/content/components.html) for more information on upgrades and usage.
+2. [#1679 Update Sphinx Book Theme to v0.3](https://github.com/executablebooks/jupyter-book/pull/1679). This brings in several major upgrades to the theme's behavior and structure. It significantly changes the structure of the output HTML (in particular, the sidebars and article header), so if you defined custom CSS rules, double-check that they still apply correctly.
+
+   See [the Book Theme release notes](https://github.com/executablebooks/sphinx-book-theme/releases/tag/v0.3.0) as well as [the Book Theme changelog](https://github.com/executablebooks/sphinx-book-theme/blob/master/CHANGELOG.md#v030---2022-03-25) for more information.
+3. [#1693 Removes support for `sphinx<=4`](https://github.com/executablebooks/jupyter-book/pull/1693). This will likely only be applicable to you if you were explicitly pinning Sphinx to a version less than 4.
+
+## v0.12.3 - 2022-03-28
+
+([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.12.2...5e12cb324afca1192f2354689d9d5755329e1c9d))
+
+This is a minor release, primarily to fix a bug where incorrect Jinja version pinning leads to broken builds. It also updates our build system to use `flit` and follow the `pyproject.toml` standard.
+
+Here are the main merged PRs:
+
+- PIN: Jinja < 3.1 [#1678](https://github.com/executablebooks/jupyter-book/pull/1678) ([@choldgraf](https://github.com/choldgraf))
+- 🔧 MAINTAIN: Move to flit for PEP 621 package builds [#1645](https://github.com/executablebooks/jupyter-book/pull/1645) ([@choldgraf](https://github.com/choldgraf))
+
+## v0.12.2 - 2022-02-21
+
+This is a minor release that bumps the versions of several dependencies in Jupyter Book (see below for details).
+
+([full changelog](https://github.com/executablebooks/jupyter-book/compare/v0.12.1...419c863eb669efbbdaea82017902f592e7eaa8b1))
+
+### Enhancements made
+
+- Allow recursively updating the sphinx configuration instead of totally over-writing it, see [the sphinx configuration docs](docs/advanced/sphinx.md) for details [#1599](https://github.com/executablebooks/jupyter-book/pull/1599) ([@kmpaul](https://github.com/kmpaul))
+
+### Updated dependencies
+
+- sphinxcontrib-bibtex `v0.4.*` [#1513](https://github.com/executablebooks/jupyter-book/pull/1513) ([@bryanwweber](https://github.com/bryanwweber))
+- sphinx-thebe `v0.1.*` [#1634](https://github.com/executablebooks/jupyter-book/pull/1634) ([@choldgraf](https://github.com/choldgraf))
+- click `v8.*` [#1623](https://github.com/executablebooks/jupyter-book/pull/1623) ([@lukasbindreiter](https://github.com/lukasbindreiter))
+- Remove Python 3.6 and add Python 3.9 [#1626](https://github.com/executablebooks/jupyter-book/pull/1626) ([@choldgraf](https://github.com/choldgraf))
+
+
 ## v0.12.1
 
 This release provides bug fixes and updates when building PDF via LaTeX including improved styling for
 code output cells. It also includes infrastructure for using Jupyter Book with ReadTheDocs.
 
-## New
+### New
 
 - ✨ NEW: Allow running on ReadTheDocs [PR #1422](https://github.com/executablebooks/jupyter-book/pull/1422)
 - ✨ NEW: Upgrade to sphinx-jupyterbook-latex~=0.4.6 [PR #1538](https://github.com/executablebooks/jupyter-book/pull/1538)
@@ -163,7 +314,7 @@ Citations and references configuration
 TOC depth numbering
 
 : You can now set the depth of numbering (e.g., 3.2 vs. 3.2.1) via the the `numbered` flag in your Table of Contents.
-  See [the table of contents documentation](docs/customize/toc.md) for more information.
+  See [the table of contents documentation](docs/structure/toc.md) for more information.
 
 
 ### New MyST syntax
@@ -248,7 +399,7 @@ This release includes a number of new features, improvements and bug fixes. Ther
 * 👌 IMPROVE: Option to exclude every file not in the toc. ([docs](docs/customize/config.md), [#1123](https://github.com/executablebooks/jupyter-book/pull/1123), [@alex-treebeard](https://github.com/alex-treebeard))
 *  ✨ NEW: Enable the use of local Sphinx extension via _config.yml. ([docs](docs/customize/config.md), [#1102](https://github.com/executablebooks/jupyter-book/pull/1102), [@mmcky](https://github.com/mmcky))
 * ✨ NEW: Enable custom builder passthrough. This is an **advanced feature**
-  that enables the use of additional sphinx builders via jupyter-book that may be provided by an extension. ([docs](docs/advanced/sphinx.md), [#1094]([#1094](https://github.com/executablebooks/jupyter-book/pull/1094)), [@mmcky](https://github.com/mmcky))
+  that enables the use of additional sphinx builders via jupyter-book that may be provided by an extension. ([docs](docs/advanced/sphinx.md), [#1094](https://github.com/executablebooks/jupyter-book/pull/1094), [@mmcky](https://github.com/mmcky))
 
 **HTML:**
 

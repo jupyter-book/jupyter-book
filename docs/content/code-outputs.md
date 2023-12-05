@@ -19,7 +19,7 @@ Below we give examples of how to format particular outputs and even insert outpu
 The [MyST cheat sheet](myst_cheatsheet) provides a [list of `code-cell` tags available](myst_cheatsheet:code-cell:tags)
 
 :::{seealso}
-The [MyST-NB documentation](myst-nb:use/format/cutomise), for how to fully customize the output renderer.
+The [MyST-NB documentation](myst-nb:render/output/customise), for how to fully customize the output renderer.
 :::
 
 (content:code-outputs:library-outputs)=
@@ -79,7 +79,7 @@ tag to a cell's metadata:
 ```json
 {
     "tags": [
-        "output_scroll",
+        "scroll-output",
     ]
 }
 ```
@@ -87,11 +87,23 @@ tag to a cell's metadata:
 For example, the following cell has a long output, but will be scrollable in the book:
 
 ```{code-cell} ipython3
-:tags: [output_scroll]
+:tags: [scroll-output]
 
 for ii in range(40):
     print(f"this is output line {ii}")
 ```
+
+When writing MyST markdown documents you may use `:tags: ["scroll-output"]` as an option
+to the `code-cell` directive such as:
+
+````
+```{code-cell} ipython3
+:tags: [scroll-output]
+
+for ii in range(40):
+    print(f"this is output line {ii}")
+```
+````
 
 (content:code-outputs:images)=
 ## Images
@@ -115,7 +127,7 @@ We can also set a caption (which is rendered as [CommonMark](https://commonmark.
 ````md
 ```{code-cell} ipython3
 ---
-render:
+mystnb:
   image:
     width: 200px
     alt: fun-fish
@@ -134,7 +146,7 @@ produces the following code cell and figure:
 
 ```{code-cell} ipython3
 ---
-render:
+mystnb:
   image:
     width: 300px
     alt: fun-fish
@@ -163,7 +175,7 @@ The parsed Markdown is then integrated into the wider context of the document. T
 
 ```{code-cell} ipython3
 from IPython.display import display, Markdown
-display(Markdown('**_some_ markdown** and an [internal reference](use/format/markdown)!'))
+display(Markdown('**_some_ markdown** and an [internal reference](render/output/markdown)!'))
 ```
 
 and even internal images can be rendered, as the code below exemplifies:
@@ -184,7 +196,7 @@ print("AB\x1b[43mCD\x1b[35mEF\x1b[1mGH\x1b[4mIJ\x1b[7m"
       "KL\x1b[49mMN\x1b[39mOP\x1b[22mQR\x1b[24mST\x1b[27mUV")
 ```
 
-This uses the built-in {py:class}`~myst-nb:myst_nb.ansi_lexer.AnsiColorLexer` [pygments lexer](https://pygments.org/).
+This uses the built-in {py:class}`~myst-nb:myst_nb.core.lexers.AnsiColorLexer` [pygments lexer](https://pygments.org/).
 You can change the lexer used in the `_config.yml`, for example to turn off lexing:
 
 ```yaml
@@ -234,15 +246,16 @@ For example, this is the default priority list for HTML:
 ```yaml
 sphinx:
   config:
-    nb_render_priority:
-      html:
-      - "application/vnd.jupyter.widget-view+json"
-      - "application/javascript"
-      - "text/html"
-      - "image/svg+xml"
-      - "image/png"
-      - "image/jpeg"
-      - "text/markdown"
-      - "text/latex"
-      - "text/plain"
+    nb_mime_priority_overrides: [
+      ['html', 'application/vnd.jupyter.widget-view+json', 10],
+      ['html', 'application/javascript', 20],
+      ['html', 'text/html', 30],
+      ['html', 'image/svg+xml', 40],
+      ['html', 'image/png', 50],
+      ['html', 'image/gif', 60],
+      ['html', 'image/jpeg', 70],
+      ['html', 'text/markdown', 80],
+      ['html', 'text/latex', 90],
+      ['html', 'text/plain', 100]
+    ]
 ```

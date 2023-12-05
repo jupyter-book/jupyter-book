@@ -560,6 +560,22 @@ must also include a table title. See example above.
   - ```{important} This is an example
     of an important directive.
     ```
+* - ````md
+    ```{admonition} Title
+    :class: warning
+    text
+    ```
+    ````
+  - ````md
+    ```{admonition} This is a title
+    :class: warning
+    An example of an admonition with a title and a warning style.
+    ```
+    ````
+  - ```{admonition} This is a title
+    :class: warning
+    An example of an admonition with a title and a warning style.
+    ```
 ``````
 
 ## Figures and images
@@ -793,9 +809,8 @@ print(node)
 or
 
 ````md
-```
-No syntax highlighting if no language
-is indicated.
+```none
+No syntax highlighting.
 ```
 ````
 
@@ -808,9 +823,8 @@ print(node)
 
 or
 
-```
-No syntax highlighting if no language
-is indicated.
+```none
+No syntax highlighting.
 ```
 
 ### Executable code
@@ -870,11 +884,11 @@ The following `tags` can be applied to code cells by introducing them as options
     print("This is a test.")
     ```
     ````
-* - `"output_scroll"`
+* - `"scroll-output"`
   - Make output cell scrollable
   - ````md
     ```{code-cell} ipython3
-    :tags: ["output_scroll"]
+    :tags: ["scroll-output"]
     for ii in range(100):
       print("This is a test.")
     ```
@@ -1091,7 +1105,7 @@ To glue a math equation try:
 :label: glue-eq-example
 ```
 
-See [](content:code-outputs:glue) for more information.
+See [](content:executable:output-insert) for more information.
 
 ## Reference documents
 

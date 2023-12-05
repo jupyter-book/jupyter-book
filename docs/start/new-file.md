@@ -27,7 +27,7 @@ When you build your book, you'll see how these links resolve in the output.
 ## Add it to your Table of Contents
 
 Now that you've got a new file, we need to add it to your `_toc.yml` file so that Jupyter Book knows where it fits with your book's structure.
-Add the a line to your `_toc.yml` file pointing to this new content, it should look something like this:
+Add a line to your `_toc.yml` file pointing to this new content. It should look something like this:
 
 ```yaml
 # In _toc.yml
@@ -49,3 +49,11 @@ $ jupyter-book build mybookname
 ```
 
 This will re-build your book, and your new page will show up in the output.
+
+````{tip}
+If your book's Table of Contents doesn't update after changing the `_toc.yml` file, try:
+
+```console
+$ jupyter-book build --all mybookname
+```
+````

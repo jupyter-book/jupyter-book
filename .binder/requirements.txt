@@ -1,1 +1,17 @@
--r ../docs/requirements.txt
+# Copied from 'sphinx' extra of pyproject.toml
+altair
+bokeh
+folium
+ipywidgets
+jupytext
+matplotlib
+nbclient
+numpy
+pandas
+plotly
+sphinx-click
+sphinx-examples
+sphinx_inline_tabs
+sphinx-proof
+sphinxext-rediraffe~=0.2.3
+sympy
