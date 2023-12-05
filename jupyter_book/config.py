@@ -149,7 +149,7 @@ def get_final_config(
             "mathjax_path" in user_yaml_update
             and "@2" in user_yaml_update["mathjax_path"]
         ):
-            # use mathjax2_config so not to tigger deprecation warning in future
+            # use mathjax2_config so not to trigger deprecation warning in future
             user_yaml_update["mathjax2_config"] = user_yaml_update.pop("mathjax_config")
         else:
             _message_box(

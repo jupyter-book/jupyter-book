@@ -153,7 +153,7 @@ def build_sphinx(
                     site_map = app.config.external_site_map
                     site_map_str = yaml.dump(site_map.as_json())
 
-                    # only if there is atleast one numbered: true in the toc file
+                    # only if there is at least one numbered: true in the toc file
                     if "numbered: true" in site_map_str:
                         app.setup_extension("sphinx_multitoc_numbering")
                 else:

@@ -73,7 +73,7 @@ bibtex_bibfiles:
 - `title:` defines a title for the book. It will show up in the left sidebar.
 - `author:` adds the author's name to your book template, for attribution.
 - `logo:` defines a path to an image file for your book's logo (it will also show up in the sidebar).
-- `execute:` contains a collection of configuration options to control [execution and cacheing](../content/execute.md).
+- `execute:` contains a collection of configuration options to control [execution and caching](../content/execute.md).
   - `execute_notebooks: "force"` tells Jupyter Book **force execute** any computational content each time it builds the book. By default, Jupyter Book executes and **caches** all book content.
 - `bibtex_bibfiles:`is a section to define bibliography files for your Jupyter Book.
   This configuration activates **citations** for your book (see [](../tutorials/references.md) for getting started with citations and references).

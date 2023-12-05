@@ -19,7 +19,7 @@ Below we give examples of how to format particular outputs and even insert outpu
 The [MyST cheat sheet](myst_cheatsheet) provides a [list of `code-cell` tags available](myst_cheatsheet:code-cell:tags)
 
 :::{seealso}
-The [MyST-NB documentation](myst-nb:render/output/cutomise), for how to fully customize the output renderer.
+The [MyST-NB documentation](myst-nb:render/output/customise), for how to fully customize the output renderer.
 :::
 
 (content:code-outputs:library-outputs)=
@@ -79,7 +79,7 @@ tag to a cell's metadata:
 ```json
 {
     "tags": [
-        "output_scroll",
+        "scroll-output",
     ]
 }
 ```
@@ -87,18 +87,18 @@ tag to a cell's metadata:
 For example, the following cell has a long output, but will be scrollable in the book:
 
 ```{code-cell} ipython3
-:tags: [output_scroll]
+:tags: [scroll-output]
 
 for ii in range(40):
     print(f"this is output line {ii}")
 ```
 
-When writing MyST markdown documents you may use `:tags: ["output_scroll"]` as an option
+When writing MyST markdown documents you may use `:tags: ["scroll-output"]` as an option
 to the `code-cell` directive such as:
 
 ````
 ```{code-cell} ipython3
-:tags: [output_scroll]
+:tags: [scroll-output]
 
 for ii in range(40):
     print(f"this is output line {ii}")

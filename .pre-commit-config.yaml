@@ -50,3 +50,16 @@ repos:
     rev: 6.0.0
     hooks:
     - id: flake8
+
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.2.6
+    hooks:
+    - id: codespell
+      # Allow inline ignores for spelling lines
+      args: ["--ignore-regex", "^.{1024}|^.*\\!ignore-spelling|RePEc:the:publsh:1367"]
+      exclude: >
+        (?x)^(
+            tests/.*|
+            .*\.bib|
+            CHANGELOG.md
+        )$
