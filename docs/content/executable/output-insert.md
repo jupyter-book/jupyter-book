@@ -37,7 +37,7 @@ It follows a two-step process:
 
 * **Glue a variable to a name**. Do this by using
   the `myst_nb.glue` function on a variable
-  that you'd like to re-use elsewhere in the book. You'll give the variable
+  that you'd like to reuse elsewhere in the book. You'll give the variable
   a name that can be referenced later.
 * **Reference that variable from your page's content**. Then, when you are
   writing your content, insert the variable into your text by using a

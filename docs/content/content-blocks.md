@@ -416,7 +416,7 @@ For example:
 
 #### Create more complex index entries
 
-The Sphinx [*Index-generating markup*](https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html?highlight=index#index-generating-markup) page describes the full range of indexing possibilites.
+The Sphinx [*Index-generating markup*](https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html?highlight=index#index-generating-markup) page describes the full range of indexing possibilities.
 This includes the ability to construct nested headings using the `;` separator to represent a change in index level:
 
 ````md

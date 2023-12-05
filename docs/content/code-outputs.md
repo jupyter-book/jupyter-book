@@ -19,7 +19,7 @@ Below we give examples of how to format particular outputs and even insert outpu
 The [MyST cheat sheet](myst_cheatsheet) provides a [list of `code-cell` tags available](myst_cheatsheet:code-cell:tags)
 
 :::{seealso}
-The [MyST-NB documentation](myst-nb:render/output/cutomise), for how to fully customize the output renderer.
+The [MyST-NB documentation](myst-nb:render/output/customise), for how to fully customize the output renderer.
 :::
 
 (content:code-outputs:library-outputs)=

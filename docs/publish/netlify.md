@@ -19,7 +19,7 @@ Books, you might want to consider registering for [a paid account](https://www.n
 ```
 
 In order to use Netlify, you'll need to [create an account](https://app.netlify.com/signup).
-Here, we'll walk through connecting your Jupyter Book to Netlify's continous deployment services using their UI.
+Here, we'll walk through connecting your Jupyter Book to Netlify's continuous deployment services using their UI.
 You can also check out their [documentation on continuous deployment](https://www.netlify.com/docs/continuous-deployment/).
 
 ```{warning}
