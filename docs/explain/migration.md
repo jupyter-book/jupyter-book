@@ -5,9 +5,9 @@ This release of `jupyter-book>=0.14` includes major updates to [myst-nb](https:/
 and [myst-parser](https://myst-parser.readthedocs.io/en/latest/) that include some **breaking changes**.
 
 This update includes incorporating three major updates to [myst-nb](https://github.com/executablebooks/myst-nb) moving from `myst-nb~=0.13.1` to `myst-nb~=0.17.1`
-which incporates changes to the underlying [myst-parser](https://github.com/executablebooks/myst-parser) moving from `myst-parser~=0.15` to `myst-parser~=0.18`.
+which incorporates changes to the underlying [myst-parser](https://github.com/executablebooks/myst-parser) moving from `myst-parser~=0.15` to `myst-parser~=0.18`.
 
-While every effort has been made to enable backward compatibility there are some new warnings
+While every effort has been made to enable backward compatibility, there are some new warnings
 that may appear when upgrading to the latest version. This page has been put together to help explain
 these warnings and provides suggestions on how to fix them.
 
@@ -51,7 +51,7 @@ The noteworthy configuration changes which effected most of our projects were:
 2. `nb_render_priority` is renamed to `nb_mime_priority_overrides` and it accepts a sequence of tuples.
     Each tuple takes three mandatory entries namely `builder name`, `mime type`, and `priority`.
 
-  An Example,
+  An Example:
 
   ```yaml
   sphinx:
@@ -68,7 +68,7 @@ The noteworthy configuration changes which effected most of our projects were:
         - "text/plain"
   ```
 
-  would become
+  would become:
 
   ```yaml
   sphinx:
@@ -98,7 +98,7 @@ Some examples follow:
 
 #### myst-nb
 
-To set the `execution_timeout` config option managed by `mystnb` you would specify the following
+To set the `execution_timeout` config option managed by `mystnb` you would specify the following:
 
 ````md
 ```
@@ -115,7 +115,7 @@ in the header of the notebook (or page).
 #### Myst-parser
 
 To make document level variables that will be resolved by [myst-parser](https://github.com/executablebooks/myst-parser)
-then this configuration can be specifed under the `myst` key in the configuration for each notebook (or page) such as:
+then this configuration can be specified under the `myst` key in the configuration for each notebook (or page) such as:
 
 ````md
 ```
@@ -148,7 +148,7 @@ Since cell-level operations are in myst-nb domain, we don't have to worry about 
 
 This changes the way configuration was previously captured under the `render` title, replacing it with `mystnb`.
 
-An example of the new configuration
+An example of the new configuration:
 
 ````md
 ```{code-cell} ipython3
@@ -212,11 +212,11 @@ in some other `sphinx/docutils` directives
 
 #### Limitations for Figures and Math
 
-There are current limitations based on the `mime` types for `Figures` and `Math`
+There are currently some limitations based on the `mime` types for `Figures` and `Math`.
 
 **Math:**
 
-Using the `glue` directive between documents for math results in a text representation
+Using the `glue` directive between documents for math results in a text representation:
 
 ```{glue} sym_eq
 :doc: /content/executable/output-insert.md
@@ -224,9 +224,9 @@ Using the `glue` directive between documents for math results in a text represen
 
 **Figures:**
 
-Similary for Figures
+The resultant text representation when using the `glue` directive is similar for figures.
 
-For example if you glue in the figure `sorted_means_fig` from the `executable/output-insert.md` document
+For example, if you glue in the figure `sorted_means_fig` from the `executable/output-insert.md` document:
 
 ````md
 ```{glue} sorted_means_fig
@@ -234,7 +234,7 @@ For example if you glue in the figure `sorted_means_fig` from the `executable/ou
 ```
 ````
 
-will render as
+it will be rendered as:
 
 ```{glue} sorted_means_fig
 :doc: /content/executable/output-insert.md
@@ -242,4 +242,4 @@ will render as
 
 which is the text description of the image.
 
-These issues have been reported to the myst-nb team
+These issues have been reported to the myst-nb team.

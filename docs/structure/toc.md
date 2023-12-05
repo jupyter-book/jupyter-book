@@ -61,7 +61,7 @@ Here is a brief explanation of each key:
 
 `file:`
 : A path to a file that contains the content for a chapter / section.
-  These paths are _relative to the `root:` document.
+  These paths are _relative_ to the `root:` document.
 
 ### Use chapter sub-sections
 

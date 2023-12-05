@@ -884,11 +884,11 @@ The following `tags` can be applied to code cells by introducing them as options
     print("This is a test.")
     ```
     ````
-* - `"output_scroll"`
+* - `"scroll-output"`
   - Make output cell scrollable
   - ````md
     ```{code-cell} ipython3
-    :tags: ["output_scroll"]
+    :tags: ["scroll-output"]
     for ii in range(100):
       print("This is a test.")
     ```

@@ -149,7 +149,7 @@ def get_final_config(
             "mathjax_path" in user_yaml_update
             and "@2" in user_yaml_update["mathjax_path"]
         ):
-            # use mathjax2_config so not to tigger deprecation warning in future
+            # use mathjax2_config so not to trigger deprecation warning in future
             user_yaml_update["mathjax2_config"] = user_yaml_update.pop("mathjax_config")
         else:
             _message_box(
@@ -185,6 +185,10 @@ def get_final_config(
 
     if sphinx_config.get("use_jupyterbook_latex"):
         sphinx_config["extensions"].append("sphinx_jupyterbook_latex")
+
+    # Add sphinx_multitoc_numbering extension if necessary
+    if sphinx_config.get("use_multitoc_numbering"):
+        sphinx_config["extensions"].append("sphinx_multitoc_numbering")
 
     # finally merge in CLI configuration
     _recursive_update(sphinx_config, cli_config or {})

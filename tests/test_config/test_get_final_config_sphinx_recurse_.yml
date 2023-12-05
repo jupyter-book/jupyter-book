@@ -16,7 +16,7 @@ final:
   comments_config:
     hypothesis: false
     utterances: false
-  copyright: '2022'
+  copyright: '2023'
   exclude_patterns:
   - '**.ipynb_checkpoints'
   - .DS_Store
@@ -36,6 +36,7 @@ final:
   - other
   - helloworld
   - sphinx_jupyterbook_latex
+  - sphinx_multitoc_numbering
   external_toc_exclude_missing: false
   html_baseurl: ''
   html_favicon: ''
