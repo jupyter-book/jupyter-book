@@ -13,6 +13,7 @@ Currently, these commenting engines are supported:
 
 - [Hypothesis](https://hypothes.is/) provides a web overlay that allows you to annotate and comment collaboratively.
 - [utterances](https://utteranc.es/) is a web commenting system that uses GitHub Issues to store and manage comments.
+- [dokie.li](https://dokie.li/) is an open source commenting and annotation overlay for Linked Research built on web standards.
 
 ```{note}
 Jupyter Book uses the [`sphinx-comments`](https://sphinx-comments.readthedocs.io/) Sphinx extension for this functionality.
