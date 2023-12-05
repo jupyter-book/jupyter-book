@@ -15,7 +15,7 @@ sphinx:
 ```
 
 Then,
-you can either use the [MyST eval_rst directive](https://myst-parser.readthedocs.io/en/latest/using/howto.html?highlight=rst#use-sphinx-ext-autodoc-in-markdown-files),
+you can either use the [MyST eval_rst directive](https://myst-parser.readthedocs.io/en/latest/faq/index.html#use-sphinx-ext-autodoc-in-markdown-files),
 or create a separate .rst file for the API reference page.
 This file can be called anything (e.g. `api.rst`)
 as long as it is referenced in `_toc.yml`,

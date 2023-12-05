@@ -65,7 +65,7 @@ The best practice for publishing your book is to use separate branches for your 
 For example, you may tell git to ignore your `_build` folder on your `main` branch, and push the outputs in your `_build` folder to a branch called `gh-pages`.
 We'll cover some of this later on.
 
-:::{admonition} A note on page cacheing
+:::{admonition} A note on page caching
 :class: tip
 By default, Jupyter Book will only build the HTML for pages that have
 been updated since the last time you built the book.

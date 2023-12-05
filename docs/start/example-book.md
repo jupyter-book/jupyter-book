@@ -13,7 +13,7 @@ Some of the features on display include
 * [numbered figures](https://executablebooks.github.io/quantecon-mini-example/docs/getting_started.html#jupyter-notebooks) with captions and cross-referencing
 
 :::{seealso}
-For more inspiration and example books, see [the Jupyter Book gallery](https://executablebooks.org/en/latest/gallery.html)
+For more inspiration and example books, see [the Jupyter Book gallery](https://executablebooks.org/en/latest/gallery)
 :::
 
 ## Mini-book source files
