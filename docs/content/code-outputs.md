@@ -79,7 +79,7 @@ tag to a cell's metadata:
 ```json
 {
     "tags": [
-        "output_scroll",
+        "scroll-output",
     ]
 }
 ```
@@ -87,18 +87,18 @@ tag to a cell's metadata:
 For example, the following cell has a long output, but will be scrollable in the book:
 
 ```{code-cell} ipython3
-:tags: [output_scroll]
+:tags: [scroll-output]
 
 for ii in range(40):
     print(f"this is output line {ii}")
 ```
 
-When writing MyST markdown documents you may use `:tags: ["output_scroll"]` as an option
+When writing MyST markdown documents you may use `:tags: ["scroll-output"]` as an option
 to the `code-cell` directive such as:
 
 ````
 ```{code-cell} ipython3
-:tags: [output_scroll]
+:tags: [scroll-output]
 
 for ii in range(40):
     print(f"this is output line {ii}")
