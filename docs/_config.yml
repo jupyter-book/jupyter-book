@@ -129,7 +129,7 @@ sphinx:
     sd_fontawesome_latex: True
 
     html_theme_options:
-      navigation_with_keys: true
+      navigation_with_keys: false
 
   extra_extensions:
     - sphinx_click.ext
