@@ -311,7 +311,7 @@ These outputs may appear in a mixed order and you may want them to be grouped an
 to display the correct `logical` ordering.
 
 This can be achieved using the [nb_merge_streams feature contained in
-`myst_nb`](myst-nb:render/output/stdout-stderr).
+`myst_nb`](inv:myst-nb#render/output/stdout-stderr).
 
 You can enable this in your `_config.yml`:
 
@@ -327,7 +327,7 @@ As notebooks are executed, certain statistics are stored on the build environmen
 The simplest way to access and visualise this data is using the `{nb-exec-table}` directive.
 
 :::{seealso}
-The [MyST-NB documentation](myst-nb:execute/statistics), for creating your own directives to manipulate this data.
+The [MyST-NB documentation](inv:myst-nb#execute/statistics), for creating your own directives to manipulate this data.
 :::
 
 The simple directive

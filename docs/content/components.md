@@ -228,7 +228,7 @@ By contrast, the [dropdown directive](content/cards) below works purely *via* HT
 (components:tabs)=
 ## Tab content
 
-You can also produce [**tabbed content**](sd:sd-tabs).
+You can also produce [**tabbed content**](inv:sd#sd-tabs).
 This allows you to display a variety of tabbed content blocks that users can click on.
 
 To do so, create a `{tab-set}` wrapper directive, and put `{tab-item}` directives inside.
@@ -302,7 +302,7 @@ END PROGRAM main
 
 ### Learn more about tabs
 
-See the [`sphinx-design` tabs documentation](sd:sd-tabs) for more information on how to use this.
+See the [`sphinx-design` tabs documentation](inv:sd#sd-tabs) for more information on how to use this.
 
 (custom-div-blocks)=
 ## Custom `<div>` blocks

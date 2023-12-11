@@ -18,7 +18,7 @@ results in
 This will correctly copy the image to the build folder and will render it in all output formats (HTML, TeX, etc).
 However, it is limited in the configuration that can be applied. For example, the image width cannot be set with this syntax.
 
-As discussed in [this section](content:myst/directives), MyST allows for directives such as `image` and `figure` to be used (see [the Sphinx documentation](sphinx:rst-primer) for available options).
+As discussed in [this section](content:myst/directives), MyST allows for directives such as `image` and `figure` to be used (see [the Sphinx documentation](inv:sphinx#rst-primer) for available options).
 
 As an example,
 
@@ -84,7 +84,7 @@ Any other attributes will be ignored.
 
 Standard rasterized image formats, such as `.png` and `jpg`, are supported for both HTML and LaTeX/PDF output formats.
 By contrast, vector formats such as `.svg`, `.pdf` and `.eps` are normally builder specific.
-See the `supported_image_types` specification for each Sphinx builder [here](sphinx:builders).
+See the `supported_image_types` specification for each Sphinx builder [here](inv:sphinx#builders).
 
 To support multiple builders, Jupyter Book allows you to use a `*` asterisk as the extension. For example, with the HTML
 
@@ -102,7 +102,7 @@ You can use a tool such as [imagemagick](https://imagemagick.org), to convert yo
 
 Alternatively, you may wish to check out these Sphinx extensions:
 
-- [sphinx.ext.imgconverter](sphinx:sphinx.ext.imgconverter)
+- [sphinx.ext.imgconverter](inv:sphinx:py:module#sphinx.ext.imgconverter)
 - [sphinxcontrib-svg2pdfconverter](https://github.com/missinglinkelectronics/sphinxcontrib-svg2pdfconverter)
 
 ## Figures

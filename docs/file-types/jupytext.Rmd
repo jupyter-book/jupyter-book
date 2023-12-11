@@ -23,7 +23,7 @@ sphinx:
 ```
 
 - The string should be a Python function that will be loaded by `import mylibrary.converter_function`
-- The function should take a file's contents (as a `str`) and return an [nbformat.NotebookNode](nbformat:api)
+- The function should take a file's contents (as a `str`) and return an [nbformat.NotebookNode](inv:nbformat#api)
 
 If the function takes additional keyword arguments, then you can specify these as a dictionary in a second argument.
 For example this is what the default conversion would look like:
@@ -66,7 +66,7 @@ This key should be a list mapping each cell to the starting line number in the o
 }
 ```
 
-This mapping allows for "true" error reporting, as described in [](myst-nb:myst/error-reporting).
+This mapping allows for "true" error reporting, as described in [](inv:myst-nb#myst/error-reporting).
 
 ## Using Jupytext
 

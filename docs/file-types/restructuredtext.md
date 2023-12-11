@@ -22,7 +22,7 @@ reading [the Sphinx rST documentation](https://www.sphinx-doc.org/es/stable/rest
 
 ## Including reStructuredText in Markdown
 
-To insert rST into Markdown, you can use the [eval-rst directive](myst-parser:syntax/directives/parsing):
+To insert rST into Markdown, you can use the [eval-rst directive](inv:myst-parser#syntax/directives/parsing):
 
 ````md
 ```{eval-rst}
