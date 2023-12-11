@@ -120,5 +120,7 @@ exclude = [
   "conftest.py",
 ]
 
-[tool.isort]
-profile = "black"
+[tool.ruff.lint]
+ignore = [
+    "E203",    # Whitespace before punctuation
+]
