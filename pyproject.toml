@@ -124,3 +124,10 @@ exclude = [
 ignore = [
     "E203",    # Whitespace before punctuation
 ]
+
+
+[tool.pytest.ini_options]
+filterwarnings = [
+  "error",
+  'ignore:nodes.Node.traverse() is obsoleted by Node.findall():PendingDeprecationWarning'
+]

@@ -238,7 +238,7 @@ You can add LaTeX macros for the whole book by defining them under the `Macros` 
 ```yaml
 sphinx:
   config:
-    mathjax_config:
+    mathjax3_config:
       tex:
         macros:
           "N": "\\mathbb{N}"
