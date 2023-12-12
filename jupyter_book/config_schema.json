@@ -52,7 +52,7 @@
             "properties": {
                 "eval_regex": {
                     "type": "string",
-                    "default": "^[a-zA-Z_][a-zA-Z0-9_]*$"
+                    "default": "^.*$"
                 },
                 "raise_on_error": {
                     "type": "boolean",
