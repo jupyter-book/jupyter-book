@@ -1,4 +1,5 @@
 import pytest
+import warnings
 from click.testing import CliRunner
 
 from jupyter_book.cli.main import init as myst_init
@@ -21,10 +22,11 @@ def test_myst_init(cli: CliRunner, temp_with_override):
     assert "name: python3" in new_text
 
     # Make sure the CLI works too
-    with pytest.warns(None) as records:
+    with warnings.catch_warnings():
+        warnings.simplefilter("error")
+
         result = cli.invoke(myst_init, f"{path} --kernel python3".split())
     # old versions of jupytext give: UserWarning: myst-parse failed unexpectedly
-    assert len(records) == 0, records
     assert result.exit_code == 0
 
     # Non-existent kernel
