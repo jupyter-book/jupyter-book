@@ -127,6 +127,10 @@ ignore = [
 
 
 [tool.pytest.ini_options]
+markers = [
+  "requires_tex: mark a test which requires a TeX installation",
+  "requires_chrome: mark a test which requires a chrome/chromium browser"
+]
 filterwarnings = [
   "error",
  'ignore:nodes.Node.traverse() is obsoleted by Node.findall():PendingDeprecationWarning',
