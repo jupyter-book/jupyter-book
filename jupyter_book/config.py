@@ -353,6 +353,9 @@ def yaml_to_sphinx(yaml: dict):
     if execute:
         for spx_key, yml_key in [
             ("nb_execution_allow_errors", "allow_errors"),
+            ("nb_execution_raise_on_error", "raise_on_error"),
+            ("nb_eval_name_regex", "eval_regex"),
+            ("nb_execution_show_tb", "show_tb"),
             ("nb_execution_in_temp", "run_in_temp"),
             ("nb_output_stderr", "stderr_output"),
             ("nb_execution_timeout", "timeout"),
