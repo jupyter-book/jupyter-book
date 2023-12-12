@@ -129,5 +129,6 @@ ignore = [
 [tool.pytest.ini_options]
 filterwarnings = [
   "error",
-  'ignore:nodes.Node.traverse() is obsoleted by Node.findall():PendingDeprecationWarning'
+ 'ignore:nodes.Node.traverse() is obsoleted by Node.findall():PendingDeprecationWarning',
+ 'ignore:Jupyter is migrating its paths to use standard platformdirs:DeprecationWarning'
 ]
