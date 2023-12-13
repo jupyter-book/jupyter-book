@@ -1,5 +1,4 @@
 import shutil
-import warnings
 from pathlib import Path
 
 import docutils
@@ -30,7 +29,9 @@ def test_create(temp_with_override: Path, cli):
 
 def test_create_from_cookiecutter(temp_with_override: Path, cli):
     book = temp_with_override / "new_book"
-    result = cli.invoke(commands.create, [book.as_posix(), "--cookiecutter", "--no-input"])
+    result = cli.invoke(
+        commands.create, [book.as_posix(), "--cookiecutter", "--no-input"]
+    )
     assert result.exit_code == 0
     # this test uses default cookiecutter prompt values
     # note that default cookiecutter book name is "my_book"
