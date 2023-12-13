@@ -133,6 +133,10 @@ markers = [
 ]
 filterwarnings = [
   "error",
- 'ignore:nodes.Node.traverse() is obsoleted by Node.findall():PendingDeprecationWarning',
- 'ignore:Jupyter is migrating its paths to use standard platformdirs:DeprecationWarning'
+  'ignore:nodes\.Node\.traverse\(\) is obsoleted by Node\.findall\(\):PendingDeprecationWarning',
+  'ignore:Jupyter is migrating its paths to use standard platformdirs:DeprecationWarning',
+  'ignore:The frontend\.OptionParser class will be replaced:DeprecationWarning',
+  'ignore:The frontend\.Option class will be removed:DeprecationWarning',
+  # Pyppeteer throws this exception
+  'ignore:remove loop argument:DeprecationWarning'
 ]

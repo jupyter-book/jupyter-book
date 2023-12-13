@@ -326,7 +326,12 @@ def build(
     is_flag=True,
     help="Use cookiecutter to interactively create a Jupyter Book template.",
 )
-def create(path_book, cookiecutter):
+@click.option(
+    "--no-input",
+    is_flag=True,
+    help="If using cookiecutter, do not prompt the user for input.",
+)
+def create(path_book, cookiecutter, no_input):
     """Create a Jupyter Book template that you can customize."""
     book = Path(path_book)
     if not cookiecutter:  # this will be the more common option
@@ -341,7 +346,8 @@ def create(path_book, cookiecutter):
                 f"{e}. To install, run\n\n\tpip install cookiecutter",
                 kind=e.__class__,
             )
-        book = cookiecutter(cc_url, output_dir=Path(path_book))
+
+        book = cookiecutter(cc_url, output_dir=Path(path_book), no_input=no_input)
     _message_box(f"Your book template can be found at\n\n    {book}{os.sep}")
 
 

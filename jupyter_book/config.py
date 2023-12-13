@@ -142,7 +142,7 @@ def get_final_config(
 
     # TODO: deprecate this in version 0.14
     # https://github.com/executablebooks/jupyter-book/issues/1502
-    if "mathjax_path" in user_yaml_update:
+    if "mathjax_config" in user_yaml_update:
         # Switch off warning if user has specified mathjax v2
         if (
             "mathjax_path" in user_yaml_update
