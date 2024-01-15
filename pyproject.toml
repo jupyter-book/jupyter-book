@@ -44,7 +44,7 @@ dependencies = [
     "sphinx-thebe~=0.2.0",
     "sphinx-book-theme~=1.0.0",
     "sphinx_togglebutton",
-    "sphinxcontrib-bibtex>=2.2.0,<=2.5.0",
+    "sphinxcontrib-bibtex>=2.2.0,<=2.6.2",
     "sphinx-multitoc-numbering~=0.1.3",
 ]
 
