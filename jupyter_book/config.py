@@ -431,8 +431,7 @@ def yaml_to_sphinx(yaml: dict):
             logger.warning(
                 "[sphinxcontrib-bibtex] Beware that docutils versions 0.18 and 0.19 "
                 "(you are running {}) are known to generate invalid html for citations. "
-                "If this issue affects you, please use docutils<0.18 (or >=0.20 once released) "
-                "instead. "
+                "If this issue affects you, please use docutils<0.18 or >=0.20 instead. "
                 "For more details, see https://sourceforge.net/p/docutils/patches/195/".format(
                     docutils.__version__
                 )
