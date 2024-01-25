@@ -139,5 +139,6 @@ filterwarnings = [
   'ignore:The frontend\.Option class will be removed:DeprecationWarning',
   # Pyppeteer throws this exception
   'ignore:remove loop argument:DeprecationWarning',
-  '''ignore:'imghdr' is deprecated and slated for removal in Python 3\.13:DeprecationWarning'''
+  '''ignore:'imghdr' is deprecated and slated for removal in Python 3\.13:DeprecationWarning''',
+  'ignore:datetime\.datetime\.utcfromtimestamp\(\) is deprecated:DeprecationWarning'
 ]
