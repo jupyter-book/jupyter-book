@@ -516,9 +516,6 @@ def builder_specific_actions(
 
     :param result: the result of the build execution; a status code or and exception
     """
-
-    from sphinx.util.osutil import cd
-
     from jupyter_book.pdf import html_to_pdf
     from jupyter_book.sphinx import REDIRECT_TEXT
 
@@ -598,11 +595,10 @@ def builder_specific_actions(
         else:
             makecmd = os.environ.get("MAKE", "make")
         try:
-            with cd(output_path):
-                output = subprocess.run([makecmd, "all-pdf"])
-                if output.returncode != 0:
-                    _error("Error: Failed to build pdf")
-                    return output.returncode
+            output = subprocess.run([makecmd, "all-pdf"], cwd=output_path)
+            if output.returncode != 0:
+                _error("Error: Failed to build pdf")
+                return output.returncode
             _message_box(
                 f"""\
             A PDF of your {cmd_type} can be found at:

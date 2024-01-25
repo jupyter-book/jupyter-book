@@ -44,6 +44,7 @@ def test_clean_html(cli, build_resources):
     books, tocs = build_resources
     path = books.joinpath("clean_cache")
     build_path = path.joinpath("_build")
+    print(path.as_posix())
     result = cli.invoke(build, path.as_posix())
     assert result.exit_code == 0
 
