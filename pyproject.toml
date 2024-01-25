@@ -140,5 +140,6 @@ filterwarnings = [
   # Pyppeteer throws this exception
   'ignore:remove loop argument:DeprecationWarning',
   '''ignore:'imghdr' is deprecated and slated for removal in Python 3\.13:DeprecationWarning''',
+  # jupyter-client throws this
   'ignore:datetime\.datetime\.utcfromtimestamp\(\) is deprecated:DeprecationWarning'
 ]
