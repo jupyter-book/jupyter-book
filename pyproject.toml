@@ -98,7 +98,7 @@ testing = [
     "pytest-timeout",
     "pytest-xdist",
     "sphinx_click",
-    "sphinx_tabs",
+    "sphinx_inline_tabs",
     "texsoup",
 ]
 

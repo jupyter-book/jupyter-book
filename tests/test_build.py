@@ -97,7 +97,7 @@ def test_custom_config(cli, build_resources):
     html = config.joinpath("_build", "html", "index.html").read_text(encoding="utf8")
     soup = BeautifulSoup(html, "html.parser")
     assert '<p class="title logo__title">TEST PROJECT NAME</p>' in html
-    assert '<div class="sphinx-tabs docutils container">' in html
+    assert '<div class="tab-set docutils">' in html
     assert '<link rel="stylesheet" type="text/css" href="_static/mycss.css" />' in html
     assert '<script src="_static/js/myjs.js"></script>' in html
 
