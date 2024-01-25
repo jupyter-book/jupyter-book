@@ -144,5 +144,5 @@ filterwarnings = [
   'ignore:datetime\.datetime\.utcfromtimestamp\(\) is deprecated:DeprecationWarning',
   # pybtex
   'ignore:pkg_resources is deprecated as an API:DeprecationWarning',
-  'ignore:Deprecated call to pkg_resources:DeprecationWarning'
+  'ignore:Deprecated call to `pkg_resources:DeprecationWarning'
 ]
