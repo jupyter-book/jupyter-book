@@ -1,3 +1,4 @@
+import shutil
 from pathlib import Path
 
 import docutils
@@ -28,7 +29,9 @@ def test_create(temp_with_override: Path, cli):
 
 def test_create_from_cookiecutter(temp_with_override: Path, cli):
     book = temp_with_override / "new_book"
-    result = cli.invoke(commands.create, [book.as_posix(), "--cookiecutter"])
+    result = cli.invoke(
+        commands.create, [book.as_posix(), "--cookiecutter", "--no-input"]
+    )
     assert result.exit_code == 0
     # this test uses default cookiecutter prompt values
     # note that default cookiecutter book name is "my_book"
@@ -94,7 +97,7 @@ def test_custom_config(cli, build_resources):
     html = config.joinpath("_build", "html", "index.html").read_text(encoding="utf8")
     soup = BeautifulSoup(html, "html.parser")
     assert '<p class="title logo__title">TEST PROJECT NAME</p>' in html
-    assert '<div class="sphinx-tabs docutils container">' in html
+    assert '<div class="tab-set docutils">' in html
     assert '<link rel="stylesheet" type="text/css" href="_static/mycss.css" />' in html
     assert '<script src="_static/js/myjs.js"></script>' in html
 
@@ -133,12 +136,16 @@ def test_toc_rebuild(cli, build_resources):
     assert tags[1].attrs["href"] == "content1.html"
     assert tags[2].attrs["href"] == "content2.html"
 
+    # Clean build manually (to avoid caching of sidebar)
+    build_path = tocs.joinpath("_build")
+    shutil.rmtree(build_path)
+
+    # Build with secondary ToC
     toc = tocs / "_toc_simple_changed.yml"
     result = cli.invoke(
         commands.build,
         [tocs.as_posix(), "--toc", toc.as_posix(), "-n"],
     )
-    print(result.exception)
     assert result.exit_code == 0, result.output
     html = BeautifulSoup(index_html.read_text(encoding="utf8"), "html.parser")
     tags = html.find_all("a", "reference internal")

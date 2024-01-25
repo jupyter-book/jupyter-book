@@ -17,11 +17,11 @@ you'll write in the same flavour of **MyST Markdown**. Jupyter Book will know ho
 
 This page contains a few pieces of information about MyST Markdown and how it relates to Jupyter Book.
 You can find much more information about this flavour of Markdown at
-[the Myst Parser documentation](myst-parser:syntax/core).
+[the Myst Parser documentation](inv:myst-parser#syntax/core).
 
 :::{admonition} Want to use RMarkdown directly?
 :class: tip
-See [](../file-types/jupytext.md)
+See [](../file-types/jupytext.Rmd)
 :::
 
 ## Directives and roles
@@ -64,7 +64,7 @@ Here is a note
 
 being inserted in your built book.
 
-For more information on using directives, see the [MyST documentation](myst-parser:syntax/directives).
+For more information on using directives, see the [MyST documentation](inv:myst-parser#syntax/directives).
 
 (directive-arguments)=
 #### More arguments and metadata in directives
@@ -142,7 +142,7 @@ not be parsed correctly if it spans more than one line. Progress towards support
 that span multiple lines can be tracked [by this issue](https://github.com/executablebooks/MyST-Parser/issues/269)
 ```
 
-For more information on using roles, see the [MyST documentation](myst-parser:syntax/roles).
+For more information on using roles, see the [MyST documentation](inv:myst-parser#syntax/roles).
 
 ## What roles and directives are available?
 
@@ -156,12 +156,12 @@ all syntax that Sphinx supports (think of it as a Markdown version of reStructur
 If you search the internet (and the links below) for information about roles and directives,
 the documentation will generally be written with reStructuredText in mind. MyST Markdown
 is different from reStructuredText, but all of the functionality should be the same.
-See [the MyST Sphinx parser documentation](myst-parser:intro/get-started) for more information about the differences between MyST and rST.
+See [the MyST Sphinx parser documentation](inv:myst-parser#intro/get-started) for more information about the differences between MyST and rST.
 :::
 
 For a list of directives that are available to you, there are three places to check:
 
-1. [The Sphinx directives page](sphinx:usage/restructuredtext/directives)
+1. [The Sphinx directives page](inv:sphinx#usage/restructuredtext/directives)
    has a list of directives that are available by default in Sphinx.
 2. [The reStructuredText directives page](https://docutils.sourceforge.io/docs/ref/rst/directives.html)
    has a list of directives in the Python "docutils" module.
@@ -190,7 +190,7 @@ which produces
 :::
 
 :::{seealso}
-The MyST-Parser documentation on [how directives parse content](myst-parser:syntax/directives/parsing), and its use for [including rST files into a Markdown file](myst-parser:howto/include-rst), and [using `sphinx.ext.autodoc` in Markdown files](myst-parser:howto/autodoc).
+The MyST-Parser documentation on [how directives parse content](inv:myst-parser#syntax/directives/parsing), and its use for [including rST files into a Markdown file](inv:myst-parser#howto/include-rst), and [using `sphinx.ext.autodoc` in Markdown files](inv:myst-parser#howto/autodoc).
 :::
 
 (markdown/nesting)=
@@ -242,14 +242,14 @@ In addition to roles and directives, there are numerous other kinds of syntax
 that MyST Markdown supports.
 MyST supports all syntax of CommonMark Markdown (the kind of Markdown that Jupyter notebooks use), as well as an extended syntax that is used for scientific publishing.
 
-The [MyST-Parser](myst-parser:intro/get-started) is the tool that Jupyter Book uses to allow you to write your book content in MyST.
+The [MyST-Parser](inv:myst-parser#intro/get-started) is the tool that Jupyter Book uses to allow you to write your book content in MyST.
 It is also a good source of information about the MyST syntax.
 Here are some links you can use as a reference:
 
-* [CommonMark block syntax](myst-parser:commonmark-block-tokens)
-* [Extended MyST block syntax in MyST](myst-parser:extended-block-tokens)
-* [CommonMark in-line syntax](myst-parser:commonmark-span-tokens)
-* [Extended in-line syntax in MyST](myst-parser:extended-span-tokens)
+* [CommonMark block syntax](inv:myst-parser#commonmark-block-tokens)
+* [Extended MyST block syntax in MyST](inv:myst-parser#extended-block-tokens)
+* [CommonMark in-line syntax](inv:myst-parser#commonmark-span-tokens)
+* [Extended in-line syntax in MyST](inv:myst-parser#extended-span-tokens)
 
 :::{seealso}
 For information about enabling extended MyST syntax, see [](content-blocks:myst-extensions).

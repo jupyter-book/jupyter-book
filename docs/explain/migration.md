@@ -168,7 +168,7 @@ Image("../images/fun-fish.png")
 ```
 ````
 
-Further [documentation of this feature is available here](myst-nb:render/output/images)
+Further [documentation of this feature is available here](inv:myst-nb#render/output/images)
 
 (explain:migration:glue)=
 ### Changes to `glue`

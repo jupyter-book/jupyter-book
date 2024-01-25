@@ -227,8 +227,8 @@ MyST-Parser for Markdown parsing, and MyST-NB for notebook execution and output 
 These two extensions are highly customizable *via* Sphinx configuration.
 Some of their configuration is already exposed in the `_config.yml`, but you can also directly set configuration, see:
 
-* the [MyST-Parser configuration options](myst-parser:sphinx/config-options)
-* the [MyST-NB configuration options](myst-nb:config/intro)
+* the [MyST-Parser configuration options](inv:myst-parser#sphinx/config-options)
+* the [MyST-NB configuration options](inv:myst-nb#config/intro)
 
 (sphinx/tex-macros)=
 ### Defining TeX macros
@@ -238,7 +238,7 @@ You can add LaTeX macros for the whole book by defining them under the `Macros` 
 ```yaml
 sphinx:
   config:
-    mathjax_config:
+    mathjax3_config:
       tex:
         macros:
           "N": "\\mathbb{N}"
@@ -276,7 +276,7 @@ $$
 ```
 
 :::{seealso}
-[How MyST-Parser works with MathJax](myst-parser:syntax/mathjax),
+[How MyST-Parser works with MathJax](inv:myst-parser#syntax/mathjax),
 and the section on [math and equations](myst-content/math).
 :::
 

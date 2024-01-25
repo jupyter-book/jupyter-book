@@ -141,9 +141,8 @@ def get_final_config(
     _recursive_update(sphinx_config, yaml_config)
 
     # TODO: deprecate this in version 0.14
-    # Check user specified mathjax_config for sphinx >= 4
     # https://github.com/executablebooks/jupyter-book/issues/1502
-    if sphinx.version_info[0] >= 4 and "mathjax_config" in user_yaml_update:
+    if "mathjax_config" in user_yaml_update:
         # Switch off warning if user has specified mathjax v2
         if (
             "mathjax_path" in user_yaml_update
@@ -354,6 +353,9 @@ def yaml_to_sphinx(yaml: dict):
     if execute:
         for spx_key, yml_key in [
             ("nb_execution_allow_errors", "allow_errors"),
+            ("nb_execution_raise_on_error", "raise_on_error"),
+            ("nb_eval_name_regex", "eval_regex"),
+            ("nb_execution_show_tb", "show_tb"),
             ("nb_execution_in_temp", "run_in_temp"),
             ("nb_output_stderr", "stderr_output"),
             ("nb_execution_timeout", "timeout"),
@@ -426,7 +428,7 @@ def yaml_to_sphinx(yaml: dict):
         # TODO: Remove when docutils>=0.20 is pinned in jupyter-book
         # https://github.com/mcmtroffaes/sphinxcontrib-bibtex/issues/322
         if (0, 18) <= docutils.__version_info__ < (0, 20):
-            logger.warn(
+            logger.warning(
                 "[sphinxcontrib-bibtex] Beware that docutils versions 0.18 and 0.19 "
                 "(you are running {}) are known to generate invalid html for citations. "
                 "If this issue affects you, please use docutils<0.18 (or >=0.20 once released) "

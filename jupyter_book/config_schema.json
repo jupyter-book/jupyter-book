@@ -50,11 +50,24 @@
         "execute": {
             "type": "object",
             "properties": {
+                "eval_regex": {
+                    "type": "string",
+                    "default": "^.*$"
+                },
+                "raise_on_error": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "show_tb": {
+                    "type": "boolean",
+                    "default": false
+                },
                 "execute_notebooks": {
                     "enum": [
                         "auto",
                         "cache",
                         "force",
+                        "inline",
                         "off",
                         false
                     ],

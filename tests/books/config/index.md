@@ -2,7 +2,6 @@
 
 Some content
 
-````{tabs}
 ```{tab} Line one
 
 Beautiful is better than ugly. ✨
@@ -16,4 +15,3 @@ Explicit is better than implicit. ❗
 
 Simple is better than complex. 😵
 ```
-````

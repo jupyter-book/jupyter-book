@@ -214,7 +214,7 @@ This is the *content*
 ```
 ````
 
-See [](myst-parser:syntax/html-admonition) for more information about HTML admonitions.
+See [](inv:myst-parser#syntax/html-admonition) for more information about HTML admonitions.
 
 (content-blocks:warning-headers-admonitions)=
 ### Do not embed headings inside admonitions
@@ -507,7 +507,7 @@ You can also insert substitutions inside of other markdown structures like table
 ````
 
 :::{seealso}
-For more information about Substitutions, see [](myst-parser:syntax/substitutions).
+For more information about Substitutions, see [](inv:myst-parser#syntax/substitutions).
 :::
 
 ### Define substitutions for your whole book
