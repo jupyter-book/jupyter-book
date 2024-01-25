@@ -2,7 +2,7 @@
 # Citations and bibliographies
 
 :::{warning}
-If you are using `docutils<=0.18,<20` then the page containing the `bibliography` directive
+If you are using `docutils>=0.18,<20` then the page containing the `bibliography` directive
 will not have the correct layout. While `docutils` is patched we recommend using `docutils==0.17.1`
 which can be installed by:
 
