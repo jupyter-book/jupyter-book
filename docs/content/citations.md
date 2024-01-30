@@ -106,7 +106,7 @@ with the following bibliography section code:
 ````md
 ```{bibliography}
 :filter: docname in docnames
-:labelprefix: A 
+:labelprefix: A
 :keyprefix: a-
 ```
 ````
@@ -120,7 +120,7 @@ In the second document you could use:
 
 ```{bibliography}
 :filter: docname in docnames
-:labelprefix: B 
+:labelprefix: B
 :keyprefix: b-
 ```
 ````
