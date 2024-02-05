@@ -36,7 +36,6 @@ def get_default_sphinx_config():
             "sphinx_external_toc",
             "sphinx.ext.intersphinx",
             "sphinx_design",
-            "sphinx_book_theme",
         ],
         pygments_style="sphinx",
         html_theme="sphinx_book_theme",
