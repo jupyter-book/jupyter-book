@@ -66,6 +66,7 @@ latex:
     targetname: book.tex
 
 sphinx:
+  recursive_update: true
   config:
     bibtex_reference_style: author_year  # or label, super, \supercite
     # unknown_mime_type - application/vnd.plotly.v1+json and application/vnd.bokehjs_load.v0+json
