@@ -57,8 +57,6 @@ Here is a simple YAML configuration for a Github Action that will publish a Jupy
 ```yaml
 name: deploy-book
 
-name: deploy-book
-
 # Run this when the master or main branch changes
 on:
   push:
