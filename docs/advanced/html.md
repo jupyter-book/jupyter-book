@@ -112,7 +112,7 @@ In both cases the admonitions should be styled according to your CSS rules when 
 For HTML builds, structured data allows machines to better understand the content of your pages.
 For instance Google Search can use structured data to understand your overall site's name, provide a search box that directly searches into your site, provide interactive experiences for flash cards or quizzes, etc.: see [Structured data markup that Google Search supports](https://developers.google.com/search/docs/appearance/structured-data/search-gallery).
 
-You can easily provide structured data for your site's name using the [JSON for Linking Data (JSON-LD)](https://json-ld.org/) format and a few lines of Javascript to inject the JSON-LD data into your page. These can be added within a single file in the _static directly. For instance, you could name the file `structured_data.js`. Here is an example showing the site name and search path information for jupyterbook.org:
+You can easily provide structured data for your site's name using the [JSON for Linking Data (JSON-LD)](https://json-ld.org/) format and a few lines of Javascript to inject the JSON-LD data into your page. These can be directly added as a single file in the `_static` directory, as described in [](#custom-assets). For instance, you could name the file `structured_data.js`. Here is an example showing the site name and search path information for jupyterbook.org:
 
 ```javascript
 var structuredData = {
