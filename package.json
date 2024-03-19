@@ -1,0 +1,7 @@
+{
+  "name": "jupyter-book",
+  "version": "23.3.0",
+  "workspaces": [
+    "packages/*"
+  ]
+}
