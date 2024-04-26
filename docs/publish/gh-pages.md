@@ -94,7 +94,7 @@ jobs:
     - name: Build the book
       run: |
         jupyter-book build .
-        
+
     # (optional) Cache your executed notebooks between runs
     # if you have config:
     # execute:
@@ -103,7 +103,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: _build/.jupyter_cache
-        key: jupyter-book-cache-${{ hashFiles('requirements.txt') }}        
+        key: jupyter-book-cache-${{ hashFiles('requirements.txt') }}
 
     # Upload the book's HTML as an artifact
     - name: Upload artifact
