@@ -188,6 +188,18 @@ def get_final_config(
     if sphinx_config.get("use_multitoc_numbering"):
         sphinx_config["extensions"].append("sphinx_multitoc_numbering")
 
+    # Fix for renamed field
+    google_analytics_id = sphinx_config.get("html", {}).get("google_analytics_id")
+    if google_analytics_id is not None:
+        _message_box(
+            (
+                "[Warning] The `html.google_analytics_id` configuration value has moved to `html.analytics.google_analytics_id`"  # noqa: E501
+            ),
+            color="orange",
+            print_func=print,
+        )
+        sphinx_config['html']['google_analytics_id'] = google_analytics_id
+
     # finally merge in CLI configuration
     _recursive_update(sphinx_config, cli_config or {})
 
