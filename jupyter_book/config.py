@@ -198,7 +198,9 @@ def get_final_config(
             color="orange",
             print_func=print,
         )
-        sphinx_config['html'].setdefault("analytics", {})['google_analytics_id'] = google_analytics_id
+        sphinx_config["html"].setdefault("analytics", {})[
+            "google_analytics_id"
+        ] = google_analytics_id
 
     # finally merge in CLI configuration
     _recursive_update(sphinx_config, cli_config or {})
