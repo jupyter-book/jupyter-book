@@ -146,4 +146,6 @@ filterwarnings = [
   # pybtex
   'ignore:pkg_resources is deprecated as an API:DeprecationWarning',
   'ignore:Deprecated call to `pkg_resources:DeprecationWarning',
+  # latexcodec
+  'ignore:open_text is deprecated:DeprecationWarning'
 ]
