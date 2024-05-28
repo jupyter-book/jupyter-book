@@ -128,9 +128,18 @@
                     "type": "string"
                 },
                 "analytics": {
-                    "google_analytics_id": {
-                        "type": "string"
-                    }
+		    "type": "object",
+		    "properties": {
+                        "google_analytics_id": {
+                            "type": "string"
+                        },
+                        "plausible_analytics_domain": {
+                            "type": "string"
+                        },
+			"plausible_analytics_url": {
+                            "type": "string"
+			}
+		    }
                 },
                 "home_page_in_navbar": {
                     "type": "boolean"
