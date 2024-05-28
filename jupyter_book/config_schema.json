@@ -136,7 +136,7 @@
                         "plausible_analytics_domain": {
                             "type": "string"
                         },
-			"plausible_analytics_url": {
+                        "plausible_analytics_url": {
                             "type": "string"
 			}
 		    }
