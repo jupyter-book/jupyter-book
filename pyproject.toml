@@ -99,6 +99,7 @@ testing = [
     "pytest-xdist",
     "sphinx_click",
     "sphinx_inline_tabs",
+    "pydata-sphinx-theme>=0.15.3",
     "texsoup",
 ]
 
