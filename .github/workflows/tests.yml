@@ -73,7 +73,7 @@ jobs:
       # this is why we run `coverage xml` afterwards (required by codecov)
 
     - name: Upload to Codecov
-      if: github.repository == 'executablebooks/jupyter-book'
+      if: (github.repository == 'executablebooks/jupyter-book') && false
       uses: codecov/codecov-action@v3.1.4
       with:
         name: ebp-jupyter-book-pytests-py3.9
