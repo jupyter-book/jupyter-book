@@ -146,7 +146,7 @@
     "bibtex_bibfiles": {
       "type": "array",
       "items": {
-         "type": "string"
+        "type": "string"
       }
     },
     "latex": {
@@ -156,12 +156,12 @@
           "type": "string",
           "default": "pdflatex"
         },
-	"latex_documents": {
+        "latex_documents": {
           "type": "object"
-	},
-	"use_jupyterbook_latex": {
+        },
+        "use_jupyterbook_latex": {
           "type": "boolean"
-	}
+        }
       }
     },
     "launch_buttons": {
