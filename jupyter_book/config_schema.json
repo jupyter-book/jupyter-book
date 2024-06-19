@@ -155,7 +155,13 @@
         "latex_engine": {
           "type": "string",
           "default": "pdflatex"
-        }
+        },
+	"latex_documents": {
+          "type": "object"
+	},
+	"use_jupyterbook_latex": {
+          "type": "boolean"
+	}
       }
     },
     "launch_buttons": {
