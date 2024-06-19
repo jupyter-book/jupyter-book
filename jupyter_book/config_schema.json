@@ -143,6 +143,12 @@
         }
       }
     },
+    "bibtex_bibfiles": {
+      "type": "array",
+      "items": {
+         "type": "string"
+      } 
+    },
     "latex": {
       "type": "object",
       "properties": {
