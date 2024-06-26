@@ -9,8 +9,14 @@ project:
   toc:
     - title: Introduction
       file: intro.md
-    - title: Tutorials
-      children: []
+    - title: Getting Started
+      children: 
+        - file: start/install.md
+        - file: start/create.md
+        - file: start/build.md
+        - file: start/new-file.md
+        - file: start/cross-reference.md
+        - file: start/publish.md
 site:
   template: book-theme
   options:
