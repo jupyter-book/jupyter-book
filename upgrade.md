@@ -10,6 +10,7 @@ short_title: Upgrade an Existing Book
 The goal of this tutorial is to walk existing users through the process of upgrading their books to Jupyter Book 2.  
 :::
 
+(section:structure-legacy-book)=
 ## Structure of a {term}`Legacy Book`
 
 :::{important} Objective
@@ -19,7 +20,7 @@ Before we can upgrade a {term}`Legacy Book`, we must first discuss its important
 
 ### Configuration Files
 
-Jupyter Book 1 used [the Sphinx documentation engine](https://www.sphinx-doc.org/en/master/) to build each book into publication-quality books and documents. In order to do this, a {term}`Legacy Book` was required to have a number of configuration files
+Jupyter Book 1 used [the Sphinx documentation engine](https://www.sphinx-doc.org/en/master/) to build each book into publication-quality books and documents.This engine was originally designed for documentation generation, such as <https://docs.python.org>, and has a long historical legacy. In order to hide the complexity that stemmed from making a documentation engine behave like a user-friendly tool for book authorship, Jupyter Book 1 introduced its own configuration files and CLI to build a book. Consequently, a {term}`Legacy Book` was required to have a number of configuration files
 .
 :::{table} {term}`Legacy Book` configuration files.
 :name: legacy-config-files
@@ -46,6 +47,8 @@ Your book template can be found at
 We can then list the contents of this book,
 ```shell
 $ ls ./book
+.
+..
 _config.yml
 _toc.yml
 intro.md
@@ -95,6 +98,8 @@ chapters:
 - file: markdown-notebooks
 ```
 
+Some advanced books may have chosen to drop the Jupyter Book tools, and use Sphinx directly. These books do not define a `_config.yml`, instead they utilise a Sphinx-style `conf.py` file.
+
 ### Bibliography File
 In addition to the configuration files, there is also a bibliography file called [`references.bib`](#code:example-bib), which contains a list of references to academic publications. 
 
@@ -137,4 +142,86 @@ numpy
 Now that we know what a {term}`Legacy Book` looks like, we can compare its structure with a {term}`New Book`.
 :::
 
-Whereas Jupyter Book 1 was build upon the Sphinx document engine, Jupyter Book 2 is built upon the [MyST-MD engine](https://mystmd.org). The reasons for this transition are outlined in [](./reference/why-switch-mystmd.md).
+
+Whilst Jupyter Book 1 was build upon the _Sphinx_ document engine, Jupyter Book 2 is built upon the [_MyST-MD_ engine](https://mystmd.org). The reasons for this transition are outlined in [](./reference/why-switch-mystmd.md). Unlike Jupyter Book 1, Jupyter Book 2 does not try to hide the fact that it is built on a different engine; MyST-MD is designed from the ground up to be good at technical writing, and the Executable Books team believe that it is both powerful and easy-to-use. As such, Jupyter Book 2 builds on top of MyST-MD, using the same CLI and `myst.yml`. 
+
+::: {pull-quote}
+Unlike Jupyter Book 1, Jupyter Book 2 does not try to hide the underlying engine.
+:::
+
+% TODO: link or embed myst.yml?
+
+Jupyter Book will automatically upgrade a {term}`Legacy Book` to a {term}`New Book` by looking for the `_config.yml` file described in [](#section:structure-legacy-book). To do this, we need to run the _new_ `jupyter book` command in the {term}`Legacy Book` directory. Let's try this tool with the example book given above.
+
+% TODO: what should this report?
+
+First, let's confirm that we're now using the _new_ Jupyter Book tool:
+```{code} shell
+$ jupyter book --version
+
+```
+
+We can then run the `jupyter book` command, which will detect the {term}`Legacy Book` and perform an in-place upgrade:
+```{code} shell
+:linenos:
+:emphasize-lines: 15,16,17
+
+$ cd book
+$ jupyter book
+Welcome to the MyST Markdown CLI!! 🎉 🚀
+
+myst init walks you through creating a myst.yml file.
+
+You can use myst to:
+
+ - create interactive websites from markdown and Jupyter Notebooks 📈
+ - build & export professional PDFs and Word documents 📄
+
+Learn more about this CLI and MyST Markdown at: https://mystmd.org
+
+
+📘 Found a legacy Jupyter Book, writing new config file: myst.yml
+Renamed _config.yml to ._config.yml.myst.bak
+Renamed _toc.yml to ._toc.yml.myst.bak
+
+? Would you like to run myst start now?
+```
+
+This generates the following files:
+
+```shell
+$ ls
+.
+..
+_build
+intro.md
+logo.png
+markdown.md
+markdown-notebooks.md
+myst.yml
+notebooks.ipynb
+references.bib
+requirements.txt
+```
+Configuration files from the {term}`Legacy Book` are renamed to {term}`Hidden Files` to make it easy to recover the original book if something goes wrong:
+
+```{code} shell
+:linenos:
+:emphasize-lines: 5,14
+
+$ ls -a
+.
+..
+_build
+._config.yml.myst.bak
+intro.md
+logo.png
+markdown.md
+markdown-notebooks.md
+myst.yml
+notebooks.ipynb
+references.bib
+requirements.txt
+._toc.yml.myst.bak
+```
+

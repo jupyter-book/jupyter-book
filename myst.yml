@@ -7,6 +7,7 @@ project:
   # authors: []
   abbreviations:
     MyST: Markedly Structured Text
+    CLI: Command-Line Interface
   github: https://github.com/executablebooks/jupyter-book-myst
   toc:
     - file: intro.md
