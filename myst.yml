@@ -1,15 +1,19 @@
 # See docs at: https://mystmd.org/guide/frontmatter
 version: 1
 project:
-  id: 81a6d98b-c8ae-4607-9b57-b2446df8ec94
   # title:
   # description:
   # keywords: []
   # authors: []
   github: https://github.com/executablebooks/jupyter-book-myst
-  # To autogenerate a Table of Contents, run "myst init --write-toc"
+  toc:
+    - title: Introduction
+      file: intro.md
+    - title: Tutorials
+      children: []
 site:
   template: book-theme
-  # options:
-  #   favicon: favicon.ico
-  #   logo: site_logo.png
+  options:
+     favicon: images/favicon.ico
+     logo: images/logo.svg
+     logo_dark: images/logo-dark.svg
