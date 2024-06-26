@@ -7,16 +7,19 @@ project:
   # authors: []
   github: https://github.com/executablebooks/jupyter-book-myst
   toc:
-    - title: Introduction
-      file: intro.md
-    - title: Getting Started
+    - file: intro.md
+    - file: install.md
+    - file: upgrade.md
+    - title: Create a New Book
       children: 
-        - file: start/install.md
         - file: start/create.md
         - file: start/build.md
         - file: start/new-file.md
         - file: start/cross-reference.md
         - file: start/publish.md
+    - title: Reference
+      children: 
+        - file: glossary.md
 site:
   template: book-theme
   options:
