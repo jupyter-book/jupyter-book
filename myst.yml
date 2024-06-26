@@ -5,6 +5,8 @@ project:
   # description:
   # keywords: []
   # authors: []
+  abbreviations:
+    MyST: Markedly Structured Text
   github: https://github.com/executablebooks/jupyter-book-myst
   toc:
     - file: intro.md
@@ -19,7 +21,8 @@ project:
         - file: start/publish.md
     - title: Reference
       children: 
-        - file: glossary.md
+        - file: reference/glossary.md
+        - file: reference/why-switch-mystmd.md
 site:
   template: book-theme
   options:

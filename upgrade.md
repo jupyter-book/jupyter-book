@@ -119,7 +119,7 @@ In addition to the configuration files, there is also a bibliography file called
 This file contains references written in the [BibTeX File Format](https://www.bibtex.org/Format/), which is well-understood by tools such as the [LaTeX document preparation system](https://www.latex-project.org/about/) that is used for PDF export.
 
 ### Requirements File
-Finally, a [`requirements.txt`](#code:example-requirements) file is often used to define the Python packages required to build the book. This file is normally used both to install Jupyter Book (and related tools) and run any executable Python code.i
+Finally, a [`requirements.txt`](#code:example-requirements) file is often used to define the Python packages required to build the book. This file is normally used both to install Jupyter Book (and related tools) and run any executable Python code.
 
 ```{code} text
 :filename: requirements.txt
@@ -130,3 +130,11 @@ jupyter-book
 matplotlib
 numpy
 ```
+
+## Structure of a {term}`New Book`
+:::{important} Objective
+
+Now that we know what a {term}`Legacy Book` looks like, we can compare its structure with a {term}`New Book`.
+:::
+
+Whereas Jupyter Book 1 was build upon the Sphinx document engine, Jupyter Book 2 is built upon the [MyST-MD engine](https://mystmd.org). The reasons for this transition are outlined in [](./reference/why-switch-mystmd.md).
