@@ -143,12 +143,24 @@
         }
       }
     },
+    "bibtex_bibfiles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "latex": {
       "type": "object",
       "properties": {
         "latex_engine": {
           "type": "string",
           "default": "pdflatex"
+        },
+        "latex_documents": {
+          "type": "object"
+        },
+        "use_jupyterbook_latex": {
+          "type": "boolean"
         }
       }
     },
