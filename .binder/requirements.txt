@@ -6,7 +6,7 @@ ipywidgets
 jupytext
 matplotlib
 nbclient
-numpy
+numpy>=2
 pandas
 plotly
 sphinx-click
