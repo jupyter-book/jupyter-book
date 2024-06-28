@@ -212,6 +212,7 @@ We can then run the `jupyter book` command, which will detect the {term}`Legacy 
 ```{code} shell
 :linenos:
 :emphasize-lines: 15,16,17
+:name: code:upgrade-result
 
 $ cd book
 $ jupyter book
@@ -233,6 +234,8 @@ Renamed _toc.yml to ._toc.yml.myst.bak
 
 ? Would you like to run myst start now?
 ```
+
+Jupyter Book will report the steps that it takes during the upgrade process, e.g. the lines highlighted in [](#code:upgrade-result).
 
 We will press the {kbd}`n` key to exit the application. After running `jupyter book`, the configuration files from the {term}`Legacy Book` are renamed as {term}`Hidden Files` to make it easy to recover the original book if something goes wrong:
 
