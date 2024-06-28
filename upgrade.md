@@ -18,10 +18,10 @@ The goal of this tutorial is to walk existing users through the process of upgra
 Before we can upgrade a {term}`Legacy Book`, we must first discuss its important files and structure.
 :::
 
-### Configuration Files
+### Generating a {term}`Legacy Book`
 
-Jupyter Book 1 used [the Sphinx documentation engine](https://www.sphinx-doc.org/en/master/) to build each book into publication-quality books and documents.This engine was originally designed for documentation generation, such as <https://docs.python.org>, and has a long historical legacy. In order to hide the complexity that stemmed from making a documentation engine behave like a user-friendly tool for book authorship, Jupyter Book 1 introduced its own configuration files and CLI to build a book. Consequently, a {term}`Legacy Book` was required to have a number of configuration files
-.
+Jupyter Book 1 uses [the Sphinx documentation engine](https://www.sphinx-doc.org/en/master/) to build each book into publication-quality books and documents. Sphinx was originally designed for documentation generation, such as <https://docs.python.org>, and has a long historical legacy. In order to hide the complexity that stems from making a documentation engine behave like a book authoring tool, Jupyter Book 1 introduced its own configuration files and CLI to build a book. Consequently, a {term}`Legacy Book` is required to have a number of configuration files (see [](#legacy-config-files)).
+
 :::{table} {term}`Legacy Book` configuration files.
 :name: legacy-config-files
 
@@ -31,7 +31,7 @@ Jupyter Book 1 used [the Sphinx documentation engine](https://www.sphinx-doc.org
 | `_config.yml` | To define configuration options that customize the content, structure, and style of a book. |
 :::
 
-An example {term}`Legacy Book` can be seen by running the legacy Jupyter Book `create` command
+An example {term}`Legacy Book` can be seen by running the legacy Jupyter Book `create` command:
 
 ```shell
 $ jupyter book create ./book
@@ -44,8 +44,12 @@ Your book template can be found at
 ===============================================================================
 ```
 
-We can then list the contents of this book,
-```shell
+If we inspect the contents of the generated `book` directory, it can be seen that a number of files have been created:
+
+```{code} shell
+:caption: Contents of a {term}`Legacy Book` created using the `jupyter book create` command.
+:name: legacy-contents
+
 $ ls ./book
 .
 ..
@@ -60,7 +64,10 @@ references.bib
 requirements.txt
 ```
 
-where it can be seen that a number of files have been created, including the [`_config.yml`](#code:example-config) 
+### Configuration Files
+The most important files in a {term}`Legacy Book` are the [`_config.yml`](#code:example-config) and [`_toc.yml`](#code:example-toc) files described in [](#legacy-config-files). These files control what a book contains and what it looks like.
+
+
 ```{code} yaml
 :filename: _config.yml
 :name: code:example-config
@@ -80,7 +87,6 @@ execute:
 
 # ...
 ```
-and [`_toc.yml`](#code:example-toc) files described in [](#legacy-config-files).
 
 ```{code} yaml
 :filename: _toc.yml
@@ -98,7 +104,7 @@ chapters:
 - file: markdown-notebooks
 ```
 
-Some advanced books may have chosen to drop the Jupyter Book tools, and use Sphinx directly. These books do not define a `_config.yml`, instead they utilise a Sphinx-style `conf.py` file.
+Some advanced books may have chosen to stop using Jupyter Book's configuration and use Sphinx directly. These books do not define a `_config.yml`, instead they utilise a Sphinx-style `conf.py` file.
 
 ### Bibliography File
 In addition to the configuration files, there is also a bibliography file called [`references.bib`](#code:example-bib), which contains a list of references to academic publications. 
