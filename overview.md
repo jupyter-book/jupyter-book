@@ -3,11 +3,11 @@ title: Welcome to Jupyter Book
 subtitle: Build beautiful, publication-quality books and documents from computational content.
 ---
 
-::::{grid} 1 1 2 2
+::::{grid} 1 2 2 2
 
 :::{card}
 :header: Simple Authoring ✏️
-:footer: Learn about MyST Markdown
+:footer: Write in MyST Markdown
 
 Jupyter Book uses [MyST Markdown](https://mystmd.org/spec), an extension of [CommonMark](https://commonmark.org/), making it easy to author structured documents.
 :::
@@ -23,7 +23,7 @@ Interweave computational results with high-quality narrative using Jupyter Noteb
 :header: Interactive Websites 🚀
 :footer: Build Interactive Pages
 
-Publish to a website that allows users to interact with widgets and computation using JupyterHub, Binder, and even Python _in the browser_!
+Publish to a website that allows users to interact with widgets and computation using [JupyterHub](https://jupyterhub.readthedocs.io/), [Binder](https://jupyter.org/binder), and even Python _in the browser_!
 :::
 
 :::{card}
