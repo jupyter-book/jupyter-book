@@ -10,7 +10,8 @@ project:
     CLI: Command-Line Interface
   github: https://github.com/executablebooks/jupyter-book-myst
   toc:
-    - file: intro.md
+    - file: overview.md
+      title: Overview
     - file: install.md
     - file: upgrade.md
     - title: Create a New Book
