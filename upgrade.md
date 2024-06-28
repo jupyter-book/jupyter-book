@@ -234,23 +234,7 @@ Renamed _toc.yml to ._toc.yml.myst.bak
 ? Would you like to run myst start now?
 ```
 
-This generates the following files:
-
-```shell
-$ ls
-.
-..
-_build
-intro.md
-logo.png
-markdown.md
-markdown-notebooks.md
-myst.yml
-notebooks.ipynb
-references.bib
-requirements.txt
-```
-Configuration files from the {term}`Legacy Book` are renamed to {term}`Hidden Files` to make it easy to recover the original book if something goes wrong:
+We will press the {kbd}`n` key to exit the application. After running `jupyter book`, the configuration files from the {term}`Legacy Book` are renamed as {term}`Hidden Files` to make it easy to recover the original book if something goes wrong:
 
 ```{code} shell
 :linenos:
