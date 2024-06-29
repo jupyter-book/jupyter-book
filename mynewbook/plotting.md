@@ -77,7 +77,7 @@ import pandas as pd
 data = pd.read_csv('data/gapminder_gdp_oceania.csv', index_col='country')
 
 # Extract year from last 4 characters of each column name
-# The current column names are structured as 'gdpPercap_(year)', 
+# The current column names are structured as 'gdpPercap_(year)',
 # so we want to keep the (year) part only for clarity when plotting GDP vs. years
 # To do this we use replace(), which removes from the string the characters stated in the argument
 # This method works on strings, so we use replace() from Pandas Series.str vectorized string functions
@@ -372,7 +372,7 @@ Whenever you are generating plots to go into a paper or a presentation, there ar
 - Always make sure your text is large enough to read. Use the `fontsize` parameter in `xlabel`, `ylabel`, `title`, and `legend`, and [`tick_params` with `labelsize`](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.tick_params.html) to increase the text size of the numbers on your axes.
 - Similarly, you should make your graph elements easy to see. Use `s` to increase the size of your scatterplot markers and `linewidth` to increase the sizes of your plot lines.
 - Using color (and nothing else) to distinguish between different plot elements will make your plots unreadable to anyone who is colorblind, or who happens to have a black-and-white office printer. For lines, the `linestyle` parameter lets you use different types of lines. For scatterplots, `marker` lets you change the shape of your points. If you're unsure about your colors, you can use [Coblis](https://www.color-blindness.com/coblis-color-blindness-simulator/) or [Color Oracle](https://colororacle.org/) to simulate what your plots would look like to those with colorblindness.
-  
+
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -385,4 +385,3 @@ Whenever you are generating plots to go into a paper or a presentation, there ar
 - Can plot many sets of data together.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
-
