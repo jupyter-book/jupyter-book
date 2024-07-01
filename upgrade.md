@@ -11,7 +11,7 @@ The goal of this tutorial is to walk existing users through the process of upgra
 
 
 :::{hint} TL;DR
-Run the `jupyter book` command inside your existing {term}`Legacy Book` to automatically upgrade it to Jupyter Book 2. This process is automated
+Run the new `jupyter book` command inside your existing {term}`Legacy Book` to automatically upgrade it to Jupyter Book 2. This process is automated
 but you might need to clean up a few things by hand to eliminate warnings.
 :::
 
@@ -34,9 +34,18 @@ Jupyter Book 1 uses [the Sphinx documentation engine](https://www.sphinx-doc.org
 | `_config.yml` | To define configuration options that customize the content, structure, and style of a book. |
 :::
 
-An example {term}`Legacy Book` can be seen by running the legacy Jupyter Book `create` command:
+An example {term}`Legacy Book` can be seen by running the _legacy_ Jupyter Book `create` command:
 
 ```shell
+$ jupyter book --version
+Jupyter Book      : 1.0.2
+External ToC      : 1.0.1
+MyST-Parser       : 2.0.0
+MyST-NB           : 1.1.1
+Sphinx Book Theme : 1.1.3
+Jupyter-Cache     : 1.0.0
+NbClient          : 0.10.0
+
 $ jupyter book create ./book
 ===============================================================================
 
@@ -50,7 +59,7 @@ Your book template can be found at
 If we inspect the contents of the generated `book` directory, it can be seen that a number of files have been created:
 
 ```{code} shell
-:caption: Contents of a {term}`Legacy Book` created using the `jupyter book create` command.
+:caption: Contents of a {term}`Legacy Book` created using the legacy `jupyter book create` command.
 :name: legacy-contents
 
 $ ls ./book
@@ -74,7 +83,7 @@ The most important files in a {term}`Legacy Book` are the [`_config.yml`](#code:
 ```{code} yaml
 :filename: _config.yml
 :name: code:example-config
-:caption: Extract from the `_config.yml` file produced by the `jupyter book create` command.
+:caption: Extract from the `_config.yml` file produced by the legacy `jupyter book create` command.
 
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
@@ -94,7 +103,7 @@ execute:
 ```{code} yaml
 :filename: _toc.yml
 :name: code:example-toc
-:caption: The `_toc.yml` file produced by the `jupyter book create` command.
+:caption: The `_toc.yml` file produced by the legacy `jupyter book create` command.
 
 # Table of contents
 # Learn more at https://jupyterbook.org/customize/toc.html
@@ -115,7 +124,7 @@ In addition to the configuration files, there is also a bibliography file called
 ```{code} bibtex
 :filename: references.bib
 :name: code:example-bib
-:caption: Extract from the `references.bib` file produced by the `jupyter book create` command.
+:caption: Extract from the `references.bib` file produced by the legacy `jupyter book create` command.
 
 @inproceedings{holdgraf_evidence_2014,
 	address = {Brisbane, Australia, Australia},
@@ -138,7 +147,7 @@ Finally, a [`requirements.txt`](#code:example-requirements) file is often used t
 ```{code} text
 :filename: requirements.txt
 :name: code:example-requirements
-:caption: The `requirements.txt` file produced by the `jupyter book create` command.
+:caption: The `requirements.txt` file produced by the legacy `jupyter book create` command.
 
 jupyter-book
 matplotlib
@@ -216,32 +225,31 @@ We can then run the `jupyter book` command, which will detect the {term}`Legacy 
 
 $ cd book
 $ jupyter book
-Welcome to the MyST Markdown CLI!! 🎉 🚀
+Welcome to the Jupyter Book (myst) CLI! 🎉 🚀
 
-myst init walks you through creating a myst.yml file.
+jupyter book init walks you through creating a myst.yml file.
 
-You can use myst to:
+You can use Jupyter Book (myst) to:
 
  - create interactive websites from markdown and Jupyter Notebooks 📈
  - build & export professional PDFs and Word documents 📄
 
 Learn more about this CLI and MyST Markdown at: https://mystmd.org
 
-
 📘 Found a legacy Jupyter Book, writing new config file: myst.yml
 Renamed _config.yml to ._config.yml.myst.bak
 Renamed _toc.yml to ._toc.yml.myst.bak
 
-? Would you like to run myst start now?
+? Would you like to run jupyter book start now? 
 ```
 
-Jupyter Book will report the steps that it takes during the upgrade process, e.g. the lines highlighted in [](#code:upgrade-result).
-
-We will press the {kbd}`n` key to exit the application. After running `jupyter book`, the configuration files from the {term}`Legacy Book` are renamed as {term}`Hidden Files` to make it easy to recover the original book if something goes wrong:
+Jupyter Book reports the steps that it takes during the upgrade process, e.g. the lines highlighted in [](#code:upgrade-result). For this particular book, the configuration files from the {term}`Legacy Book` area renamed as {term}`Hidden Files`[^why]:
 
 ```{code} shell
 :linenos:
 :emphasize-lines: 5,14
+:caption: Contents of an {term}`Legacy Book` upgraded with the new `jupyter book create` command.
+:name: upgraded-contents
 
 $ ls -a
 .
@@ -259,3 +267,13 @@ requirements.txt
 ._toc.yml.myst.bak
 ```
 
+
+At the bottom of [](#code:upgrade-result), Jupyter Book then asked us whether we'd like to run `jupyter book start`. We can press the {kbd}`y` key in this terminal window to launch a MyST webserver. Clicking the generated link (or pasting it into a new browser tab) will allow us to preview our site and see changes quickly reflected in the browser (see [](#image:screenshot)).
+
+:::{figure} images/screenshot-jupyter-book-start.png
+:name: image:screenshot
+
+Browser screenshot of the URL generated by `jupyter book start`.
+:::
+
+[^why]: Jupyter Book prefers to hide existing files rather than delete them, so that it is easy to recover the original book if something goes wrong.
