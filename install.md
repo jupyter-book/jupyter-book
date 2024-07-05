@@ -19,22 +19,81 @@ You should have these programs installed:
 By default, Node.js ships with npm already installed.
 :::
 
+Jupyter Book is available on the PyPI and conda-forge package repositories as `jupyter-book>=2`. How you install Jupyter Book depends upon your choice of environment manager. 
+
+::::{tip} Should I use `pip` or ...?
+:class: dropdown
+
+Installing software can be confusing. Here's a simple guide to making a sensible choice.
+   
+1. Are you using an environment manager?  
+   Environment managers like `virtualenv` and `conda` help to keep software from different projects isolated from one another, reducing the risk of one package breaking another.  
+   If you are already using an environment manager, you should use that tool to install `jupyter-book`. 
+
+2. Are you willing to use an environment manager?  
+   There are lots of environment managers to choose from. If you aren't sure which to choose, it is recommended to start with [a Python virtual environment][venv].
+
+3. Otherwise ...  
+   `pip` can install packages into your home directory with
+   ```shell
+   pip install -U jupyter-book>=2
+   ```
+   :::{warning} Environment Management
+   :name: warning:env-management
+
+   Ignoring environment management can lead to confusion later when things break. It is recommended to [use a virtual environment][venv] if you do not use an existing tool.
+   :::
+::::
+
+
 ::::{grid} 1 2 2 2
 
 :::{card} 
 :header: Install with `pip` 🐍
+:name: card:install-pip
+
+In a [virtual environment][venv]:
 ```shell
-pip install -U jupyter-book>=2
+pip install jupyter-book>=2
 ```
 :::
 
 :::{card} 
-:header: Install with `mamba` / `conda` 🔥
+:header: Install with [`mamba`][mamba] / `conda` 🔥
+:name: card:install-mamba
+
 ```shell
 mamba install -c conda-forge \
   jupyter-book>=2
 ```
 :::
 
+:::{card} 
+:header: Install with [`pipx`][pipx] ⚙️
+:name: card:install-pipx
+
+Never heard of `pipx`? See [the documentation][pipx] for more.
+
+```shell
+pipx install jupyter-book>=2
+```
+:::
+
+:::{card} 
+:header: Install with [`pixi`][pixi] 🔥
+:name: card:install-pixi
+
+Never heard of `pixi`? See [the documentation][pixi] for more.
+
+```shell:
+pixi add jupyter-book>=2
+```
+:::
+
 
 ::::
+
+[mamba]: https://mamba.readthedocs.io/en/latest/
+[pixi]: https://pixi.sh/
+[pipx]: https://pipx.pypa.io/stable/
+[venv]: https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/
