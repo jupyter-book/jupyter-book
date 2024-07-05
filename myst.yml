@@ -16,7 +16,7 @@ project:
       title: Overview
     - file: install.md
     - file: upgrade.md
-    - title: Create a New Book
+    - title: Create a Book
       children: 
         - file: start/create.md
         - file: start/build.md

@@ -26,11 +26,10 @@ Jupyter Book is available on the PyPI and conda-forge package repositories as `j
 
 Installing software can be confusing. Here's a simple guide to making a sensible choice.
    
-1. Are you using an environment manager?  
-   Environment managers like `virtualenv` and `conda` help to keep software from different projects isolated from one another, reducing the risk of one package breaking another.  
+1. Are you using an {term}`Environment Manager`?  
    If you are already using an environment manager, you should use that tool to install `jupyter-book`. 
 
-2. Are you willing to use an environment manager?  
+2. Are you willing to use an {term}`Environment Manager`?  
    There are lots of environment managers to choose from. If you aren't sure which to choose, it is recommended to start with [a Python virtual environment][venv].
 
 3. Otherwise ...  
@@ -38,7 +37,7 @@ Installing software can be confusing. Here's a simple guide to making a sensible
    ```shell
    pip install -U jupyter-book>=2
    ```
-   :::{warning} Environment Management
+   :::{warning} Ignoring environment management
    :name: warning:env-management
 
    Ignoring environment management can lead to confusion later when things break. It is recommended to [use a virtual environment][venv] if you do not use an existing tool.
