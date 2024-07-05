@@ -5,8 +5,6 @@ project:
   # description:
   # keywords: []
   # authors: []
-  plugins:
-    - headings.mjs
   abbreviations:
     MyST: Markedly Structured Text
     CLI: Command-Line Interface
