@@ -49,7 +49,6 @@ Installing software can be confusing. Here's a simple guide to making a sensible
 
 :::{card} 
 :header: Install with `pip` 🐍
-:name: card:install-pip
 
 In a [virtual environment][venv]:
 ```shell
@@ -59,7 +58,6 @@ pip install jupyter-book>=2
 
 :::{card} 
 :header: Install with [`mamba`][mamba] / `conda` 🔥
-:name: card:install-mamba
 
 ```shell
 mamba install -c conda-forge \
@@ -69,7 +67,6 @@ mamba install -c conda-forge \
 
 :::{card} 
 :header: Install with [`pipx`][pipx] ⚙️
-:name: card:install-pipx
 
 Never heard of `pipx`? See [the documentation][pipx] for more.
 
@@ -80,7 +77,6 @@ pipx install jupyter-book>=2
 
 :::{card} 
 :header: Install with [`pixi`][pixi] 🔥
-:name: card:install-pixi
 
 Never heard of `pixi`? See [the documentation][pixi] for more.
 

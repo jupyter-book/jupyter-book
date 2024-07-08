@@ -2,7 +2,7 @@
 title: Upgrade an Existing Book From Jupyter Book 1
 subtitle: Use automated tools to upgrade a legacy (Sphinx-based) Jupyter Book project to the new MyST engine.
 # subject: MyST Quickstart Tutorial
-short_title: Upgrade a Book ⭐
+short_title: Upgrade an Old Book ⭐
 ---
 
 :::{important} Objective
@@ -199,7 +199,7 @@ Neither Jupyter Book 1 and 2 do anything useful with a `requirements.txt` file, 
 
 ## Upgrading a {term}`Legacy Book`
 
-Whilst Jupyter Book 1 was built upon the _Sphinx_ document engine, Jupyter Book 2 is built upon the [_MyST-MD_ engine](https://mystmd.org). The reasons for this transition are outlined in [](./reference/why-switch-mystmd.md). Unlike Jupyter Book 1, Jupyter Book 2 does not try to hide the fact that it is built on a different engine; MyST-MD is designed from the ground up to be good at technical writing, and the Executable Books team believe that it is both powerful and easy-to-use. As such, Jupyter Book 2 builds on top of MyST-MD, using the same CLI and `myst.yml`. 
+Whilst Jupyter Book 1 was built upon the _Sphinx_ document engine, Jupyter Book 2 is built upon the [_MyST-MD_ engine](https://mystmd.org). The reasons for this transition are outlined in [](./about/why-switch-mystmd.md). Unlike Jupyter Book 1, Jupyter Book 2 does not try to hide the fact that it is built on a different engine; MyST-MD is designed from the ground up to be good at technical writing, and the Executable Books team believe that it is both powerful and easy-to-use. As such, Jupyter Book 2 builds on top of MyST-MD, using the same CLI and `myst.yml`. 
 
 ::: {pull-quote}
 Unlike Jupyter Book 1, Jupyter Book 2 does not try to hide the underlying engine.

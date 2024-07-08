@@ -16,15 +16,15 @@ project:
     - file: upgrade.md
     - title: Create a Book
       children: 
-        - file: start/create.md
+        - file: start/init.md
         - file: start/build.md
         - file: start/new-file.md
         - file: start/cross-reference.md
         - file: start/publish.md
-    - title: Reference
+    - title: About Jupyter Book
       children: 
-        - file: reference/glossary.md
-        - file: reference/why-switch-mystmd.md
+        - file: about/why-switch-mystmd.md
+    - file: glossary.md
 site:
   template: book-theme
   options:
