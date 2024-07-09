@@ -5,6 +5,8 @@ project:
   # description:
   # keywords: []
   # authors: []
+  references:
+    guide: https://mystmd.org/guide
   abbreviations:
     MyST: Markedly Structured Text
     CLI: Command-Line Interface
@@ -23,8 +25,10 @@ project:
         - file: start/publish.md
     - title: About Jupyter Book
       children: 
-        - file: about/why-switch-mystmd.md
+        - file: about/history.md
+        - file: about/toolchain.md
     - file: glossary.md
+    - file: help.md
 site:
   template: book-theme
   options:

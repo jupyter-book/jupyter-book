@@ -10,10 +10,10 @@ gantt
     dateFormat  YYYY-MM
     title       The history of Jupyter Book
  
-    Jupyter Book 0.1 - 0.7 (Jekyll)               :active,  des2, 2018-06, 2020-07
-    Jupyter Book 0.7 - 1.x (Sphinx)               :active,  des2, 2020-07, 2024-07
-    Jupyter Book 1.0 : milestone, 2020-02, 1d
-    Jupyter Book 2.x (MyST-MD)               :active,  des2, 2024-07, 2024-07
+    Jupyter Book 0.1 - 0.7 (Jekyll)               : des2, 2018-06, 2020-07
+    Jupyter Book 0.7 - 1.x (Sphinx)               : des2, 2020-07, 2024-07
+    Jupyter Book 1.0                              : milestone, 2024-02, 1d
+    Jupyter Book 2.x (MyST-MD)                    :active, des2, 2024-07, 2024-07
 
 :::
 
@@ -40,3 +40,5 @@ In 2023, a broad effort to recognize the stability of the Jupyter Book software 
 
 ### Jupyter Book 2
 As outlined above, Jupyter Book has a long history. Over its lifetime, it has become a well-established tool for authoring and publishing in the Jupyter ecosystem with [over 13,000 GitHub repositories now using the tool](https://executablebooks.org/en/latest/blog/2024-05-20-jupyter-book-myst/). During that time, the Executable Books team have learned a great deal about the ways in which our communities use Jupyter Book, witnessed first-hand the pain-points in building a book publishing tool on top of Sphinx, and [explored new ways in which the Jupyter Book tools can be used](https://executablebooks.org/en/latest/blog/2023-02-09-announce-mystjs/#myst-is-now-a-top-level-project-in-executable-books). Following these learnings, and the success of the MyST-MD project that was launched in 2022, it became clear that the future of Jupyter Book lay in a new direction.
+
+Jupyter Book 2 is built on top of the [MyST-MD engine](https://mystmd.org/), which uses the latest web frameworks and javascript libraries to produce beautiful documents and websites that provide rich reading experiences on top of powerful structured representations.
