@@ -1,6 +1,6 @@
 ---
 title: Welcome to Jupyter Book
-subtitle: Build beautiful, publication-quality books and documents from computational content using MyST-MD.
+subtitle: Build beautiful, publication-quality books and documents from computational content using the MyST-MD engine.
 ---
 
 ::::{grid} 1 2 2 2
