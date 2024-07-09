@@ -10,6 +10,7 @@ project:
   abbreviations:
     MyST: Markedly Structured Text
     CLI: Command-Line Interface
+    TOC: Table of Contents
   github: https://github.com/executablebooks/jupyter-book-myst
   toc:
     - file: overview.md
@@ -19,8 +20,8 @@ project:
     - title: Create a Book
       children: 
         - file: start/init.md
+        - file: start/create-content.md
         - file: start/build.md
-        - file: start/new-file.md
         - file: start/cross-reference.md
         - file: start/publish.md
     - title: About Jupyter Book
