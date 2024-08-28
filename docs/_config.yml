@@ -23,7 +23,9 @@ html:
   # FIXME: surely we could allow internal or relative links somehow?
   # (The documentation says only that HTML is allowed, nothing about the base URL is mentioned.)
   # Then we could link to the changelog in the *same* build of the docs.
-  announcement: '⚠️The 0.13 release refactored our HTML, so double-check your custom CSS rules!⚠️'
+  announcement: >
+    ℹ️ Jupyter Book is being rebuilt on top of <a href="https://mystmd.org/">MyST-MD</a>. 
+    See <a href="https://executablebooks.org/en/latest/blog/2024-05-20-jupyter-book-myst/">our blog post</a> for more information. 🚀
   favicon: images/favicon.ico
   home_page_in_navbar: false
   use_edit_page_button: true
