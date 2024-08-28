@@ -19,10 +19,7 @@ Jupyter Book allows users to
     * a publication-quality PDF.
 
 ## Governance of this project
-
-Jupyter Book is still developing relatively rapidly, so please be patient if things change
-or features iterate and change quickly. Once Jupyter Book hits 1.0, it will slow down
-considerably!
+Jupyter Book is now in a maintenance phase, where new feature requests have lower priority than bugfixes.
 
 ## Contribute or improve the book
 
