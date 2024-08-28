@@ -19,7 +19,7 @@ Jupyter Book allows users to
     * a publication-quality PDF.
 
 ## Governance of this project
-Jupyter Book is now in a maintenance phase, where new feature requests have lower priority than bugfixes.
+Jupyter Book 1.x is now in a maintenance phase, where new feature requests have lower priority than bugfixes. Jupyter Book 2.x will be built on the new [MyST-MD document engine](https://mystmd.org/). See [our blog post](https://executablebooks.org/en/latest/blog/2024-05-20-jupyter-book-myst/) for more information.
 
 ## Contribute or improve the book
 
