@@ -277,7 +277,7 @@ MyST in Jupyter, and then build your book with Jupyter Book.
 
 For working with Jupyter notebook and Markdown files, we recommend [jupytext](https://jupytext.readthedocs.io/en/latest),
 an open source tool for two-way conversion between `.ipynb` and text files.
-Jupytext [supports the MyST Markdown format](https://jupytext.readthedocs.io/en/latest/formats.html#myst-markdown).
+Jupytext [supports the MyST Markdown format](https://jupytext.readthedocs.io/en/latest/formats-markdown.html#myst-markdown).
 
 :::{note}
 For full compatibility with `myst-parser`, it is necessary to use `jupytext>=1.6.0`.

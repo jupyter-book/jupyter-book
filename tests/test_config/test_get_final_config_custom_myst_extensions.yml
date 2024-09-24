@@ -23,6 +23,7 @@ final:
   - sphinx_external_toc
   - sphinx.ext.intersphinx
   - sphinx_design
+  - sphinx_book_theme
   - sphinx_jupyterbook_latex
   - sphinx_multitoc_numbering
   external_toc_exclude_missing: false

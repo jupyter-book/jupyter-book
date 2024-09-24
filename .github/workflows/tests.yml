@@ -72,8 +72,9 @@ jobs:
       # for some reason the tests/conftest.py::check_nbs fixture breaks pytest-cov's cov-report outputting
       # this is why we run `coverage xml` afterwards (required by codecov)
 
+    # TEMPORARY FIX: Disable codecov until we can get it working again
     - name: Upload to Codecov
-      if: github.repository == 'executablebooks/jupyter-book'
+      if: (github.repository == 'executablebooks/jupyter-book') && false
       uses: codecov/codecov-action@v3.1.4
       with:
         name: ebp-jupyter-book-pytests-py3.9

@@ -33,6 +33,7 @@ final:
   - sphinx_external_toc
   - sphinx.ext.intersphinx
   - sphinx_design
+  - sphinx_book_theme
   - other
   - helloworld
   - sphinx_jupyterbook_latex

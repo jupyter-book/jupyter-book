@@ -72,7 +72,7 @@ This mapping allows for "true" error reporting, as described in [](inv:myst-nb#m
 
 [Jupytext](https://jupytext.readthedocs.io/en/latest/) is an excellent Python tool for two-way conversion
 between Jupyter Notebook `.ipynb` files and
-[a variety of text-based files](https://jupytext.readthedocs.io/en/latest/formats.html).
+[a variety of text-based files](https://jupytext.readthedocs.io/en/latest/formats-markdown.html).
 
 Jupyter Book natively supports the Jupytext file format: [notebooks with MyST Markdown](./myst-notebooks.md).
 

@@ -4,7 +4,7 @@ on:
   schedule:
     # Run at the beginning of each day
     - cron:  '0 0 * * *'
-
+  workflow_dispatch:
 jobs:
 
   tests-windows:
@@ -14,7 +14,7 @@ jobs:
       matrix:
         # Using the default python in the Windows 2022 github actions runner
         # ref: https://github.com/actions/virtual-environments/issues/4856
-        python-version: [3.9]
+        python-version: [3.10]
 
     steps:
     - uses: actions/checkout@v4
@@ -26,7 +26,7 @@ jobs:
     - uses: actions/cache@v4
       with:
         path: ~\AppData\Local\pip\Cache
-        key: ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('setup.py') }}
+        key: ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('pyproject.toml') }}
         restore-keys: |
           ${{ runner.os }}-${{ matrix.python-version }}-pip-
 
@@ -60,7 +60,7 @@ jobs:
     - uses: actions/cache@v4
       with:
         path: ~\AppData\Local\pip\Cache
-        key: ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('setup.py') }}
+        key: ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('pyproject.toml') }}
         restore-keys: |
           ${{ runner.os }}-${{ matrix.python-version }}-pip-
     # Install libmagic to avoid a flaky Fonts error with matplotlib

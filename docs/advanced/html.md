@@ -131,7 +131,8 @@ Analytics) into the following directive in your configuration file:
 
 ```yaml
 html:
-  google_analytics_id: G-XXXXXXX
+  analytics:
+    google_analytics_id: G-XXXXXXX
 ```
 
 :::{seealso}
@@ -143,15 +144,21 @@ html:
 
 [Plausible Analytics](https://plausible.io) is a lightweight, open source, [privacy-focused](https://plausible.io/privacy-focused-web-analytics) analytics service that can be used as a more ethical alternative (or, in addition to) to Google Analytics.
 
-You can do this by adding the following in your configuration file:
-
+Plausible Analytics requires a _domain_, which is given by the `plausible_analytics_domain` property:
 ```yaml
-sphinx:
-  config:
-    html_js_files: [ ['https://plausible.io/js/script.js', {'defer': 'defer', 'data-domain': 'yourdomain.com'}] ]
+html:
+  analytics:
+    plausible_analytics_domain: my-domain
+```
+You can specify the analytics script that is loaded; by default, the bundle from <https://plausible.io> is used:
+```yaml
+html:
+  analytics:
+    plausible_analytics_domain: my-domain
+    plausible_analytics_url: https://plausible.io/js/script.js
 ```
 
-This should inject the appropriate code into the `<head>` via javascript, and you will be able to get analytics on your website through either the commercial company-hosted dashboard, or a [self-hosted instance](https://plausible.io/docs/self-hosting).
+This should inject the appropriate code into the built site, and you will be able to get analytics on your website through either the commercial company-hosted dashboard, or a [self-hosted instance](https://plausible.io/docs/self-hosting).
 
 
 (html:link-check)=
