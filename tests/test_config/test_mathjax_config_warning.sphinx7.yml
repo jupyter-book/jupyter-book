@@ -38,6 +38,8 @@ final:
   html_theme_options:
     analytics:
       google_analytics_id: ''
+      plausible_analytics_domain: ''
+      plausible_analytics_url: https://plausible.io/js/script.js
     announcement: ''
     extra_footer: ''
     home_page_in_toc: true
