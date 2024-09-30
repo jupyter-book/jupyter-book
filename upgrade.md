@@ -9,14 +9,13 @@ short_title: Upgrade an Old Book ⭐
 The goal of this tutorial is to walk existing users through the process of upgrading their books to Jupyter Book 2.  
 :::
 
-
 :::{hint} TL;DR
 Run the new `jupyter book` command inside your existing {term}`Legacy Book` to automatically upgrade it to Jupyter Book 2. This process is automated
 but you might need to clean up a few things by hand to eliminate warnings.
 :::
 
-
 (section:structure-legacy-book)=
+
 ## Structure of a {term}`Legacy Book`
 
 Before we can upgrade a {term}`Legacy Book`, we must first discuss its important files and structure.
@@ -28,10 +27,11 @@ Jupyter Book 1 uses [the Sphinx documentation engine](https://www.sphinx-doc.org
 :::{table} {term}`Legacy Book` configuration files.
 :name: legacy-config-files
 
-|    Filename   |                                           Purpose                                           |
-|:-------------:|:-------------------------------------------------------------------------------------------:|
-| `_toc.yml`    | To define the documents that comprise the contents of a book in the form of a site-map.     |
+|   Filename    |                                           Purpose                                           |
+| :-----------: | :-----------------------------------------------------------------------------------------: |
+|  `_toc.yml`   |   To define the documents that comprise the contents of a book in the form of a site-map.   |
 | `_config.yml` | To define configuration options that customize the content, structure, and style of a book. |
+
 :::
 
 An example {term}`Legacy Book` can be seen by running the _legacy_ Jupyter Book `create` command:
@@ -77,8 +77,8 @@ requirements.txt
 ```
 
 ### Configuration Files
-The most important files in a {term}`Legacy Book` are the [`_config.yml`](#code:example-config) and [`_toc.yml`](#code:example-toc) files described in [](#legacy-config-files). These files control what a book contains and what it looks like.
 
+The most important files in a {term}`Legacy Book` are the [`_config.yml`](#code:example-config) and [`_toc.yml`](#code:example-toc) files described in [](#legacy-config-files). These files control what a book contains and what it looks like.
 
 ```{code} yaml
 :filename: _config.yml
@@ -119,7 +119,8 @@ chapters:
 Some advanced books may have chosen to stop using Jupyter Book's configuration and use Sphinx directly. These books do not define a `_config.yml`, instead they utilise a Sphinx-style `conf.py` file.
 
 ### Bibliography File
-In addition to the configuration files, there is also a bibliography file called [`references.bib`](#code:example-bib), which contains a list of references to academic publications. 
+
+In addition to the configuration files, there is also a bibliography file called [`references.bib`](#code:example-bib), which contains a list of references to academic publications.
 
 ```{code} bibtex
 :filename: references.bib
@@ -142,6 +143,7 @@ In addition to the configuration files, there is also a bibliography file called
 This file contains references written in the [BibTeX File Format](https://www.bibtex.org/Format/), which is well-understood by tools such as the [LaTeX document preparation system](https://www.latex-project.org/about/) that is used for PDF export.
 
 ### Requirements File
+
 Finally, a [`requirements.txt`](#code:example-requirements) file is often used to define the Python packages required to build the book. This file is normally used both to install Jupyter Book (and related tools) and run any executable Python code.
 
 ```{code} text
@@ -159,6 +161,7 @@ numpy
 Now that we know what a {term}`Legacy Book` looks like, we can compare its structure with a {term}`New Book`.
 
 ### Configuration Files
+
 The new Jupyter Book has a single configuration file `myst.yml`. See the [](#code:myst-example-config) for the `myst.yml` that corresponds to [](#code:example-config).
 
 ```{code} yaml
@@ -192,14 +195,16 @@ site:
 It can be seen that [](#code:myst-example-config) has a `toc` section that looks very similar to [](#code:example-toc). This style of defining a TOC is designed to be easier to read and write.
 
 ### Bibliography File
-Just like Jupyter Book 1, Jupyter Book 2 understands academic references defined in `references.bib`. 
+
+Just like Jupyter Book 1, Jupyter Book 2 understands academic references defined in `references.bib`.
 
 ### Requirements File
+
 Neither Jupyter Book 1 and 2 do anything useful with a `requirements.txt` file, but it is useful when adding support for Binder connectivity.
 
 ## Upgrading a {term}`Legacy Book`
 
-Whilst Jupyter Book 1 was built upon the _Sphinx_ document engine, Jupyter Book 2 is built upon the [_MyST-MD_ engine](https://mystmd.org). The reasons for this transition are outlined in [](./about/why-switch-mystmd.md). Unlike Jupyter Book 1, Jupyter Book 2 does not try to hide the fact that it is built on a different engine; MyST-MD is designed from the ground up to be good at technical writing, and the Executable Books team believe that it is both powerful and easy-to-use. As such, Jupyter Book 2 builds on top of MyST-MD, using the same CLI and `myst.yml`. 
+Whilst Jupyter Book 1 was built upon the _Sphinx_ document engine, Jupyter Book 2 is built upon the [_MyST-MD_ engine](https://mystmd.org). The reasons for this transition are outlined in [](./about/why-switch-mystmd.md). Unlike Jupyter Book 1, Jupyter Book 2 does not try to hide the fact that it is built on a different engine; MyST-MD is designed from the ground up to be good at technical writing, and the Executable Books team believe that it is both powerful and easy-to-use. As such, Jupyter Book 2 builds on top of MyST-MD, using the same CLI and `myst.yml`.
 
 ::: {pull-quote}
 Unlike Jupyter Book 1, Jupyter Book 2 does not try to hide the underlying engine.
@@ -212,16 +217,18 @@ Jupyter Book will automatically upgrade a {term}`Legacy Book` to a {term}`New Bo
 % TODO: what should this report?
 
 First, let's confirm that we're now using the _new_ Jupyter Book tool:
+
 ```{code} shell
 $ jupyter book --version
 
 ```
 
-We can then run the `jupyter book` command, which will detect the {term}`Legacy Book` and perform an in-place upgrade:
+We can then run the `jupyter book` command, which will detect the {term}`Legacy Book` and ask to perform an in-place upgrade:
+
 ```{code} shell
 :linenos:
 :emphasize-lines: 15,16,17
-:name: code:upgrade-result
+:name: code:upgrade-prompt
 
 $ cd book
 $ jupyter book
@@ -236,14 +243,29 @@ You can use Jupyter Book (myst) to:
 
 Learn more about this CLI and MyST Markdown at: https://mystmd.org
 
-📘 Found a legacy Jupyter Book, writing new config file: myst.yml
-Renamed _config.yml to ._config.yml.myst.bak
-Renamed _toc.yml to ._toc.yml.myst.bak
+? 📘 Found a legacy Jupyter Book. To proceed, myst needs to perform an upgrade which will:
+‣ Upgrade any Sphinx-style glossaries to MyST-style glossaries
+‣ Upgrade any case-insensitive admonition names to lowercase (Note → note)
+‣ Migrate configuration from _config.yml and (if applicable) _toc.yml files
+‣ Rename any modified or unneeded files so that they are hidden
 
-? Would you like to run jupyter book start now? 
+Are you willing to proceed? (Y/n)
 ```
 
-Jupyter Book reports the steps that it takes during the upgrade process, e.g. the lines highlighted in [](#code:upgrade-result). For this particular book, the configuration files from the {term}`Legacy Book` area renamed as {term}`Hidden Files`[^why]:
+Pressing <kbd>Y</kbd> will start the upgrade process, during which time Jupyter Book reports the steps that take place, e.g. the lines highlighted in [](#code:upgrade-steps). For this particular book, the configuration files from the {term}`Legacy Book` are migrated:
+
+```{code} shell
+:linenos:
+:emphasize-lines: 3,4
+:name: code:upgrade-steps
+
+Are you willing to proceed? (Y/n) Yes
+💾 Writing new config file: myst.yml
+Migrating Jupyter Book configuration to myst.yml
+Migrating TOC to myst.yml
+```
+
+We can see that the migration step has created some {term}`Hidden Files` (see [](#upgraded-contents)). This ensures that you can recover the original files if something goes wrong during the upgrade.
 
 ```{code} shell
 :linenos:
@@ -267,13 +289,16 @@ requirements.txt
 ._toc.yml.myst.bak
 ```
 
+Finally, Jupyter Book then asks us whether we'd like to run `jupyter book start`.
 
-At the bottom of [](#code:upgrade-result), Jupyter Book then asked us whether we'd like to run `jupyter book start`. We can press the {kbd}`y` key in this terminal window to launch a MyST webserver. Clicking the generated link (or pasting it into a new browser tab) will allow us to preview our site and see changes quickly reflected in the browser (see [](#image:screenshot)).
+```{code} shell
+? Would you like to run myst start now?
+```
+
+We can press the {kbd}`y` key in this terminal window to launch a MyST webserver. Clicking the generated link (or pasting it into a new browser tab) will allow us to preview our site and see changes quickly reflected in the browser (see [](#image:screenshot)).
 
 :::{figure} images/screenshot-jupyter-book-start.png
 :name: image:screenshot
 
 Browser screenshot of the URL generated by `jupyter book start`.
 :::
-
-[^why]: Jupyter Book prefers to hide existing files rather than delete them, so that it is easy to recover the original book if something goes wrong.

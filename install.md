@@ -3,7 +3,7 @@ title: Install Jupyter Book 2
 subtitle: Install the Jupyter Book tools from PyPI, NPMJS, or conda-forge.
 # subject: MyST Quickstart Tutorial
 short_title: Install Jupyter Book
---- 
+---
 
 :::{seealso} Never used Jupyter Book before?
 :class: dropdown
@@ -13,125 +13,93 @@ Jupyter Book 2 is a very thin wrapper around the MyST-MD engine: it shares the s
 If you're new to the Jupyter Book project, consider [directly using MyST-MD](https://mystmd.org/guide/quickstart).
 :::
 
-Jupyter Book can be installed in two simple steps:
+Jupyter Book is available on the PyPI, conda-forge, and npm package repositories as `jupyter-book>=2`. How you install Jupyter Book depends upon your choice of environment manager.
 
-1. Install NodeJS.
+::::{hint} Should I use `pip` or ...?
+:class: dropdown
 
-    Jupyter Book 2 needs the Node.js runtime to be available in order to run.
+Installing software can be confusing. Here's a simple guide to making a sensible choice.
 
-    :::{important} Do I have Node.js installed already?
-    :class: dropdown
+1. Are you using an {term}`Environment Manager`?  
+   If you are already using an environment manager, you should use that tool to install `jupyter-book`.
 
-    You can check for Node.js by opening a console / terminal window and running the following commands
-    ```shell
-    $ node --version
-    v20.12.2
-    $ npm --version
-    10.5.0
-    ```
+2. Are you willing to use an {term}`Environment Manager`?  
+   There are lots of environment managers to choose from. If you aren't sure which to choose, it is recommended to start with [a Python virtual environment][venv].
 
-    You should have these programs installed:
+3. Otherwise ...  
+   `pip` can install packages into your home directory with
 
-    - [Node.js](https://nodejs.org) version **>=18.0.0**
-    - [Node Package Manager (npm)](https://docs.npmjs.com/about-npm) version **>=7.0.0**
+```shell
+pip install -U jupyter-book>=2
+```
 
-    By default, Node.js ships with npm already installed.
-    :::
+:::{warning} Ignoring environment management
+:name: warning:env-management
 
-    ::::{grid} 1 1 2 2
+Ignoring environment management can lead to confusion later when things break. It is recommended to [use a virtual environment][venv] if you do not use an existing tool.
+:::
+::::
 
-    :::{card} 
-    :header: Install with [`mamba`][mamba] / `conda` 🔥
-    :footer: Cross-platform installation
+::::{grid} 1 2 2 2
 
-    ```shell
-    mamba install -c conda-forge \
-    nodejs>=18
-    ```
-    :::
+:::{card}
+:header: Install with `pip` 🐍
 
-    :::{card} 
-    :header: Other package managers 📦
-    :footer: Comprehensive guide
+In a [virtual environment][venv]:
 
-    See the [Node.js documentation](https://nodejs.org/en/download/package-manager/all) for instructions on installing Node.js using a package manager.
-    :::
+```shell
+pip install "jupyter-book>=2"
+```
 
+:::
 
-    ::::
+:::{card}
+:header: Install with [`mamba`][mamba] / `conda` 🔥
 
-2. Install Jupyter Book 2.
+```shell
+mamba install -c conda-forge \
+"jupyter-book>=2"
+```
 
-    Jupyter Book is available on the PyPI and conda-forge package repositories as `jupyter-book>=2`. How you install Jupyter Book depends upon your choice of environment manager. 
+:::
 
-    ::::{hint} Should I use `pip` or ...?
-    :class: dropdown
+:::{card}
+:header: Install with [`pipx`][pipx] ⚙️
 
-    Installing software can be confusing. Here's a simple guide to making a sensible choice.
+Never heard of `pipx`? See [the documentation][pipx] for more.
 
-    1. Are you using an {term}`Environment Manager`?  
-    If you are already using an environment manager, you should use that tool to install `jupyter-book`. 
+```shell
+pipx install "jupyter-book>=2"
+```
 
-    2. Are you willing to use an {term}`Environment Manager`?  
-    There are lots of environment managers to choose from. If you aren't sure which to choose, it is recommended to start with [a Python virtual environment][venv].
+:::
 
-    3. Otherwise ...  
-    `pip` can install packages into your home directory with
-    ```shell
-    pip install -U jupyter-book>=2
-    ```
-    :::{warning} Ignoring environment management
-    :name: warning:env-management
+:::{card}
+:header: Install with [`pixi`][pixi] 🔥
 
-    Ignoring environment management can lead to confusion later when things break. It is recommended to [use a virtual environment][venv] if you do not use an existing tool.
-    :::
-    ::::
+Never heard of `pixi`? See [the documentation][pixi] for more.
 
+```shell:
+pixi add "jupyter-book>=2"
+```
 
-    ::::{grid} 1 2 2 2
+:::
 
-    :::{card} 
-    :header: Install with `pip` 🐍
+:::{card}
+:header: Install with [`npm`][npm] 🔥
 
-    In a [virtual environment][venv]:
-    ```shell
-    pip install jupyter-book>=2
-    ```
-    :::
+Never heard of `npm`? See [the documentation][npm] for more.
 
-    :::{card} 
-    :header: Install with [`mamba`][mamba] / `conda` 🔥
+```shell:
+npm install -g "jupyter-book@>=2"
+```
 
-    ```shell
-    mamba install -c conda-forge \
-    jupyter-book>=2
-    ```
-    :::
+:::
 
-    :::{card} 
-    :header: Install with [`pipx`][pipx] ⚙️
-
-    Never heard of `pipx`? See [the documentation][pipx] for more.
-
-    ```shell
-    pipx install jupyter-book>=2
-    ```
-    :::
-
-    :::{card} 
-    :header: Install with [`pixi`][pixi] 🔥
-
-    Never heard of `pixi`? See [the documentation][pixi] for more.
-
-    ```shell:
-    pixi add jupyter-book>=2
-    ```
-    :::
-
-
-    ::::
+::::
 
 [mamba]: https://mamba.readthedocs.io/en/latest/
 [pixi]: https://pixi.sh/
 [pipx]: https://pipx.pypa.io/stable/
 [venv]: https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/
+[npm]: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/
