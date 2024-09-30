@@ -5,6 +5,7 @@ on:
   push:
     # Runs on pushes targeting the default branch
     branches: [main]
+  workflow_dispatch:
 env:
   # `BASE_URL` determines the website is served from, including CSS & JS assets
   # You may need to change this to `BASE_URL: ''`
