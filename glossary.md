@@ -12,6 +12,9 @@ New Book
 Hidden Files
 : In Unix-like operating systems, files or folders with names that start with a dot (e.g. `.foo.txt`), are treated as "hidden" in most applications.
 
+Structured Data
+: A representation of rich markup that computer programs can easily understand and manipulate.
+
 Environment Manager
 : Environment managers like `virtualenv` and `conda` help to keep software from different projects isolated from one another, reducing the risk of one package breaking another.
 
