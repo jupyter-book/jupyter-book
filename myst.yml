@@ -18,21 +18,25 @@ project:
     - file: install.md
     - file: upgrade.md
     - title: Create a Book
-      children: 
+      children:
         - file: start/init.md
         - file: start/create-content.md
-        - file: start/build.md
+        - file: start/build-websites.md
+        - file: start/export-pdfs.md
         - file: start/cross-reference.md
         - file: start/publish.md
     - title: About Jupyter Book
-      children: 
+      children:
         - file: about/history.md
         - file: about/toolchain.md
     - file: glossary.md
     - file: help.md
 site:
   template: book-theme
+  actions:
+    - title: See mystmd
+      url: https://mystmd.org/guide
   options:
-     favicon: images/favicon.ico
-     logo: images/logo.svg
-     logo_dark: images/logo-dark.svg
+    favicon: images/favicon.ico
+    logo: images/logo.svg
+    logo_dark: images/logo-dark.svg

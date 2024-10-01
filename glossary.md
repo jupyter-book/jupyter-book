@@ -1,6 +1,6 @@
 ---
 title: Glossary
---- 
+---
 
 :::{glossary}
 Legacy Book
@@ -14,4 +14,7 @@ Hidden Files
 
 Environment Manager
 : Environment managers like `virtualenv` and `conda` help to keep software from different projects isolated from one another, reducing the risk of one package breaking another.
+
+Deterministic Ordering
+: An order that is not random or dependent upon e.g. the computer running a piece of code.
 :::
