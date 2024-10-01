@@ -69,3 +69,5 @@ site:
   #   favicon: favicon.ico
   #   logo: site_logo.png
 ```
+
+The entries within a table of contents can be nested under titles and/or other pages. See <xref:guide/table-of-contents> for more.

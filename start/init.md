@@ -5,12 +5,13 @@ subject: Quickstart Tutorial
 ---
 
 :::{important} Objective
-The goal of this tutorial is to use the `jupyter book init` command to start a simple website.  
+The goal of this tutorial is to use the `jupyter book init` command to start a simple project.  
 :::
 
 ## Running `jupyter book init`
 
 Jupyter Book ships with an `init` command, which initializes a `myst` project in the current directory. Let's run the command to create a simple `myst.yml`:
+
 ```shell
 $ jupyter book init
 ```
@@ -19,7 +20,7 @@ The `init` command will ask whether you want to run the `start` command, which l
 
 Let's inspect the `myst.yml` file that has been generated.
 
-:::{code} yaml
+```{code} yaml
 :filename: myst.yml
 :caption: The `myst.yml` produced by `jupyter book init`.
 
@@ -43,7 +44,7 @@ site:
   # options:
   #   favicon: favicon.ico
   #   logo: site_logo.png
-:::
+```
 
 Most of the lines in this YAML file are comments, but there are a few things to take note of:
 
@@ -58,10 +59,12 @@ Most of the lines in this YAML file are comments, but there are a few things to 
 : The `site` key defines the website configuration, used by the `start` command. Here, we're telling MyST to use the book theme.
 
 ## Adding Basic Frontmatter and Configuration
+
 As described above, the `myst.yml` file has several key sections. Of particular importance is the [`project` field](#def:project) which contains the project metadata. Examples of configuration that we might add to the project frontmatter include a list of `authors`, a `description`/`title`, and a `license`. For detailed information about the possible frontmatter fields, see [the MyST-MD documentation](xref:guide/frontmatter#available-frontmatter-fields).
 
 Here's our new `myst.yml` after adding some provenance information:
-:::{code} yaml
+
+```{code} yaml
 :filename: myst.yml
 :name: code:myst-yml
 :caption: The `myst.yml` produced by `jupyter book init` with additional provenance information.
@@ -79,10 +82,10 @@ project:
   id: 4da9cb15-177c-41f5-8c4e-6a24b4e87eab
   title: An example Jupyter Book
   description: A collection of files that build up a book
-  keywords: 
+  keywords:
     - jupyter-book
     - something-else
-  authors: 
+  authors:
     - name: Jupyter Book
       url: https://jupyterbook.org
   github: executablebooks/jupyter-book
@@ -92,7 +95,6 @@ site:
   # options:
   #   favicon: favicon.ico
   #   logo: site_logo.png
-:::
+```
 
 To proceed, we need to create some content. See [](create-content.md).
-
