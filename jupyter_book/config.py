@@ -1,4 +1,5 @@
 """A small sphinx extension to let you configure a site with YAML metadata."""
+
 import json
 import sys
 from functools import lru_cache
@@ -36,6 +37,7 @@ def get_default_sphinx_config():
             "sphinx_external_toc",
             "sphinx.ext.intersphinx",
             "sphinx_design",
+            "sphinx_book_theme",
         ],
         pygments_style="sphinx",
         html_theme="sphinx_book_theme",
@@ -297,10 +299,29 @@ def yaml_to_sphinx(yaml: dict):
             if yml_key in html:
                 theme_options[spx_key] = html[yml_key]
 
-        for spx_key, yml_key in [("google_analytics_id", "google_analytics_id")]:
-            if yml_key in html:
-                theme_options["analytics"] = {}
-                theme_options["analytics"][spx_key] = html[yml_key]
+        # Fix for renamed field
+        spx_analytics = theme_options["analytics"] = {}
+        google_analytics_id = html.get("google_analytics_id")
+        if google_analytics_id is not None:
+            _message_box(
+                (
+                    "[Warning] The `html.google_analytics_id` configuration value has moved to `html.analytics.google_analytics_id`"  # noqa: E501
+                ),
+                color="orange",
+                print_func=print,
+            )
+            spx_analytics["google_analytics_id"] = google_analytics_id
+
+        # Analytics
+        yml_analytics = html.get("analytics", {})
+        for spx_key, yml_key in [
+            ("google_analytics_id", "google_analytics_id"),
+            ("plausible_analytics_domain", "plausible_analytics_domain"),
+            ("plausible_analytics_url", "plausible_analytics_url"),
+        ]:
+            if yml_key in yml_analytics:
+                spx_analytics[spx_key] = yml_analytics[yml_key]
+
         # Pass through the buttons
         btns = ["use_repository_button", "use_edit_page_button", "use_issues_button"]
         use_buttons = {btn: html.get(btn) for btn in btns if btn in html}
