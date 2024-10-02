@@ -1,0 +1,12 @@
+version: 2
+
+build:
+  os: ubuntu-22.04
+  tools:
+    python: "3.12"
+    nodejs: "20"
+  commands:
+    - npm install -g mystmd
+    - mkdir -p $READTHEDOCS_OUTPUT/html/
+    - BASE_URL="/$READTHEDOCS_LANGUAGE/$READTHEDOCS_VERSION" myst build --html
+    - cp -a _build/html/. "$READTHEDOCS_OUTPUT/html" && rm -r _build
