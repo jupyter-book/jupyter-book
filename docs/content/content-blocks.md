@@ -1,18 +1,19 @@
 ---
-substitutions:
-  key1: "I'm a **substitution**"
-  key2: |
-    ```{note}
-    {{ key1 }}
-    ```
-  fishy: |
-    ```{image} /images/fun-fish.png
-    :alt: fishy
-    :width: 200px
-    ```
-  jinja: "[Jinja templates](https://jinja.palletsprojects.com/en/2.11.x/)"
-  repo_name: "jupyter-book"
-  repo_url: "[my repo url](https://github.com/executablebooks/jupyter-book)"
+myst:
+  substitutions:
+    key1: "I'm a **substitution**"
+    key2: |
+      ```{note}
+      {{ key1 }}
+      ```
+    fishy: |
+      ```{image} /images/fun-fish.png
+      :alt: fishy
+      :width: 200px
+      ```
+    jinja: "[Jinja templates](https://jinja.palletsprojects.com/en/2.11.x/)"
+    repo_name: "jupyter-book"
+    repo_url: "[my repo url](https://github.com/executablebooks/jupyter-book)"
 ---
 
 # Special content blocks
@@ -20,6 +21,14 @@ substitutions:
 A common use of directives and roles is to designate "special blocks" of your content.
 This allows you to include more complex information such as warnings and notes, citations, and figures.
 This section covers a few common ones.
+
+% REMOVE when version is >= 0.15
+:::{admonition} Upgrading from `sphinx-panels`
+Previous versions of Jupyter Book used `sphinx-panels` to define major UI elements.
+These now use [Sphinx Design instead](https://sphinx-design.readthedocs.io).
+Documentation for these UI elements is now in [](components.md).
+See [the migration guide](https://sphinx-design.readthedocs.io/en/latest/get_started.html#migrating-from-sphinx-panels) and [this migration discussion issue](https://github.com/executablebooks/sphinx-design/issues/51) for more information.
+:::
 
 (content-blocks:myst-extensions)=
 ## MyST syntax extensions
@@ -62,19 +71,13 @@ For a list of syntax extensions in MyST, see [the MyST documentation](https://my
 Let's say you wish to highlight a particular block of text that exists slightly apart from the narrative of your page.
 You can use the **`{note}`** directive for this.
 
-For example, the following text:
+For example:
 
-````md
+````{example}
 ```{note}
 Here is a note!
 ```
 ````
-
-Results in the following output:
-
-```{note}
-Here is a note!
-```
 
 ````{margin} A note on nesting
 You can nest admonitions (and other content blocks) inside one another. For example:
@@ -97,38 +100,37 @@ Here's a warning! It was created with:
 ````
 `````
 
-For a complete list of options, see [the `sphinx-book-theme` documentation](https://sphinx-book-theme.readthedocs.io/en/latest/reference/kitchen-sink/paragraph-markup.html#admonitions).
+You can also create **dropdown admonitions** by adding a `dropdown` class to an admonition.
+For example:
+
+:::{note}
+:class: dropdown
+Here's a dropdown note!
+See [](components:dropdowns) for more details.
+:::
+
+For a complete list of admonitions, see [the `sphinx-book-theme` documentation](https://sphinx-book-theme.readthedocs.io/en/stable/reference/kitchen-sink/admonitions.html).
 
 ### Blocks of text with custom titles
 
 You can also choose the title of your message box by using the
-**`{admonition}`** directive. For example, the following text:
+**`{admonition}`** directive. For example:
 
-````md
+````{example}
 ```{admonition} Here's your admonition
 Here's the admonition content
 ```
 ````
-
-Results in the following output:
-
-```{admonition} Here's your admonition
-Here's the admonition content
-```
 
 If you'd like to **style these blocks**, then use the `:class:` option. For
 example:
 
+``````{example}
 `````{admonition} This admonition was styled...
 :class: tip
-Using the following pattern:
-````
-```{admonition} My title
-:class: tip
-My content
-```
-````
+With a tip class!
 `````
+``````
 
 (admonitions:colons)=
 ### Markdown-friendly directives with `:::`
@@ -140,60 +142,48 @@ Many directives contain markdown inside, and if you'd like this markdown to rend
 
 For example:
 
-```md
-:::{note}
-This text is **standard** _Markdown_
-:::
-```
+````{example}
 
 :::{note}
 This text is **standard** _Markdown_
 :::
+````
 
 Similar to normal directives, these admonitions can also be nested:
 
-```md
-::::{important}
-:::{note}
-This text is **standard** _Markdown_
-:::
-::::
-```
+`````{example}
 
 ::::{important}
 :::{note}
 This text is **standard** _Markdown_
 :::
 ::::
+`````
 
 :::{note}
 You can use this syntax for any kind of directive, though it is generally recommended to use only with directives that contain pure markdown in their content.
 :::
 
-
 ### Insert code cell outputs into admonitions
 
 If you'd like to insert the outputs of running code *inside* admonition
-blocks, we recommend using [`glue` functionality](content:code-outputs:glue).
-For example, we'll insert one of the outputs that was glued into the book from the [code outputs page](./code-outputs.md).
+blocks, we recommend using [`glue` functionality](content:executable:output-insert).
+For example, we'll insert one of the outputs that was glued into the book from the [storing code outputs page](./executable/output-insert.md).
 
-The code below:
+For example:
 
-````md
+````{example}
+
 ```{note}
 Here's my figure:
-{glue:figure}`sorted_means_fig`
+
+```{glue} sorted_means_fig
+:doc: executable/output-insert.md
 ```
+
 ````
 
-generates:
-
-```{note}
-Here's my figure:
-{glue:}`sorted_means_fig`
-```
-
-See [](content:code-outputs:glue) for more information on how to use `glue` to insert your outputs directly into your content.
+See [](content:executable:output-insert) for more information on how to use `glue` to insert your outputs directly into your content.
 
 :::{tip}
 To hide code input and output that generated the variable you are inserting, use the `remove_cell` tag.
@@ -215,23 +205,16 @@ parse:
 
 Then, you may define admonitions in your book like so:
 
-:::{tabbed} Markdown Input
+````{example}
 ```html
 <div class="admonition note" name="html-admonition" style="background: lightgreen; padding: 10px">
 <p class="title">This is the **title**</p>
 This is the *content*
 </div>
 ```
-:::
+````
 
-:::{tabbed} Rendered Output
-<div class="admonition note" name="html-admonition" style="background: lightgreen; padding: 10px">
-<p class="title">This is the **title**</p>
-This is the *content*
-</div>
-:::
-
-See [](myst-parser:syntax/html-admonition) for more information about HTML admonitions.
+See [](inv:myst-parser#syntax/html-admonition) for more information about HTML admonitions.
 
 (content-blocks:warning-headers-admonitions)=
 ### Do not embed headings inside admonitions
@@ -255,212 +238,6 @@ Don't do this!
 
 To achieve a similar effect, write some **bold text** instead of using a markdown header.
 
-(content/panels)=
-## Panels
-
-Panels provide an easy way for you to organize chunks of content into flexible containers on your page.
-They are useful for creating card-like layouts, flexible columns, and grids.
-Panels are based off of [Bootstrap CSS](https://getbootstrap.com/docs/4.5/components/card/), and utilize Bootstrap's classes to control the look and feel of panels.
-
-Here is an example that creates two panels:
-
-`````
-````{panels}
-Panel header 1
-^^^
-Panel body 1
-+++
-Panel footer 1
----
-
-Panel header 2
-^^^
-Panel body 2
-+++
-Panel footer 2
-````
-`````
-
-- `---` separates each panel
-- `^^^` defines the panel header
-- `+++` defines the panel footer
-
-```{note}
-Panel headers and footers are optional.
-If you don't include `^^^` or `+++` in your panel, they will not show up.
-```
-
-You can embed all kinds of content inside of panels. For example, the following panels:
-
-````{panels}
-Content of the left panel.
-
-{badge}`example-badge,badge-primary`
-
----
-
-```{link-button} content/panels
-:text: Clickable right panel
-:type: ref
-:classes: stretched-link
-```
-````
-
-were created with:
-
-
-`````md
-````{panels}
-Content of the left panel.
-
-{badge}`example-badge,badge-primary`
-
----
-
-```{link-button} content/panels
-:text: Clickable right panel
-:type: ref
-:classes: stretched-link
-```
-
-````
-`````
-
-```{seealso}
-See the [Sphinx Panels card layout documentation](https://sphinx-panels.readthedocs.io/en/latest/#card-layout) for more information.
-```
-
-### Controlling the look and feel of panels
-
-You can control the look and feel of panels by passing attaching bootstrap classes to panel headers/body/footers.
-You do this by passing configuration options to your  `{panels}` directive.
-
-For example:
-
-
-```{seealso}
-See the [Panels card styling documentation](https://sphinx-panels.readthedocs.io/en/latest/#card-styling) for more information.
-```
-
-For example, you can control how many columns are in your panels by using [Bootstrap column classes](https://getbootstrap.com/docs/4.0/layout/grid/). These panels:
-
-````{panels}
-:column: col-4
-:card: border-2
-Header A
-^^^
-Body A
----
-Header B
-^^^
-Body B
----
-Header C
-^^^
-Body C
-````
-
-Were created by this code:
-
-`````
-````{panels}
-:column: col-4
-:card: border-2
-Header A
-^^^
-Body A
----
-Header B
-^^^
-Body B
----
-Header C
-^^^
-Body C
-````
-`````
-
-(content:dropdowns)=
-## Dropdowns
-
-Dropdowns allows you to hide content behind a title and a button.
-There are two kinds of dropdowns in Jupyter Book:
-
-### The `{dropdown}` directive
-
-Use the `{dropdown}` directive to create a clickable dropdown with a title.
-
-For example:
-
-`````{panels}
-source
-^^^
-````
-```{dropdown} Here's my dropdown
-And here's my dropdown content
-```
-````
----
-result
-^^^
-```{dropdown} Here's my dropdown
-And here's my dropdown content
-```
-`````
-
-(content/toggle-admonitions)=
-### Dropdown admonitions
-
-You can also hide the body of your admonition blocks so that users must click a button to reveal their content.
-This is helpful if you'd like to include some text that isn't immediately visible to the user.
-
-To turn an admonition into a dropdown, add the `dropdown` class to them. For example:
-
-`````{panels}
-source
-^^^
-````md
-```{note}
-:class: dropdown
-The note body will be hidden!
-```
-````
----
-result
-^^^
-```{note}
-:class: dropdown
-The note body will be hidden!
-```
-`````
-
-You can use this in conjunction with `{admonition}` directives to include your
-own titles and stylings. For example:
-
-`````{panels}
-source
-^^^
-````md
-:::{admonition} Click here!
-:class: tip, dropdown
-Here's what's inside!
-:::
-````
----
-result
-^^^
-:::{admonition} Click here!
-:class: tip, dropdown
-Here's what's inside!
-:::
-`````
-
-:::{important}
-Admonition dropdowns require JavaScript to be enabled on the browser which they are viewed.
-By contrast, the [dropdown directive](content/panels) below works purely *via* HTML+CSS.
-:::
-
-
 (content/definition-lists)=
 
 ## Definition lists
@@ -479,19 +256,7 @@ Definition lists utilise the [markdown-it-py deflist plugin](https://markdown-it
 
 Here's an example:
 
-````{panels}
-source
-^^^
-```md
-Term 1
-: Definition
-
-Term 2
-: Definition
-```
----
-result
-^^^
+````{example}
 Term 1
 : Definition
 
@@ -508,6 +273,7 @@ From the [Pandoc documentation](https://pandoc.org/MANUAL.html#definition-lists)
 
 Here is a more complex example, demonstrating some of these features:
 
+```{example}
 Term *with Markdown*
 : Definition [with reference](content/definition-lists)
 
@@ -524,27 +290,6 @@ Term 3
 : A final definition, that can even include images:
 
   <img src="../images/fun-fish.png" alt="fishy" width="200px">
-
-This was created with the following Markdown:
-
-```md
-Term *with Markdown*
-: Definition [with reference](ontent/definition-lists)
-
-  A second paragraph
-
-Term 2
-  ~ Definition 2a
-  ~ Definition 2b
-
-Term 3
-:     A code block
-
-: > A quote
-
-: A final definition, that can even include images:
-
-  <img src="../images/fun-fish.png" alt="fishy" width="200px">
 ```
 
 ## Quotations and epigraphs
@@ -556,17 +301,7 @@ Quotations and epigraphs provide ways to highlight information given by others.
 **Regular quotations** are controlled with standard Markdown syntax, i.e., by
 inserting a caret (`>`) symbol in front of one or more lines of text. For example:
 
-````{panels}
-source
-^^^
-```md
-> Here is a cool quotation.
->
-> From me, Jo the Jovyan
-```
----
-result
-^^^
+````{example}
 > Here is a cool quotation.
 >
 > From me, Jo the Jovyan
@@ -578,19 +313,7 @@ result
 keep these relatively short so that they don't take up too much vertical space. Here's
 how an epigraph looks:
 
-`````{panels}
-source
-^^^
-````md
-```{epigraph}
-Here is a cool quotation.
-
-From me, Jo the Jovyan
-```
-````
----
-result
-^^^
+`````{example}
 ```{epigraph}
 Here is a cool quotation.
 
@@ -600,19 +323,7 @@ From me, Jo the Jovyan
 
 You can provide an **attribution** to an epigraph by adding `--` to the final line, followed by the quote author. For example:
 
-`````{panels}
-source
-^^^
-````md
-```{epigraph}
-Here is a cool quotation.
-
--- Jo the Jovyan
-```
-````
----
-result
-^^^
+`````{example}
 ```{epigraph}
 Here is a cool quotation.
 
@@ -620,13 +331,14 @@ Here is a cool quotation.
 ```
 `````
 
+(content-blocks:glossaries)=
 ## Glossaries
 
 Glossaries allow you to define terms in a glossary so you can then link back to it
 throughout your content. You can create a glossary with the following
 syntax:
 
-````md
+````{example}
 ```{glossary}
 Term one
   An indented explanation of term 1
@@ -635,148 +347,121 @@ A second term
   An indented explanation of term2
 ```
 ````
-
-which creates:
-
-```{glossary}
-Term one
-  An indented explanation of term 1
-
-A second term
-  An indented explanation of term2
-```
 
 To reference terms in your glossary, use the `{term}` role. For example,
 `` {term}`Term one` `` becomes {term}`Term one` and `` {term}`A second term` ``
 becomes {term}`A second term`.
 
-(content:tabs)=
-## Tabbed content
+:::{note}
+Glossary terms are automatically added to [your book's index page](content:indexes).
+:::
 
-You can also use [`sphinx-panels`](sphinx-panels:panels/usage) to produce [**tabbed content**](sphinx-panels:components-tabbed).
-This allows you to display a variety of tabbed content blocks that users can click on.
+(content:indexes)=
+## Indexes
 
-For example, here's a group of tabs showing off code in a few different languages:
+Indexes allow you to define index items (terms, phrases, keywords, etc) that are collected in a single page, with links back to their location in your content.
+This is called the **General Index**.
 
-````{tabbed} c++
+```{index} General Index
+```
 
-```{code-block} c++
+When you build your book, a general index page will automatically be generated.
 
-int main(const int argc, const char **argv) {
-  return 0;
-}
+### Reference your general index
+
+To create a reference / link to your general index, use the `genindex` keyword.
+For example:
+
+- `` {ref}`using a ref role <genindex>` ``: {ref}`using a ref role <genindex>`
+- `[using markdown link syntax](genindex)`: [using markdown link syntax](genindex)
+- `[](genindex)`: [](genindex) (to demonstrate the title of the general index)
+
+
+### The `{index}` directive
+
+You can add items to your general index with the `{index}` directive.
+It has the following syntax:
+
+````md
+```{index} Entry name
 ```
 ````
 
-````{tabbed} python
+This will not insert anything into your final page's content, but will add a link to this section in your general index.
+For example"
 
-```{code-block} python
-
-def main():
-    return
+````{example}
+```{index} index directive
 ```
 ````
 
-````{tabbed} java
+You can [find this term in the index](genindex).
 
-```{code-block} java
+#### Add a label to your `{index}` directive
 
-class Main {
-    public static void main(String[] args) {
-    }
-}
+You can customize the name for an index entry by setting the `:name:` parameter.
+For example:
+
+````{example}
+```{index} Index names
+:name: index-names
 ```
 ````
 
-````{tabbed} julia
+You can then reference this index in your book.
+For example:
 
-```{code-block} julia
+- `` {ref}`See index names <index-names>` ``: {ref}`See index names <index-names>`
+- `[See index names](index-names)`: [See index names](index-names)
 
-function main()
-end
+#### Create more complex index entries
+
+The Sphinx [*Index-generating markup*](https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html?highlight=index#index-generating-markup) page describes the full range of indexing possibilities.
+This includes the ability to construct nested headings using the `;` separator to represent a change in index level:
+
+````md
+```{index} single: Jupyter Book ; installation
 ```
 ````
 
-````{tabbed} fortran
+Multiple index entry terms can be created from a single reference.
+For example, we can create entries `references ; index terms` and `index terms ; references` from the following entry:
 
-```{code-block} fortran
-
-PROGRAM main
-END PROGRAM main
+````md
+```{index} double: references ; index terms
 ```
 ````
 
-You can use this functionality with the `{tabbed}` directive. You can provide a sequence of `{tabbed}` directives, and each one will be used to generate a new tab (unless the `:new-group:` option is added to a `{tabbed}` directive.)
+Readers can be directed towards alternative index terms within the index itself by using `see` or `seealso`, as in the following example which adds an entry for `citations` to also refer to `bibliographies`:
 
-For example, the following code:
-
-````
-```{tabbed} Tab 1 title
-My first tab
-```
-
-```{tabbed} Tab 2 title
-My second tab with `some code`!
+````md
+```{index} seealso: citations ; bibliographies
 ```
 ````
 
-produces
+### Create index entries with other extensions
 
-```{tabbed} Tab 1 title
-My first tab
-```
+You can also create index entries through the use of other Sphinx extensions.
+For example, any term you define [in a Glossary](content-blocks:glossaries) will also be inserted into the index.
 
-```{tabbed} Tab 2 title
-My second tab with `some code`!
-```
+### Add the general index to your table of contents
 
-**Insert code outputs in your tabs** with the [`glue` functionality](glue/gluing).
+To add your general index to your book's table of contents, take the following steps:
 
-For example, the following tabs use this functionality to glue images and tables generated somewhere else in these docs:
+- Create a file in the root of your book called `genindex.md`.
+- It **must have a title** but the rest can be blank.
+  The title will actually be replaced with `Index` when your book is built, but it is needed in your source file to avoid errors.
+- Add an entry for this page in [your table of contents](structure:book).
+  For example:
 
-````{tabbed} A histogram
-```{glue:figure} boot_fig
-:figwidth: 300px
-:name: "fig-boot-tab"
-
-This is a **caption**, with an embedded `{glue:text}` element: {glue:text}`boot_mean:.2f`!
-```
-````
-````{tabbed} A table
-```{glue:figure} df_tbl
-:figwidth: 300px
-:name: "tbl:df-tab"
-
-A caption for a pandas table.
-```
-````
-``````{tabbed} Code to generate this
-`````
-````{tabbed} A histogram
-```{glue:figure} boot_fig
-:figwidth: 300px
-:name: "fig-boot-tab"
-
-This is a **caption**, with an embedded `{glue:text}` element: {glue:text}`boot_mean:.2f`!
-```
-````
-
-````{tabbed} A table
-```{glue:figure} df_tbl
-:figwidth: 300px
-:name: "tbl:df-tab"
-
-A caption for a pandas table.
-```
-````
-
-````{tabbed} Code to generate this
-`{ code block here }`
-````
-`````
-``````
-
-See the [`sphinx-panels` tabbed](sphinx-panels:components-tabbed) documentation for more information on how to use this.
+  ```yaml
+  format: jb-book
+  root: index
+  chapters:
+  - file: path/to/chapter1
+  - file: path/to/chapter2
+  - file: genindex
+  ```
 
 (content:substitutions)=
 ## Substitutions and variables in markdown
@@ -787,25 +472,24 @@ To use a substitution, first add front-matter content to the top of a page like 
 
 ````yaml
 ---
-substitutions:
-  key1: "I'm a **substitution**"
-  key2: |
-    ```{note}
-    {{ key1 }}
-    ```
-  fishy: |
-    ```{image} img/fun-fish.png
-    :alt: fishy
-    :width: 200px
-    ```
+myst:
+  substitutions:
+    key1: "I'm a **substitution**"
+    key2: |
+      ```{note}
+      {{ key1 }}
+      ```
+    fishy: |
+      ```{image} img/fun-fish.png
+      :alt: fishy
+      :width: 200px
+      ```
 ---
 ````
 
 You can use these substitutions inline or as blocks, and you can even nest substitutions in other substitutions (but circular references are prohibited):
 
-:::{tabbed} Markdown Input
-
-```md
+```{example}
 Inline: {{ key1 }}
 
 Block level:
@@ -813,35 +497,17 @@ Block level:
 {{ key2 }}
 
 ```
-:::
-
-:::{tabbed} Rendered Output
-Inline: {{ key1 }}
-
-Block level:
-
-{{ key2 }}
-:::
 
 You can also insert substitutions inside of other markdown structures like tables:
 
-:::{tabbed} Markdown Input
-
-```md
+````{example}
 | col1     | col2      |
 | -------- | --------- |
 | {{key2}} | {{fishy}} |
-```
-:::
-
-:::{tabbed} Rendered Output
-| col1     | col2      |
-| -------- | --------- |
-| {{key2}} | {{fishy}} |
-:::
+````
 
 :::{seealso}
-For more information about Substitutions, see [](myst-parser:syntax/substitutions).
+For more information about Substitutions, see [](inv:myst-parser#syntax/substitutions).
 :::
 
 ### Define substitutions for your whole book
@@ -858,61 +524,37 @@ These substitutions will be available throughout your book. For example, the glo
 
 ### Formatting substitutions
 
-MyST substitutions use {{ jinja }} in order to substite in key / values. This means that you can apply any standard Jinja formatting to your substitutions. For example, you can **replace text in your substitutions** like so:
+MyST substitutions use {{ jinja }} in order to substitute in key / values. This means that you can apply any standard Jinja formatting to your substitutions. For example, you can **replace text in your substitutions** like so:
 
-:::{tabbed} Markdown Input
-
-```md
+```{example}
 The original key1: {{ key1 }}
 
 {{ key1 | replace("a substitution", "the best substitution")}}
 ```
-:::
-
-:::{tabbed} Rendered Output
-The original key1: {{ key1 }}
-
-{{ key1 | replace("a **substitution**", "**the best substitution**")}}
-:::
 
 ### Using substitutions in links
 
 If you'd like to use substitutions to insert and modify **links** in your book, here are two options to explore:
 
 1. **Define the entire markdown link as a variable**. For example:
-
-   :::{tabbed} Markdown Input
-
    ```yaml
    substitutions:
      repo_url: [my repo url](https://github.com/executablebooks/jupyter-book)
    ```
-   ```md
+
+   ```{example}
    Here's my link: {{ repo_url }}
    ```
-   :::
-
-   :::{tabbed} Rendered Output
-   Here's my link: {{ repo_url }}
-   :::
 2. Use Jinja features to insert the variable.
    Because substitutions use {{ jinja }}, you also have access to **Python formatting** operations in your substitution.
    For example:
-
-   :::{tabbed} Markdown Input
-
    ```yaml
    substitutions:
      repo_name: jupyter-book
    ```
-   ```md
+   ```{example}
    Here's my link: {{ '[my repo: `{repo}`](https://github.com/executablebooks/{repo})'.format(repo=repo_name) }}
    ```
-   :::
-
-   :::{tabbed} Rendered Output
-   Here's my link: {{ '[my repo: `{repo}`](https://github.com/executablebooks/{repo})'.format(repo=repo_name) }}
-   :::
 
 ## Citations and cross-references
 
@@ -924,7 +566,7 @@ You can add citations and cross-references to your book. See
 You can thoroughly customise the look of figures in your book. See {doc}`figures` for
 more information.
 
-## Page layout and sidebar content
+## Sidebar content
 
 You can also use MyST to control various aspects of the page layout. For more
 information on this, see {doc}`layout`.
@@ -951,25 +593,3 @@ at the bottom of this page.
 [^mynote2]: And the text of my second note.
             Note that
             [you can include Markdown footnote definitions](https://executablebooks.org).
-
-(custom-div-blocks)=
-## Custom `<div>` blocks
-
-You can add custom `div` blocks along with whatever classes you'd like using
-the `{div}` directive. The `{div}` directive will wrap everything inside in a single `<div>` with the classes you provide. For example:
-
-````md
-```{div} my-class
-**Some content.**
-```
-````
-
-Will result in the following HTML when your book is built:
-
-```html
-<div class="my-class">
-  <strong>Some content.</strong>
-</div>
-```
-
-This can be useful if you'd like to style your book with [custom CSS or JavaScript](custom-assets).

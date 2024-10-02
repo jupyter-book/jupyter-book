@@ -32,7 +32,7 @@ sphinx:
     mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 ```
 
-See the [Sphinx documentation](sphinx:sphinx.ext.mathjax) for details.
+See the [Sphinx documentation](inv:sphinx#sphinx.ext.mathjax) for details.
 
 :::
 
@@ -109,7 +109,7 @@ a_{21}& =b_{21}&
 \end{align}
 
 :::{seealso}
-The MyST guides to [dollar math syntax](myst-parser:syntax/math), [LaTeX math syntax](myst-parser:syntax/amsmath), and [how MyST-Parser works with MathJax](myst-parser:syntax/mathjax).
+The MyST guides to [dollar math syntax](inv:myst-parser:*:label#syntax/math), [LaTeX math syntax](inv:myst-parser#syntax/amsmath), and [how MyST-Parser works with MathJax](inv:myst-parser#syntax/mathjax).
 
 For advanced use, also see how to [define MathJax TeX Macros](sphinx/tex-macros).
 :::

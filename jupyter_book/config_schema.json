@@ -1,224 +1,225 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "type": "object",
-    "properties": {
-        "title": {
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    },
+    "copyright": {
+      "type": "string"
+    },
+    "logo": {
+      "type": "string"
+    },
+    "exclude_patterns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "parse": {
+      "type": "object",
+      "properties": {
+        "myst_enable_extensions": {
+          "type": ["null", "array"],
+          "items": {
             "type": "string"
+          }
         },
-        "author": {
+        "myst_url_schemes": {
+          "type": ["null", "array"],
+          "items": {
             "type": "string"
+          }
         },
-        "copyright": {
-            "type": "string"
+        "myst_dmath_double_inline": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "execute": {
+      "type": "object",
+      "properties": {
+        "eval_regex": {
+          "type": "string",
+          "default": "^.*$"
         },
-        "logo": {
-            "type": "string"
+        "raise_on_error": {
+          "type": "boolean",
+          "default": false
+        },
+        "show_tb": {
+          "type": "boolean",
+          "default": false
+        },
+        "execute_notebooks": {
+          "enum": ["auto", "cache", "force", "inline", "off", false],
+          "default": "auto"
+        },
+        "cache": {
+          "type": "string"
+        },
+        "timeout": {
+          "type": "number",
+          "minimum": -1,
+          "default": 30
+        },
+        "allow_errors": {
+          "type": "boolean",
+          "default": false
+        },
+        "stderr_output": {
+          "type": "string",
+          "enum": ["show", "remove", "remove-warn", "warn", "error", "severe"],
+          "default": "show"
+        },
+        "run_in_temp": {
+          "type": "boolean",
+          "default": false
         },
         "exclude_patterns": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
-        },
-        "parse": {
-            "type": "object",
-            "properties": {
-                "myst_enable_extensions": {
-                    "type": [
-                        "null",
-                        "array"
-                    ],
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "myst_url_schemes": {
-                    "type": [
-                        "null",
-                        "array"
-                    ],
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "myst_dmath_double_inline": {
-                    "type": "boolean",
-                    "default": true
-                }
-            }
-        },
-        "execute": {
-            "type": "object",
-            "properties": {
-                "execute_notebooks": {
-                    "enum": [
-                        "auto",
-                        "cache",
-                        "force",
-                        "off",
-                        false
-                    ],
-                    "default": "auto"
-                },
-                "cache": {
-                    "type": "string"
-                },
-                "timeout": {
-                    "type": "number",
-                    "minimum": -1,
-                    "default": 30
-                },
-                "allow_errors": {
-                    "type": "boolean",
-                    "default": false
-                },
-                "stderr_output": {
-                    "type": "string",
-                    "enum": [
-                        "show",
-                        "remove",
-                        "remove-warn",
-                        "warn",
-                        "error",
-                        "severe"
-                    ],
-                    "default": "show"
-                },
-                "run_in_temp": {
-                    "type": "boolean",
-                    "default": false
-                },
-                "exclude_patterns": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                }
-            }
-        },
-        "html": {
-            "type": "object",
-            "properties": {
-                "favicon": {
-                    "type": "string"
-                },
-                "use_edit_page_button": {
-                    "type": "boolean"
-                },
-                "use_repository_button": {
-                    "type": "boolean"
-                },
-                "use_issues_button": {
-                    "type": "boolean"
-                },
-                "extra_navbar": {
-                    "type": "string"
-                },
-                "extra_footer": {
-                    "type": "string"
-                },
-                "google_analytics_id": {
-                    "type": "string"
-                },
-                "home_page_in_navbar": {
-                    "type": "boolean"
-                },
-                "baseurl": {
-                    "type": "string"
-                },
-                "comments": {
-                    "type": "object",
-                    "properties": {
-                        "hypothesis": {
-                            "type": [
-                                "boolean",
-                                "object"
-                            ]
-                        },
-                        "utterances": {
-                            "type": [
-                                "boolean",
-                                "object"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "latex": {
-            "type": "object",
-            "properties": {
-                "latex_engine": {
-                    "type": "string",
-                    "default": "pdflatex"
-                }
-            }
-        },
-        "launch_buttons": {
-            "type": "object",
-            "properties": {
-                "notebook_interface": {
-                    "type": "string"
-                },
-                "binderhub_url": {
-                    "type": "string"
-                },
-                "jupyterhub_url": {
-                    "type": "string"
-                },
-                "thebe": {
-                    "type": "boolean"
-                },
-                "colab_url": {
-                    "type": "string"
-                },
-                "deepnote_url": {
-                    "type": "string"
-                }
-            }
-        },
-        "repository": {
-            "type": "object",
-            "properties": {
-                "url": {
-                    "type": "string"
-                },
-                "path_to_book": {
-                    "type": "string"
-                },
-                "branch": {
-                    "type": "string"
-                }
-            }
-        },
-        "sphinx": {
-            "type": "object",
-            "properties": {
-                "extra_extensions": {
-                    "type": [
-                        "null",
-                        "array"
-                    ],
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "local_extensions": {
-                    "type": [
-                        "null",
-                        "object"
-                    ]
-                },
-                "recursive_update": {
-                    "type": "boolean"
-                },
-                "config": {
-                    "type": [
-                        "null",
-                        "object"
-                    ]
-                }
-            }
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
+      }
+    },
+    "html": {
+      "type": "object",
+      "properties": {
+        "favicon": {
+          "type": "string"
+        },
+        "use_edit_page_button": {
+          "type": "boolean"
+        },
+        "use_repository_button": {
+          "type": "boolean"
+        },
+        "use_issues_button": {
+          "type": "boolean"
+        },
+        "extra_footer": {
+          "type": "string"
+        },
+        "analytics": {
+          "type": "object",
+          "properties": {
+            "google_analytics_id": {
+              "type": "string"
+            },
+            "plausible_analytics_domain": {
+              "type": "string"
+            },
+            "plausible_analytics_url": {
+              "type": "string"
+            }
+          }
+        },
+        "home_page_in_navbar": {
+          "type": "boolean"
+        },
+        "baseurl": {
+          "type": "string"
+        },
+        "comments": {
+          "type": "object",
+          "properties": {
+            "hypothesis": {
+              "type": ["boolean", "object"]
+            },
+            "utterances": {
+              "type": ["boolean", "object"]
+            }
+          }
+        },
+        "announcement": {
+          "type": "string"
+        }
+      }
+    },
+    "bibtex_bibfiles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "latex": {
+      "type": "object",
+      "properties": {
+        "latex_engine": {
+          "type": "string",
+          "default": "pdflatex"
+        },
+        "latex_documents": {
+          "type": "object"
+        },
+        "use_jupyterbook_latex": {
+          "type": "boolean"
+        }
+      }
+    },
+    "launch_buttons": {
+      "type": "object",
+      "properties": {
+        "notebook_interface": {
+          "type": "string"
+        },
+        "binderhub_url": {
+          "type": "string"
+        },
+        "jupyterhub_url": {
+          "type": "string"
+        },
+        "thebe": {
+          "type": "boolean"
+        },
+        "colab_url": {
+          "type": "string"
+        },
+        "deepnote_url": {
+          "type": "string"
+        }
+      }
+    },
+    "repository": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "path_to_book": {
+          "type": "string"
+        },
+        "branch": {
+          "type": "string"
+        }
+      }
+    },
+    "sphinx": {
+      "type": "object",
+      "properties": {
+        "extra_extensions": {
+          "type": ["null", "array"],
+          "items": {
+            "type": "string"
+          }
+        },
+        "local_extensions": {
+          "type": ["null", "object"]
+        },
+        "recursive_update": {
+          "type": "boolean"
+        },
+        "config": {
+          "type": ["null", "object"]
+        }
+      }
     }
+  }
 }

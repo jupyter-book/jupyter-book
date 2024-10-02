@@ -1,6 +1,152 @@
 [build-system]
-requires = ["setuptools>=46.4.0", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["flit_core >=3.5,<4"]
+build-backend = "flit_core.buildapi"
 
-[tool.isort]
-profile = "black"
+[project]
+name = "jupyter-book"
+authors = [{name = "Executable Book Project", email = "executablebooks@gmail.com"}]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Text Processing :: Markup",
+]
+keywords = [
+    "reproducible",
+    "science",
+    "environments",
+    "scholarship",
+    "notebook",
+]
+dynamic = ["description", "version"]
+requires-python = ">=3.9"
+dependencies = [
+    "click>=7.1,<9",
+    "Jinja2",
+    "jsonschema<5",
+    "linkify-it-py>=2,<3",
+    "myst-nb>=1,<3",
+    "myst-parser>=1,<3",
+    "pyyaml",
+    "sphinx>=5,<8",
+    "sphinx-comments",
+    "sphinx-copybutton",
+    "sphinx-external-toc>=1.0.1,<2",
+    "sphinx-jupyterbook-latex>=1,<2",
+    "sphinx-design>=0.5,<1",
+    "sphinx-thebe>=0.3.1,<1",
+    "sphinx-book-theme>=1.1.0,<2",
+    "sphinx_togglebutton",
+    "sphinxcontrib-bibtex>=2.5.0,<3",
+    "sphinx-multitoc-numbering>=0.1.3,<1"
+]
+
+[project.license]
+file = "LICENSE"
+
+[project.readme]
+file = "README.md"
+content-type = "text/markdown"
+
+[project.urls]
+Homepage = "https://executablebooks.org/"
+Documentation = "https://jupyterbook.org"
+Funding = "https://executablebooks.org"
+Source = "https://github.com/executablebooks/jupyter-book/"
+Tracker = "https://github.com/executablebooks/jupyter-book/issues"
+
+[project.optional-dependencies]
+code_style = ["pre-commit~=3.1"]
+pdfhtml = ["pyppeteer"]
+sphinx = [
+    "altair",
+    "bokeh",
+    "folium",
+    "ipywidgets",
+    "jupytext",
+    "matplotlib",
+    "nbclient",
+    "numpy>=2",
+    "pandas",
+    "plotly",
+    "sphinx-click",
+    "sphinx-examples",
+    "sphinx_inline_tabs",
+    "sphinx-proof",
+    "sphinxext-rediraffe~=0.2.3",
+    "sympy",
+]
+testing = [
+    "altair",
+    "beautifulsoup4",
+    "beautifulsoup4",
+    "cookiecutter",
+    "coverage",
+    "jupytext",
+    "matplotlib",
+    "pyppeteer",
+    "pytest>=6.2.4",
+    "pytest-cov",
+    "pytest-regressions",
+    "pytest-timeout",
+    "pytest-xdist",
+    "sphinx_click",
+    "sphinx_inline_tabs",
+    "pydata-sphinx-theme>=0.15.3",
+    "texsoup",
+]
+
+[project.scripts]
+jb = "jupyter_book.cli.main:main"
+jupyter-book = "jupyter_book.cli.main:main"
+
+[tool.flit.module]
+name = "jupyter_book"
+
+[tool.flit.sdist]
+exclude = [
+  ".*",  # Any hidden folders or files
+  "docs/",
+  "tests/",
+  "scripts/",
+  "tox.ini",
+  "codecov.yml",
+  "conftest.py",
+]
+
+[tool.ruff.lint]
+ignore = [
+    "E203",    # Whitespace before punctuation
+]
+
+
+[tool.pytest.ini_options]
+markers = [
+  "requires_tex: mark a test which requires a TeX installation",
+  "requires_chrome: mark a test which requires a chrome/chromium browser"
+]
+filterwarnings = [
+  "error",
+  'ignore:nodes\.Node\.traverse\(\) is obsoleted by Node\.findall\(\):PendingDeprecationWarning',
+  'ignore:Jupyter is migrating its paths to use standard platformdirs:DeprecationWarning',
+  'ignore:The frontend\.OptionParser class will be replaced:DeprecationWarning',
+  'ignore:The frontend\.Option class will be removed:DeprecationWarning',
+  # Pyppeteer throws this exception
+  'ignore:remove loop argument:DeprecationWarning',
+  '''ignore:'imghdr' is deprecated and slated for removal in Python 3\.13:DeprecationWarning''',
+  # jupyter-client throws this
+  'ignore:datetime\.datetime\.utcfromtimestamp\(\) is deprecated:DeprecationWarning',
+  'ignore:datetime\.datetime\.utcnow\(\) is deprecated:DeprecationWarning',
+  # pybtex
+  'ignore:pkg_resources is deprecated as an API:DeprecationWarning',
+  'ignore:Deprecated call to `pkg_resources:DeprecationWarning',
+  # latexcodec
+  'ignore:open_text is deprecated:DeprecationWarning'
+]

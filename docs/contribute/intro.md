@@ -81,7 +81,7 @@ You may run all the tests, or only ones that do not require additional installat
 You can alternatively use [tox](https://tox.readthedocs.io) to run the tests in multiple isolated environments, and also without the need for the initial dependencies install (see the `tox.ini` file for available test environments and further explanation):
 
 ```shell
->> tox -e py38-sphinx3 -- -m 'not requires_chrome and not requires_tex'
+>> tox -e py39-sphinx4 -- -m 'not requires_chrome and not requires_tex'
 ```
 
 Either will run the Jupyter Book test suite, *except for the PDF tests*.
@@ -174,8 +174,8 @@ what kinds of functionality they support:
   {term}`the MyST-Parser<MyST-Parser>`.
 * {term}`The MyST-NB package<MyST-NB>` parses Jupyter Notebooks into Sphinx and also
   controls some parts of notebook execution.
-  It also allows [inserting code outputs into content](content:code-outputs:glue).
-* {term}`Jupyter-Cache` manages the execution and cacheing of notebook content at
+  It also allows [inserting code outputs into content](content:executable:output-insert).
+* {term}`Jupyter-Cache` manages the execution and caching of notebook content at
   build time. It is controlled by {term}`MyST-NB`.
 * The {term}`Sphinx Book Theme` defines the look and feel of Jupyter Book, and is
   where most of the CSS rules are defined.

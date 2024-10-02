@@ -1,6 +1,19 @@
 (content:citations)=
 # Citations and bibliographies
 
+:::{warning}
+If you are using `docutils>=0.18,<20` then the page containing the `bibliography` directive
+will not have the correct layout. While `docutils` is patched we recommend using `docutils==0.17.1`
+which can be installed by:
+
+```bash
+pip install docutils==0.17.1
+```
+
+This is due to [this issue](https://sourceforge.net/p/docutils/patches/195/)
+:::
+
+
 You can add citations and bibliographies using references that are stored in a `bibtex` file that is in your book's folder. You can then add a citation in-line in your Markdown with the `{cite}` role, and include the bibliography from your bibtex file with the `{bibliography}` directive.
 
 ```{seealso}
@@ -53,6 +66,7 @@ To set the reference style, use the `bibtex_reference_style` field in your book'
 sphinx:
   config:
     bibtex_reference_style: author_year
+    bibtex_bibfiles: "your_reference_file.bib"
 ```
 
 There are a few options for your in-line citation style such as `label`, `super`, and `author-year`.
@@ -77,6 +91,41 @@ A common fix is to add a filter to the bibliography directives:
 ````
 
 See `sphinxcontrib-bibtex` documentation on [local bibliographies](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/usage.html#section-local-bibliographies).
+
+### Citing a work in different documents
+When you want cite a document in several documents then the Sphinx `keyprefix` system should be used.
+
+As an example, suppose you wish to cite `Orwell1984` in two documents and have the bibliography entries showing in both documents. In one document you could use:
+
+````md
+..."If you want to keep a secret, you must also hide it from yourself"{cite}`a-Orwell1984`
+````
+
+with the following bibliography section code:
+
+````md
+```{bibliography}
+:filter: docname in docnames
+:labelprefix: A
+:keyprefix: a-
+```
+````
+In the second document you could use:
+
+````md
+..."Freedom is slavery."{cite}`b-Orwell1984`
+
+
+...
+
+```{bibliography}
+:filter: docname in docnames
+:labelprefix: B
+:keyprefix: b-
+```
+````
+
+See `sphinxcontrib-bibtex` documentation on [Key Prefixing](https://sphinxcontrib-bibtex.readthedocs.io/en/latest/usage.html#section-key-prefixing).
 
 (citations/bibliography)=
 ## Example Bibliography

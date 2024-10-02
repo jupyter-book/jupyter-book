@@ -103,7 +103,7 @@ We recommend using the [texlive](https://www.tug.org/texlive/) distribution
 `jupyter-book` uses the
 [sphinx-jupyterbook-latex](https://github.com/executablebooks/sphinx-jupyterbook-latex) package,
 which handles much of the customised LaTeX infrastructure. A full list of features can be found
-[the `sphinx-jupyterbook-latex` features list](https://github.com/executablebooks/sphinx-jupyterbook-latex/blob/master/docs/intro.md#feature-list).
+[the `sphinx-jupyterbook-latex` features list](https://github.com/executablebooks/sphinx-jupyterbook-latex/blob/master/docs/features.md).
 
 Some of these features include:
 
@@ -131,8 +131,8 @@ latex:
 For `Debian`-based `Linux` platforms it is recommended to install the following packages:
 
 ```bash
-sudo apt-get install texlive-latex-recommended texlive-latex-extra \
-                     texlive-fonts-recommended texlive-fonts-extra \
+sudo apt-get install texlive-latex-extra \
+                     texlive-fonts-extra \
                      texlive-xetex latexmk
 ```
 
@@ -240,7 +240,7 @@ contains a full list of supported `latex` builders.
 #### Customize LaTeX via Sphinx
 
 The current focus of the EBP project has been to automate the process of building `pdf` files
-from `myst:md` sources and to ensure the resulting `pdf` files are syncronised (in structure)
+from `myst:md` sources and to ensure the resulting `pdf` files are synchronised (in structure)
 with the `html` output. We are actively looking at ways to enable more `LaTeX` configuration and
 customization.
 

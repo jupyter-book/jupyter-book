@@ -5,6 +5,9 @@ These sections cover aspects of **building and publishing your book** - that is,
 You can generate a variety of build outputs, such as **HTML outputs** and **PDF** outputs via either Latex or HTML.
 These outputs can be published and shared with others in a variety of ways, which we describe in this section as well.
 
+```{tableofcontents}
+```
+
 ## Generate a badge for your book
 
 You can generate a badge like this so that others know your repository and content files are built for Jupyter Book.

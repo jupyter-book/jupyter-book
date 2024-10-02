@@ -9,4 +9,4 @@ sphinx:
   config:
     html_title: TEST PROJECT NAME
   extra_extensions:
-    - sphinx_tabs.tabs
+    - sphinx_inline_tabs

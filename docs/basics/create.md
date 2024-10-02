@@ -55,7 +55,7 @@ Jupyter Book also provides a [Jupyter Book cookiecutter](https://github.com/exec
 [`cookiecutter`](https://cookiecutter.readthedocs.io/en/latest/) is a Python tool for quickly generating folders from a templatized repository. Jupyter Book uses `cookiecutter` under the hood.
 ```
 
-The cookiecutter is suitable for users that want to create a ready-to-go repository to host their book that includes pre-populated metafiles such as `README`, `LICENSE`, `CONDUCT`, `CONTRIBUTING`, etc., as well as GitHub Actions workflow files to [](publish/gh-actions).
+The cookiecutter is suitable for users that want to create a ready-to-go repository to host their book that includes pre-populated metafiles such as `README`, `LICENSE`, `CONDUCT`, `CONTRIBUTING`, etc., as well as GitHub Actions workflow files to [Publish to GitHub Pages](publish/gh-pages).
 
 To try the cookiecutter template, run the following command:
 

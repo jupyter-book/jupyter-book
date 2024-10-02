@@ -17,7 +17,7 @@ parts:
   chapters:
   - file: basics/organize
     sections:
-    - file: customize/toc
+    - file: structure/toc
     - file: structure/configure
     - file: file-types/index
       sections:
@@ -33,6 +33,7 @@ parts:
     sections:
     - file: content/myst
     - file: content/content-blocks
+    - file: content/components
     - file: content/references
     - file: content/layout
     - file: content/citations
@@ -68,6 +69,7 @@ parts:
       sections:
       - file: interactive/comments/hypothesis
       - file: interactive/comments/utterances
+    - file: web/announcements
     - file: advanced/html
 
   - file: sphinx/index
@@ -90,9 +92,10 @@ parts:
 
 - caption: About Jupyter Book
   chapters:
-  - url: https://executablebooks.org/en/latest/gallery.html
+  - url: https://executablebooks.org/en/latest/gallery
     title: Gallery of Jupyter Books
   - file: explain/components
   - file: cite
+  - file: explain/migration
   - file: reference/_changelog
     title: Change log

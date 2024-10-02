@@ -1,0 +1,32 @@
+# This will run every time a tag is created and pushed to the repository.
+# It calls our tests workflow via a `workflow_call`, and if tests pass
+# then it triggers our upload to PyPI for a new release.
+name: Publish to PyPI
+on:
+  release:
+    types: ["published"]
+
+jobs:
+  tests:
+    uses: ./.github/workflows/tests.yml
+  publish:
+    name: publish
+    needs: [tests] # require tests to pass before deploy runs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.9
+      - name: Install flit
+        run: |
+          pip install flit~=3.6
+
+      - name: Build and publish
+        run: |
+          flit publish
+        env:
+          FLIT_USERNAME: __token__
+          FLIT_PASSWORD: ${{ secrets.PYPI_KEY }}

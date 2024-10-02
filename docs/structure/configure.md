@@ -22,7 +22,7 @@ chapters:
 
 ## Configure a single top-level set of chapters/sections
 
-If you're only using a single list of chapters, and not organizing them into parts, you can configure each with the `options:` key.
+If you're only using a single list of chapters, and not organizing them into parts, you can configure the single group of chapters with the `options:` key.
 
 For example:
 
@@ -36,9 +36,14 @@ chapters:
 - file: path/to/part1/chapter2
 ```
 
-## Configure an individual Part
+:::{note}
+If you're using `parts`, then the `options:` key has no effect.
+You should configure each part individually (see below).
+:::
 
-If you are organizing your book into **parts** (groups of chapters), you can configure each set of chapters separately by providing `key: value` pairs alongside each `part` entry, like so:
+## Configure one or more Parts
+
+If you are organizing your book into **parts** (groups of chapters), configure each part by providing `key: value` pairs alongside each `part` entry, like so:
 
 ```yaml
 format: jb-book
@@ -55,8 +60,8 @@ parts:
     - file: path/to/part2/chapter2
 ```
 
-In this case, the `numbered:` option would *only apply to Part 1*, and not Part 2. If you would like numbering across your
-project you will need to add `numbered: true` to all `parts`.
+In this case, the `numbered:` *only applies to Part 1*, and not Part 2.
+If you want all parts to be numbered, you will need to add `numbered: true` to all `parts` entries.
 
 :::{warning}
 Currently there is no global setting to enable `numbered: true` across all parts.
@@ -68,8 +73,8 @@ defaults:
   numbered: true
 ```
 
-as sphinx will issue warnings due to `numbered` flag being set for substrees. It also causes unexpected
-output.
+as sphinx will issue warnings due to `numbered` flag being set for subtrees.
+It also causes unexpected output.
 :::
 
 
@@ -100,8 +105,12 @@ in the table of contents, it does not change the actual chapter/section title.
 (toc/numbering)=
 ## Number your chapters and sections
 
-You can automatically add numbers to each chapter of your book.
-To add numbers to **all chapters of your book**, add the `numbered: true` flag to your book's defaults, like so:
+You can automatically add numbers chapters of your book.
+Numbers will follow a hierarchy according to the structure defined in your `_toc.yml` file.
+
+### Number a single group of chapters
+
+If using a single set of chapters for your book (aka, no Parts), add numbers to them with the `numbered: true` flag, like so:
 
 ```yaml
 format: jb-book
@@ -113,16 +122,45 @@ chapters:
   - file: chapter2
 ```
 
-Numbers will follow a hierarchy according to the structure defined in your `_toc.yml` file.
+### Number one or more parts
 
-```{margin}
-Continuous numbering is now the default behavior from `jupyter-book>=0.11.2`
+If using one or more parts, add the `numbered: true` option to each.
+For example, to number all parts in a two-part book:
+
+```yaml
+format: jb-book
+root: intro
+parts:
+- caption: Part 1
+  numbered: true
+  chapters:
+  - file: part1/chapter1
+- caption: Part 2
+  numbered: true
+  chapters:
+  - file: part2/chapter1
 ```
+
+To number only the second part of a book:
+
+```yaml
+format: jb-book
+root: intro
+parts:
+- caption: Part 1
+  chapters:
+  - file: part1/chapter1
+- caption: Part 2
+  numbered: true  # Only the second part is numbered
+  chapters:
+  - file: part2/chapter1
+```
+
+#### Restart numbering between parts
 
 By default, chapter numbering will be continuous between parts (i.e. they will not re-start each section at `1.` each time)
 using an extension called [sphinx-multitoc-numbering](https://github.com/executablebooks/sphinx-multitoc-numbering).
 
-:::{tip}
 To **restart chapter numbering between parts**, use the following setting in your `_config.yml` file:
 
 ```yaml
@@ -130,32 +168,11 @@ html:
   use_multitoc_numbering: false
 ```
 
-This was the **default behaviour** prior to `jupyter-book<0.11.2`.
-:::
+### Limit the depth of numbering
 
-:::{admonition} Limit the depth of numbering
 If you'd like to limit the depth of numbering, use an **integer** for the `numbered` flag.
 This will be the depth of sub-sections to continue numbering.
 For example, `numbered: 3`.
-:::
-
-If you'd like to number **subsets of chapters**, group them into parts and
-apply the `numbered: true` flag to the parts whose chapters you wish to be numbered.
-
-For example:
-
-```yaml
-format: jb-book
-root: intro
-parts:
-- caption: Part 1
-  numbered: true  # Only part 1 will be numbered
-  chapters:
-  - file: part1/chapter1
-- caption: Part 2
-  chapters:
-  - file: part2/chapter1
-```
 
 ::::{admonition} A few caveats about numbering
 Jupyter Book relies on {term}`Sphinx` to apply section numbering, and this has a
@@ -203,6 +220,70 @@ To control the maximum depth of the Table of Contents that you insert, use the `
   ...
 ```
 
+## Add a within-page Table of Contents
+
+A within-page Table of Contents shows the _sections that are present on the current page_ (as opposed to the sub-pages listed in `_toc.yml`, as inserted by the `{tableofcontents}` directive introduced above).
+
+To insert a within-page Table of Contents, use the `{contents}` directive.
+For example, to insert a list of all sections on the current page (including the page title):
+
+````md
+# Page title
+
+```{contents}
+```
+````
+
+By default, the `{contents}` directive will include all heading levels in the current page, including heading level 1 (i.e., the title of the page).
+
+### Add a section-specific list of contents
+
+To only list the section titles for sub-sections of a specific parent section, add the `:local:` argument to the `{contents}` directive.
+For example, to list only the contents of second-level sections on a page (and exclude the title):
+
+````md
+# Page title
+
+```{contents}
+:local:
+```
+
+## Section 1 (will be listed)
+
+### Sub-section 1 (will be listed)
+
+## Section 2 (will be listed)
+````
+
+To list only the contents of the `## Section 1` section:
+
+````md
+# Page title
+
+## Section 1 (will not be listed)
+
+```{contents}
+:local:
+```
+
+### Sub-section 1 (will be listed)
+
+## Section 1 (will not be listed)
+````
+
+### Limit the depth of the in-page contents
+
+You can control the depth of the within-page Table of Contents with the `:maxdepth:` argument.
+For example, the following usage lists only the top-level sections underneath the title, even if there are deeper sub-sections (i.e., `##` headings, but no `###` headings or deeper).
+
+````md
+# Page title
+
+```{contents}
+:local:
+:depth: 1
+```
+````
 
 ## Exclude pages from your build
 

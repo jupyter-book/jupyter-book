@@ -217,7 +217,6 @@ def build(
         config_overrides = {
             "master_doc": PAGE_NAME,
             "exclude_patterns": to_exclude,
-            "html_theme_options": {"single_page": True},
             # --individualpages option set to True for page call
             "latex_individualpages": True,
         }
@@ -231,7 +230,6 @@ def build(
         toc = PATH_SRC_FOLDER.joinpath("_toc.yml") if toc is None else Path(toc)
 
         if not get_config_only:
-
             if not toc.exists():
                 _error(
                     "Couldn't find a Table of Contents file. "
@@ -255,10 +253,6 @@ def build(
             if get_config_only
             else toc.as_posix()
         )
-
-        # Builder-specific overrides
-        if builder == "pdfhtml":
-            config_overrides["html_theme_options"] = {"single_page": True}
 
         # --individualpages option passthrough
         config_overrides["latex_individualpages"] = individualpages
@@ -332,7 +326,12 @@ def build(
     is_flag=True,
     help="Use cookiecutter to interactively create a Jupyter Book template.",
 )
-def create(path_book, cookiecutter):
+@click.option(
+    "--no-input",
+    is_flag=True,
+    help="If using cookiecutter, do not prompt the user for input.",
+)
+def create(path_book, cookiecutter, no_input):
     """Create a Jupyter Book template that you can customize."""
     book = Path(path_book)
     if not cookiecutter:  # this will be the more common option
@@ -347,7 +346,8 @@ def create(path_book, cookiecutter):
                 f"{e}. To install, run\n\n\tpip install cookiecutter",
                 kind=e.__class__,
             )
-        book = cookiecutter(cc_url, output_dir=Path(path_book))
+
+        book = cookiecutter(cc_url, output_dir=Path(path_book), no_input=no_input)
     _message_box(f"Your book template can be found at\n\n    {book}{os.sep}")
 
 
@@ -479,12 +479,8 @@ def sphinx(ctx, path_source, config, toc):
     content = "\n".join(lines).rstrip() + "\n"
 
     out_folder = Path(path_config).parent if path_config else Path(full_path_source)
-    existed = out_folder.joinpath("conf.py").exists()
     out_folder.joinpath("conf.py").write_text(content, encoding="utf8")
     click.secho(f"Wrote conf.py to {out_folder}", fg="green")
-    if not existed:
-        # indicate to pre-commit that the file changed
-        sys.exit(2)
 
 
 # utility functions
@@ -520,9 +516,6 @@ def builder_specific_actions(
 
     :param result: the result of the build execution; a status code or and exception
     """
-
-    from sphinx.util.osutil import cd
-
     from jupyter_book.pdf import html_to_pdf
     from jupyter_book.sphinx import REDIRECT_TEXT
 
@@ -602,11 +595,10 @@ def builder_specific_actions(
         else:
             makecmd = os.environ.get("MAKE", "make")
         try:
-            with cd(output_path):
-                output = subprocess.run([makecmd, "all-pdf"])
-                if output.returncode != 0:
-                    _error("Error: Failed to build pdf")
-                    return output.returncode
+            output = subprocess.run([makecmd, "all-pdf"], cwd=output_path)
+            if output.returncode != 0:
+                _error("Error: Failed to build pdf")
+                return output.returncode
             _message_box(
                 f"""\
             A PDF of your {cmd_type} can be found at:

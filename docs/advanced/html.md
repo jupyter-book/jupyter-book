@@ -30,7 +30,7 @@ The rules should then automatically be applied to your site. In general, these
 CSS and JS files will be loaded *after* others are loaded on your page, so they
 should overwrite pre-existing rules and behaviour.
 
-### An example: justify the text
+### An Example: justify the text
 
 If you want the text of your book to be justified instead of left aligned then create `myfile.css` under `mybook/_static` with the following CSS:
 
@@ -49,25 +49,31 @@ A more verbose but "stable" approach is to use the `:class:` keyword argument wh
 :::
 
 Currently, using the `{admonition}` directive with a title creates a CSS class based on the title of the admonition.
-For example, an admonition title of `Here's my title` will result in a class name of `admonition-heres-my-title`.
+For example, an admonition title of `Here's my title` will result in a class name of `admonition-here-s-my-title`.
 
-You can leverage this pattern to quickly create custom admonitions.
-For example, create a `myadmonitions.css` under `mybook/_static` with the following CSS:
+On the other hand, by using the `:class:` keyword argument, it will create a class with the keyword previously chosen.
+For example, a custom class defined as `my-custom-class` will result in a class named as `my-custom-class`.
+
+You can leverage either of these patterns to quickly create custom admonitions.
+There is an example of each below.
+In each case, begin by creating a `myadmonitions.css` file under `mybook/_static` and add CSS rules to it.
+
+**Using the `{admonition}` directive with a title**
 
 ```css
-.admonition-extra-credit {
+div.admonition-extra-credit {
     border-left-color: rgba(0, 246, 16, 1);
 }
-.admonition-extra-credit .admonition-title {
+div.admonition-extra-credit .admonition-title {
     background-color: rgba(0, 246, 16, .1);
 }
-.admonition-extra-credit .admonition-title:before {
+div.admonition-extra-credit .admonition-title:before {
     color: rgba(0, 246, 16, 1);
     content: '\f19d';
 }
 ```
 
-then in your book, define an admonition like so:
+Then, in your book, define an admonition like so:
 
 ````md
 ```{admonition} Extra credit
@@ -75,26 +81,117 @@ An "extra credit" exercise is presented here.
 ```
 ````
 
-The admonitions should be styled according to your CSS rules when you build your book.
+**Using the `:class:` keyword argument**
+
+```css
+div.extra-credit {
+    border-left-color: rgba(var(--pst-color-success), 1);
+}
+div.extra-credit .admonition-title {
+    background-color: rgba(var(--pst-color-success), .1)
+}
+div.extra-credit .admonition-title:before {
+    color: rgba(var(--pst-color-success), 1);
+    content: '\f19d';
+}
+```
+
+Then, in your book, define an admonition like so:
+
+````md
+```{admonition} An extra exercise
+:class: extra-credit
+An "extra credit" exercise is presented here.
+```
+````
+
+In both cases the admonitions should be styled according to your CSS rules when you build your book.
+
+### An Example: add structured data for site name and search path
+
+For HTML builds, structured data allows machines to better understand the content of your pages.
+For instance Google Search can use structured data to understand your overall site's name, provide a search box that directly searches into your site, provide interactive experiences for flash cards or quizzes, etc.: see [Structured data markup that Google Search supports](https://developers.google.com/search/docs/appearance/structured-data/search-gallery).
+
+You can easily provide structured data for your site's name using the [JSON for Linking Data (JSON-LD)](https://json-ld.org/) format and a few lines of Javascript to inject the JSON-LD data into your page. These can be directly added as a single file in the `_static` directory, as described in [](#custom-assets). For instance, you could name the file `structured_data.js`. Here is an example showing the site name and search path information for jupyterbook.org:
+
+```javascript
+var structuredData = {
+"@context" : "https://schema.org",
+"@type" : "WebSite",
+"name" : "jupyter{book}",
+"alternateName" : "JB",
+"url" : "https://jupyterbook.org/",
+"potentialAction": {
+"@type": "SearchAction",
+"target": {
+  "@type": "EntryPoint",
+  "urlTemplate": "https://jupyterbook.org/en/stable/search.html?q={search_term_string}"
+},
+"query-input": "required name=search_term_string"
+}
+};
+
+const SDscript = document.createElement('script');
+SDscript.setAttribute('type', 'application/ld+json');
+SDscript.textContent = JSON.stringify(structuredData);
+document.head.appendChild(SDscript);
+```
+
+To use this script for your own site, modify the `name`, `alternateName`, `url`, and `urlTemplate` based on your JupyterBook configuration. For the `urlTemplate`, it is easiest to conduct a search on your site and then extract the search path from the URL of the returned results.
+
 ## Enable Google Analytics
 
 If you have a Google account, you can use Google Analytics to collect some
 information on the traffic to your Jupyter Book. With this tool, you can find
 out how many people are using your book, where they come from and how they
-access it, whether they are using the desktop or the mobile version etc.
+access it, whether they are using the desktop or the mobile version, etc.
 
-To add Google Analytics to your Jupyter Book, navigate to
-[Google Analytics](https://analytics.google.com/analytics/web/), create a new
-Google Analytics account and add the url of your Jupyter Book to a new
-*property*. Once you have set everything up, your Google Analytics property
-will have a so-called Tracking-ID, that typically starts with the letters UA.
-All that you need to do is to copy this ID and paste it into your
-configuration file:
+To add Google Analytics to your Jupyter Book, navigate to [Google Analytics](https://analytics.google.com/analytics/web/), create a new Google Analytics account and create a new *property* for your Jupyter Book.
+The next steps depend on the version of Google Analytics you are using:
+
+- If using [Google Analytics 4](https://support.google.com/analytics/answer/10089681?hl=en) (GA4):
+  - You will also have to create a *stream* associated with your property.
+  - Choose to make a web stream and provide the URL of your Jupyter book.
+  - Copy the **Measurement ID** associated with that stream.
+  This is an alphanumeric code that looks like **`G-XXXXXXX`**.
+- If using older versions of Google Analytics, such as Google Analytics 3:
+  - You will provide your Jupyter Book's URL when you create your property.
+  - Copy the analytics "**tracking ID**" for your property. This is a numeric code that looks like **`UA-XXXXXX-X`**.
+
+Paste the measurement ID (GA4) or tracking ID (previous versions of Google
+Analytics) into the following directive in your configuration file:
 
 ```yaml
 html:
-  google_analytics_id: UA-XXXXXXXXX-X
+  analytics:
+    google_analytics_id: G-XXXXXXX
 ```
+
+:::{seealso}
+- For more about Google Analytics, see [the Google Analytics documentation](https://analytics.google.com/analytics/web/) for more information.
+:::
+
+
+## Use Plausible Analytics
+
+[Plausible Analytics](https://plausible.io) is a lightweight, open source, [privacy-focused](https://plausible.io/privacy-focused-web-analytics) analytics service that can be used as a more ethical alternative (or, in addition to) to Google Analytics.
+
+Plausible Analytics requires a _domain_, which is given by the `plausible_analytics_domain` property:
+```yaml
+html:
+  analytics:
+    plausible_analytics_domain: my-domain
+```
+You can specify the analytics script that is loaded; by default, the bundle from <https://plausible.io> is used:
+```yaml
+html:
+  analytics:
+    plausible_analytics_domain: my-domain
+    plausible_analytics_url: https://plausible.io/js/script.js
+```
+
+This should inject the appropriate code into the built site, and you will be able to get analytics on your website through either the commercial company-hosted dashboard, or a [self-hosted instance](https://plausible.io/docs/self-hosting).
+
 
 (html:link-check)=
 ## Check external links in your book

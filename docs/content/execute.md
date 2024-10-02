@@ -36,6 +36,16 @@ execute:
   execute_notebooks: auto
 ```
 
+or equivalently:
+
+```yaml
+sphinx:
+  config:
+    nb_execution_mode: auto
+```
+
+Both of the above configurations are global, for per-file use `execution_mode` key.
+
 This will only execute notebooks that are missing at least one output.
 If the notebook has *all* of its outputs populated, then it will not be executed.
 
@@ -43,7 +53,8 @@ If the notebook has *all* of its outputs populated, then it will not be executed
 above configuration value to:
 
 ```yaml
-execute_notebooks: force
+execute:
+  execute_notebooks: force
 ```
 
 **To cache execution outputs with [jupyter-cache]**, change the above configuration
@@ -55,6 +66,15 @@ execute:
 ```
 
 See {ref}`execute/cache` for more information.
+
+**To execute notebooks inline during parsing**, change the above configuration value to:
+
+```yaml
+execute:
+  execute_notebooks: inline
+```
+
+See [Inline variable evaluation (eval)](https://myst-nb.readthedocs.io/en/latest/render/inline.html#render-eval) for more information.
 
 **To turn off notebook execution**, change the above configuration value to:
 
@@ -291,7 +311,7 @@ These outputs may appear in a mixed order and you may want them to be grouped an
 to display the correct `logical` ordering.
 
 This can be achieved using the [nb_merge_streams feature contained in
-`myst_nb`](myst-nb:use/format/group-stderr-stdout).
+`myst_nb`](inv:myst-nb#render/output/stdout-stderr).
 
 You can enable this in your `_config.yml`:
 
@@ -307,7 +327,7 @@ As notebooks are executed, certain statistics are stored on the build environmen
 The simplest way to access and visualise this data is using the `{nb-exec-table}` directive.
 
 :::{seealso}
-The [MyST-NB documentation](myst-nb:execute/statistics), for creating your own directives to manipulate this data.
+The [MyST-NB documentation](inv:myst-nb#execute/statistics), for creating your own directives to manipulate this data.
 :::
 
 The simple directive
@@ -321,3 +341,19 @@ produces:
 
 ```{nb-exec-table}
 ```
+
+(execute:tracebacks)=
+## Execution tracebacks in the terminal
+
+It is possible to print tracebacks for execution errors directly into the terminal, instead of saving them to a log file.
+This is particularly useful if you're executing your book as part of an online build process (for example, via [GitHub Pages](../publish/gh-pages.md), [ReadTheDocs](../publish/readthedocs.md), or [Netlify](../publish/netlify.md)).
+
+Enable activate execution tracebacks, in your `_config.yml`:
+
+```yaml
+sphinx:
+  config:
+    nb_execution_show_tb: True
+```
+
+See [the MyST-NB documentation](https://myst-nb.readthedocs.io) for more information.

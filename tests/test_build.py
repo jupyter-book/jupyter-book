@@ -1,5 +1,7 @@
+import shutil
 from pathlib import Path
 
+import docutils
 import pytest
 import sphinx
 from bs4 import BeautifulSoup
@@ -27,14 +29,16 @@ def test_create(temp_with_override: Path, cli):
 
 def test_create_from_cookiecutter(temp_with_override: Path, cli):
     book = temp_with_override / "new_book"
-    result = cli.invoke(commands.create, [book.as_posix(), "--cookiecutter"])
+    result = cli.invoke(
+        commands.create, [book.as_posix(), "--cookiecutter", "--no-input"]
+    )
     assert result.exit_code == 0
     # this test uses default cookiecutter prompt values
     # note that default cookiecutter book name is "my_book"
     assert book.joinpath("my_book", "my_book", "_config.yml").exists()
     assert len(list(book.joinpath("my_book").iterdir())) == 7
     assert len(list(book.joinpath("my_book", ".github", "workflows").iterdir())) == 1
-    assert len(list(book.joinpath("my_book", "my_book").iterdir())) == 8
+    assert len(list(book.joinpath("my_book", "my_book").iterdir())) == 9
 
 
 def test_build_from_template(temp_with_override, cli):
@@ -73,10 +77,15 @@ def test_build_singlehtml_from_template(temp_with_override, cli):
     build_result = cli.invoke(
         commands.build, [book.as_posix(), "-n", "-W", "--builder", "singlehtml"]
     )
-    assert build_result.exit_code == 0, build_result.output
-    html = book.joinpath("_build", "singlehtml")
-    assert html.joinpath("index.html").exists()
-    assert html.joinpath("intro.html").exists()
+    # TODO: Remove when docutils>=0.20 is pinned in jupyter-book
+    # https://github.com/mcmtroffaes/sphinxcontrib-bibtex/issues/322
+    if (0, 18) <= docutils.__version_info__ < (0, 20):
+        assert build_result.exit_code == 1, build_result.output
+    else:
+        assert build_result.exit_code == 0, build_result.output
+        html = book.joinpath("_build", "singlehtml")
+        assert html.joinpath("index.html").exists()
+        assert html.joinpath("intro.html").exists()
 
 
 def test_custom_config(cli, build_resources):
@@ -87,8 +96,8 @@ def test_custom_config(cli, build_resources):
     assert result.exit_code == 0, result.output
     html = config.joinpath("_build", "html", "index.html").read_text(encoding="utf8")
     soup = BeautifulSoup(html, "html.parser")
-    assert '<h1 class="site-logo" id="site-title">TEST PROJECT NAME</h1>' in html
-    assert '<div class="sphinx-tabs docutils container">' in html
+    assert '<p class="title logo__title">TEST PROJECT NAME</p>' in html
+    assert '<div class="tab-set docutils">' in html
     assert '<link rel="stylesheet" type="text/css" href="_static/mycss.css" />' in html
     assert '<script src="_static/js/myjs.js"></script>' in html
 
@@ -127,12 +136,16 @@ def test_toc_rebuild(cli, build_resources):
     assert tags[1].attrs["href"] == "content1.html"
     assert tags[2].attrs["href"] == "content2.html"
 
+    # Clean build manually (to avoid caching of sidebar)
+    build_path = tocs.joinpath("_build")
+    shutil.rmtree(build_path)
+
+    # Build with secondary ToC
     toc = tocs / "_toc_simple_changed.yml"
     result = cli.invoke(
         commands.build,
         [tocs.as_posix(), "--toc", toc.as_posix(), "-n"],
     )
-    print(result.exception)
     assert result.exit_code == 0, result.output
     html = BeautifulSoup(index_html.read_text(encoding="utf8"), "html.parser")
     tags = html.find_all("a", "reference internal")
@@ -241,8 +254,8 @@ def test_execution_timeout(pages, build_resources, cli):
             "--keep-going",
         ],
     )
-    assert "Execution Failed" in result.stdout
-    assert path_html.joinpath("reports", "loop_unrun.log").exists()
+    assert "Executing notebook failed:" in result.stdout
+    assert path_html.joinpath("reports", "loop_unrun.err.log").exists()
 
 
 def test_build_using_custom_builder(cli, build_resources):
@@ -264,7 +277,7 @@ def test_build_using_custom_builder(cli, build_resources):
     html = config.joinpath("_build", "mycustombuilder", "index.html").read_text(
         encoding="utf8"
     )
-    assert '<h1 class="site-logo" id="site-title">TEST PROJECT NAME</h1>' in html
+    assert '<p class="title logo__title">TEST PROJECT NAME</p>' in html
     assert '<link rel="stylesheet" type="text/css" href="_static/mycss.css" />' in html
     assert '<script src="_static/js/myjs.js"></script>' in html
 

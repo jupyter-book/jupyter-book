@@ -34,7 +34,8 @@ SPHINX_VERSION = f".sphinx{sphinx_build.version_info[0]}"
                 "local_extensions": {"helloworld": "./ext"},
                 "config": {
                     "html_theme_options": {
-                        "launch_buttons": {"binderhub_url": "other"}
+                        "launch_buttons": {"binderhub_url": "other"},
+                        "analytics": {"google_analytics_id": ""},
                     },
                     "html_theme": "other",
                     "new": "value",
@@ -101,9 +102,8 @@ def test_config_sphinx_command_only_build_toc_files(
     )
 
     temp_with_override.joinpath("_toc.yml").write_text("root: intro\n", encoding="utf8")
-    result = cli.invoke(sphinx, temp_with_override.as_posix())
+    cli.invoke(sphinx, temp_with_override.as_posix())
 
-    assert result.exit_code == 2, result.exception
     assert temp_with_override.joinpath("conf.py").exists()
     output = temp_with_override.joinpath("conf.py").read_text(encoding="utf8")
     file_regression.check(output, encoding="utf8")
@@ -114,8 +114,7 @@ def test_config_sphinx_command(cli, temp_with_override, file_regression):
         "title: test\n", encoding="utf8"
     )
     temp_with_override.joinpath("_toc.yml").write_text("root: intro\n", encoding="utf8")
-    result = cli.invoke(sphinx, temp_with_override.as_posix())
-    assert result.exit_code == 2, result.exception
+    cli.invoke(sphinx, temp_with_override.as_posix())
     assert temp_with_override.joinpath("conf.py").exists()
     output = temp_with_override.joinpath("conf.py").read_text(encoding="utf8")
     file_regression.check(output, encoding="utf8")

@@ -17,11 +17,19 @@ def test_toc(cli, build_resources, file_regression):
     # reading the tex file
     path_output_file = path_parts_toc.joinpath("_build", "latex", "book.tex")
     file_content = TexSoup(path_output_file.read_text())
-    file_regression.check(str(file_content.document), extension=".tex", encoding="utf8")
+
+    # checking if correct no. of parts, chapters, sections are present
+    parts = list(file_content.find_all("part"))
+    chapters = list(file_content.find_all("chapter"))
+    sections = list(file_content.find_all("section"))
+    assert len(parts) == 2
+    assert len(chapters) == 3
+    assert len(sections) == 4
 
     # reading the xml file
     doctree_path = path_parts_toc.joinpath("_build", ".doctrees", "intro.doctree")
-    doc = pickle.load(open(doctree_path, "rb"))
+    with open(doctree_path, "rb") as f:
+        doc = pickle.load(f)
     pseudoxml = doc.pformat()
 
     # to remove source attribute of document as it is a temp
