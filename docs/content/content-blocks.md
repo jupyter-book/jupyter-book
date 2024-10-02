@@ -168,7 +168,7 @@ You can use this syntax for any kind of directive, though it is generally recomm
 
 If you'd like to insert the outputs of running code *inside* admonition
 blocks, we recommend using [`glue` functionality](content:executable:output-insert).
-For example, we'll insert one of the outputs that was glued into the book from the [storing code outputs page](./output-insert.md).
+For example, we'll insert one of the outputs that was glued into the book from the [storing code outputs page](./executable/output-insert.md).
 
 For example:
 
