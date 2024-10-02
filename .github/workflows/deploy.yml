@@ -38,10 +38,11 @@ jobs:
         run: npm install -g mystmd
       - name: Build HTML Assets
         run: myst build --html
+        working-directory: docs
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: './_build/html'
+          path: './docs/_build/html'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2

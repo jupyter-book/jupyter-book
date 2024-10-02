@@ -130,3 +130,5 @@ dist
 .pnp.*
 
 /_build/
+# Jupyter Book (via myst) build outputs
+_build
