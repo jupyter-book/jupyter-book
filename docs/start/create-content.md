@@ -16,7 +16,6 @@ The goal of this tutorial is to explore a sample of the ways in which MyST Markd
 After following [](init.md), our book has some metadata describing its content. Let's now add some content by creating a new file `intro.md`. Here's an example of what you might write:
 
 ::::{myst}
-:name: myst:intro-md
 
 # Introduction
 
