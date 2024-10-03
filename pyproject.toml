@@ -48,5 +48,8 @@ Tracker = "https://github.com/executablebooks/jupyter-book/issues"
 jb = "jupyter_book.__main__:main"
 jupyter-book = "jupyter_book.__main__:main"
 
+[tool.hatch.build.targets.wheel]
+sources = ["py"]
+
 [tool.hatch.version]
-path = "src/jupyter_book/__main__.py"
+path = "py/jupyter_book/__main__.py"
