@@ -1,28 +1,86 @@
-from mystmd_py.main import main as myst_main
-
 import os
-import importlib.metadata
+import pathlib
+import platform
+import subprocess
 import sys
+import re
+import textwrap
+
+from .nodeenv import find_any_node, PermissionDeniedError, NodeEnvCreationError
 
 __version__ = "2.0.0a0"
 
+NODEENV_VERSION = "18.0.0"
 
-def show_version():
-    myst_version = importlib.metadata.version("mystmd")
-    print(f"Jupyter Book: {__version__}")
-    print(f"MyST: {myst_version}")
+
+def ensure_valid_version(node_path, node_env):
+    # Check version
+    _version = subprocess.run(
+        [node_path, "-v"], capture_output=True, check=True, text=True, env=node_env
+    ).stdout
+    major_version_match = re.match(r"v(\d+).*", _version)
+
+    if major_version_match is None:
+        raise SystemExit(f"MyST could not determine the version of Node.js: {_version}")
+    major_version = int(major_version_match[1])
+    if not (major_version in {18, 20, 22} or major_version > 22):
+        raise SystemExit(
+            f"Jupyter Book requires node 18, 20, or 22+; you are running node {major_version}.\n\n"
+            "Please update to the latest LTS release, using your preferred package manager\n"
+            "or following instructions here: https://nodejs.org/en/download"
+        )
 
 
 def main():
-    os.environ["MYSTMD_READABLE_NAME"] = "Jupyter Book"
-    os.environ["MYSTMD_BINARY_NAME"] = "jupyter-book"
-    os.environ["MYSTMD_HOME_URL"] = "https://jupyterbook.org"
+    # Find NodeJS (and potential new PATH)
+    binary_path = os.environ.get("PATH", os.defpath)
+    try:
+        node_path, os_path = find_any_node(binary_path, nodeenv_version=NODEENV_VERSION)
+    except NodeEnvCreationError as err:
+        message = textwrap.indent(err.args[0], "    ")
+        raise SystemExit(
+            "💥 The attempt to install Node.js was unsuccessful.\n"
+            f"🔍 Underlying error:\n{message}\n\n"
+            "ℹ️  We recommend installing the latest LTS release, using your preferred package manager "
+            "or following instructions here: https://nodejs.org\n\n"
+        ) from err
+    except PermissionDeniedError as err:
+        raise SystemExit(
+            "💥 The attempt to install Node.js failed because the user denied the request.\n"
+            "ℹ️  We recommend installing the latest LTS release, using your preferred package manager "
+            "or following instructions here: https://nodejs.org\n\n"
+        ) from err
 
-    if "-v" in sys.argv:
-        show_version()
-        sys.exit(0)
+    # Build new env dict
+    node_env = {**os.environ, "PATH": os_path}
 
-    myst_main()
+    # Ensure Node.js is compatible
+    ensure_valid_version(node_path, node_env)
+
+    # Find path to compiled JS
+    js_path = (pathlib.Path(__file__).parent / "dist" / "jupyter-book.cjs").resolve()
+
+    # Build args for Node.js process
+    jb_node_args = [js_path, *sys.argv[1:]]
+    print(sys.argv[0], "app")
+    jb_env = {
+        **node_env,
+        "MYST_LANG": "PYTHON",
+        "MYSTMD_READABLE_NAME": "Jupyter Book",
+        "MYSTMD_BINARY_NAME": "jupyter-book",
+        "MYSTMD_HOME_URL": "https://jupyterbook.org",
+    }
+
+    # Invoke appropriate binary for platform
+    if platform.system() == "Windows":
+        result = subprocess.run([node_path, *jb_node_args], env=jb_env)
+        sys.exit(result.returncode)
+    else:
+        os.execve(
+            node_path,
+            [node_path.name, *jb_node_args],
+            jb_env,
+        )
 
 
 if __name__ == "__main__":
