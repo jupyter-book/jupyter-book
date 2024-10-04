@@ -45,7 +45,10 @@ A glossary of common terms used throughout Jupyter Book.
     runs on Kubernetes and utilizes a {term}`JupyterHub` in order to provide live, reproducible
     interactive computing environments that users host on GitHub.
 
-[Google Colab](https://colab.research.google.com/)
+[Google Colab](https://deepnote.com/)
+    A cloud-based data science/analysis platform that supports realtime collaboration.
+
+[Deepnote](https://colab.research.google.com/)
     A Jupyter Notebook service from Google that provides access to free computing resources,
     including GPUs and TPUs.
 
