@@ -17,13 +17,11 @@ Jupyter Book allows users to
   - a web-based interactive book and
   - a publication-quality PDF.
 
-## Governance of this project
+## Governance of This Project
 
-Jupyter Book is still developing relatively rapidly, so please be patient if things change
-or features iterate and change quickly. Once Jupyter Book hits 1.0, it will slow down
-considerably!
+Jupyter Book 2 is still developing relatively rapidly, so please be patient if things change or features iterate and change quickly.
 
-## Contribute or improve the book
+## Contribute or Improve The Book
 
 Notice a typo in the text? Want to add a cool feature so that others can enjoy the improvements to Jupyter Books?
 Check out `CONTRIBUTING.md`. We'd love your help!
