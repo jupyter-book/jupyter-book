@@ -17,16 +17,17 @@
       in
         with pkgs; {
           devShells.default = mkShell {
-            buildInputs = [
-              pkgs.nodejs_22
-              (pkgs.python3.withPackages (ps:
+            buildInputs = with pkgs; [
+              nodejs_22
+              (python3.withPackages (ps:
                 with ps; [
                   jupyter-server
                   ipykernel
                 ]))
-              pkgs.texliveMedium
-              pkgs.libwebp
-              pkgs.imagemagick
+              texliveMedium
+              libwebp
+              imagemagick
+              hatch
             ];
           };
         }
