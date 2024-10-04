@@ -163,7 +163,7 @@ def test_toc_latex_parts(cli: CliRunner, temp_with_override, file_regression):
     assert result.exit_code == 0, result.output
 
     # reading the tex file
-    path_output_file = path_output.joinpath("_build", "latex", "python.tex")
+    path_output_file = path_output.joinpath("_build", "latex", "toc-tests.tex")
     file_content = TexSoup(path_output_file.read_text())
 
     # checking the table of contents which is a list with '\begin{itemize}'
@@ -195,7 +195,7 @@ def test_toc_latex_urllink(cli: CliRunner, temp_with_override, file_regression):
     assert result.exit_code == 0, result.output
 
     # reading the tex file
-    path_output_file = path_output.joinpath("_build", "latex", "python.tex")
+    path_output_file = path_output.joinpath("_build", "latex", "toc-tests.tex")
     file_content = TexSoup(path_output_file.read_text())
 
     # checking the table of contents which is a list with the first '\begin{itemize}'
