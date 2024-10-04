@@ -132,3 +132,5 @@ dist
 /_build/
 # Jupyter Book (via myst) build outputs
 _build
+.venv
+__pycache__/
