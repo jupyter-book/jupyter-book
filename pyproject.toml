@@ -90,7 +90,7 @@ testing = [
     "cookiecutter",
     "coverage",
     "jupytext",
-    "matplotlib",
+    "pandas",
     "pyppeteer",
     "pytest>=6.2.4",
     "pytest-cov",
@@ -101,6 +101,8 @@ testing = [
     "sphinx_inline_tabs",
     "pydata-sphinx-theme>=0.15.3",
     "texsoup",
+    "numpy>=2",
+    "matplotlib",
 ]
 
 [project.scripts]
