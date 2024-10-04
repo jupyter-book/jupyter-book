@@ -57,12 +57,13 @@ def main():
 
     # Build args for Node.js process
     jb_node_args = [js_path, *sys.argv[1:]]
-    print(sys.argv[0], "app")
+    binary_name = os.path.basename(sys.argv[0])
+
     jb_env = {
         **node_env,
         "MYST_LANG": "PYTHON",
         "MYSTMD_READABLE_NAME": "Jupyter Book",
-        "MYSTMD_BINARY_NAME": "jupyter-book",
+        "MYSTMD_BINARY_NAME": binary_name,
         "MYSTMD_HOME_URL": "https://jupyterbook.org",
     }
 
