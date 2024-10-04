@@ -42,6 +42,7 @@ final:
     launch_buttons:
       binderhub_url: ''
       colab_url: ''
+      deepnote_url: ''
       jupyterhub_url: ''
       notebook_interface: classic
       thebe: false
