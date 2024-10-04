@@ -6,10 +6,6 @@ on:
     # Runs on pushes targeting the default branch
     branches: [next]
   workflow_dispatch:
-env:
-  # `BASE_URL` determines the website is served from, including CSS & JS assets
-  # You may need to change this to `BASE_URL: ''`
-  BASE_URL: /${{ github.event.repository.name }}
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
