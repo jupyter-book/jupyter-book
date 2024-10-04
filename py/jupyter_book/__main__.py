@@ -3,28 +3,24 @@ import pathlib
 import platform
 import subprocess
 import sys
-import re
 import textwrap
 
-from .nodeenv import find_any_node, PermissionDeniedError, NodeEnvCreationError
+from .nodeenv import (
+    find_valid_node,
+    PermissionDeniedError,
+    NodeEnvCreationError,
+    NodeVersionError,
+)
 
 __version__ = "2.0.0a0"
 
 NODEENV_VERSION = "18.0.0"
 
 
-def ensure_valid_version(node_path, node_env):
-    # Check version
-    _version = subprocess.run(
-        [node_path, "-v"], capture_output=True, check=True, text=True, env=node_env
-    ).stdout
-    major_version_match = re.match(r"v(\d+).*", _version)
-
-    if major_version_match is None:
-        raise SystemExit(f"MyST could not determine the version of Node.js: {_version}")
-    major_version = int(major_version_match[1])
+def test_node_version(triple_version):
+    major_version = triple_version[0]
     if not (major_version in {18, 20, 22} or major_version > 22):
-        raise SystemExit(
+        raise NodeVersionError(
             f"Jupyter Book requires node 18, 20, or 22+; you are running node {major_version}.\n\n"
             "Please update to the latest LTS release, using your preferred package manager\n"
             "or following instructions here: https://nodejs.org/en/download"
@@ -35,7 +31,9 @@ def main():
     # Find NodeJS (and potential new PATH)
     binary_path = os.environ.get("PATH", os.defpath)
     try:
-        node_path, os_path = find_any_node(binary_path, nodeenv_version=NODEENV_VERSION)
+        node_path, os_path = find_valid_node(
+            binary_path, test_version=test_node_version, nodeenv_version=NODEENV_VERSION
+        )
     except NodeEnvCreationError as err:
         message = textwrap.indent(err.args[0], "    ")
         raise SystemExit(
@@ -53,9 +51,6 @@ def main():
 
     # Build new env dict
     node_env = {**os.environ, "PATH": os_path}
-
-    # Ensure Node.js is compatible
-    ensure_valid_version(node_path, node_env)
 
     # Find path to compiled JS
     js_path = (pathlib.Path(__file__).parent / "dist" / "jupyter-book.cjs").resolve()

@@ -1,6 +1,7 @@
 import os
 import pathlib
 import platform
+import re
 import shutil
 import subprocess
 import sys
@@ -15,8 +16,20 @@ class PermissionDeniedError(Exception): ...
 class NodeEnvCreationError(Exception): ...
 
 
+class NodeVersionError(Exception): ...
+
+
 def is_windows():
     return platform.system() == "Windows"
+
+
+def get_triple_node_version(node_path):
+    # Check version
+    _version = subprocess.run(
+        [node_path, "-v"], capture_output=True, check=True, text=True
+    ).stdout
+    match = re.match(r"^v(\d+)\.(\d+)\.(\d+).*$", _version)
+    return [int(x) for x in match.groups()]
 
 
 def find_installed_node():
@@ -59,11 +72,23 @@ def create_nodeenv(env_path, version):
         return env_path
 
 
-def find_any_node(binary_path, nodeenv_version):
+def find_valid_node(binary_path, nodeenv_version, test_version):
+    # First, try local Node
     node_path = find_installed_node()
     if node_path is not None:
-        return pathlib.Path(node_path).absolute(), binary_path
+        absolute_node_path = pathlib.Path(node_path).absolute()
+        version = get_triple_node_version(absolute_node_path)
 
+        # Validate the version
+        try:
+            test_version(version)
+        except NodeVersionError as err:
+            message = err.args[0]
+            print(message)
+        else:
+            return absolute_node_path, binary_path
+
+    # Otherwise, fallback on installing from nodeenv
     nodeenv_path = find_nodeenv_path(nodeenv_version)
     if not nodeenv_path.exists():
         print(
