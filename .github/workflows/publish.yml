@@ -11,7 +11,7 @@ jobs:
     uses: ./.github/workflows/tests.yml
   publish:
     # Account for v2 pre-releases
-    if: ${{ startsWith(github.event.release.tag_name, "v1") }}
+    if: ${{ startsWith(github.event.release.tag_name, 'v1') }}
     name: publish
     needs: [tests] # require tests to pass before deploy runs
     runs-on: ubuntu-latest
