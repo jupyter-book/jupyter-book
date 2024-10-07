@@ -49,8 +49,8 @@ launch_buttons:
 
 parse:
   myst_substitutions:
-      sub3: My _global_ value!
-  myst_enable_extensions:  # default extensions to enable in the myst parser. See https://myst-parser.readthedocs.io/en/latest/using/syntax-optional.html
+    sub3: My _global_ value!
+  myst_enable_extensions: # default extensions to enable in the myst parser. See https://myst-parser.readthedocs.io/en/latest/using/syntax-optional.html
     - amsmath
     - colon_fence
     - deflist
@@ -70,11 +70,12 @@ latex:
 sphinx:
   recursive_update: true
   config:
-    bibtex_reference_style: author_year  # or label, super, \supercite
+    bibtex_reference_style: author_year # or label, super, \supercite
     # unknown_mime_type - application/vnd.plotly.v1+json and application/vnd.bokehjs_load.v0+json
     # domains - sphinx_proof.domain::prf needs to have `resolve_any_xref` method
     # mime_priority - latex priority not set in myst_nb for text/html, application/javascript
-    suppress_warnings: ["mystnb.unknown_mime_type", "myst.domains", "mystnb.mime_priority"]
+    suppress_warnings:
+      ["mystnb.unknown_mime_type", "myst.domains", "mystnb.mime_priority"]
     copybutton_prompt_text: "$"
     nb_execution_show_tb: True
     nb_execution_timeout: 120
@@ -101,11 +102,12 @@ sphinx:
         - null
     language: en
     latex_elements:
-        preamble: |
-          \newcommand\N{\mathbb{N}}
-          \newcommand\floor[1]{\lfloor#1\rfloor}
-          \newcommand{\bmat}{\left[\begin{array}}
-          \newcommand{\emat}{\end{array}\right]}
+      sphinxsetup: "iconpackage=fontawesome"
+      preamble: |
+        \newcommand\N{\mathbb{N}}
+        \newcommand\floor[1]{\lfloor#1\rfloor}
+        \newcommand{\bmat}{\left[\begin{array}}
+        \newcommand{\emat}{\end{array}\right]}
     # TODO: #917 this path will be the default in sphinx v4
     # mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
     # However, it is incompatible with the mathjax config below for macros
@@ -120,7 +122,7 @@ sphinx:
       .Rmd:
         - jupytext.reads
         - fmt: Rmd
-    rediraffe_branch: 'master'
+    rediraffe_branch: "master"
     rediraffe_redirects:
       content-types/index.md: file-types/index.md
       content-types/markdown.md: file-types/markdown.md
