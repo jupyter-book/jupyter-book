@@ -114,7 +114,7 @@ This release represents a stabilisation of the jupyter-book ecosystem. It featur
 A big **thank you** to all contributors and maintainers of these underlying packages!
 
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > This release brings in updates to `myst-parser`. A notable change is that of the markdown link syntax, which [was extended](https://myst-parser.readthedocs.io/en/latest/develop/_changelog.html#extended-markdown-links) to support more constructs. The syntax behind this change is outlined in https://mep.mystmd.org/en/latest/meps/mep-0002/.
 
 
