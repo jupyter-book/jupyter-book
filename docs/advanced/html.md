@@ -163,8 +163,7 @@ Analytics) into the following directive in your configuration file:
 
 ```yaml
 html:
-  analytics:
-    google_analytics_id: G-XXXXXXX
+  google_analytics_id: G-XXXXXXX
 ```
 
 :::{seealso}
