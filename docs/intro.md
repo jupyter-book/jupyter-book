@@ -162,11 +162,11 @@ Explore this book {fas}`arrow-right`
 :margin: 3
 :class-body: text-center
 :class-header: bg-light text-center
-:link: https://the-turing-way.netlify.app
+:link: https://book.the-turing-way.org
 
 **The Turing Way**
 ^^^
-```{image} https://the-turing-way.netlify.app/_static/logo-detail-with-text.svg
+```{image} https://book.the-turing-way.org/_static/logo-detail-with-text.svg
 :height: 100
 ```
 
