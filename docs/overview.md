@@ -33,11 +33,8 @@ Publish to a website that allows users to interact with widgets and computation 
 Create cross-references to content from other documents and sites to give users a deeper, richer reading experience.
 :::
 
-
 ::::
 
 ## Acknowledgements
 
-Jupyter Book is supported by an [open community of contributors](https://github.com/executablebooks/jupyter-book/graphs/contributors), many of whom come from [the Executable Books Community](https://executablebooks.org) and [the Jupyter community](https://jupyter.org/community).
-
-
+Jupyter Book is supported by an [open community of contributors](https://github.com/executablebooks/jupyter-book/graphs/contributors), many of whom come from the [Jupyter community](https://jupyter.org/community) and the [Executable Books Community](https://executablebooks.org).
