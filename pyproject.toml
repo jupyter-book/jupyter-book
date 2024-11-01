@@ -21,6 +21,16 @@ classifiers = [
 
 requires-python = ">=3.9"
 dynamic = ["version", "description", "authors", "urls", "keywords", "license"]
+dependencies = [
+  # Ensure that `jupyter book` works`
+  "jupyter-core"
+  # Ensure that kernels are found out of the box
+  # This is not required, but is a nice-to-have
+  "jupyter-server",
+  # ipykernel is commonly used 
+  # This is not required, but is a nice-to-have
+  "ipykernel",
+]
 
 [project.readme]
 file = "README.md"
@@ -29,12 +39,6 @@ content-type = "text/markdown"
 [project.scripts]
 jb = "jupyter_book.__main__:main"
 jupyter-book = "jupyter_book.__main__:main"
-
-[project.optional-dependencies]
-execute = [
-  "ipykernel",
-  "jupyter-server",
-]
 
 [tool.hatch.build.hooks.selector]
 default-variant = "pypi"
