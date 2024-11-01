@@ -182,7 +182,7 @@ site:
   #   logo: site_logo.png
 ```
 
-## Building a pdf
+## Building a PDF
 
 Now that we have all of the necessary information required to build our PDF, we can instruct Jupyter Book to create it:
 
