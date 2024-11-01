@@ -1,5 +1,7 @@
 # See docs at: https://mystmd.org/guide/frontmatter
 version: 1
+extends:
+  - https://raw.githubusercontent.com/jupyter-book/meta/refs/heads/main/myst.yml
 project:
   # title:
   # description:
@@ -31,12 +33,4 @@ project:
         - file: about/toolchain.md
     - file: glossary.md
     - file: help.md
-site:
-  template: book-theme
-  actions:
-    - title: See mystmd
-      url: https://mystmd.org/guide
-  options:
-    favicon: images/favicon.ico
-    logo: images/logo.svg
-    logo_dark: images/logo-dark.svg
+
