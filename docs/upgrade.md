@@ -16,11 +16,11 @@ but you might need to clean up a few things by hand to eliminate warnings.
 
 (section:structure-legacy-book)=
 
-## Structure of a {term}`Legacy Book`
+## Structure of a Legacy Book
 
 Before we can upgrade a {term}`Legacy Book`, we must first discuss its important files and structure.
 
-### Generating a {term}`Legacy Book`
+### Generating a Legacy Book
 
 Jupyter Book 1 uses [the Sphinx documentation engine](https://www.sphinx-doc.org/en/master/) to build each book into publication-quality books and documents. Sphinx was originally designed for documentation generation, such as <https://docs.python.org>, and has a long historical legacy. In order to hide the complexity that stems from making a documentation engine behave like a book authoring tool, Jupyter Book 1 introduced its own configuration files and CLI to build a book. Consequently, a {term}`Legacy Book` is required to have a number of configuration files (see [](#legacy-config-files)).
 
@@ -156,7 +156,7 @@ matplotlib
 numpy
 ```
 
-## Structure of a {term}`New Book`
+## Structure of a New Book
 
 Now that we know what a {term}`Legacy Book` looks like, we can compare its structure with a {term}`New Book`.
 
@@ -202,7 +202,7 @@ Just like Jupyter Book 1, Jupyter Book 2 understands academic references defined
 
 Neither Jupyter Book 1 and 2 do anything useful with a `requirements.txt` file, but it is useful when adding support for Binder connectivity.
 
-## Upgrading a {term}`Legacy Book`
+## Upgrading a Legacy Book
 
 Whilst Jupyter Book 1 was built upon the _Sphinx_ document engine, Jupyter Book 2 is built upon the [_MyST-MD_ engine](https://mystmd.org). The reasons for this transition are outlined in [](./about/why-switch-mystmd.md). Unlike Jupyter Book 1, Jupyter Book 2 does not try to hide the fact that it is built on a different engine; MyST-MD is designed from the ground up to be good at technical writing, and the Executable Books team believe that it is both powerful and easy-to-use. As such, Jupyter Book 2 builds on top of MyST-MD, using the same CLI and `myst.yml`.
 
@@ -212,7 +212,7 @@ Unlike Jupyter Book 1, Jupyter Book 2 does not try to hide the underlying engine
 
 % TODO: link or embed myst.yml?
 
-Jupyter Book will automatically upgrade a {term}`Legacy Book` to a {term}`New Book` by looking for the `_config.yml` file described in [](#section:structure-legacy-book). To do this, we need to run the _new_ `jupyter book` command in the {term}`Legacy Book` directory. Let's try this tool with the example book given above.
+Jupyter Book will automatically upgrade a {term}`Legacy Book` to a {term}`New Book` by looking for the `_config.yml` file described in [](#section:structure-legacy-book). To do this, we need to run the _new_ `jupyter book` command in the Legacy Book directory. Let's try this tool with the example book given above.
 
 % TODO: what should this report?
 
@@ -252,7 +252,7 @@ Learn more about this CLI and MyST Markdown at: https://mystmd.org
 Are you willing to proceed? (Y/n)
 ```
 
-Pressing <kbd>Y</kbd> will start the upgrade process, during which time Jupyter Book reports the steps that take place, e.g. the lines highlighted in [](#code:upgrade-steps). For this particular book, the configuration files from the {term}`Legacy Book` are migrated:
+Pressing <kbd>Y</kbd> will start the upgrade process, during which time Jupyter Book reports the steps that take place, e.g. the lines highlighted in [](#code:upgrade-steps). For this particular book, the configuration files from the Legacy Book are migrated:
 
 ```{code} shell
 :linenos:
