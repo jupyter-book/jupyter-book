@@ -1,7 +1,7 @@
 ---
-title: Upgrade an Existing Book From Jupyter Book 1
+title: Upgrade an existing book from Jupyter Book 1
 subtitle: Use automated tools to upgrade a legacy (Sphinx-based) Jupyter Book project to the new MyST engine.
-# subject: MyST Quickstart Tutorial
+# subject: myst quickstart tutorial
 short_title: Upgrade an Old Book ⭐
 ---
 
@@ -16,7 +16,7 @@ but you might need to clean up a few things by hand to eliminate warnings.
 
 (section:structure-legacy-book)=
 
-## Structure of a Legacy Book
+## Structure of a legacy book
 
 Before we can upgrade a {term}`Legacy Book`, we must first discuss its important files and structure.
 
@@ -57,7 +57,7 @@ references.bib
 _toc.yml
 ```
 
-### Configuration Files
+### Configuration files
 
 The most important files in a {term}`Legacy Book` are the [`_config.yml`](#code:example-config) and [`_toc.yml`](#code:example-toc) files described in [](#legacy-config-files). These files control what a book contains and what it looks like.
 
@@ -73,7 +73,7 @@ The most important files in a {term}`Legacy Book` are the [`_config.yml`](#code:
 
 #######################################################################################
 # Book settings
-title                       : My Book  # The title of the book. Will be placed in the left navbar.
+title                       : My Book  # The title of the book. will be placed in the left navbar.
 author                      : Captain Jupyter  # The author of the book
 copyright                   : "2024"  # Copyright year to be placed in the footer
 logo                        : logo.png  # A path to the book logo
@@ -104,7 +104,7 @@ chapters:
 
 Some advanced books may have chosen to stop using Jupyter Book's configuration and use Sphinx directly. These books do not define a `_config.yml`, instead they utilise a Sphinx-style `conf.py` file.
 
-### Bibliography File
+### Bibliography file
 
 In addition to the configuration files, there may also a bibliography file called [`references.bib`](#code:example-bib), which contains a list of references to academic publications.
 
@@ -128,7 +128,7 @@ In addition to the configuration files, there may also a bibliography file calle
 
 This file contains references written in the [BibTeX File Format](https://www.bibtex.org/Format/), which is well-understood by tools such as the [LaTeX document preparation system](https://www.latex-project.org/about/) that is used for PDF export.
 
-### Requirements File
+### Requirements file
 
 Finally, a [`requirements.txt`](#code:example-requirements) file is often used to define the Python packages required to build the book. This file is normally used both to install Jupyter Book (and related tools) and run any executable Python code.
 
@@ -142,11 +142,11 @@ matplotlib
 numpy
 ```
 
-## Structure of a New Book
+## Structure of a new book
 
 Now that we know what a {term}`Legacy Book` looks like, we can compare its structure with a {term}`New Book`.
 
-### Configuration Files
+### Configuration files
 
 The new Jupyter Book has a single configuration file `myst.yml`. See the [](#code:myst-example-config) for the `myst.yml` that corresponds to [](#code:example-config).
 
@@ -180,15 +180,15 @@ site:
 
 It can be seen that [](#code:myst-example-config) has a `toc` section that looks very similar to [](#code:example-toc). This style of defining a TOC is designed to be easier to read and write.
 
-### Bibliography File
+### Bibliography file
 
 Just like Jupyter Book 1, Jupyter Book 2 understands academic references defined in `references.bib`.
 
-### Requirements File
+### Requirements file
 
 Neither Jupyter Book 1 and 2 do anything useful with a `requirements.txt` file, but it is useful when adding support for Binder connectivity.
 
-## Upgrading a Legacy Book
+## Upgrading a legacy book
 
 Whilst Jupyter Book 1 was built upon the _Sphinx_ document engine, Jupyter Book 2 is built upon the [_MyST-MD_ engine](https://mystmd.org). The reasons for this transition are outlined in [](./about/why-switch-mystmd.md). Unlike Jupyter Book 1, Jupyter Book 2 does not try to hide the fact that it is built on a different engine; MyST-MD is designed from the ground up to be good at technical writing, and the Executable Books team believe that it is both powerful and easy-to-use. As such, Jupyter Book 2 builds on top of MyST-MD, using the same CLI and `myst.yml`.
 

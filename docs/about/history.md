@@ -1,7 +1,7 @@
 ---
-title: History of the Jupyter Book Project
+title: History of the Jupyter Book project
 subtitle: A brief history of the Jupyter Book project, and the journey it took along the way.
-# subject: MyST Quickstart Tutorial
+# subject: myst quickstart tutorial
 short_title: History of Jupyter Book
 ---
 
@@ -17,7 +17,7 @@ gantt
 
 :::
 
-## A History of Jupyter Book
+## A history of Jupyter Book
 ### Jupyter Book 0.1-0.7
 
 The Jupyter Book project was started in June of 2018, with [Chris Holdgraf](https://chrisholdgraf.com/) writing [the first commit](https://github.com/executablebooks/jupyter-book/commit/4fc6636c652cebea71556f634c9a37e0740ab26f). Initially, work was focussed on building a series of scripts to compile Jupyter Notebooks into a textbook using [Jekyll](https://jekyllrb.com/).

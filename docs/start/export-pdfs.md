@@ -1,5 +1,5 @@
 ---
-title: Export PDFs
+title: Export pdfs
 subtitle: Create beautifully typeset PDFs from your MyST project.
 subject: Quickstart Tutorial
 ---
@@ -8,7 +8,7 @@ subject: Quickstart Tutorial
 The goal of this tutorial is to explore the ways in which the MyST-MD engine can be used to create beautiful, well-typeset PDF documents.
 :::
 
-## Choosing a Template
+## Choosing a template
 
 Jupyter Book uses [Typst](https://typst.app) and [LaTeX](https://www.latex-project.org/) to typeset books into a high-quality PDFs through hand-crafted templates. There are a range of different templates available, suited to different end-formats e.g. the [Springer](https://link.springer.com/journals) journals, or [arXiv](https://arxiv.org/) preprint archive.
 
@@ -43,7 +43,7 @@ For this tutorial, we'll use the `lapreprint-typst` template, which requires Typ
 A screenshot of a PDF document export using the `lapreprint-typst` template.
 :::
 
-## Configuring the Template
+## Configuring the template
 
 One of the most important features of templates is `parts`. A `part` of a template is a distinct piece of a document that is semantically important, such as the _abstract_, or _acknowledgements_. You can read more about `parts` in <xref:guide/document-parts>.
 
@@ -116,7 +116,7 @@ A photograph of some beautiful mountains to look at whilst reading.
 
 Now that our document has an `abstract`, we can set-up the export configuration.
 
-## Adding Missing Frontmatter
+## Adding missing frontmatter
 
 The MyST engine that powers Jupyter Book is designed for technical and scientific communication. It is not surprising, therefore, that concepts like authorship are very important. Before we can set-up a PDF export, we need to ensure that our project has information about who the authors are! Because the same author (you) has authored every page in this tutorial, we'll add the author information to the `project` section in `myst.yml`. Sometimes, you might have different authors for different files, in which case you can use both `myst.yml` and the frontmatter in each page.
 
@@ -149,7 +149,7 @@ site:
   #   logo: site_logo.png
 ```
 
-## Defining an Export
+## Defining an export
 
 Jupyter Book projects are usually made up of multiple different files. In order to produce a single PDF export, we need to inform Jupyter Book of the files that we want to include, and their relative order. Let's define a new `pdf` export in `myst.yml` that exports only `intro.md`:
 
@@ -182,7 +182,7 @@ site:
   #   logo: site_logo.png
 ```
 
-## Building a PDF
+## Building a pdf
 
 Now that we have all of the necessary information required to build our PDF, we can instruct Jupyter Book to create it:
 

@@ -1,5 +1,5 @@
 ---
-title: Writing In MyST Markdown
+title: Writing in myst markdown
 short_title: Add New Content
 subtitle: Use MyST Markdown to author rich narrative and integrate computation.
 subject: Quickstart Tutorial
@@ -11,7 +11,7 @@ The goal of this tutorial is to explore a sample of the ways in which MyST Markd
 
 (tutorial:creating-new-file)=
 
-## Creating a New File
+## Creating a new file
 
 After following [](init.md), our book has some metadata in a `myst.yml` that adds some metadata including a title, description, and an author list. Let's now add some content by creating a new file `intro.md`. Here's an example of what you might write:
 
