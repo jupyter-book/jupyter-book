@@ -1,5 +1,5 @@
 ---
-title: Writing in myst markdown
+title: Writing in MyST Markdown
 short_title: Add New Content
 subtitle: Use MyST Markdown to author rich narrative and integrate computation.
 subject: Quickstart Tutorial
