@@ -13,7 +13,7 @@ project:
     MyST: Markedly Structured Text
     CLI: Command-Line Interface
     TOC: Table of Contents
-  github: https://github.com/executablebooks/jupyter-book-myst
+  github: https://github.com/jupyter-book/jupyter-book
   toc:
     - file: overview.md
       title: Overview
