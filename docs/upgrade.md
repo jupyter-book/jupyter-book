@@ -20,8 +20,6 @@ but you might need to clean up a few things by hand to eliminate warnings.
 
 Before we can upgrade a {term}`Legacy Book`, we must first discuss its important files and structure.
 
-### Generating a Legacy Book
-
 Jupyter Book 1 uses [the Sphinx documentation engine](https://www.sphinx-doc.org/en/master/) to build each book into publication-quality books and documents. Sphinx was originally designed for documentation generation, such as <https://docs.python.org>, and has a long historical legacy. In order to hide the complexity that stems from making a documentation engine behave like a book authoring tool, Jupyter Book 1 introduced its own configuration files and CLI to build a book. Consequently, a {term}`Legacy Book` is required to have a number of configuration files (see [](#legacy-config-files)).
 
 :::{table} {term}`Legacy Book` configuration files.
@@ -34,46 +32,29 @@ Jupyter Book 1 uses [the Sphinx documentation engine](https://www.sphinx-doc.org
 
 :::
 
-An example {term}`Legacy Book` can be seen by running the _legacy_ Jupyter Book `create` command:
+An example {term}`Legacy Book` can be seen at <https://github.com/executablebooks/demo-book/>:
 
 ```shell
-$ jupyter book --version
-Jupyter Book      : 1.0.2
-External ToC      : 1.0.1
-MyST-Parser       : 2.0.0
-MyST-NB           : 1.1.1
-Sphinx Book Theme : 1.1.3
-Jupyter-Cache     : 1.0.0
-NbClient          : 0.10.0
-
-$ jupyter book create ./book
-===============================================================================
-
-Your book template can be found at
-
-    book/
-
-===============================================================================
+$ git clone https://github.com/executablebooks/demo-book
+$ cd demo-book
 ```
 
-If we inspect the contents of the generated `book` directory, it can be seen that a number of files have been created:
+If we inspect the contents of the `my_book` directory, a number of files can be seen:
 
 ```{code} shell
-:caption: Contents of a {term}`Legacy Book` created using the legacy `jupyter book create` command.
+:caption: Contents of the {term}`Legacy Book` at <https://github.com/executablebooks/demo-book/>.
 :name: legacy-contents
 
-$ ls ./book
-.
-..
+$ ls ./my_book
 _config.yml
-_toc.yml
+content.md
 intro.md
 logo.png
-markdown-notebooks.md
 markdown.md
+markdown-notebooks.md
 notebooks.ipynb
 references.bib
-requirements.txt
+_toc.yml
 ```
 
 ### Configuration Files
@@ -81,16 +62,21 @@ requirements.txt
 The most important files in a {term}`Legacy Book` are the [`_config.yml`](#code:example-config) and [`_toc.yml`](#code:example-toc) files described in [](#legacy-config-files). These files control what a book contains and what it looks like.
 
 ```{code} yaml
-:filename: _config.yml
+:filename: my_book/_config.yml
 :name: code:example-config
-:caption: Extract from the `_config.yml` file produced by the legacy `jupyter book create` command.
+:caption: Extract from the `_config.yml` file defined in <https://github.com/executablebooks/demo-book/>.
 
+#######################################################################################
+# A default configuration that will be loaded for all jupyter books
+# See the documentation for help and more options:
+# https://jupyterbook.org/customize/config.html
+
+#######################################################################################
 # Book settings
-# Learn more at https://jupyterbook.org/customize/config.html
-
-title: My sample book
-author: The Jupyter Book Community
-logo: logo.png
+title                       : My Book  # The title of the book. Will be placed in the left navbar.
+author                      : Captain Jupyter  # The author of the book
+copyright                   : "2024"  # Copyright year to be placed in the footer
+logo                        : logo.png  # A path to the book logo
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
@@ -101,9 +87,9 @@ execute:
 ```
 
 ```{code} yaml
-:filename: _toc.yml
+:filename: my_book/_toc.yml
 :name: code:example-toc
-:caption: The `_toc.yml` file produced by the legacy `jupyter book create` command.
+:caption: The `_toc.yml` file defined in <https://github.com/executablebooks/demo-book/>.
 
 # Table of contents
 # Learn more at https://jupyterbook.org/customize/toc.html
@@ -120,12 +106,12 @@ Some advanced books may have chosen to stop using Jupyter Book's configuration a
 
 ### Bibliography File
 
-In addition to the configuration files, there is also a bibliography file called [`references.bib`](#code:example-bib), which contains a list of references to academic publications.
+In addition to the configuration files, there may also a bibliography file called [`references.bib`](#code:example-bib), which contains a list of references to academic publications.
 
 ```{code} bibtex
-:filename: references.bib
+:filename: my_book/references.bib
 :name: code:example-bib
-:caption: Extract from the `references.bib` file produced by the legacy `jupyter book create` command.
+:caption: Extract from the `references.bib` file defined in <https://github.com/executablebooks/demo-book/>.
 
 @inproceedings{holdgraf_evidence_2014,
 	address = {Brisbane, Australia, Australia},
@@ -220,7 +206,7 @@ First, let's confirm that we're now using the _new_ Jupyter Book tool:
 
 ```{code} shell
 $ jupyter book --version
-
+v2.0.0-alpha.0
 ```
 
 We can then run the `jupyter book` command, which will detect the {term}`Legacy Book` and ask to perform an in-place upgrade:
@@ -232,11 +218,11 @@ We can then run the `jupyter book` command, which will detect the {term}`Legacy 
 
 $ cd book
 $ jupyter book
-Welcome to the Jupyter Book (myst) CLI! 🎉 🚀
+Welcome to the Jupyter Book (via myst) CLI! 🎉 🚀
 
 jupyter book init walks you through creating a myst.yml file.
 
-You can use Jupyter Book (myst) to:
+You can use Jupyter Book (via myst) to:
 
  - create interactive websites from markdown and Jupyter Notebooks 📈
  - build & export professional PDFs and Word documents 📄
@@ -270,7 +256,7 @@ We can see that the migration step has created some {term}`Hidden Files` (see []
 ```{code} shell
 :linenos:
 :emphasize-lines: 5,14
-:caption: Contents of an {term}`Legacy Book` upgraded with the new `jupyter book create` command.
+:caption: Contents of an {term}`Legacy Book` upgraded with the new `jupyter book` command.
 :name: upgraded-contents
 
 $ ls -a
@@ -292,7 +278,7 @@ requirements.txt
 Finally, Jupyter Book then asks us whether we'd like to run `jupyter book start`.
 
 ```{code} shell
-? Would you like to run myst start now?
+? Would you like to run jupyter book start now?
 ```
 
 We can press the {kbd}`y` key in this terminal window to launch a MyST webserver. Clicking the generated link (or pasting it into a new browser tab) will allow us to preview our site and see changes quickly reflected in the browser (see [](#image:screenshot)).

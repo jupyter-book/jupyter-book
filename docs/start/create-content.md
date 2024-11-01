@@ -13,7 +13,7 @@ The goal of this tutorial is to explore a sample of the ways in which MyST Markd
 
 ## Creating a New File
 
-After following [](init.md), our book has some metadata describing its content. Let's now add some content by creating a new file `intro.md`. Here's an example of what you might write:
+After following [](init.md), our book has some metadata in a `myst.yml` that adds some metadata including a title, description, and an author list. Let's now add some content by creating a new file `intro.md`. Here's an example of what you might write:
 
 ::::{myst}
 
@@ -46,6 +46,6 @@ A photograph of some beautiful mountains to look at whilst reading.
 
 ::::
 
-The above "widget" shows both the contents of `intro.md`, and what the underlying MyST-MD engine produces when you build the project as a website. Whilst this is a contrived example, it gives a taste of some of the things you can do with Jupyter Book using MyST Markdown and the MyST-MD engine. For more information on the syntax of MyST Markdown, and the features supported by MyST-MD, see [the MyST-MD authoring documentation](xref:guide/frontmatter).
+The above "widget" shows both the contents of `intro.md`, and what the underlying MyST-MD engine produces when you build the project as a website. To learn more about the supported syntax of MyST Markdown, and the features supported by the MyST-MD engine that powers Jupyter Book, see [the MyST-MD authoring documentation](xref:guide/frontmatter).
 
-Now we're ready to [](./build-websites.md).
+Now that we have some content, we're ready to [](./build-websites.md).
