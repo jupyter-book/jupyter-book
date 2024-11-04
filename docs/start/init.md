@@ -38,7 +38,7 @@ project:
   # keywords: []
   # authors: []
   # github:
-  # To autogenerate a table of contents, run "jupyter book init --write-toc"
+  # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
 site:
   template: book-theme
   # options:
