@@ -18,9 +18,7 @@ but you might need to clean up a few things by hand to eliminate warnings.
 
 ## Structure of a legacy book
 
-Before we can upgrade a {term}`Legacy Book`, we must first discuss its important files and structure.
-
-Jupyter Book 1 uses [the Sphinx documentation engine](https://www.sphinx-doc.org/en/master/) to build each book into publication-quality books and documents. Sphinx was originally designed for documentation generation, such as <https://docs.python.org>, and has a long historical legacy. In order to hide the complexity that stems from making a documentation engine behave like a book authoring tool, Jupyter Book 1 introduced its own configuration files and CLI to build a book. Consequently, a {term}`Legacy Book` is required to have a number of configuration files (see [](#legacy-config-files)).
+Before we can upgrade a {term}`Legacy Book`, we must first discuss its important files and structure. Jupyter Book 1 uses [the Sphinx documentation engine](https://www.sphinx-doc.org/en/master/) to build each book into publication-quality books and documents. Sphinx was originally designed for documentation generation, such as <https://docs.python.org>, and has a long historical legacy. In order to hide the complexity that stems from making a documentation engine behave like a book authoring tool, Jupyter Book 1 introduced its own configuration files and CLI. Consequently, a {term}`Legacy Book` is required to have a number of configuration files shown in @legacy-config-files.
 
 :::{table} {term}`Legacy Book` configuration files.
 :name: legacy-config-files
@@ -32,19 +30,16 @@ Jupyter Book 1 uses [the Sphinx documentation engine](https://www.sphinx-doc.org
 
 :::
 
-An example {term}`Legacy Book` can be seen at <https://github.com/executablebooks/demo-book/>:
+The most important files in a {term}`Legacy Book` are the `_toc.yml` and `_config.yml` files described in [](#legacy-config-files). These files control what a book contains and what it looks like.
 
-```shell
-$ git clone https://github.com/executablebooks/demo-book
-$ cd demo-book
-```
-
-If we inspect the contents of the `my_book` directory, a number of files can be seen:
+An example {term}`Legacy Book` can be seen at <https://github.com/executablebooks/demo-book/>. If we inspect the contents of the `my_book` directory, there are a number of files including [`_toc.yml`](#code:example-toc) and [`_config.yml`](#code:example-config):
 
 ```{code} shell
 :caption: Contents of the {term}`Legacy Book` at <https://github.com/executablebooks/demo-book/>.
 :name: legacy-contents
 
+$ git clone https://github.com/executablebooks/demo-book
+$ cd demo-book
 $ ls ./my_book
 _config.yml
 content.md
@@ -56,10 +51,6 @@ notebooks.ipynb
 references.bib
 _toc.yml
 ```
-
-### Configuration files
-
-The most important files in a {term}`Legacy Book` are the [`_config.yml`](#code:example-config) and [`_toc.yml`](#code:example-toc) files described in [](#legacy-config-files). These files control what a book contains and what it looks like.
 
 ```{code} yaml
 :filename: my_book/_config.yml
@@ -102,53 +93,13 @@ chapters:
 - file: markdown-notebooks
 ```
 
-Some advanced books may have chosen to stop using Jupyter Book's configuration and use Sphinx directly. These books do not define a `_config.yml`, instead they utilise a Sphinx-style `conf.py` file.
+Some advanced books may have chosen to migrate away from Jupyter Book's configuration files, and use Sphinx directly. These books do not define a `_config.yml`, instead they utilise a Sphinx-style `conf.py` file. Jupyter Book does not support upgrading books from Sphinx sites, for now.
 
-### Bibliography file
-
-In addition to the configuration files, there may also a bibliography file called [`references.bib`](#code:example-bib), which contains a list of references to academic publications.
-
-```{code} bibtex
-:filename: my_book/references.bib
-:name: code:example-bib
-:caption: Extract from the `references.bib` file defined in <https://github.com/executablebooks/demo-book/>.
-
-@inproceedings{holdgraf_evidence_2014,
-	address = {Brisbane, Australia, Australia},
-	title = {Evidence for {Predictive} {Coding} in {Human} {Auditory} {Cortex}},
-	booktitle = {International {Conference} on {Cognitive} {Neuroscience}},
-	publisher = {Frontiers in Neuroscience},
-	author = {Holdgraf, Christopher Ramsay and de Heer, Wendy and Pasley, Brian N. and Knight, Robert T.},
-	year = {2014}
-}
-
-...
-
-```
-
-This file contains references written in the [BibTeX File Format](https://www.bibtex.org/Format/), which is well-understood by tools such as the [LaTeX document preparation system](https://www.latex-project.org/about/) that is used for PDF export.
-
-### Requirements file
-
-Finally, a [`requirements.txt`](#code:example-requirements) file is often used to define the Python packages required to build the book. This file is normally used both to install Jupyter Book (and related tools) and run any executable Python code.
-
-```{code} text
-:filename: requirements.txt
-:name: code:example-requirements
-:caption: The `requirements.txt` file produced by the legacy `jupyter book create` command.
-
-jupyter-book
-matplotlib
-numpy
-```
-
-## Structure of a new book
+## Upgrading a legacy book
 
 Now that we know what a {term}`Legacy Book` looks like, we can compare its structure with a {term}`New Book`.
 
-### Configuration files
-
-The new Jupyter Book has a single configuration file `myst.yml`. See the [](#code:myst-example-config) for the `myst.yml` that corresponds to [](#code:example-config).
+The new Jupyter Book has a single configuration file `myst.yml`. See @code:myst-example-config for the `myst.yml` that corresponds to @code:example-config and @code:example-toc:
 
 ```{code} yaml
 :filename: myst.yml
@@ -180,25 +131,9 @@ site:
 
 It can be seen that [](#code:myst-example-config) has a `toc` section that looks very similar to [](#code:example-toc). This style of defining a TOC is designed to be easier to read and write.
 
-### Bibliography file
-
-Just like Jupyter Book 1, Jupyter Book 2 understands academic references defined in `references.bib`.
-
-### Requirements file
-
-Neither Jupyter Book 1 and 2 do anything useful with a `requirements.txt` file, but it is useful when adding support for Binder connectivity.
-
-## Upgrading a legacy book
-
-Whilst Jupyter Book 1 was built upon the _Sphinx_ document engine, Jupyter Book 2 is built upon the [_MyST-MD_ engine](https://mystmd.org). The reasons for this transition are outlined in [](./about/why-switch-mystmd.md). Unlike Jupyter Book 1, Jupyter Book 2 does not try to hide the fact that it is built on a different engine; MyST-MD is designed from the ground up to be good at technical writing, and the Executable Books team believe that it is both powerful and easy-to-use. As such, Jupyter Book 2 builds on top of MyST-MD, using the same CLI and `myst.yml`.
-
-::: {pull-quote}
-Unlike Jupyter Book 1, Jupyter Book 2 does not try to hide the underlying engine.
-:::
-
 % TODO: link or embed myst.yml?
 
-Jupyter Book will automatically upgrade a {term}`Legacy Book` to a {term}`New Book` by looking for the `_config.yml` file described in [](#section:structure-legacy-book). To do this, we need to run the _new_ `jupyter book` command in the Legacy Book directory. Let's try this tool with the example book given above.
+Jupyter Book will automatically upgrade a {term}`Legacy Book` to a {term}`New Book` if it detects the `_config.yml` file described in @section:structure-legacy-book. To do this, we need to run the _new_ `jupyter book` command in the Legacy Book directory. Let's try this tool with the example book given above.
 
 % TODO: what should this report?
 

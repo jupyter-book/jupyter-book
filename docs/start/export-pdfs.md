@@ -1,5 +1,5 @@
 ---
-title: Export pdfs
+title: Export PDFs
 subtitle: Create beautifully typeset PDFs from your MyST project.
 subject: Quickstart Tutorial
 ---
