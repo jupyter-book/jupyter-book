@@ -5,7 +5,7 @@ subject: Quickstart tutorial
 ---
 
 :::{important} Objective
-The goal of this tutorial is to use the `jupyter book init` command to create a simple projectconsisting of a single MyST Markdown file.  
+The goal of this tutorial is to use the `jupyter book init` command to create a simple project consisting of a single MyST Markdown file.  
 :::
 
 ## Generating a starting `myst.yml`
