@@ -1,7 +1,7 @@
 ---
-title: Build a Website
+title: Build a website
 subtitle: Create beautiful websites from your MyST project.
-subject: Quickstart Tutorial
+subject: Quickstart tutorial
 ---
 
 :::{important} Objective
@@ -30,7 +30,7 @@ $ jupyter book start
 
 Navigating to that URL in your web-browser will load a website which updates as you modify your book, such as adding new files or changing prose. Try e.g. changing the title of [`intro.md`](#tutorial:creating-new-file).
 
-## Declaring a Table of Contents
+## Declaring a table of contents
 
 By default, Jupyter Book will attempt to find the important files that comprise your book, and {term}`deterministically order them <Deterministic Ordering>`. Once a project becomes more complex, we should look to add our files to the table of contents (TOC). Although the MyST-MD engine is clever enough to find and organise documents in your project folder, using an explicit TOC makes it easier for new contributors to understand the structure of your book. Let's update our [`myst.yml` from the previous section](./init.md#code:myst-yml). Jupyter Book defines a `--write-toc` argument to the `init` command that automatically populates a table of contents from the files MyST-MD finds in the project folder.
 

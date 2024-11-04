@@ -1,7 +1,7 @@
 ---
 title: Install Jupyter Book 2
-subtitle: Install the Jupyter Book tools from PyPI, NPMJS, or conda-forge.
-# subject: MyST Quickstart Tutorial
+subtitle: Install the Jupyter Book tools from PyPI, npm, or conda-forge.
+# subject: MyST quickstart tutorial
 short_title: Install Jupyter Book
 ---
 
@@ -75,6 +75,17 @@ pipx install "jupyter-book>=2"
 :::
 
 :::{card}
+:header: Install with [`uv`][uv] 🚀
+
+Never heard of `uv`? See [the documentation][uv] for more.
+
+```shell:
+uv add "jupyter-book>=2"
+```
+
+:::
+
+:::{card}
 :header: Install with [`pixi`][pixi] 🔥
 
 Never heard of `pixi`? See [the documentation][pixi] for more.
@@ -103,3 +114,4 @@ npm install -g "jupyter-book@>=2"
 [pipx]: https://pipx.pypa.io/stable/
 [venv]: https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/
 [npm]: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/
+[uv]: https://docs.astral.sh/uv/

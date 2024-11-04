@@ -1,14 +1,14 @@
 ---
-title: Initialise a Project
+title: Initialise a project
 subtitle: Use the Jupyter Book CLI to quickly get started.
-subject: Quickstart Tutorial
+subject: Quickstart tutorial
 ---
 
 :::{important} Objective
-The goal of this tutorial is to use the `jupyter book init` command to start a simple project.  
+The goal of this tutorial is to use the `jupyter book init` command to create a simple project consisting of a single MyST Markdown file.  
 :::
 
-## Running `jupyter book init`
+## Generating a starting `myst.yml`
 
 Jupyter Book ships with an `init` command, which initializes a `myst` project in the current directory. Let's run the command to create a simple `myst.yml`:
 
@@ -58,11 +58,11 @@ Most of the lines in this YAML file are comments, but there are a few things to 
 `site`
 : The `site` key defines the website configuration, used by the `start` command. Here, we're telling MyST to use the book theme.
 
-## Adding Basic Frontmatter and Configuration
+## Configuring your project
 
-As described above, the `myst.yml` file has several key sections. Of particular importance is the [`project` field](#def:project) which contains the project metadata. Examples of configuration that we might add to the project frontmatter include a list of `authors`, a `description`/`title`, and a `license`. For detailed information about the possible frontmatter fields, see [the MyST-MD documentation](xref:guide/frontmatter#available-frontmatter-fields).
+A `myst.yml` file comprises multiple sections that configure different parts of the MyST engine. Of particular importance is the [`project` field](#def:project) which contains the project metadata. Examples of configuration that we might add to the project frontmatter include a list of `authors`, a `description`/`title`, and a `license`. For detailed information about the possible frontmatter fields, see [the MyST-MD documentation](xref:guide/frontmatter#available-frontmatter-fields).
 
-Here's our new `myst.yml` after adding some provenance information:
+Let's update our `myst.yml` with some information about the project:
 
 ```{code} yaml
 :filename: myst.yml
@@ -89,7 +89,7 @@ project:
     - name: Jupyter Book
       url: https://jupyterbook.org
   github: executablebooks/jupyter-book
-  # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
+  # To autogenerate a table of contents, run "jupyter book init --write-toc"
 site:
   template: book-theme
   # options:
@@ -97,4 +97,4 @@ site:
   #   logo: site_logo.png
 ```
 
-To proceed, we need to create some content. See [](create-content.md).
+To proceed with building a website or PDF, we need to create some content. See [](create-content.md).

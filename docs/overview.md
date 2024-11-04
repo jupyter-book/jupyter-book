@@ -36,5 +36,4 @@ Create cross-references to content from other documents and sites to give users 
 ::::
 
 ## Acknowledgements
-
-Jupyter Book is supported by an [open community of contributors](https://github.com/executablebooks/jupyter-book/graphs/contributors), many of whom come from the [Jupyter community](https://jupyter.org/community) and the [Executable Books Community](https://executablebooks.org).
+Jupyter Book is supported by an [open community of contributors](https://github.com/jupyter-book/jupyter-book/graphs/contributors), many of whom come from the [the MySTMD Community](https://mystmd.org) and [the Jupyter community](https://jupyter.org/community).

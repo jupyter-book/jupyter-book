@@ -1,8 +1,8 @@
 ---
-title: Publishing to the Web
-short_title: Publish a Website
+title: Publishing to the web
+short_title: Publish a website
 subtitle: Deploy your Jupyter Book to GitHub Pages, Curvenote, Netlify, and many other services.
-subject: Quickstart Tutorial
+subject: Quickstart tutorial
 ---
 
 :::{important} Objective
