@@ -1,8 +1,8 @@
 ---
 title: Referencing other books
-short_title: Reference Books
+short_title: Reference books
 subtitle: Use rich cross-references to connect with other published books.
-subject: Quickstart Tutorial
+subject: Quickstart tutorial
 ---
 
 :::{important} Objective

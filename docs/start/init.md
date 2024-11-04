@@ -1,7 +1,7 @@
 ---
 title: Initialise a project
 subtitle: Use the Jupyter Book CLI to quickly get started.
-subject: Quickstart Tutorial
+subject: Quickstart tutorial
 ---
 
 :::{important} Objective

@@ -1,15 +1,15 @@
 ---
 title: Publishing to the web
-short_title: Publish a Website
+short_title: Publish a website
 subtitle: Deploy your Jupyter Book to GitHub Pages, Curvenote, Netlify, and many other services.
-subject: Quickstart Tutorial
+subject: Quickstart tutorial
 ---
 
 :::{important} Objective
 The goal of this tutorial is to explore the ways in which a Jupyter Book can be published to the web for other people to enjoy.
 :::
 
-## Github pages
+## GitHub Pages
 
 Jupyter Book ships with support for generating the necessary configuration for deploying to GitHub Pages using GitHub Actions. Simply run the following command, and answer the prompted questions!
 

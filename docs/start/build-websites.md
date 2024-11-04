@@ -1,7 +1,7 @@
 ---
 title: Build a website
 subtitle: Create beautiful websites from your MyST project.
-subject: Quickstart Tutorial
+subject: Quickstart tutorial
 ---
 
 :::{important} Objective
