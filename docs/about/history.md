@@ -7,8 +7,8 @@ short_title: History of Jupyter Book
 
 :::{mermaid}
 gantt
-dateFormat YYYY-MM
-title The history of Jupyter Book
+    dateFormat YYYY-MM
+    title The history of Jupyter Book
 
     Jupyter Book 0.1 - 0.7 (Jekyll)               : des2, 2018-06, 2020-07
     Jupyter Book 0.7 - 1.x (Sphinx)               : des2, 2020-07, 2024-07
