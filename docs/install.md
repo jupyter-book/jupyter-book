@@ -1,7 +1,7 @@
 ---
 title: Install Jupyter Book 2
 subtitle: Install the Jupyter Book tools from PyPI, npm, or conda-forge.
-# subject: myst Quickstart tutorial
+# subject: MyST quickstart tutorial
 short_title: Install Jupyter Book
 ---
 
