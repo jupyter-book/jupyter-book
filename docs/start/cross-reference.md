@@ -98,7 +98,7 @@ Any content that has been explicitly labeled can found by omitting the {xref:pat
 
 ## Embedding cross-referenced content
 
-It is also possible to _embed_ another resource, removing the need for the user to hover over a link:
+It is also possible to _embed_ another resource, removing the need for the user to hover over a link. This can be done using the [`embed` directive](xref:guide#directive-embed), or the markup for a Markdown image:
 
 ::::{tab-set}
 :::{tab-item} Result
