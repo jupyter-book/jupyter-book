@@ -52,7 +52,42 @@ I'm a nice sunset!
 :::
 ```
 
-The MyST-MD engine defines a large number of pre-existing roles and directives, which are defined in the MyST guide (see <xref:guide/roles> and <xref:guide/directives>). The MyST guide defines a helpful overview of MyST Markdown syntax in <xref:guide/syntax-overview>
+Directives may have a body, like the caption:
+
+```{code} markdown
+:linenos:
+:emphasize-lines: 2
+
+:::{figure} https://github.com/rowanc1/pics/blob/main/sunset.png?raw=true
+I'm a nice sunset!
+:::
+```
+
+And/or an argument, like the image URL:
+
+```{code} markdown
+:linenos:
+:emphasize-lines: 1
+
+:::{figure} https://github.com/rowanc1/pics/blob/main/sunset.png?raw=true
+I'm a nice sunset!
+:::
+```
+
+They can even take options:
+
+```{code} markdown
+:linenos:
+:emphasize-lines: 2
+
+:::{figure} https://github.com/rowanc1/pics/blob/main/sunset.png?raw=true
+:align: center
+
+I'm a nice sunset!
+:::
+```
+
+The MyST-MD engine defines a large number of pre-existing roles and directives, such as the <xref:guide/directives#directive-figure>, which are defined in the MyST guide (see <xref:guide/roles> and <xref:guide/directives>). The MyST guide defines a helpful overview of MyST Markdown syntax in <xref:guide/syntax-overview>
 
 Having explored the supported syntax for writing MyST, let's create a simple `intro.md` file that showcases these features!
 

@@ -13,6 +13,8 @@ project:
     MyST: Markedly Structured Text
     CLI: Command-Line Interface
     TOC: Table of Contents
+  plugins:
+    - plugins/xref.mjs
   github: https://github.com/jupyter-book/jupyter-book
   toc:
     - file: overview.md
