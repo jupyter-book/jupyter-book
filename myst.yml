@@ -1,0 +1,15 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  id: a11d4bca-5c9d-4df2-94b1-f6605a17d9eb
+  # title:
+  # description:
+  # keywords: []
+  # authors: []
+  github: https://github.com/jupyter-book/jupyter-book
+  # To autogenerate a Table of Contents, run "jb init --write-toc"
+site:
+  template: book-theme
+  # options:
+  #   favicon: favicon.ico
+  #   logo: site_logo.png

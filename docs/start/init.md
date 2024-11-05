@@ -27,10 +27,6 @@ Let's inspect the `myst.yml` file that has been generated.
 # See docs at: https://mystmd.org/guide/frontmatter
 version: 1
 
-# Jupyter Book (via myst) base configuration
-extends:
-- https://jupyterbook.org/myst.1.yaml
-
 project:
   id: 4da9cb15-177c-41f5-8c4e-6a24b4e87eab
   # title:
@@ -46,17 +42,14 @@ site:
   #   logo: site_logo.png
 ```
 
-Most of the lines in this YAML file are comments, but there are a few things to take note of:
-
-`extends`
-: This array defines the base-configurations that this project inherits from. Here, we declare the Jupyter Book 2 configuration.
+Most of the lines in this YAML file are comments, but there are a couple of things to take note of:
 
 (def:project)=
 `project`
 : The `project` key defines the project _frontmatter_, which allows you to speocfy how your project should render and behave. We'll look at this section later in this tutorial.
 
 `site`
-: The `site` key defines the website configuration, used by the `start` command. Here, we're telling MyST to use the book theme.
+: The `site` key defines the website configuration, used by the `start` command or when building an HTML export. Here, we're telling MyST to use the book theme.
 
 ## Configuring your project
 
@@ -69,14 +62,10 @@ Let's update our `myst.yml` with some information about the project:
 :name: code:myst-yml
 :caption: The `myst.yml` produced by `jupyter book init` with additional provenance information.
 :linenos:
-:emphasize-lines: 10,11,12,13,14,15,16,17,18
+:emphasize-lines: 6,7,8,9,10,11
 
 # See docs at: https://mystmd.org/guide/frontmatter
 version: 1
-
-# Jupyter Book (via myst) base configuration
-extends:
-- https://jupyterbook.org/myst.1.yaml
 
 project:
   id: 4da9cb15-177c-41f5-8c4e-6a24b4e87eab
@@ -85,10 +74,7 @@ project:
   keywords:
     - jupyter-book
     - something-else
-  authors:
-    - name: Jupyter Book
-      url: https://jupyterbook.org
-  github: executablebooks/jupyter-book
+  github: captain-jupyter/my-book
   # To autogenerate a table of contents, run "jupyter book init --write-toc"
 site:
   template: book-theme
