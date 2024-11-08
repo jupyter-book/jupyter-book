@@ -7,7 +7,8 @@ project:
   # keywords: []
   # authors: []
   github: https://github.com/jupyter-book/jupyter-book
-  # To autogenerate a Table of Contents, run "jb init --write-toc"
+  references:
+    myst: https://mystmd.org/guide
 site:
   template: book-theme
   # options:

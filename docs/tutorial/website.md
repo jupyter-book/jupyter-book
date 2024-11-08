@@ -135,7 +135,7 @@ This can take **up to a minute** the first time, and then will be cached in the 
 
 The example site in this tutorial only has three pages and by default the `01-paper.md` page is seen in [](#frontmatter-before), which has minimal styles applied to the content.
 
-:::{figure} ./images/frontmatter-before.png
+:::{figure} https://github.com/jupyter-book/mystmd/blob/main/docs/images/frontmatter-before.png?raw=true
 :width: 50%
 :label: frontmatter-before
 :class: framed
@@ -229,7 +229,7 @@ site:
 There are two important parts to the `myst.yml`:
 
 `project:`
-: The project holds metadata about the collection of files, such as authors, affiliations and licenses for all of the files, any of these values can optionally be overridden in a file. To see all of the options see [](./frontmatter.md), which includes which fields can be overridden by files in the project.
+: The project holds metadata about the collection of files, such as authors, affiliations and licenses for all of the files, any of these values can optionally be overridden in a file. To see all of the options see [](xref:guide/frontmatter), which includes which fields can be overridden by files in the project.
 
 `site:`
 : The site holds template information about the website, such as the logo, navigation, site actions and which template to use.
@@ -239,7 +239,7 @@ There are two important parts to the `myst.yml`:
 Saving the `myst.yml` will have triggered a "full site rebuild"[^myst-start].
 Take a look at the browser tab and you'll see that it has updated:
 
-:::{figure} ./images/frontmatter-site-title.png
+:::{figure} https://github.com/jupyter-book/mystmd/blob/main/docs/images/frontmatter-site-title.png?raw=true
 :width: 50%
 :label: frontmatter-site-title
 
@@ -249,6 +249,6 @@ The site title will control site meta tags, and the browser-tab title, which is 
 [^myst-start]: If the server stopped, you can restart the server using `jb start`.
 
 :::{seealso} See all Frontmatter options
-To see all of the options see [](./frontmatter.md), which includes which fields can be overridden by files in the project.
+To see all of the options see [](xref:guide/frontmatter), which includes which fields can be overridden by files in the project.
 :::
 

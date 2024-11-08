@@ -6,9 +6,9 @@ description: Learn the basics of how MyST can be used to execute content with Ju
 ---
 
 :::{note} Goals and prerequisites
-**Goals**: This tutorial covers how to take advantage of MyST features and customizability to execute computational content with your MyST build.
+**Goals**: This tutorial covers how to take advantage of MyST features and customizability to execute computational content with your Jupyter Book build.
 
-**Prerequisites**: This assumes you've completed [](./quickstart.md) and have MyST installed locally, as well as a local version of the [MyST quickstart content](https://github.com/jupyter-book/mystmd-quickstart).
+**Prerequisites**: This assumes you've completed [](../start.md) and have Jupyter Book installed locally, as well as a local version of the [MyST quickstart content](https://github.com/jupyter-book/mystmd-quickstart).
 :::
 
 ![](#lookout-for-tutorial-actions)
@@ -41,8 +41,6 @@ $ myst start
 
 [^open-port]: If port `3000` is in use on your machine, an open port will be used instead, follow the link provided in the terminal.
 
-To fully explore `myst start` see [](./quickstart.md).
-
 ## Install the packages needed for execution
 
 :::{note}
@@ -74,7 +72,7 @@ This will **execute** your notebook file before spinning up your MyST server.
 Go back to `02-notebook/` and you'll see the outputs there.
 
 :::{seealso}
-For more information about executing notebooks, see [](./execute-notebooks.md).
+For more information about executing notebooks, see [](xref:guide/execute-notebooks).
 :::
 
 ## Label, reference, and embed an output
@@ -114,7 +112,7 @@ And below we embed it:
 ```
 
 :::{seealso}
-For more information about embedding notebook outputs, see [](./reuse-jupyter-outputs.md).
+For more information about embedding notebook outputs, see [](xref:guide/reuse-jupyter-outputs).
 :::
 
 ## Add an executable cell to your Markdown file
@@ -122,7 +120,7 @@ For more information about embedding notebook outputs, see [](./reuse-jupyter-ou
 You can add any executable content to a MyST markdown file.
 This is useful if you want to more natively version control your executable content in a system like `git`.
 
-To add executable content, use the {myst:directive}`code-cell` directive.
+To add executable content, use the `code-cell` directive.
 This will tell MyST to execute anything inside.
 
 🛠 Add the following code cell directive to `01-paper.md`
@@ -140,7 +138,7 @@ If you re-build your MyST site with `--execute`, the cell will be executed.
 Notice how we've also added a **label** to the code block, but using the directive option rather than the Python comments syntax we used above.
 
 :::{seealso}
-For more information about writing computational content in Markdown, see [](./notebooks-with-markdown.md).
+For more information about writing computational content in Markdown, see [](xref:guide/notebooks-with-markdown).
 :::
 
 ## Conclusion 🥳
