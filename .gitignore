@@ -134,3 +134,7 @@ dist
 _build
 .venv
 __pycache__/
+
+# Python package managers
+uv.lock
+package-lock.json

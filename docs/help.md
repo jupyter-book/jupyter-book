@@ -14,7 +14,7 @@ Jupyter Book is built on top of the MyST-MD engine. The separation between the t
 :link: https://discord.mystmd.org/
 :footer: Start a conversation »
 
-![](images/discord-mark-black.svg)
+![](media/images/discord-mark-black.svg)
 
 Need some help using Jupyter Book (MyST)? Unsure whether something is a bug or a feature? Discord is where MyST users and developers gather! 
 :::
@@ -23,7 +23,7 @@ Need some help using Jupyter Book (MyST)? Unsure whether something is a bug or a
 :link: https://github.com/executablebooks/mystmd/issues/new/choose
 :footer: Report a bug »
 
-![](images/github-mark.svg)
+![](media/images/github-mark.svg)
 
 Found a bug? Have an idea for a new feature? Visit the MyST GitHub repository and create an issue.
 :::
