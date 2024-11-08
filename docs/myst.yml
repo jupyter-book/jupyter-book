@@ -29,10 +29,10 @@ project:
     - title: Tutorials
       children:
       - file: tutorial/website.md
+      - file: tutorial/mystmd.md 
       - file: tutorial/execution.md 
       - file: tutorial/export.md 
       - file: tutorial/jupyterlab.md 
-      - file: tutorial/mystmd.md 
       - file: upgrade.md
     - title: About Jupyter Book
       children:
