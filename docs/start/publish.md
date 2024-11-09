@@ -43,7 +43,7 @@ $ jupyter book init --gh-pages
 In order for GitHub to use this configuration, you must follow the "Next Steps" above, namely:
 
 1. Enable GitHub Pages, and _set the source to GitHub Actions_ (see [](#image:gh-pages))
-   :::{figure} ../images/github-pages.png
+   :::{figure} ../media/images/github-pages.png
    :name: image:gh-pages
 
    Screenshot of the GitHub Pages configuration, where the important _Source_ option resides.

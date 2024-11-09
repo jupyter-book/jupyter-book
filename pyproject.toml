@@ -23,7 +23,7 @@ requires-python = ">=3.9"
 dynamic = ["version", "description", "authors", "urls", "keywords", "license"]
 dependencies = [
   # Ensure that `jupyter book` works`
-  "jupyter-core"
+  "jupyter-core",
   # Ensure that kernels are found out of the box
   # This is not required, but is a nice-to-have
   "jupyter-server",

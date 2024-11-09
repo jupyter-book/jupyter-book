@@ -1,7 +1,5 @@
 # See docs at: https://mystmd.org/guide/frontmatter
 version: 1
-extends:
-  - https://raw.githubusercontent.com/jupyter-book/meta/refs/heads/main/myst.yml
 project:
   # title:
   # description:
@@ -17,21 +15,48 @@ project:
     - plugins/xref.mjs
   github: https://github.com/jupyter-book/jupyter-book
   toc:
-    - file: overview.md
-      title: Overview
-    - file: install.md
-    - file: upgrade.md
-    - title: Create a book
+    - file: index.md
+    - title: Get started
+      file: start.md
       children:
+        - file: install.md
         - file: start/init.md
         - file: start/create-content.md
         - file: start/build-websites.md
         - file: start/export-pdfs.md
         - file: start/cross-reference.md
         - file: start/publish.md
+    - title: Tutorials
+      children:
+      - file: tutorial/website.md
+      - file: tutorial/mystmd.md 
+      - file: tutorial/execution.md 
+      - file: tutorial/export.md 
+      - file: tutorial/jupyterlab.md 
+      - file: upgrade.md
     - title: About Jupyter Book
       children:
-        - file: about/history.md
         - file: about/toolchain.md
+        - file: about/history.md
     - file: glossary.md
     - file: help.md
+site:
+  nav: 
+    - title: Docs
+      url: /start
+    - title: Blog
+      url: https://blog.jupyterbook.org
+    - title: About
+      children:
+      - title: Team Compass
+        url: https://compass.jupyterbook.org
+      - title: MyST Ecosystem
+        url: https://mystmd.org
+  actions:
+    - title: MyST Markdown
+      url: https://mystmd.org
+  options:
+    favicon: https://raw.githubusercontent.com/jupyter-book/meta/refs/heads/main/images/favicon.ico
+    logo: https://raw.githubusercontent.com/jupyter-book/meta/refs/heads/main/images/logo.svg
+    logo_dark: https://raw.githubusercontent.com/jupyter-book/meta/refs/heads/main/images/logo-dark.svg
+    folders: true

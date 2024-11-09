@@ -3,17 +3,6 @@ title: The Jupyter Book toolchain
 subtitle: An overview of the tools that power Jupyter Book 2.
 ---
 
-:::{note} Looking for Sphinx?
-
-The _legacy_ Jupyter Book toolchain was based upon Sphinx.
-
-% TODO: link to Sphinx deployment.
-:::
-
-::: {pull-quote}
-Fundamentally, Jupyter Book 2 does not try to hide the fact that it is built on top of a document engine.
-:::
-
 Jupyter Book 2 is built upon the [MyST-MD](https://mystmd.org) document engine, which serves a similar purpose to the Sphinx documentation engine used by Jupyter Book 1. However, MyST-MD is designed from the ground-up for technical and scientific writing, and provides [some exciting features](xref:guide/quickstart-myst-markdown#links-cross-references) such as rabbit-hole links. Fundamentally, Jupyter Book 2 does not try to hide the fact that it is built on top of a document engine; MyST-MD is designed from the ground up to be good at technical writing, and the Jupyter Book team believe that its native configuration format and CLI are both powerful and easy-to-use. As such, Jupyter Book 2 builds on top of MyST-MD by using the same CLI and `myst.yml` configuration format.
 
 :::{pull-quote}
