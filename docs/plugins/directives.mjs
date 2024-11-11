@@ -1,7 +1,7 @@
 /**
  * Modified implementation of https://github.com/jupyter-book/mystmd/blob/main/docs/directives.mjs
  * 
- * We will need to maintain our own version of this plugin the upstream plugin can be distributed as a bundle
+ * We will need to maintain our own version of this plugin until the upstream plugin can be distributed as a bundle
  * See https://github.com/jupyter-book/mystmd/issues/1101
  */
 import { u } from "unist-builder";
