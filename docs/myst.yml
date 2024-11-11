@@ -16,6 +16,7 @@ project:
   plugins:
     - plugins/xref.mjs
     - plugins/landing-page.mjs
+    - plugins/directives.mjs
   github: https://github.com/jupyter-book/jupyter-book
   toc:
     - file: index.md

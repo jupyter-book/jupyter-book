@@ -4,7 +4,7 @@ subtitle: Take your first steps with Jupyter Book.
 ---
 
 Jupyter Book is [a distribution of the MyST Document Engine](https://mystmd.org).
-Every Jupyter Book is also a MyST project, and building a Jupyter Book means building a MyST project.
+Every Jupyter Book is also a MyST project, and _building a Jupyter Book_ means _building a MyST project_.
 In fact, if you're a power user and prefer a more flexible and less-opinionated workflow, we suggest you use the MyST engine directly!
 
 For learning how to use Jupyter Book, this site will step you through **high-level concepts**, **tutorials for step-by-step learning**, and **how-to guides to get things done**. It will focus on use-cases for multi-document projects, like **community knowledge bases** and **multi-page books**.
