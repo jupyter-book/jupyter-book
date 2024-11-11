@@ -11,8 +11,6 @@ This quickstart tutorial will help you up and running with a Jupyter Book on you
 
 :::{note} Topics to cover
 
-- Initialize a Jupyter Book from scratch.
-- Write some MyST content.
 - Render your book as a website.
 - Publish with GitHub Actions.
   :::
@@ -27,29 +25,9 @@ This quickstart tutorial will help you up and running with a Jupyter Book on you
 
 > 🛠 Throughout the tutorial, whenever you're supposed to _do_ something you will see a 🛠
 
-## Install Jupyter Book
-
-🛠 Install Jupyter Book using your preferred packaging ecosystem. (See [](../start/install.md) for many options).
-
-```shell
-pip install jupyter-book
-```
-
-🛠 Then, check that Jupyter Book has successfully been installed:
-
-```shell
-$ jupyter-book -v
-v2.0.0
-```
-
-:::{hint} Use `jb` as a short-hand
-You can use `jb` as an alias for `jupyter-book` on the command line.
-We'll use that pattern below.
-:::
-
 ## Build your first book
 
-Next we'll download some sample content and use Ki[yter Nppl] to render it as a local web server!
+Next we'll download some sample content and use `jupyter book start` to render it as a local web server!
 
 ### Download example content
 
@@ -68,7 +46,7 @@ cd mystmd-quickstart
 ### Initialize Jupyter Book in the content folder 🚀
 
 Next we will create a `myst.yml` configuration file that is required to render your project.
-This is the [configuration file used by MyST](https://mystmd.org/guide/quickstart#initialize-myst-in-the-content-folder), and what Jupyter Book uses to control its behavior.
+This is the [configuration file used by MyST](xref:guide/quickstart#initialize-myst-in-the-content-folder), and what Jupyter Book uses to control its behavior.
 
 🛠 Run `jupyter-book`
 
@@ -79,7 +57,7 @@ $ jupyter-book
 
 Welcome to the Jupyter Book (via myst) CLI! 🎉 🚀
 
-jb init walks you through creating a myst.yml file.
+jupyter book init walks you through creating a myst.yml file.
 
 You can use Jupyter Book (via myst) to:
 
@@ -92,20 +70,20 @@ Learn more about this CLI and MyST Markdown at: https://jupyterbook.org
 💾 Writing new project and site config file: myst.yml
 ```
 
-### Preview your book locally
+## Preview your book locally
 
-Preview a rendered version of the quickstart content to make sure that Jupyter Book is working properly.
+Now that we a valid Jupyter Book project, we can preview it as a website to make sure that Jupyter Book is working properly.
 
 🛠 When prompted, type `Yes` to install and serve your book locally:
 
 ```bash
-? Would you like to run "jb start" now? Yes
+? Would you like to run "jupyter book start" now? Yes
 ```
 
 or manually serve the quickstart content with the following command:
 
 ```bash
-jb start
+jupyter book start
 ```
 
 Starting the server requires a theme, this will download the default `book-theme` from [the MyST themes](./website-templates.md).
@@ -175,7 +153,7 @@ quickstart/
   └── 🆕 myst.yml
 ```
 
-Running `jb init` added:
+Running `jupyter book init` added:
 
 - `myst.yml` - the configuration file for your myst project and site
 - `_build` - the folder containing the processed content and other `site` assets, which are used by the local web server.
@@ -183,9 +161,9 @@ Running `jb init` added:
 The `_build` folder also contains your templates (including the site template you installed) and any exports you make (when we build a PDF the exported document will show up in the `_build/exports` folder). You can clean up the built files at any time using `myst clean`[^clean-all].
 
 [^clean-all]:
-    By default the `jb clean` command doesn't remove installed templates or cached web responses; however, the function can with a:\
-    `jb clean --all`, or\
-    `jb clean --templates --cache`.
+    By default the `jupyter book clean` command doesn't remove installed templates or cached web responses; however, the function can with a:\
+    `jupyter book clean --all`, or\
+    `jupyter book clean --templates --cache`.
 
     Before deleting any folders `jupyter-book` will confirm what is going to happen, or you can bypass this confirmation with the `-y` option. For example:
 
@@ -247,7 +225,7 @@ Take a look at the browser tab and you'll see that it has updated:
 The site title will control site meta tags, and the browser-tab title, which is appended to each page title in the `book-theme`.
 :::
 
-[^myst-start]: If the server stopped, you can restart the server using `jb start`.
+[^myst-start]: If the server stopped, you can restart the server using `jupyter book start`.
 
 :::{seealso} See all Frontmatter options
 To see all of the options see [](xref:guide/frontmatter), which includes which fields can be overridden by files in the project.
