@@ -1,6 +1,6 @@
 ---
-title: Executable Documents
-subject: Jupyter Book Tutorial
+title: Executable documents
+subject: Jupyter Book tutorial
 subtitle: Execute content and insert it into your pages when you build your MyST project.
 description: Learn the basics of how MyST can be used to execute content with Jupyter technology.
 ---
@@ -44,7 +44,7 @@ $ myst start
 ## Install the packages needed for execution
 
 :::{note}
-This section requires the `pip` command. It should normally be installed with Python. 
+This section requires the `pip` command. It should normally be installed with Python.
 :::
 
 To execute the content in the `myst-quickstart` site, we must ensure that the proper environment is installed.

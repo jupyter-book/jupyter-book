@@ -1,7 +1,7 @@
 ---
 title: "Create a website"
 subtitle: Build a website with Jupyter Book
-subject: Jupyter Book Quickstart
+subject: Jupyter Book tutorial
 description: Get up and running with Jupyter Book for a simple website.
 ---
 
@@ -10,11 +10,12 @@ description: Get up and running with Jupyter Book for a simple website.
 This quickstart tutorial will help you up and running with a Jupyter Book on your local computer 👩‍💻. Here are some topics that are covered:
 
 :::{note} Topics to cover
+
 - Initialize a Jupyter Book from scratch.
 - Write some MyST content.
 - Render your book as a website.
 - Publish with GitHub Actions.
-:::
+  :::
 
 :::{note} Skills and Prerequisites
 **Skills**: It is helpful if you have some familiarity with using the command line, as well as using a text editor and/or JupyterLab.
@@ -28,7 +29,7 @@ This quickstart tutorial will help you up and running with a Jupyter Book on you
 
 ## Install Jupyter Book
 
-🛠 Install Jupyter Book using your preferred packaging ecosystem. (See [](../install.md) for many options).
+🛠 Install Jupyter Book using your preferred packaging ecosystem. (See [](../start/install.md) for many options).
 
 ```shell
 pip install jupyter-book
@@ -149,7 +150,7 @@ The myst theme for the `01-paper.md` page without any changes made.
 
 The final section of this tutorial takes a closer look at the files that we just created, and aspects of your book that can be customized.
 
-### Folder Structure
+### Folder structure
 
 If you are using a text editor, for example [VSCode](https://code.visualstudio.com/), open up the folder to explore the files:
 
@@ -251,4 +252,3 @@ The site title will control site meta tags, and the browser-tab title, which is 
 :::{seealso} See all Frontmatter options
 To see all of the options see [](xref:guide/frontmatter), which includes which fields can be overridden by files in the project.
 :::
-

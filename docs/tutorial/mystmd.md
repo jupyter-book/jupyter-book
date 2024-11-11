@@ -1,6 +1,6 @@
 ---
 title: Write MyST Markdown
-subject: Jupyter Book Tutorial
+subject: Jupyter Book tutorial
 subtitle: An overview of syntax features
 description: MyST (Markedly Structured Text) is designed to create publication-quality documents written entirely in Markdown.
 ---
@@ -37,11 +37,11 @@ Try changing the number of `#`s to $n$[^math] to change the **depth** of the _he
 See [](xref:guide/typography) to learn in depth about all typographical elements. The [](xref:guide/commonmark) page also includes demos and examples of all CommonMark syntax.
 :::
 
-## Directives and Roles
+## Directives and roles
 
 Directives are multi-line containers that include an identifier, arguments, options, and content. Examples include [admonitions](xref:guide/admonitions), [figures](xref:guide/figures), and [equations](xref:guide/math). At its simplest, you can use directives using a "fence" (either [back-ticks or colons](xref:guide#example-fence)) and the name of the directive enclosed in braces (`{name}`).
 
-For example, try editing the following <xref:guide/directives#directive-figure>  directive, you can center the figure with an `:align: center` option or change the `colons` for `backticks`.
+For example, try editing the following <xref:guide/directives#directive-figure> directive, you can center the figure with an `:align: center` option or change the `colons` for `backticks`.
 
 ```{myst}
 
@@ -89,7 +89,7 @@ authors:
 See [](xref:guide/frontmatter) for all options, how to use frontmatter in various tools like JupyterLab, and how to reuse frontmatter across your pages in a project.
 :::
 
-## Links & Cross-References
+## Links & cross-references
 
 As you have seen in the links in MyST (e.g. [](xref:guide/frontmatter)), there is information that is pulled forward into your reading context on hover or click. We believe it is important to provide as much possible context when you are reading on elements like links to other pages, cross-references to figures, tables and equations as well as traditional academic citations[^contextual-information] (**👈 see the footnote!**). Additionally, all of these have fallbacks in static PDF or Word documents.
 
@@ -154,7 +154,7 @@ If you already have a citation list locally as a BiBTeX file (`*.bib`), then you
 See [](xref:guide/citations) for more information about using citations and references sections, and how to have control over the bibliography sources.
 :::
 
-## What's Next?
+## What's next?
 
 We hope the above sections in this overview should have given you a sense of the types of things that MyST can do! Once you write a document in MyST, you can use the command line tools to translate that into a [scientific PDF article](xref:guide/creating-pdf-documents), or a [Word Document](xref:guide/creating-word-documents) or a [website](xref:guide/quickstart-myst-documents) like this site!
 

@@ -22,7 +22,7 @@ project:
     - title: Get started
       file: start.md
       children:
-        - file: install.md
+        - file: start/install.md
         - file: start/init.md
         - file: start/create-content.md
         - file: start/build-websites.md
