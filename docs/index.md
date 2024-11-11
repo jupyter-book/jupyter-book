@@ -32,8 +32,8 @@ jupyter-book start
 
 :::{warning} This is alpha software!
 Jupyter Book 2.0 is currently in **alpha**.
-This means that functionality may be missing or not working, and evolving quickly.
-[Open an issue in our repository](https://github.com/jupyter-book/jupyterbook) with feedback.
+This means that functionality may be missing or not working, and will evolve quickly.
+[Open an issue in our repository](https://github.com/jupyter-book/jupyter-book) with feedback.
 :::
 
 ::::{tab-set}
