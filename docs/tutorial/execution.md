@@ -14,7 +14,7 @@ description: Learn the basics of how MyST can be used to execute content with Ju
 
 ![](#lookout-for-tutorial-actions)
 
-## Start MyST 🚀
+## Start Jupyter Book 🚀
 
 From [the quick start tutorial](../start.md), you should already have created a `myst.yml` configuration file that is required to render your project.
 To confirm this, run a Jupyter Book server to serve the quick start content:

@@ -5,17 +5,14 @@ subject: Jupyter Book tutorial
 description: Get up and running with Jupyter Book for a simple website.
 ---
 
-% TODO: Modify this so that it uses Jupyter Book naming etc insead of MyST.
-
-This quickstart tutorial will help you up and running with a Jupyter Book on your local computer 👩‍💻. Here are some topics that are covered:
-
 :::{note} Topics to cover
+This quickstart tutorial will help you up and running with a Jupyter Book on your local computer 👩‍💻, covering the following topics:
 
 - Render your book as a website.
 - Publish with GitHub Actions.
   :::
 
-:::{note} Skills and Prerequisites
+:::{note} Skills and prerequisites
 **Skills**: It is helpful if you have some familiarity with using the command line, as well as using a text editor and/or JupyterLab.
 
 **Tools**: You'll need a code and notebook editor ([VSCode](https://code.visualstudio.com/) is great, and we recommend [Jupyter Lab](https://jupyter.org/install) for notebooks) as well as access to a CLI.
