@@ -1,5 +1,7 @@
 # See docs at: https://mystmd.org/guide/frontmatter
 version: 1
+extends:
+  - https://raw.githubusercontent.com/jupyter-book/meta/refs/heads/main/myst.yml
 project:
   # title:
   # description:
@@ -41,22 +43,5 @@ project:
     - file: glossary.md
     - file: help.md
 site:
-  nav: 
-    - title: Docs
-      url: /start
-    - title: Blog
-      url: https://blog.jupyterbook.org
-    - title: About
-      children:
-      - title: Team Compass
-        url: https://compass.jupyterbook.org
-      - title: MyST Ecosystem
-        url: https://mystmd.org
-  actions:
-    - title: MyST Markdown
-      url: https://mystmd.org
   options:
-    favicon: https://raw.githubusercontent.com/jupyter-book/meta/refs/heads/main/images/favicon.ico
-    logo: https://raw.githubusercontent.com/jupyter-book/meta/refs/heads/main/images/logo.svg
-    logo_dark: https://raw.githubusercontent.com/jupyter-book/meta/refs/heads/main/images/logo-dark.svg
     folders: true
