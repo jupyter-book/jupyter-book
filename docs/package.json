@@ -1,0 +1,13 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "Utilities for Jupyter Book docs",
+  "private": true,
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "myst-directives": "^1.5.8",
+    "myst-roles": "^1.5.8",
+    "unist-builder": "^4.0.0"
+  }
+}
