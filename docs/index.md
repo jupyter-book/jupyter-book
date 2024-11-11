@@ -8,13 +8,13 @@ site:
 
 +++ {"class": "col-page-inset"}
 
-<div style="font-weight: bold; font-size: 4em; max-width: 50%; margin:.5em auto;text-align:center;line-height:normal;">Jupyter
-  <span style="color: #e07330;">Book</span>
-</div>
+:::{hero}
+Jupyter {orange}`Book`
+:::
 
 :::::{grid} 1 2 2 2
 ::::{grid-item}
-<span style="font-size:1.5em;">Jupyter Book allows you to create documents and knowledge bases that are **reusable**, **reproducible**, and **interactive**.</span>
+{large}`Jupyter Book allows you to create documents and knowledge bases that are **reusable**, **reproducible**, and **interactive**.`
 ::::
 ::::{grid-item}
 
@@ -22,8 +22,9 @@ site:
 :filename: Jupyter Book quickstart
 :class: hi
 pip install jupyter-book
-jupyter-book start
+jupyter book start
 ```
+
 ::::
 :::::
 
@@ -31,22 +32,31 @@ jupyter-book start
 
 :::{warning} This is alpha software!
 Jupyter Book 2.0 is currently in **alpha**.
-This means that functionality may be missing or not working, and evolving quickly.
-[Open an issue in our repository](https://github.com/jupyter-book/jupyterbook) with feedback.
+This means that functionality may be missing or not working, and will evolve quickly.
+[Open an issue in our repository](https://github.com/jupyter-book/jupyter-book) with feedback.
 :::
 
 ::::{tab-set}
 :::{tab-item} Reusable
+
 ```{figure} media/videos/reusable.mp4
+
 ```
+
 :::
 :::{tab-item} Reproducible
+
 ```{figure} media/videos/reproducible.mp4
+
 ```
+
 :::
 :::{tab-item} Interactive
+
 ```{figure} media/videos/interactive.mp4
+
 ```
+
 :::
 ::::
 
@@ -81,4 +91,5 @@ Create cross-references to content from other documents and sites to give users 
 ::::
 
 ## Acknowledgements
+
 Jupyter Book is supported by an [open community of contributors](https://github.com/jupyter-book/jupyter-book/graphs/contributors), many of whom come from the [the MySTMD Community](https://mystmd.org) and [the Jupyter community](https://jupyter.org/community).

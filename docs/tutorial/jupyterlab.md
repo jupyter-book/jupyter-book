@@ -1,7 +1,7 @@
 ---
-title: Author with Jupyter Interfaces
+title: Author with JupyterLab
 subtitle: MyST has support in Jupyter frontends
-subject: Jupyter Book Tutorial
+subject: Jupyter Book tutorial
 description: MyST Markdown can be used in JupyterLab with support for all MyST syntax as well as inline execution.
 ---
 

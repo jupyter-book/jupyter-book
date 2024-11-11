@@ -1,6 +1,7 @@
 ---
-title: Executable Documents
-subject: Jupyter Book Tutorial
+title: Mix code and narrative
+short_title: Mix code & narrative
+subject: Jupyter Book tutorial
 subtitle: Execute content and insert it into your pages when you build your MyST project.
 description: Learn the basics of how MyST can be used to execute content with Jupyter technology.
 ---
@@ -13,16 +14,16 @@ description: Learn the basics of how MyST can be used to execute content with Ju
 
 ![](#lookout-for-tutorial-actions)
 
-## Start MyST 🚀
+## Start Jupyter Book 🚀
 
-From [the MyST quickstart tutorial](./quickstart.md), you should already have created a `myst.yml` configuration file that is required to render your project.
-To confirm this, run a MyST server to serve the MyST quickstart content:
+From [the quick start tutorial](../start.md), you should already have created a `myst.yml` configuration file that is required to render your project.
+To confirm this, run a Jupyter Book server to serve the quick start content:
 
-🛠 Run `myst start` to serve your quickstart content
+🛠 Run `jupyter book start` to serve your quickstart content
 
 ```shell
 $ cd mystmd-quickstart
-$ myst start
+$ jupyter book start
 📖 Built README.md in 33 ms.
 📖 Built 01-paper.md in 30 ms.
 📖 Built 02-notebook.ipynb in 6.94 ms.
@@ -44,7 +45,7 @@ $ myst start
 ## Install the packages needed for execution
 
 :::{note}
-This section requires the `pip` command. It should normally be installed with Python. 
+This section requires the `pip` command. It should normally be installed with Python.
 :::
 
 To execute the content in the `myst-quickstart` site, we must ensure that the proper environment is installed.
@@ -59,16 +60,16 @@ $ pip install -r requirements.txt
 ## Execute demo content at build time
 
 Note that the content in `02-notebook/` has no outputs.
-By default, MyST will not execute any notebooks when your site builds.
+By default, Jupyter Book will not execute any notebooks when your site builds.
 To execute your content at build time, use the `--execute` flag.
 
 🛠 Execute your content and build your MyST docs
 
 ```shell
-$ myst start --execute
+$ jupyter book start --execute
 ```
 
-This will **execute** your notebook file before spinning up your MyST server.
+This will **execute** your notebook file before spinning up your Jupyter Book server.
 Go back to `02-notebook/` and you'll see the outputs there.
 
 :::{seealso}
@@ -99,7 +100,7 @@ points & bars
 
 This assigns the label `horsepower` to the output of that code cell.
 
-You can reference it and embed it like you would any other item in MyST.
+You can reference it and embed it like you would any other item in MyST Markdown.
 
 🛠 Add a reference to this cell, as well as an embedding in a figure by copy and pasting this into a markdown block of the notebook.
 
@@ -117,11 +118,11 @@ For more information about embedding notebook outputs, see [](xref:guide/reuse-j
 
 ## Add an executable cell to your Markdown file
 
-You can add any executable content to a MyST markdown file.
+You can add any executable content to a MyST Markdown file.
 This is useful if you want to more natively version control your executable content in a system like `git`.
 
 To add executable content, use the `code-cell` directive.
-This will tell MyST to execute anything inside.
+This will tell Jupyter Book to execute anything inside.
 
 🛠 Add the following code cell directive to `01-paper.md`
 
@@ -134,7 +135,7 @@ print("Here's some python!")
 And here I reference [](#markdown-myst).
 ````
 
-If you re-build your MyST site with `--execute`, the cell will be executed.
+If you re-build your Jupyter Book site with `--execute`, the cell will be executed.
 Notice how we've also added a **label** to the code block, but using the directive option rather than the Python comments syntax we used above.
 
 :::{seealso}
@@ -144,6 +145,4 @@ For more information about writing computational content in Markdown, see [](xre
 ## Conclusion 🥳
 
 That's it for this quickstart tutorial!
-You've just learned how to add computational materials and execute your MyST document!
-
-![](#quickstart-cards)
+You've just learned how to add computational materials and execute your MyST Markdown document!

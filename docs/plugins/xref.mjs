@@ -24,7 +24,7 @@ const meta = {
 };
 
 const plugin = {
-  name: "Unsplash Images",
+  name: "XRef formatting extensions",
   roles: Object.entries(meta).map(([key, value]) => makeRole(key, value)),
 };
 

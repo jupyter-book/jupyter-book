@@ -1,6 +1,6 @@
 ---
-title: Export your book to a static document
-subject: Jupyter Book Tutorial
+title: Export static documents
+subject: Jupyter Book tutorial
 subtitle: Export your book as a static file.
 description: Jupyter Book can export your book to a number of different static formats to share with others.
 ---

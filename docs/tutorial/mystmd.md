@@ -1,6 +1,6 @@
 ---
 title: Write MyST Markdown
-subject: Jupyter Book Tutorial
+subject: Jupyter Book tutorial
 subtitle: An overview of syntax features
 description: MyST (Markedly Structured Text) is designed to create publication-quality documents written entirely in Markdown.
 ---
@@ -37,11 +37,11 @@ Try changing the number of `#`s to $n$[^math] to change the **depth** of the _he
 See [](xref:guide/typography) to learn in depth about all typographical elements. The [](xref:guide/commonmark) page also includes demos and examples of all CommonMark syntax.
 :::
 
-## Directives and Roles
+## Directives and roles
 
 Directives are multi-line containers that include an identifier, arguments, options, and content. Examples include [admonitions](xref:guide/admonitions), [figures](xref:guide/figures), and [equations](xref:guide/math). At its simplest, you can use directives using a "fence" (either [back-ticks or colons](xref:guide#example-fence)) and the name of the directive enclosed in braces (`{name}`).
 
-For example, try editing the following <xref:guide/directives#directive-figure>  directive, you can center the figure with an `:align: center` option or change the `colons` for `backticks`.
+For example, try editing the following <xref:guide/directives#directive-figure> directive, you can center the figure with an `:align: center` option or change the `colons` for `backticks`.
 
 ```{myst}
 
@@ -89,7 +89,7 @@ authors:
 See [](xref:guide/frontmatter) for all options, how to use frontmatter in various tools like JupyterLab, and how to reuse frontmatter across your pages in a project.
 :::
 
-## Links & Cross-References
+## Links & cross-references
 
 As you have seen in the links in MyST (e.g. [](xref:guide/frontmatter)), there is information that is pulled forward into your reading context on hover or click. We believe it is important to provide as much possible context when you are reading on elements like links to other pages, cross-references to figures, tables and equations as well as traditional academic citations[^contextual-information] (**👈 see the footnote!**). Additionally, all of these have fallbacks in static PDF or Word documents.
 
@@ -117,9 +117,9 @@ As you have seen in the links in MyST (e.g. [](xref:guide/frontmatter)), there i
 Try clicking the footnote above, you can nest information and interactive figures for the interested reader! You can help with reading comprehension by around 26% by providing information when the reader needs it!!
 :::
 
-To link to a document, for example [](xref:guide/frontmatter), is done through a simple Markdown link `[](xref:guide/frontmatter)`, you can put your own content in between the square brackets, but if you leave it out the link contents will be filled in with the title of the page. If you define the frontmatter on that page (i.e. the description and tooltip), you will also see that information when you hover over the link. This also works for links to Wikipedia (e.g. [Ponies 🐴](https://en.wikipedia.org/wiki/New_Forest_pony)) as well as Github code (e.g. [](https://github.com/jupyter-book/mystmd/blob/main/README)).
+To link to a document, for example [](xref:guide/frontmatter), is done through a simple Markdown link `[](xref:guide/frontmatter)`, you can put your own content in between the square brackets, but if you leave it out the link contents will be filled in with the title of the page. If you define the frontmatter on that page (i.e. the description and tooltip), you will also see that information when you hover over the link. This also works for links to Wikipedia (e.g. [Ponies 🐴](https://en.wikipedia.org/wiki/New_Forest_pony)) as well as Github code (e.g. [](https://github.com/jupyter-book/mystmd/blob/main/README.md)).
 
-To create a cross-reference, you need to label a "target", like a figure, section, equation or table (or anything!!). To be referenceable, these elements can add the `label` option in many directives. To then reference the figure, use the link syntax again pointing to the label as the target `[](xref:guide#my-fig)`. If you leave the title blank the default will fill in with an enumerated "Figure 1".
+To create a cross-reference, you need to label a referenceable "target" like a figure, section, equation or table (or anything!). Out of the box, all MyST directives support the `label` option that can be used to define a label, e.g. {myst:directive}`figure.label`. To then reference the figure, use the link syntax again pointing to the label as the target `[](xref:guide#my-fig)`. If you leave the title blank the default will fill in with an enumerated "Figure 1".
 
 ````{myst}
 ```{figure} https://github.com/rowanc1/pics/blob/main/mountains.png?raw=true
@@ -142,7 +142,7 @@ Citations are at the heart of technical writing, and are well handled by MyST!
 
 > If I have seen further it is by standing on the shoulders of Giants.
 >
-> - Newton making a [sarcastic remark](https://en.wikipedia.org/wiki/Standing_on_the_shoulders_of_giants#Early_modern_and_modern_references) directed at Hooke's appearance?!
+> -- Newton making a [sarcastic remark](https://en.wikipedia.org/wiki/Standing_on_the_shoulders_of_giants#Early_modern_and_modern_references) directed at Hooke's appearance?!
 
 The easiest way to create a citation is just link to a DOI as any other link! For example:\
 `[](https://doi.org/10.5281/zenodo.6476040)` will create:\
@@ -154,7 +154,7 @@ If you already have a citation list locally as a BiBTeX file (`*.bib`), then you
 See [](xref:guide/citations) for more information about using citations and references sections, and how to have control over the bibliography sources.
 :::
 
-## What's Next?
+## What's next?
 
 We hope the above sections in this overview should have given you a sense of the types of things that MyST can do! Once you write a document in MyST, you can use the command line tools to translate that into a [scientific PDF article](xref:guide/creating-pdf-documents), or a [Word Document](xref:guide/creating-word-documents) or a [website](xref:guide/quickstart-myst-documents) like this site!
 
@@ -170,9 +170,3 @@ flowchart LR
   D --> I[HTML]
   D <--> J[JATS]
 ```
-
-:::{seealso}
-You might also want to explore tools and extensions, like the [JupyterLab MyST extension](https://github.com/jupyter-book/jupyterlab-myst), [VSCode extension](https://marketplace.visualstudio.com/items?itemName=ExecutableBookProject.myst-highlight) or [Curvenote](https://curvenote.com/for/writing) to make your rendering and writing of MyST easier.
-:::
-
-![](xref:guide#quickstart-cards)

@@ -20,7 +20,7 @@ Need some help using Jupyter Book (MyST)? Unsure whether something is a bug or a
 :::
 
 :::{card} GitHub Issues
-:link: https://github.com/executablebooks/mystmd/issues/new/choose
+:link: https://github.com/jupyter-book/mystmd/issues/new/choose
 :footer: Report a bug »
 
 ![](media/images/github-mark.svg)

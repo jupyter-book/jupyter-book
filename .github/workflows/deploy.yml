@@ -30,10 +30,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18.x
-      - name: Install MyST Markdown
-        run: npm install -g mystmd
+      - name: Install MyST Markdown & Deps
+        run: npm install
+        working-directory: docs
       - name: Build HTML Assets
-        run: myst build --html
+        run: npx myst build --html
         working-directory: docs
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
