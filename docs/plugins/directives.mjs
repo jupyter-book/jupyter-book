@@ -1,3 +1,9 @@
+/**
+ * Modified implementation of https://github.com/jupyter-book/mystmd/blob/main/docs/directives.mjs
+ * 
+ * We will need to maintain our own version of this plugin the upstream plugin can be distributed as a bundle
+ * See https://github.com/jupyter-book/mystmd/issues/1101
+ */
 import { u } from "unist-builder";
 import { defaultDirectives } from "myst-directives";
 import { defaultRoles } from "myst-roles";
@@ -92,7 +98,7 @@ const mystRoleRole = {
  * @type {import('myst-common').MystPlugin}
  */
 const plugin = {
-  name: "MyST Documentation Plugins",
+  name: "Upstream MyST documentation plugins",
   author: "Rowan Cockett",
   license: "MIT",
   roles: [mystDirectiveRole, mystRoleRole],
