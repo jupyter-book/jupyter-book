@@ -15,6 +15,7 @@ project:
     TOC: Table of Contents
   plugins:
     - plugins/xref.mjs
+    - plugins/landing-page.mjs
   github: https://github.com/jupyter-book/jupyter-book
   toc:
     - file: index.md
@@ -30,12 +31,12 @@ project:
         - file: start/publish.md
     - title: Tutorials
       children:
-      - file: tutorial/website.md
-      - file: tutorial/mystmd.md 
-      - file: tutorial/execution.md 
-      - file: tutorial/export.md 
-      - file: tutorial/jupyterlab.md 
-      - file: upgrade.md
+        - file: tutorial/website.md
+        - file: tutorial/mystmd.md
+        - file: tutorial/execution.md
+        - file: tutorial/export.md
+        - file: tutorial/jupyterlab.md
+        - file: upgrade.md
     - title: About Jupyter Book
       children:
         - file: about/toolchain.md
