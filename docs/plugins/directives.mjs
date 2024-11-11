@@ -95,7 +95,6 @@ const plugin = {
   name: "MyST Documentation Plugins",
   author: "Rowan Cockett",
   license: "MIT",
-  directives: [mystDirective, mystRole],
   roles: [mystDirectiveRole, mystRoleRole],
 };
 
