@@ -48,12 +48,12 @@ cd mystmd-quickstart
 Next we will create a `myst.yml` configuration file that is required to render your project.
 This is the [configuration file used by MyST](xref:guide/quickstart#initialize-myst-in-the-content-folder), and what Jupyter Book uses to control its behavior.
 
-🛠 Run `jupyter-book`
+🛠 Run `jupyter book`
 
-The `jupyter-book` command is a shortcut for `jupyter-book init`, which has a few more options for writing specific parts of the configuration file and a table of contents for your site.
+The `jupyter book` command is a shortcut for `jupyter book init`, which has a few more options for writing specific parts of the configuration file and a table of contents for your site.
 
 ```shell
-$ jupyter-book
+$ jupyter book
 
 Welcome to the Jupyter Book (via myst) CLI! 🎉 🚀
 
@@ -165,7 +165,7 @@ The `_build` folder also contains your templates (including the site template yo
     `jupyter book clean --all`, or\
     `jupyter book clean --templates --cache`.
 
-    Before deleting any folders `jupyter-book` will confirm what is going to happen, or you can bypass this confirmation with the `-y` option. For example:
+    Before deleting any folders `jupyter book` will confirm what is going to happen, or you can bypass this confirmation with the `-y` option. For example:
 
     ```text
     Deleting all the following paths:

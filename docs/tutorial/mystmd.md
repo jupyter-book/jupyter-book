@@ -170,9 +170,3 @@ flowchart LR
   D --> I[HTML]
   D <--> J[JATS]
 ```
-
-:::{seealso}
-You might also want to explore tools and extensions, like the [JupyterLab MyST extension](https://github.com/jupyter-book/jupyterlab-myst), [VSCode extension](https://marketplace.visualstudio.com/items?itemName=ExecutableBookProject.myst-highlight) or [Curvenote](https://curvenote.com/for/writing) to make your rendering and writing of MyST easier.
-:::
-
-![](xref:guide#quickstart-cards)

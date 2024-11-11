@@ -22,7 +22,7 @@ Jupyter {orange}`Book`
 :filename: Jupyter Book quickstart
 :class: hi
 pip install jupyter-book
-jupyter-book start
+jupyter book start
 ```
 
 ::::
