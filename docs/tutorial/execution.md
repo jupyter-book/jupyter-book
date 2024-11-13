@@ -4,6 +4,9 @@ short_title: Mix code & narrative
 subject: Jupyter Book tutorial
 subtitle: Execute content and insert it into your pages when you build your MyST project.
 description: Learn the basics of how MyST can be used to execute content with Jupyter technology.
+kernelspec:
+  name: python3
+  display_name: 'Python 3'
 ---
 
 :::{note} Goals and prerequisites
@@ -141,6 +144,38 @@ Notice how we've also added a **label** to the code block, but using the directi
 :::{seealso}
 For more information about writing computational content in Markdown, see [](xref:guide/notebooks-with-markdown).
 :::
+
+## Generate MyST markdown at execution time
+
+You can use Jupyter cell execution to **generate MyST Markdown at build time**.
+This works because all notebook content is executed before being parsed as MyST Markdown.
+
+:::{note} Native support for MyST generation is coming
+We consider this recommendation a workaround, but share it here because it is useful.
+See this issue to track support for this workflow: https://github.com/jupyter-book/mystmd/issues/1026
+:::
+
+To do so, follow a two-step process:
+
+1. Generate MyST Markdown in a temporary file at build time.
+2. Use the `{include}` directive to insert it into your content.
+
+````{code-cell} python
+from pathlib import Path
+text = """
+:::{card} Here's an inserted card!
+It was inserted at build time!
+:::
+"""
+build_folder = Path().parent / "../_build/tmp"
+build_folder.mkdir(exist_ok=True, parents=True)
+_ = (build_folder / "tmp.txt").write_text(text)
+````
+
+And here it is included:
+
+```{include} ../_build/tmp/tmp.txt
+```
 
 ## Conclusion 🥳
 
