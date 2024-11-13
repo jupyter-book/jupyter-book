@@ -37,7 +37,6 @@ file = "README.md"
 content-type = "text/markdown"
 
 [project.scripts]
-jb = "jupyter_book.__main__:main"
 jupyter-book = "jupyter_book.__main__:main"
 
 [tool.hatch.build.hooks.selector]
