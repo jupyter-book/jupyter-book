@@ -19,7 +19,7 @@ gantt
 
 ## A first attempt using Jekyll
 
-The Jupyter Book project was started with [the first commit](https://github.com/executablebooks/jupyter-book/commit/4fc6636c652cebea71556f634c9a37e0740ab26f) in June of 2018. Initially, work was focussed on building a series of scripts to compile Jupyter Notebooks into a textbook using [Jekyll](https://jekyllrb.com/).
+The Jupyter Book project was started with [the first commit](https://github.com/jupyter-book/jupyter-book/commit/4fc6636c652cebea71556f634c9a37e0740ab26f) in June of 2018. Initially, work was focussed on building a series of scripts to compile Jupyter Notebooks into a textbook using [Jekyll](https://jekyllrb.com/).
 
 ## Creation of the `jupyter book` application
 
