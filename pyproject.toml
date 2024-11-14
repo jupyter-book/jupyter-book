@@ -59,7 +59,7 @@ dependencies = [
 dependencies = []
 
 [tool.hatch.version]
-path = "py/jupyter_book/__main__.py"
+source = "nodejs"
 
 [tool.hatch.build.hooks.jupyter-builder]
 dependencies = ["hatch-jupyter-builder"]
@@ -78,6 +78,10 @@ artifacts = [
     "/package.json",
     "/py/jupyter_book/dist/jupyter-book.cjs"
 ]
+
+[tool.hatch.build.hooks.version]
+path = "py/jupyter_book/__main__.py"
+pattern = true
 
 # Use Hatch to version the project from Jupyter Releaser
 [tool.jupyter-releaser.options]
