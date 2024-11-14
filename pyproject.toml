@@ -79,3 +79,13 @@ artifacts = [
     "/py/jupyter_book/dist/jupyter-book.cjs"
 ]
 
+# Use Hatch to version the project from Jupyter Releaser
+[tool.jupyter-releaser.options]
+version_cmd = "hatch version"
+
+[tool.jupyter-releaser.hooks]
+before-build-npm = [
+    "npm install",
+    "npm run build"
+]
+before-build-python = ["npm run clean"]
