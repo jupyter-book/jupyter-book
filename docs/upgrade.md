@@ -32,13 +32,13 @@ Before we can upgrade a {term}`Legacy Book`, we must first discuss its important
 
 The most important files in a {term}`Legacy Book` are the `_toc.yml` and `_config.yml` files described in [](#legacy-config-files). These files control what a book contains and what it looks like.
 
-An example {term}`Legacy Book` can be seen at <https://github.com/executablebooks/demo-book/>. If we inspect the contents of the `my_book` directory, there are a number of files including [`_toc.yml`](#code:example-toc) and [`_config.yml`](#code:example-config):
+An example {term}`Legacy Book` can be seen at <https://github.com/jupyter-book/legacy-demo-book/>. If we inspect the contents of the `my_book` directory, there are a number of files including [`_toc.yml`](#code:example-toc) and [`_config.yml`](#code:example-config):
 
 ```{code} shell
-:caption: Contents of the {term}`Legacy Book` at <https://github.com/executablebooks/demo-book/>.
+:caption: Contents of the {term}`Legacy Book` at <https://github.com/jupyter-book/legacy-demo-book/>.
 :name: legacy-contents
 
-$ git clone https://github.com/executablebooks/demo-book
+$ git clone https://github.com/jupyter-book/legacy-demo-book
 $ cd demo-book
 $ ls ./my_book
 _config.yml
@@ -55,7 +55,7 @@ _toc.yml
 ```{code} yaml
 :filename: my_book/_config.yml
 :name: code:example-config
-:caption: Extract from the `_config.yml` file defined in <https://github.com/executablebooks/demo-book/>.
+:caption: Extract from the `_config.yml` file defined in <https://github.com/jupyter-book/legacy-demo-book/>.
 
 #######################################################################################
 # A default configuration that will be loaded for all jupyter books
@@ -80,7 +80,7 @@ execute:
 ```{code} yaml
 :filename: my_book/_toc.yml
 :name: code:example-toc
-:caption: The `_toc.yml` file defined in <https://github.com/executablebooks/demo-book/>.
+:caption: The `_toc.yml` file defined in <https://github.com/jupyter-book/legacy-demo-book/>.
 
 # Table of contents
 # Learn more at https://jupyterbook.org/customize/toc.html
