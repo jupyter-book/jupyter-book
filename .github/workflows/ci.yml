@@ -1,0 +1,75 @@
+# This file was created automatically with `myst init --gh-pages` 🪄 💚
+
+name: Continuous Integration
+on:
+  pull_request:
+    # Runs on pushes targeting the default branch
+    branches:
+      - next
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  test:
+    name: Test Python Package
+    runs-on: ${{ matrix.runs-on }}
+    strategy:
+      fail-fast: false
+      matrix:
+        runs-on:
+          - windows-latest
+          - ubuntu-latest
+          - macos-13
+        python-version:
+          - "3.13"
+          - "3.12"
+          - "3.11"
+          - "3.10"
+          - "3.9"
+        has-node:
+          - true
+          - false
+    steps:
+      - uses: actions/checkout@v4
+      # Install Python
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      # Install Node
+      - uses: actions/setup-node@v4
+        with:
+          # Do not vary this -- upstream tests this
+          node-version: 20
+      - name: Build Jupyter Book
+        id: build-package
+        run: |
+          python -m pip install build
+          python -m build .
+
+          # Store test image
+          python_version=$(python -c "import sys; v = sys.version_info; print(f'{v.major}.{v.minor}.{v.micro}')")
+          test_image="docker://python:${python_version}-slim-bookworm"
+          echo "TEST_IMAGE=$test_image" >> "$GITHUB_OUTPUT"
+
+      - name: Fails Without Node
+        uses: "${{ steps.build-package.outputs.TEST_IMAGE }}"
+        if: ${{ ! matrix.has-node }}
+        with:
+          entrypoint: /bin/bash
+          args: '-c "export JB_ALLOW_NODEENV=0; pip install /dist/*.whl && ! jupyter book -v"'
+
+      - name: Succeeds Without Node Using NodeEnv
+        uses: "${{ steps.build-package.outputs.TEST_IMAGE }}"
+        if: ${{ ! matrix.has-node }}
+        with:
+          entrypoint: /bin/bash
+          args: '-c "export JB_ALLOW_NODEENV=1; pip install /dist/*.whl && jupyter book -v"'
+
+      - name: Succeeds With Node
+        run: jupyter book -v
+        if: ${{ matrix.has-node }}
+        env:
+          # To be explicit!
+          JB_ALLOW_NODEENV: 0
