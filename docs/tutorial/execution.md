@@ -1,6 +1,6 @@
 ---
-title: Mix code and narrative
-short_title: Mix code & narrative
+title: Execute code with your content
+short_title: Executable code & content
 subject: Jupyter Book tutorial
 subtitle: Execute content and insert it into your pages when you build your MyST project.
 description: Learn the basics of how MyST can be used to execute content with Jupyter technology.
