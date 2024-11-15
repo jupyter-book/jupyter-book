@@ -12,8 +12,82 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
 jobs:
+  test-no-python:
+    name: Test without Node.js
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Install Python
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+
+      # Install Node
+      - uses: actions/setup-node@v4
+        with:
+          # Do not vary this -- upstream tests this
+          node-version: 20
+
+      - name: Build Jupyter Book
+        run: |
+          python -m pip install build
+          python -m build .
+
+      # Python 3.12
+      - name: Python 3.12 (Linux) Fails Without Node
+        uses: "docker://python:3.12-slim-bookworm"
+        with:
+          entrypoint: /bin/bash
+          args: '-c "export JB_ALLOW_NODEENV=0; pip install dist/*.whl && ! jupyter book -v"'
+
+      - name: Succeeds Without Node Using NodeEnv
+        uses: "docker://python:3.12-slim-bookworm"
+        with:
+          entrypoint: /bin/bash
+          args: '-c "export JB_ALLOW_NODEENV=1; pip install dist/*.whl && jupyter book -v"'
+
+      # Python 3.11
+      - name: Python 3.11 (Linux) Fails Without Node
+        uses: "docker://python:3.11-slim-bookworm"
+        with:
+          entrypoint: /bin/bash
+          args: '-c "export JB_ALLOW_NODEENV=0; pip install dist/*.whl && ! jupyter book -v"'
+
+      - name: Succeeds Without Node Using NodeEnv
+        uses: "docker://python:3.11-slim-bookworm"
+        with:
+          entrypoint: /bin/bash
+          args: '-c "export JB_ALLOW_NODEENV=1; pip install dist/*.whl && jupyter book -v"'
+
+      # Python 3.10
+      - name: Python 3.10 (Linux) Fails Without Node
+        uses: "docker://python:3.10-slim-bookworm"
+        with:
+          entrypoint: /bin/bash
+          args: '-c "export JB_ALLOW_NODEENV=0; pip install dist/*.whl && ! jupyter book -v"'
+
+      - name: Succeeds Without Node Using NodeEnv
+        uses: "docker://python:3.10-slim-bookworm"
+        with:
+          entrypoint: /bin/bash
+          args: '-c "export JB_ALLOW_NODEENV=1; pip install dist/*.whl && jupyter book -v"'
+
+      # Python 3.9
+      - name: Python 3.9 (Linux) Fails Without Node
+        uses: "docker://python:3.9-slim-bookworm"
+        with:
+          entrypoint: /bin/bash
+          args: '-c "export JB_ALLOW_NODEENV=0; pip install dist/*.whl && ! jupyter book -v"'
+
+      - name: Succeeds Without Node Using NodeEnv
+        uses: "docker://python:3.9-slim-bookworm"
+        with:
+          entrypoint: /bin/bash
+          args: '-c "export JB_ALLOW_NODEENV=1; pip install dist/*.whl && jupyter book -v"'
+
   test:
-    name: Test Python Package
+    name: Test with Node.js
     runs-on: ${{ matrix.runs-on }}
     strategy:
       fail-fast: false
@@ -28,9 +102,6 @@ jobs:
           - "3.11"
           - "3.10"
           - "3.9"
-        has-node:
-          - true
-          - false
     steps:
       - uses: actions/checkout@v4
       # Install Python
@@ -49,26 +120,8 @@ jobs:
           python -m pip install build
           python -m build .
 
-      # TODO: be smarter about dispatching this across Python versions
-      # NOTE: this only tests Python 3.11 with a "noarch" package built on Python 3.x
-      - name: Fails Without Node
-        uses: "docker://python:3.11-slim-bookworm"
-        if: ${{ ! matrix.has-node }}
-        with:
-          entrypoint: /bin/bash
-          args: '-c "export JB_ALLOW_NODEENV=0; pip install /dist/*.whl && ! jupyter book -v"'
-
-      # NOTE: this only tests Python 3.11 with a "noarch" package built on Python 3.x
-      - name: Succeeds Without Node Using NodeEnv
-        uses: "docker://python:3.11-slim-bookworm"
-        if: ${{ ! matrix.has-node }}
-        with:
-          entrypoint: /bin/bash
-          args: '-c "export JB_ALLOW_NODEENV=1; pip install /dist/*.whl && jupyter book -v"'
-
       - name: Succeeds With Node
         run: jupyter book -v
-        if: ${{ matrix.has-node }}
         env:
           # To be explicit!
           JB_ALLOW_NODEENV: 0
