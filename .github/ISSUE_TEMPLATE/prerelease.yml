@@ -1,7 +1,7 @@
 name: Jupyter Book 2 Pre-Release Bug Report
 description: File a bug report.
 title: "[Bug]: "
-labels: ["bug", ":arrow_forward: next"]
+labels: ["bug", "▶️ next"]
 body:
   - type: markdown
     attributes:
