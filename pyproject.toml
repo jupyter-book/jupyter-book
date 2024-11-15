@@ -92,4 +92,4 @@ before-build-npm = [
     "npm install",
     "npm run build"
 ]
-before-build-python = ["npm run clean"]
+before-build-python = ["npm install", "npm run clean"]
