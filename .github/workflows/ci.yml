@@ -52,7 +52,7 @@ jobs:
       # TODO: be smarter about dispatching this across Python versions
       # NOTE: this only tests Python 3.11 with a "noarch" package built on Python 3.x
       - name: Fails Without Node
-        uses: "docker://python:3.11.0-slim-bookworm"
+        uses: "docker://python:3.11-slim-bookworm"
         if: ${{ ! matrix.has-node }}
         with:
           entrypoint: /bin/bash
@@ -60,7 +60,7 @@ jobs:
 
       # NOTE: this only tests Python 3.11 with a "noarch" package built on Python 3.x
       - name: Succeeds Without Node Using NodeEnv
-        uses: "docker://python:3.11.0-slim-bookworm"
+        uses: "docker://python:3.11-slim-bookworm"
         if: ${{ ! matrix.has-node }}
         with:
           entrypoint: /bin/bash
