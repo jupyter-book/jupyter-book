@@ -52,7 +52,7 @@ jobs:
         uses: "docker://python:3.11-slim-bookworm"
         with:
           entrypoint: /bin/bash
-          args: '-c "export JB_ALLOW_NODEENV=0; pip install dist/*.whl && ! jupyter book -v"'
+          args: '-c "export JB_ALLOW_NODEENV=0; ! test -d /github/home/.local/share/jupyter-book/ && pip install dist/*.whl && ! jupyter book -v"'
 
       - name: Succeeds Without Node Using NodeEnv
         uses: "docker://python:3.11-slim-bookworm"
