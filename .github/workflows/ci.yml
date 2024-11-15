@@ -1,0 +1,130 @@
+# This file was created automatically with `myst init --gh-pages` 🪄 💚
+
+name: Continuous Integration
+on:
+  pull_request:
+    # Runs on pushes targeting the default branch
+    branches:
+      - next
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  test-no-python:
+    name: Test without Node.js
+    runs-on: ubuntu-latest
+    env:
+      NO_NODE_ARGS: '-o errexit -c "export JB_ALLOW_NODEENV=0; pip install dist/*.whl && ! jupyter book -v"'
+      NO_NODE_NODEENV_ARGS: '-o errexit -c "export JB_ALLOW_NODEENV=1; pip install dist/*.whl && jupyter book -v; rm -r $HOME/.local/share/jupyter-book/"'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Install Python
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+
+      # Install Node
+      - uses: actions/setup-node@v4
+        with:
+          # Do not vary this -- upstream tests this
+          node-version: 20
+
+      - name: Build Jupyter Book
+        run: |
+          python -m pip install build
+          python -m build .
+
+      # Python 3.12
+      - name: Python 3.12 (Linux) Fails Without Node
+        uses: "docker://python:3.12-slim-bookworm"
+        with:
+          entrypoint: /bin/bash
+          args: ${{ env.NO_NODE_ARGS }}
+
+      - name: Succeeds Without Node Using NodeEnv
+        uses: "docker://python:3.12-slim-bookworm"
+        with:
+          entrypoint: /bin/bash
+          args: ${{ env.NO_NODE_NODEENV_ARGS }}
+
+      # Python 3.11
+      - name: Python 3.11 (Linux) Fails Without Node
+        uses: "docker://python:3.11-slim-bookworm"
+        with:
+          entrypoint: /bin/bash
+          args: ${{ env.NO_NODE_ARGS }}
+
+      - name: Succeeds Without Node Using NodeEnv
+        uses: "docker://python:3.11-slim-bookworm"
+        with:
+          entrypoint: /bin/bash
+          args: ${{ env.NO_NODE_NODEENV_ARGS }}
+
+      # Python 3.10
+      - name: Python 3.10 (Linux) Fails Without Node
+        uses: "docker://python:3.10-slim-bookworm"
+        with:
+          entrypoint: /bin/bash
+          args: ${{ env.NO_NODE_ARGS }}
+
+      - name: Succeeds Without Node Using NodeEnv
+        uses: "docker://python:3.10-slim-bookworm"
+        with:
+          entrypoint: /bin/bash
+          args: ${{ env.NO_NODE_NODEENV_ARGS }}
+
+      # Python 3.9
+      - name: Python 3.9 (Linux) Fails Without Node
+        uses: "docker://python:3.9-slim-bookworm"
+        with:
+          entrypoint: /bin/bash
+          args: ${{ env.NO_NODE_ARGS }}
+
+      - name: Succeeds Without Node Using NodeEnv
+        uses: "docker://python:3.9-slim-bookworm"
+        with:
+          entrypoint: /bin/bash
+          args: ${{ env.NO_NODE_NODEENV_ARGS }}
+
+  test:
+    name: Test with Node.js
+    runs-on: ${{ matrix.runs-on }}
+    strategy:
+      fail-fast: false
+      matrix:
+        runs-on:
+          - windows-latest
+          - ubuntu-latest
+          - macos-13
+        python-version:
+          - "3.13"
+          - "3.12"
+          - "3.11"
+          - "3.10"
+          - "3.9"
+    steps:
+      - uses: actions/checkout@v4
+      # Install Python
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # Install Node
+      - uses: actions/setup-node@v4
+        with:
+          # Do not vary this -- upstream tests this
+          node-version: 20
+
+      - name: Build Jupyter Book
+        run: |
+          python -m pip install .
+
+      - name: Succeeds With Node
+        run: jupyter book -v
+        env:
+          # To be explicit!
+          JB_ALLOW_NODEENV: 0
