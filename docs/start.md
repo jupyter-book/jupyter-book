@@ -30,7 +30,7 @@ The **Get Started** guide covers basic steps to learn the basics of using Jupyte
 The **Tutorials** cover key workflows and concepts in more depth.
 :::
 :::{card} How To Guides 💡
-:link: /execution/generate-myst
+:link: /execute/generate-myst
 :footer: See the how-to page »
 
 The **Tutorials** cover key workflows and concepts in more depth.

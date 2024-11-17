@@ -33,7 +33,7 @@ Through the course of the tutorials we will add content to these documents that 
 
 🛠 Download the example content[^no-git], and navigate into the folder:
 
-```bash
+```shell
 git clone https://github.com/jupyter-book/mystmd-quickstart.git
 cd mystmd-quickstart
 ```
@@ -73,13 +73,13 @@ Now that we a valid Jupyter Book project, we can preview it as a website to make
 
 🛠 When prompted, type `Yes` to install and serve your book locally:
 
-```bash
+```shell
 ? Would you like to run "jupyter book start" now? Yes
 ```
 
 or manually serve the quickstart content with the following command:
 
-```bash
+```shell
 jupyter book start
 ```
 
