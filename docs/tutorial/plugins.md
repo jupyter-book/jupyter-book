@@ -55,7 +55,7 @@ $ jupyter book start
 
 Next we'll create an empty JavaScript file[^esm] that we'll use to add new plugin logic.
 
-[^esm]: The format of the Javascript should be an ECMAScript modules, not CommonJS. This means it uses `import` statements rather than `require()` and is the most modern style of Javascript. See [the MDN modules documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) for background on modules.
+[^esm]: The format of the JavaScript should be an ECMAScript modules, not CommonJS. This means it uses `import` statements rather than `require()` and is the most modern style of JavaScript. See [the MDN modules documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) for background on modules.
 
 🛠 Create a `src/` folder and add an empty JavaScript file to it
 
