@@ -7,7 +7,7 @@ This is particularly useful if you're generating MyST AST from scratch. For exam
 For example, here's a video that shows how to use the MyST sandbox to explore the structure of a {myst:directive}`card` directive.
 
 ```{figure} media/sandbox-demo.mp4
-Using [the MyST sandbox](https://mystmd.org/sandbox) to preview and show the AST of the `{card}` directive.
+Using [the MyST sandbox](https://mystmd.org/sandbox) to preview and show the AST of the {myst:directive}`card` directive.
 ```
 
 :::{note} Click here to see the full output of the MyST sandbox
