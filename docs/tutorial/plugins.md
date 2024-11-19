@@ -111,6 +111,7 @@ You should see MyST log the activation of this plugin, it'll look something like
 However, this plugin doesn't have any functionality!
 We'll add that next.
 
+(tutorial:plugins:directive)=
 ## Create a directive plugin
 
 Directives plugins allow you to control your own block-level content creation.
@@ -119,7 +120,7 @@ Here we will create a simple directive that returns a phrase that the user can c
 Directives must follow a specific structure so that MyST knows how to read them[^spec].
 First, create a directive with the right structure, but no "logic" to do anything.
 
-[^spec]: Here's the [Directive Specification](https://github.com/jupyter-book/mystmd/blob/9965925030c3fab6f34c20d11eeee7ffdafa73df/packages/myst-common/src/types.ts#L68-L77) and the [Role Specification](https://github.com/jupyter-book/mystmd/blob/9965925030c3fab6f34c20d11eeee7ffdafa73df/packages/myst-common/src/types.ts#L79-L85)
+[^spec]: Here's the [Directive Specification](https://github.com/jupyter-book/mystmd/blob/main/packages/myst-common/src/types.ts#L92-L101) and the [Role Specification](https://github.com/jupyter-book/mystmd/blob/main/packages/myst-common/src/types.ts#L103-L110)
 
 🛠 Copy and paste the code **above** the plugin code in your `myplugin.mjs` file.
 
@@ -129,7 +130,7 @@ const myDirective = {
   name: "mydirective",
   doc: "My new directive!",
   arg: { type: String, doc: "The word to display" },
-  run(data) {},
+  run(data, vfile, ctx) {},
 };
 ```
 
@@ -138,8 +139,10 @@ Here's how to interpret the above:
 - **name**: The name of the directive in MyST (ie, how you will write the direcive)
 - **doc**: A docstring to help others know what the directive does.
 - **arg**: Tell MyST that this directive expects an argument of a "String" type.
-- **`run(data)`**: A special function all directives must have. This is executed when the directive is run.
-- **`data`**: A data object provided to each directive when it is run. This contains information about the directive, and also other information about what's on the page.
+- **`run(data, vfile, ctx)`**: A special function all directives must have. This is executed when the directive is run.
+  - **`data`**: A data object provided to each directive when it is run. This contains information about the directive, and also other information about what's on the page.
+  - **`vfile`**: A [VFile](https://github.com/vfile/vfile) object. This is a virtual file object that contains information about the page that the directive is being run on.
+  - **`ctx`**: A context object provided to each directive when it is run. This provides helper functions and information for working with MyST.
 
 Next, we'll add some logic to this directive so that it does something when we run it.
 
@@ -151,7 +154,7 @@ const myDirective = {
   name: "mydirective",
   doc: "My new directive!",
   arg: { type: String, doc: "The word to display" },
-  run(data) {
+  run(data, vfile, ctx) {
     const word = data.arg
     const sentence = {
       type: "text",
@@ -251,7 +254,7 @@ const myDirective = {
   options: {
     bold: {type: Boolean, doc: "Make the sentence bold!"}
   },
-  run(data) {
+  run(data, vfile, ctx) {
     const word = data.arg
     const bold = data.options.bold || false;
     var sentence = {
@@ -313,12 +316,43 @@ const myDirective = {
 
 Next, we'll modify our directive logic generate a MyST card if the body is present, and set the directive argument as the card title.
 
-To do so, we need to know what a card AST structure looks like.
+The AST of a card output is a bit more complex than a paragraph or text node.
+Rather than building it by hand, we'll use the `ctx.parseMyst` function to generate MyST ast from MyST Markdown[^sandbox].
 
-🛠️ Follow the [MyST sandbox how-to guide](../src/sandbox.md) to preview the AST of a ` ```{card}` directive. (or, just look at the code below).
+[^sandbox]: Another option is to manually construct the AST for a card by using the [MyST sandbox](../plugins/sandbox.md).
 
-This is the relevant part of the AST for `{card}`:
+🛠️ Modify your directive with the code below to use `ctx.parseMyst` to parse the directive argument into MyST AST.
 
+
+```{code} javascript
+:filename: src/myplugin.mjs
+...
+run(data, vfile, ctx) {
+  const word = data.arg
+  const bold = data.options.bold || false;
+  const body = data.body || '';
+  var sentence = {
+    type: "text",
+    value: "The word you gave is: " + word,
+  };
+  if (bold === true) {
+    var sentence = {"type": "strong", "children": [sentence]}
+  }
+
+  if (body) {
+    var ast = ctx.parseMyst(`:::{card} ${word}\n${body}\n:::`);
+    var out = ast.children[0]
+  } else {
+    var out = {"type": "paragraph", "children": [sentence]}
+  }
+  return [out];
+}
+```
+
+In the (body) we're parsing a MyST `{card}` directive string into MyST AST.
+
+:::{note} Click to show what the AST for a card looks like
+:class: dropdown
 ```json
 {
   "type": "card",
@@ -344,57 +378,7 @@ This is the relevant part of the AST for `{card}`:
   ]
 }
 ```
-
-This shows us how we can re-create a card using the MyST AST in our directive.
-Do so with the JavaScript code below.
-
-🛠️ Modify your directive logic so that it looks like the code below.
-
-```{code} javascript
-:filename: src/myplugin.mjs
-...
-run(data) {
-  const word = data.arg
-  const bold = data.options.bold || false;
-  const body = data.body || '';
-  var sentence = {
-    type: "text",
-    value: "The word you gave is: " + word,
-  };
-  if (bold === true) {
-    var sentence = {"type": "strong", "children": [sentence]}
-  }
-
-  if (body) {
-    var out = {
-      "type": "card",
-      "children": [
-        {
-          "type": "cardTitle",
-          "children": [
-            {
-              "type": "text",
-              "value": word,
-            }
-          ]
-        },
-        {
-          "type": "paragraph",
-          "children": [
-            {
-              "type": "text",
-              "value": body,
-            }
-          ]
-        }
-      ]
-    }
-  } else {
-    var out = {"type": "paragraph", "children": [sentence]}
-  }
-  return [out];
-}
-```
+:::
 
 🛠️ Now modify your page markdown to include a body for the directive.
 
@@ -545,3 +529,23 @@ See the following MyST pages for more complete information and examples for how 
 
 - <xref:guide/javascript-plugins>
 - <xref:guide/executable-plugins>
+
+#### This raises a warning
+
+````{code} markdown
+```{mydirective}
+```
+````
+ and
+
+````{code-block} markdown
+```{mydirective}
+```
+````
+
+#### This works fine
+
+```` markdown
+```{mydirective}
+```
+````

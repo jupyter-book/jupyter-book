@@ -42,8 +42,7 @@ project:
     - title: How To
       children:
         - file: execute/generate-myst.md
-        - file: plugins/debug.md
-        - file: plugins/sandbox.md
+        - file: plugins/ast.md
     - title: About Jupyter Book
       children:
         - file: about/toolchain.md
