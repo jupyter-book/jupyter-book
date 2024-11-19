@@ -34,9 +34,8 @@ Through the course of the tutorials we will add content to these documents that 
 🛠 Download the example content[^no-git], and navigate into the folder:
 
 ```shell
-git clone https://github.com/jupyter-book/mystmd-quickstart.git
-cd mystmd-quickstart
-```
+$ git clone https://github.com/jupyter-book/mystmd-quickstart.git
+$ cd mystmd-quickstart
 
 [^no-git]: If you aren't familiar with git, it isn't required for this tutorial, you can download the zip file with the contents from the [quickstart repository](https://github.com/jupyter-book/mystmd-quickstart).
 
@@ -80,7 +79,7 @@ Now that we a valid Jupyter Book project, we can preview it as a website to make
 or manually serve the quickstart content with the following command:
 
 ```shell
-jupyter book start
+$ jupyter book start
 ```
 
 Starting the server requires a theme, this will download the default `book-theme` from [the MyST themes](./website-templates.md).

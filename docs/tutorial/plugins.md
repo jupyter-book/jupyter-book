@@ -26,7 +26,7 @@ $ cd plugin-demo
 🛠 Next initialize a Jupyter Book in the folder to add a configuration file:
 
 ```shell
-$ jupyter-book init
+$ jupyter book init
 ```
 
 🛠 Finally, create an empty file that we'll use to play around with our plugin:
@@ -43,19 +43,19 @@ project:
     - file: myplugindemo.md
 ```
 
-You should now be able to run `myst start` and see a page with just your title rendered:
+You should now be able to run `jupyter book start` and see a page with just your title rendered:
 
-🛠️ Run `myst start` to confirm that your demo book is set up properly.
+🛠️ Run `jupyter book start` to confirm that your demo book is set up properly.
 
 ```shell
-$ myst start
+$ jupyter book start
 ```
 
 ## Create an empty plugin script
 
 Next we'll create an empty JavaScript file[^esm] that we'll use to add new plugin logic.
 
-[^esm]: The format of the Javascript should be an ECMAScript modules, not CommonJS. This means it uses `import` statements rather than `require()` and is the most modern style of Javascript. See [the MDN modules documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) for background on modules.
+[^esm]: The format of the JavaScript should be an ECMAScript modules, not CommonJS. This means it uses `import` statements rather than `require()` and is the most modern style of JavaScript. See [the MDN modules documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) for background on modules.
 
 🛠 Create a `src/` folder and add an empty JavaScript file to it
 
@@ -99,7 +99,7 @@ project:
 🛠 Start your MyST site.
 
 ```shell
-$ myst start
+$ jupyter book start
 ```
 
 You should see MyST log the activation of this plugin, it'll look something like this:
@@ -202,7 +202,7 @@ We'll add it to our content to try it out.
 🛠️ **Re-build** MyST (you must re-build manually any time you change a plugin)
 
 ```shell
-$ myst start
+$ jupyter book start
 ```
 
 Now preview the page, you should see `The word you gave is: myword` printed on the document.
@@ -290,7 +290,7 @@ We've modified the directive logic so that it will nest the `text` node inside o
 🛠️ Restart the MyST build to load the new directive logic.
 
 ```shell
-$ myst start
+$ jupyter book start
 ```
 
 You should see the first sentence as before, and the second sentence in bold!
@@ -443,7 +443,7 @@ First, let's confirm that this plugin is properly loaded.
 🛠️ Re-start MyST to confirm that the plugin's transform is loaded.
 
 ```shell
-$ myst start
+$ jupyter book start
 ```
 
 You should see output like:
@@ -514,7 +514,7 @@ Here's a card body!
 🛠️ Re-build your demo site.
 
 ```shell
-$ myst start
+$ jupyter book start
 ```
 
 You should now see each card with a footer with a running count.

@@ -1,6 +1,6 @@
 # Debug plugins
 
-This section describes a few days to debug MyST plugins.
+This section describes a few ways to debug MyST plugins.
 
 (debug-mode)=
 ## Debug mode
