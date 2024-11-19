@@ -155,7 +155,7 @@ Here's how to interpret the above:
 : A [VFile](https://github.com/vfile/vfile) object. This is a virtual file object that contains information about the page that the directive is being run on.
 
 `ctx`
-: A context object provided to each directive when it is run. This provides helper functions and information for working with MyST.
+: A context object provided to each directive when it is run. This provides helper functions and information for working with MyST. See [](#plugins:ctx) for more information.
 
 Next, we'll add some logic to this directive so that it does something when we run it.
 
@@ -191,8 +191,7 @@ Next we add this directive to the list of plugin exports for our plugin:
 🛠️ Modify the plugin exports so that it looks like the following:
 
 ```{code} javascript
-:filename: myplugindemo.md
-
+:filename: src/myplugin.mjs
 const plugin = {
   name: "My cool plugin",
   directives: [myDirective],
@@ -334,7 +333,11 @@ Next, we'll modify our directive logic generate a MyST card if the body is prese
 The AST of a card output is a bit more complex than a paragraph or text node.
 Rather than building it by hand, we'll use the `ctx.parseMyst` function to generate MyST ast from MyST Markdown[^sandbox].
 
-[^sandbox]: Another option is to manually construct the AST for a card by using the [MyST sandbox](../plugins/sandbox.md).
+:::{warning} `ctx.parseMyst` is experimental
+This is a helpful function that may change or move in the near future.
+A more reliable way to generate MyST AST is to manually create the AST nodes yourself.
+See the how-to on [using the MyST sandbox](../plugins/sandbox.md) for a reference on manually identifying MyST AST structure.
+:::
 
 🛠️ Modify your directive with the code below to use `ctx.parseMyst` to parse the directive argument into MyST AST.
 

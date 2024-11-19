@@ -42,6 +42,7 @@ project:
     - title: How To
       children:
         - file: execute/generate-myst.md
+        - file: plugins/directives-and-roles.md
         - file: plugins/ast.md
     - title: About Jupyter Book
       children:

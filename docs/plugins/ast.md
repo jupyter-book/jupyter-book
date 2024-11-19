@@ -3,7 +3,8 @@
 A common usecase with plugins involves generating MyST AST and inserting it into the document.
 This page covers a few ways that you can do so.
 
-## Parse MyST markdwon to AST in a directive or role
+(plugins:ctx)=
+## Parse MyST markdown to AST in a directive or role
 
 The easiest way to generate MyST AST in a plugin is by using the `parseMyst` function in the `ctx` variable. It may be easier to parse MyST Markdown into AST nodes rather than [using the MyST sandbox](sandbox.md) to preview them.
 
