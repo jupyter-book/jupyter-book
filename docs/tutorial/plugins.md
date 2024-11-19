@@ -59,10 +59,9 @@ Next we'll create an empty JavaScript file[^esm] that we'll use to add new plugi
 
 🛠 Create a `src/` folder and add an empty JavaScript file to it
 
-```shell
-$ mkdir src
-$ touch src/myplugin.mjs
-```
+```{code}
+:filename: src/myplugin.mjs
+
 
 In this tutorial we will define a **directive** and play around with ways to control it.
 Other plugins you could define are **roles** and **transforms**.
