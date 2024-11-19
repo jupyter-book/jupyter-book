@@ -93,6 +93,12 @@ const plugin = {
 export default plugin;
 ```
 
+Example usage:
+
+```markdown
+This content {myrole}`will be **parsed as myst**` and inserted.
+```
+
 ## Create a transform
 
 Transforms allow you to modify the AST in place during your build.
@@ -119,3 +125,13 @@ const plugin = {
 
 export default plugin;
 ```
+
+Example usage: register this plugin for your MyST project, and put the word "up" in your text anywhere.
+When you view your MyST build output, all instances of "up" should be replace with "down".
+
+## More information on plugins
+
+For more information on writing plugins, see:
+
+- [The Jupyter Book plugins tutorial](../tutorial/plugins.md)
+- [The MyST guide plugins documentation](xref:guide/plugins)
