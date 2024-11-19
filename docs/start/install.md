@@ -8,7 +8,7 @@ subject: Quickstart tutorial
 :::{seealso} Never used Jupyter Book before?
 :class: dropdown
 
-Jupyter Book 2 is a very thin wrapper around the MyST-MD engine: it shares the same CLI and configuration file (see [](about/toolchain.md) for more details). It serves primarily to as an introduction of the existing Jupyter Book community to the MyST-MD engine.
+Jupyter Book 2 is a very thin wrapper around the MyST-MD engine: it shares the same CLI and configuration file (see [](../about/toolchain.md) for more details). It serves primarily to as an introduction of the existing Jupyter Book community to the MyST-MD engine.
 
 If you're new to the Jupyter Book project, consider [directly using MyST-MD](https://mystmd.org/guide/quickstart).
 :::

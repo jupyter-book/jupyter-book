@@ -14,9 +14,9 @@ project:
     CLI: Command-Line Interface
     TOC: Table of Contents
   plugins:
-    - plugins/xref.mjs
-    - plugins/landing-page.mjs
-    - plugins/directives.mjs
+    - src/xref.mjs
+    - src/landing-page.mjs
+    - src/directives.mjs
   github: https://github.com/jupyter-book/jupyter-book
   toc:
     - file: index.md
@@ -37,10 +37,13 @@ project:
         - file: tutorial/execution.md
         - file: tutorial/export.md
         - file: tutorial/jupyterlab.md
+        - file: tutorial/plugins.md
         - file: upgrade.md
     - title: How To
       children:
-        - file: execution/generate-myst.md
+        - file: execute/generate-myst.md
+        - file: plugins/directives-and-roles.md
+        - file: plugins/ast.md
     - title: About Jupyter Book
       children:
         - file: about/toolchain.md
