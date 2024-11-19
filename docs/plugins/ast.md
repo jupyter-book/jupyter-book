@@ -43,7 +43,7 @@ const myDirective = {
 
 :::{tip} If you need to use multi-line strings you must dedent them
 The example above puts a multi-line string onto one line by manually coding the `\n` characters.
-If you instead want to show a multi-line string in your code, for example like the following:
+If you instead want to show a multi-line string in your code, you will need to remove the indentation manually, for example like the following:
 
 
 ```{code} javascript
@@ -55,16 +55,13 @@ const myDirective = {
   body: { type: String, doc: "The body of the directive." },
   run(data, vfile, ctx) {
     const ast = ctx.parseMyst(`
-    :::{card} ${data.arg}
-    ${data.body}
-    :::`);
+:::{card} ${data.arg}
+${data.body}
+::: `);
     return ast.children[0];
   },
 };
 ```
-
-You'll need to dedent the string manually to get the multi-line string to work.
-The easiest way to do this is to use the [`dedent` JavaScript package](https://www.npmjs.com/package/dedent).
 :::
 
 ## Use the MyST Sandbox to identify card AST structure
