@@ -71,17 +71,21 @@ My body
 ## Create a role
 
 Below is boilerplate code for how to create a role.
-This one shows how to use `ctx` to parse the role's body as MyST.
+This one shows how to use the `'myst'` type to treat the role's body as MyST.
 
 ```{code} javascript
 :filename: src/myplugin.mjs
 const myRole = {
   name: "myrole",
   doc: "My new role!",
-  body: { type: String, doc: "The body of the role.", required: true },
+  body: { type: 'myst', doc: "The body of the role.", required: true },
   run(data, vfile, ctx) {
-    const ast = ctx.parseMyst(data.body);
-    return [ast.children[0]];
+    const result = {
+      type: "span",
+      class: "myrole",
+      children: data.body
+    };
+    return [result];
   },
 };
 
