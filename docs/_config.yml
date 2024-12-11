@@ -37,7 +37,7 @@ html:
 
 repository:
   url: https://github.com/executablebooks/jupyter-book
-  branch: master
+  branch: main
   path_to_book: docs
 
 launch_buttons:
