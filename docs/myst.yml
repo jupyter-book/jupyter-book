@@ -17,10 +17,11 @@ project:
     - src/xref.mjs
     - src/landing-page.mjs
     - src/directives.mjs
+    - src/admonition.mjs
   github: https://github.com/jupyter-book/jupyter-book
   toc:
     - file: index.md
-    - title: Get started
+    - title: Get Started
       file: start.md
       children:
         - file: start/install.md
@@ -41,8 +42,14 @@ project:
         - file: upgrade.md
     - title: How To
       children:
-        - file: execute/generate-myst.md
-        - title: Plugins
+        - title: Authoring & Writing
+          children:
+          - file: author/roles-and-directives.md
+          - file: author/authorship.md
+        - title: Execution & Computation
+          children:
+          - file: execute/generate-myst.md
+        - title: Plugins & Extensions
           children:
           - file: plugins/directives-and-roles.md
           - file: plugins/ast.md

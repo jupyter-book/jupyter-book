@@ -1,4 +1,4 @@
-# Create directives, roles, and transforms
+# Create custom directives, roles, and transforms
 
 This page provides minimal examples of how to create roles and directives in plugins.
 It focuses on the JavaScript plugin architecture, rather than the Executable Plugin architecture.
@@ -67,6 +67,37 @@ Example usage:
 My body
 ```
 ````
+
+## Create a custom admonition
+
+A common use-case for directive plugins is to create a custom admonition.
+Let's say that we want to create an admonition called "checkitout" that uses a specific color, and is always a dropdown.
+Here's plugin code you can copy/paste into a file to accomplish this:
+
+```{literalinclude} ../src/admonition.mjs
+```
+
+You can then register this plugin in your `myst.yml` file like so:
+
+```{code} yaml
+:filename: myst.yml
+
+project:
+  plugins:
+    - src/admonition.mjs
+```
+
+Then we can use this admonition like so:
+
+````markdown
+```{checkitout} My title
+My body
+```
+````
+
+```{checkitout} My title
+My body
+```
 
 ## Create a role
 
