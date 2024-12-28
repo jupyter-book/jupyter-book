@@ -15,11 +15,16 @@ Jupyter Book allows users to
 * include computational elements (e.g., code cells) in either type,
 * include rich syntax such as citations, cross-references, and numbered equations, and
 * using a simple command, run the embedded code cells, [cache](https://jupyter-cache.readthedocs.io/en/latest/) the outputs and convert this content into:
-    * a web-based interactive book and
-    * a publication-quality PDF.
+  * a web-based interactive book and
+  * a publication-quality PDF.
 
-## Governance of this project
-Jupyter Book 1.x is now in a maintenance phase, where new feature requests have lower priority than bugfixes. Jupyter Book 2.x will be built on the new [MyST-MD document engine](https://mystmd.org/). See [our blog post](https://executablebooks.org/en/latest/blog/2024-05-20-jupyter-book-myst/) for more information.
+## Governance of this project and Jupyter Book 2.x
+
+Jupyter Book 1.x is now in a maintenance phase, where new feature requests have lower priority than bugfixes.
+
+Jupyter Book 2.x will be built on the new [MyST-MD document engine](https://mystmd.org/). See [this blog post](https://executablebooks.org/en/latest/blog/2024-05-20-jupyter-book-myst/) for more information on our plans, and [this blog post](https://blog.jupyterbook.org/posts/2024-11-15-jupyter-book-2-alpha) about the alpha release of Jupyter Book 2.x.
+
+Jupyter Book 2.x is currently being developed on the `next` branch, and documentation for Jupyter Book 2.x can be found at [next.jupyterbook.org](https://next.jupyterbook.org).
 
 ## Contribute or improve the book
 
