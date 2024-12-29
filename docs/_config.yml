@@ -25,7 +25,7 @@ html:
   # Then we could link to the changelog in the *same* build of the docs.
   announcement: >
     ℹ️ Jupyter Book is being rebuilt on top of <a href="https://mystmd.org/">MyST-MD</a>.
-    See <a href="https://executablebooks.org/en/latest/blog/2024-05-20-jupyter-book-myst/">our blog post</a> for more information. 🚀
+    See <a href="https://github.com/jupyter-book/jupyter-book/issues/2281">GitHub Issue#2281</a> for more information. 🚀
   favicon: images/favicon.ico
   home_page_in_navbar: false
   use_edit_page_button: true
