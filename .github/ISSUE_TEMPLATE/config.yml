@@ -1,1 +1,5 @@
+contact_links:
+  - name: Questions and Conversation 💬
+    url: https://github.com/orgs/jupyter-book/discussions
+    about: Ask questions, request enhancements, discuss computational workflows, and more. Most conversations should happen here, not in issues.
 blank_issues_enabled: true
