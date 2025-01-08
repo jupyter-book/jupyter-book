@@ -1,5 +1,8 @@
 contact_links:
-  - name: Questions and Conversation 💬
-    url: https://github.com/orgs/jupyter-book/discussions
-    about: Ask questions, request enhancements, discuss computational workflows, and more. Most conversations should happen here, not in issues.
+  - name: ❓ Ask a question
+    url: https://github.com/orgs/jupyter-book/discussions/categories/q-a
+    about: Questions about Jupyter Book or MyST are in our community forum.
+  - name: 💡 Request an enhancement
+    url: https://github.com/orgs/jupyter-book/discussions/categories/ideas
+    about: Ideas for new functionality and improvements to the Jupyter Book ecosystem.
 blank_issues_enabled: true
