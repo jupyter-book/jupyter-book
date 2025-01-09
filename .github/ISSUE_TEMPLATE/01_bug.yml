@@ -1,28 +1,25 @@
-name: Jupyter Book 2 Pre-Release Bug Report
-description: File a bug report.
+name: 🐛 Bug Report
 title: "[Bug]: "
-labels: ["bug", "next"]
+labels: ["bug"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to try out Jupyter Book 2 (pre-release).
-        We expect there to be bugs and breakages, and this issue template should help us to track them down. Please fill in the following form:
+        Thanks for opening up a bug report! To make sure that your report provides actionable information, please fill out the following fields:
   - type: textarea
     id: what-happened
     attributes:
-      label: What happened?
-      description: Also tell us, what did you expect to happen?
-      placeholder: Tell us what you see!
+      label: What happened, and what did you expect to happen?
+      placeholder: |
+        When running command X, I expected Y to happen, but instead Z happened.
     validations:
       required: true
   - type: input
     id: version
     attributes:
-      label: Version
+      label: What version of Jupyter Book are you running?
       description: |
-        What version of Jupyter Book are you running?  
-        Please run `jupyter book -v` and report the result
+        Run `jupyter book -v` and report the result
       placeholder: v2.0.0a0
     validations:
       required: true

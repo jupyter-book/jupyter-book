@@ -4,5 +4,5 @@ contact_links:
     about: Questions about Jupyter Book or MyST are in our community forum.
   - name: 💡 Request an enhancement
     url: https://github.com/orgs/jupyter-book/discussions/categories/ideas
-    about: Ideas for new functionality and improvements to the Jupyter Book ecosystem.
+    about: Ideas for new functionality and improvements to Jupyter Book and MyST are in our community forum.
 blank_issues_enabled: true
