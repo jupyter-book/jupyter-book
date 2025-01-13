@@ -48,8 +48,8 @@ env-var = "JUPYTER_BOOK_PACKAGE_VARIANT"
 # Ensure that we only bring in nodeenv for PyPI
 [tool.hatch.build.hooks.selector.variants.pypi]
 dependencies = [
-  "platformdirs~=4.2.2",
-  "nodeenv~=1.9.1"
+  "platformdirs>=4.2.2",
+  "nodeenv>=1.9.1"
 ]
 
 # Conda-forge has no additional dependencies to the `project.dependencies`
