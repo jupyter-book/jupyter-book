@@ -12,11 +12,13 @@ site:
 Jupyter {orange}`Book`
 :::
 
-:::::{grid} 1 2 2 2
-::::{grid-item}
+::::::{grid} 1 2 2 2
+:::::{grid-item}
 {large}`Jupyter Book allows you to create documents and knowledge bases that are **reusable**, **reproducible**, and **interactive**.`
-::::
-::::{grid-item}
+:::::
+:::::{grid-item}
+::::{tab-set}
+:::{tab-item} Start Fresh
 
 ```{code-block} bash
 :filename: Jupyter Book quickstart
@@ -25,8 +27,22 @@ pip install jupyter-book
 jupyter book start
 ```
 
-::::
+Then check out the [documentation](./start.md)!
+:::
+:::{tab-item} Upgrade from Jupyter Book 1.0
+```{code-block} bash
+:filename: Jupyter Book upgrade
+:class: hi
+pip install --pre "jupyter-book>=2.0"
+jupyter book
+```
+
+You can find more information in the [upgrading tutorial](./upgrade.md)!
+:::
+
+
 :::::
+::::::
 
 +++ {"class": "col-body-outset"}
 
