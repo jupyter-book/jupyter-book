@@ -7,15 +7,17 @@ build:
   jobs:
     pre_build:
       # Generate the Sphinx configuration for this Jupyter Book so it builds.
-      - "jupyter-book config sphinx docs/"
+      - jupyter-book config sphinx docs/
 
 python:
   install:
     - method: pip
       path: .
       extra_requirements:
-      - sphinx
+        - sphinx
 
 sphinx:
   builder: html
+  # Point to that generated configuration file
+  configuration: docs/conf.py
   fail_on_warning: true
