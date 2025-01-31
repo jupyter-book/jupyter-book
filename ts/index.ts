@@ -23,6 +23,11 @@ import chalk from "chalk";
 
 const program = new Command();
 
+// Set whitelabelling
+process.env.MYSTMD_READABLE_NAME = "Jupyter Book";
+process.env.MYSTMD_BINARY_NAME = "jupyter book";
+process.env.MYSTMD_HOME_URL = "https://next.jupyterbook.org";
+
 program.description(
   `Jupyter Book is powered by ${chalk.blue(
     "mystmd"
