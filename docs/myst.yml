@@ -39,7 +39,6 @@ project:
         - file: tutorial/export.md
         - file: tutorial/jupyterlab.md
         - file: tutorial/plugins.md
-        - file: upgrade.md
     - title: How To
       children:
         - title: Authoring & Writing
@@ -55,6 +54,7 @@ project:
           - file: plugins/ast.md
           - file: plugins/debug.md
           - file: plugins/dependencies.md
+    - file: upgrade.md
     - title: About Jupyter Book
       children:
         - file: about/toolchain.md
