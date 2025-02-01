@@ -55,7 +55,7 @@ jupyter-book create --help
 Here is a simple YAML configuration for a Github Action that will publish a Jupyter Book found _in the root of the GitHub repository_ to GitHub Pages:
 
 ```yaml
-name: deploy-book
+ame: deploy-book
 
 # Run this when the master or main branch changes
 on:
@@ -77,14 +77,16 @@ jobs:
     permissions:
       pages: write
       id-token: write
+    environment:
+      name: github-pages
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     # Install dependencies
-    - name: Set up Python 3.11
-      uses: actions/setup-python@v4
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5
       with:
-        python-version: 3.11
+        python-version: 3.12
 
     - name: Install dependencies
       run: |
@@ -95,7 +97,7 @@ jobs:
     # execute:
     #   execute_notebooks: cache
     - name: cache executed notebooks
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: _build/.jupyter_cache
         key: jupyter-book-cache-${{ hashFiles('requirements.txt') }}
@@ -107,14 +109,14 @@ jobs:
 
     # Upload the book's HTML as an artifact
     - name: Upload artifact
-      uses: actions/upload-pages-artifact@v2
+      uses: actions/upload-pages-artifact@v3
       with:
         path: "_build/html"
 
     # Deploy the book's HTML to GitHub Pages
     - name: Deploy to GitHub Pages
       id: deployment
-      uses: actions/deploy-pages@v2
+      uses: actions/deploy-pages@v4
 ```
 
 
