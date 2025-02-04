@@ -107,14 +107,14 @@ jobs:
 
     # Upload the book's HTML as an artifact
     - name: Upload artifact
-      uses: actions/upload-pages-artifact@v2
+      uses: actions/upload-pages-artifact@v3
       with:
         path: "_build/html"
 
     # Deploy the book's HTML to GitHub Pages
     - name: Deploy to GitHub Pages
       id: deployment
-      uses: actions/deploy-pages@v2
+      uses: actions/deploy-pages@v4
 ```
 
 
