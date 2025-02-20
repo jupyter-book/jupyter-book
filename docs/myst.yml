@@ -46,9 +46,9 @@ project:
           children:
           - file: author/roles-and-directives.md
           - file: author/authorship.md
-        - title: Execution & Computation
-          children:
-          - file: execute/generate-myst.md
+          #        - title: Execution & Computation
+          #          children:
+          #          - file: execute/generate-myst.md
         - title: Plugins & Extensions
           children:
           - file: plugins/directives-and-roles.md
