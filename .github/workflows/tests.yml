@@ -48,10 +48,8 @@ jobs:
         pip install wheel
         pip install -e .[testing]
 
-    - name: Install Headless Chrome dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -yq $(cat .github/workflows/pyppeteer_reqs.txt)
+      - name: Install Playwright
+        run: playwright install --with-deps chromium
 
     - name: Install latex dependencies
       run: |
