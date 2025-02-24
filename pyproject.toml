@@ -33,7 +33,7 @@ dependencies = [
     "jsonschema<5",
     "linkify-it-py>=2,<3",
     "myst-nb~=1.0",
-    "myst-parser~=4.0",
+    "myst-parser~=3.0",
     "pyyaml",
     "sphinx>=7,<9",
     "sphinx-comments~=0.0",
