@@ -1,6 +1,6 @@
 [build-system]
-requires = ["flit_core >=3.5,<4"]
-build-backend = "flit_core.buildapi"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "jupyter-book"
@@ -108,10 +108,10 @@ testing = [
 jb = "jupyter_book.cli.main:main"
 jupyter-book = "jupyter_book.cli.main:main"
 
-[tool.flit.module]
-name = "jupyter_book"
+[tool.hatch.version]
+path = "jupyter_book/__init__.py"
 
-[tool.flit.sdist]
+[tool.hatch.build.targets.sdist]
 exclude = [
   ".*",  # Any hidden folders or files
   "docs/",
