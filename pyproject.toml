@@ -35,7 +35,7 @@ dependencies = [
     "myst-nb~=1.0",
     "myst-parser~=3.0",
     "pyyaml",
-    "sphinx>=7,<9",
+    "sphinx~=7.0",
     "sphinx-comments~=0.0",
     "sphinx-copybutton~=0.5",
     "sphinx-external-toc~=1.0",
