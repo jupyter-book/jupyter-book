@@ -26,13 +26,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install wheel
           pip install -e .[sphinx,pdfhtml]
-      - name: Install Headless Chrome dependencies
+      - name: Install Playwright
         run: |
-          sudo apt-get update
-          sudo apt-get install -yq $(cat .github/workflows/pyppeteer_reqs.txt)
-      - name: Install Chromium
-        run: |
-          pyppeteer-install
+          playwright install-deps chromium
+          playwright install chromium
       - name: Build PDF from HTML (Docs)
         run: |
           jb build docs --builder pdfhtml -n -W --keep-going
