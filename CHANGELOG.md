@@ -1,5 +1,9 @@
 # Change Log
 
+<!-- <START NEW CHANGELOG ENTRY> -->
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## v1.0.3 - 2024-10-07
 
 ([full changelog](https://github.com/jupyter-book/jupyter-book/compare/v1.0.2...2283b7c59907b0817f81614bfbf0ac2ee4d4bd9d))
