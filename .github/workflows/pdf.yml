@@ -4,80 +4,78 @@ on:
   push:
     branches: [master]
     tags:
-      - 'v*'
+      - "v*"
   pull_request:
 
 jobs:
-
   pdfhtml:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.9]
+        python-version: ["3.10"]
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v5
-      with:
-        python-version: ${{ matrix.python-version }}
-        cache: "pip"
-    - name: Install Python dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install wheel
-        pip install -e .[sphinx,pdfhtml]
-    - name: Install Headless Chrome dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -yq $(cat .github/workflows/pyppeteer_reqs.txt)
-    - name: Install Chromium
-      run: |
-        pyppeteer-install
-    - name: Build PDF from HTML (Docs)
-      run: |
-        jb build docs --builder pdfhtml -n -W --keep-going
-    - uses: actions/upload-artifact@v4
-      with:
-        name: PDF_HTML
-        path: docs/_build/pdf/book.pdf
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install wheel
+          pip install -e .[sphinx,pdfhtml]
+      - name: Install Headless Chrome dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -yq $(cat .github/workflows/pyppeteer_reqs.txt)
+      - name: Install Chromium
+        run: |
+          pyppeteer-install
+      - name: Build PDF from HTML (Docs)
+        run: |
+          jb build docs --builder pdfhtml -n -W --keep-going
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PDF_HTML
+          path: docs/_build/pdf/book.pdf
 
   pdflatex:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.9]
+        python-version: ["3.10"]
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v5
-      with:
-        python-version: ${{ matrix.python-version }}
-        cache: "pip"
-    - name: Install Python dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install wheel
-        pip install -e .[sphinx,pdflatex]
-    - name: Install latex dependencies
-      run: |
-        sudo apt-get -qq update
-        sudo apt-get install -y     \
-          texlive-latex-recommended \
-          texlive-latex-extra       \
-          texlive-fonts-extra       \
-          fonts-freefont-otf        \
-          texlive-xetex             \
-          latexmk                   \
-          xindy
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install wheel
+          pip install -e .[sphinx,pdflatex]
+      - name: Install latex dependencies
+        run: |
+          sudo apt-get -qq update
+          sudo apt-get install -y     \
+            texlive-latex-recommended \
+            texlive-latex-extra       \
+            texlive-fonts-extra       \
+            fonts-freefont-otf        \
+            texlive-xetex             \
+            latexmk                   \
+            xindy                     \
+            imagemagick
 
-    - name: Build PDF from LaTeX (Docs)
-      run: |
-        jb build docs --builder pdflatex -n -W --keep-going
-    - uses: actions/upload-artifact@v4
-      with:
-        name: PDF_LATEX
-        path: docs/_build/latex/book.pdf
+      - name: Build PDF from LaTeX (Docs)
+        run: |
+          jb build docs --builder pdflatex -n -W --keep-going
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PDF_LATEX
+          path: docs/_build/latex/book.pdf

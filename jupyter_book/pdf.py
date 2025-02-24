@@ -1,4 +1,5 @@
 """Commands to facilitate conversion to PDF."""
+
 import asyncio
 import os
 from copy import copy
@@ -19,7 +20,7 @@ LATEX_DOCUMENTS = (
 
 def html_to_pdf(html_file, pdf_file):
     """
-    Convert arbitrary HTML file to PDF using pyppeteer.
+    Convert arbitrary HTML file to PDF using playwright.
 
     Parameters
     ----------
@@ -28,47 +29,60 @@ def html_to_pdf(html_file, pdf_file):
     pdf_file : str
         A path to an output PDF file that will be created
     """
-    asyncio.get_event_loop().run_until_complete(_html_to_pdf(html_file, pdf_file))
+    asyncio.run(_html_to_pdf(html_file, pdf_file))
 
 
 async def _html_to_pdf(html_file, pdf_file):
     try:
-        from pyppeteer import launch
+        from playwright.async_api import async_playwright, expect
     except ImportError:
         _error(
-            "Generating PDF from book HTML requires the pyppeteer package. "
+            "Generating PDF from book HTML requires the playwright package. "
             "Install it first.",
             ImportError,
         )
-    browser = await launch(args=["--no-sandbox"])
-    page = await browser.newPage()
 
-    # Absolute path is needed
-    html_file = Path(html_file).resolve()
+    async with async_playwright() as p:
+        browser = await p.chromium.launch()
+        context = await browser.new_context()
+        page = await context.new_page()
 
-    # Waiting for networkidle0 seems to let mathjax render
-    await page.goto(f"file:///{html_file}", {"waitUntil": ["networkidle2"]})
-    # Give it *some* margins to make it look a little prettier
-    # I just made these up
-    page_margins = {"left": "0in", "right": "0in", "top": ".5in", "bottom": ".5in"}
-    await page.addStyleTag(
-        {
-            "content": """
-                div.cell_input {
-                    -webkit-column-break-inside: avoid;
-                    page-break-inside: avoid;
-                    break-inside: avoid;
-                }
-                div.cell_output {
-                    -webkit-column-break-inside: avoid;
-                    page-break-inside: avoid;
-                    break-inside: avoid;
-                }
-         """
-        }
-    )
-    await page.pdf({"path": pdf_file, "margin": page_margins})
-    await browser.close()
+        # Absolute path is needed
+        html_file = Path(html_file).resolve()
+
+        await page.goto(f"file:///{html_file}")
+        # Make sure we have a body (seems like goto doesn't wait for redirect)
+        await expect(page.locator("body")).to_be_attached()
+
+        has_mathjax = await page.evaluate("() => window.MathJax !== undefined")
+        if has_mathjax:
+            first_math_element = page.locator(".math")
+            try:
+                await first_math_element.first.wait_for(timeout=10000)
+            except Exception:
+                _error(
+                    "MathJax was detected on the page, but the output was never found.",
+                    ImportError,
+                )
+
+        # Give it *some* margins to make it look a little prettier
+        # I just made these up
+        page_margins = {"left": "0in", "right": "0in", "top": ".5in", "bottom": ".5in"}
+        await page.add_style_tag(
+            content="""
+                    div.cell_input {
+                        -webkit-column-break-inside: avoid;
+                        page-break-inside: avoid;
+                        break-inside: avoid;
+                    }
+                    div.cell_output {
+                        -webkit-column-break-inside: avoid;
+                        page-break-inside: avoid;
+                        break-inside: avoid;
+                    }
+             """
+        )
+        await page.pdf(path=pdf_file, margin=page_margins)
 
 
 def update_latex_documents(latex_documents, latexoverrides):

@@ -64,7 +64,7 @@ Tracker = "https://github.com/executablebooks/jupyter-book/issues"
 
 [project.optional-dependencies]
 code_style = ["pre-commit~=3.1"]
-pdfhtml = ["pyppeteer"]
+pdfhtml = ["playwright"]
 sphinx = [
     "altair",
     "bokeh",
@@ -91,7 +91,7 @@ testing = [
     "coverage",
     "jupytext",
     "pandas",
-    "pyppeteer",
+    "playwright",
     "pytest>=6.2.4",
     "pytest-cov",
     "pytest-regressions",
