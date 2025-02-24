@@ -50,20 +50,9 @@ async def _html_to_pdf(html_file, pdf_file):
         # Absolute path is needed
         html_file = Path(html_file).resolve()
 
-        await page.goto(f"file:///{html_file}")
+        await page.goto(f"file:///{html_file}", wait_until="networkidle")
         # Make sure we have a body (seems like goto doesn't wait for redirect)
         await expect(page.locator("body")).to_be_attached()
-
-        has_mathjax = await page.evaluate("() => window.MathJax !== undefined")
-        if has_mathjax:
-            first_math_element = page.locator(".math")
-            try:
-                await first_math_element.first.wait_for(timeout=10000)
-            except Exception:
-                _error(
-                    "MathJax was detected on the page, but the output was never found.",
-                    ImportError,
-                )
 
         # Give it *some* margins to make it look a little prettier
         # I just made these up

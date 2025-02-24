@@ -2,7 +2,7 @@ name: continuous-integration
 
 on:
   push:
-    branches: [master]
+    branches: [main]
     tags:
       - 'v*'
   pull_request:
@@ -61,7 +61,8 @@ jobs:
           texlive-fonts-extra     \
           fonts-freefont-otf      \
           latexmk                 \
-          xindy
+          xindy                   \
+          imagemagick
 
     - name: Run pytest
       run: |
