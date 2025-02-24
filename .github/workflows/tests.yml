@@ -61,7 +61,8 @@ jobs:
           texlive-fonts-extra     \
           fonts-freefont-otf      \
           latexmk                 \
-          xindy
+          xindy                   \
+          imagemagick
 
     - name: Run pytest
       run: |
