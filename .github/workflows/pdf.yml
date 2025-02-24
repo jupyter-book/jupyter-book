@@ -28,7 +28,7 @@ jobs:
           pip install -e .[sphinx,pdfhtml]
       - name: Install Playwright
         run: |
-          playwright install --deps chromium
+          playwright install --with-deps chromium
       - name: Build PDF from HTML (Docs)
         run: |
           jb build docs --builder pdfhtml -n -W --keep-going
