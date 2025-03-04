@@ -29,9 +29,9 @@ Installing software can be confusing. Here's a simple guide to making a sensible
 3. Otherwise ...  
    `pip` can install packages into your home directory with
 
-```shell
-pip install -U jupyter-book>=2
-```
+   ```shell
+   pip install -U jupyter-book>=2.0.0a0
+   ```
 
 :::{warning} Ignoring environment management
 :name: warning:env-management
@@ -48,13 +48,17 @@ Ignoring environment management can lead to confusion later when things break. I
 In a [virtual environment][venv]:
 
 ```shell
-pip install "jupyter-book>=2"
+pip install "jupyter-book>=2.0.0a0"
 ```
 
 :::
 
 :::{card}
 :header: Install with [`mamba`][mamba] / `conda` 🔥
+
+```{warning}
+Jupyter Book 2 is not yet released on `conda-forge`. Stay tuned!
+```
 
 ```shell
 mamba install -c conda-forge \
@@ -69,7 +73,7 @@ mamba install -c conda-forge \
 Never heard of `pipx`? See [the documentation][pipx] for more.
 
 ```shell
-pipx install "jupyter-book>=2"
+pipx install "jupyter-book>=2.0.0a0"
 ```
 
 :::
@@ -80,13 +84,17 @@ pipx install "jupyter-book>=2"
 Never heard of `uv`? See [the documentation][uv] for more.
 
 ```shell:
-uv add "jupyter-book>=2"
+uv add "jupyter-book>=2.0.0a0"
 ```
 
 :::
 
 :::{card}
 :header: Install with [`pixi`][pixi] 🔥
+
+```{warning}
+Jupyter Book 2 is not yet released on `conda-forge`. Stay tuned!
+```
 
 Never heard of `pixi`? See [the documentation][pixi] for more.
 
@@ -95,14 +103,14 @@ pixi add "jupyter-book>=2"
 ```
 
 :::
-
+    
 :::{card}
 :header: Install with [`npm`][npm] 🔥
 
 Never heard of `npm`? See [the documentation][npm] for more.
 
 ```shell:
-npm install -g "jupyter-book@>=2"
+npm install -g "jupyter-book@>=2.0.0-a0"
 ```
 
 :::
