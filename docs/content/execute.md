@@ -29,7 +29,7 @@ See [](../file-types/myst-notebooks.md) for more information.
 ## Trigger notebook execution
 
 By default, Jupyter Book will execute any content files that have a notebook structure
-and that are missing at least one output. This is equivalent to the following configuration in _config.yml`:
+and that are missing at least one output. This is equivalent to the following configuration in `_config.yml`:
 
 ```yaml
 execute:
@@ -305,7 +305,7 @@ print("this is some stderr", file=sys.stderr)
 (content:execute:merge-stdout-and-stderr)=
 ### Merging stdout and stderr output
 
-Code contained in code cells may print outputs through both the `stdout` and `stderr` stream.
+Code contained in code cells may print outputs through both the `stdout` and `stderr` streams.
 
 These outputs may appear in a mixed order and you may want them to be grouped and sorted
 to display the correct `logical` ordering.
@@ -324,7 +324,7 @@ sphinx:
 ## Execution statistics
 
 As notebooks are executed, certain statistics are stored on the build environment by MyST-NB.
-The simplest way to access and visualise this data is using the `{nb-exec-table}` directive.
+The simplest way to access and visualise this data is by using the `{nb-exec-table}` directive.
 
 :::{seealso}
 The [MyST-NB documentation](inv:myst-nb#execute/statistics), for creating your own directives to manipulate this data.
