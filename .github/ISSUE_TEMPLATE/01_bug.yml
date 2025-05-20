@@ -31,7 +31,7 @@ body:
       multiple: true
       options:
         - Linux
-        - Mac OS
+        - macOS
         - Windows
   - type: textarea
     id: logs
