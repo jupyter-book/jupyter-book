@@ -50,7 +50,7 @@ To add a Thebe button to your Jupyter Book pages, take these steps:
 
    ```yaml
    launch_buttons:
-     thebe                  : true
+     thebe: true
    ```
 
 ## Configure Thebe
