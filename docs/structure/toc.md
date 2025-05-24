@@ -23,7 +23,7 @@ This is a YAML file (called `_toc.yml`) that defines a structure that Jupyter Bo
 A new Table of Contents structure was introduced in `v0.11`.
 To migrate your old TOC structure to the new structure, you have a few options:
 
-- **Manually migrate your TOC**. See [this blog post](https://executablebooks.org/en/latest/updates/2021-06-18-update-toc.html) for one example migration from an old TOC structure.
+- **Manually migrate your TOC**. See [this blog post](https://executablebooks.org/en/latest/blog/2021-06-18-update-toc/) for one example migration from an old TOC structure.
 - **Use the migration tool**. This automatically generates a new TOC from your old one, though may alter the formatting slightly.
   To do so, use the following command:
 
