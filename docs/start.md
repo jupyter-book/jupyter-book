@@ -18,19 +18,19 @@ More comprehensive documentation on the underlying MyST Engine, or for specific 
 
 ::::{grid} 1 2 2 2
 :::{card} Get started 🆕
-:link: /start
+:link: /start/install
 :footer: Get started with Jupyter Book »
 
 The **Get Started** guide covers basic steps to learn the basics of using Jupyter Book.
 :::
 :::{card} Tutorials 🎓
-:link: /tutorial.website
+:link: /tutorial/website
 :footer: See the first tutorial »
 
 The **Tutorials** cover key workflows and concepts in more depth.
 :::
 :::{card} How To Guides 💡
-:link: /execute/generate-myst
+:link: /author/roles-and-directives
 :footer: See the how-to page »
 
 The **Tutorials** cover key workflows and concepts in more depth.
