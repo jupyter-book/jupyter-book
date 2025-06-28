@@ -27,7 +27,7 @@ pip install jupyter-book
 jupyter book start
 ```
 
-Then check out the [documentation](./start.md)!
+Then check out the [Jupyter Book documentation](./start.md)!
 :::
 :::{tab-item} Upgrade from Jupyter Book 1.0
 ```{code-block} bash
