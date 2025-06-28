@@ -36,6 +36,7 @@ Through the course of the tutorials we will add content to these documents that 
 ```shell
 $ git clone https://github.com/jupyter-book/mystmd-quickstart.git
 $ cd mystmd-quickstart
+```
 
 [^no-git]: If you aren't familiar with git, it isn't required for this tutorial, you can download the zip file with the contents from the [quickstart repository](https://github.com/jupyter-book/mystmd-quickstart).
 
