@@ -78,24 +78,24 @@ jobs:
       pages: write
       id-token: write
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     # Install dependencies
     - name: Set up Python 3.11
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
-        python-version: 3.11
+        python-version: '3.11'
+        cache: pip # Implicitly uses requirements.txt for cache key
 
     - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
+      run: pip install -r requirements.txt
 
     # (optional) Cache your executed notebooks between runs
     # if you have config:
     # execute:
     #   execute_notebooks: cache
     - name: cache executed notebooks
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: _build/.jupyter_cache
         key: jupyter-book-cache-${{ hashFiles('requirements.txt') }}

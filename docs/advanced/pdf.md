@@ -18,18 +18,14 @@ it as a PDF by emulating a browser from the command-line.
 
 ### Installation
 
-Your system will need to use `pyppeteer` to parse the generated HTML for
+Your system will need to use `playwright` to parse the generated HTML for
 conversion to PDF.
 
 You can install it like so:
 
 ```bash
-pip install pyppeteer
-```
-
-You may also need to install this bundle of packages below (on *nix systems):
-
-```{literalinclude} ../../.github/workflows/pyppeteer_reqs.txt
+pip install playwright
+playwright install --with-deps chromium
 ```
 
 ```{margin}
@@ -51,14 +47,6 @@ or
 ```bash
 jb build mybookname/ --builder pdfhtml
 ```
-
-:::{warning}
-If you get a "MaxRetryError" and see mentions of SSL in the error message when building the PDF,
-this could be due to a bug in `pyppeteer` as it downloads Chromium for the first time.
-See [this GitHub comment](https://github.com/miyakogi/pyppeteer/issues/258#issuecomment-563075764)
-for a potential fix, and [this Jupyter Book issue](https://github.com/executablebooks/jupyter-book/issues/593)
-where we're tracking the issue.
-:::
 
 ### Control the look of PDF via HTML
 
