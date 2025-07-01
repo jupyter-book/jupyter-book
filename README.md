@@ -9,6 +9,9 @@
 
 Jupyter Book is an open-source tool for building publication-quality books and documents from computational material.
 
+> [!Note]
+> For information about Jupyter Book 2, see the `next` branch in this repository, or our documentation at https://next.jupyterbook.org
+
 Jupyter Book allows users to
 
 * write their content in [markdown files](https://myst-parser.readthedocs.io/en/latest/) or [Jupyter](https://jupyter.org/) notebooks,
