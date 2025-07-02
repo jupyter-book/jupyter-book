@@ -10,7 +10,6 @@ classifiers = [
     "License :: OSI Approved :: BSD License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -26,16 +25,16 @@ keywords = [
     "notebook",
 ]
 dynamic = ["description", "version"]
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
     "click>=7.1,<9",
     "Jinja2",
     "jsonschema<5",
     "linkify-it-py>=2,<3",
     "myst-nb~=1.0",
-    "myst-parser~=3.0",
+    "myst-parser~=4.0",
     "pyyaml",
-    "sphinx~=7.0",
+    "sphinx~=8.0",
     "sphinx-comments~=0.0",
     "sphinx-copybutton~=0.5",
     "sphinx-external-toc~=1.0",
