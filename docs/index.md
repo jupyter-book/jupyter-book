@@ -21,9 +21,7 @@ Jupyter {orange}`Book`
 :::{tab-item} Start Fresh
 
 ```{code-block} bash
-:filename: Jupyter Book quickstart
-:class: hi
-pip install jupyter-book
+pip install --pre "jupyter-book>=2.0"
 jupyter book start
 ```
 
@@ -31,8 +29,8 @@ Then check out the [Jupyter Book documentation](./start.md)!
 :::
 :::{tab-item} Upgrade from Jupyter Book 1.0
 ```{code-block} bash
-:filename: Jupyter Book upgrade
-:class: hi
+:emphasize-lines: 2
+:linenos:
 pip install --pre "jupyter-book>=2.0"
 jupyter book
 ```
