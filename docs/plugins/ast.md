@@ -71,11 +71,9 @@ ${data.body}
 
 ## Use the MyST Sandbox to identify card AST structure
 
-The [MyST interactive sandbox](https://mystmd.org/sandbox) is a great way to explore what MyST looks like when it is rendered, and what its underlying AST structure looks like.
+The [MyST interactive sandbox](https://mystmd.org/sandbox) is a great way to explore what MyST looks like when it is rendered, and what its underlying AST structure looks like. This is particularly useful if you're generating MyST AST from scratch. For example, as part of a [plugin role or directive](../tutorial/plugins.md).
 
-This is particularly useful if you're generating MyST AST from scratch. For example, as part of a [plugin role or directive](../tutorial/plugins.md).
-
-For example, here's a video that shows how to use the MyST sandbox to explore the structure of a {myst:directive}`card` directive.
+Hre's a video that shows how to use the MyST sandbox to explore the structure of a {myst:directive}`card` directive.
 
 ```{figure} media/sandbox-demo.mp4
 Using [the MyST sandbox](https://mystmd.org/sandbox) to preview and show the AST of the {myst:directive}`card` directive.
@@ -84,7 +82,13 @@ Using [the MyST sandbox](https://mystmd.org/sandbox) to preview and show the AST
 :::{note} Click here to see the full output of the MyST sandbox
 :class: dropdown
 
-```json
+The output of the sandbox AST generator can be seen in @code:ast. The highlighted outer `root` and `block` nodes are always included in the output, and contain the interesting AST (in this case, a `card`).
+
+```{code} json
+:linenos:
+:emphasize-lines: 1-6,30-33
+:label: code:ast
+:caption: The AST of a card directive, produced by the MyST sandbox.
 {
   "type": "root",
   "children": [
