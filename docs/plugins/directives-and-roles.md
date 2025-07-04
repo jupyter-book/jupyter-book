@@ -1,6 +1,9 @@
-# Create custom directives, roles, and transforms
+---
+title: Create custom roles, directives, and transforms
+short_title: Create roles, directives, & transforms
+---
 
-This page provides minimal examples of how to create roles and directives in plugins.
+This page provides minimal examples of how to create roles, directives, and transforms in plugins.
 It focuses on the JavaScript plugin architecture, rather than the Executable Plugin architecture.
 
 For each of the plugins below, you can register them by adding configuration to your `myst.yml` file like the following:
@@ -16,7 +19,7 @@ project:
 And then re-building your MyST site:
 
 ```{code} shell
-$ myst start
+$ juputer book start
 ```
 
 ## Create a directive
@@ -75,6 +78,7 @@ Let's say that we want to create an admonition called "checkitout" that uses a s
 Here's plugin code you can copy/paste into a file to accomplish this:
 
 ```{literalinclude} ../src/admonition.mjs
+
 ```
 
 You can then register this plugin in your `myst.yml` file like so:

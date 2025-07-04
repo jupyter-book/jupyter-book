@@ -1,5 +1,5 @@
 ---
-title: Get Started
+title: Get started
 subtitle: Take your first steps with Jupyter Book.
 ---
 
@@ -14,7 +14,6 @@ For learning how to use Jupyter Book, this site will step you through **high-lev
 :::{tip} This documentation is a _work in progress_
 More comprehensive documentation on the underlying MyST Engine, or for specific use-cases like **single-page articles**, can be found at [the MyST Guide](xref:guide).
 :::
-
 
 ::::{grid} 1 2 2 2
 :::{card} Get started 🆕

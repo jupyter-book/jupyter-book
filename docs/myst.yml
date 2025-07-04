@@ -21,7 +21,7 @@ project:
   github: https://github.com/jupyter-book/jupyter-book
   toc:
     - file: index.md
-    - title: Get Started
+    - title: Get started
       file: start.md
       children:
         - file: start/install.md
@@ -39,21 +39,21 @@ project:
         - file: tutorial/export.md
         - file: tutorial/jupyterlab.md
         - file: tutorial/plugins.md
-    - title: How To
+    - title: How to
       children:
-        - title: Authoring & Writing
+        - title: Authoring & writing
           children:
-          - file: author/roles-and-directives.md
-          - file: author/authorship.md
+            - file: author/roles-and-directives.md
+            - file: author/authorship.md
           #        - title: Execution & Computation
           #          children:
           #          - file: execute/generate-myst.md
-        - title: Plugins & Extensions
+        - title: Plugins & extensions
           children:
-          - file: plugins/directives-and-roles.md
-          - file: plugins/ast.md
-          - file: plugins/debug.md
-          - file: plugins/dependencies.md
+            - file: plugins/directives-and-roles.md
+            - file: plugins/ast.md
+            - file: plugins/debug.md
+            - file: plugins/dependencies.md
     - file: upgrade.md
     - title: About Jupyter Book
       children:
