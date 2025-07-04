@@ -141,7 +141,7 @@ First, let's confirm that we're now using the _new_ Jupyter Book tool:
 
 ```{code} shell
 $ jupyter book --version
-v2.0.0-alpha.0
+v2...
 ```
 
 We can then run the `jupyter book` command, which will detect the {term}`Legacy Book` and ask to perform an in-place upgrade:

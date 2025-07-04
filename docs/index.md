@@ -18,7 +18,7 @@ Jupyter {orange}`Book`
 :::::
 :::::{grid-item}
 ::::{tab-set}
-:::{tab-item} Start Fresh
+:::{tab-item} Install
 
 ```{code-block} bash
 pip install --pre "jupyter-book>=2.0"
@@ -43,12 +43,6 @@ You can find more information in the [upgrading tutorial](./upgrade.md)!
 ::::::
 
 +++ {"class": "col-body-outset"}
-
-:::{warning} This is alpha software!
-Jupyter Book 2.0 is currently in **alpha**.
-This means that functionality may be missing or not working, and will evolve quickly.
-[Open an issue in our repository](https://github.com/jupyter-book/jupyter-book) with feedback.
-:::
 
 ::::{tab-set}
 :::{tab-item} Reusable
