@@ -31,36 +31,40 @@ project:
         - file: start/export-pdfs.md
         - file: start/cross-reference.md
         - file: start/publish.md
-    - title: Tutorials
+    - title: Websites and Exports
       children:
         - file: tutorial/website.md
-        - file: tutorial/mystmd.md
-        - file: tutorial/execution.md
         - file: tutorial/export.md
-        - file: tutorial/jupyterlab.md
-        - file: tutorial/plugins.md
-    - title: How to
+    - title: Authoring & writing
       children:
-        - title: Authoring & writing
-          children:
-            - file: author/roles-and-directives.md
-            - file: author/authorship.md
-          #        - title: Execution & Computation
-          #          children:
-          #          - file: execute/generate-myst.md
-        - title: Plugins & extensions
-          children:
-            - file: plugins/directives-and-roles.md
-            - file: plugins/ast.md
-            - file: plugins/debug.md
-            - file: plugins/dependencies.md
+        - file: tutorial/mystmd.md
+        - file: author/roles-and-directives.md
+        - file: author/authorship.md
+    - title: Execution & Computation
+      children:
+        - file: tutorial/jupyterlab.md
+        - file: tutorial/execution.md
+#      children:
+# UNCOMMENT WHEN THIS IS POSSIBLE
+#      - file: execute/generate-myst.md
+    - title: Plugins & extensions
+      children:
+        - file: tutorial/plugins.md
+        - file: plugins/directives-and-roles.md
+        - file: plugins/ast.md
+        - file: plugins/debug.md
+        - file: plugins/dependencies.md
     - file: upgrade.md
     - title: About Jupyter Book
       children:
         - file: about/toolchain.md
+        - file: about/jb1-jb2-comparison.md
         - file: about/history.md
     - file: glossary.md
     - file: help.md
 site:
   options:
+    style: media/custom.css
     folders: true
+  parts:
+    footer: footer.md
