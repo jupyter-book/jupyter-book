@@ -1,8 +1,12 @@
-# Debug plugins
+---
+title: Debug plugins
+short_title: Debugging tips
+---
 
 This section describes a few ways to debug MyST plugins.
 
 (debug-mode)=
+
 ## Debug mode
 
 You can run MyST in **debug mode** to print a lot more information about what happens under the hood.
@@ -22,7 +26,7 @@ This allows you to inspect things at build time.
 For example, if you put the following in the `run(data)` function of a directive, it will show you the metadata in `data`.
 
 ```javascript
-console.log(data)
+console.log(data);
 ```
 
 Make sure to [run MyST in debug mode](#debug-mode).

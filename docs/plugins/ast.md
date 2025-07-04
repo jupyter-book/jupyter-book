@@ -1,9 +1,13 @@
-# Generate MyST AST in plugins
+---
+title: Generate MyST AST in plugins
+short_title: Generate new AST
+---
 
 A common usecase with plugins involves generating MyST AST and inserting it into the document.
 This page covers a few ways that you can do so.
 
 (plugins:ctx)=
+
 ## Parse MyST markdown to AST in a directive or role
 
 The easiest way to generate MyST AST in a plugin is by using the `parseMyst` function in the `ctx` variable. It may be easier to parse MyST Markdown into AST nodes rather than [using the MyST sandbox](sandbox.md) to preview them.
@@ -46,7 +50,6 @@ const myDirective = {
 The example above puts a multi-line string onto one line by manually coding the `\n` characters.
 If you instead want to show a multi-line string in your code, you will need to remove the indentation manually, for example like the following:
 
-
 ```{code} javascript
 :filename: src/justacard.mjs
 const myDirective = {
@@ -63,6 +66,7 @@ ${data.body}
   },
 };
 ```
+
 :::
 
 ## Use the MyST Sandbox to identify card AST structure
@@ -80,36 +84,36 @@ Using [the MyST sandbox](https://mystmd.org/sandbox) to preview and show the AST
 :::{note} Click here to see the full output of the MyST sandbox
 :class: dropdown
 {
-  "type": "root",
-  "children": [
-    {
-      "type": "block",
-      "children": [
-        {
-          "type": "card",
-          "children": [
-            {
-              "type": "cardTitle",
-              "children": [
-                {
-                  "type": "text",
-                  "value": "My title"
-                }
-              ]
-            },
-            {
-              "type": "paragraph",
-              "children": [
-                {
-                  "type": "text",
-                  "value": "My card body."
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ]
+"type": "root",
+"children": [
+{
+"type": "block",
+"children": [
+{
+"type": "card",
+"children": [
+{
+"type": "cardTitle",
+"children": [
+{
+"type": "text",
+"value": "My title"
+}
+]
+},
+{
+"type": "paragraph",
+"children": [
+{
+"type": "text",
+"value": "My card body."
+}
+]
+}
+]
+}
+]
+}
+]
 }
 :::
