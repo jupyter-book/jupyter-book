@@ -83,37 +83,41 @@ Using [the MyST sandbox](https://mystmd.org/sandbox) to preview and show the AST
 
 :::{note} Click here to see the full output of the MyST sandbox
 :class: dropdown
+
+```json
 {
-"type": "root",
-"children": [
-{
-"type": "block",
-"children": [
-{
-"type": "card",
-"children": [
-{
-"type": "cardTitle",
-"children": [
-{
-"type": "text",
-"value": "My title"
+  "type": "root",
+  "children": [
+    {
+      "type": "block",
+      "children": [
+        {
+          "type": "card",
+          "children": [
+            {
+              "type": "cardTitle",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "My title"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "My card body."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
-]
-},
-{
-"type": "paragraph",
-"children": [
-{
-"type": "text",
-"value": "My card body."
-}
-]
-}
-]
-}
-]
-}
-]
-}
+```
+
 :::
