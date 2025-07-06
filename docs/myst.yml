@@ -46,9 +46,9 @@ project:
       children:
         - file: tutorial/jupyterlab.md
         - file: tutorial/execution.md
-#      children:
-# UNCOMMENT WHEN THIS IS POSSIBLE
-#      - file: execute/generate-myst.md
+    #      children:
+    # UNCOMMENT WHEN THIS IS POSSIBLE
+    #      - file: execute/generate-myst.md
     - title: Plugins & extensions
       children:
         - file: tutorial/plugins.md
