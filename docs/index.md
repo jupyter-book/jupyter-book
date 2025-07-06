@@ -21,6 +21,8 @@ Jupyter {orange}`Book`
 :::{tab-item} Install
 
 ```{code-block} bash
+:emphasize-lines: 2
+:linenos:
 pip install --pre "jupyter-book>=2.0"
 jupyter book start
 ```
@@ -28,6 +30,7 @@ jupyter book start
 Then check out the [Jupyter Book documentation](./start.md)!
 :::
 :::{tab-item} Upgrade from Jupyter Book 1.0
+
 ```{code-block} bash
 :emphasize-lines: 2
 :linenos:
@@ -37,7 +40,6 @@ jupyter book
 
 You can find more information in the [upgrading tutorial](./upgrade.md)!
 :::
-
 
 :::::
 ::::::
