@@ -14,7 +14,7 @@ Jupyter {orange}`Book`
 
 ::::::{grid} 1 2 2 2
 :::::{grid-item}
-{large}`Jupyter Book allows you to create documents and knowledge bases that are **reusable**, **reproducible**, and **interactive**.`
+{large}`Create documents and knowledge bases that are **reusable**, **reproducible**, and **interactive**.`
 :::::
 :::::{grid-item}
 ::::{tab-set}

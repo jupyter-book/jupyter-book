@@ -1,7 +1,7 @@
 # See docs at: https://mystmd.org/guide/frontmatter
 version: 1
 extends:
-  - https://raw.githubusercontent.com/jupyter-book/meta/refs/heads/main/myst.yml
+  - ./site.yml
 project:
   # title:
   # description:
@@ -9,6 +9,7 @@ project:
   # authors: []
   references:
     guide: https://mystmd.org/guide
+    compass: https://compass.jupyterbook.org
   abbreviations:
     MyST: Markedly Structured Text
     CLI: Command-Line Interface
@@ -21,6 +22,7 @@ project:
   github: https://github.com/jupyter-book/jupyter-book
   toc:
     - file: index.md
+    - file: upgrade.md
     - title: Get started
       file: start.md
       children:
@@ -54,11 +56,10 @@ project:
         - file: plugins/ast.md
         - file: plugins/debug.md
         - file: plugins/dependencies.md
-    - file: upgrade.md
     - title: About Jupyter Book
       children:
-        - file: about/toolchain.md
-        - file: about/jb1-jb2-comparison.md
+        - file: community.md
+        - file: about/ecosystem.md
         - file: about/history.md
     - file: glossary.md
     - file: help.md

@@ -37,7 +37,7 @@ In addition to using a new documentation engine, Jupyter Book 0.7 saw the introd
 
 In 2023, a broad effort to recognize the stability of the Jupyter Book software stack was made through a series of 1.0 releases. This saw updates to core Jupyter Book packages such as `myst-nb` and `sphinx-book-theme` to support Sphinx 7 and Python 3.11+, and marked the "maintenance phase" of the Jupyter Book tools.
 
-## Jupyter Book is rebuilt on top of MyST-MD
+## Jupyter Book 2 is rebuilt on top of MyST-MD
 
 As outlined above, Jupyter Book has a long history. Over its lifetime, it has become a well-established tool for authoring and publishing in the Jupyter ecosystem with [over 13,000 GitHub repositories now using the tool](https://executablebooks.org/en/latest/blog/2024-05-20-jupyter-book-myst/). During that time, the Executable Books team have learned a great deal about the ways in which our communities use Jupyter Book, witnessed first-hand the pain-points in building a book publishing tool on top of Sphinx, and [explored new ways in which the Jupyter Book tools can be used](https://executablebooks.org/en/latest/blog/2023-02-09-announce-mystjs/#myst-is-now-a-top-level-project-in-executable-books). Following these learnings, and the success of the MyST-MD project that was launched in 2022, it became clear that the future of Jupyter Book lay in a new direction.
 

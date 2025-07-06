@@ -2,7 +2,7 @@
 title: Upgrade an existing book from Jupyter Book 1
 subtitle: Use automated tools to upgrade a legacy (Sphinx-based) Jupyter Book project to the new MyST engine.
 # subject: myst Quickstart tutorial
-short_title: Upgrade from JB 1 ⭐
+short_title: Upgrade from Jupyter Book 1 ⭐
 ---
 
 :::{important} Objective

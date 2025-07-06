@@ -1,5 +1,5 @@
 ---
-title: Execute code with your content
+title: Get started with executable code
 short_title: Executable code & content
 subject: Jupyter Book tutorial
 subtitle: Execute content and insert it into your pages when you build your MyST project.

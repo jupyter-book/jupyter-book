@@ -1,5 +1,5 @@
 ---
-title: Create plugins in JavaScript
+title: Get started with Jupyter Book plugins
 description: Plugins implemented in JavaScript are easily used across different projects, as they do not require any additional programs to be installed.
 ---
 
