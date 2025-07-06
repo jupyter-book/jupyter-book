@@ -2,6 +2,31 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 2.0.0b0
+
+([Full Changelog](https://github.com/jupyter-book/jupyter-book/compare/v2.0.0a3...a8b87f963089532cec368293fb8cdf6832a4fa77))
+
+### Enhancements made
+
+- 🐫 Bump MyST CLI version [#2376](https://github.com/jupyter-book/jupyter-book/pull/2376) ([@agoose77](https://github.com/agoose77))
+- 🎬 Improve whitelabelling for `jupyter book init` [#2372](https://github.com/jupyter-book/jupyter-book/pull/2372) ([@agoose77](https://github.com/agoose77))
+
+### Documentation improvements
+
+- 🧹 Cleanups of casing, etc. in documentation [#2373](https://github.com/jupyter-book/jupyter-book/pull/2373) ([@agoose77](https://github.com/agoose77))
+- 🛠️ Fix install instructions for JB2 [#2370](https://github.com/jupyter-book/jupyter-book/pull/2370) ([@agoose77](https://github.com/agoose77))
+- DOCS: Add missing backticks in code block [#2367](https://github.com/jupyter-book/jupyter-book/pull/2367) ([@aknierim](https://github.com/aknierim))
+- Fix links on docs `Get Started` page [#2366](https://github.com/jupyter-book/jupyter-book/pull/2366) ([@StFroese](https://github.com/StFroese))
+- Add extra links to the upgrading docs page [#2301](https://github.com/jupyter-book/jupyter-book/pull/2301) ([@bryanwweber](https://github.com/bryanwweber))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/jupyter-book/jupyter-book/graphs/contributors?from=2025-03-25&to=2025-07-06&type=c))
+
+[@agoose77](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Aagoose77+updated%3A2025-03-25..2025-07-06&type=Issues) | [@aknierim](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Aaknierim+updated%3A2025-03-25..2025-07-06&type=Issues) | [@bryanwweber](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Abryanwweber+updated%3A2025-03-25..2025-07-06&type=Issues) | [@StFroese](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3AStFroese+updated%3A2025-03-25..2025-07-06&type=Issues)
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 2.0.0a3
 
 ([Full Changelog](https://github.com/jupyter-book/jupyter-book/compare/v2.0.0a2...a363d687aeca09cb97c8cd2433cd5182590cec49))
@@ -22,8 +47,6 @@
 ([GitHub contributors page for this release](https://github.com/jupyter-book/jupyter-book/graphs/contributors?from=2025-02-20&to=2025-03-25&type=c))
 
 [@agoose77](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Aagoose77+updated%3A2025-02-20..2025-03-25&type=Issues) | [@JimMadge](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3AJimMadge+updated%3A2025-02-20..2025-03-25&type=Issues)
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 2.0.0a2
 
