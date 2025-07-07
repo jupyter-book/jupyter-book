@@ -33,7 +33,7 @@ project:
         - file: start/export-pdfs.md
         - file: start/cross-reference.md
         - file: start/publish.md
-    - title: Websites and exports
+    - title: Websites & exports
       children:
         - file: tutorial/website.md
         - file: tutorial/export.md

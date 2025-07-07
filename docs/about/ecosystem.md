@@ -1,5 +1,6 @@
 ---
-title: The Jupyter Book and MyST Ecosystem
+title: The Jupyter Book and MyST ecosystem
+short_title: "Jupyter Book & MyST ecosystem"
 subtitle: An overview of the tools that power Jupyter Book 2.
 ---
 
