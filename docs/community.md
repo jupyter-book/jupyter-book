@@ -32,7 +32,7 @@ Click to see our events calendar →
 :link: ./start.md
 Learn how to use Jupyter Book.
 +++
-Click to visit the Jupyter Book User Guide →
+Click to visit the Jupyter Book user guide →
 :::
 :::{card} The MyST Document Engine guide
 :link: https://mystmd.org/guide
