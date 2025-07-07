@@ -118,7 +118,7 @@ Now that our document has an `abstract`, we can set-up the export configuration.
 
 ## Adding missing frontmatter
 
-The MyST engine that powers Jupyter Book is designed for technical and scientific communication. It is not surprising, therefore, that concepts like authorship are very important. Before we can set-up a PDF export, we need to ensure that our project has information about who the authors are! Because the same author (you) has authored every page in this tutorial, we'll add the author information to the `project` section in `myst.yml`. Sometimes, you might have different authors for different files, in which case you can use both `myst.yml` and the frontmatter in each page.
+The MyST Document Engine that powers Jupyter Book is designed for technical and scientific communication. It is not surprising, therefore, that concepts like authorship are very important. Before we can set-up a PDF export, we need to ensure that our project has information about who the authors are! Because the same author (you) has authored every page in this tutorial, we'll add the author information to the `project` section in `myst.yml`. Sometimes, you might have different authors for different files, in which case you can use both `myst.yml` and the frontmatter in each page.
 
 ```{code} yaml
 :filename: myst.yml

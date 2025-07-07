@@ -13,7 +13,7 @@ The goal of this tutorial is to explore a sample of the ways in which MyST Markd
 
 ## Supported file formats
 
-After following [](init.md), our book has a `myst.yml` that contains some metadata including a title, description, and an author list. Let's now add some content! The MyST engine that powers Jupyter Book supports a few different file formats for authoring content:
+After following [](init.md), our book has a `myst.yml` that contains some metadata including a title, description, and an author list. Let's now add some content! The MyST Document Engine that powers Jupyter Book supports a few different file formats for authoring content:
 
 - MyST Markdown `.md`
 - Jupyter Notebook `.ipynb`

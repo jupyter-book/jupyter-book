@@ -11,9 +11,9 @@ This documentation is for Jupyter Book 2. If you're looking for the Jupyter Book
 
 ## See `mystmd.org` for more complete documentation
 
-Because Jupyter Book is [a distribution of the MyST Engine](./about/ecosystem.md), we keep most documentation about configuring and using Jupyter Book in the [MyST User Guide](https://mystmd.org/guide). Anything you can do with MyST you can do with Jupyter Book - the only difference in using the two is the CLI verb (`jupyter book` vs. `myst`).
+Because Jupyter Book is [a distribution of the MyST Document Engine](./about/ecosystem.md), we keep most documentation about configuring and using Jupyter Book in the [MyST User Guide](https://mystmd.org/guide). Anything you can do with MyST you can do with Jupyter Book - the only difference in using the two is the CLI verb (`jupyter book` vs. `myst`).
 
-We know this can be confusing! Jupyter Book [pre-dates the MyST Engine](./about/history.md) and we're still working out the best way to maintain both of them as parallel efforts.
+We know this can be confusing! Jupyter Book [pre-dates the MyST Document Engine](./about/history.md) and we're still working out the best way to maintain both of them as parallel efforts.
 
 ## Navigate the Jupyter Book documentation
 
@@ -45,6 +45,6 @@ The **Tutorials** cover key workflows and concepts in more depth.
 :link: https://mystmd.org/guide
 :footer: Go to the MyST Guide »
 
-The MyST Guide is the **reference** for the full-suite of features provided by the MyST Engine that powers Jupyter Book.
+The MyST Guide is the **reference** for the full-suite of features provided by the MyST Document Engine that powers Jupyter Book.
 :::
 ::::
