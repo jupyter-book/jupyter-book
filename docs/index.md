@@ -75,25 +75,25 @@ You can find more information in the [upgrading tutorial](./upgrade.md)!
 ::::{grid} 1 2 2 2
 
 :::{card}
-:header: Powerful Authoring ✏️
+:header: Powerful authoring ✍️
 
 Jupyter Book uses [MyST Markdown](https://mystmd.org/spec), an extension of [CommonMark](https://commonmark.org/), making it easy to author structured documents.
 :::
 
 :::{card}
-:header: Executable Documents ⚙
+:header: Executable documents 👩‍💻
 
 Interweave computational results with high-quality narrative using Jupyter Notebooks or executable MyST Markdown documents.
 :::
 
 :::{card}
-:header: Interactive Content 🚀
+:header: Interactive content 🚀
 
 Publish to a website that allows users to interact with widgets and computation using [JupyterHub](https://jupyterhub.readthedocs.io/), [Binder](https://jupyter.org/binder), and even Python _in the browser_!
 :::
 
 :::{card}
-:header: Reusable Knowledge 🔎
+:header: Reusable knowledge 🔎
 
 Create cross-references to content from other documents and sites to give users a deeper, richer reading experience.
 :::

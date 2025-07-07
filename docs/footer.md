@@ -21,22 +21,22 @@ Jupyter Book allows you to create documents and knowledge bases that are **reusa
 
 <!-- Link columns -->
 
-::::{grid} 1 1 2 2
-:::{div .links}
+::::{grid .links} 1 1 2 2
+:::{div}
 
 Technical projects
 
 - [MyST Document Engine](https://mystmd.org)
 - [About MyST Markdown](https://mystmd.org/overview/ecosystem)
-- [MyST Sandbox](https://mystmd.org/sandbox)
+- [MyST sandbox](https://mystmd.org/sandbox)
 
 :::
 
-:::{div .links}
-About the Project
+:::{div}
+About the project
 
-- [Team Compass](https://compass.jupyterbook.org)
-- [MyST Contributing Guide](https://mystmd.org/guide/contributing)
+- [Team compass](https://compass.jupyterbook.org)
+- [MyST contributing guide](https://mystmd.org/guide/contributing)
 - [Project Jupyter](https://jupyter.org)
 
 :::
