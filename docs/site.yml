@@ -3,7 +3,7 @@ site:
   template: book-theme
   nav: 
     - title: Docs
-      url: https://next.jupyterbook.org/docs
+      url: https://next.jupyterbook.org/start
     - title: Community
       url: https://next.jupyterbook.org/about/community
     - title: Ecosystem
