@@ -138,3 +138,5 @@ __pycache__/
 # Python package managers
 uv.lock
 package-lock.json
+
+.DS_Store
