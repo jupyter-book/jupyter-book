@@ -58,7 +58,7 @@ project:
         - file: plugins/dependencies.md
     - title: About Jupyter Book
       children:
-        - file: community.md
+        - file: about/community.md
         - file: about/ecosystem.md
         - file: about/history.md
     - file: glossary.md
