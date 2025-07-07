@@ -1,8 +1,8 @@
 ---
 title: Upgrade an existing book from Jupyter Book 1
-subtitle: Use automated tools to upgrade a legacy (Sphinx-based) Jupyter Book project to the new MyST engine.
+subtitle: Use automated tools to upgrade a legacy (Sphinx-based) Jupyter Book project to the new MyST Document Engine.
 # subject: myst Quickstart tutorial
-short_title: Upgrade from JB 1 ⭐
+short_title: Upgrade from Jupyter Book 1 ⭐
 ---
 
 :::{important} Objective
@@ -141,7 +141,7 @@ First, let's confirm that we're now using the _new_ Jupyter Book tool:
 
 ```{code} shell
 $ jupyter book --version
-v2.0.0-alpha.0
+v2...
 ```
 
 We can then run the `jupyter book` command, which will detect the {term}`Legacy Book` and ask to perform an in-place upgrade:

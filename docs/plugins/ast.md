@@ -1,6 +1,5 @@
 ---
-title: Generate MyST AST in plugins
-short_title: Generate new AST
+title: Generate MyST AST with Plugins
 ---
 
 A common usecase with plugins involves generating MyST AST and inserting it into the document.

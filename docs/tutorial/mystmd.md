@@ -1,5 +1,5 @@
 ---
-title: Write MyST Markdown
+title: Introduction to MyST Markdown
 subject: Jupyter Book tutorial
 subtitle: An overview of syntax features
 description: MyST (Markedly Structured Text) is designed to create publication-quality documents written entirely in Markdown.
@@ -112,7 +112,7 @@ As you have seen in the links in MyST (e.g. [](xref:guide/frontmatter)), there i
 
     Or maybe you want to explore an [💥 interactive figure 💥](xref:guide#fig-altair-horsepower).
 
-:::{figure}
+:::{div}
 :class: framed
 Try clicking the footnote above, you can nest information and interactive figures for the interested reader! You can help with reading comprehension by around 26% by providing information when the reader needs it!!
 :::

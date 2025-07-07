@@ -1,0 +1,22 @@
+version: 1
+site:
+  template: book-theme
+  nav: 
+    - title: Docs
+      url: https://next.jupyterbook.org/docs
+    - title: Community
+      url: https://next.jupyterbook.org/about/community
+    - title: Ecosystem
+      url: https://next.jupyterbook.org/about/ecosystem
+    - title: Blog
+      url: https://blog.jupyterbook.org
+    - title: Help
+      children:
+      - title: Ask a question ❓
+        url: https://discord.gg/b46ZyXDw
+      - title: Report a bug 🐛
+        url: https://github.com/jupyter-book/jupyter-book/issues
+  options:
+    favicon: https://raw.githubusercontent.com/jupyter-book/meta/refs/heads/main/images/favicon.ico
+    logo: https://raw.githubusercontent.com/jupyter-book/meta/refs/heads/main/images/logo.svg
+    logo_dark: https://raw.githubusercontent.com/jupyter-book/meta/refs/heads/main/images/logo-dark.svg

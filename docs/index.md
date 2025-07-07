@@ -14,13 +14,15 @@ Jupyter {orange}`Book`
 
 ::::::{grid} 1 2 2 2
 :::::{grid-item}
-{large}`Jupyter Book allows you to create documents and knowledge bases that are **reusable**, **reproducible**, and **interactive**.`
+{large}`Create documents and knowledge bases that are **reusable**, **reproducible**, and **interactive**.`
 :::::
 :::::{grid-item}
 ::::{tab-set}
-:::{tab-item} Start Fresh
+:::{tab-item} Install
 
 ```{code-block} bash
+:emphasize-lines: 2
+:linenos:
 pip install --pre "jupyter-book>=2.0"
 jupyter book start
 ```
@@ -28,6 +30,7 @@ jupyter book start
 Then check out the [Jupyter Book documentation](./start.md)!
 :::
 :::{tab-item} Upgrade from Jupyter Book 1.0
+
 ```{code-block} bash
 :emphasize-lines: 2
 :linenos:
@@ -38,17 +41,10 @@ jupyter book
 You can find more information in the [upgrading tutorial](./upgrade.md)!
 :::
 
-
 :::::
 ::::::
 
 +++ {"class": "col-body-outset"}
-
-:::{warning} This is alpha software!
-Jupyter Book 2.0 is currently in **alpha**.
-This means that functionality may be missing or not working, and will evolve quickly.
-[Open an issue in our repository](https://github.com/jupyter-book/jupyter-book) with feedback.
-:::
 
 ::::{tab-set}
 :::{tab-item} Reusable
@@ -79,25 +75,25 @@ This means that functionality may be missing or not working, and will evolve qui
 ::::{grid} 1 2 2 2
 
 :::{card}
-:header: Powerful Authoring ✏️
+:header: Powerful authoring ✍️
 
 Jupyter Book uses [MyST Markdown](https://mystmd.org/spec), an extension of [CommonMark](https://commonmark.org/), making it easy to author structured documents.
 :::
 
 :::{card}
-:header: Executable Documents ⚙
+:header: Executable documents 👩‍💻
 
 Interweave computational results with high-quality narrative using Jupyter Notebooks or executable MyST Markdown documents.
 :::
 
 :::{card}
-:header: Interactive Content 🚀
+:header: Interactive content 🚀
 
 Publish to a website that allows users to interact with widgets and computation using [JupyterHub](https://jupyterhub.readthedocs.io/), [Binder](https://jupyter.org/binder), and even Python _in the browser_!
 :::
 
 :::{card}
-:header: Reusable Knowledge 🔎
+:header: Reusable knowledge 🔎
 
 Create cross-references to content from other documents and sites to give users a deeper, richer reading experience.
 :::
