@@ -11,11 +11,11 @@ For general chat in the Jupyter Book and MyST community
 +++
 Click to visit the Discord →
 :::
-:::{card} Discussions Forum 💬
+:::{card} Discussions forum 💬
 :link: https://github.com/jupyter-book/mystmd/discussions
 For general conversation about the MyST Markdown engine.
 +++
-Click to visit the Discussion Forum →
+Click to visit the Discussion forum →
 :::
 :::{card} Events calendar 🗓️
 :link: https://compass.jupyterbook.org/contribute#events
@@ -28,13 +28,13 @@ Click to see our events calendar →
 ## Where to learn
 
 ::::{grid} 2
-:::{card} The Jupyter Book User Guide
+:::{card} The Jupyter Book user guide
 :link: ./start.md
 Learn how to use Jupyter Book.
 +++
 Click to visit the Jupyter Book User Guide →
 :::
-:::{card} The MyST Document Engine Guide
+:::{card} The MyST Document Engine guide
 :link: https://mystmd.org/guide
 A more complete guide to building and customizing documents with MyST.
 +++

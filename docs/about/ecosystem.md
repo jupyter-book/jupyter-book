@@ -3,7 +3,7 @@ title: The Jupyter Book and MyST Ecosystem
 subtitle: An overview of the tools that power Jupyter Book 2.
 ---
 
-Jupyter Book 2 is built upon the [MyST Markdown Document Engine](https://mystmd.org) (or `mystmd` for shorthand). `mystmd` is a next-generation document engine that is data-driven, computation-centric, flexible. The `mystmd` project is also built by the [Jupyter Book team](https://compass.jupyterbook.org/team), and the two are evolving hand-in-hand.
+Jupyter Book 2 is built upon the [MyST Markdown Document Engine](https://mystmd.org) (or `mystmd` for shorthand). `mystmd` is a next-generation document engine that is data-driven, computation-centric, and flexible. The `mystmd` project is also built by the [Jupyter Book team](https://compass.jupyterbook.org/team), and the two are evolving hand-in-hand.
 
 ## Where can I learn more about the MyST Document Engine?
 

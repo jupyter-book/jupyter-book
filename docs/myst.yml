@@ -33,7 +33,7 @@ project:
         - file: start/export-pdfs.md
         - file: start/cross-reference.md
         - file: start/publish.md
-    - title: Websites and Exports
+    - title: Websites and exports
       children:
         - file: tutorial/website.md
         - file: tutorial/export.md
@@ -42,7 +42,7 @@ project:
         - file: tutorial/mystmd.md
         - file: author/roles-and-directives.md
         - file: author/authorship.md
-    - title: Execution & Computation
+    - title: Execution & computation
       children:
         - file: tutorial/jupyterlab.md
         - file: tutorial/execution.md
