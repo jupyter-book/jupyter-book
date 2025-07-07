@@ -5,7 +5,7 @@ subject: Quickstart tutorial
 ---
 
 :::{important} Objective
-The goal of this tutorial is to explore the ways in which the MyST-MD engine can be used to create beautiful, well-typeset PDF documents.
+The goal of this tutorial is to explore the ways in which the MyST Document Engine can be used to create beautiful, well-typeset PDF documents.
 :::
 
 ## Choosing a template
@@ -73,7 +73,7 @@ logo (file) - An image path that is shown in the top right of the page
 kind (string) - The "kind" of the content, e.g. "Original Research" - shown as the title of the margin content on the first page
 ```
 
-In @template-parts we can see that the only _required_ `part` is `abstract`. Let's add a new abstract to our project. For now, the underlying MyST-MD engine only supports `parts` defined per-page, so we'll define the `abstract` in our `intro.md` document:
+In @template-parts we can see that the only _required_ `part` is `abstract`. Let's add a new abstract to our project. For now, the underlying MyST Document Engine only supports `parts` defined per-page, so we'll define the `abstract` in our `intro.md` document:
 
 ::::{code} markdown
 :name: myst:intro-md

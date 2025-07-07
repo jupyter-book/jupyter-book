@@ -87,7 +87,7 @@ I'm a nice sunset!
 :::
 ```
 
-The MyST-MD engine defines a large number of pre-existing roles and directives, such as the <xref:guide/directives#directive-figure>, which are defined in the MyST guide (see <xref:guide/roles> and <xref:guide/directives>). The MyST guide defines a helpful overview of MyST Markdown syntax in <xref:guide/syntax-overview>
+The MyST Document Engine defines a large number of pre-existing roles and directives, such as the <xref:guide/directives#directive-figure>, which are defined in the MyST guide (see <xref:guide/roles> and <xref:guide/directives>). The MyST guide defines a helpful overview of MyST Markdown syntax in <xref:guide/syntax-overview>
 
 Having explored the supported syntax for writing MyST, let's create a simple `intro.md` file that showcases these features!
 
@@ -159,7 +159,7 @@ A photograph of some beautiful mountains to look at whilst reading.
 ::::
 ::::::
 
-The above tab-set shows both the contents of `intro.md`, and what the underlying MyST-MD engine produces when you build the project as a website. To learn more about the supported syntax of MyST Markdown, and the features supported by the MyST-MD engine that powers Jupyter Book, see [the MyST-MD authoring documentation](xref:guide/frontmatter).
+The above tab-set shows both the contents of `intro.md`, and what the underlying MyST Document Engine produces when you build the project as a website. To learn more about the supported syntax of MyST Markdown, and the features supported by the MyST Document Engine that powers Jupyter Book, see [the MyST-MD authoring documentation](xref:guide/frontmatter).
 
 Now that we have some content, we're ready to [](./build-websites.md).
 
