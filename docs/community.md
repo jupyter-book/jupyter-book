@@ -15,7 +15,7 @@ Click to visit the Discord →
 :link: https://github.com/jupyter-book/mystmd/discussions
 For general conversation about the MyST Markdown engine.
 +++
-Click to visit the Discussion forum →
+Click to visit the GitHub Discussions forum →
 :::
 :::{card} Events calendar 🗓️
 :link: https://compass.jupyterbook.org/contribute#events
