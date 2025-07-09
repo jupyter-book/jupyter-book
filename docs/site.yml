@@ -17,6 +17,7 @@ site:
       - title: Report a bug 🐛
         url: https://github.com/jupyter-book/jupyter-book/issues
   options:
+    logo_url: https://next.jupyterbook.org/
     favicon: https://raw.githubusercontent.com/jupyter-book/jupyter-book/refs/heads/next/docs/media/images/favicon.ico
     logo: https://raw.githubusercontent.com/jupyter-book/jupyter-book/refs/heads/next/docs/media/images/logo.svg
     logo_dark: https://raw.githubusercontent.com/jupyter-book/jupyter-book/refs/heads/next/docs/media/images/logo-dark.svg
