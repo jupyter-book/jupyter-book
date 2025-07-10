@@ -14,7 +14,7 @@ from .nodeenv import (
 
 __version__ = "2.0.0b0"
 
-NODEENV_VERSION = "18.0.0"
+NODEENV_VERSION = "22.17.0"
 
 
 def test_node_version(triple_version):
