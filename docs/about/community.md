@@ -29,7 +29,7 @@ Click to see our events calendar →
 
 ::::{grid} 2
 :::{card} The Jupyter Book user guide
-:link: ./start.md
+:link: ./start
 Learn how to use Jupyter Book.
 +++
 Click to visit the Jupyter Book user guide →
