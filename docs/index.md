@@ -23,7 +23,7 @@ Jupyter {orange}`Book`
 ```{code-block} bash
 :emphasize-lines: 2
 :linenos:
-pip install --pre "jupyter-book>=2.0.0b1"
+pip install --pre "jupyter-book==2.*"
 jupyter book start
 ```
 
@@ -34,7 +34,7 @@ Then check out the [Jupyter Book documentation](./start.md)!
 ```{code-block} bash
 :emphasize-lines: 2
 :linenos:
-pip install --pre "jupyter-book>=2.0.0b1"
+pip install --pre "jupyter-book==2.*"
 jupyter book
 ```
 
