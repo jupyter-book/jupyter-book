@@ -166,7 +166,7 @@ Explore this book {fas}`arrow-right`
 
 **The Turing Way**
 ^^^
-```{image} https://raw.githubusercontent.com/the-turing-way/the-turing-way/refs/heads/main/book/figures/logo-detail-with-text.svg
+```{image} https://raw.githubusercontent.com/the-turing-way/the-turing-way/refs/heads/main/figures/logo-detail-with-text.svg
 :height: 100
 ```
 
