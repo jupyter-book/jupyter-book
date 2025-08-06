@@ -1,7 +1,6 @@
 # Create your own content file
 
-Now that you've seen a few sample content files, and built a simple book, try creating your own!
-
+Data Analytics
 ## Create your file and add content to it
 
 In the folder with all of your sample book contents, create a new file called `mymarkdownfile.md`. Put the following content in it:
