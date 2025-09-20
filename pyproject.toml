@@ -86,7 +86,6 @@ sphinx = [
 testing = [
     "altair",
     "beautifulsoup4",
-    "beautifulsoup4",
     "cookiecutter",
     "coverage",
     "jupytext",
