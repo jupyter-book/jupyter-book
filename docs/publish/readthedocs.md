@@ -20,13 +20,14 @@ To publish your book with {{RTD}}, follow these steps:
    Configure {{RTD}} to host a website from your book's repository.
 2. **Create a `.readthedocs.yml` file** in the root of your repository.
    This file configures the behavior of {{RTD}}.
-3. **Add a `pre_build` job to your `.readthedocs.yml` file**.
+3. **Add required configuration to your `.readthedocs.yml` file**.
    Read the Docs allows you to run extra scripts before and after your documentation is built.
    You can use this to [generate the Sphinx configuration](sphinx:convert) for your Jupyter Book before {{RTD}} tries to build it.
+   Then, you'll need to include [the path of that generated `config.py` file](https://docs.readthedocs.io/en/stable/config-file/v2.html#sphinx-configuration).
    For example, this configuration is used to build this book:
 
    ```{literalinclude} ../../.readthedocs.yml
-   :emphasize-lines: 7-10
+   :emphasize-lines: 7-10,21-22
    ```
 
    See [the Read the Docs Config File reference](https://docs.readthedocs.io/en/stable/config-file/v2.html) for a full reference to the configuration file options.
