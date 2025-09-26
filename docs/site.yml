@@ -13,7 +13,7 @@ site:
     - title: Help
       children:
       - title: Ask a question ❓
-        url: https://discord.gg/b46ZyXDw
+        url: https://discord.mystmd.org
       - title: Report a bug 🐛
         url: https://github.com/jupyter-book/jupyter-book/issues
   options:
