@@ -29,7 +29,7 @@ Next, you'll need to setup a workflow that does the following things:
 * Installs Jupyter Book and any dependencies needed to build
   your book.
 * Builds your book's HTML.
-* Uses the `actions/deploy-pages` action to upload that HTML to GitHub Pages.
+* [Uses the `actions/deploy-pages` action to upload that HTML to GitHub Pages.](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-with-a-custom-github-actions-workflow)
 
 ````{margin}
 ```{note}
@@ -105,11 +105,13 @@ jobs:
       run: |
         jupyter-book build .
 
+    # https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-with-a-custom-github-actions-workflow
+
     # Upload the book's HTML as an artifact
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        path: "_build/html"
+        path: _build/html
 
     # Deploy the book's HTML to GitHub Pages
     - name: Deploy to GitHub Pages
