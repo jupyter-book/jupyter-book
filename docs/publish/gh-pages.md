@@ -52,7 +52,9 @@ jupyter-book create --help
 ```
 :::
 
-Here is a simple YAML configuration for a Github Action that will publish a Jupyter Book found _in the root of the GitHub repository_ to GitHub Pages:
+Below are simple YAML configurations for a Github Action that will publish a Jupyter Book found _in the root of the GitHub repository_ to GitHub Pages. For more information on GitHub Pages, such as configuring custom domains, visit the [GitHub Pages documentation](https://docs.github.com/en/pages).
+
+## pip
 
 ```yaml
 name: deploy-book
@@ -117,5 +119,63 @@ jobs:
       uses: actions/deploy-pages@v4
 ```
 
+## Conda
 
-For more information on GitHub Pages, such as configuring custom domains, visit the [GitHub Pages documentation](https://docs.github.com/en/pages).
+Here's how to build using [Conda (Anaconda)](https://docs.conda.io/projects/conda/en/stable/) with an [`environment.yml`](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file). This assumes 
+
+```yaml
+
+name: deploy-book
+
+# Run this when the master or main branch changes
+on:
+  push:
+    branches:
+    - master
+    - main
+    # If your git repository has the Jupyter Book within some-subfolder next to
+    # unrelated files, you can make this run only if a file within that specific
+    # folder has been modified.
+    #
+    # paths:
+    # - some-subfolder/**
+
+# This job installs dependencies, builds the book, and pushes it to `gh-pages`
+jobs:
+  deploy-book:
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    # https://github.com/marketplace/actions/setup-miniconda#example-3-other-options
+    defaults:
+      run:
+        shell: bash -el {0}
+    steps:
+      - uses: actions/checkout@v5
+
+      # Install dependencies
+      - uses: conda-incubator/setup-miniconda@v3
+        with:
+          # If you don't have `python` included as a package in your `environment.yml`:
+          # python-version: '3.13'
+          environment-file: environment.yml
+          auto-activate-base: false
+          activate-environment: computing-in-context
+
+      # Build the book
+      - name: Build the book
+        run: |
+          jupyter-book build .
+
+      # Upload the book's HTML as an artifact
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _build/html
+
+      # Deploy the book's HTML to GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+```
