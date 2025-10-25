@@ -23,9 +23,13 @@ html:
   # FIXME: surely we could allow internal or relative links somehow?
   # (The documentation says only that HTML is allowed, nothing about the base URL is mentioned.)
   # Then we could link to the changelog in the *same* build of the docs.
+  #
+  # OLD ANNOUNCEMENT
+  # 
+  #  ℹ️ Jupyter Book 2 is being rebuilt on top of the <a href="https://mystmd.org/">MyST Document Engine</a>.
+  #  See the preview at <a href="https://next.jupyterbook.org">next.jupyterbook.org</a> and learn more at <a href="https://github.com/jupyter-book/jupyter-book/issues/2281">GitHub Issue#2281</a>. 🚀
   announcement: >
-    ℹ️ Jupyter Book 2 is being rebuilt on top of the <a href="https://mystmd.org/">MyST Document Engine</a>.
-    See the preview at <a href="https://next.jupyterbook.org">next.jupyterbook.org</a> and learn more at <a href="https://github.com/jupyter-book/jupyter-book/issues/2281">GitHub Issue#2281</a>. 🚀
+    🚀 Join us in San Diego · JupyterCon 2025 · Nov 4-5 · <a href="https://events.linuxfoundation.org/jupytercon/program/schedule/?ajs_aid=53afb00d-be65-4a99-9112-28cdaac99463">SCHEDULE</a> · <a href="https://events.linuxfoundation.org/jupytercon/register/?ajs_aid=53afb00d-be65-4a99-9112-28cdaac99463">REGISTER NOW</a>
   favicon: images/favicon.ico
   home_page_in_navbar: false
   use_edit_page_button: true
