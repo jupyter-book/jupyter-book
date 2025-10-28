@@ -2,7 +2,7 @@
 
 # GitHub Pages and Actions
 
-Once your Book is on GitHub, you can easily host it as a [GitHub Pages](https://docs.github.com/en/pages/quickstart) website. This is a service where GitHub hosts your static files as if they were a standalone website. The quickest way to get started with Jupyter Book on GitHub Pages is to use GitHub Actions to deploy the built HTML files.
+Once your Book is on GitHub, you can easily host it as a [GitHub Pages](https://docs.github.com/en/pages/quickstart) website. This is a service where GitHub hosts your static files as if they were a standalone website. Note [there are a multiple kinds of GitHub Pages sites](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages#types-of-github-pages-sites). The quickest way to get started with Jupyter Book on GitHub Pages is to use GitHub Actions to deploy the built HTML files.
 
 [GitHub Actions](https://docs.github.com/en/actions) is a tool that allows you to automate things on GitHub.
 It is used for a variety of things, such as testing, publishing packages and continuous integration.
@@ -18,9 +18,13 @@ to automatically host your Jupyter Books.
 for more information.
 ```
 
-To build your book with GitHub Actions, you'll first need to enable GitHub pages for your project. The GitHub Pages settings for a repository can be found at `Settings` -> `Pages`, where `Source` should be set to `GitHub Actions`.
+## Enable
+
+To build your book with GitHub Actions, you'll first need to **enable GitHub pages for your project**. The GitHub Pages settings for a repository can be found at `Settings` -> `Pages`, where `Source` should be set to `GitHub Actions`.
 
 ![Setting the source for GitHub Pages in the repository settings](../images/ghp-source.png)
+
+## Workflow
 
 Next, you'll need to setup a workflow that does the following things:
 
@@ -40,7 +44,9 @@ To use the latest version, run `pip install -U jupyter-book`.
 
 Below are simple YAML configurations for a Github Action that will publish a Jupyter Book found _in the root of the GitHub repository_ to GitHub Pages. For more information on GitHub Pages, such as configuring custom domains, visit the [GitHub Pages documentation](https://docs.github.com/en/pages).
 
-## pip
+**Copy the following to `.github/workflows/deploy.yml`** based on which package manager you're using. You can [name the workflow file something else](https://docs.github.com/en/actions/concepts/workflows-and-actions/workflows#about-workflows) if you like.
+
+### pip
 
 ```yaml
 name: deploy-book
@@ -107,7 +113,7 @@ jobs:
         uses: actions/deploy-pages@v4
 ```
 
-## Conda
+### Conda
 
 Here's how to build using [Conda (Anaconda)](https://docs.conda.io/projects/conda/en/stable/) with an [`environment.yml`](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file). This assumes
 
@@ -166,3 +172,11 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 ```
+
+## Confirm
+
+1. Commit the changes.
+1. Push the changes to GitHub.
+1. [View the latest `deploy-book` workflow run.](https://docs.github.com/en/actions/how-tos/monitor-workflows/use-the-visualization-graph)
+1. Wait for it / confirm it passed.
+1. [View your published site.](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site#viewing-your-published-site)
