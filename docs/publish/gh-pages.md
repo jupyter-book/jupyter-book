@@ -2,7 +2,7 @@
 
 # GitHub Pages and Actions
 
-Once your content is on GitHub, you can easily host it as a [GitHub Pages](https://docs.github.com/en/pages/quickstart) website. This is a service where GitHub hosts your static files as if they were a standalone website. The quickest way to get started with Jupyter Book on GitHub Pages is to use GitHub Actions to deploy the built HTML files.
+Once your Book is on GitHub, you can easily host it as a [GitHub Pages](https://docs.github.com/en/pages/quickstart) website. This is a service where GitHub hosts your static files as if they were a standalone website. The quickest way to get started with Jupyter Book on GitHub Pages is to use GitHub Actions to deploy the built HTML files.
 
 [GitHub Actions](https://docs.github.com/en/actions) is a tool that allows you to automate things on GitHub.
 It is used for a variety of things, such as testing, publishing packages and continuous integration.
@@ -37,21 +37,6 @@ Make sure you use Jupyter Book >= `1.0.0`.
 To use the latest version, run `pip install -U jupyter-book`.
 ```
 ````
-
-:::{tip}
-You can use the [Jupyter Book cookiecutter](https://github.com/executablebooks/cookiecutter-jupyter-book) to quickly create a book template that already includes the GitHub Actions workflow file needed to automatically deploy your book to GitHub Pages:
-
-```bash
-jupyter-book create --cookiecutter mybookpath/
-```
-
-For more help, see the [Jupyter Book cookiecutter GitHub repository](https://github.com/executablebooks/cookiecutter-jupyter-book), or run:
-
-```bash
-jupyter-book create --help
-```
-
-:::
 
 Below are simple YAML configurations for a Github Action that will publish a Jupyter Book found _in the root of the GitHub repository_ to GitHub Pages. For more information on GitHub Pages, such as configuring custom domains, visit the [GitHub Pages documentation](https://docs.github.com/en/pages).
 
