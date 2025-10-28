@@ -8,98 +8,138 @@ site:
 
 +++ {"class": "col-page-inset"}
 
+:::{important} Jupyter Book 2 is here!
+Built on the [MyST Document Engine](https://mystmd.org) with faster builds, modern features, and improved workflows.
+
+[Upgrade from 1.0 →](./upgrade.md) • [Known limitations →](#known-limitations)
+:::
+
 :::{hero}
 Jupyter {orange}`Book`
 :::
 
 ::::::{grid} 1 2 2 2
 :::::{grid-item}
-{large}`Create documents and knowledge bases that are **reusable**, **reproducible**, and **interactive**.`
+{large}`Create computational narratives that are reusable, reproducible, and interactive.`
+
+Write in Jupyter Notebooks or Markdown, execute code, and publish to the web—all with a single tool built for researchers, educators, and data scientists.
+
 :::::
 :::::{grid-item}
-::::{tab-set}
-:::{tab-item} Install
-
 ```{code-block} bash
-:emphasize-lines: 2
-:linenos:
-pip install --pre "jupyter-book==2.*"
+:filename: install
+pip install jupyter-book
 jupyter book start
 ```
 
-Then check out the [Jupyter Book documentation](./start.md)!
-:::
-:::{tab-item} Upgrade from Jupyter Book 1.0
-
-```{code-block} bash
-:emphasize-lines: 2
-:linenos:
-pip install --pre "jupyter-book==2.*"
-jupyter book
-```
-
-You can find more information in the [upgrading tutorial](./upgrade.md)!
-:::
-
-:::::
+{button}`Get started → <./getting-started.md>` {button}`Upgrade from JB1 → <./upgrade.md>`
 ::::::
 
-+++ {"class": "col-body-outset"}
++++
+
+## See It in Action
 
 ::::{tab-set}
 :::{tab-item} Reusable
 
 ```{figure} media/videos/reusable.mp4
+:class: sd-mb-0
 
+**Reusable Knowledge** - Cross-reference pages, sections, figures, and equations. Link to other MyST sites for a connected reading experience.
 ```
 
 :::
 :::{tab-item} Reproducible
 
 ```{figure} media/videos/reproducible.mp4
+:class: sd-mb-0
 
+**Reproducible Results** - Execute Python, R, Julia, and more at build time. Include computational results directly in your documentation.
 ```
 
 :::
 :::{tab-item} Interactive
 
 ```{figure} media/videos/interactive.mp4
+:class: sd-mb-0
 
+**Interactive Exploration** - Publish websites with live widgets. Connect to JupyterHub, Binder, or run Python in the browser.
 ```
 
 :::
 ::::
 
-+++ {"class": "col-page-inset"}
 
-::::{grid} 1 2 2 2
 
-:::{card}
-:header: Powerful authoring ✍️
++++ {"kind": "justified"}
 
-Jupyter Book uses [MyST Markdown](https://mystmd.org/spec), an extension of [CommonMark](https://commonmark.org/), making it easy to author structured documents.
-:::
+## Get started
 
-:::{card}
-:header: Executable documents 👩‍💻
+### What do you want to do
 
-Interweave computational results with high-quality narrative using Jupyter Notebooks or executable MyST Markdown documents.
-:::
-
-:::{card}
-:header: Interactive content 🚀
-
-Publish to a website that allows users to interact with widgets and computation using [JupyterHub](https://jupyterhub.readthedocs.io/), [Binder](https://jupyter.org/binder), and even Python _in the browser_!
-:::
-
-:::{card}
-:header: Reusable knowledge 🔎
-
-Create cross-references to content from other documents and sites to give users a deeper, richer reading experience.
-:::
-
+:::::{grid} 1 2 3 3
+::::{card} 📘 Get Started
+:link: getting-started
+Build your first book in minutes
++++
+[Quick start →](./getting-started.md)
 ::::
+::::{card} 📝 Author Content
+:link: authoring
+Write with MyST Markdown
++++
+[Learn authoring →](./authoring.md)
+::::
+::::{card} 🚀 Build & Publish
+:link: build
+Deploy to the web
++++
+[Publish guide →](./build.md)
+::::
+::::{card} ⚙️ Extend with Plugins
+:link: plugins
+Customize your workflow
++++
+[Explore plugins →](./plugins.md)
+::::
+::::{card} 💬 Community
+:link: community/community
+Get help and contribute
++++
+[Join us →](./community/community.md)
+::::
+:::::
 
-## Acknowledgements
++++ {"kind": "justified"}
 
-Jupyter Book is supported by an [open community of contributors](https://github.com/jupyter-book/jupyter-book/graphs/contributors), many of whom come from the [the MySTMD Community](https://mystmd.org) and [the Jupyter community](https://jupyter.org/community).
+### Important Information
+
+::::{grid} 1 1 2 2
+:::{card} Known Limitations
+:link: #known-limitations
+Some features from 1.0 are still in development
++++
+See the upgrade guide for migration help and limitations
+:::
+
+:::{card} Get Help
+:link: ./community/help.md
+Questions or issues?
++++
+[Discord](https://discord.mystmd.org) • [Discussions](https://github.com/orgs/jupyter-book/discussions) • [Vote on features](./community/vote.md)
+:::
+
+:::{card} Cite Jupyter Book
+:link: ./cite.md
+Using in research?
++++
+See our citation guide for proper attribution
+:::
+
+:::{card} Ecosystem
+:link: ./community/ecosystem.md
+Learn about the MyST ecosystem
++++
+Understand how Jupyter Book fits into the broader MyST ecosystem
+:::
+::::

@@ -8,7 +8,7 @@ Jupyter Book 2 is built upon the [MyST Markdown Document Engine](https://mystmd.
 
 ## Where can I learn more about the MyST Document Engine?
 
-The MyST Document Engine and Markdown syntax is also developed by the [Jupyter Book community](../community.md). If you'd like to learn more about it, see [the MyST Document Engine documentation](https://mystmd.org).
+The MyST Document Engine and Markdown syntax is also developed by the [Jupyter Book community](../community.md). Learn more at the [MyST Document Engine documentation](https://mystmd.org). Read the paper at [](#scipy-paper).
 
 ## What's different between Jupyter Book and the MyST Document Engine?
 

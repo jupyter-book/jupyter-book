@@ -1,13 +1,15 @@
 version: 1
 site:
   template: book-theme
-  nav: 
+  nav:
     - title: Docs
       url: https://next.jupyterbook.org/start
     - title: Community
-      url: https://next.jupyterbook.org/about/community
+      url: https://next.jupyterbook.org/community/community
     - title: Ecosystem
-      url: https://next.jupyterbook.org/about/ecosystem
+      url: https://next.jupyterbook.org/community/ecosystem
+    - title: Contribute
+      url: https://next.jupyterbook.org/contribute/docs
     - title: Blog
       url: https://blog.jupyterbook.org
     - title: Help

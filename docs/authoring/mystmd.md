@@ -119,7 +119,7 @@ Try clicking the footnote above, you can nest information and interactive figure
 
 To link to a document, for example [](xref:guide/frontmatter), is done through a simple Markdown link `[](xref:guide/frontmatter)`, you can put your own content in between the square brackets, but if you leave it out the link contents will be filled in with the title of the page. If you define the frontmatter on that page (i.e. the description and tooltip), you will also see that information when you hover over the link. This also works for links to Wikipedia (e.g. [Ponies 🐴](https://en.wikipedia.org/wiki/New_Forest_pony)) as well as Github code (e.g. [](https://github.com/jupyter-book/mystmd/blob/main/README.md)).
 
-To create a cross-reference, you need to label a referenceable "target" like a figure, section, equation or table (or anything!). Out of the box, all MyST directives support the `label` option that can be used to define a label, e.g. {myst:directive}`figure.label`. To then reference the figure, use the link syntax again pointing to the label as the target `[](xref:guide#my-fig)`. If you leave the title blank the default will fill in with an enumerated "Figure 1".
+To create a cross-reference, you need to label a referenceable "target" like a figure, section, equation or table (or anything!). Out of the box, all MyST directives support the `:label:` option that can be used to define a label. To then reference the figure, use the link syntax again pointing to the label as the target `[](xref:guide#my-fig)`. If you leave the title blank the default will fill in with an enumerated "Figure 1".
 
 ````{myst}
 ```{figure} https://github.com/rowanc1/pics/blob/main/mountains.png?raw=true

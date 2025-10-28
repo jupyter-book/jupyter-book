@@ -6,7 +6,7 @@
 
 # Jupyter Book
 
-```{image} media/images/logo-square.svg
+```{image} ../media/images/logo-square.svg
 :width: 50px
 :align: left
 ```

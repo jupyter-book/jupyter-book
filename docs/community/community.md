@@ -1,4 +1,4 @@
-# Community
+# Community navigation
 
 Jupyter Book is an **open source project** with a **diverse community of contributors and leaders**. It is a sub-project of [Project Jupyter](https://jupyter.org). Here are a few ways that you can engage with our community.
 
@@ -29,7 +29,7 @@ Click to see our events calendar →
 
 ::::{grid} 2
 :::{card} The Jupyter Book user guide
-:link: ./start
+:link: ../getting-started.md
 Learn how to use Jupyter Book.
 +++
 Click to visit the Jupyter Book user guide →
@@ -43,7 +43,20 @@ Click to visit the `mystmd` guide →
 
 ::::
 
-## Where to contribute
+## How to help
+
+:::{important} Help Others - We Need You!
+The most valuable contribution? **Answer questions on [Discord](https://discord.mystmd.org) and [Discussions](https://github.com/orgs/jupyter-book/discussions)**. Your experience helps newcomers succeed.
+:::
+
+### Answer questions and help others
+
+- **[Discussion forum](https://github.com/orgs/jupyter-book/discussions)** - Answer questions based on your experience
+- **[Discord](https://discord.mystmd.org)** - Help with quick questions and troubleshooting
+- **[Upgrade questions](https://github.com/orgs/jupyter-book/discussions/categories/upgrading-jupyterbook)** - Share migration tips and workarounds
+- **Share knowledge** - Write tutorials, blog posts, or give talks
+
+### Contribute to the project
 
 ::::{grid} 3
 :::{card} The Jupyter Book Team Compass 🧭

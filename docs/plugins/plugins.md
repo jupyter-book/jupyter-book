@@ -230,7 +230,7 @@ This is a helpful way to quickly figure out how to create various AST outputs ma
 :::
 
 ```{tip} Some tips for debugging
-See [](../plugins/debug.md) for tips on Debugging MyST plugins.
+See [debug plugins](./debug.md) for tips on Debugging MyST plugins.
 ```
 
 ## Add an option to our directive

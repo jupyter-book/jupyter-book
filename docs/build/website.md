@@ -83,7 +83,7 @@ or manually serve the quickstart content with the following command:
 $ jupyter book start
 ```
 
-Starting the server requires a theme, this will download the default `book-theme` from [the MyST themes](./website-templates.md).
+Starting the server requires a theme, this will download the default `book-theme` from [the MyST themes](xref:guide/website-templates).
 This can take **up to a minute** the first time, and then will be cached in the `_build/templates` directory.
 
 ```text
