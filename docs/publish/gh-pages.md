@@ -115,7 +115,7 @@ jobs:
 
 ### Conda
 
-Here's how to build using [Conda (Anaconda)](https://docs.conda.io/projects/conda/en/stable/) with an [`environment.yml`](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file). This assumes
+Here's how to build using [Conda (Anaconda)](https://docs.conda.io/projects/conda/en/stable/) with an [`environment.yml`](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file).
 
 ```yaml
 name: deploy-book
