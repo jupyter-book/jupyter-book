@@ -28,7 +28,7 @@ This data comes from [jupyter.org/github-data](https://jupyter.org/github-data),
 
 ```{code-cell} ipython3
 ---
-tags: ["remove-cell"]
+tags: "remove-cell"
 ---
 import pandas as pd
 import sqlite3
@@ -38,14 +38,14 @@ from markdown import markdown
 
 ```{code-cell} ipython3
 ---
-tags: ["remove-cell"]
+tags: "remove-cell"
 ---
 org = "jupyter-book"
 ```
 
 ```{code-cell} ipython3
 ---
-tags: ["remove-cell"]
+tags: "remove-cell"
 ---
 # Download latest release data for Jupyter Book
 file_path = pooch.retrieve(
@@ -56,7 +56,7 @@ file_path = pooch.retrieve(
 
 ```{code-cell} ipython3
 ---
-tags: ["remove-cell"]
+tags: "remove-cell"
 ---
 def df_from_sql(query, db):
     con = sqlite3.connect(db)
@@ -66,7 +66,7 @@ def df_from_sql(query, db):
 
 ```{code-cell} ipython3
 ---
-tags: ["remove-cell"]
+tags: "remove-cell"
 ---
 repos = df_from_sql("SELECT * FROM repos;", file_path).set_index("id")
 issues = df_from_sql("SELECT * FROM issues;", file_path)
@@ -95,7 +95,7 @@ issues["bodyshort"] = issues["body"].map(lambda a: a.replace("#", "")[:400] if a
 
 ```{code-cell} ipython3
 ---
-tags: ["remove-input"]
+tags: "remove-input"
 label: jupyter-book-table
 class: col-page-right
 ---

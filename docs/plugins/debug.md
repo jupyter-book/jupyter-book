@@ -1,6 +1,5 @@
 ---
 title: Debug plugins
-short_title: Debugging tips
 ---
 
 This section describes a few ways to debug MyST plugins.

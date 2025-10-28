@@ -1,6 +1,7 @@
 ---
 title: Get started with Jupyter Book plugins
 description: Plugins implemented in JavaScript are easily used across different projects, as they do not require any additional programs to be installed.
+subject: Tutorial
 ---
 
 Jupyter Book uses the [MyST plugins infrastructure](xref:guide/plugins) to extend Jupyter Book's base functionality.

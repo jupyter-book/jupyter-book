@@ -12,17 +12,9 @@ The Python package ensures users have Node.js to run the underlying application.
 
 ### JavaScript Application
 
-The core application is written in JavaScript, currently duplicating the `mystmd` CLI. In future, `mystmd` may become smaller with some markup extensions moving to Jupyter Book.
+The core application is written in JavaScript, currently extending the [`mystmd` CLI](https://mystmd.org/guide). In future, `mystmd` may become smaller with some markup extensions moving to Jupyter Book.
 
-## Setting up a Development Environment
-
-To develop Jupyter Book, you need:
-
-1. Node.js
-2. Python 3.9+
-3. Hatch
-
-Install these using your preferred package manager. If using [Nix](https://nixos.org/), run `nix develop .` to enter a devshell.
+Jupyter Book 2's CLI adds some extra functionality (like a way to upgrade from Jupyter Book 1), but is intentionally as lightweight as possible.
 
 ## Building the Python Package
 
@@ -36,40 +28,3 @@ Build the application:
 ```shell
 hatch build
 ```
-
-## Building the JS Package
-
-Install NPM dependencies:
-
-```shell
-npm install
-```
-
-Run the build task:
-
-```shell
-npm run build
-```
-
-## Running the JS Package
-
-After building:
-
-```shell
-npx jupyter-book
-```
-
-## Repository Structure
-
-- `py/jupyter_book/` - Python package code
-- `ts/` - TypeScript/JavaScript application code
-- `docs/` - Documentation source files
-- `pyproject.toml` - Python package configuration
-- `package.json` - JavaScript package configuration
-
-## Contributing Guidelines
-
-- Make changes via [GitHub Pull Requests](https://docs.github.com/en/pull-requests)
-- Report issues via [GitHub Issues](https://docs.github.com/en/issues)
-- Follow the project's [Code of Conduct](https://github.com/jupyter-book/.github/blob/main/CODE_OF_CONDUCT.md)
-- Check [good first issue](https://github.com/jupyter-book/jupyter-book/labels/good%20first%20issue) for beginner-friendly tasks

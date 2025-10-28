@@ -22,7 +22,7 @@ Jupyter {orange}`Book`
 :::::{grid-item}
 {large}`Create computational narratives that are reusable, reproducible, and interactive.`
 
-Write in Jupyter Notebooks or Markdown, execute code, and publish to the web—all with a single tool built for researchers, educators, and data scientists.
+_Write in Notebooks or Markdown, execute code, cross-reference content, and publish to the web - built for and by researchers, educators, and data scientists._
 
 :::::
 :::::{grid-item}
@@ -115,11 +115,11 @@ Get help and contribute
 ### Important Information
 
 ::::{grid} 1 1 2 2
-:::{card} Known Limitations
-:link: #known-limitations
-Some features from 1.0 are still in development
+:::{card} Upgrade guide
+:link: ./upgrade.md
+Upgrade from Jupyter Book 1 to 2
 +++
-See the upgrade guide for migration help and limitations
+Includes an FAQ about known limitations and gotchas
 :::
 
 :::{card} Get Help

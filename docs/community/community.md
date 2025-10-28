@@ -1,4 +1,4 @@
-# Community navigation
+# Community
 
 Jupyter Book is an **open source project** with a **diverse community of contributors and leaders**. It is a sub-project of [Project Jupyter](https://jupyter.org). Here are a few ways that you can engage with our community.
 

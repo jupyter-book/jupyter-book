@@ -15,6 +15,7 @@ Help build and improve the Jupyter Book software:
 
 - **Report bugs** via [GitHub Issues](https://github.com/jupyter-book/jupyter-book/issues)
 - **Improve the codebase** - See [Code Contribution Guide](./contribute/code.md) for THIS repository's setup
+- **Team Priorities Board**: [Current priorities and roadmap](https://github.com/orgs/jupyter-book/projects/1) has a list of things we'd like someone to tackle
 
 ### Documentation Contributions
 

@@ -1,6 +1,6 @@
 ---
 title: Introduction to MyST Markdown
-subject: Jupyter Book tutorial
+subject: Tutorial
 subtitle: An overview of syntax features
 description: MyST (Markedly Structured Text) is designed to create publication-quality documents written entirely in Markdown.
 ---
@@ -94,10 +94,9 @@ See [](xref:guide/frontmatter) for all options, how to use frontmatter in variou
 As you have seen in the links in MyST (e.g. [](xref:guide/frontmatter)), there is information that is pulled forward into your reading context on hover or click. We believe it is important to provide as much possible context when you are reading on elements like links to other pages, cross-references to figures, tables and equations as well as traditional academic citations[^contextual-information] (**👈 see the footnote!**). Additionally, all of these have fallbacks in static PDF or Word documents.
 
 [^contextual-information]:
-    For example, in [](doi:10.1145/3411764.3445648) the authors showed you can speed up comprehension of a paper by 26% when showing information in context, rather than requiring researchers to scroll back and forth to find figures and equations.
+    For example, [](doi:10.25080/hwcj9957) describes how Jupyter Book helps create publication-quality computational narratives that are reusable, reproducible, and interactive.
 
-    Imagine if all of science was ⚡️ 26% faster ⚡️[^3]!! (**👈💥**)\
-    Designing the user-experience of scientific communication is _really_ important.
+    Designing the user-experience of scientific communication is _really_ important, and tools like Jupyter Book make it easier to share research effectively.[^3] (**👈💥**)
 
 [^3]:
     Just as an example of having lots of helpful information at your finger-tips, it would be nice to see the video of that article, _right_? Well here it is:
@@ -142,31 +141,11 @@ Citations are at the heart of technical writing, and are well handled by MyST!
 
 > If I have seen further it is by standing on the shoulders of Giants.
 >
-> -- Newton making a [sarcastic remark](https://en.wikipedia.org/wiki/Standing_on_the_shoulders_of_giants#Early_modern_and_modern_references) directed at Hooke's appearance?!
+> -- Newton making a [sarcastic remark](https://en.wikipedia.org/wiki/Standing_on_the_shoulders_of_giants#Early_modern_and_modern_references)?!
 
-The easiest way to create a citation is just link to a DOI as any other link! For example:\
-`[](https://doi.org/10.5281/zenodo.6476040)` will create:\
-[](https://doi.org/10.5281/zenodo.6476040).
+The easiest way to create a citation is just link to a DOI as any other link! For example: `[](https://doi.org/10.25080/hwcj9957)` will create: [](https://doi.org/10.25080/hwcj9957).
 
-If you already have a citation list locally as a BiBTeX file (`*.bib`), then you can reference the keys inside it using a similar syntax to LaTeX, but adapted to roles: `` {cite:p}`myst2023,jupyterbook2021` ``. The `cite:p` will create a parenthetical citation, or a textual citation using `cite:t`, the `cite` role can also be used, and will adapt to the citation style of the document. The citations will show up inline in your documents, and also automatically create a references section at the bottom of your page!
 
 :::{seealso}
 See [](xref:guide/citations) for more information about using citations and references sections, and how to have control over the bibliography sources.
 :::
-
-## What's next?
-
-We hope the above sections in this overview should have given you a sense of the types of things that MyST can do! Once you write a document in MyST, you can use the command line tools to translate that into a [scientific PDF article](xref:guide/creating-pdf-documents), or a [Word Document](xref:guide/creating-word-documents) or a [website](xref:guide/quickstart-myst-documents) like this site!
-
-```{mermaid}
-flowchart LR
-  A[Jupyter Notebook] --> D
-  B[Markdown] --> D
-  D{MyST}
-  D <--> E[LaTeX]
-  E --> F[PDF]
-  D --> G[Word]
-  D --> H[React]
-  D --> I[HTML]
-  D <--> J[JATS]
-```

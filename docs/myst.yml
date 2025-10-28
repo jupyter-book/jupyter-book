@@ -28,45 +28,42 @@ project:
       children:
         - file: getting-started/install.md
         - file: getting-started/init.md
-        - file: authoring/mystmd.md
-        - file: build/website.md
-        - file: execution/execution.md
-        - file: plugins/plugins.md
+        - file: getting-started/create-content.md
+        - file: getting-started/build-websites.md
+        - file: getting-started/export-pdfs.md
+        - file: getting-started/cross-reference.md
+        - file: getting-started/publish.md
     - title: Author Content
       file: authoring.md
       children:
-        - file: authoring/create-content.md
-        - file: authoring/cross-reference.md
+        - file: authoring/mystmd.md
         - file: authoring/math.md
-        - file: authoring/figures.md
-        - file: authoring/citations.md
         - file: authoring/authorship.md
         - file: authoring/roles-and-directives.md
-        - file: authoring/configuration.md
         - file: authoring/table-of-contents.md
         - file: authoring/file-types.md
     - title: Build & Publish
-      file: build.md
+      file: build/index.md
       children:
-        - file: build/build-websites.md
-        - file: build/export-pdfs.md
-        - file: build/publish.md
+        - file: build/website.md
         - file: build/export.md
     - title: Execute & Compute
       file: execution.md
       children:
+        - file: execution/execution.md
         - file: execution/jupyterlab.md
         - file: execution/generate-myst.md
     - title: Extend with Plugins
       file: plugins.md
       children:
+        - file: plugins/plugins.md
         - file: plugins/directives-and-roles.md
         - file: plugins/debug.md
         - file: plugins/ast.md
         - file: plugins/dependencies.md
     - title: Community
+      file: community/community.md
       children:
-        - file: community/community.md
         - file: community/team.md
         - file: community/vote.md
         - file: community/ecosystem.md

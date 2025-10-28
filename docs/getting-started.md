@@ -24,28 +24,55 @@ This User Guide steps you through **high-level concepts**, **tutorials for step-
 
 
 ::::{grid} 1 2 2 2
-:::{card} Get started 🆕
+:::{card} 🚀 Install & Setup
 :link: getting-started/install
-:footer: Get started with Jupyter Book »
+:footer: Install Jupyter Book »
 
-The **Get Started** guide covers basic steps to learn the basics of using Jupyter Book.
+Install Jupyter Book and create your first project.
 :::
-:::{card} Tutorials 🎓
+:::{card} 🌐 Build Your First Website
 :link: build/website
-:footer: See the first tutorial »
+:footer: Build a website tutorial »
 
-The **Tutorials** cover key workflows and concepts in more depth through step-by-step learning.
+Step-by-step tutorial to build and publish a website.
 :::
-:::{card} How To Guides 💡
-:link: authoring/create-content
-:footer: See the how-to guides »
+:::{card} ✍️ Write Content
+:link: authoring
+:footer: Browse authoring guides »
 
-The **How-To Guides** show you how to accomplish specific tasks and solve practical problems.
+Learn to write with MyST Markdown, add figures, citations, and math.
 :::
-:::{card} Reference ℹ️
-:link: https://mystmd.org/guide
-:footer: Go to the MyST Guide »
+:::{card} 🔧 Build & Publish
+:link: build
+:footer: Browse build guides »
 
-The MyST Guide is the **reference** for the full-suite of features provided by the MyST Document Engine that powers Jupyter Book.
+Export to PDF, publish to GitHub Pages, and deploy your book.
 :::
 ::::
+
+## Browse documentation by type
+
+Looking for something specific? Browse by documentation type:
+
+**Tutorials** - Step-by-step learning paths:
+- [Build a website](./build/website.md) - Create and publish your first site
+- [Execute code](./execution/execution.md) - Run computational notebooks
+- [Create plugins](./plugins/plugins.md) - Extend Jupyter Book with custom directives
+
+**How-To Guides** - Solve specific problems:
+- [Create content](./authoring/create-content.md) - Add pages and structure
+- [Cross-reference](./authoring/cross-reference.md) - Link between sections
+- [Add math equations](./authoring/math.md) - Write LaTeX mathematics
+- [Include figures](./authoring/figures.md) - Add images and diagrams
+- [Cite references](./authoring/citations.md) - Add bibliographies
+- [Export to PDF](./build/export-pdfs.md) - Generate PDF documents
+
+**Reference** - Technical specifications:
+- [MyST Guide](https://mystmd.org/guide) - Complete MyST reference
+- [Configuration options](./authoring/configuration.md) - myst.yml reference
+- [Table of contents](./authoring/table-of-contents.md) - TOC structure
+
+**Community** - Get help and contribute:
+- [Get help](./community/help.md) - Discord, discussions, bug reports
+- [FAQ](./faq.md) - Frequently asked questions
+- [Contributing](./contribute.md) - How to contribute

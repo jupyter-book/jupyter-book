@@ -46,5 +46,5 @@ Jupyter Book can execute notebooks with any Jupyter kernel:
 ## Next steps
 
 - [](mystmd.md) - Learn MyST Markdown syntax
-- [](create-content.md) - Start creating content
+- [](../getting-started/create-content.md) - Start creating content
 - [](../execution/execution.md) - Configure notebook execution

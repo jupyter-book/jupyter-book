@@ -132,6 +132,4 @@ Key changes:
 
 ## Next steps
 
-- [](configuration.md) - Learn about other `myst.yml` options
-- [](create-content.md) - Start writing content for your book
-- [MyST Navigation Guide](https://mystmd.org/guide/navigation) - Detailed navigation options
+- [](../getting-started/create-content.md) - Start writing content for your book
