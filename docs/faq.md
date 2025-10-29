@@ -50,7 +50,10 @@ For authoring details, see our [MyST Markdown tutorial](./authoring/mystmd.md).
 
 In short: maintanance will continue to be supported, but will be dependent on support from community contributors, as the resources of the core team are focused on Jupyter Book 2 and the MyST ecosystem.
 
-More generally, the [Executable Books](https://executablebooks.org/) organization will remain the stewards of the Sphinx-based stack (the engine of Jupyter Book 1), and we anticipate continuing support and development of the Sphinx ecosystem of tools, likely with a focus on supporting the open source developer community rather than the broader “scientific communication” community. These projects are strongly supported by open-source contributors, and we hope that this continues alongside work from the Executable Books team. Some Executable Books tools will likely slow their development (e.g., MyST-NB), while more heavily-used tools will likely continue to evolve and improve (e.g., myst-parser, which now powers a large part of the markdown experience in Sphinx). We recognize that there is an on-going need for these tools, and will continue working to ensure their long-lived success for the developer community.
+More generally, the [Executable Books](https://executablebooks.org/) organization will remain the stewards of the Sphinx-based stack (the engine of Jupyter Book 1), and we anticipate continuing support and development of the Sphinx ecosystem of tools, likely with a focus on supporting the open source developer community rather than the broader “scientific communication” community.
+These projects are strongly supported by open-source contributors, and we hope that this continues alongside work from the Executable Books team.
+Some Executable Books tools will likely slow their development (e.g., [MyST-NB](https://myst-nb.readthedocs.io/en/latest/)), while more heavily-used tools will likely continue to evolve and improve (e.g., [myst-parser](https://myst-parser.readthedocs.io/en/latest/), which now powers a large part of the markdown experience in Sphinx).
+We recognize that there is an on-going need for these tools, and will continue working to ensure their long-lived success for the developer community, with the constraint that we are all volunteers with limited time!
 
 
 ## Technical Questions
