@@ -4,7 +4,8 @@ This guide covers the technical setup and architecture for code contributors.
 
 ## Application Design
 
-The Jupyter Book application is a Python package containing a [Node.js](https://nodejs.org/en) application. It's functionally equivalent to the [MyST-MD engine](https://github.com/jupyter-book/mystmd).
+The Jupyter Book application is a Python package containing a [Node.js](https://nodejs.org/en) application.
+It's functionally equivalent to the [MyST-MD engine](https://github.com/jupyter-book/mystmd).
 
 ### Python Shim
 
