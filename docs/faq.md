@@ -83,7 +83,7 @@ See our [publishing guide](./build/publish.md) for deployment options including:
 
 Multiple channels available:
 
-- **Quick questions**: [Discord community](https://discord.mystmd.org
+- **Quick questions**: [Discord community](https://discord.mystmd.org)
 - **Detailed questions**: [GitHub Discussions](https://github.com/orgs/jupyter-book/discussions)
 - **Upgrade help**: [Upgrade discussions category](https://github.com/orgs/jupyter-book/discussions/categories/upgrading-jupyterbook)
 - **Bug reports**: [GitHub Issues](https://github.com/jupyter-book/jupyter-book/issues)
