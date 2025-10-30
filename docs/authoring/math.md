@@ -5,7 +5,7 @@ title: Math and equations
 # Math and equations
 
 Jupyter Book uses [MathJax](http://docs.mathjax.org/) for typesetting math in your HTML book build.
-This allows you to have LaTeX-style mathematics in your online content.
+This allows you to have LaTeX-style mathematics in your online content (and, which can be exported to both LaTeX and [Typst](https://typst.app/)).
 This page shows you a few ways to control this.
 
 :::{seealso}
@@ -91,7 +91,7 @@ For example, the following code:
 
 ````md
 ```{math}
-:label: my_label
+:label: eq_my_label
 w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
 ```
 ````
@@ -99,7 +99,7 @@ w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
 will generate
 
 ```{math}
-:label: my_label
+:label: eq_my_label
 w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
 ```
 
@@ -131,13 +131,13 @@ You can refer to the equation using the label that you've provided by using
 the `{eq}` role. For example:
 
 ```md
-- A link to an equation directive: {eq}`my_label`
+- A link to an equation directive: {eq}`eq_my_label`
 - A link to a dollar math block: {eq}`my_other_label`
 ```
 
 results in
 
-- A link to an equation directive: {eq}`my_label`
+- A link to an equation directive: {eq}`eq_my_label`
 - A link to a dollar math block: {eq}`my_other_label`
 
 ## Next steps

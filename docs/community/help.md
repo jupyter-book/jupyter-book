@@ -6,7 +6,11 @@ subtitle: Have a question? Found a bug? Visit our dedicated help resources.
 :::{tip} What is MyST? How is it different from Jupyter Book?
 :class: dropdown
 
-Jupyter Book is built on top of the MyST Document Engine. The separation between the two programs is so small that we share the same CLI and configuration files. See [our ecosystem documentation](ecosystem.md) for more information. Consequently bug reports and discussions should take place on the MyST-MD project.
+Jupyter Book is built on top of the MyST Document Engine.
+The separation between the two applications is so small that we share the same CLI and configuration files.
+See [our ecosystem documentation](ecosystem.md) for more information.
+
+Bug reports and requests should take place on the [`mystmd/` repository](https://github.com/jupyter-book/mystmd), since that is where most changes will happen.
 :::
 
 ::::{grid} 1 1 2 2

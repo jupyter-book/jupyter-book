@@ -5,7 +5,8 @@ These are [embedded](xref:guide#docs-embed) from [our team compass](xref:compass
 
 ## Core team
 
-Our core team is made up of maintainers who support Jupyter Book and its subprojects in many ways. This group includes the Steering Council below.
+Our core team is made up of maintainers who support Jupyter Book and its subprojects in many ways.
+This group includes the Steering Council below.
 
 ![](xref:compass#core-team-list)
 

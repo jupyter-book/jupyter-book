@@ -7,19 +7,14 @@ description: Organize your book's pages with the table of contents
 
 The **table of contents** (TOC) defines the structure and navigation of your Jupyter Book. It determines the order of pages, how they're nested, and how they appear in the sidebar.
 
-The TOC is defined in your `myst.yml` file under `project.toc`.
-
 :::{note}
 The new Jupyter Book uses `myst.yml` for the table of contents, replacing the `_toc.yml` file used in Jupyter Book v1.
 :::
 
-:::{seealso}
-For more details, see the [MyST navigation guide](https://mystmd.org/guide/navigation).
-:::
-
+(basic-toc-structure)=
 ## Basic structure
 
-Here's a simple table of contents:
+Here's a simple table of contents, defined in your `myst.yml` file under the `project.toc` field:
 
 ```yaml
 project:
@@ -30,6 +25,14 @@ project:
 ```
 
 This creates a book with three pages in order: the index, chapter 1, and chapter 2.
+
+:::{tip}
+File names with numeric prefixes like `1_chapter1.md` will generate clean URLs without the prefix (e.g., `/chapter1`). This helps with organization while keeping URLs clean.
+:::
+
+:::{seealso}
+For more details, see the [MyST navigation guide](xref:guide/table-of-contents).
+:::
 
 ## Nested sections
 

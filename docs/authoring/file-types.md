@@ -30,9 +30,9 @@ There are a few rules that apply to all content types:
 
 * **Files must have a title**. This means they should begin with a level-1 heading (a line starting with `#`) or have a `title` in their frontmatter.
 
-* **Use only one top-level header**. Because each page must have a clear title, it should only have one top-level header. Don't use multiple `#` headings.
+* **Use only one top-level header**. Each page must have only one title. Hence, don't use multiple `#` headings.
 
-* **Headers should increase linearly**. If you're inside a section with one `#`, the next nested section should start with `##`. Avoid jumping from `#` to `###`.
+* **Headers should increase linearly**. If you're inside a section with one `#`, the next nested section should start with `##`.
 
 ## Supported kernels
 

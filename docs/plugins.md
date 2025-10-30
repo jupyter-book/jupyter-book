@@ -24,3 +24,7 @@ Customize and extend Jupyter Book with plugins and custom directives.
 - Create specialized roles for inline markup
 - Transform content during the build process
 - Integrate with external tools and services
+
+## Plugin examples
+
+For community-contributed plugin examples and inspiration, see the [Jupyter Book MyST plugins repository](https://github.com/jupyter-book/myst-plugins/).
