@@ -8,7 +8,7 @@ This page answers common questions about Jupyter Book 2.
 
 Jupyter Book 2 is a complete rewrite built on the [MyST Document Engine](https://mystmd.org) instead of Sphinx. Key differences:
 
-- **Architecture**: Built on MyST-MD (JavaScript/TypeScript) instead of Sphinx (Python)
+- **Architecture**: Built on the MyST Document Engine (JavaScript/TypeScript) instead of Sphinx (Python)
 - **Performance**: Faster builds and better incremental compilation
 - **Features**: Modern web development features, improved cross-referencing, enhanced interactivity
 - **Ecosystem**: Part of the broader [MyST ecosystem](./community/ecosystem.md) with shared tools and standards
@@ -26,7 +26,7 @@ For a detailed comparison, see our [ecosystem documentation](./community/ecosyst
 **Consider waiting if:**
 - You need features not yet available in 2.0 (see [known limitations](#known-limitations))
 - Your project uses many Sphinx extensions
-- You have a stable workflow with JB 1.0 that meets your needs and don't want to upgrade.
+- You have a stable workflow with Jupyter Book 1 that meets your needs and don't want to upgrade.
 
 See our [upgrade guide](./upgrade.md) for detailed migration instructions.
 
@@ -82,7 +82,9 @@ We recognize that there is an on-going need for these tools, and will continue w
 
 ### What's the relationship between Jupyter Book and MyST?
 
-Jupyter Book 2 is built on top of the MyST ecosystem. See our [ecosystem documentation](./community/ecosystem.md) for details.
+Jupyter Book 2 is built on top of the MyST Document Engine. In short: Jupyter Book is an opinionated, book-focused distribution of MyST with a Python-based installation workflow.
+
+For a detailed explanation of the architecture and technical differences, see our [ecosystem documentation](./community/ecosystem.md).
 
 ### How do I add custom features or plugins?
 

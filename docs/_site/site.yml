@@ -9,7 +9,7 @@ site:
     - title: Ecosystem
       url: https://next.jupyterbook.org/community/ecosystem
     - title: Contribute
-      url: https://next.jupyterbook.org/contribute/docs
+      url: https://next.jupyterbook.org/contribute/contribute
     - title: Blog
       url: https://blog.jupyterbook.org
     - title: Help
