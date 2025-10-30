@@ -11,7 +11,7 @@ site:
 :::{important} Jupyter Book 2 is here!
 Built on the [MyST Document Engine](https://mystmd.org) with faster builds, modern features, and improved workflows.
 
-[Upgrade from 1.0 →](./upgrade.md) • [Known limitations →](#known-limitations)
+[Upgrade from 1.0 →](./upgrade.md) • [Known limitations →](#known-limitations) • [Frequently Asked Questions →](./faq.md)
 :::
 
 :::{hero}
@@ -126,7 +126,7 @@ Includes an FAQ about known limitations and gotchas
 :link: ./community/help.md
 Questions or issues?
 +++
-[Discord](https://discord.mystmd.org) • [Discussions](https://github.com/orgs/jupyter-book/discussions) • [Vote on features](./community/vote.md)
+Visit our [FAQ](./faq.md) for common questions, or reach out via [Discord](https://discord.mystmd.org), [Discussions](https://github.com/orgs/jupyter-book/discussions), or [Vote on features](./community/vote.md)
 :::
 
 :::{card} Cite Jupyter Book

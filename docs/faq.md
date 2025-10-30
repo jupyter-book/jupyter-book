@@ -4,7 +4,7 @@ This page answers common questions about Jupyter Book 2.
 
 ## General Questions
 
-### What's the difference between Jupyter Book 1 and 2.0?
+### What's the difference between Jupyter Book 1 and 2?
 
 Jupyter Book 2 is a complete rewrite built on the [MyST Document Engine](https://mystmd.org) instead of Sphinx. Key differences:
 
@@ -45,6 +45,28 @@ Jupyter Book 2 supports the full [MyST Markdown specification](https://mystmd.or
 - Tabs, grids, and cards
 
 For authoring details, see our [MyST Markdown tutorial](./authoring/mystmd.md).
+
+### Should I use Jupyter Book or MyST directly?
+
+Since Jupyter Book 2 is built on MyST, you might wonder which to use.
+Currently, the difference is minimal - both use the same CLI commands and configuration. 
+Over time, we imagine that:
+
+- Jupyter Book will remain focused on **out-of-the-box functionality for end-users**
+- The MyST Engine will focus more on **flexible, hackable building blocks for applications like Jupyter Book**
+
+However for right now, Jupyter Book is essentially a Python wrapper around MyST that makes installation easier.
+
+**Use Jupyter Book if:**
+- You want a simpler "batteries included" experience for creating books
+- You're familiar with Jupyter Book 1 and want to continue that workflow
+- You primarily create books and similar long-form documents
+- You prefer working in a Python environment (e.g., `pip install`, Python-based workflows)
+
+**Use MyST directly if:**
+- You prefer working with `Node.js/npm` tooling
+- You need cutting-edge MyST features before they're in Jupyter Book
+- You want maximum flexibility and control over the MyST toolchain
 
 ### Will Jupyter Book 1 continue to be maintained?
 
@@ -89,7 +111,7 @@ Multiple channels available:
 - **Quick questions**: [Discord community](https://discord.mystmd.org)
 - **Detailed questions**: [GitHub Discussions](https://github.com/orgs/jupyter-book/discussions)
 - **Upgrade help**: [Upgrade discussions category](https://github.com/orgs/jupyter-book/discussions/categories/upgrading-jupyterbook)
-- **Bug reports**: [GitHub Issues](https://github.com/jupyter-book/jupyter-book/issues)
+- **Bug reports**: Most issues should be reported to the [`mystmd` repository](https://github.com/jupyter-book/mystmd/issues) since Jupyter Book 2 is built on the MyST engine. Use [`jupyter-book` issues](https://github.com/jupyter-book/jupyter-book/issues) only for Jupyter Book-specific functionality (like the Python wrapper or upgrade tooling).
 
 See our [help page](./community/help.md) for more resources.
 
