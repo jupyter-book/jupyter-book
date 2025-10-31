@@ -7,9 +7,10 @@ short_title: Upgrade from Jupyter Book 1
 
 ## tl;dr to upgrade
 
-- Run `jupyter book` inside your existing book to automatically upgrade to Jupyter Book 2.
-- Some manual cleanup may be needed.
-- Some functionality may be missing (see [](#known-limitations)).
+- Create and activate a virtual environment with Jupyter Book 2.
+- Run `jupyter book` inside your existing book directory to automatically upgrade to Jupyter Book 2 (typically a `myst.yml` file will be created).
+- Some manual cleanup may be needed to address build warnings.
+- Some functionality in your book may be missing in Jupyter Book 2 (see [](#known-limitations)).
 
 
 ## Should You Upgrade?
@@ -23,6 +24,7 @@ short_title: Upgrade from Jupyter Book 1
 - Sphinx extensions (not yet fully supported)
 - Thebe interactive cells ([in development](https://github.com/jupyter-book/mystmd/issues/443))
 - API documentation tools ([in development](https://github.com/jupyter-book/mystmd/issues/1259))
+- To 
 
 See [](#known-limitations) for details on what's still in development.
 
@@ -30,7 +32,7 @@ See [](#known-limitations) for details on what's still in development.
 
 ## Structure of a legacy book
 
-Before we can upgrade a {term}`Legacy Book`, we must first discuss its important files and structure. Jupyter Book 1 uses [the Sphinx documentation engine](https://www.sphinx-doc.org/en/master/) to build each book into publication-quality books and documents. Sphinx was originally designed for documentation generation, such as <https://docs.python.org>, and has a long historical legacy. In order to hide the complexity that stems from making a documentation engine behave like a book authoring tool, Jupyter Book 1 introduced its own configuration files and CLI. Consequently, a {term}`Legacy Book` is required to have a number of configuration files shown in @legacy-config-files.
+Before we can upgrade a {term}`Legacy Book`, we must first discuss its important files and structure. Jupyter Book 1 uses [the Sphinx documentation engine](https://www.sphinx-doc.org/en/master/) to build each book into publication-quality books and documents. Sphinx was originally designed for documentation generation, such as <https://docs.python.org>, and has a long historical legacy. In order to hide the complexity that stems from making a documentation engine behave like a book authoring tool, Jupyter Book 1 introduced its own configuration files and CLI. Consequently, a {term}`Legacy Book` is required to have two configuration files, shown in @legacy-config-files.
 
 :::{table} {term}`Legacy Book` configuration files.
 :name: legacy-config-files
@@ -41,8 +43,6 @@ Before we can upgrade a {term}`Legacy Book`, we must first discuss its important
 | `_config.yml` | To define configuration options that customize the content, structure, and style of a book. |
 
 :::
-
-The most important files in a {term}`Legacy Book` are the `_toc.yml` and `_config.yml` files described in [](#legacy-config-files). These files control what a book contains and what it looks like.
 
 An example {term}`Legacy Book` can be seen at <https://github.com/jupyter-book/legacy-demo-book/>. If we inspect the contents of the `my_book` directory, there are a number of files including [`_toc.yml`](#code:example-toc) and [`_config.yml`](#code:example-config):
 
@@ -63,6 +63,8 @@ notebooks.ipynb
 references.bib
 _toc.yml
 ```
+
+The `_config.yml` file illustrates metadata defined for the book, along with a single book setting, `execute`, which ensures that all notebooks are executed when the build process is run using command `jupyter book`.
 
 ```{code} yaml
 :filename: my_book/_config.yml
@@ -88,6 +90,20 @@ execute:
 
 # ...
 ```
+
+````{tip}
+Not included in the example `_config.yml` file above are the inclusion of [custom Sphinx extensions](git@github.com:TUDelft-CITG/HOS-workbook.git), which are a flexible third-party method for adding customization to Jupyter Book 1. Such an extension would be included in a virtual environment and listed in the `_config.yml` file like this:
+
+```yaml
+sphinx:
+  extra_extensions:
+   - extension1
+   - extension2
+```
+In general, Sphinx extensions are **not** driectly compatible with Jupyter Book 2, and if used extensively may present a significant barrier for upgrading an existing book to Jupyter Book 2. More at @section:sphinx-extension-migration.
+````
+
+Besides a few metadata at the top of the file, `_toc.yml` primarily itemizes the files and structure of the book: 
 
 ```{code} yaml
 :filename: my_book/_toc.yml
@@ -156,7 +172,7 @@ $ jupyter book --version
 v2...
 ```
 
-We can then run the `jupyter book` command, which will detect the {term}`Legacy Book` and ask to perform an in-place upgrade:
+We can then run the `jupyter book` command, which will detect the {term}`Legacy Book`, then ask to perform an in-place upgrade:
 
 ```{code} shell
 :linenos:
@@ -301,8 +317,9 @@ See [upgrade discussions](https://github.com/orgs/jupyter-book/discussions/categ
 
 ### Where did [feature X] from Jupyter Book 1 go?
 
-For information about specific features, see the [known limitations section above](#known-limitations) or browse [upgrade discussions](https://github.com/orgs/jupyter-book/discussions/categories/upgrading-jupyterbook).
+For information about specific features, see the [known limitations section above](#known-limitations) or browse existing [upgrade discussions](https://github.com/orgs/jupyter-book/discussions/categories/upgrading-jupyterbook). You might also find solutions in the [MyST Guide](https://mystmd.org/guide). If you don't see what you are looking for, make a post on the [upgrade discussions](https://github.com/orgs/jupyter-book/discussions/categories/upgrading-jupyterbook) or on [Discord](https://discord.mystmd.org). 
 
+(section:sphinx-extension-migration)=
 ### How do I migrate my Sphinx extensions?
 
 Jupyter Book 2 uses MyST plugins instead of Sphinx extensions. Some common migrations:
@@ -311,8 +328,8 @@ Jupyter Book 2 uses MyST plugins instead of Sphinx extensions. Some common migra
 - **Themes**: See the MyST theme documentation
 - **Build hooks**: Use MyST plugins
 
-In some cases, functionality may not yet exist in the MyST engine that does exist in Sphinx.
-In this case, ask in our [discussion forum](https://github.com/orgs/jupyter-book/discussions).
+In some cases, functionality may _not_ yet exist in the MyST engine that _does_ exist in Sphinx.
+In this case, ask in our [discussion forum](https://github.com/orgs/jupyter-book/discussions) or on [Discord](https://discord.mystmd.org).
 
 ### My build is failing after upgrading. What should I do?
 
@@ -321,13 +338,14 @@ Common issues and solutions:
 1. **Syntax errors**: MyST syntax may differ slightly from Sphinx/RST
    - Check directive names and arguments
    - Verify cross-reference syntax
+   - Try searching the [MyST Guide](https://mystmd.org/guide)
 
 2. **Missing features**: Some JB 1.0 features aren't in 2.0 yet
    - Check [known limitations](#known-limitations)
-   - Consider staying on Jupyter Book 1.0 temporarily
+   - Consider staying on Jupyter Book 1.0 temporarily (especially if a custom Sphinx extension is causing the issue)
 
 3. **Configuration issues**: Config file format has changed
    - See the upgrade instructions above for config migration
    - Compare with new project structure
 
-Post specific errors in [upgrade discussions](https://github.com/orgs/jupyter-book/discussions/categories/upgrading-jupyterbook) for help.
+Post specific errors in [upgrade discussions](https://github.com/orgs/jupyter-book/discussions/categories/upgrading-jupyterbook) or ask on [Discord](https://discord.mystmd.org) for help.
