@@ -49,22 +49,23 @@ For authoring details, see our [MyST Markdown tutorial](./authoring/mystmd.md).
 ### Should I use Jupyter Book or MyST directly?
 
 Since Jupyter Book 2 is built on MyST, you might wonder which to use.
-Currently, the difference is minimal - both use the same CLI commands and configuration. 
+Currently, the difference is minimal - both use the same CLI commands and configuration, for example `myst start` and `jupyter book start` do the same thing. 
 Over time, we imagine that:
 
 - Jupyter Book will remain focused on **out-of-the-box functionality for end-users**
 - The MyST Engine will focus more on **flexible, hackable building blocks for applications like Jupyter Book**
 
-However for right now, Jupyter Book is essentially a Python wrapper around MyST that makes installation easier.
+However, at the moment, Jupyter Book is essentially a Python CLI wrapper around MyST that makes installation easier.
 
 **Use Jupyter Book if:**
 - You want a simpler "batteries included" experience for creating books
-- You're familiar with Jupyter Book 1 and want to continue that workflow
-- You primarily create books and similar long-form documents
+- You're familiar with Jupyter Book 1 and want to continue with a similar CLI workflow
+- You primarily create books and similar long-form documents (i.e., no need for an [article theme](https://mystmd.org/guide/website-templates#article-theme))
 - You prefer working in a Python environment (e.g., `pip install`, Python-based workflows)
 
 **Use MyST directly if:**
 - You prefer working with `Node.js/npm` tooling
+- You don't want the `jupyter book` Python wrapper around `myst`
 - You need cutting-edge MyST features before they're in Jupyter Book
 - You want maximum flexibility and control over the MyST toolchain
 
@@ -112,8 +113,9 @@ Multiple channels available:
 
 - **Quick questions**: [Discord community](https://discord.mystmd.org)
 - **Detailed questions**: [GitHub Discussions](https://github.com/orgs/jupyter-book/discussions)
-- **Upgrade help**: [Upgrade discussions category](https://github.com/orgs/jupyter-book/discussions/categories/upgrading-jupyterbook)
-- **Bug reports**: Most issues should be reported to the [`mystmd` repository](https://github.com/jupyter-book/mystmd/issues) since Jupyter Book 2 is built on the MyST engine. Use [`jupyter-book` issues](https://github.com/jupyter-book/jupyter-book/issues) only for Jupyter Book-specific functionality (like the Python wrapper or upgrade tooling).
+- **Help specific to upgrading**: [Upgrade discussions category](https://github.com/orgs/jupyter-book/discussions/categories/upgrading-jupyterbook)
+- **Bug reports (Jupyter Book 2)**: Most issues should be reported to the [`mystmd` repository](https://github.com/jupyter-book/mystmd/issues) since Jupyter Book 2 is built on the MyST engine. Use [`jupyter-book` issues](https://github.com/jupyter-book/jupyter-book/issues) only for Jupyter Book-specific functionality (like the Python wrapper or upgrade tooling).
+- **Bug reports (Jupyter Book 1)**: use [`jupyter-book` issues](https://github.com/jupyter-book/jupyter-book/issues), and clarify that you are using Jupyter Book **1**.
 
 See our [help page](./community/help.md) for more resources.
 
@@ -125,7 +127,7 @@ We welcome contributions! See our [contributing guide](./contribute.md) and our 
 
 If your question isn't answered here:
 
-1. Search our [discussions](https://github.com/orgs/jupyter-book/discussions)
-2. Check the [MyST documentation](https://mystmd.org/guide)
-3. Ask in our [Discord](https://discord.mystmd.org)
-4. Start a new [discussion](https://github.com/orgs/jupyter-book/discussions/new)
+1. Search our [discussions](https://github.com/orgs/jupyter-book/discussions).
+2. Check the [MyST documentation](https://mystmd.org/guide).
+3. Ask in our [Discord](https://discord.mystmd.org).
+4. Start a new [discussion](https://github.com/orgs/jupyter-book/discussions/new).
