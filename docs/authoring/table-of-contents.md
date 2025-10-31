@@ -103,6 +103,57 @@ project:
     - file: docs/chapter1.md
 ```
 
+## External TOC files using `extends:`
+
+For larger projects or teams with separate content and infrastructure maintainers, you can define your table of contents in a separate file using the `extends:` functionality. This allows you to keep your `myst.yml` focused on configuration while maintaining your TOC structure in a dedicated file.
+
+```{code-block} yaml
+:filename: myst.yml
+version: 1
+project:
+  title: My Jupyter Book
+  # Other project configuration...
+
+extends:
+  - toc.yml
+
+site:
+  # Site configuration...
+```
+
+Then create `toc.yml` with your table of contents structure:
+
+```{code-block} yaml
+:filename: toc.yml
+version: 1
+project:
+  toc:
+    - file: index.md
+    - title: Part 1
+      file: part1.md
+      children:
+        - file: chapter1.md
+        - file: chapter2.md
+    - title: Part 2
+      children:
+        - file: chapter3.md
+        - file: chapter4.md
+```
+
+### Benefits of external TOC files
+
+This separation is particularly useful for projects with distinct roles:
+
+- **Content contributors** can edit the TOC structure without touching infrastructure configuration
+- **Infrastructure maintainers** can manage build settings in `myst.yml` independently
+- **Version control** shows cleaner diffs since content structure changes don't mix with config changes
+
+:::{tip}
+The `extends:` functionality allows you to compose configuration from multiple files. You can extend multiple files (e.g., `extends: [toc.yml, abbreviations.yml]`) to organize different aspects of your configuration.
+
+For more details on composing configuration files, see the [MyST composing myst.yml guide](xref:guide#composing-myst-yml).
+:::
+
 ## Migration from Jupyter Book v1
 
 The old Jupyter Book used `_toc.yml`. Here's how it maps to `myst.yml`:
