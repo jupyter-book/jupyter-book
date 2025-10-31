@@ -9,7 +9,7 @@ This page covers a few ways that you can do so.
 
 ## Parse MyST markdown to AST in a directive or role
 
-The easiest way to generate MyST AST in a plugin is by using the `parseMyst` function in the `ctx` variable. It may be easier to parse MyST Markdown into AST nodes rather than [using the MyST sandbox](sandbox.md) to preview them.
+The easiest way to generate MyST AST in a plugin is by using the `parseMyst` function in the `ctx` variable. It may be easier to parse MyST Markdown into AST nodes rather than [using the MyST sandbox](https://mystmd.org/sandbox) to preview them.
 
 Here's an example of using the `parseMyst` function within a directive plugin to parse the _argument_ of the directive into MyST AST:
 
@@ -70,7 +70,7 @@ ${data.body}
 
 ## Use the MyST Sandbox to identify card AST structure
 
-The [MyST interactive sandbox](https://mystmd.org/sandbox) is a great way to explore what MyST looks like when it is rendered, and what its underlying AST structure looks like. This is particularly useful if you're generating MyST AST from scratch. For example, as part of a [plugin role or directive](../tutorial/plugins.md).
+The [MyST interactive sandbox](https://mystmd.org/sandbox) is a great way to explore what MyST looks like when it is rendered, and what its underlying AST structure looks like. This is particularly useful if you're generating MyST AST from scratch. For example, as part of a [plugin role or directive](./plugins.md).
 
 ```{figure} media/sandbox-demo.mp4
 Here's how you can use [the MyST sandbox](https://mystmd.org/sandbox) to explore the structure of a `card` directive and preview its AST.

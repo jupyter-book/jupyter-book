@@ -339,7 +339,7 @@ Rather than building it by hand, we'll use the `ctx.parseMyst` function to gener
 :::{warning} `ctx.parseMyst` is experimental
 This is a helpful function that may change or move in the near future.
 A more reliable way to generate MyST AST is to manually create the AST nodes yourself.
-See the how-to on [using the MyST sandbox](../plugins/sandbox.md) for a reference on manually identifying MyST AST structure.
+See the [MyST sandbox](https://mystmd.org/sandbox) for a reference on manually identifying MyST AST structure.
 :::
 
 🛠️ Modify your directive with the code below to use `ctx.parseMyst` to parse the directive argument into MyST AST.

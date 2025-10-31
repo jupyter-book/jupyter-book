@@ -14,12 +14,16 @@ kernelspec:
 
 # Vote on Issues
 
-This page shows open issues sorted by community votes (👍 and ❤️ reactions).
-If you'd like to see an issue get signal-boosted, add your own reaction and it'll change the order in the table here.[^1]
+This page shows open issues sorted by community votes (👍 and ❤️ reactions)[^1].
+If you'd like to see an issue get signal-boosted, add your own reaction and it'll change the order in the table here.[^2]
 
-[^1]: _This is not a guarantee any of these will be worked on!_ It's just a way for the community to signal-boost things - our volunteer team ultimately works on what we can based on our capacity.
+[^2]: _This is not a guarantee any of these will be worked on!_ It's just a way for the community to signal-boost things - our volunteer team ultimately works on what we can based on our capacity.
 
-:::{note} Where does this data come from
+[^1]: This includes issues from both Jupyter Book repositories (including legacy Jupyter Book 1.0 issues) and the MyST Markdown engine repositories that power Jupyter Book 2.
+Over time we'll try to clean this up so they only reflect Jupyter Book 2 / MyST Engine issues.
+
+
+:::{note} The `github-data` repository provides this data
 :class: dropdown
 This data comes from [jupyter.org/github-data](https://jupyter.org/github-data), which scrapes GitHub data across the Jupyter project and exposes it as an accessible GitHub release artifact.
 
@@ -97,7 +101,6 @@ issues["bodyshort"] = issues["body"].map(lambda a: a.replace("#", "")[:400] if a
 ---
 tags: "remove-input"
 label: jupyter-book-table
-class: col-page-right
 ---
 issues_sorted = issues.sort_values("positive", ascending=False).head(100)[["mdtitle", "repo", "bodyshort", "positive"]]
 issues_sorted = issues_sorted.rename(columns={"bodyshort": "body", "mdtitle": "title", "positive": "👍"})

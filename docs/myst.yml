@@ -75,11 +75,11 @@ project:
         - file: contribute/code.md
     - title: Resources
       children:
-        - file: faq.md
-        - file: upgrade.md
-        - file: downgrade.md
         - file: cite.md
-        - file: community/glossary.md
+        - file: resources/faq.md
+        - file: resources/upgrade.md
+        - file: resources/downgrade.md
+        - file: resources/glossary.md
 site:
   options:
     style: media/custom.css

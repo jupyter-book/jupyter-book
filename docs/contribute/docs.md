@@ -107,7 +107,7 @@ The live server will automatically rebuild pages as you edit them, making it eas
 - `ts/` - TypeScript/JavaScript application code
 - `noxfile.py` - Documentation build commands
 
-See [`CONTRIBUTING.md`](https://github.com/jupyter-book/jupyter-book/blob/main/CONTRIBUTING.md) for complete development setup instructions.
+See [`CONTRIBUTING.md`](https://github.com/jupyter-book/jupyter-book/blob/a3d0dad1307c1f011ad34fe17e888764892488d3/CONTRIBUTING.md) for complete development setup instructions.
 
 ## Style
 

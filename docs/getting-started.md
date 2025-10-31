@@ -35,13 +35,13 @@ Install Jupyter Book and create your first project.
 Step-by-step tutorial to build and publish a website.
 :::
 :::{card} ✍️ Write Content
-:link: authoring
+:link: authoring.md
 :footer: Browse authoring guides »
 
 Learn to write with MyST Markdown, add figures, citations, and math.
 :::
 :::{card} 🔧 Build & Publish
-:link: build
+:link: build/index.md
 :footer: Browse build guides »
 
 Export to PDF, publish to GitHub Pages, and deploy your book.
@@ -69,5 +69,5 @@ Looking for something specific? Browse by documentation type:
 
 **Community** - Get help and contribute:
 - [Get help](./community/help.md) - Discord, discussions, bug reports
-- [FAQ](./faq.md) - Frequently asked questions
+- [FAQ](./resources/faq.md) - Frequently asked questions
 - [Contributing](./contribute.md) - How to contribute

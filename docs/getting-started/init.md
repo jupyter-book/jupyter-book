@@ -83,4 +83,4 @@ site:
   #   logo: site_logo.png
 ```
 
-To proceed with building a website or PDF, we need to create some content. See [Create content](../authoring/create-content.md).
+To proceed with building a website or PDF, we need to create some content. See [Create content](./create-content.md).

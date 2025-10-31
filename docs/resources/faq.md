@@ -4,6 +4,7 @@ This page answers common questions about Jupyter Book 2.
 
 ## General Questions
 
+(faq-general)=
 ### What's the difference between Jupyter Book 1 and 2?
 
 Jupyter Book 2 is a complete rewrite built on the [MyST Document Engine](https://mystmd.org) instead of Sphinx. Key differences:
@@ -11,9 +12,9 @@ Jupyter Book 2 is a complete rewrite built on the [MyST Document Engine](https:/
 - **Architecture**: Built on the MyST Document Engine (JavaScript/TypeScript) instead of Sphinx (Python)
 - **Performance**: Faster builds and better incremental compilation
 - **Features**: Modern web development features, improved cross-referencing, enhanced interactivity
-- **Ecosystem**: Part of the broader [MyST ecosystem](./community/ecosystem.md) with shared tools and standards
+- **Ecosystem**: Part of the broader [MyST ecosystem](../community/ecosystem.md) with shared tools and standards
 
-For a detailed comparison, see our [ecosystem documentation](./community/ecosystem.md).
+For a detailed comparison, see our [ecosystem documentation](../community/ecosystem.md).
 
 ### Should I upgrade to Jupyter Book 2 now or wait?
 
@@ -44,7 +45,7 @@ Jupyter Book 2 supports the full [MyST Markdown specification](https://mystmd.or
 - Executable code blocks
 - Tabs, grids, and cards
 
-For authoring details, see our [MyST Markdown tutorial](./authoring/mystmd.md).
+For authoring details, see our [MyST Markdown tutorial](../authoring/mystmd.md).
 
 ### Should I use Jupyter Book or MyST directly?
 
@@ -85,19 +86,19 @@ We recognize that there is an on-going need for these tools, and will continue w
 
 Jupyter Book 2 is built on top of the MyST Document Engine. In short: Jupyter Book is an opinionated, book-focused distribution of MyST with a Python-based installation workflow.
 
-For a detailed explanation of the architecture and technical differences, see our [ecosystem documentation](./community/ecosystem.md).
+For a detailed explanation of the architecture and technical differences, see our [ecosystem documentation](../community/ecosystem.md).
 
 ### How do I add custom features or plugins?
 
 Jupyter Book 2 uses MyST's plugin system:
 
-- [Creating directives and roles](./plugins/directives-and-roles.md)
-- [Plugin development guide](./plugins/plugins.md)
-- [Plugin AST documentation](./plugins/ast.md)
+- [Creating directives and roles](../plugins/directives-and-roles.md)
+- [Plugin development guide](../plugins/plugins.md)
+- [Plugin AST documentation](../plugins/ast.md)
 
 ### How do I deploy my Jupyter Book?
 
-See our [publishing guide](./build/publish.md) for deployment options including:
+See our [publishing guide](../getting-started/publish.md) for deployment options including:
 
 - GitHub Pages
 - ReadTheDocs
@@ -117,11 +118,68 @@ Multiple channels available:
 - **Bug reports (Jupyter Book 2)**: Most issues should be reported to the [`mystmd` repository](https://github.com/jupyter-book/mystmd/issues) since Jupyter Book 2 is built on the MyST engine. Use [`jupyter-book` issues](https://github.com/jupyter-book/jupyter-book/issues) only for Jupyter Book-specific functionality (like the Python wrapper or upgrade tooling).
 - **Bug reports (Jupyter Book 1)**: use [`jupyter-book` issues](https://github.com/jupyter-book/jupyter-book/issues), and clarify that you are using Jupyter Book **1**.
 
-See our [help page](./community/help.md) for more resources.
+See our [help page](../community/help.md) for more resources.
 
 ### How can I contribute to Jupyter Book?
 
-We welcome contributions! See our [contributing guide](./contribute.md) and our [community guide](./community/community.md) for details.
+We welcome contributions! See our [contributing guide](../contribute.md) and our [community guide](../community/community.md) for details.
+
+(faq:migration)=
+## Migrating and troubleshooting upgrades
+
+(known-limitations)=
+### What are the known current limitations in Jupyter Book 2?
+
+**Our intent is to make Jupyter Book 2 have all the same features as Jupyter Book 1**.
+However, some features from Jupyter Book 1 are still in development and need improvement. Here are a few that are particularly important:
+
+**Not yet available:**
+- **Feature parity for execution functionality** - There are still a number of improvements we need to make to execution and customizability around it ([#2019](https://github.com/jupyter-book/mystmd/issues/2019))
+- **Editable Thebe cells** - Interactive code cells that users can edit and execute ([#443](https://github.com/jupyter-book/mystmd/issues/443))
+- **API documentation** - Sphinx autodoc-style API documentation generation ([#1259](https://github.com/jupyter-book/mystmd/issues/1259))
+- **Embed cell outputs as MyST** - Generate MyST from notebook outputs ([#2114](https://github.com/jupyter-book/mystmd/issues/2114))
+
+**Available with different syntax:**
+- Most MyST directives (syntax mostly compatible)
+- Cross-references (new MyST syntax)
+- Themes and styling (new theming system)
+
+See [upgrade discussions](https://github.com/orgs/jupyter-book/discussions/categories/upgrading-jupyterbook) for specific features and workarounds.
+
+### Where did [feature X] from Jupyter Book 1 go?
+
+For information about specific features, see the [known limitations section above](#known-limitations) or browse existing [upgrade discussions](https://github.com/orgs/jupyter-book/discussions/categories/upgrading-jupyterbook). You might also find solutions in the [MyST Guide](https://mystmd.org/guide). If you don't see what you are looking for, make a post on the [upgrade discussions](https://github.com/orgs/jupyter-book/discussions/categories/upgrading-jupyterbook) or on [Discord](https://discord.mystmd.org). 
+
+(section:sphinx-extension-migration)=
+### How do I migrate my Sphinx extensions?
+
+Jupyter Book 2 uses MyST plugins instead of Sphinx extensions. Some common migrations:
+
+- **Custom directives**: See [creating directives and roles](../plugins/directives-and-roles.md)
+- **Themes**: See the MyST theme documentation
+- **Build hooks**: Use MyST plugins
+
+In some cases, functionality may _not_ yet exist in the MyST engine that _does_ exist in Sphinx.
+In this case, ask in our [discussion forum](https://github.com/orgs/jupyter-book/discussions) or on [Discord](https://discord.mystmd.org).
+
+### My build is failing after upgrading. What should I do?
+
+Common issues and solutions:
+
+1. **Syntax errors**: MyST syntax may differ slightly from Sphinx/RST
+   - Check directive names and arguments
+   - Verify cross-reference syntax
+   - Try searching the [MyST Guide](https://mystmd.org/guide)
+
+2. **Missing features**: Some JB 1.0 features aren't in 2.0 yet
+   - Check [known limitations](#known-limitations)
+   - Consider staying on Jupyter Book 1.0 temporarily (especially if a custom Sphinx extension is causing the issue)
+
+3. **Configuration issues**: Config file format has changed
+   - See the upgrade instructions above for config migration
+   - Compare with new project structure
+
+Post specific errors in [upgrade discussions](https://github.com/orgs/jupyter-book/discussions/categories/upgrading-jupyterbook) or ask on [Discord](https://discord.mystmd.org) for help.
 
 ## Still Have Questions?
 

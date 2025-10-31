@@ -20,11 +20,8 @@ To do so, follow a two-step process:
 
 For example, the following code shows how you can generate MyST Markdown in a temporary file and insert it into the page.
 
-::::::{tab-set}
-:::::{tab} Result
-Here's the cell that is executed:
-
-````{code-cell} python
+````{code-block} python
+:filename: generate-snippet.py
 from pathlib import Path
 text = """
 :::{card} Here's a list of the files in this directory!
@@ -38,32 +35,16 @@ build_folder.mkdir(exist_ok=True, parents=True)
 _ = (build_folder / "tmp.txt").write_text(text % files)
 ````
 
-And here it is included:
+Here is example MyST markdown to include it in your book:
 
+````
 ```{include} ../_build/tmp/tmp.txt
 ```
-:::::
-:::::{tab} Code
-`````
-Here's the cell that is executed:
-
-````{code-cell} python
-from pathlib import Path
-text = """
-:::{card} Here's a list of the files in this directory!
-%s
-:::
-"""
-source = Path().parent
-files = "\n".join(f"- {ii}" for ii in source.rglob("*.md"))
-build_folder = source / "../_build/tmp"
-build_folder.mkdir(exist_ok=True, parents=True)
-_ = (build_folder / "tmp.txt").write_text(text % files)
 ````
 
-And here it is included:
+And you can configure your book build to first run the snippet generation, then build your book:
 
-```{include} ../_build/tmp/tmp.txt
+```shell
+$ python generate-snippet.py
+$ jupyter book build
 ```
-`````
-:::::

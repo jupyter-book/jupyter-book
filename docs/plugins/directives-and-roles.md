@@ -172,5 +172,5 @@ When you view your MyST build output, all instances of "up" should be replace wi
 
 For more information on writing plugins, see:
 
-- [The Jupyter Book plugins tutorial](../tutorial/plugins.md)
+- [The Jupyter Book plugins tutorial](./plugins.md)
 - [The MyST guide plugins documentation](xref:guide/plugins)

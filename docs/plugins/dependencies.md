@@ -42,7 +42,7 @@ Note that any plugins will be run from the root of the project, so set your file
 
 ##
 
-[^1]: For more information about `package.json` files, see the [Node.js documentation](https://docs.npmjs.com/cli/v9/using-npm/package-json) and [the MDN package documentation](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Package_management).
+[^1]: For more information about `package.json` files, see the [npm documentation](https://docs.npmjs.com/cli/configuring-npm/package-json) and [the MDN package documentation](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Package_management).
 [^2]: In fact, you can define a new `package.json` for each custom plugin, by defining your plugins in their own folders. There is little benefit to doing this, though.
 
 [npmjs]: https://www.npmjs.com/

@@ -11,7 +11,7 @@ site:
 :::{attention} Jupyter Book 2 is here!
 Built on the [MyST Document Engine](https://mystmd.org) with faster builds, modern features, and improved workflows.
 
-[Upgrade from 1.0 →](./upgrade.md) • [Known limitations →](#known-limitations) • [Frequently Asked Questions →](./faq.md)
+[Upgrade from 1.0](#upgrade-tldr) • [Known limitations](#known-limitations) • [Frequently Asked Questions](#faq-general)
 :::
 
 +++ {"class": "col-page-inset"}
@@ -35,7 +35,7 @@ pip install jupyter-book
 jupyter book start
 ```
 
-{button}`Get started → <./getting-started.md>` {button}`Upgrade from JB1 → <./upgrade.md>`
+{button}`Get started → <./getting-started.md>` {button}`Upgrade from JB1 → <./resources/upgrade.md>`
 ::::::
 
 +++
@@ -82,25 +82,24 @@ jupyter book start
 
 :::::{grid} 1 2 3 3
 ::::{card} 📘 Get Started
-:link: getting-started
+:link: getting-started.md
 Build your first book in minutes
 +++
 [Quick start →](./getting-started.md)
 ::::
 ::::{card} 📝 Author Content
-:link: authoring
+:link: authoring.md
 Write with MyST Markdown
 +++
 [Learn authoring →](./authoring.md)
 ::::
 ::::{card} 🚀 Build & Publish
-:link: build
 Deploy to the web
 +++
-[Publish guide →](./build.md)
+[Publish guide →](./build/index.md)
 ::::
 ::::{card} ⚙️ Extend with Plugins
-:link: plugins
+:link: plugins.md
 Customize your workflow
 +++
 [Explore plugins →](./plugins.md)
@@ -119,7 +118,7 @@ Get help and contribute
 
 ::::{grid} 1 1 2 2
 :::{card} Upgrade guide
-:link: ./upgrade.md
+:link: ./resources/upgrade.md
 Upgrade from Jupyter Book 1 to 2
 +++
 Includes an FAQ about known limitations and gotchas
@@ -129,7 +128,7 @@ Includes an FAQ about known limitations and gotchas
 :link: ./community/help.md
 Questions or issues?
 +++
-Visit our [FAQ](./faq.md) for common questions, or reach out via [Discord](https://discord.mystmd.org), [Discussions](https://github.com/orgs/jupyter-book/discussions), or [Vote on features](./community/vote.md)
+Visit our [FAQ](./resources/faq.md) for common questions, or reach out via [Discord](https://discord.mystmd.org), [Discussions](https://github.com/orgs/jupyter-book/discussions), or [Vote on features](./community/vote.md)
 :::
 
 :::{card} Cite Jupyter Book
