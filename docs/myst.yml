@@ -1,7 +1,7 @@
 # See docs at: https://mystmd.org/guide/frontmatter
 version: 1
 extends:
-  - ./site.yml
+  - ./_site/site.yml
 project:
   # title:
   # description:
@@ -10,6 +10,7 @@ project:
   references:
     guide: https://mystmd.org/guide
     compass: https://compass.jupyterbook.org
+    issues: https://jupyter.org/github-data
   abbreviations:
     MyST: Markedly Structured Text
     CLI: Command-Line Interface
@@ -22,50 +23,66 @@ project:
   github: https://github.com/jupyter-book/jupyter-book
   toc:
     - file: index.md
-    - file: upgrade.md
-    - title: Get started
-      file: start.md
+    - title: Get Started
+      file: getting-started.md
       children:
-        - file: start/install.md
-        - file: start/init.md
-        - file: start/create-content.md
-        - file: start/build-websites.md
-        - file: start/export-pdfs.md
-        - file: start/cross-reference.md
-        - file: start/publish.md
-    - title: Websites & exports
+        - file: getting-started/install.md
+        - file: getting-started/init.md
+        - file: getting-started/create-content.md
+        - file: getting-started/build-websites.md
+        - file: getting-started/export-pdfs.md
+        - file: getting-started/cross-reference.md
+        - file: getting-started/publish.md
+    - title: Author Content
+      file: authoring.md
       children:
-        - file: tutorial/website.md
-        - file: tutorial/export.md
-    - title: Authoring & writing
+        - file: authoring/mystmd.md
+        - file: authoring/math.md
+        - file: authoring/authorship.md
+        - file: authoring/roles-and-directives.md
+        - file: authoring/table-of-contents.md
+        - file: authoring/file-types.md
+    - title: Build & Publish
+      file: build/index.md
       children:
-        - file: tutorial/mystmd.md
-        - file: author/roles-and-directives.md
-        - file: author/authorship.md
-    - title: Execution & computation
+        - file: build/website.md
+        - file: build/export.md
+    - title: Execute & Compute
+      file: execution.md
       children:
-        - file: tutorial/jupyterlab.md
-        - file: tutorial/execution.md
-    #      children:
-    # UNCOMMENT WHEN THIS IS POSSIBLE
-    #      - file: execute/generate-myst.md
-    - title: Plugins & extensions
+        - file: execution/execution.md
+        - file: execution/jupyterlab.md
+        - file: execution/generate-myst.md
+    - title: Extend with Plugins
+      file: plugins.md
       children:
-        - file: tutorial/plugins.md
+        - file: plugins/plugins.md
         - file: plugins/directives-and-roles.md
-        - file: plugins/ast.md
         - file: plugins/debug.md
+        - file: plugins/ast.md
         - file: plugins/dependencies.md
-    - title: About Jupyter Book
+    - title: Community
+      file: community/community.md
       children:
-        - file: about/community.md
-        - file: about/ecosystem.md
-        - file: about/history.md
-    - file: glossary.md
-    - file: help.md
+        - file: community/team.md
+        - file: community/vote.md
+        - file: community/ecosystem.md
+        - file: community/help.md
+    - title: Contributing
+      file: contribute.md
+      children:
+        - file: contribute/docs.md
+        - file: contribute/code.md
+    - title: Resources
+      children:
+        - file: cite.md
+        - file: resources/faq.md
+        - file: resources/upgrade.md
+        - file: resources/downgrade.md
+        - file: resources/glossary.md
 site:
   options:
     style: media/custom.css
     folders: true
   parts:
-    footer: footer.md
+    footer: _site/footer.md

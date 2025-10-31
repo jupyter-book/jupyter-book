@@ -39,6 +39,14 @@ content-type = "text/markdown"
 [project.scripts]
 jupyter-book = "jupyter_book.__main__:main"
 
+[project.optional-dependencies]
+docs = [
+  # For executing code cells in documentation
+  "pandas",
+  "pooch",
+  "markdown",
+]
+
 [tool.hatch.build.hooks.selector]
 default-variant = "pypi"
 # Name of the env-var that controls which `selector.variants` entry
