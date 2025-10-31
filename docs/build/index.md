@@ -8,15 +8,16 @@ Build your Jupyter Book as a website, PDF, or other formats, and deploy it to th
 ## Guides in this section
 
 ### Tutorials
-- [Website tutorial](./build/website.md) - Step-by-step guide to building your first site
+- [Website tutorial](./website.md) - Step-by-step guide to building your first site
+- [Workshops template](https://jupyter-book.github.io/workshop-template/) - A template and guide for running workshops (WIP).
 
 ### How-To Guides
-- [Build websites](./build/build-websites.md) - Create interactive websites from your content
-- [Export to PDF](./build/export-pdfs.md) - Generate publication-quality PDFs
-- [Publish and deploy](./build/publish.md) - Deploy to GitHub Pages, ReadTheDocs, and more
+- [Build websites](../getting-started/build-websites.md) - Create interactive websites from your content
+- [Export to PDF](../getting-started/export-pdfs.md) - Generate publication-quality PDFs
+- [Publish and deploy](../getting-started/publish.md) - Deploy to GitHub Pages, ReadTheDocs, and more
 
 ### Reference
-- [Export options](./build/export.md) - Overview of all export formats
+- [Export options](./export.md) - Overview of all export formats
 
 ## Build workflow
 

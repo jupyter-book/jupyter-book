@@ -14,8 +14,6 @@ This documentation is for Jupyter Book 2. If you're looking for the Jupyter Book
 
 Because Jupyter Book is [a distribution of the MyST Document Engine](./community/ecosystem.md), we keep most documentation about configuring and using Jupyter Book in the [MyST User Guide](https://mystmd.org/guide). Anything you can do with MyST you can do with Jupyter Book - the only difference in using the two is the CLI verb (`jupyter book` vs. `myst`).
 
-We know this can be confusing! Jupyter Book [pre-dates the MyST Document Engine](./community/history.md) and we're still working out the best way to maintain both of them as parallel efforts.
-
 ## Navigate the Jupyter Book documentation
 
 This User Guide steps you through **high-level concepts**, **tutorials for step-by-step learning**, and **how-to guides to get things done**. It focuses on use-cases for multi-document projects, like **community knowledge bases** and **multi-page books**.[^diataxis]
@@ -25,13 +23,13 @@ This User Guide steps you through **high-level concepts**, **tutorials for step-
 
 ::::{grid} 1 2 2 2
 :::{card} 🚀 Install & Setup
-:link: getting-started/install
+:link: getting-started/install.md
 :footer: Install Jupyter Book »
 
 Install Jupyter Book and create your first project.
 :::
 :::{card} 🌐 Build Your First Website
-:link: build/website
+:link: build/website.md
 :footer: Build a website tutorial »
 
 Step-by-step tutorial to build and publish a website.
@@ -60,16 +58,13 @@ Looking for something specific? Browse by documentation type:
 - [Create plugins](./plugins/plugins.md) - Extend Jupyter Book with custom directives
 
 **How-To Guides** - Solve specific problems:
-- [Create content](./authoring/create-content.md) - Add pages and structure
-- [Cross-reference](./authoring/cross-reference.md) - Link between sections
+- [Create content](./getting-started/create-content.md) - Add pages and structure
+- [Cross-reference](./getting-started/cross-reference.md) - Link between sections
 - [Add math equations](./authoring/math.md) - Write LaTeX mathematics
-- [Include figures](./authoring/figures.md) - Add images and diagrams
-- [Cite references](./authoring/citations.md) - Add bibliographies
-- [Export to PDF](./build/export-pdfs.md) - Generate PDF documents
+- [Export to PDF](./getting-started/export-pdfs.md) - Generate PDF documents
 
 **Reference** - Technical specifications:
 - [MyST Guide](https://mystmd.org/guide) - Complete MyST reference
-- [Configuration options](./authoring/configuration.md) - myst.yml reference
 - [Table of contents](./authoring/table-of-contents.md) - TOC structure
 
 **Community** - Get help and contribute:

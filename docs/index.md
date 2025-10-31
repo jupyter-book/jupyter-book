@@ -8,11 +8,14 @@ site:
 
 +++ {"class": "col-page-inset"}
 
-:::{important} Jupyter Book 2 is here!
+:::{attention} Jupyter Book 2 is here!
 Built on the [MyST Document Engine](https://mystmd.org) with faster builds, modern features, and improved workflows.
 
 [Upgrade from 1.0 →](./upgrade.md) • [Known limitations →](#known-limitations) • [Frequently Asked Questions →](./faq.md)
 :::
+
++++ {"class": "col-page-inset"}
+
 
 :::{hero}
 Jupyter {orange}`Book`
