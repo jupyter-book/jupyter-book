@@ -64,10 +64,11 @@ project:
     - title: Community
       file: community/community.md
       children:
-        - file: community/team.md
-        - file: community/vote.md
-        - file: community/ecosystem.md
         - file: community/help.md
+        - file: community/vote.md
+        - file: community/team.md
+        - file: community/ecosystem.md
+        - file: community/history.md
     - title: Contributing
       file: contribute.md
       children:
