@@ -29,7 +29,7 @@ This User Guide steps you through **high-level concepts**, **tutorials for step-
 Install Jupyter Book and create your first project.
 :::
 :::{card} 🌐 Build Your First Website
-:link: build/website.md
+:link: build-and-publish/website.md
 :footer: Build a website tutorial »
 
 Step-by-step tutorial to build and publish a website.
@@ -41,7 +41,7 @@ Step-by-step tutorial to build and publish a website.
 Learn to write with MyST Markdown, add figures, citations, and math.
 :::
 :::{card} 🔧 Build & Publish
-:link: build/index.md
+:link: build-and-publish/index.md
 :footer: Browse build guides »
 
 Export to PDF, publish to GitHub Pages, and deploy your book.
@@ -53,7 +53,7 @@ Export to PDF, publish to GitHub Pages, and deploy your book.
 Looking for something specific? Browse by documentation type:
 
 **Tutorials** - Step-by-step learning paths:
-- [Build a website](./build/website.md) - Create and publish your first site
+- [Build a website](./build-and-publish/website.md) - Create and publish your first site
 - [Execute code](./execution/execution.md) - Run computational notebooks
 - [Create plugins](./plugins/plugins.md) - Extend Jupyter Book with custom directives
 
