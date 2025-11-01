@@ -72,12 +72,17 @@ However, at the moment, Jupyter Book is essentially a Python CLI wrapper around 
 
 ### Will Jupyter Book 1 continue to be maintained?
 
-In short: maintanance will continue to be supported, but will be dependent on support from community contributors, as the resources of the core team are focused on Jupyter Book 2 and the MyST ecosystem.
+**In short:** The Jupyter Book 1 stack is mostly in **maintenance mode**. We will do our best to review and release community PRs, but it is unlikely that we will do any active development unless another person or org steps in to actively develop the project further. That said, individual components of the Sphinx stack (e.g., `myst-parser`) may still receive ongoing development as independent efforts.
 
-More generally, the [Executable Books](https://executablebooks.org/) organization will remain the stewards of the Sphinx-based stack (the engine of Jupyter Book 1), and we anticipate continuing support and development of the Sphinx ecosystem of tools, likely with a focus on supporting the open source developer community rather than the broader “scientific communication” community.
-These projects are strongly supported by open-source contributors, and we hope that this continues alongside work from the Executable Books team.
-Some Executable Books tools will likely slow their development (e.g., [MyST-NB](https://myst-nb.readthedocs.io/en/latest/)), while more heavily-used tools will likely continue to evolve and improve (e.g., [myst-parser](https://myst-parser.readthedocs.io/en/latest/), which now powers a large part of the markdown experience in Sphinx).
-We recognize that there is an on-going need for these tools, and will continue working to ensure their long-lived success for the developer community, with the constraint that we are all volunteers with limited time!
+The [Executable Books](https://executablebooks.org/) organization remains the steward of the Sphinx-based stack (the engine of Jupyter Book 1). With core team resources now focused on Jupyter Book 2 and the MyST ecosystem, the Sphinx stack tools are in maintenance mode:
+
+- **Community contributions welcome**: Feel free to open issues and bug reports, but unless you (or another community member) opens a PR to fix them, progress will be slow.
+- **PR reviews and releases**: We'll do our best to review PRs from the community and cut releases when they're merged, but we cannot make any commitments.
+- **No active development planned**: The core team is very unlikely to develop new features or fixes for these tools.
+
+Some specific tools in the Executable Books stack are now in maintenance mode (e.g., [MyST-NB](https://myst-nb.readthedocs.io/en/latest/)), while more heavily-used infrastructure tools like [myst-parser](https://myst-parser.readthedocs.io/en/latest/) (which powers a large part of the Markdown experience in Sphinx) may continue to see more community activity.
+
+We recognize there is an ongoing need for these tools and will continue working to ensure their stability for the community, with the constraint that we are all volunteers with limited time.
 
 
 ## Technical Questions
