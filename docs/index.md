@@ -82,30 +82,31 @@ jupyter book start
 
 :::::{grid} 1 2 3 3
 ::::{card} 📘 Get Started
-:link: getting-started.md
+:link: ./getting-started.md
 Build your first book in minutes
 +++
 [Quick start →](./getting-started.md)
 ::::
 ::::{card} 📝 Author Content
-:link: authoring.md
+:link: ./authoring.md
 Write with MyST Markdown
 +++
 [Learn authoring →](./authoring.md)
 ::::
 ::::{card} 🚀 Build & Publish
+:link: ./build-and-publish/index.md
 Deploy to the web
 +++
-[Publish guide →](./build/index.md)
+[Publish guide →](./build-and-publish/index.md)
 ::::
 ::::{card} ⚙️ Extend with Plugins
-:link: plugins.md
+:link: ./plugins.md
 Customize your workflow
 +++
 [Explore plugins →](./plugins.md)
 ::::
 ::::{card} 💬 Community
-:link: community/community
+:link: ./community/community.md
 Get help and contribute
 +++
 [Join us →](./community/community.md)
