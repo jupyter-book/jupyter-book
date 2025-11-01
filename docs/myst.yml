@@ -43,10 +43,10 @@ project:
         - file: authoring/table-of-contents.md
         - file: authoring/file-types.md
     - title: Build & Publish
-      file: build/index.md
+      file: build-and-publish/index.md
       children:
-        - file: build/website.md
-        - file: build/export.md
+        - file: build-and-publish/website.md
+        - file: build-and-publish/export.md
     - title: Execute & Compute
       file: execution.md
       children:
