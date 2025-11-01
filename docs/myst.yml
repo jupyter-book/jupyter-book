@@ -24,15 +24,15 @@ project:
   toc:
     - file: index.md
     - title: Get Started
-      file: getting-started.md
+      file: get-started.md
       children:
-        - file: getting-started/install.md
-        - file: getting-started/init.md
-        - file: getting-started/create-content.md
-        - file: getting-started/build-websites.md
-        - file: getting-started/export-pdfs.md
-        - file: getting-started/cross-reference.md
-        - file: getting-started/publish.md
+        - file: get-started/install.md
+        - file: get-started/init.md
+        - file: get-started/create-content.md
+        - file: get-started/build-websites.md
+        - file: get-started/export-pdfs.md
+        - file: get-started/cross-reference.md
+        - file: get-started/publish.md
     - title: Author Content
       file: authoring.md
       children:
@@ -62,7 +62,7 @@ project:
         - file: plugins/ast.md
         - file: plugins/dependencies.md
     - title: Community
-      file: community/community.md
+      file: community.md
       children:
         - file: community/help.md
         - file: community/vote.md

@@ -29,7 +29,7 @@ Click to see our events calendar →
 
 ::::{grid} 2
 :::{card} The Jupyter Book user guide
-:link: ../getting-started.md
+:link: ./get-started.md
 Learn how to use Jupyter Book.
 +++
 Click to visit the Jupyter Book user guide →
@@ -67,7 +67,7 @@ Click to visit the Team Compass →
 :::
 :::{card} The `mystmd` contributor guide 📚
 :link: https://mystmd.org/guide/contributing
-A getting-started page to point you in the right direction for contributions.
+A get-started page to point you in the right direction for contributions.
 +++
 Click to visit the `mystmd` contributor guide →
 :::

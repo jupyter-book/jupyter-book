@@ -23,7 +23,7 @@ This User Guide steps you through **high-level concepts**, **tutorials for step-
 
 ::::{grid} 1 2 2 2
 :::{card} 🚀 Install & Setup
-:link: getting-started/install.md
+:link: get-started/install.md
 :footer: Install Jupyter Book »
 
 Install Jupyter Book and create your first project.
@@ -58,10 +58,10 @@ Looking for something specific? Browse by documentation type:
 - [Create plugins](./plugins/plugins.md) - Extend Jupyter Book with custom directives
 
 **How-To Guides** - Solve specific problems:
-- [Create content](./getting-started/create-content.md) - Add pages and structure
-- [Cross-reference](./getting-started/cross-reference.md) - Link between sections
+- [Create content](./get-started/create-content.md) - Add pages and structure
+- [Cross-reference](./get-started/cross-reference.md) - Link between sections
 - [Add math equations](./authoring/math.md) - Write LaTeX mathematics
-- [Export to PDF](./getting-started/export-pdfs.md) - Generate PDF documents
+- [Export to PDF](./get-started/export-pdfs.md) - Generate PDF documents
 
 **Reference** - Technical specifications:
 - [MyST Guide](https://mystmd.org/guide) - Complete MyST reference

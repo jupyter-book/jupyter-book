@@ -3,9 +3,9 @@ site:
   template: book-theme
   nav:
     - title: Docs
-      url: https://next.jupyterbook.org/start
+      url: https://next.jupyterbook.org/get-started
     - title: Community
-      url: https://next.jupyterbook.org/community/community
+      url: https://next.jupyterbook.org/community
     - title: Ecosystem
       url: https://next.jupyterbook.org/community/ecosystem
     - title: Contribute
