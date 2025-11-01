@@ -8,9 +8,9 @@ Learn how to write and structure content for your Jupyter Book.
 ## Guides in this section
 
 ### How-To Guides
-- [Create content](getting-started/create-content.md) - Add new files and structure your book
+- [Create content](get-started/create-content.md) - Add new files and structure your book
 - [Use roles and directives](authoring/roles-and-directives.md) - Apply custom markup to your content
-- [Cross-reference content](getting-started/cross-reference.md) - Link between pages and sections
+- [Cross-reference content](get-started/cross-reference.md) - Link between pages and sections
 - [Math and equations](authoring/math.md) - Write mathematical content with LaTeX
 - [Document authorship](authoring/authorship.md) - Add author metadata and affiliations
 

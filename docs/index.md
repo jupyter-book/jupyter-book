@@ -35,7 +35,7 @@ pip install jupyter-book
 jupyter book start
 ```
 
-{button}`Get started → <./getting-started.md>` {button}`Upgrade from JB1 → <./resources/upgrade.md>`
+{button}`Get started → <./get-started.md>` {button}`Upgrade from JB1 → <./resources/upgrade.md>`
 ::::::
 
 +++
@@ -82,10 +82,10 @@ jupyter book start
 
 :::::{grid} 1 2 3 3
 ::::{card} 📘 Get Started
-:link: ./getting-started.md
+:link: ./get-started.md
 Build your first book in minutes
 +++
-[Quick start →](./getting-started.md)
+[Quick start →](./get-started.md)
 ::::
 ::::{card} 📝 Author Content
 :link: ./authoring.md
@@ -106,10 +106,10 @@ Customize your workflow
 [Explore plugins →](./plugins.md)
 ::::
 ::::{card} 💬 Community
-:link: ./community/community.md
+:link: ./community.md
 Get help and contribute
 +++
-[Join us →](./community/community.md)
+[Join us →](./community.md)
 ::::
 :::::
 
