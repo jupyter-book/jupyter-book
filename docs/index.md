@@ -9,7 +9,7 @@ site:
 +++ {"class": "col-page-inset"}
 
 :::{attention} Jupyter Book 2 is here!
-Built on the [MyST Document Engine](https://mystmd.org) with faster builds, modern features, and improved workflows. Jupyter Book 2 is still **in beta** and has many improvements to be made. Please join us and [contribute to Jupyter Book](./contribute.md) so we can make it better!
+Built on the [MyST Document Engine](https://mystmd.org) with faster builds, modern features, and improved workflows. Jupyter Book 2 is still **in beta** and there are many improvements and bugfixes to make. Please join us and [contribute to Jupyter Book](./contribute.md) so we can make it better!
 
 [Upgrade from 1.0](#upgrade-tldr) • [Known limitations](#known-limitations) • [Frequently Asked Questions](#faq-general)
 :::
