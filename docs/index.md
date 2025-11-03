@@ -40,6 +40,10 @@ jupyter book start
 
 +++
 
+```{warning}
+With the recent release of Jupyer Book 2, you will explicitly need to add `jupyter-book<2` to your install to keep using the Sphinx-based Jupyter Book 1.
+```
+
 ## See It in Action
 
 ::::{tab-set}
