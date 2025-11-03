@@ -10,6 +10,7 @@ site:
       url: /community/ecosystem
     - title: Contribute
       url: /contribute
+    # Commenting this out while there's a bug that adds BASE_URL to the nav links
     # - title: Blog
     #   url: https://blog.jupyterbook.org
     - title: Help
