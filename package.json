@@ -51,6 +51,5 @@
     "engines": {
         "npm": ">=10.7.0",
         "node": ">=18.0.0"
-    },
-    "packageManager": "npm@10.7.0"
+    }
 }
