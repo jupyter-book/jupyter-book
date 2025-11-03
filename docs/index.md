@@ -40,6 +40,10 @@ jupyter book start
 
 +++
 
+```{warning}
+We recently updated the `pip install jupyter-book` which now automatically installs Jupyter Book 2. To keep using Jupyter Book 1, use `pip install jupyter-book<2` in your install.
+```
+
 ## See It in Action
 
 ::::{tab-set}
