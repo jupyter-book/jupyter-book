@@ -66,7 +66,7 @@ If you need assistance with downgrading or have questions about version compatib
 ## Jupyter Book 1 Documentation
 
 The documentation for Jupyter Book 1 is available at:
-[https://jupyterbook.org/en/v1/](https://jupyterbook.org/en/v1/)
+[https://jupyterbook.org/v1/](https://jupyterbook.org/v1/)
 
 ## Considering an Upgrade Again?
 
