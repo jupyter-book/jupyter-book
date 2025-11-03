@@ -8,11 +8,22 @@ site:
 
 +++ {"class": "col-page-inset"}
 
-:::{attention} Jupyter Book 2 is here!
-Built on the [MyST Document Engine](https://mystmd.org) with faster builds, modern features, and improved workflows.
+:::::{attention} Jupyter Book 2 is here! This might break things...
+::::{grid} 2
+:::{div}
+Built on the [MyST Document Engine](https://mystmd.org) with faster builds, modern features, and improved workflows. It's also a breaking change!
 
 [Upgrade from 1.0](#upgrade-tldr) • [Known limitations](#known-limitations) • [Frequently Asked Questions](#faq-general)
 :::
+:::{div}
+**To keep using Jupyter Book 1**, use this `pip` install command, and see the links below for more information.
+
+```shell
+$ pip install jupyter-book<2
+```
+:::
+::::
+:::::
 
 +++ {"class": "col-page-inset"}
 
