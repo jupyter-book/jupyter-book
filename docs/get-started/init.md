@@ -46,7 +46,7 @@ Most of the lines in this YAML file are comments, but there are a couple of thin
 
 (def:project)=
 `project`
-: The `project` key defines the project _frontmatter_, which allows you to speocfy how your project should render and behave. We'll look at this section later in this tutorial.
+: The `project` key defines the project _frontmatter_, which allows you to specify how your project should render and behave. We'll look at this section later in this tutorial.
 
 `site`
 : The `site` key defines the website configuration, used by the `start` command or when building an HTML export. Here, we're telling MyST to use the book theme.
