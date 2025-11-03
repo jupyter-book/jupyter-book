@@ -2,6 +2,83 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 2.0.0
+
+([Full Changelog](https://github.com/jupyter-book/jupyter-book/compare/28e190a2757fcc6be3719d24d79e7d990ae79fcc...bdcfdd486cf83f344b909f9b3806cd8f63475dfb))
+
+### New features added
+
+- FEAT: ✨Add Launch in Deepnote button setting [#1434](https://github.com/jupyter-book/jupyter-book/pull/1434) ([@jakubzitny](https://github.com/jakubzitny))
+
+### Enhancements made
+
+- chore: bump MyST version [#2432](https://github.com/jupyter-book/jupyter-book/pull/2432) ([@agoose77](https://github.com/agoose77))
+
+### Bugs fixed
+
+- FIX: use 'main' for branch name [#2329](https://github.com/jupyter-book/jupyter-book/pull/2329) ([@agoose77](https://github.com/agoose77))
+- FIX: bring tests in line with config [#2216](https://github.com/jupyter-book/jupyter-book/pull/2216) ([@agoose77](https://github.com/agoose77))
+
+### Maintenance and upkeep improvements
+
+- Enable execution for ReadTheDocs [#2436](https://github.com/jupyter-book/jupyter-book/pull/2436) ([@choldgraf](https://github.com/choldgraf))
+- Add small comment to nav [#2435](https://github.com/jupyter-book/jupyter-book/pull/2435) ([@choldgraf](https://github.com/choldgraf))
+- chore: bump MyST version [#2432](https://github.com/jupyter-book/jupyter-book/pull/2432) ([@agoose77](https://github.com/agoose77))
+- Remove hard-coded URLs in navbar [#2431](https://github.com/jupyter-book/jupyter-book/pull/2431) ([@choldgraf](https://github.com/choldgraf))
+- Update docs/ to stable/ [#2430](https://github.com/jupyter-book/jupyter-book/pull/2430) ([@choldgraf](https://github.com/choldgraf))
+- Fix BASE_URL for new URL on RTD [#2429](https://github.com/jupyter-book/jupyter-book/pull/2429) ([@choldgraf](https://github.com/choldgraf))
+- Updated pyproject.toml [#2406](https://github.com/jupyter-book/jupyter-book/pull/2406) ([@dsblank](https://github.com/dsblank))
+- Fix macOS spelling in issue template [#2359](https://github.com/jupyter-book/jupyter-book/pull/2359) ([@dstansby](https://github.com/dstansby))
+- DOCS: fix RTD configuration [#2330](https://github.com/jupyter-book/jupyter-book/pull/2330) ([@agoose77](https://github.com/agoose77))
+- FIX: use 'main' for branch name [#2329](https://github.com/jupyter-book/jupyter-book/pull/2329) ([@agoose77](https://github.com/agoose77))
+- MAINT: prepare for new release [#2327](https://github.com/jupyter-book/jupyter-book/pull/2327) ([@agoose77](https://github.com/agoose77))
+- Update actions version in docs [#2318](https://github.com/jupyter-book/jupyter-book/pull/2318) ([@fmaussion](https://github.com/fmaussion))
+- MAINT: add description back to bug report template [#2293](https://github.com/jupyter-book/jupyter-book/pull/2293) ([@choldgraf](https://github.com/choldgraf))
+- MAINT: update new issues template to point to discussions forum [#2292](https://github.com/jupyter-book/jupyter-book/pull/2292) ([@choldgraf](https://github.com/choldgraf))
+- MAINT: update banner to use github issue [#2282](https://github.com/jupyter-book/jupyter-book/pull/2282) ([@choldgraf](https://github.com/choldgraf))
+- MAINT: add discussion of Jupyter Book 2, along with directions to documentation for 2.x. [#2280](https://github.com/jupyter-book/jupyter-book/pull/2280) ([@nickeubank](https://github.com/nickeubank))
+- MAINT: rename branch from 'master' to 'main' in \_config.yaml [#2275](https://github.com/jupyter-book/jupyter-book/pull/2275) ([@jroettenbacher](https://github.com/jroettenbacher))
+- MAINT: add issue templates [#2263](https://github.com/jupyter-book/jupyter-book/pull/2263) ([@agoose77](https://github.com/agoose77))
+- MAINT: 🤖 Backport #2257 (Add Jupyter releaser) [#2259](https://github.com/jupyter-book/jupyter-book/pull/2259) ([@agoose77](https://github.com/agoose77))
+- MAINT: fix expression [#2231](https://github.com/jupyter-book/jupyter-book/pull/2231) ([@agoose77](https://github.com/agoose77))
+- MAINT: update changelog [#2230](https://github.com/jupyter-book/jupyter-book/pull/2230) ([@agoose77](https://github.com/agoose77))
+- MAINT: bump version [#2229](https://github.com/jupyter-book/jupyter-book/pull/2229) ([@agoose77](https://github.com/agoose77))
+- MAINT: only use v1 job for v1 releases [#2225](https://github.com/jupyter-book/jupyter-book/pull/2225) ([@agoose77](https://github.com/agoose77))
+- MAINT: update entry-points usage [#2121](https://github.com/jupyter-book/jupyter-book/pull/2121) ([@agoose77](https://github.com/agoose77))
+- MAINT: bump sphinx-thebe LB [#2116](https://github.com/jupyter-book/jupyter-book/pull/2116) ([@agoose77](https://github.com/agoose77))
+
+### Documentation improvements
+
+- Site url fix [#2434](https://github.com/jupyter-book/jupyter-book/pull/2434) ([@choldgraf](https://github.com/choldgraf))
+- Fixing nav links for the Nth time [#2433](https://github.com/jupyter-book/jupyter-book/pull/2433) ([@choldgraf](https://github.com/choldgraf))
+- Add jupytercon banner [#2407](https://github.com/jupyter-book/jupyter-book/pull/2407) ([@choldgraf](https://github.com/choldgraf))
+- Update README.md [#2368](https://github.com/jupyter-book/jupyter-book/pull/2368) ([@agoose77](https://github.com/agoose77))
+- Formatting for thebe config [#2352](https://github.com/jupyter-book/jupyter-book/pull/2352) ([@RemDelaporteMathurin](https://github.com/RemDelaporteMathurin))
+- DOC: minor fixes [#2348](https://github.com/jupyter-book/jupyter-book/pull/2348) ([@bsipocz](https://github.com/bsipocz))
+- fix broken URL to blog/update [#2343](https://github.com/jupyter-book/jupyter-book/pull/2343) ([@rlanzafame](https://github.com/rlanzafame))
+- DOCS: update gh-pages guidance [#2332](https://github.com/jupyter-book/jupyter-book/pull/2332) ([@agoose77](https://github.com/agoose77))
+- DOCS: fix RTD configuration [#2330](https://github.com/jupyter-book/jupyter-book/pull/2330) ([@agoose77](https://github.com/agoose77))
+- DOCS: update Turing way URL [#2236](https://github.com/jupyter-book/jupyter-book/pull/2236) ([@da5nsy](https://github.com/da5nsy))
+- DOCS: fall-back to `fontawesome` in LaTeX (and format \_config) [#2228](https://github.com/jupyter-book/jupyter-book/pull/2228) ([@agoose77](https://github.com/agoose77))
+- DOCS: add structured data example [#2129](https://github.com/jupyter-book/jupyter-book/pull/2129) ([@jmshea](https://github.com/jmshea))
+- DOCS: update citations document [#2108](https://github.com/jupyter-book/jupyter-book/pull/2108) ([@drsimonmartin](https://github.com/drsimonmartin))
+
+### Other merged PRs
+
+- Clarify GitHub Pages instructions [#2421](https://github.com/jupyter-book/jupyter-book/pull/2421) ([@afeld](https://github.com/afeld))
+- add a sample GitHub Actions config using Conda [#2415](https://github.com/jupyter-book/jupyter-book/pull/2415) ([@afeld](https://github.com/afeld))
+- update GitHub Actions example to use latest versions [#2414](https://github.com/jupyter-book/jupyter-book/pull/2414) ([@afeld](https://github.com/afeld))
+- Update The Turing Way logo path [#2385](https://github.com/jupyter-book/jupyter-book/pull/2385) ([@JimMadge](https://github.com/JimMadge))
+- include the path of the generated config.py file [#2302](https://github.com/jupyter-book/jupyter-book/pull/2302) ([@afeld](https://github.com/afeld))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/jupyter-book/jupyter-book/graphs/contributors?from=2024-03-19&to=2025-11-03&type=c))
+
+[@afeld](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Aafeld+updated%3A2024-03-19..2025-11-03&type=Issues) | [@agoose77](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Aagoose77+updated%3A2024-03-19..2025-11-03&type=Issues) | [@bsipocz](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Absipocz+updated%3A2024-03-19..2025-11-03&type=Issues) | [@choldgraf](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Acholdgraf+updated%3A2024-03-19..2025-11-03&type=Issues) | [@codecov](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Acodecov+updated%3A2024-03-19..2025-11-03&type=Issues) | [@da5nsy](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Ada5nsy+updated%3A2024-03-19..2025-11-03&type=Issues) | [@drsimonmartin](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Adrsimonmartin+updated%3A2024-03-19..2025-11-03&type=Issues) | [@dsblank](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Adsblank+updated%3A2024-03-19..2025-11-03&type=Issues) | [@dstansby](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Adstansby+updated%3A2024-03-19..2025-11-03&type=Issues) | [@fmaussion](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Afmaussion+updated%3A2024-03-19..2025-11-03&type=Issues) | [@jakubzitny](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Ajakubzitny+updated%3A2024-03-19..2025-11-03&type=Issues) | [@JimMadge](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3AJimMadge+updated%3A2024-03-19..2025-11-03&type=Issues) | [@jmshea](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Ajmshea+updated%3A2024-03-19..2025-11-03&type=Issues) | [@jroettenbacher](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Ajroettenbacher+updated%3A2024-03-19..2025-11-03&type=Issues) | [@LoicGrobol](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3ALoicGrobol+updated%3A2024-03-19..2025-11-03&type=Issues) | [@nickeubank](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Anickeubank+updated%3A2024-03-19..2025-11-03&type=Issues) | [@psychemedia](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Apsychemedia+updated%3A2024-03-19..2025-11-03&type=Issues) | [@RemDelaporteMathurin](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3ARemDelaporteMathurin+updated%3A2024-03-19..2025-11-03&type=Issues) | [@rlanzafame](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Arlanzafame+updated%3A2024-03-19..2025-11-03&type=Issues) | [@rowanc1](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Arowanc1+updated%3A2024-03-19..2025-11-03&type=Issues) | [@welcome](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Awelcome+updated%3A2024-03-19..2025-11-03&type=Issues)
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 2.0.0b3
 
 ([Full Changelog](https://github.com/jupyter-book/jupyter-book/compare/v2.0.0b2...24422c41eb92839a7fd07dca6d5d87ce281c210f))
@@ -15,8 +92,6 @@
 ([GitHub contributors page for this release](https://github.com/jupyter-book/jupyter-book/graphs/contributors?from=2025-07-21&to=2025-08-20&type=c))
 
 [@agoose77](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Aagoose77+updated%3A2025-07-21..2025-08-20&type=Issues) | [@alanmlewis](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Aalanmlewis+updated%3A2025-07-21..2025-08-20&type=Issues)
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 2.0.0b2
 
