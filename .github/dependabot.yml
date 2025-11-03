@@ -1,0 +1,26 @@
+# Basic `dependabot.yml` file with
+# minimum configuration for two package managers
+
+version: 2
+updates:
+  # Enable version updates for npm
+  - package-ecosystem: "npm"
+    # Look for `package.json` and `lock` files in the `root` directory
+    directory: "/"
+    # Check the npm registry for updates every day (weekdays)
+    schedule:
+      interval: "monthly"
+    groups:
+      npm:
+        patterns: ["*"]
+
+  # Enable version updates for Python
+  - package-ecosystem: "pip"
+    # Look for a `pyproject.toml` in the `root` directory
+    directory: "/"
+    # Check for updates once a week
+    schedule:
+      interval: "monthly"
+    groups:
+      pip:
+        patterns: ["*"]
