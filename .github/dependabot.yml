@@ -1,4 +1,3 @@
-
 # Basic `dependabot.yml` file with
 # minimum configuration for two package managers
 
@@ -11,9 +10,9 @@ updates:
     # Check the npm registry for updates every day (weekdays)
     schedule:
       interval: "monthly"
-    github-actions:
-      patterns: ['*']
-
+    groups:
+      npm:
+        patterns: ["*"]
 
   # Enable version updates for Python
   - package-ecosystem: "pip"
@@ -22,6 +21,6 @@ updates:
     # Check for updates once a week
     schedule:
       interval: "monthly"
-    github-actions:
-      patterns: ['*']
-
+    groups:
+      pip:
+        patterns: ["*"]
