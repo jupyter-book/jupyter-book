@@ -21,7 +21,7 @@ updates:
     directory: "/"
     # Check for updates once a week
     schedule:
-      interval: "month"
+      interval: "monthly"
     github-actions:
       patterns: ['*']
 
