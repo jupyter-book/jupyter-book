@@ -56,7 +56,7 @@
 
 ### Documentation improvements
 
-- Make the logo point to jupyterbook.org/docs [#2382](https://github.com/jupyter-book/jupyter-book/pull/2382) ([@choldgraf](https://github.com/choldgraf))
+- Make the logo point to jupyterbook.org/stable [#2382](https://github.com/jupyter-book/jupyter-book/pull/2382) ([@choldgraf](https://github.com/choldgraf))
 - ↔️ Correct myst.yml ToC entry. [#2379](https://github.com/jupyter-book/jupyter-book/pull/2379) ([@agoose77](https://github.com/agoose77))
 - 🚧 Fix broken site links [#2378](https://github.com/jupyter-book/jupyter-book/pull/2378) ([@agoose77](https://github.com/agoose77))
 - Update some documentation before 2.0 [#2374](https://github.com/jupyter-book/jupyter-book/pull/2374) ([@choldgraf](https://github.com/choldgraf))
