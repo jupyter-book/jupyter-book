@@ -8,5 +8,5 @@ build:
   commands:
     - npm install -g mystmd
     - mkdir -p $READTHEDOCS_OUTPUT/html/
-    - cd docs/ && BASE_URL="/$READTHEDOCS_VERSION" myst build --html
+    - cd docs/ && BASE_URL="/$READTHEDOCS_VERSION" myst build --html --execute
     - cp -a docs/_build/html/. "$READTHEDOCS_OUTPUT/html" && rm -r docs/_build
