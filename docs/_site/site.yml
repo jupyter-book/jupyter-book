@@ -5,13 +5,13 @@ site:
     - title: Docs
       url: /get-started
     - title: Community
-      url: /community/community
+      url: /community
     - title: Ecosystem
       url: /community/ecosystem
     - title: Contribute
       url: /contribute
-    - title: Blog
-      url: https://blog.jupyterbook.org
+    # - title: Blog
+    #   url: https://blog.jupyterbook.org
     - title: Help
       children:
       - title: Ask a question ❓
