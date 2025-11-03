@@ -26,7 +26,7 @@ const program = new Command();
 // Set whitelabelling
 process.env.MYSTMD_READABLE_NAME = "Jupyter Book";
 process.env.MYSTMD_BINARY_NAME = "jupyter book";
-process.env.MYSTMD_HOME_URL = "https://next.jupyterbook.org";
+process.env.MYSTMD_HOME_URL = "https://jupyterbook.org/docs";
 // Specfically for NPM
 process.env.MYSTMD_NPM_BINARY_NAME = "jupyter-book";
 process.env.MYSTMD_NPM_PACKAGE_NAME = "jupyter-book";

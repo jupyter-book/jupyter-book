@@ -186,4 +186,4 @@ Key changes:
 
 ## Next steps
 
-- [](../getting-started/create-content.md) - Start writing content for your book
+- [](../get-started/create-content.md) - Start writing content for your book

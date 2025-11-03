@@ -103,7 +103,7 @@ Jupyter Book 2 uses MyST's plugin system:
 
 ### How do I deploy my Jupyter Book?
 
-See our [publishing guide](../getting-started/publish.md) for deployment options including:
+See our [publishing guide](../get-started/publish.md) for deployment options including:
 
 - GitHub Pages
 - ReadTheDocs
@@ -127,7 +127,7 @@ See our [help page](../community/help.md) for more resources.
 
 ### How can I contribute to Jupyter Book?
 
-We welcome contributions! See our [contributing guide](../contribute.md) and our [community guide](../community/community.md) for details.
+We welcome contributions! See our [contributing guide](../contribute.md) and our [community guide](../community.md) for details.
 
 (faq:migration)=
 ## Migrating and troubleshooting upgrades
