@@ -1,7 +1,7 @@
 # <img src="https://raw.githubusercontent.com/jupyter-book/jupyter-book/next/docs/media/images/logo-square.svg" width=40 /> Jupyter Book
 
 [![Jupyter Book Badge](https://raw.githubusercontent.com/jupyter-book/jupyter-book/next/docs/media/images/badge.svg)](https://jupyterbook.org)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2561065.svg)](https://doi.org/10.5281/zenodo.2561065)
+[![DOI](https://img.shields.io/badge/DOI-Cite_Jupyter_Book-blue)](https://jupyterbook.org/stable/cite/)
 
 <!-- [![PyPI][pypi-badge]][pypi-link]
      [![Conda][conda-badge]][conda-link] -->
@@ -19,7 +19,7 @@ Jupyter Book allows users to
 
 ## Governance of This Project
 
-Jupyter Book 2 is still developing relatively rapidly, so please be patient if things change or features iterate and change quickly.
+Jupyter Book is an official sub-project of Jupyter, you can find more about our team and governance process in our [Team Compass](https://compass.jupyterbook.org/).
 
 ## Contribute or Improve The Book
 
