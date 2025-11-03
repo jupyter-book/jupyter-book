@@ -41,7 +41,7 @@ jupyter book start
 +++
 
 ```{warning}
-We recently updated the `pip install jupyter-book` which now automatically installs Jupyter Book 2. To keep using Jupyter Book 1, use `pip install jupyter-book<2` in your install.
+With the recent release of Jupyer Book 2, you will explicitly need to add `jupyter-book<2` to your install to keep using the Sphinx-based Jupyter Book 1.
 ```
 
 ## See It in Action
