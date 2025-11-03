@@ -12,7 +12,7 @@ from .nodeenv import (
     NodeVersionError,
 )
 
-__version__ = "2.0.1"
+__version__ = "2.0.2"
 
 NODEENV_VERSION = "22.17.0"
 
