@@ -2,6 +2,34 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 2.0.1
+
+([Full Changelog](https://github.com/jupyter-book/jupyter-book/compare/v2.0.0...6e81c24f7001edfe3a12d8267813c127b02fd347))
+
+### Bugs fixed
+
+- fix: bump cli [#2448](https://github.com/jupyter-book/jupyter-book/pull/2448) ([@agoose77](https://github.com/agoose77))
+
+### Maintenance and upkeep improvements
+
+- 🤖 Use grouping in dependabot [#2440](https://github.com/jupyter-book/jupyter-book/pull/2440) ([@agoose77](https://github.com/agoose77))
+
+### Documentation improvements
+
+- Update DOI badge and governance section in README [#2445](https://github.com/jupyter-book/jupyter-book/pull/2445) ([@rowanc1](https://github.com/rowanc1))
+
+### Other merged PRs
+
+- Fix broken link to jupyterbook 1 documentation [#2441](https://github.com/jupyter-book/jupyter-book/pull/2441) ([@Tom-van-Woudenberg](https://github.com/Tom-van-Woudenberg))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/jupyter-book/jupyter-book/graphs/contributors?from=2025-11-03&to=2025-11-03&type=c))
+
+[@agoose77](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Aagoose77+updated%3A2025-11-03..2025-11-03&type=Issues) | [@rowanc1](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Arowanc1+updated%3A2025-11-03..2025-11-03&type=Issues) | [@Tom-van-Woudenberg](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3ATom-van-Woudenberg+updated%3A2025-11-03..2025-11-03&type=Issues)
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 2.0.0
 
 ([Full Changelog](https://github.com/jupyter-book/jupyter-book/compare/28e190a2757fcc6be3719d24d79e7d990ae79fcc...bdcfdd486cf83f344b909f9b3806cd8f63475dfb))
@@ -76,8 +104,6 @@
 ([GitHub contributors page for this release](https://github.com/jupyter-book/jupyter-book/graphs/contributors?from=2024-03-19&to=2025-11-03&type=c))
 
 [@afeld](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Aafeld+updated%3A2024-03-19..2025-11-03&type=Issues) | [@agoose77](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Aagoose77+updated%3A2024-03-19..2025-11-03&type=Issues) | [@bsipocz](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Absipocz+updated%3A2024-03-19..2025-11-03&type=Issues) | [@choldgraf](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Acholdgraf+updated%3A2024-03-19..2025-11-03&type=Issues) | [@codecov](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Acodecov+updated%3A2024-03-19..2025-11-03&type=Issues) | [@da5nsy](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Ada5nsy+updated%3A2024-03-19..2025-11-03&type=Issues) | [@drsimonmartin](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Adrsimonmartin+updated%3A2024-03-19..2025-11-03&type=Issues) | [@dsblank](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Adsblank+updated%3A2024-03-19..2025-11-03&type=Issues) | [@dstansby](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Adstansby+updated%3A2024-03-19..2025-11-03&type=Issues) | [@fmaussion](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Afmaussion+updated%3A2024-03-19..2025-11-03&type=Issues) | [@jakubzitny](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Ajakubzitny+updated%3A2024-03-19..2025-11-03&type=Issues) | [@JimMadge](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3AJimMadge+updated%3A2024-03-19..2025-11-03&type=Issues) | [@jmshea](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Ajmshea+updated%3A2024-03-19..2025-11-03&type=Issues) | [@jroettenbacher](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Ajroettenbacher+updated%3A2024-03-19..2025-11-03&type=Issues) | [@LoicGrobol](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3ALoicGrobol+updated%3A2024-03-19..2025-11-03&type=Issues) | [@nickeubank](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Anickeubank+updated%3A2024-03-19..2025-11-03&type=Issues) | [@psychemedia](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Apsychemedia+updated%3A2024-03-19..2025-11-03&type=Issues) | [@RemDelaporteMathurin](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3ARemDelaporteMathurin+updated%3A2024-03-19..2025-11-03&type=Issues) | [@rlanzafame](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Arlanzafame+updated%3A2024-03-19..2025-11-03&type=Issues) | [@rowanc1](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Arowanc1+updated%3A2024-03-19..2025-11-03&type=Issues) | [@welcome](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Awelcome+updated%3A2024-03-19..2025-11-03&type=Issues)
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 2.0.0b3
 
