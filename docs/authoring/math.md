@@ -142,5 +142,5 @@ results in
 
 ## Next steps
 
-- [](../getting-started/cross-reference.md) - Learn more about cross-referencing
+- [](../get-started/cross-reference.md) - Learn more about cross-referencing
 - [MyST Math Guide](https://mystmd.org/guide/math) - Complete math reference

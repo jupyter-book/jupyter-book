@@ -32,7 +32,7 @@ Navigating to that URL in your web-browser will load a website which updates as 
 
 ## Declaring a table of contents
 
-By default, Jupyter Book will attempt to find the important files that comprise your book, and {term}`deterministically order them <Deterministic Ordering>`. Once a project becomes more complex, we should look to add our files to the table of contents (TOC). Although the MyST Document Engine is clever enough to find and organise documents in your project folder, using an explicit TOC makes it easier for new contributors to understand the structure of your book. Let's update our [`myst.yml` from the previous section](../getting-started/init.md#code:myst-yml). Jupyter Book defines a `--write-toc` argument to the `init` command that automatically populates a table of contents from the files MyST-MD finds in the project folder.
+By default, Jupyter Book will attempt to find the important files that comprise your book, and {term}`deterministically order them <Deterministic Ordering>`. Once a project becomes more complex, we should look to add our files to the table of contents (TOC). Although the MyST Document Engine is clever enough to find and organise documents in your project folder, using an explicit TOC makes it easier for new contributors to understand the structure of your book. Let's update our [`myst.yml` from the previous section](../get-started/init.md#code:myst-yml). Jupyter Book defines a `--write-toc` argument to the `init` command that automatically populates a table of contents from the files MyST-MD finds in the project folder.
 
 ```{code} yaml
 :filename: myst.yml
