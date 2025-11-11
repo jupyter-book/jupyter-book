@@ -1,0 +1,5 @@
+- name: Jupyter Book 2 Workshop Template
+  website: https://jupyter-book.github.io/workshop-template/
+  repository: https://github.com/jupyter-book/workshop-template
+  image: https://jupyter-book.github.io/workshop-template/build/logo-6b4f41e0d08ae79501fbae21e42b171f.svg
+  description: A GitHub Template repository designed for use in Jupyter Book 2 and MyST workshops.
