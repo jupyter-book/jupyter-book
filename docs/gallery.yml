@@ -19,7 +19,6 @@
   caption: Live graphs can be embedded directly in your documentation or articles with computation backed by Jupyter or JupyterLite – running locally, on Binder, or directly in your browser.
   description: MyST is an ecosystem of open-source, community-driven tools designed to revolutionize scientific communication. Our powerful authoring framework supports blogs, online books, scientific papers, reports and journals articles.
 
-
 - name: Introducing Classical Mechanics & Special Relativity
   website: https://freekpols.github.io/Mechanica/
   repository: https://github.com/freekpols/Mechanica
@@ -41,8 +40,6 @@
   caption: 
   description: Project Pythia is the education working group for Pangeo and is an educational resource for the entire geoscience community. Together these initiatives are helping geoscientists make sense of huge volumes of numerical scientific data using tools that facilitate open, reproducible science, and building a community of practice around these goals.
 
-  Project Pythia is a home for Python-justified learning resources that are open-source, community-owned, geoscience-focused, and high-quality.
-
 - name: IRSA Tutorials
   website: https://caltech-ipac.github.io/irsa-tutorials/
   repository: 
@@ -50,11 +47,18 @@
   caption: IRSA Tutorials logo
   description: IRSA (Infrared Science Archive) provides a variety of tutorials to help users understand and utilize the data and tools available through the archive.
 
-- name:
-  website:
-  repository: 
-  image: 
+- name: BDI 475 Introduction to Data Analytics Applications in Business
+  website: https://bdi475.github.io/textbook/
+  repository: https://github.com/bdi475/textbook
+  image: https://bdi475.github.io/textbook/build/site_logo-7d8a0ac46d55d9882c80d625ecd45915.svg
   caption: 
-  description:
+  description: This is the online textbook for BDI 475 - Introduction to Data Analytics Applications in Business, a course offered by the University of Illinois Urbana-Champaign. The course is designed to introduce students to the fundamentals of data analytics and its applications in business contexts.
+
+- name: Voices of Jupyter Hub
+  website: https://voicesofjupyterhub.orgmycology.com/
+  repository: https://github.com/orgmycology/vojhreport
+  image: https://voicesofjupyterhub.orgmycology.com/build/logo-bce5d2098e9e1001a32d0a33f20c6d31.png
+  caption: 
+  description: "JupyterHub’s impact on the world deserves to be celebrated: Over ten years of community-driven work has enabled scientists, students, systems administrators, and all sorts of other groups to collaboratively learn and work together. This report, based on interviews and interactions with members of the JupyterHub community, aims to celebrate these accomplishments. These conversations have also highlighted areas for improvement, from those that support better software (e.g., attracting and retaining new contributors) to those that encourage a healthier, more vibrant community (e.g., enhanced communication and collaboration)."
 
 
