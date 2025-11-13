@@ -7,14 +7,14 @@
 
 - name: The Turing Way handbook to reproducible, ethical and collaborative data science.
   website: https://book.the-turing-way.org/
-  repository: 
+  repository: https://github.com/the-turing-way/the-turing-way
   image: https://github.com/the-turing-way/the-turing-way/blob/main/book/figures/theturingway-pathway.jpg
   caption: 
   description: The Turing Way is an open science, open collaboration, and community-driven project. We involve and support a diverse community of contributors to make data science accessible, comprehensible and effective for everyone.
 
 - name: Myst Official Documentation
   website: https://mystmd.org/guide
-  repository: 
+  repository: https://github.com/jupyter-book/mystmd
   image: https://cdn.curvenote.com/0198d368-fb53-7691-80d4-a6f7a2c88ca5/public/links-7fffe87911b1e26605748d6f347d29d6.mp4
   caption: Live graphs can be embedded directly in your documentation or articles with computation backed by Jupyter or JupyterLite – running locally, on Binder, or directly in your browser.
   description: MyST is an ecosystem of open-source, community-driven tools designed to revolutionize scientific communication. Our powerful authoring framework supports blogs, online books, scientific papers, reports and journals articles.
@@ -26,23 +26,16 @@
   caption: 
   description: This book provides an introduction for freshman students into the world of classical mechanics and special relativity theory
 
-- name: Scientific Python
-  website: https://scientific-python.org/
-  repository: 
-  image: https://scientific-python.org/images/logo.svg
-  caption: 
-  description: The scientific Python ecosystem is a loose federation of community-developed and -owned Python projects widely used in scientific research, technical computing, and data science. The scientific Python community of contributors and maintainers are employed by a variety of universities, research labs, and companies.
-
 - name: Project Pythia
   website: https://projectpythia.org/
-  repository: 
+  repository: https://github.com/ProjectPythia
   image: https://raw.githubusercontent.com/ProjectPythia/pythia-config/main/logos/pythia_logo-white-rtext-blue.svg
   caption: 
   description: Project Pythia is the education working group for Pangeo and is an educational resource for the entire geoscience community. Together these initiatives are helping geoscientists make sense of huge volumes of numerical scientific data using tools that facilitate open, reproducible science, and building a community of practice around these goals.
 
 - name: IRSA Tutorials
   website: https://caltech-ipac.github.io/irsa-tutorials/
-  repository: 
+  repository: https://github.com/Caltech-IPAC/irsa-tutorials/
   image: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVO9k5CiRBcwjV4SozhB2eVY3g21aYfcvSaA&s
   caption: IRSA Tutorials logo
   description: IRSA (Infrared Science Archive) provides a variety of tutorials to help users understand and utilize the data and tools available through the archive.
