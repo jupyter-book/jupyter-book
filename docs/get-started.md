@@ -7,7 +7,7 @@ subtitle: Learn how to navigate this documentation and build your first book.
 Jupyter Book is [a distribution of the MyST Document Engine](https://mystmd.org).
 
 :::{seealso} Looking for the Jupyter Book 1 docs?
-This documentation is for Jupyter Book 2. If you're looking for the Jupyter Book 1 docs, go to [jupyterbook.org/v1](https://jupyterbook.org).
+This documentation is for Jupyter Book 2. If you're looking for the Jupyter Book 1 docs, go to [jupyterbook.org/v1](https://jupyterbook.org/v1).
 :::
 
 ## See `mystmd.org` for more complete documentation
