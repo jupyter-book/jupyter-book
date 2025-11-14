@@ -10,6 +10,8 @@ site:
 
 :::{attention} Jupyter Book 2 is here!
 Built on the [MyST Document Engine](https://mystmd.org) with faster builds, modern features, and improved workflows.
+Jupyter Book 2 still has many improvements to be made.
+Please join us and [contribute to Jupyter Book](./contribute.md) so we can make it better!
 
 [Upgrade from 1.0](#upgrade-tldr) • [Known limitations](#known-limitations) • [Frequently Asked Questions](#faq-general)
 :::
@@ -39,6 +41,10 @@ jupyter book start
 ::::::
 
 +++
+
+```{warning}
+With the recent release of Jupyer Book 2, you will explicitly need to add `jupyter-book<2` to your install to keep using the Sphinx-based Jupyter Book 1.
+```
 
 ## See It in Action
 

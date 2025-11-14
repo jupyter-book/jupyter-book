@@ -10,7 +10,7 @@ const heroDirective = {
       style: {
         fontWeight: "bold",
         fontSize: "4em",
-        maxWidth: "50%",
+        maxWidth: "80%",
         margin: ".5em auto",
         textAlign: "center",
         lineHeight: "normal",
