@@ -4,15 +4,12 @@ short_title: Get Started
 subtitle: Learn how to navigate this documentation and build your first book.
 ---
 
-Jupyter Book is [a distribution of the MyST Document Engine](https://mystmd.org).
+Because Jupyter Book is [a distribution of the MyST Document Engine](./community/ecosystem.md), we keep most documentation about configuring and using Jupyter Book in the [MyST User Guide](https://mystmd.org/guide). Anything you can do with MyST you can do with Jupyter Book - the only difference in using the two is the CLI verb (`jupyter book` vs. `myst`).
 
 :::{seealso} Looking for the Jupyter Book 1 docs?
+:class: dropdown
 This documentation is for Jupyter Book 2. If you're looking for the Jupyter Book 1 docs, go to [jupyterbook.org/v1](https://jupyterbook.org/v1).
 :::
-
-## See `mystmd.org` for more complete documentation
-
-Because Jupyter Book is [a distribution of the MyST Document Engine](./community/ecosystem.md), we keep most documentation about configuring and using Jupyter Book in the [MyST User Guide](https://mystmd.org/guide). Anything you can do with MyST you can do with Jupyter Book - the only difference in using the two is the CLI verb (`jupyter book` vs. `myst`).
 
 ## Navigate the Jupyter Book documentation
 
