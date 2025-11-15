@@ -13,6 +13,10 @@ updates:
     groups:
       npm:
         patterns: ["*"]
+    labels:
+      - "maintenance"
+      - "javascript"
+      - "dependencies"
 
   # Enable version updates for Python
   - package-ecosystem: "pip"
@@ -24,3 +28,7 @@ updates:
     groups:
       pip:
         patterns: ["*"]
+    labels:
+      - "maintenance"
+      - "python"
+      - "dependencies"
