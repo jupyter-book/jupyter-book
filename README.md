@@ -17,6 +17,11 @@ Jupyter Book allows users to
   - a web-based interactive book and
   - a publication-quality PDF.
 
+> [!NOTE]
+> Are you trying to access Jupyter Book v1 (the Sphinx-based documentation engine)?
+> That package now resides in the [`v1` branch](https://github.com/jupyter-book/jupyter-book/tree/v1)
+> of this repository.
+
 ## Governance of This Project
 
 Jupyter Book is an official sub-project of Jupyter, you can find more about our team and governance process in our [Team Compass](https://compass.jupyterbook.org/).
