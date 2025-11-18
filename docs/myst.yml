@@ -20,6 +20,7 @@ project:
     - src/landing-page.mjs
     - src/directives.mjs
     - src/admonition.mjs
+    - src/github-project/index.mjs
   github: https://github.com/jupyter-book/jupyter-book
   toc:
     - file: index.md
@@ -66,6 +67,7 @@ project:
       children:
         - file: community/help.md
         - file: community/vote.md
+        - file: community/roadmap.md
         - file: community/team.md
         - file: community/ecosystem.md
         - file: community/history.md

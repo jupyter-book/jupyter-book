@@ -7,6 +7,7 @@ build:
     nodejs: "20"
   commands:
     - npm install -g mystmd
+    - cd docs && npm install
     - pip install .[docs]
     - mkdir -p $READTHEDOCS_OUTPUT/html/
     - cd docs/ && BASE_URL="/$READTHEDOCS_VERSION" myst build --html --execute
