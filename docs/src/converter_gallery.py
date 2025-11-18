@@ -47,7 +47,7 @@ for it in items:
     if image:
         lines.append("````{card}")
         if website:
-            lines.append(f":link: {website}")
+            lines.append(f":link: {repo}")
         if key:
             lines.append(f":footer: {key}")
             lines.append("")  # blank line before body
