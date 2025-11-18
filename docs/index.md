@@ -117,6 +117,13 @@ Get help and contribute
 +++
 [Join us →](./community.md)
 ::::
+::::{card} 📚 Gallery
+:link: ./gallery.md
+Explore shared books and projects
++++
+[Explore gallery →](./gallery.md)
+::::
+
 :::::
 
 +++ {"kind": "justified"}
