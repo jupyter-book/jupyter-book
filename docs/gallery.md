@@ -1,9 +1,9 @@
 # Gallery
-Jupyter Book 2 technology has been applied across a wide range of use cases, including curricula vitae, official educational textbooks, student portfolios, lab manuals, and technical documentation.
+Jupyter Book technology has been applied across a wide range of use cases, including curricula vitae, official educational textbooks, student portfolios, lab manuals, and technical documentation.
 This is a gallery of Jupyter Books built from across the community. If you’d like to add your book to this list, simply add an entry to this gallery.yml file and open a Pull Request to add it. Note that the description should be brief, limited to 500 characters (including spaces).
 Below is a gallery showcasing examples of such outputs.
 :::{grid} 1 1 2 2
-```{card} Jupyter Book 2 Workshop Template
+```{card} Jupyter Book Workshop Template
 :link: https://jupyter-book.github.io/workshop-template/
 
 A GitHub Template repository designed for use in Jupyter Book 2 and MyST workshops.
@@ -89,7 +89,7 @@ This is the online textbook for BDI 475 - Introduction to Data Analytics Applica
 
 ````{card}
 :link: https://github.com/bdi475/textbook
-```{figure} https://bdi475.github.io/textbook/build/site_logo-7d8a0ac46d55d9882c80d625ecd45915.svg
+```{figure} https://github.com/bdi475/textbook/blob/main/site_images/site_logo.png
 
 ```
 ````
@@ -97,12 +97,12 @@ This is the online textbook for BDI 475 - Introduction to Data Analytics Applica
 ```{card} Voices of Jupyter Hub
 :link: https://voicesofjupyterhub.orgmycology.com/
 
-JupyterHub’s impact on the world deserves to be celebrated: Over ten years of community-driven work has enabled scientists, students, systems administrators, and all sorts of other groups to collaboratively learn and work together. This report, based on interviews and interactions with members of the JupyterHub community, aims to celebrate these accomplishments. These conversations have also highlighted areas for improvement, from those that support better software (e.g., attracting and retaining new contributors) to those that encourage a healthier, more vibrant community (e.g., enhanced communication and collaboration).
+JupyterHub’s impact on the world deserves to be celebrated. This report aims to celebrate these accomplishments. These conversations have also highlighted areas for improvement, from those that support better software to those that encourage a healthier, more vibrant community.
 ```
 
 ````{card}
 :link: https://github.com/orgmycology/vojhreport
-```{figure} https://voicesofjupyterhub.orgmycology.com/build/logo-bce5d2098e9e1001a32d0a33f20c6d31.png
+```{figure} https://github.com/orgmycology/vojhreport/blob/main/logo.png
 
 ```
 ````

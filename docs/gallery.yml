@@ -1,4 +1,4 @@
-- name: Jupyter Book 2 Workshop Template
+- name: Jupyter Book Workshop Template
   website: https://jupyter-book.github.io/workshop-template/
   repository: https://github.com/jupyter-book/workshop-template
   image: https://jupyter-book.github.io/workshop-template/build/logo-6b4f41e0d08ae79501fbae21e42b171f.svg
@@ -43,15 +43,15 @@
 - name: BDI 475 Introduction to Data Analytics Applications in Business
   website: https://bdi475.github.io/textbook/
   repository: https://github.com/bdi475/textbook
-  image: https://bdi475.github.io/textbook/build/site_logo-7d8a0ac46d55d9882c80d625ecd45915.svg
+  image: https://github.com/bdi475/textbook/blob/main/site_images/site_logo.png
   caption: 
   description: This is the online textbook for BDI 475 - Introduction to Data Analytics Applications in Business, a course offered by the University of Illinois Urbana-Champaign. The course is designed to introduce students to the fundamentals of data analytics and its applications in business contexts.
 
 - name: Voices of Jupyter Hub
   website: https://voicesofjupyterhub.orgmycology.com/
   repository: https://github.com/orgmycology/vojhreport
-  image: https://voicesofjupyterhub.orgmycology.com/build/logo-bce5d2098e9e1001a32d0a33f20c6d31.png
+  image: https://github.com/orgmycology/vojhreport/blob/main/logo.png
   caption: 
-  description: "JupyterHub’s impact on the world deserves to be celebrated: Over ten years of community-driven work has enabled scientists, students, systems administrators, and all sorts of other groups to collaboratively learn and work together. This report, based on interviews and interactions with members of the JupyterHub community, aims to celebrate these accomplishments. These conversations have also highlighted areas for improvement, from those that support better software (e.g., attracting and retaining new contributors) to those that encourage a healthier, more vibrant community (e.g., enhanced communication and collaboration)."
+  description: "JupyterHub’s impact on the world deserves to be celebrated. This report aims to celebrate these accomplishments. These conversations have also highlighted areas for improvement, from those that support better software to those that encourage a healthier, more vibrant community."
 
 
