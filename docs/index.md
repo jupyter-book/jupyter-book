@@ -119,7 +119,7 @@ Get help and contribute
 ::::
 ::::{card} 📚 Gallery
 :link: ./gallery.md
-Explore shared books and projects
+Explore existing books and projects
 +++
 [Explore gallery →](./gallery.md)
 ::::
