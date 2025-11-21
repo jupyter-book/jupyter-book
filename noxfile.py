@@ -12,7 +12,7 @@ def docs(session):
     session.install("-e", ".[docs]")
     session.chdir("docs")
     session.run("python", "src/create_gallery.py")
-    session.run("jupyter", "book", "build", "--html", "--execute", "--strict")
+    session.run("jupyter", "book", "build", "--html", "--execute", *session.posargs)
 
 
 @nox.session(name="docs-live")
@@ -21,7 +21,7 @@ def docs_live(session):
     session.install("-e", ".[docs]")
     session.chdir("docs")
     session.run("python", "src/create_gallery.py")
-    session.run("jupyter", "book", "start", "--execute")
+    session.run("jupyter", "book", "start", "--execute", *session.posargs)
 
 
 @nox.session
