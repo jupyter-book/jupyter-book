@@ -61,7 +61,7 @@ Project Pythia is the education working group for Pangeo and is an educational r
 ```{figure} https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVO9k5CiRBcwjV4SozhB2eVY3g21aYfcvSaA&s
 :width: 70%
 
-IRSA (Infrared Science Archive) provides a variety of tutorials to help users understand and utilize the data and tools available through the archive.
+These tutorials demonstrate access methods and techniques for working with data served by the [NASA/IPAC Infrared Science Archive (IRSA)](https://irsa.ipac.caltech.edu/). They cover topics like querying IRSA, working with catalogs in Parquet format, visualizing with Firefly, and general other techniques.
 ```
 ````
 
