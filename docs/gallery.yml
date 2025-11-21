@@ -37,7 +37,7 @@
   website: https://caltech-ipac.github.io/irsa-tutorials/
   repository: https://github.com/Caltech-IPAC/irsa-tutorials/
   image: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVO9k5CiRBcwjV4SozhB2eVY3g21aYfcvSaA&s
-  description: IRSA (Infrared Science Archive) provides a variety of tutorials to help users understand and utilize the data and tools available through the archive.
+  description: These tutorials demonstrate access methods and techniques for working with data served by the [NASA/IPAC Infrared Science Archive (IRSA)](https://irsa.ipac.caltech.edu/). They cover topics like querying IRSA, working with catalogs in Parquet format, visualizing with Firefly, and general other techniques.
   tags: Tutorial;
 
 - name: BDI 475 Introduction to Data Analytics Applications in Business
