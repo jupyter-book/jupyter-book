@@ -1,10 +1,9 @@
-# build_gallery.py
 from pathlib import Path
 import yaml
 import html
 
 SRC = Path("gallery.yml")
-DST = Path("gallery.txt")
+DST = Path("_build/temp/gallery.txt")
 
 def esc(t: str) -> str:
     # Minimal escaping for safety inside Markdown
@@ -50,6 +49,7 @@ for it in items:
 lines.append("::::")
 lines.append("")  # trailing newline
 
+DST.parent.mkdir(parents=True, exist_ok=True)
 DST.write_text("\n".join(lines), encoding="utf-8")
 
-print("✅ gallery.txt generated")
+print(f"✅ gallery.txt generated at {DST}")

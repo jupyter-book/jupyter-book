@@ -11,6 +11,7 @@ def docs(session):
     """Build the documentation as static HTML."""
     session.install("-e", ".[docs]")
     session.chdir("docs")
+    session.run("python", "src/create_gallery.py")
     session.run("jupyter", "book", "build", "--html", "--execute", "--strict")
 
 
@@ -19,6 +20,7 @@ def docs_live(session):
     """Start a live development server for the documentation."""
     session.install("-e", ".[docs]")
     session.chdir("docs")
+    session.run("python", "src/create_gallery.py")
     session.run("jupyter", "book", "start", "--execute")
 
 
