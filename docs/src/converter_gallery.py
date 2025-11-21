@@ -13,12 +13,8 @@ def esc(t: str) -> str:
 items = yaml.safe_load(SRC.read_text(encoding="utf-8"))
 
 lines = []
-# lines.append("# Gallery of Jupyter Books")
-# lines.append('Jupyter Book technology has been applied across a wide range of use cases, including curricula vitae, official educational textbooks, student portfolios, lab manuals, and technical documentation.')
-# lines.append('This is a gallery of Jupyter Books built from across the community. If you’d like to add your book to this list, simply add an entry to this gallery.yml file and open a Pull Request to add it. Note that the description should be brief, limited to 500 characters (including spaces).')
-# lines.append('Below is a gallery showcasing examples of such outputs.')
 
-lines.append(":::{grid} 1 1 2 2")
+lines.append("::::{grid} 1 1 1 1")
 
 for it in items:
     name = esc(it.get("name", ""))
@@ -26,42 +22,34 @@ for it in items:
     repo = it.get("repository", "")
     image = it.get("image", "")
     desc = esc(it.get("description", ""))
-    key = it.get("keywords","")
+    key = it.get("tags","")
 
-    # TEXT CARD (title + description)
-    lines.append(f"```{{card}} {name}")
-    if website:
-        lines.append(f":link: {website}")
-        lines.append(f"")
-
-    if desc:
-        lines.append(desc)
-    else:
-        # optional: show repo if no description given
-        if repo:
-            lines.append(f"[Repository]({repo})")
-    lines.append("```")
+    
+    # Create the card
+    lines.append(f"````{{card}}")
+    
+    lines.append(f":link: {website}")
+    lines.append(f":header: [{name}]({repo})")
     lines.append(f"")
 
-    # IMAGE CARD (clickable) with footer
-    if image:
-        lines.append("````{card}")
-        if website:
-            lines.append(f":link: {repo}")
-        if key:
-            lines.append(f":footer: {key}")
-            lines.append("")  # blank line before body
+    # Include the figure with description
+    lines.append("```{figure} " + image)
+    lines.append(":width: 70%")
+    lines.append("")
+    lines.append(desc)
+    lines.append("```")
 
-        lines.append("```{figure} " + image)
-        lines.append("")  # allow figure options later if you want
-        lines.append("```")
-        lines.append("````")
-        lines.append(f"")
+    lines.append("````")
+    lines.append(f"")
+
+    # Include index
+    # lines.append(f":::{{index}} {key}")
+    # lines.append(":::")
 
 # close grid
-lines.append(":::")
+lines.append("::::")
 lines.append("")  # trailing newline
 
 DST.write_text("\n".join(lines), encoding="utf-8")
 
-print("✅ gallery.md generated")
+print("✅ gallery.txt generated")

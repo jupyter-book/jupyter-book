@@ -38,7 +38,7 @@
   repository: https://github.com/Caltech-IPAC/irsa-tutorials/
   image: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVO9k5CiRBcwjV4SozhB2eVY3g21aYfcvSaA&s
   description: IRSA (Infrared Science Archive) provides a variety of tutorials to help users understand and utilize the data and tools available through the archive.
-  tags: 
+  tags: Tutorial;
 
 - name: BDI 475 Introduction to Data Analytics Applications in Business
   website: https://bdi475.github.io/textbook/
