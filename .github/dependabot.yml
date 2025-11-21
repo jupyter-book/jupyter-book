@@ -10,6 +10,9 @@ updates:
     # Check the npm registry for updates every day (weekdays)
     schedule:
       interval: "monthly"
+    # Make sure we don't just pull in freshly released versions
+    cooldown:
+      default-days: 14
     groups:
       npm:
         patterns: ["*"]
@@ -25,6 +28,8 @@ updates:
     # Check for updates once a week
     schedule:
       interval: "monthly"
+    cooldown:
+      default-days: 14
     groups:
       pip:
         patterns: ["*"]
