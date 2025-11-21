@@ -1,3 +1,10 @@
+# ==========================
+# TO ADD YOUR BOOK TO THIS GALLERY
+# Anybody is welcome to contribute.
+# Copy-paste an entry to the end of this file.
+# Add in the metadata for your book.
+# Keep the description brief, limited to 500 characters (including spaces).
+# ==========================
 - name: Jupyter Book Workshop Template
   website: https://jupyter-book.github.io/workshop-template/
   repository: https://github.com/jupyter-book/workshop-template
