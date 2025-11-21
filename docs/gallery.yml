@@ -4,7 +4,7 @@
   image: https://github.com/jupyter-book/workshop-template/blob/main/content/figures/logo.svg
   caption:
   description: A GitHub Template repository designed for use in Jupyter Book 2 and MyST workshops.
-  tags: 
+  tags: JupyterBook; Tutorial
 
 - name: The Turing Way handbook to reproducible, ethical and collaborative data science.
   website: https://book.the-turing-way.org/
@@ -12,15 +12,15 @@
   image: https://github.com/the-turing-way/the-turing-way/blob/main/book/figures/theturingway-pathway.jpg
   caption: 
   description: The Turing Way is an open science, open collaboration, and community-driven project. We involve and support a diverse community of contributors to make data science accessible, comprehensible and effective for everyone.
-  tags: 
+  tags: Open Science; Data; Documentation
 
 - name: Myst Official Documentation
   website: https://mystmd.org/guide
   repository: https://github.com/jupyter-book/mystmd
-  image: https://github.com/jupyter-book/mystmd/blob/main/docs/videos/links.mp4
+  image: https://github.com/jupyter-book/workshop-template/blob/main/content/figures/logo.svg
   caption: Live graphs can be embedded directly in your documentation or articles with computation backed by Jupyter or JupyterLite – running locally, on Binder, or directly in your browser.
   description: MyST is an ecosystem of open-source, community-driven tools designed to revolutionize scientific communication. Our powerful authoring framework supports blogs, online books, scientific papers, reports and journals articles.
-  tags: 
+  tags: MyST; Documentation; 
 
 - name: Introducing Classical Mechanics & Special Relativity
   website: https://freekpols.github.io/Mechanica/
@@ -28,7 +28,7 @@
   image: https://freekpols.github.io/Mechanica/build/cover-f2651612bb78120d7ad964dc4d5f8d4b.gif
   caption: 
   description: This book provides an introduction for freshman students into the world of classical mechanics and special relativity theory
-  tags: 
+  tags: Physics; Mechanics; Education; Delft University of Technology
 
 - name: Project Pythia
   website: https://projectpythia.org/
@@ -36,7 +36,7 @@
   image: https://raw.githubusercontent.com/ProjectPythia/pythia-config/main/logos/pythia_logo-white-rtext-blue.svg
   caption: 
   description: Project Pythia is the education working group for Pangeo and is an educational resource for the entire geoscience community. Together these initiatives are helping geoscientists make sense of huge volumes of numerical scientific data using tools that facilitate open, reproducible science, and building a community of practice around these goals.
-  tags: 
+  tags: Geoscience; Education 
 
 - name: IRSA Tutorials
   website: https://caltech-ipac.github.io/irsa-tutorials/
@@ -52,7 +52,7 @@
   image: https://github.com/bdi475/textbook/blob/main/site_images/site_logo.png
   caption: 
   description: This is the online textbook for BDI 475 - Introduction to Data Analytics Applications in Business, a course offered by the University of Illinois Urbana-Champaign. The course is designed to introduce students to the fundamentals of data analytics and its applications in business contexts.
-  tags: 
+  tags: Data analytics; Education; Python; University of Illinois
 
 - name: Voices of Jupyter Hub
   website: https://voicesofjupyterhub.orgmycology.com/
@@ -60,5 +60,5 @@
   image: https://github.com/orgmycology/vojhreport/blob/main/logo.png
   caption: 
   description: "JupyterHub’s impact on the world deserves to be celebrated. This report aims to celebrate these accomplishments. These conversations have also highlighted areas for improvement, from those that support better software to those that encourage a healthier, more vibrant community."
-  tags: 
+  tags: Jupyter; JupyterHub
 

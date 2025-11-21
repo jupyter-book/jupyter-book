@@ -33,7 +33,7 @@ MyST is an ecosystem of open-source, community-driven tools designed to revoluti
 
 ````{card}
 :link: https://github.com/jupyter-book/mystmd
-```{figure} https://github.com/jupyter-book/mystmd/blob/main/docs/videos/links.mp4
+```{figure} https://github.com/jupyter-book/workshop-template/blob/main/content/figures/logo.svg
 
 ```
 ````
