@@ -2,7 +2,7 @@ from pathlib import Path
 import yaml
 import html
 
-SRC = Path("gallery.yml")
+SRC = Path("../gallery.yml")
 DST = Path("_build/temp/gallery.txt")
 
 def esc(t: str) -> str:
