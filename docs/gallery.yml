@@ -61,3 +61,9 @@
   description: "JupyterHub’s impact on the world deserves to be celebrated. This report aims to celebrate these accomplishments. These conversations have also highlighted areas for improvement, from those that support better software to those that encourage a healthier, more vibrant community."
   tags: Jupyter; JupyterHub
 
+- name: "Topology in Condensed Matter: Tying Quantum Knots"
+  website: https://topocondmat.org
+  repository: https://github.com/topocm/topocm_content/
+  image: https://github.com/topocm/topocm_content/blob/master/logo_small.jpg
+  description: "An extensive graduate course on topology in condensed matter physics"
+  tags: quantum physics, condensed matter
