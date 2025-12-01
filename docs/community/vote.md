@@ -6,7 +6,7 @@ This page shows open issues from repositories in the `jupyter-book` organization
 
 
 ```{issue-table} org:jupyter-book is:open is:issue
-:columns: title, repo, last_updated, reactions
+:columns: title, repo, updated, reactions
 :sort: reactions-desc
 :limit: 30
 :date-format: relative
