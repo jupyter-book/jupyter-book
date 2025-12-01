@@ -13,6 +13,8 @@ updates:
     # Make sure we don't just pull in freshly released versions
     cooldown:
       default-days: 14
+      exclude:
+        - "myst-cli"
     groups:
       npm:
         patterns: ["*"]
