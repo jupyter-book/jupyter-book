@@ -84,6 +84,7 @@ project:
         - file: resources/upgrade.md
         - file: resources/downgrade.md
         - file: resources/glossary.md
+    - file: gallery.md
 site:
   options:
     style: media/custom.css
