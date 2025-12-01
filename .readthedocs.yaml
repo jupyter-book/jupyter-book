@@ -6,7 +6,7 @@ build:
     python: "3.12"
     nodejs: "20"
   commands:
-    - pip install nox
+    - pip install nox requests
     - mkdir -p $READTHEDOCS_OUTPUT/html/
     - BASE_URL="/$READTHEDOCS_VERSION" nox -s docs
     - cp -a docs/_build/html/. "$READTHEDOCS_OUTPUT/html" && rm -r docs/_build
