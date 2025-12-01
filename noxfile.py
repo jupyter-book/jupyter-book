@@ -3,7 +3,6 @@
 import os
 import nox
 from pathlib import Path
-import requests
 
 # Use uv for faster installs
 nox.options.default_venv_backend = "uv|virtualenv"
@@ -15,6 +14,8 @@ PLUGIN_DEST = Path("src/github-issue-table.mjs")
 
 def download_issue_table_plugin(session):
     """Download the issue-table plugin bundle into docs/src."""
+    import requests
+
     session.log(f"Downloading issue-table plugin from {PLUGIN_URL}")
     PLUGIN_DEST.parent.mkdir(parents=True, exist_ok=True)
     try:
