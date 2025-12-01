@@ -13,8 +13,13 @@ PLUGIN_DEST = Path("src/github-issue-table.mjs")
 
 
 def download_issue_table_plugin(session):
-    """Download the issue-table plugin bundle into docs/src."""
-    import requests
+    """Download the issue-table plugin bundle into docs/src.
+    
+    We temporarily add requests while we need to download the issue table plugin
+      ref: https://github.com/jupyter-book/mystmd/issues/2533
+    """
+    session.install("requests")
+    import requests  # defer to avoid RTD import failures
 
     session.log(f"Downloading issue-table plugin from {PLUGIN_URL}")
     PLUGIN_DEST.parent.mkdir(parents=True, exist_ok=True)

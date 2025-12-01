@@ -45,9 +45,6 @@ docs = [
   "pandas",
   "pooch",
   "markdown",
-  # Temporarily add requests while we need to download the issue table plugin
-  # ref: https://github.com/jupyter-book/mystmd/issues/2533
-  "requests",
 ]
 
 [tool.hatch.build.hooks.selector]
