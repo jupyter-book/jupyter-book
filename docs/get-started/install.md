@@ -20,13 +20,13 @@ Jupyter Book is available on the PyPI, conda-forge, and npm package repositories
 
 Installing software can be confusing. Here's a simple guide to making a sensible choice.
 
-1. Are you using an {term}`Environment Manager`?  
+1. Are you using an {term}`Environment Manager`?
    If you are already using an environment manager, you should use that tool to install `jupyter-book`.
 
-2. Are you willing to use an {term}`Environment Manager`?  
+2. Are you willing to use an {term}`Environment Manager`?
    There are lots of environment managers to choose from. If you aren't sure which to choose, it is recommended to start with [a Python virtual environment][venv].
 
-3. Otherwise ...  
+3. Otherwise ...
    `pip` can install packages into your home directory with
 
    ```shell
@@ -55,10 +55,6 @@ pip install "jupyter-book>=2.0.0a0"
 
 :::{card}
 :header: Install with [`mamba`][mamba] / `conda` 🔥
-
-```{warning}
-Jupyter Book is not yet released on `conda-forge`. Stay tuned!
-```
 
 ```shell
 mamba install -c conda-forge \
@@ -92,10 +88,6 @@ uv add "jupyter-book"
 :::{card}
 :header: Install with [`pixi`][pixi] 🔥
 
-```{warning}
-Jupyter Book is not yet released on `conda-forge`. Stay tuned!
-```
-
 Never heard of `pixi`? See [the documentation][pixi] for more.
 
 ```shell:
@@ -103,7 +95,7 @@ pixi add "jupyter-book"
 ```
 
 :::
-    
+
 :::{card}
 :header: Install with [`npm`][npm] 🔥
 
