@@ -141,4 +141,3 @@ package-lock.json
 
 .DS_Store
 .nox
-docs/src/github-issue-table.mjs

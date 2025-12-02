@@ -102,8 +102,6 @@ The live server will automatically rebuild pages as you edit them, making it eas
 
 :::{note}
 The docs build has a read-only `GITHUB_TOKEN` scoped to the `jupyter-book` org that expires on **Dec 1, 2026**. This is what allows the `{issue-table}` directive to query the GitHub API during builds.
-
-Until https://github.com/jupyter-book/mystmd/issues/2533 is resolved, run `nox -s download-plugin` (or rely on `nox -s docs` / `nox -s docs-live`, which call it automatically) to fetch the bundled `{issue-table}` plugin into `docs/src/github-issue-table.mjs`. ReadTheDocs uses this step during its build as well.
 :::
 
 ### Repository structure
