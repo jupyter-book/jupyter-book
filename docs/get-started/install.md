@@ -56,10 +56,6 @@ pip install "jupyter-book>=2.0.0a0"
 :::{card}
 :header: Install with [`mamba`][mamba] / `conda` 🔥
 
-```{warning}
-Jupyter Book 2 is not yet released on `conda-forge`. Stay tuned!
-```
-
 ```shell
 mamba install -c conda-forge \
 "jupyter-book>=2"
