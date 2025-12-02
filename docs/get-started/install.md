@@ -48,7 +48,7 @@ Ignoring environment management can lead to confusion later when things break. I
 In a [virtual environment][venv]:
 
 ```shell
-pip install "jupyter-book>=2.0.0a0"
+pip install "jupyter-book>=2.0.0"
 ```
 
 :::
