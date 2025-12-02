@@ -1,5 +1,5 @@
 ---
-title: Install Jupyter Book 2
+title: Install Jupyter Book
 subtitle: Install the Jupyter Book tools from PyPI, npm, or conda-forge.
 short_title: Install Jupyter Book
 subject: Quickstart tutorial
@@ -8,7 +8,7 @@ subject: Quickstart tutorial
 :::{seealso} Never used Jupyter Book before?
 :class: dropdown
 
-Jupyter Book 2 is a very thin wrapper around the MyST Document Engine: it shares the same CLI and configuration file (see [ecosystem documentation](../community/ecosystem.md) for more details). It serves primarily to as an introduction of the existing Jupyter Book community to the MyST Document Engine.
+Jupyter Book is a very thin wrapper around the MyST Document Engine: it shares the same CLI and configuration file (see [ecosystem documentation](../community/ecosystem.md) for more details). It serves primarily to as an introduction of the existing Jupyter Book community to the MyST Document Engine.
 
 If you're new to the Jupyter Book project, consider [directly using MyST-MD](https://mystmd.org/guide/quickstart).
 :::
@@ -30,7 +30,7 @@ Installing software can be confusing. Here's a simple guide to making a sensible
    `pip` can install packages into your home directory with
 
    ```shell
-   pip install -U jupyter-book>=2.0.0a0
+   pip install -U jupyter-book
    ```
 
 :::{warning} Ignoring environment management
@@ -57,12 +57,12 @@ pip install "jupyter-book>=2.0.0a0"
 :header: Install with [`mamba`][mamba] / `conda` 🔥
 
 ```{warning}
-Jupyter Book 2 is not yet released on `conda-forge`. Stay tuned!
+Jupyter Book is not yet released on `conda-forge`. Stay tuned!
 ```
 
 ```shell
 mamba install -c conda-forge \
-"jupyter-book>=2"
+"jupyter-book"
 ```
 
 :::
@@ -73,7 +73,7 @@ mamba install -c conda-forge \
 Never heard of `pipx`? See [the documentation][pipx] for more.
 
 ```shell
-pipx install "jupyter-book>=2.0.0a0"
+pipx install "jupyter-book"
 ```
 
 :::
@@ -84,7 +84,7 @@ pipx install "jupyter-book>=2.0.0a0"
 Never heard of `uv`? See [the documentation][uv] for more.
 
 ```shell:
-uv add "jupyter-book>=2.0.0a0"
+uv add "jupyter-book"
 ```
 
 :::
@@ -93,13 +93,13 @@ uv add "jupyter-book>=2.0.0a0"
 :header: Install with [`pixi`][pixi] 🔥
 
 ```{warning}
-Jupyter Book 2 is not yet released on `conda-forge`. Stay tuned!
+Jupyter Book is not yet released on `conda-forge`. Stay tuned!
 ```
 
 Never heard of `pixi`? See [the documentation][pixi] for more.
 
 ```shell:
-pixi add "jupyter-book>=2"
+pixi add "jupyter-book"
 ```
 
 :::
@@ -110,7 +110,7 @@ pixi add "jupyter-book>=2"
 Never heard of `npm`? See [the documentation][npm] for more.
 
 ```shell:
-npm install -g "jupyter-book@>=2.0.0-a0"
+npm install -g "jupyter-book"
 ```
 
 :::
