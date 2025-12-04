@@ -21,7 +21,7 @@ project:
     - src/directives.mjs
     - src/admonition.mjs
     # The issue tables plugin is what we use for the roadmap and feature voting pages
-    - https://github.com/jupyter-book/myst-plugins/releases/download/github-issue-table@2025-12-02/index.mjs
+    - https://github.com/jupyter-book/myst-plugins/releases/download/github-issue-table@2025-12-03/index.mjs
   github: https://github.com/jupyter-book/jupyter-book
   toc:
     - file: index.md
