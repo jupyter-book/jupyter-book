@@ -3,7 +3,7 @@
 We use a GitHub Project board to track our team's short- and long-term priorities[^1]. This [Priorities View](https://github.com/orgs/jupyter-book/projects/1/views/7) has issues we're actively interested in resolving, and this [Roadmap view](https://github.com/orgs/jupyter-book/projects/1/views/1) has a longer-term vision for major milestones of the project.
 
 ```{issue-table} https://github.com/orgs/jupyter-book/projects/1/views/7
-:columns: title, Team Priority, reactions, updated
+:columns: title, Team Priority, linked_prs, reactions, updated
 :sort:Team Priority-asc,reactions-desc
 :limit:1000
 :date-format: relative
