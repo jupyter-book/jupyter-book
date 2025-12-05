@@ -1,6 +1,7 @@
 from pathlib import Path
 import yaml
 import html
+import random
 
 SRC = Path("gallery.yml")
 DST = Path("_build/temp/gallery.txt")
@@ -10,6 +11,7 @@ def esc(t: str) -> str:
     return html.escape(t or "", quote=False)
 
 items = yaml.safe_load(SRC.read_text(encoding="utf-8"))
+random.shuffle(items)
 
 lines = []
 

@@ -19,13 +19,6 @@
   description: The Turing Way is an open science, open collaboration, and community-driven project. We involve and support a diverse community of contributors to make data science accessible, comprehensible and effective for everyone.
   tags: Open Science; Data; Documentation
 
-- name: Myst Official Documentation
-  website: https://mystmd.org/guide
-  repository: https://github.com/jupyter-book/mystmd
-  image: https://github.com/jupyter-book/workshop-template/blob/main/content/figures/logo.svg
-  description: MyST is an ecosystem of open-source, community-driven tools designed to revolutionize scientific communication. Our powerful authoring framework supports blogs, online books, scientific papers, reports and journals articles.
-  tags: MyST; Documentation;
-
 - name: Introducing Classical Mechanics & Special Relativity
   website: https://freekpols.github.io/Mechanica/
   repository: https://github.com/freekpols/Mechanica
