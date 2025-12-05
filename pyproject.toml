@@ -4,6 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "jupyter-book"
+description = "Create computational narratives that are reusable, reproducible, and interactive."
 
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -27,7 +28,7 @@ dependencies = [
   # Ensure that kernels are found out of the box
   # This is not required, but is a nice-to-have
   "jupyter-server",
-  # ipykernel is commonly used 
+  # ipykernel is commonly used
   # This is not required, but is a nice-to-have
   "ipykernel",
 ]
