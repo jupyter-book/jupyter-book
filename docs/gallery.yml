@@ -24,7 +24,7 @@
   repository: https://github.com/jupyter-book/mystmd
   image: https://github.com/jupyter-book/workshop-template/blob/main/content/figures/logo.svg
   description: MyST is an ecosystem of open-source, community-driven tools designed to revolutionize scientific communication. Our powerful authoring framework supports blogs, online books, scientific papers, reports and journals articles.
-  tags: MyST; Documentation; 
+  tags: MyST; Documentation;
 
 - name: Introducing Classical Mechanics & Special Relativity
   website: https://freekpols.github.io/Mechanica/
@@ -38,14 +38,14 @@
   repository: https://github.com/ProjectPythia
   image: https://raw.githubusercontent.com/ProjectPythia/pythia-config/main/logos/pythia_logo-white-rtext-blue.svg
   description: Project Pythia is the education working group for Pangeo and is an educational resource for the entire geoscience community. Together these initiatives are helping geoscientists make sense of huge volumes of numerical scientific data using tools that facilitate open, reproducible science, and building a community of practice around these goals.
-  tags: Geoscience; Education 
+  tags: Geoscience; Education
 
 - name: IRSA Tutorials
   website: https://caltech-ipac.github.io/irsa-tutorials/
   repository: https://github.com/Caltech-IPAC/irsa-tutorials/
   image: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVO9k5CiRBcwjV4SozhB2eVY3g21aYfcvSaA&s
   description: These tutorials demonstrate access methods and techniques for working with data served by the [NASA/IPAC Infrared Science Archive (IRSA)](https://irsa.ipac.caltech.edu/). They cover topics like querying IRSA, working with catalogs in Parquet format, visualizing with Firefly, and general other techniques.
-  tags:  Astronomy; Tutorials; Data access; NASA 
+  tags:  Astronomy; Tutorials; Data access; NASA
 
 - name: BDI 475 Introduction to Data Analytics Applications in Business
   website: https://bdi475.github.io/textbook/
@@ -67,3 +67,10 @@
   image: https://github.com/topocm/topocm_content/blob/master/logo_small.jpg
   description: "An extensive graduate course on topology in condensed matter physics"
   tags: quantum physics, condensed matter
+
+- name: "NumPy Tutorials"
+  website: https://numpy.org/numpy-tutorials/
+  repository: https://github.com/numpy/numpy-tutorials
+  image: https://raw.githubusercontent.com/numpy/numpy-tutorials/main/site/_static/numpylogo.svg
+  description: "NumPy tutorials & educational content in notebook format"
+  tags: NumPy; Tutorials
