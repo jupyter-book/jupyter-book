@@ -74,3 +74,10 @@
   image: https://raw.githubusercontent.com/numpy/numpy-tutorials/main/site/_static/numpylogo.svg
   description: "NumPy tutorials & educational content in notebook format"
   tags: NumPy; Tutorials
+
+- name: "NASA Fornax Astrophysics Science Platform Demo Notebooks"
+  website: https://nasa-fornax.github.io/fornax-demo-notebooks
+  repository: https://github.com/nasa-fornax/fornax-demo-notebooks
+  image: https://raw.githubusercontent.com/nasa-fornax/fornax-demo-notebooks/main/_static/fornax_logo.png
+  description: "The Fornax Initiative is a NASA Astrophysics Archives project to collaboratively among the three archives HEASARC, IRSA, and MAST, create cloud systems, cloud software, and cloud standards for the astronomical community. This repo houses tutorial notebooks of fully worked science use cases for all users. Common goals of the notebooks are the usage of archival data from all NASA archives, cross-archive work, big data, and computationally intensive science. "
+  tags: Astronomy; Tutorials; Data access; NASA
