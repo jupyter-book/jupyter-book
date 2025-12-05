@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "jupyter-book"
-description = "Tool for building publication-quality books and documents from computational materials"
+description = "Create computational narratives that are reusable, reproducible, and interactive."
 
 classifiers = [
     "Development Status :: 3 - Alpha",
