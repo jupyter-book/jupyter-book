@@ -10,6 +10,7 @@ def esc(t: str) -> str:
     return html.escape(t or "", quote=False)
 
 items = yaml.safe_load(SRC.read_text(encoding="utf-8"))
+random.shuffle(items)
 
 lines = []
 
