@@ -81,3 +81,10 @@
   image: https://raw.githubusercontent.com/nasa-fornax/fornax-demo-notebooks/main/_static/fornax_logo.png
   description: "The Fornax Initiative is a NASA Astrophysics Archives project to collaboratively among the three archives HEASARC, IRSA, and MAST, create cloud systems, cloud software, and cloud standards for the astronomical community. This repo houses tutorial notebooks of fully worked science use cases for all users. Common goals of the notebooks are the usage of archival data from all NASA archives, cross-archive work, big data, and computationally intensive science. "
   tags: Astronomy; Tutorials; Data access; NASA
+
+- name: "NASA Fornax Astrophysics Science Platform Documentation"
+  website: https://docs.fornax.sciencecloud.nasa.gov/
+  repository: https://github.com/nasa-fornax/fornax-documentation
+  image: https://raw.githubusercontent.com/nasa-fornax/fornax-documentation/main/_static/fornax_logo.png
+  description: "The Fornax Initiative is a NASA Astrophysics Archives project to collaboratively among the three archives HEASARC, IRSA, and MAST, create cloud systems, cloud software, and cloud standards for the astronomical community. This repository holds the source for the user documentation and therefore is an example of a non-notebook based narrative documentation project. "
+  tags: Documentation; NASA
