@@ -1,6 +1,7 @@
 from pathlib import Path
 import yaml
 import html
+import random
 
 SRC = Path("gallery.yml")
 DST = Path("_build/temp/gallery.txt")
