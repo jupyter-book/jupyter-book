@@ -21,7 +21,7 @@ classifiers = [
 ]
 
 requires-python = ">=3.9"
-dynamic = ["version", "description", "authors", "urls", "keywords", "license"]
+dynamic = ["version", "authors", "urls", "keywords", "license"]
 dependencies = [
   # Ensure that `jupyter book` works`
   "jupyter-core",
