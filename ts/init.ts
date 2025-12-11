@@ -7,6 +7,7 @@ import {
   makeWriteTOCOption,
   makeGithubPagesOption,
   makeGithubCurvenoteOption,
+  makeReadTheDocsOption,
 } from "./options.js";
 
 export function makeInitCLI(program: Command) {
@@ -25,6 +26,7 @@ export function makeInitCLI(program: Command) {
     .addOption(makeWriteTOCOption())
     .addOption(makeGithubPagesOption())
     .addOption(makeGithubCurvenoteOption())
+    .addOption(makeReadTheDocsOption())
     .action(clirun(Session, init, program));
   return command;
 }
