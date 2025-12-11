@@ -33,7 +33,7 @@
   description: Project Pythia is the education working group for Pangeo and is an educational resource for the entire geoscience community. Together these initiatives are helping geoscientists make sense of huge volumes of numerical scientific data using tools that facilitate open, reproducible science, and building a community of practice around these goals.
   tags: Geoscience; Education
 
-- name: IRSA Tutorials
+- name: NASA/IPAC Infrared Science Archive Python Notebook Tutorials for Astronomy
   website: https://caltech-ipac.github.io/irsa-tutorials/
   repository: https://github.com/Caltech-IPAC/irsa-tutorials/
   image: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVO9k5CiRBcwjV4SozhB2eVY3g21aYfcvSaA&s
