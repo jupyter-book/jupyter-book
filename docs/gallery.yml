@@ -81,3 +81,10 @@
   image: https://raw.githubusercontent.com/nasa-fornax/fornax-documentation/main/_static/fornax_logo.png
   description: "The Fornax Initiative is a NASA Astrophysics Archives project to collaboratively among the three archives HEASARC, IRSA, and MAST, create cloud systems, cloud software, and cloud standards for the astronomical community. This repository holds the source for the user documentation and therefore is an example of a non-notebook based narrative documentation project. "
   tags: Documentation; NASA
+
+- name: Probability in Practice - A Hands-On Journey with Python
+  website: https://snowch.github.io/learn_probability/
+  repository: https://github.com/snowch/learn_probability
+  image: https://github.com/snowch/learn_probability/blob/main/logo.png
+  description: An interactive textbook exploring probability theory through practical Python programming. Covers foundations, conditional probability, random variables, distributions, limit theorems, and advanced topics like Bayesian inference and Markov chains. Designed for students, data scientists, and developers using Jupyter notebooks with hands-on examples and exercises.
+  tags: Probability; Statistics; Python; Education; Data Science; Jupyter
