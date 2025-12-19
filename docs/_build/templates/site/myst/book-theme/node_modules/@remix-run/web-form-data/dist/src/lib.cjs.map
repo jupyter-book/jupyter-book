@@ -1,0 +1,1 @@
+{"version":3,"file":"lib.cjs","sources":["../../src/lib.js"],"sourcesContent":["export const { FormData } = globalThis\n"],"names":[],"mappings":";;;;AAAY,MAAC,EAAE,QAAQ,EAAE,GAAG;;;;"}

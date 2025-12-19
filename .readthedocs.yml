@@ -1,0 +1,16 @@
+# THIS IS DEPLOYED FROM jupyter-book/jupyter-book/blog
+# We do not use ReadTheDocs directly on the `jupyter-book/blog` repository.
+# It is pushed to the `blog` branch with a GitHub Worfklow and served from there.
+# This lets us publish the blog at jupyterbook.org/blog
+version: 2
+
+build:
+  os: ubuntu-22.04
+  tools:
+    python: "3.12"
+    nodejs: "20"
+  commands:
+    - pip install nox
+    - mkdir -p $READTHEDOCS_OUTPUT/html/
+    - BASE_URL="/$READTHEDOCS_VERSION" nox -s docs
+    - cp -a docs/_build/html/. "$READTHEDOCS_OUTPUT/html" && rm -r docs/_build

@@ -1,0 +1,1 @@
+import{c as n}from"/myst_assets_folder/_shared/chunk-OZE3FFNP.js";var a=n((t,e)=>{function s(r){return{name:"Clojure REPL",contains:[{className:"meta",begin:/^([\w.-]+|\s*#_)?=>/,starts:{end:/$/,subLanguage:"clojure"}}]}}e.exports=s});export default a();

@@ -1,0 +1,1 @@
+import{c as s}from"/myst_assets_folder/_shared/chunk-OZE3FFNP.js";var t=s((i,n)=>{function a(e){return{aliases:["pycon"],contains:[{className:"meta",starts:{end:/ |$/,starts:{end:"$",subLanguage:"python"}},variants:[{begin:/^>>>(?=[ ]|$)/},{begin:/^\.\.\.(?=[ ]|$)/}]}]}}n.exports=a});export default t();

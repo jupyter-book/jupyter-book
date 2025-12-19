@@ -1,0 +1,5 @@
+# https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Allow: /
+Sitemap: http://localhost:3000/sitemap.xml

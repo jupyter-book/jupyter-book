@@ -1,0 +1,49 @@
+version: 1
+project:
+  contributors:
+    - id: jb-team
+      name: The Jupyter Book Team
+      url: https://compass.jupyterbook.org/team
+    - id: agoose77
+      name: Angus Hollands
+      orcid: 0000-0003-0788-3814
+      affiliations:
+        - Jupyter Book
+        - 2i2c
+    - id: choldgraf
+      name: Chris Holdgraf
+      orcid: 0000-0002-2391-0678
+      website: https://chrisholdgraf.com
+      bluesky: https://bsky.app/profile/choldgraf.com
+      linkedin: https://www.linkedin.com/in/chrisholdgraf/
+      affiliations:
+        - Jupyter Book
+        - 2i2c
+    - id: rowanc1
+      name: Rowan Cockett
+      orcid: 0000-0002-7859-8394
+      affiliations:
+        - Jupyter Book
+        - Curvenote
+    - id: fwkoch
+      name: Franklin Koch
+      orcid: 0000-0002-6393-7058
+      affiliations:
+        - Jupyter Book
+        - Curvenote
+    - id: stevejpurves
+      name: Steve Purves
+      orcid: 0000-0002-0760-5497
+      affiliations:
+        - Jupyter Book
+        - Curvenote
+  affiliations:
+    - id: curvenote
+      name: Curvenote
+      url: https://curvenote.com
+    - id: 2i2c
+      name: 2i2c
+      url: https://2i2c.org
+    - id: jupyter-book
+      name: Jupyter Book
+      url: https://compass.jupyterbook.org/team/

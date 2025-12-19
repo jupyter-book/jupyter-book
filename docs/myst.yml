@@ -1,93 +1,57 @@
 # See docs at: https://mystmd.org/guide/frontmatter
 version: 1
 extends:
-  - ./_site/site.yml
+  - https://raw.githubusercontent.com/jupyter-book/jupyter-book/refs/heads/main/docs/_site/site.yml
+  - ./authors.yml
 project:
-  # title:
-  # description:
-  # keywords: []
-  # authors: []
+  title: "Jupyter Book: Blog"
+  description: Updates from the Jupyter Book subproject.
+  plugins:
+    # For lists of blog posts and releases
+    - https://github.com/jupyter-book/blog-plugin/releases/download/v2.1.0/plugin.mjs
+    # To make issue links render w/ titles
+    - https://github.com/jupyter-book/myst-plugins/releases/download/github-issue-link%402025-12-01/index.mjs
+    # To auto-link github author names
+    - https://github.com/jupyter-book/myst-plugins/releases/download/github-handle-links%402025-12-01/index.mjs
+    # To turn `:emoji-shortcodes:` into emojis
+    - https://raw.githubusercontent.com/jupyter-book/myst-plugins/main/plugins/emoji-shortcodes/emoji-shortcodes.mjs
+  keywords:
+    - Jupyter
+    - JupyterBook
+    - MyST Markdown
   references:
+    jpy-gov: https://jupyter.org/governance/
     guide: https://mystmd.org/guide
     compass: https://compass.jupyterbook.org
-    issues: https://jupyter.org/github-data
-  abbreviations:
-    MyST: Markedly Structured Text
-    CLI: Command-Line Interface
-    TOC: Table of Contents
-  plugins:
-    - src/xref.mjs
-    - src/landing-page.mjs
-    - src/directives.mjs
-    - src/admonition.mjs
-    # The issue tables plugin is what we use for the roadmap and feature voting pages
-    - https://github.com/jupyter-book/myst-plugins/releases/download/github-issue-table@2025-12-07/index.mjs
-  github: https://github.com/jupyter-book/jupyter-book
+    jb: https://jupyterbook.org/stable
+    jb2-paper: https://proceedings.scipy.org/articles/hwcj9957
+  github: https://github.com/jupyter-book/blog
+  # To autogenerate a Table of Contents, run "myst init --write-toc"
+  license: CC0-1.0
+  exclude:
+    - posts/releases/README.md
   toc:
     - file: index.md
-    - title: Get Started
-      file: get-started.md
+    - file: releases.md
       children:
-        - file: get-started/install.md
-        - file: get-started/init.md
-        - file: get-started/create-content.md
-        - file: get-started/build-websites.md
-        - file: get-started/export-pdfs.md
-        - file: get-started/cross-reference.md
-        - file: get-started/publish.md
-    - title: Author Content
-      file: authoring.md
+        - pattern: release/*.md
+    - title: Blog posts
       children:
-        - file: authoring/mystmd.md
-        - file: authoring/math.md
-        - file: authoring/authorship.md
-        - file: authoring/roles-and-directives.md
-        - file: authoring/table-of-contents.md
-        - file: authoring/file-types.md
-    - title: Build & Publish
-      file: build-and-publish/index.md
-      children:
-        - file: build-and-publish/website.md
-        - file: build-and-publish/export.md
-    - title: Execute & Compute
-      file: execution.md
-      children:
-        - file: execution/execution.md
-        - file: execution/jupyterlab.md
-        - file: execution/generate-myst.md
-    - title: Extend with Plugins
-      file: plugins.md
-      children:
-        - file: plugins/plugins.md
-        - file: plugins/directives-and-roles.md
-        - file: plugins/debug.md
-        - file: plugins/ast.md
-        - file: plugins/dependencies.md
-    - title: Community
-      file: community.md
-      children:
-        - file: community/help.md
-        - file: community/vote.md
-        - file: community/roadmap.md
-        - file: community/team.md
-        - file: community/ecosystem.md
-        - file: community/history.md
-    - title: Contributing
-      file: contribute.md
-      children:
-        - file: contribute/docs.md
-        - file: contribute/code.md
-    - title: Resources
-      children:
-        - file: cite.md
-        - file: resources/faq.md
-        - file: resources/upgrade.md
-        - file: resources/downgrade.md
-        - file: resources/glossary.md
-    - file: gallery.md
+      - title: "2025"
+        children:
+          - pattern: posts/2025-*.md
+      - title: "2024"
+        children:
+          - pattern: posts/2024-*.md
 site:
-  options:
-    style: media/custom.css
-    folders: true
   parts:
-    footer: _site/footer.md
+    primary_sidebar_footer: |
+      Made with [Jupyter Book](https://jupyterbook.org) and the [MyST Engine](https://mystmd.org).
+
+      ```{image} https://raw.githubusercontent.com/jupyter-book/jupyter-book/refs/heads/main/docs/media/images/logo.svg
+      :link: https://jupyterbook.org
+      :width: 50%
+      ```
+  options:
+    logo_text: Blog
+    folders: true

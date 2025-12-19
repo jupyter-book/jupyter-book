@@ -1,0 +1,1 @@
+import{c as e}from"/myst_assets_folder/_shared/chunk-OZE3FFNP.js";var i=e((r,a)=>{a.exports=s;s.displayName="hsts";s.aliases=[];function s(t){t.languages.hsts={directive:{pattern:/\b(?:includeSubDomains|max-age|preload)(?=[\s;=]|$)/i,alias:"property"},operator:/=/,punctuation:/;/}}});export{i as a};

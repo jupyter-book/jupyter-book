@@ -1,0 +1,24 @@
+'use strict';
+
+export class FetchBaseError extends Error {
+	/**
+	 * @param {string} message 
+	 * @param {string} type 
+	 */
+	constructor(message, type) {
+		super(message);
+		// Hide custom error implementation details from end-users
+		Error.captureStackTrace(this, this.constructor);
+
+		this.type = type;
+	}
+
+	get name() {
+		return this.constructor.name;
+	}
+
+	get [Symbol.toStringTag]() {
+		return this.constructor.name;
+	}
+}
+

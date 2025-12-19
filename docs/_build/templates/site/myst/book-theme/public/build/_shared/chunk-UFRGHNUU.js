@@ -1,0 +1,1 @@
+import{c as a}from"/myst_assets_folder/_shared/chunk-OZE3FFNP.js";var n=a((o,t)=>{t.exports=e;e.displayName="gcode";e.aliases=[];function e(r){r.languages.gcode={comment:/;.*|\B\(.*?\)\B/,string:{pattern:/"(?:""|[^"])*"/,greedy:!0},keyword:/\b[GM]\d+(?:\.\d+)?\b/,property:/\b[A-Z]/,checksum:{pattern:/(\*)\d+/,lookbehind:!0,alias:"number"},punctuation:/[:*]/}}});export{n as a};
