@@ -44,13 +44,11 @@ def main():
     # Configuration
     org = "jupyter-book"
     releases_dir = Path("docs/release")
-    temp_dir = Path("_build/release_notes")
 
     # Clean and ensure directories exist
     if releases_dir.exists():
         shutil.rmtree(releases_dir)
     releases_dir.mkdir(parents=True, exist_ok=True)
-    temp_dir.mkdir(parents=True, exist_ok=True)
 
     print(f"Fetching all repositories from {org} organization...")
 

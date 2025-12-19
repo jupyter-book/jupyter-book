@@ -1,0 +1,25 @@
+version: 1
+site:
+  template: book-theme
+  nav:
+  - title: Docs
+    url: https://jupyterbook.org/stable/get-started
+  - title: Community
+    url: https://jupyterbook.org/stable/community
+  - title: Ecosystem
+    url: https://jupyterbook.org/stable/community/ecosystem
+  - title: Contribute
+    url: https://jupyterbook.org/stable/contribute
+  - title: Blog
+    url: https://blog.jupyterbook.org
+  - title: Help
+    children:
+    - title: "Ask a question \u2753"
+      url: https://discord.mystmd.org
+    - title: "Report a bug \U0001F41B"
+      url: https://github.com/jupyter-book/jupyter-book/issues
+  options:
+    logo_url: /
+    favicon: https://raw.githubusercontent.com/jupyter-book/jupyter-book/refs/heads/main/docs/media/images/favicon.ico
+    logo: https://raw.githubusercontent.com/jupyter-book/jupyter-book/refs/heads/main/docs/media/images/logo.svg
+    logo_dark: https://raw.githubusercontent.com/jupyter-book/jupyter-book/refs/heads/main/docs/media/images/logo-dark.svg

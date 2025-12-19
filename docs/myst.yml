@@ -1,7 +1,8 @@
 # See docs at: https://mystmd.org/guide/frontmatter
 version: 1
 extends:
-  - https://raw.githubusercontent.com/jupyter-book/jupyter-book/refs/heads/main/docs/_site/site.yml
+  # site.yml is auto-downloaded and adapted from jupyter-book/jupyter-book via src/download_nav_items.py
+  - ./site.yml
   - ./authors.yml
 project:
   title: "Jupyter Book: Blog"
