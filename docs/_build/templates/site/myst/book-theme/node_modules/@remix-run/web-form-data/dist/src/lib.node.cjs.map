@@ -1,1 +1,0 @@
-{"version":3,"file":"lib.node.cjs","sources":["../../src/lib.node.js"],"sourcesContent":["// @ts-check\n\"use strict\"\n\nimport * as polyfill from \"./form-data.js\"\n\nexport const FormData = polyfill.FormData\n"],"names":["polyfill.FormData"],"mappings":";;;;;;AAAA;AAIA;AACY,MAAC,QAAQ,GAAGA;;;;"}
