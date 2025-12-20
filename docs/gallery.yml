@@ -88,3 +88,10 @@
   image: https://github.com/snowch/learn_probability/blob/main/logo.png
   description: An interactive textbook exploring probability theory through practical Python programming. Covers foundations, conditional probability, random variables, distributions, limit theorems, and advanced topics like Bayesian inference and Markov chains. Designed for students, data scientists, and developers using Jupyter notebooks with hands-on examples and exercises.
   tags: Probability; Statistics; Python; Education; Data Science; Jupyter
+
+- name: Protein–Peptide Molecular Mimicry Study
+  website: https://singh-sanju.github.io/Protein_peptide_mimicry_study/
+  repository: https://github.com/singh-sanju/Protein_peptide_mimicry_study
+  image: https://github.com/singh-sanju/Protein_peptide_mimicry_study/blob/main/content/figures/logo.png
+  description: A Jupyter Book presenting an exploratory and educational computational workflow to study protein–peptide molecular mimicry in the HLA-B27 protein, which is associated with autoimmune diseases such as ankylosing spondylitis. The book covers peptide screening, docking, molecular dynamics simulations, trajectory correction, and post-MD analysis, with an emphasis on methodological understanding and hands-on learning.
+  tags: Computational Chemistry; Molecular Dynamics; Bioinformatics; Educational Resource; Computational Biology
