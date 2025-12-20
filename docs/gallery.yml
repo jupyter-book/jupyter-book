@@ -68,18 +68,18 @@
   description: "NumPy tutorials & educational content in notebook format"
   tags: NumPy; Tutorials
 
-- name: "NASA Fornax Astrophysics Science Platform Demo Notebooks"
+- name: "NASA Astrophysics Fornax Science Platform Notebook Tutorials"
   website: https://nasa-fornax.github.io/fornax-demo-notebooks
   repository: https://github.com/nasa-fornax/fornax-demo-notebooks
   image: https://raw.githubusercontent.com/nasa-fornax/fornax-demo-notebooks/main/_static/fornax_logo.png
-  description: "The Fornax Initiative is a NASA Astrophysics Archives project to collaboratively among the three archives HEASARC, IRSA, and MAST, create cloud systems, cloud software, and cloud standards for the astronomical community. This repo houses tutorial notebooks of fully worked science use cases for all users. Common goals of the notebooks are the usage of archival data from all NASA archives, cross-archive work, big data, and computationally intensive science. "
+  description: "The Fornax Initiative is a NASA Astrophysics project developed by the HEASARC, IRSA, and MAST archives to bring data, software, and computing together on the cloud so that researchers can focus on science. This repository contains Python notebook tutorials demonstrating a range of topics, including data access on-premises and on the cloud, cross-archive analysis, big data workflows, and computationally intensive science."
   tags: Astronomy; Tutorials; Data access; NASA
 
-- name: "NASA Fornax Astrophysics Science Platform Documentation"
+- name: "NASA Astrophysics Fornax Science Platform Documentation"
   website: https://docs.fornax.sciencecloud.nasa.gov/
   repository: https://github.com/nasa-fornax/fornax-documentation
   image: https://raw.githubusercontent.com/nasa-fornax/fornax-documentation/main/_static/fornax_logo.png
-  description: "The Fornax Initiative is a NASA Astrophysics Archives project to collaboratively among the three archives HEASARC, IRSA, and MAST, create cloud systems, cloud software, and cloud standards for the astronomical community. This repository holds the source for the user documentation and therefore is an example of a non-notebook based narrative documentation project. "
+  description: "The Fornax Initiative is a NASA Astrophysics project developed by the HEASARC, IRSA, and MAST archives to bring data, software, and computing together on the cloud so that researchers can focus on science. This repository holds the source for the user documentation and therefore is an example of a non-notebook based narrative documentation project."
   tags: Documentation; NASA
 
 - name: Probability in Practice - A Hands-On Journey with Python
