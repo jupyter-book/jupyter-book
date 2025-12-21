@@ -66,3 +66,7 @@ body {
     font-weight: bold;
   }
 }
+
+#skip-to-frontmatter {
+  margin-bottom: 0;
+}
