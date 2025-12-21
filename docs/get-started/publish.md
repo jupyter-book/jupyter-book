@@ -3,6 +3,7 @@ title: Publishing to the web
 short_title: Publish a website
 subtitle: Deploy your Jupyter Book to GitHub Pages, Curvenote, Netlify, and many other services.
 subject: Quickstart tutorial
+updated: December 21, 2025
 ---
 
 :::{important} Objective

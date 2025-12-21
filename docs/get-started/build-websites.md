@@ -2,6 +2,7 @@
 title: Build a website locally
 subtitle: Create beautiful websites from your MyST project.
 subject: Quickstart tutorial
+updated: December 21, 2025
 ---
 
 :::{important} Objective

@@ -3,6 +3,7 @@ title: Install Jupyter Book
 subtitle: Install the Jupyter Book tools from PyPI, npm, or conda-forge.
 short_title: Install Jupyter Book
 subject: Quickstart tutorial
+updated: December 21, 2025
 ---
 
 :::{seealso} Never used Jupyter Book before?
