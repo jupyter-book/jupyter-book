@@ -44,11 +44,11 @@ project:
         - file: authoring/roles-and-directives.md
         - file: authoring/table-of-contents.md
         - file: authoring/file-types.md
-    - title: Build & Publish
-      file: build-and-publish/index.md
-      children:
-        - file: build-and-publish/website.md
-        - file: build-and-publish/export.md
+    # - title: Build & Publish          # redundant with what is in get started 
+    #   file: build-and-publish/index.md
+    #   children:
+        # - file: build-and-publish/website.md  
+        # - file: build-and-publish/export.md
     - title: Execute & Compute
       file: execution.md
       children:

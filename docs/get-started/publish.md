@@ -52,3 +52,9 @@ In order for GitHub to use this configuration, you must follow the "Next Steps" 
 2. Add the generated `.github/workflows/XXX.yml` (highlighted in [](#code:gh-pages)) to your list of tracked files (e.g. with `git add .github/workflows/XXX.yml`).
 3. Commit the changes.
 4. Push them to GitHub.
+
+## `BASE_URL` Configuration for GitHub Pages
+The MyST CLI needs to know the destination (base URL) of your site during build time. If you setup deployment to GitHub Pages using the `myst init --gh-pages` command, then _this is handled automatically for you_. Otherwise, if you deploy your website from a repository that's not the default GitHub Pages repository (i.e., not called `<username>.github.io`), you likely need to define a `BASE_URL` that includes the repository name.[^except-custom-domains] 
+[^except-custom-domains]: If you're using a custom domain, you may not need to set `BASE_URL` if the site is served from the base domain (e.g.: `mydomain.org`) without a sub-folder (e.g., `mydomain.org/mydocs/`).
+
+See for more information on how to set the `BASE_URL` the documentation on [Custom domains and the base URL](xref:guide/deployment#deploy-base-url).
