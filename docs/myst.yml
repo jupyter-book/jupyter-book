@@ -32,9 +32,10 @@ project:
         - file: get-started/init.md
         - file: get-started/create-content.md
         - file: get-started/build-websites.md
+        - file: get-started/publish.md
         - file: get-started/export-pdfs.md
         - file: get-started/cross-reference.md
-        - file: get-started/publish.md
+        
     - title: Author Content
       file: authoring.md
       children:

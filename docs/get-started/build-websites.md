@@ -1,5 +1,5 @@
 ---
-title: Build a website
+title: Build a website locally
 subtitle: Create beautiful websites from your MyST project.
 subject: Quickstart tutorial
 ---
