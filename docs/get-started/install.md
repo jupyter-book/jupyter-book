@@ -13,6 +13,12 @@ Jupyter Book is a very thin wrapper around the MyST Document Engine: it shares t
 If you're new to the Jupyter Book project, consider [directly using MyST-MD](https://mystmd.org/guide/quickstart).
 :::
 
+:::{note} Skills and prerequisites
+**Skills**: It is helpful if you have some familiarity with using the command line, as well as using a text editor and/or JupyterLab.
+
+**Tools**: You'll need a code and notebook editor ([VSCode](https://code.visualstudio.com/) is great, and we recommend [Jupyter Lab](https://jupyter.org/install) for notebooks) as well as access to a CLI.
+:::
+
 Jupyter Book is available on the PyPI, conda-forge, and npm package repositories as `jupyter-book>=2`. How you install Jupyter Book depends upon your choice of environment manager.
 
 ::::{hint} Should I use `pip` or ...?

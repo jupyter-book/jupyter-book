@@ -34,7 +34,7 @@ project:
         - file: get-started/build-websites.md
         - file: get-started/publish.md
         - file: get-started/export-pdfs.md
-        - file: get-started/cross-reference.md
+        
         
     - title: Author Content
       file: authoring.md
@@ -44,6 +44,7 @@ project:
         - file: authoring/authorship.md
         - file: authoring/roles-and-directives.md
         - file: authoring/table-of-contents.md
+        - file: get-started/cross-reference.md
         - file: authoring/file-types.md
     # - title: Build & Publish          # redundant with what is in get started 
     #   file: build-and-publish/index.md

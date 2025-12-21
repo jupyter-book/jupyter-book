@@ -5,13 +5,7 @@ subject: Quickstart tutorial
 ---
 
 :::{important} Objective
-The goal of this tutorial is to explore the ways in which the MyST Document Engine can be used to create rich websites. The tutorial will help you up and running with a Jupyter Book on your local computer, where the build of an online website is covered later.
-:::
-
-:::{note} Skills and prerequisites
-**Skills**: It is helpful if you have some familiarity with using the command line, as well as using a text editor and/or JupyterLab.
-
-**Tools**: You'll need a code and notebook editor ([VSCode](https://code.visualstudio.com/) is great, and we recommend [Jupyter Lab](https://jupyter.org/install) for notebooks) as well as access to a CLI.
+The goal of this tutorial is to explore the ways in which the MyST Document Engine can be used to create rich websites. The tutorial will help you up and running with a Jupyter Book on your local computer first. The deployment of an online website is covered later.
 :::
 
 ## Running `jupyter book start`
