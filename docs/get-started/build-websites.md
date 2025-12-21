@@ -1,5 +1,5 @@
 ---
-title: Build a website locally
+title: Build a website
 subtitle: Create beautiful websites from your MyST project.
 subject: Quickstart tutorial
 updated: December 21, 2025
@@ -95,5 +95,5 @@ When strict mode is enabled, the build will fail with a non-zero exit code if an
 
 
 ## Export static documents
-You can export Jupyter Book content to many kinds of static files, like PDF.
+You can export Jupyter Book content to many kinds of static files, like [PDF](./export-pdfs.md).
 See [](xref:guide/quickstart-static-exports) for a full tutorial.
