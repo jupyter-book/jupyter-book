@@ -59,3 +59,30 @@ The MyST CLI needs to know the destination (base URL) of your site during build 
 [^except-custom-domains]: If you're using a custom domain, you may not need to set `BASE_URL` if the site is served from the base domain (e.g.: `mydomain.org`) without a sub-folder (e.g., `mydomain.org/mydocs/`).
 
 See for more information on how to set the `BASE_URL` the documentation on [Custom domains and the base URL](xref:guide/deployment#deploy-base-url).
+
+## Check missing references and links with strict mode
+
+By default, Jupyter Book will build your site even if there are warnings like broken internal references or missing files.
+
+Use the `--strict` flag to check and raise warnings for these, and to treat warnings as errors, causing the build to fail if issues are detected. This is particularly useful for:
+
+- **Catching broken cross-references** - Internal links that don't resolve to actual targets
+- **Detecting missing files** - Files referenced in your TOC or includes that don't exist
+- **Validating directives** - Ensuring all MyST directives have valid syntax and required parameters
+- **CI/CD pipelines** - Preventing broken content from being deployed
+
+### Using strict mode
+
+To build your site with strict checking:
+
+```bash
+$ jupyter book build --html --strict
+```
+
+Or for static exports:
+
+```bash
+$ jupyter book build --pdf --strict
+```
+
+When strict mode is enabled, the build will fail with a non-zero exit code if any warnings are present, making it easy to catch issues in automated workflows.

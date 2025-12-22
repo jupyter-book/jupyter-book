@@ -3,6 +3,7 @@ title: Writing in MyST Markdown
 short_title: Add new content
 subtitle: Use MyST Markdown to author rich narrative and integrate computation.
 subject: Quickstart tutorial
+updated: December 22, 2025
 ---
 
 :::{important} Objective
@@ -87,7 +88,7 @@ I'm a nice sunset!
 :::
 ```
 
-The MyST Document Engine defines a large number of pre-existing roles and directives, such as the <xref:guide/directives#directive-figure>, which are defined in the MyST guide (see <xref:guide/roles> and <xref:guide/directives>). The MyST guide defines a helpful overview of MyST Markdown syntax in <xref:guide/syntax-overview>
+The MyST Document Engine defines a large number of pre-existing roles and directives, such as the <xref:guide/directives#directive-figure>, which are defined in the MyST guide (see <xref:guide/roles> and <xref:guide/directives>). The MyST guide defines a helpful overview of MyST Markdown syntax in <xref:guide/syntax-overview>. A quick reference can be found in this <xref:workshop/cheat-sheet>.
 
 Having explored the supported syntax for writing MyST, let's create a simple `intro.md` file that showcases these features!
 
