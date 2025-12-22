@@ -2,10 +2,11 @@
 title: Build a website
 subtitle: Create beautiful websites from your MyST project.
 subject: Quickstart tutorial
+updated: December 21, 2025
 ---
 
 :::{important} Objective
-The goal of this tutorial is to explore the ways in which the MyST Document Engine can be used to create rich websites.
+The goal of this tutorial is to explore the ways in which the MyST Document Engine can be used to create rich websites. The tutorial will help you up and running with a Jupyter Book on your local computer first. The deployment of an online website is covered later.
 :::
 
 ## Running `jupyter book start`
@@ -63,3 +64,7 @@ site:
 ```
 
 The entries within a table of contents can be nested under titles and/or other pages. See [the MyST-MD guide](xref:guide/table-of-contents#nesting-pages-and-dropdowns) for more.
+
+
+
+

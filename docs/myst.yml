@@ -11,6 +11,7 @@ project:
     guide: https://mystmd.org/guide
     compass: https://compass.jupyterbook.org
     issues: https://jupyter.org/github-data
+    workshop: https://jupyter-book.github.io/workshop-template
   abbreviations:
     MyST: Markedly Structured Text
     CLI: Command-Line Interface
@@ -22,6 +23,8 @@ project:
     - src/admonition.mjs
     # The issue tables plugin is what we use for the roadmap and feature voting pages
     - https://github.com/jupyter-book/myst-plugins/releases/download/github-issue-table@2025-12-07/index.mjs
+    - https://github.com/jupyter-book/myst-plugins/releases/download/updated-date-frontmatter/update-date-frontmatter.mjs
+    
   github: https://github.com/jupyter-book/jupyter-book
   toc:
     - file: index.md
@@ -32,9 +35,10 @@ project:
         - file: get-started/init.md
         - file: get-started/create-content.md
         - file: get-started/build-websites.md
-        - file: get-started/export-pdfs.md
-        - file: get-started/cross-reference.md
         - file: get-started/publish.md
+        - file: get-started/export-pdfs.md
+        
+        
     - title: Author Content
       file: authoring.md
       children:
@@ -43,12 +47,13 @@ project:
         - file: authoring/authorship.md
         - file: authoring/roles-and-directives.md
         - file: authoring/table-of-contents.md
+        - file: get-started/cross-reference.md
         - file: authoring/file-types.md
-    - title: Build & Publish
-      file: build-and-publish/index.md
-      children:
-        - file: build-and-publish/website.md
-        - file: build-and-publish/export.md
+    # - title: Build & Publish          
+    #   file: build-and-publish/index.md
+    #   children:
+        # - file: build-and-publish/website.md  
+        # - file: build-and-publish/export.md
     - title: Execute & Compute
       file: execution.md
       children:

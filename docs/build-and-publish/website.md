@@ -6,17 +6,11 @@ description: Get up and running with Jupyter Book for a simple website.
 ---
 
 :::{note} Topics to cover
-This quickstart tutorial will help you up and running with a Jupyter Book on your local computer 👩‍💻, covering the following topics:
+This quickstart tutorial  👩‍💻, covering the following topics:
 
 - Render your book as a website.
-- Publish with GitHub Actions.
   :::
 
-:::{note} Skills and prerequisites
-**Skills**: It is helpful if you have some familiarity with using the command line, as well as using a text editor and/or JupyterLab.
-
-**Tools**: You'll need a code and notebook editor ([VSCode](https://code.visualstudio.com/) is great, and we recommend [Jupyter Lab](https://jupyter.org/install) for notebooks) as well as access to a CLI.
-:::
 
 (lookout-for-tutorial-actions)=
 
@@ -227,30 +221,3 @@ The site title will control site meta tags, and the browser-tab title, which is 
 :::{seealso} See all Frontmatter options
 To see all of the options see [](xref:guide/frontmatter), which includes which fields can be overridden by files in the project.
 :::
-
-## Check missing references and links with strict mode
-
-By default, Jupyter Book will build your site even if there are warnings like broken internal references or missing files.
-
-Use the `--strict` flag to check and raise warnings for these, and to treat warnings as errors, causing the build to fail if issues are detected. This is particularly useful for:
-
-- **Catching broken cross-references** - Internal links that don't resolve to actual targets
-- **Detecting missing files** - Files referenced in your TOC or includes that don't exist
-- **Validating directives** - Ensuring all MyST directives have valid syntax and required parameters
-- **CI/CD pipelines** - Preventing broken content from being deployed
-
-### Using strict mode
-
-To build your site with strict checking:
-
-```bash
-$ jupyter book build --html --strict
-```
-
-Or for static exports:
-
-```bash
-$ jupyter book build --pdf --strict
-```
-
-When strict mode is enabled, the build will fail with a non-zero exit code if any warnings are present, making it easy to catch issues in automated workflows.

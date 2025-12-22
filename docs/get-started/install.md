@@ -3,6 +3,7 @@ title: Install Jupyter Book
 subtitle: Install the Jupyter Book tools from PyPI, npm, or conda-forge.
 short_title: Install Jupyter Book
 subject: Quickstart tutorial
+updated: December 21, 2025
 ---
 
 :::{seealso} Never used Jupyter Book before?
@@ -11,6 +12,12 @@ subject: Quickstart tutorial
 Jupyter Book is a very thin wrapper around the MyST Document Engine: it shares the same CLI and configuration file (see [ecosystem documentation](../community/ecosystem.md) for more details). It serves primarily to as an introduction of the existing Jupyter Book community to the MyST Document Engine.
 
 If you're new to the Jupyter Book project, consider [directly using MyST-MD](https://mystmd.org/guide/quickstart).
+:::
+
+:::{note} Skills and prerequisites
+**Skills**: It is helpful if you have some familiarity with using the command line, as well as using a text editor and/or JupyterLab.
+
+**Tools**: You'll need a code and notebook editor ([VSCode](https://code.visualstudio.com/) is great, and we recommend [Jupyter Lab](https://jupyter.org/install) for notebooks) as well as access to a CLI.
 :::
 
 Jupyter Book is available on the PyPI, conda-forge, and npm package repositories as `jupyter-book>=2`. How you install Jupyter Book depends upon your choice of environment manager.
