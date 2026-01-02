@@ -19,18 +19,18 @@ This is a short overview of the major components and steps in building a Jupyter
 (start:install)=
 ## Install Jupyter Book
 
-You can install Jupyter Book [via `pip`](https://pip.pypa.io/en/stable/):
+You can install Jupyter Book version 1.x [via `pip`](https://pip.pypa.io/en/stable/):
 
 ```bash
-pip install -U jupyter-book
+pip install "jupyter-book<2"
 ```
 or via [`conda-forge`](https://conda-forge.org/):
 
 ```bash
-conda install -c conda-forge jupyter-book
+conda install -c conda-forge "jupyter-book=1.*"
 ```
 
-This will install everything you need to build a Jupyter Book locally.
+This will install everything you need to build a Jupyter Book version 1 locally.
 
 :::{margin}
 Note that if you need to [execute code](content/executable) when building your book, you'll need to install these dependencies as well.
