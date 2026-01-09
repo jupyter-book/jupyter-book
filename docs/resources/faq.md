@@ -50,7 +50,7 @@ For authoring details, see our [MyST Markdown tutorial](../authoring/mystmd.md).
 ### Should I use Jupyter Book or MyST directly?
 
 Since Jupyter Book 2 is built on MyST, you might wonder which to use.
-Currently, the difference is minimal - both use the same CLI commands and configuration, for example `myst start` and `jupyter book start` do the same thing. 
+Currently, the difference is minimal - both use the same CLI commands and configuration, for example `myst start` and `jupyter book start` do the same thing.
 Over time, we imagine that:
 
 - Jupyter Book will remain focused on **out-of-the-box functionality for end-users**
@@ -138,6 +138,9 @@ We welcome contributions! See our [contributing guide](../contribute.md) and our
 **Our intent is to make Jupyter Book 2 have all the same features as Jupyter Book 1**.
 However, some features from Jupyter Book 1 are still in development and need improvement. Here are a few that are particularly important:
 
+**Breaking changes:**
+- **Web page paths have changed** - Underscores in filenames get replaced with hyphens, and pages are now built as "pretty URLs". For example, in Jupyter Book 1, `my_page.md` would get built as `/my_page.html`. In Jupyter Book 2, it's built as `/my-page/index.html`. You'll want to set up redirects through your hosting provider.
+
 **Not yet available:**
 - **Feature parity for execution functionality** - There are still a number of improvements we need to make to execution and customizability around it ([#2019](https://github.com/jupyter-book/mystmd/issues/2019))
 - **Editable Thebe cells** - Interactive code cells that users can edit and execute ([#443](https://github.com/jupyter-book/mystmd/issues/443))
@@ -153,7 +156,7 @@ See [upgrade discussions](https://github.com/orgs/jupyter-book/discussions/categ
 
 ### Where did [feature X] from Jupyter Book 1 go?
 
-For information about specific features, see the [known limitations section above](#known-limitations) or browse existing [upgrade discussions](https://github.com/orgs/jupyter-book/discussions/categories/upgrading-jupyterbook). You might also find solutions in the [MyST Guide](https://mystmd.org/guide). If you don't see what you are looking for, make a post on the [upgrade discussions](https://github.com/orgs/jupyter-book/discussions/categories/upgrading-jupyterbook) or on [Discord](https://discord.mystmd.org). 
+For information about specific features, see the [known limitations section above](#known-limitations) or browse existing [upgrade discussions](https://github.com/orgs/jupyter-book/discussions/categories/upgrading-jupyterbook). You might also find solutions in the [MyST Guide](https://mystmd.org/guide). If you don't see what you are looking for, make a post on the [upgrade discussions](https://github.com/orgs/jupyter-book/discussions/categories/upgrading-jupyterbook) or on [Discord](https://discord.mystmd.org).
 
 (section:sphinx-extension-migration)=
 ### How do I migrate my Sphinx extensions?
