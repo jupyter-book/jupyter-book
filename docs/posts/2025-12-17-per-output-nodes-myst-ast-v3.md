@@ -7,7 +7,7 @@ authors:
 
 We're excited to announce the release of MyST Markdown V3 AST support in Jupyter Book, a significant upgrade that improves how Jupyter notebook outputs are handled and allows for better control over how Jupyter generated content is rendered.
 
-:::{tip} Available in `mystmd` `v0.7.1` and `jb` `2.1.0` or later
+:::{tip} Available in `mystmd` `v1.7.0` and `jb` `2.1.0` or later
 As this is a major change to the MyST AST that also requires the latest `myst-theme`s, when upgrading, please clean your project folders:
 
 ```
