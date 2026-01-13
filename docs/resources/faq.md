@@ -1,10 +1,11 @@
 # Frequently Asked Questions
 
+(faq-general)=
+
 This page answers common questions about Jupyter Book 2.
 
-## General Questions
+## Jupyter Book 2 vs 1
 
-(faq-general)=
 ### What's the difference between Jupyter Book 1 and 2?
 
 Jupyter Book 2 is a complete rewrite built on the [MyST Document Engine](https://mystmd.org) instead of Sphinx. Key differences:
@@ -15,6 +16,10 @@ Jupyter Book 2 is a complete rewrite built on the [MyST Document Engine](https:/
 - **Ecosystem**: Part of the broader [MyST ecosystem](../community/ecosystem.md) with shared tools and standards
 
 For a detailed comparison, see our [ecosystem documentation](../community/ecosystem.md).
+
+### Where is the Jupyter Book 1 documentation?
+
+The Jupyter Book 1 documentation is available at [https://jupyterbook.org/v1](https://jupyterbook.org/v1).
 
 ### Should I upgrade to Jupyter Book 2 now or wait?
 
@@ -34,6 +39,29 @@ See our [upgrade guide](./upgrade.md) for detailed migration instructions.
 ### How can I downgrade to Jupyter Book 1?
 
 See the [downgrade guide](./downgrade.md) for more details.
+
+### Will Jupyter Book 1 continue to be maintained?
+
+**In short:** The Jupyter Book 1 stack is mostly in **maintenance mode**. We will do our best to review and release community PRs, but it is unlikely that we will do any active development unless another person or org steps in to actively develop the project further. That said, individual components of the Sphinx stack (e.g., `myst-parser`) may still receive ongoing development as independent efforts.
+
+The [Executable Books](https://executablebooks.org/) organization remains the steward of the Sphinx-based stack (the engine of Jupyter Book 1). With core team resources now focused on Jupyter Book 2 and the MyST ecosystem, the Sphinx stack tools are in maintenance mode:
+
+- **Community contributions welcome**: Feel free to open issues and bug reports, but unless you (or another community member) opens a PR to fix them, progress will be slow.
+- **PR reviews and releases**: We'll do our best to review PRs from the community and cut releases when they're merged, but we cannot make any commitments.
+- **No active development planned**: The core team is very unlikely to develop new features or fixes for these tools.
+
+Some specific tools in the Executable Books stack are now in maintenance mode (e.g., [MyST-NB](https://myst-nb.readthedocs.io/en/latest/)), while more heavily-used infrastructure tools like [myst-parser](https://myst-parser.readthedocs.io/en/latest/) (which powers a large part of the Markdown experience in Sphinx) may continue to see more community activity.
+
+We recognize there is an ongoing need for these tools and will continue working to ensure their stability for the community, with the constraint that we are all volunteers with limited time.
+
+
+## Jupyter Book and MyST Markdown
+
+### What's the relationship between Jupyter Book and MyST?
+
+Jupyter Book 2 is built on top of the MyST Document Engine. In short: Jupyter Book is an opinionated, book-focused distribution of MyST with a Python-based installation workflow.
+
+For a detailed explanation of the architecture and technical differences, see our [ecosystem documentation](../community/ecosystem.md).
 
 ### What MyST Markdown features work in Jupyter Book?
 
@@ -70,28 +98,8 @@ However, at the moment, Jupyter Book is essentially a Python CLI wrapper around 
 - You need cutting-edge MyST features before they're in Jupyter Book
 - You want maximum flexibility and control over the MyST toolchain
 
-### Will Jupyter Book 1 continue to be maintained?
-
-**In short:** The Jupyter Book 1 stack is mostly in **maintenance mode**. We will do our best to review and release community PRs, but it is unlikely that we will do any active development unless another person or org steps in to actively develop the project further. That said, individual components of the Sphinx stack (e.g., `myst-parser`) may still receive ongoing development as independent efforts.
-
-The [Executable Books](https://executablebooks.org/) organization remains the steward of the Sphinx-based stack (the engine of Jupyter Book 1). With core team resources now focused on Jupyter Book 2 and the MyST ecosystem, the Sphinx stack tools are in maintenance mode:
-
-- **Community contributions welcome**: Feel free to open issues and bug reports, but unless you (or another community member) opens a PR to fix them, progress will be slow.
-- **PR reviews and releases**: We'll do our best to review PRs from the community and cut releases when they're merged, but we cannot make any commitments.
-- **No active development planned**: The core team is very unlikely to develop new features or fixes for these tools.
-
-Some specific tools in the Executable Books stack are now in maintenance mode (e.g., [MyST-NB](https://myst-nb.readthedocs.io/en/latest/)), while more heavily-used infrastructure tools like [myst-parser](https://myst-parser.readthedocs.io/en/latest/) (which powers a large part of the Markdown experience in Sphinx) may continue to see more community activity.
-
-We recognize there is an ongoing need for these tools and will continue working to ensure their stability for the community, with the constraint that we are all volunteers with limited time.
-
 
 ## Technical Questions
-
-### What's the relationship between Jupyter Book and MyST?
-
-Jupyter Book 2 is built on top of the MyST Document Engine. In short: Jupyter Book is an opinionated, book-focused distribution of MyST with a Python-based installation workflow.
-
-For a detailed explanation of the architecture and technical differences, see our [ecosystem documentation](../community/ecosystem.md).
 
 ### How do I add custom features or plugins?
 
