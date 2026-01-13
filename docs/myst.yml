@@ -38,6 +38,9 @@ project:
         - pattern: release/*.md
     - title: Blog posts
       children:
+      - title: "2026"
+        children:
+          - pattern: posts/2026/*.md
       - title: "2025"
         children:
           - pattern: posts/2025-*.md

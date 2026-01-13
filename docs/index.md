@@ -22,6 +22,6 @@ This is a place for [the Jupyter Book team](https://compass.jupyterbook.org) to 
 
 :::{blog-posts}
 :kind: table
-:path: posts/*.md
+:path: posts/**/*.md
 :limit: 20
 :::
