@@ -55,7 +55,7 @@ Some specific tools in the Executable Books stack are now in maintenance mode (e
 We recognize there is an ongoing need for these tools and will continue working to ensure their stability for the community, with the constraint that we are all volunteers with limited time.
 
 
-## Jupyter Book and MyST Markdown
+## Jupyter Book and the MyST Document Engine (mystmd)
 
 ### What's the relationship between Jupyter Book and MyST?
 
