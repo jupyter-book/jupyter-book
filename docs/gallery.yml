@@ -95,3 +95,10 @@
   image: https://github.com/singh-sanju/Protein_peptide_mimicry_study/blob/main/content/figures/logo.png
   description: A Jupyter Book presenting an exploratory and educational computational workflow to study protein–peptide molecular mimicry in the HLA-B27 protein, which is associated with autoimmune diseases such as ankylosing spondylitis. The book covers peptide screening, docking, molecular dynamics simulations, trajectory correction, and post-MD analysis, with an emphasis on methodological understanding and hands-on learning.
   tags: Computational Chemistry; Molecular Dynamics; Bioinformatics; Educational Resource; Computational Biology
+
+- name: "dolfiny: high-level convenience wrappers for DOLFINx"
+  website: https://dolfiny.uni.lu/
+  repository: https://github.com/fenics-dolfiny/dolfiny
+  image: https://github.com/fenics-dolfiny/dolfiny/blob/main/book/logo.svg
+  description: Computational mechanics demos of dolfiny, an extension module of the finite element library FEniCSx, rendered as jupyter book.
+  tags: Computational Mechanics; FEniCS; Documentation; University of Luxembourg
