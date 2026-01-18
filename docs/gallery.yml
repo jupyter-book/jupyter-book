@@ -22,7 +22,7 @@
 - name: Introducing Classical Mechanics & Special Relativity
   website: https://freekpols.github.io/Mechanica/
   repository: https://github.com/freekpols/Mechanica
-  image: https://freekpols.github.io/Mechanica/build/cover-f2651612bb78120d7ad964dc4d5f8d4b.gif
+  image: https://github.com/FreekPols/Mechanica/blob/main/cover.gif
   description: This book provides an introduction for freshman students into the world of classical mechanics and special relativity theory
   tags: Physics; Mechanics; Education; Delft University of Technology
 
