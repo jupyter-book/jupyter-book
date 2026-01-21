@@ -9,7 +9,7 @@ To add your book to this list, [add an entry to this gallery.yml file](https://g
 :head: [Myst Official Documentation](https://mystmd.org/guide)
     
 ```{figure} https://github.com/jupyter-book/workshop-template/blob/main/content/figures/logo.svg
-:width: 70%
+:class: card-img-limit
 
 MyST is an ecosystem of open-source, community-driven tools designed to revolutionize scientific communication. Our powerful authoring framework supports blogs, online books, scientific papers, reports and journals articles.
 ```
