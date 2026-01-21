@@ -18,6 +18,7 @@ updates:
     labels:
       - "maintenance"
       - "dependencies"
+      - "github_actions"
 
   # Enable version updates for npm
   - package-ecosystem: "npm"
