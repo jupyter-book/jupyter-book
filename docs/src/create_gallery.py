@@ -35,7 +35,7 @@ for it in items:
 
     # Include the figure with description
     lines.append("```{figure} " + image)
-    lines.append(":width: 70%")
+    lines.append(":class: card-img-limit")
     lines.append("")
     lines.append(desc)
     lines.append("```")

@@ -68,7 +68,7 @@ body {
 }
 
 /* set a max height to a figure inside card for the gallery*/
-.card-img-limit img {
+div.myst-card-body > figure.card-img-limit > img {
   width: 70%;
   max-height: 200px;   /* adjust as needed */
   height: auto;
