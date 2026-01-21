@@ -6,9 +6,19 @@ updates:
   # Enable version updates for GitHub Actions
   # https://docs.github.com/en/code-security/dependabot/working-with-dependabot/keeping-your-actions-up-to-date-with-dependabot
   - package-ecosystem: "github-actions"
-    directory: "/"
+    directory: ".github/workflows"
+    # Make sure we don't just pull in freshly released versions
+    cooldown:
+      default-days: 14
     schedule:
       interval: "monthly"
+    groups:
+      actions:
+        patterns: ["*"]
+    labels:
+      - "maintenance"
+      - "dependencies"
+      - "github_actions"
 
   # Enable version updates for npm
   - package-ecosystem: "npm"
