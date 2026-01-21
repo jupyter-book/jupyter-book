@@ -28,7 +28,7 @@ jobs:
           python-version: 3.11
 
       # Install Node
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           # Do not vary this -- upstream tests this
           node-version: 20
@@ -114,7 +114,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       # Install Node
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           # Do not vary this -- upstream tests this
           node-version: 20
