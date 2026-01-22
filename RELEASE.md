@@ -24,7 +24,8 @@ $ npm update myst-cli
 ```
 This will change several entries in the lockfile, because the `myst-cli` package has its own dependencies. This is to be expected!
 Then make a PR with this new version and merge it.
-Double check that any changes in the `mystmd` package don't require a change here! (usually this is not the case)
+
+_Note: Double check that any changes in the `mystmd` package don't require a change here! (usually this is not the case)_
 
 ## Publishing to `conda-forge`
 
