@@ -1,55 +1,55 @@
 {
-    "name": "jupyter-book",
-    "version": "2.1.0",
-    "description": "An opinionated distribution of mystmd",
-    "author": "Jupyter Book Project <jupyter-book-council@googlegroups.com>",
-    "license": "BSD-3-Clause",
-    "type": "module",
-    "keywords": [
-        "reproducible",
-        "science",
-        "environments",
-        "scholarship",
-        "notebook"
-    ],
-    "files": [
-        "dist"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/jupyter-book/jupyter-book.git"
-    },
-    "bugs": {
-        "url": "https://github.com/jupyter-book/jupyter-book/issues"
-    },
-    "homepage": "https://github.com/jupyter-book/jupyter-book",
-    "bin": {
-        "jupyter-book": "./py/jupyter_book/dist/jupyter-book.cjs"
-    },
-    "scripts": {
-        "clean": "rimraf ./py/jupyter_book/dist/jupyter-book.cjs",
-        "copy:version": "echo \"const version = '\"$npm_package_version\"';\nexport default version;\" > ts/version.ts",
-        "dev": "esbuild ts/index.ts --bundle --outfile=./py/jupyter_book/dist/jupyter-book.cjs --platform=node --external:fsevents --watch",
-        "lint": "npm run copy:version; eslint \"ts/**/!(*.spec).ts\" -c ./.eslintrc.cjs",
-        "lint:format": "npm run copy:version; prettier --check \"ts/**/*.ts\"",
-        "build:cli": "esbuild ts/index.ts --bundle --outfile=./py/jupyter_book/dist/jupyter-book.cjs --platform=node --external:fsevents --target=node18",
-        "build": "npm-run-all -l clean copy:version -p build:cli"
-    },
-    "devDependencies": {
-        "chalk": "^5.2.0",
-        "commander": "^10.0.1",
-        "core-js": "^3.31.1",
-        "esbuild": "^0.17.19",
-        "js-yaml": "^4.1.0",
-        "myst-cli": "latest",
-        "npm-run-all": "^4.1.5",
-        "prettier": "latest",
-        "typescript": "^5.1.3",
-        "rimraf": "^5.0.1",
-        "@types/node": "^20.2.5"
-    },
-    "engines": {
-        "npm": ">=10.7.0",
-        "node": ">=18.0.0"
-    }
+  "name": "jupyter-book",
+  "version": "2.1.0",
+  "description": "An opinionated distribution of mystmd",
+  "author": "Jupyter Book Project <jupyter-book-council@googlegroups.com>",
+  "license": "BSD-3-Clause",
+  "type": "module",
+  "keywords": [
+    "reproducible",
+    "science",
+    "environments",
+    "scholarship",
+    "notebook"
+  ],
+  "files": [
+    "py/jupyter_book/dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jupyter-book/jupyter-book.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jupyter-book/jupyter-book/issues"
+  },
+  "homepage": "https://github.com/jupyter-book/jupyter-book",
+  "bin": {
+    "jupyter-book": "./py/jupyter_book/dist/jupyter-book.cjs"
+  },
+  "scripts": {
+    "clean": "rimraf ./py/jupyter_book/dist/jupyter-book.cjs",
+    "copy:version": "echo \"const version = '\"$npm_package_version\"';\nexport default version;\" > ts/version.ts",
+    "dev": "esbuild ts/index.ts --bundle --outfile=./py/jupyter_book/dist/jupyter-book.cjs --platform=node --external:fsevents --watch",
+    "lint": "npm run copy:version; eslint \"ts/**/!(*.spec).ts\" -c ./.eslintrc.cjs",
+    "lint:format": "npm run copy:version; prettier --check \"ts/**/*.ts\"",
+    "build:cli": "esbuild ts/index.ts --bundle --outfile=./py/jupyter_book/dist/jupyter-book.cjs --platform=node --external:fsevents --target=node18",
+    "build": "npm-run-all -l clean copy:version -p build:cli"
+  },
+  "devDependencies": {
+    "chalk": "^5.2.0",
+    "commander": "^10.0.1",
+    "core-js": "^3.31.1",
+    "esbuild": "^0.17.19",
+    "js-yaml": "^4.1.0",
+    "myst-cli": "latest",
+    "npm-run-all": "^4.1.5",
+    "prettier": "latest",
+    "typescript": "^5.1.3",
+    "rimraf": "^5.0.1",
+    "@types/node": "^20.2.5"
+  },
+  "engines": {
+    "npm": ">=10.7.0",
+    "node": ">=18.0.0"
+  }
 }
