@@ -7,7 +7,8 @@ Here is a summary of the steps to cut a new release:
 - In the Actions panel, go to the [Step 1: Prep Release](https://github.com/jupyter-book/jupyter-book/actions/workflows/prep-release.yml) workflow.
   - Click `Run Workflow` -> `Run Workflow` with default values.
 - Go to [the Releases page](https://github.com/jupyter-book/jupyter-book/releases)
-  - You should see a **Draft release** with the changelog for this release.
+  - When `Step 1` completes, you'll see a new **Draft release** with the changelog.
+  - If you don't see it yet, refresh the page once the workflow from `Step 1` completes.
   - If it looks good, proceed to the next step!
 - Go to the [Step 2: Publish Release](https://github.com/jupyter-book/jupyter-book/actions/workflows/publish-release.yml) workflow page
   - Click `Run Workflow` -> `Run Workflow` with default values.
