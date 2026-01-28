@@ -10,6 +10,10 @@ tags:
 
 {button}`Release Source <https://github.com/jupyter-book/jupyter-book/releases/tag/v2.1.1>`
 
+Jupyter Book's functionality primarily comes from the core tools and plugins in the [MyST ecosystem](https://mystmd.org). See the release notes for new releases below for the latest enhancements and bugfixes.
+
+### New releases in the MyST Ecosystem
+
 This brings in:
 
 - The latest mystmd release, 1.8.0: https://github.com/jupyter-book/mystmd/releases/tag/mystmd%401.8.0
