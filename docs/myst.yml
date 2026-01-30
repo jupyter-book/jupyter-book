@@ -20,6 +20,7 @@ project:
   github: https://github.com/jupyter-book/jupyter-book
   toc:
     - file: index.md
+      title: User Guide
     - file: get-started.md
       children:
         - file: get-started/install.md

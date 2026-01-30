@@ -1,6 +1,5 @@
 ---
-title: User Guide
-subtitle: Learn how to use Jupyter Book.
+title: Jupyter Book User Guide
 ---
 
 Jupyter Book is [a distribution of the MyST Document Engine](https://mystmd.org).
