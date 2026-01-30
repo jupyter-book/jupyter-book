@@ -1,5 +1,7 @@
 # See docs at: https://mystmd.org/guide/frontmatter
 version: 1
+extends:
+  - https://raw.githubusercontent.com/jupyter-book/jupyterbook.org/refs/heads/main/docs/_site/site.yml
 project:
   # title:
   # description:
