@@ -13,4 +13,5 @@ build:
     - mkdir "$READTHEDOCS_OUTPUT/html/docs"
     - cp -a docs/_build/html/. "$READTHEDOCS_OUTPUT/html/docs" && rm -r docs/_build
     # Create a root index.html that redirects to /docs/
-    - printf '%s\n' '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; url=docs/'"$READTHEDOCS_VERSION"'/"></head></html>' > "$READTHEDOCS_OUTPUT/html/index.html"
+    # We're doing it in Python to avoid any shell quoting issues
+    - python -c "import os; open(os.environ['READTHEDOCS_OUTPUT']+'/html/index.html', 'w').write('<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"0; url=docs/'+os.environ['READTHEDOCS_VERSION']+'/\"></head></html>')"
