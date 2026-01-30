@@ -1,0 +1,66 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  # title:
+  # description:
+  # keywords: []
+  # authors: []
+  references:
+    guide: https://mystmd.org/guide
+  abbreviations:
+    MyST: Markedly Structured Text
+    CLI: Command-Line Interface
+    TOC: Table of Contents
+  plugins:
+    - src/xref.mjs
+    - src/directives.mjs
+    - src/admonition.mjs
+  github: https://github.com/jupyter-book/jupyter-book
+  toc:
+    - file: index.md
+    - file: get-started.md
+      children:
+        - file: get-started/install.md
+        - file: get-started/init.md
+        - file: get-started/create-content.md
+        - file: get-started/build-websites.md
+        - file: get-started/export-pdfs.md
+        - file: get-started/cross-reference.md
+        - file: get-started/publish.md
+    - title: Author Content
+      file: authoring.md
+      children:
+        - file: authoring/mystmd.md
+        - file: authoring/math.md
+        - file: authoring/authorship.md
+        - file: authoring/roles-and-directives.md
+        - file: authoring/table-of-contents.md
+        - file: authoring/file-types.md
+    - title: Build & Publish
+      file: build-and-publish/index.md
+      children:
+        - file: build-and-publish/website.md
+        - file: build-and-publish/export.md
+    - title: Execute & Compute
+      file: execution.md
+      children:
+        - file: execution/execution.md
+        - file: execution/jupyterlab.md
+        - file: execution/generate-myst.md
+    - title: Extend with Plugins
+      file: plugins.md
+      children:
+        - file: plugins/plugins.md
+        - file: plugins/directives-and-roles.md
+        - file: plugins/debug.md
+        - file: plugins/ast.md
+        - file: plugins/dependencies.md
+    - title: Resources
+      children:
+        - file: resources/faq.md
+        - file: resources/upgrade.md
+        - file: resources/downgrade.md
+        - file: resources/glossary.md
+site:
+  options:
+    folders: true

@@ -20,7 +20,6 @@ def docs_live(session):
     """Start a live development server for the documentation."""
     session.install("-e", ".[docs]")
     session.chdir("docs")
-    session.run("python", "src/create_gallery.py")
     session.run("jupyter", "book", "start", "--execute", *session.posargs)
 
 

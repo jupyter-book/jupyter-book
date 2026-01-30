@@ -68,4 +68,4 @@ The entries within a table of contents can be nested under titles and/or other p
 
 When Jupyter Book builds your website, it creates URLs based on your file names and folder structure. For example, a file at `guides/getting_started.md` becomes accessible at `/guides/getting-started/`.
 
-For information about URL slugs and folder structure, see [](xref:guide#table-of-contents).
+For information about URL slugs and folder structure, see [](xref:guide/table-of-contents).
