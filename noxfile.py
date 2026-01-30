@@ -11,7 +11,6 @@ def docs(session):
     """Build the documentation as static HTML."""
     session.install("-e", ".[docs]")
     session.chdir("docs")
-    session.run("python", "src/create_gallery.py")
     session.run("jupyter", "book", "build", "--html", "--execute", *session.posargs)
 
 
