@@ -13,5 +13,4 @@ build:
     - mkdir "$READTHEDOCS_OUTPUT/html/docs"
     - cp -a docs/_build/html/. "$READTHEDOCS_OUTPUT/html/docs" && rm -r docs/_build
     # Create a root index.html that redirects to /docs/
-    # We're doing it in Python to avoid any shell quoting issues
-    - python -c "import os; open(os.environ['READTHEDOCS_OUTPUT']+'/html/index.html', 'w').write('<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"0; url=docs/'+os.environ['READTHEDOCS_VERSION']+'/\"></head></html>')"
+    - python docs/src/add_rtd_index_redirect.py
