@@ -8,5 +8,7 @@ build:
   commands:
     - pip install nox requests
     - mkdir -p $READTHEDOCS_OUTPUT/html/
-    - BASE_URL="/$READTHEDOCS_VERSION" nox -s docs
-    - cp -a docs/_build/html/. "$READTHEDOCS_OUTPUT/html" && rm -r docs/_build
+    - BASE_URL="/docs/$READTHEDOCS_VERSION" nox -s docs
+    # We must put this in a `/html/docs/` subfolder so jupyterbook.org has the right BASE_URL
+    - mkdir "$READTHEDOCS_OUTPUT/html/docs"
+    - cp -a docs/_build/html/. "$READTHEDOCS_OUTPUT/html/docs" && rm -r docs/_build
