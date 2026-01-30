@@ -12,3 +12,5 @@ build:
     # We must put this in a `/html/docs/` subfolder so jupyterbook.org has the right BASE_URL
     - mkdir "$READTHEDOCS_OUTPUT/html/docs"
     - cp -a docs/_build/html/. "$READTHEDOCS_OUTPUT/html/docs" && rm -r docs/_build
+    # Create a root index.html that redirects to /docs/
+    - echo '<html><head><meta http-equiv="refresh" content="0; url=docs/$READTHEDOCS_VERSION/"></head></html>' > "$READTHEDOCS_OUTPUT/html/index.html"
