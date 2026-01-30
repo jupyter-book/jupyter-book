@@ -10,12 +10,6 @@ tags:
 
 {button}`Release Source <https://github.com/jupyter-book/jupyter-book/releases/tag/v2.1.0>`
 
-
-
-## 2.1.0
-
-([Full Changelog](https://github.com/jupyter-book/jupyter-book/compare/v2.0.2...c75d44db5e5015ad93d35aff0c27d8510c948a1d))
-
 ### Enhancements made
 
 - Gallery of Jupyter Books (with the myst stack) [#2461](https://github.com/jupyter-book/jupyter-book/pull/2461) ([`@FreekPols`](https://github.com/FreekPols))
