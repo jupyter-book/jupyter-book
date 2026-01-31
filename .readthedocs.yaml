@@ -8,15 +8,5 @@ build:
   commands:
     - pip install nox requests
     - mkdir -p $READTHEDOCS_OUTPUT/html/
-    # Set BASE_URL based on build type:
-    # - PR builds (external): /{pr}/ - works directly on RTD preview subdomain
-    # - Regular builds: /docs/{version}/ - for reverse proxy from jupyterbook.org/docs/
-    #   (will be broken if accessed directly on RTD, but correct when proxied)
-    - |
-      if [ "$READTHEDOCS_VERSION_TYPE" = "external" ]; then
-        export BASE_URL="/$READTHEDOCS_VERSION"
-      else
-        export BASE_URL="/docs/$READTHEDOCS_VERSION"
-      fi
-      nox -s docs
+    - BASE_URL="/$READTHEDOCS_VERSION" nox -s docs
     - cp -a docs/_build/html/. "$READTHEDOCS_OUTPUT/html/" && rm -r docs/_build
