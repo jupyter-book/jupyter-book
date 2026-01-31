@@ -6,8 +6,7 @@ build:
     python: "3.12"
     nodejs: "20"
   commands:
-    - npm install -g mystmd
-    - pip install .[docs]
+    - pip install nox requests
     - mkdir -p $READTHEDOCS_OUTPUT/html/
-    - cd docs/ && BASE_URL="/$READTHEDOCS_VERSION" myst build --html --execute
+    - BASE_URL="/$READTHEDOCS_VERSION" nox -s docs
     - cp -a docs/_build/html/. "$READTHEDOCS_OUTPUT/html" && rm -r docs/_build

@@ -13,7 +13,7 @@ The goal of this tutorial is to use the `jupyter book init` command to create a 
 Jupyter Book ships with an `init` command, which initializes a `myst` project in the current directory. Let's run the command to create a simple `myst.yml`:
 
 ```shell
-$ jupyter book init
+jupyter book init
 ```
 
 The `init` command will ask whether you want to run the `start` command, which launches a local webserver that renders your MyST project. We will exit the program by pressing {kbd}`n` and {kbd}`Enter`, as we do not yet have any content to look at!

@@ -13,7 +13,7 @@ Built on the [MyST Document Engine](https://mystmd.org) with faster builds, mode
 Jupyter Book 2 still has many improvements to be made.
 Please join us and [contribute to Jupyter Book](./contribute.md) so we can make it better!
 
-[Upgrade from 1.0](#upgrade-tldr) • [Known limitations](#known-limitations) • [Frequently Asked Questions](#faq-general)
+[Upgrade from 1.0](#upgrade-tldr) • [Known limitations](#known-limitations) • [Frequently Asked Questions](#faq-general) • [Looking for 1.0 documentation?](https://jupyterbook.org/v1)
 :::
 
 +++ {"class": "col-page-inset"}
@@ -43,7 +43,7 @@ jupyter book start
 +++
 
 ```{warning}
-With the recent release of Jupyer Book 2, you will explicitly need to add `jupyter-book<2` to your install to keep using the Sphinx-based Jupyter Book 1.
+With the recent release of Jupyer Book 2, you will explicitly need to add `jupyter-book<2` to your install to keep using the Sphinx-based [Jupyter Book 1](https://jupyterbook.org/v1).
 ```
 
 ## See It in Action
@@ -117,6 +117,13 @@ Get help and contribute
 +++
 [Join us →](./community.md)
 ::::
+::::{card} 📚 Gallery
+:link: ./gallery.md
+Explore existing books and projects
++++
+[Explore gallery →](./gallery.md)
+::::
+
 :::::
 
 +++ {"kind": "justified"}

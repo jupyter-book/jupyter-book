@@ -1,6 +1,6 @@
 {
     "name": "jupyter-book",
-    "version": "2.0.2",
+    "version": "2.1.1",
     "description": "An opinionated distribution of mystmd",
     "author": "Jupyter Book Project <jupyter-book-council@googlegroups.com>",
     "license": "BSD-3-Clause",
@@ -13,7 +13,7 @@
         "notebook"
     ],
     "files": [
-        "dist"
+        "py/jupyter_book/dist"
     ],
     "repository": {
         "type": "git",

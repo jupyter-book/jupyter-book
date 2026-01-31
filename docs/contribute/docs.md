@@ -100,6 +100,10 @@ nox -s docs-live
 
 The live server will automatically rebuild pages as you edit them, making it easy to preview your changes.
 
+:::{note}
+The docs build has a read-only `GITHUB_TOKEN` scoped to the `jupyter-book` org that expires on **Dec 1, 2026**. This is what allows the `{issue-table}` directive to query the GitHub API during builds.
+:::
+
 ### Repository structure
 
 - `docs/` - All documentation source files

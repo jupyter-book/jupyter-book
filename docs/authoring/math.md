@@ -4,7 +4,7 @@ title: Math and equations
 
 # Math and equations
 
-Jupyter Book uses [MathJax](http://docs.mathjax.org/) for typesetting math in your HTML book build.
+Jupyter Book uses [KaTeX](https://katex.org/docs/) for typesetting math in your HTML book build.
 This allows you to have LaTeX-style mathematics in your online content (and, which can be exported to both LaTeX and [Typst](https://typst.app/)).
 This page shows you a few ways to control this.
 

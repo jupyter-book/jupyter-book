@@ -27,7 +27,7 @@ const program = new Command();
 process.env.MYSTMD_READABLE_NAME = "Jupyter Book";
 process.env.MYSTMD_BINARY_NAME = "jupyter book";
 process.env.MYSTMD_HOME_URL = "https://jupyterbook.org/stable";
-// Specfically for NPM
+// Specifically for NPM
 process.env.MYSTMD_NPM_BINARY_NAME = "jupyter-book";
 process.env.MYSTMD_NPM_PACKAGE_NAME = "jupyter-book";
 

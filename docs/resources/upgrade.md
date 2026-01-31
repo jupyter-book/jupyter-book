@@ -160,6 +160,20 @@ toc:
 
 Remove the `{toctree}` directives from your pages as you migrate them.
 
+
+## How to handle URL changes
+
+Jupyter Book 2 generates different URLs than Jupyter Book 1. If you're migrating an existing published site, you'll want to set up redirects to avoid broken links.
+
+**What changed:**
+- Underscores in filenames are replaced with hyphens (e.g., `my_page.md` → `/my-page/`)
+- Pages use "pretty URLs" (e.g., `/my-page/` instead of `/my_page.html`)
+- See [](xref:guide/table-of-contents) for more documentation on URL structure.
+
+**Setting up redirects:**
+The community has a tool to generate redirect configurations for common hosting platforms: [jb1-redirect-generator](https://github.com/jupyter-book/jb1-redirect-generator)
+
+
 ## FAQ: Migration and Troubleshooting
 
 See [](#faq:migration).

@@ -3,6 +3,23 @@
 
 version: 2
 updates:
+  # Enable version updates for GitHub Actions
+  # https://docs.github.com/en/code-security/dependabot/working-with-dependabot/keeping-your-actions-up-to-date-with-dependabot
+  - package-ecosystem: "github-actions"
+    directory: ".github/workflows"
+    # Make sure we don't just pull in freshly released versions
+    cooldown:
+      default-days: 14
+    schedule:
+      interval: "monthly"
+    groups:
+      actions:
+        patterns: ["*"]
+    labels:
+      - "maintenance"
+      - "dependencies"
+      - "github_actions"
+
   # Enable version updates for npm
   - package-ecosystem: "npm"
     # Look for `package.json` and `lock` files in the `root` directory
@@ -10,9 +27,18 @@ updates:
     # Check the npm registry for updates every day (weekdays)
     schedule:
       interval: "monthly"
+    # Make sure we don't just pull in freshly released versions
+    cooldown:
+      default-days: 14
+      exclude:
+        - "myst-cli"
     groups:
       npm:
         patterns: ["*"]
+    labels:
+      - "maintenance"
+      - "javascript"
+      - "dependencies"
 
   # Enable version updates for Python
   - package-ecosystem: "pip"
@@ -21,6 +47,12 @@ updates:
     # Check for updates once a week
     schedule:
       interval: "monthly"
+    cooldown:
+      default-days: 14
     groups:
       pip:
         patterns: ["*"]
+    labels:
+      - "maintenance"
+      - "python"
+      - "dependencies"

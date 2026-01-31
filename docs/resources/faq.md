@@ -1,10 +1,11 @@
 # Frequently Asked Questions
 
+(faq-general)=
+
 This page answers common questions about Jupyter Book 2.
 
-## General Questions
+## Jupyter Book 2 vs 1
 
-(faq-general)=
 ### What's the difference between Jupyter Book 1 and 2?
 
 Jupyter Book 2 is a complete rewrite built on the [MyST Document Engine](https://mystmd.org) instead of Sphinx. Key differences:
@@ -15,6 +16,10 @@ Jupyter Book 2 is a complete rewrite built on the [MyST Document Engine](https:/
 - **Ecosystem**: Part of the broader [MyST ecosystem](../community/ecosystem.md) with shared tools and standards
 
 For a detailed comparison, see our [ecosystem documentation](../community/ecosystem.md).
+
+### Where is the Jupyter Book 1 documentation?
+
+The Jupyter Book 1 documentation is available at [https://jupyterbook.org/v1](https://jupyterbook.org/v1).
 
 ### Should I upgrade to Jupyter Book 2 now or wait?
 
@@ -35,6 +40,29 @@ See our [upgrade guide](./upgrade.md) for detailed migration instructions.
 
 See the [downgrade guide](./downgrade.md) for more details.
 
+### Will Jupyter Book 1 continue to be maintained?
+
+**In short:** The Jupyter Book 1 stack is mostly in **maintenance mode**. We will do our best to review and release community PRs, but it is unlikely that we will do any active development unless another person or org steps in to actively develop the project further. That said, individual components of the Sphinx stack (e.g., `myst-parser`) may still receive ongoing development as independent efforts.
+
+The [Executable Books](https://executablebooks.org/) organization remains the steward of the Sphinx-based stack (the engine of Jupyter Book 1). With core team resources now focused on Jupyter Book 2 and the MyST ecosystem, the Sphinx stack tools are in maintenance mode:
+
+- **Community contributions welcome**: Feel free to open issues and bug reports, but unless you (or another community member) opens a PR to fix them, progress will be slow.
+- **PR reviews and releases**: We'll do our best to review PRs from the community and cut releases when they're merged, but we cannot make any commitments.
+- **No active development planned**: The core team is very unlikely to develop new features or fixes for these tools.
+
+Some specific tools in the Executable Books stack are now in maintenance mode (e.g., [MyST-NB](https://myst-nb.readthedocs.io/en/latest/)), while more heavily-used infrastructure tools like [myst-parser](https://myst-parser.readthedocs.io/en/latest/) (which powers a large part of the Markdown experience in Sphinx) may continue to see more community activity.
+
+We recognize there is an ongoing need for these tools and will continue working to ensure their stability for the community, with the constraint that we are all volunteers with limited time.
+
+
+## Jupyter Book and the MyST Document Engine (mystmd)
+
+### What's the relationship between Jupyter Book and MyST?
+
+Jupyter Book 2 is built on top of the MyST Document Engine. In short: Jupyter Book is an opinionated, book-focused distribution of MyST with a Python-based installation workflow.
+
+For a detailed explanation of the architecture and technical differences, see our [ecosystem documentation](../community/ecosystem.md).
+
 ### What MyST Markdown features work in Jupyter Book?
 
 Jupyter Book 2 supports the full [MyST Markdown specification](https://mystmd.org/spec), including:
@@ -50,7 +78,7 @@ For authoring details, see our [MyST Markdown tutorial](../authoring/mystmd.md).
 ### Should I use Jupyter Book or MyST directly?
 
 Since Jupyter Book 2 is built on MyST, you might wonder which to use.
-Currently, the difference is minimal - both use the same CLI commands and configuration, for example `myst start` and `jupyter book start` do the same thing. 
+Currently, the difference is minimal - both use the same CLI commands and configuration, for example `myst start` and `jupyter book start` do the same thing.
 Over time, we imagine that:
 
 - Jupyter Book will remain focused on **out-of-the-box functionality for end-users**
@@ -70,28 +98,8 @@ However, at the moment, Jupyter Book is essentially a Python CLI wrapper around 
 - You need cutting-edge MyST features before they're in Jupyter Book
 - You want maximum flexibility and control over the MyST toolchain
 
-### Will Jupyter Book 1 continue to be maintained?
-
-**In short:** The Jupyter Book 1 stack is mostly in **maintenance mode**. We will do our best to review and release community PRs, but it is unlikely that we will do any active development unless another person or org steps in to actively develop the project further. That said, individual components of the Sphinx stack (e.g., `myst-parser`) may still receive ongoing development as independent efforts.
-
-The [Executable Books](https://executablebooks.org/) organization remains the steward of the Sphinx-based stack (the engine of Jupyter Book 1). With core team resources now focused on Jupyter Book 2 and the MyST ecosystem, the Sphinx stack tools are in maintenance mode:
-
-- **Community contributions welcome**: Feel free to open issues and bug reports, but unless you (or another community member) opens a PR to fix them, progress will be slow.
-- **PR reviews and releases**: We'll do our best to review PRs from the community and cut releases when they're merged, but we cannot make any commitments.
-- **No active development planned**: The core team is very unlikely to develop new features or fixes for these tools.
-
-Some specific tools in the Executable Books stack are now in maintenance mode (e.g., [MyST-NB](https://myst-nb.readthedocs.io/en/latest/)), while more heavily-used infrastructure tools like [myst-parser](https://myst-parser.readthedocs.io/en/latest/) (which powers a large part of the Markdown experience in Sphinx) may continue to see more community activity.
-
-We recognize there is an ongoing need for these tools and will continue working to ensure their stability for the community, with the constraint that we are all volunteers with limited time.
-
 
 ## Technical Questions
-
-### What's the relationship between Jupyter Book and MyST?
-
-Jupyter Book 2 is built on top of the MyST Document Engine. In short: Jupyter Book is an opinionated, book-focused distribution of MyST with a Python-based installation workflow.
-
-For a detailed explanation of the architecture and technical differences, see our [ecosystem documentation](../community/ecosystem.md).
 
 ### How do I add custom features or plugins?
 
@@ -138,6 +146,9 @@ We welcome contributions! See our [contributing guide](../contribute.md) and our
 **Our intent is to make Jupyter Book 2 have all the same features as Jupyter Book 1**.
 However, some features from Jupyter Book 1 are still in development and need improvement. Here are a few that are particularly important:
 
+**Breaking changes:**
+- **Web page paths have changed** - Underscores in filenames get replaced with hyphens, and pages are now built as "pretty URLs". For example, in Jupyter Book 1, `my_page.md` would get built as `/my_page.html`. In Jupyter Book 2, it's built as `/my-page/index.html`. You'll want to set up redirects through your hosting provider.
+
 **Not yet available:**
 - **Feature parity for execution functionality** - There are still a number of improvements we need to make to execution and customizability around it ([#2019](https://github.com/jupyter-book/mystmd/issues/2019))
 - **Editable Thebe cells** - Interactive code cells that users can edit and execute ([#443](https://github.com/jupyter-book/mystmd/issues/443))
@@ -153,7 +164,7 @@ See [upgrade discussions](https://github.com/orgs/jupyter-book/discussions/categ
 
 ### Where did [feature X] from Jupyter Book 1 go?
 
-For information about specific features, see the [known limitations section above](#known-limitations) or browse existing [upgrade discussions](https://github.com/orgs/jupyter-book/discussions/categories/upgrading-jupyterbook). You might also find solutions in the [MyST Guide](https://mystmd.org/guide). If you don't see what you are looking for, make a post on the [upgrade discussions](https://github.com/orgs/jupyter-book/discussions/categories/upgrading-jupyterbook) or on [Discord](https://discord.mystmd.org). 
+For information about specific features, see the [known limitations section above](#known-limitations) or browse existing [upgrade discussions](https://github.com/orgs/jupyter-book/discussions/categories/upgrading-jupyterbook). You might also find solutions in the [MyST Guide](https://mystmd.org/guide). If you don't see what you are looking for, make a post on the [upgrade discussions](https://github.com/orgs/jupyter-book/discussions/categories/upgrading-jupyterbook) or on [Discord](https://discord.mystmd.org).
 
 (section:sphinx-extension-migration)=
 ### How do I migrate my Sphinx extensions?

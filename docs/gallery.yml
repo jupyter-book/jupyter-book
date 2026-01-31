@@ -1,0 +1,104 @@
+# ==========================
+# TO ADD YOUR BOOK TO THIS GALLERY
+# Anybody is welcome to contribute.
+# Copy-paste an entry to the end of this file.
+# Add in the metadata for your book.
+# Keep the description brief, limited to 500 characters (including spaces).
+# ==========================
+- name: Jupyter Book Workshop Template
+  website: https://jupyter-book.github.io/workshop-template/
+  repository: https://github.com/jupyter-book/workshop-template
+  image: https://github.com/jupyter-book/workshop-template/blob/main/content/figures/logo.svg
+  description: A GitHub Template repository designed for use in Jupyter Book 2 and MyST workshops.
+  tags: JupyterBook; Tutorial
+
+- name: The Turing Way handbook to reproducible, ethical and collaborative data science.
+  website: https://book.the-turing-way.org/
+  repository: https://github.com/the-turing-way/the-turing-way
+  image: https://github.com/the-turing-way/the-turing-way/blob/main/book/figures/theturingway-pathway.jpg
+  description: The Turing Way is an open science, open collaboration, and community-driven project. We involve and support a diverse community of contributors to make data science accessible, comprehensible and effective for everyone.
+  tags: Open Science; Data; Documentation
+
+- name: Introducing Classical Mechanics & Special Relativity
+  website: https://freekpols.github.io/Mechanica/
+  repository: https://github.com/freekpols/Mechanica
+  image: https://github.com/FreekPols/Mechanica/blob/main/cover.gif
+  description: This book provides an introduction for freshman students into the world of classical mechanics and special relativity theory
+  tags: Physics; Mechanics; Education; Delft University of Technology
+
+- name: Project Pythia
+  website: https://projectpythia.org/
+  repository: https://github.com/ProjectPythia
+  image: https://raw.githubusercontent.com/ProjectPythia/pythia-config/main/logos/pythia_logo-white-rtext-blue.svg
+  description: Project Pythia is the education working group for Pangeo and is an educational resource for the entire geoscience community. Together these initiatives are helping geoscientists make sense of huge volumes of numerical scientific data using tools that facilitate open, reproducible science, and building a community of practice around these goals.
+  tags: Geoscience; Education
+
+- name: NASA/IPAC Infrared Science Archive Python Notebook Tutorials for Astronomy
+  website: https://caltech-ipac.github.io/irsa-tutorials/
+  repository: https://github.com/Caltech-IPAC/irsa-tutorials/
+  image: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVO9k5CiRBcwjV4SozhB2eVY3g21aYfcvSaA&s
+  description: These tutorials demonstrate access methods and techniques for working with data served by the [NASA/IPAC Infrared Science Archive (IRSA)](https://irsa.ipac.caltech.edu/). They cover topics like querying IRSA, working with catalogs in Parquet format, visualizing with Firefly, and general other techniques.
+  tags:  Astronomy; Tutorials; Data access; NASA
+
+- name: BDI 475 Introduction to Data Analytics Applications in Business
+  website: https://bdi475.github.io/textbook/
+  repository: https://github.com/bdi475/textbook
+  image: https://github.com/bdi475/textbook/blob/main/site_images/site_logo.png
+  description: This is the online textbook for BDI 475 - Introduction to Data Analytics Applications in Business, a course offered by the University of Illinois Urbana-Champaign. The course is designed to introduce students to the fundamentals of data analytics and its applications in business contexts.
+  tags: Data analytics; Education; Python; University of Illinois
+
+- name: Voices of Jupyter Hub
+  website: https://voicesofjupyterhub.orgmycology.com/
+  repository: https://github.com/orgmycology/vojhreport
+  image: https://github.com/orgmycology/vojhreport/blob/main/logo.png
+  description: "JupyterHub’s impact on the world deserves to be celebrated. This report aims to celebrate these accomplishments. These conversations have also highlighted areas for improvement, from those that support better software to those that encourage a healthier, more vibrant community."
+  tags: Jupyter; JupyterHub
+
+- name: "Topology in Condensed Matter: Tying Quantum Knots"
+  website: https://topocondmat.org
+  repository: https://github.com/topocm/topocm_content/
+  image: https://github.com/topocm/topocm_content/blob/master/logo_small.jpg
+  description: "An extensive graduate course on topology in condensed matter physics"
+  tags: quantum physics, condensed matter
+
+- name: "NumPy Tutorials"
+  website: https://numpy.org/numpy-tutorials/
+  repository: https://github.com/numpy/numpy-tutorials
+  image: https://raw.githubusercontent.com/numpy/numpy-tutorials/main/site/_static/numpylogo.svg
+  description: "NumPy tutorials & educational content in notebook format"
+  tags: NumPy; Tutorials
+
+- name: "NASA Astrophysics Fornax Science Platform Notebook Tutorials"
+  website: https://nasa-fornax.github.io/fornax-demo-notebooks
+  repository: https://github.com/nasa-fornax/fornax-demo-notebooks
+  image: https://raw.githubusercontent.com/nasa-fornax/fornax-demo-notebooks/main/_static/fornax_logo.png
+  description: "The Fornax Initiative is a NASA Astrophysics project developed by the HEASARC, IRSA, and MAST archives to bring data, software, and computing together on the cloud so that researchers can focus on science. This repository contains Python notebook tutorials demonstrating a range of topics, including data access on-premises and on the cloud, cross-archive analysis, big data workflows, and computationally intensive science."
+  tags: Astronomy; Tutorials; Data access; NASA
+
+- name: "NASA Astrophysics Fornax Science Platform Documentation"
+  website: https://docs.fornax.sciencecloud.nasa.gov/
+  repository: https://github.com/nasa-fornax/fornax-documentation
+  image: https://raw.githubusercontent.com/nasa-fornax/fornax-documentation/main/_static/fornax_logo.png
+  description: "The Fornax Initiative is a NASA Astrophysics project developed by the HEASARC, IRSA, and MAST archives to bring data, software, and computing together on the cloud so that researchers can focus on science. This repository holds the source for the user documentation and therefore is an example of a non-notebook based narrative documentation project."
+  tags: Documentation; NASA
+
+- name: Probability in Practice - A Hands-On Journey with Python
+  website: https://snowch.github.io/learn_probability/
+  repository: https://github.com/snowch/learn_probability
+  image: https://github.com/snowch/learn_probability/blob/main/logo.png
+  description: An interactive textbook exploring probability theory through practical Python programming. Covers foundations, conditional probability, random variables, distributions, limit theorems, and advanced topics like Bayesian inference and Markov chains. Designed for students, data scientists, and developers using Jupyter notebooks with hands-on examples and exercises.
+  tags: Probability; Statistics; Python; Education; Data Science; Jupyter
+
+- name: Protein–Peptide Molecular Mimicry Study
+  website: https://singh-sanju.github.io/Protein_peptide_mimicry_study/
+  repository: https://github.com/singh-sanju/Protein_peptide_mimicry_study
+  image: https://github.com/singh-sanju/Protein_peptide_mimicry_study/blob/main/content/figures/logo.png
+  description: A Jupyter Book presenting an exploratory and educational computational workflow to study protein–peptide molecular mimicry in the HLA-B27 protein, which is associated with autoimmune diseases such as ankylosing spondylitis. The book covers peptide screening, docking, molecular dynamics simulations, trajectory correction, and post-MD analysis, with an emphasis on methodological understanding and hands-on learning.
+  tags: Computational Chemistry; Molecular Dynamics; Bioinformatics; Educational Resource; Computational Biology
+
+- name: "dolfiny: high-level convenience wrappers for DOLFINx"
+  website: https://dolfiny.uni.lu/
+  repository: https://github.com/fenics-dolfiny/dolfiny
+  image: https://github.com/fenics-dolfiny/dolfiny/blob/main/book/logo.svg
+  description: Computational mechanics demos of dolfiny, an extension module of the finite element library FEniCSx, rendered as jupyter book.
+  tags: Computational Mechanics; FEniCS; Documentation; University of Luxembourg
