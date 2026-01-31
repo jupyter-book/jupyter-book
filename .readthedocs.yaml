@@ -14,9 +14,9 @@ build:
     #   (will be broken if accessed directly on RTD, but correct when proxied)
     - |
       if [ "$READTHEDOCS_VERSION_TYPE" = "external" ]; then
-        export BASE_URL="/$READTHEDOCS_VERSION/"
+        export BASE_URL="/$READTHEDOCS_VERSION"
       else
-        export BASE_URL="/docs/$READTHEDOCS_VERSION/"
+        export BASE_URL="/docs/$READTHEDOCS_VERSION"
       fi
       nox -s docs
     - cp -a docs/_build/html/. "$READTHEDOCS_OUTPUT/html/" && rm -r docs/_build
