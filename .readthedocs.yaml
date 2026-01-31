@@ -8,9 +8,15 @@ build:
   commands:
     - pip install nox requests
     - mkdir -p $READTHEDOCS_OUTPUT/html/
-    - BASE_URL="/docs/$READTHEDOCS_VERSION" nox -s docs
-    # We must put this in a `/html/docs/` subfolder so jupyterbook.org has the right BASE_URL
-    - mkdir "$READTHEDOCS_OUTPUT/html/docs"
-    - cp -a docs/_build/html/. "$READTHEDOCS_OUTPUT/html/docs" && rm -r docs/_build
-    # Create a root index.html that redirects to /docs/
-    - python docs/src/add_rtd_index_redirect.py
+    # Set BASE_URL based on build type:
+    # - PR builds (external): /{pr}/ - works directly on RTD preview subdomain
+    # - Regular builds: /docs/{version}/ - for reverse proxy from jupyterbook.org/docs/
+    #   (will be broken if accessed directly on RTD, but correct when proxied)
+    - |
+      if [ "$READTHEDOCS_VERSION_TYPE" = "external" ]; then
+        export BASE_URL="/$READTHEDOCS_VERSION/"
+      else
+        export BASE_URL="/docs/$READTHEDOCS_VERSION/"
+      fi
+      nox -s docs
+    - cp -a docs/_build/html/. "$READTHEDOCS_OUTPUT/html/" && rm -r docs/_build
