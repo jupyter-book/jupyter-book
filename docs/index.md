@@ -1,161 +1,71 @@
 ---
-title: Jupyter Book
-site:
-  hide_outline: true
-  hide_toc: true
-  hide_title_block: true
+title: Jupyter Book User Guide
 ---
 
-+++ {"class": "col-page-inset"}
+Jupyter Book is [a distribution of the MyST Document Engine](https://mystmd.org).
 
-:::{attention} Jupyter Book 2 is here!
-Built on the [MyST Document Engine](https://mystmd.org) with faster builds, modern features, and improved workflows.
-Jupyter Book 2 still has many improvements to be made.
-Please join us and [contribute to Jupyter Book](./contribute.md) so we can make it better!
-
-[Upgrade from 1.0](#upgrade-tldr) • [Known limitations](#known-limitations) • [Frequently Asked Questions](#faq-general) • [Looking for 1.0 documentation?](https://jupyterbook.org/v1)
+:::{seealso} Looking for the Jupyter Book 1 docs?
+This documentation is for Jupyter Book 2. If you're looking for the Jupyter Book 1 docs, go to [jupyterbook.org/v1](https://jupyterbook.org/v1).
 :::
 
-+++ {"class": "col-page-inset"}
+## See `mystmd.org` for more complete documentation
+
+Because Jupyter Book is [a distribution of the MyST Document Engine](https://jupyterbook.org/community/ecosystem), we keep most documentation about configuring and using Jupyter Book in the [MyST User Guide](https://mystmd.org/guide). Anything you can do with MyST you can do with Jupyter Book - the only difference in using the two is the CLI verb (`jupyter book` vs. `myst`).
+
+## Navigate the Jupyter Book documentation
+
+This User Guide steps you through **high-level concepts**, **tutorials for step-by-step learning**, and **how-to guides to get things done**. It focuses on use-cases for multi-document projects, like **community knowledge bases** and **multi-page books**.[^diataxis]
+
+[^diataxis]: The Jupyter Book and MyST documentation follow [the Diataxis documentation framework](https://diataxis.fr). Within that framework, we aim for jupyterbook.org to contain **tutorials** and **how-to guides**, and the [MyST guide](xref:guide) to focus on **reference documentation** and **deeper explanation**.
 
 
-:::{hero}
-Jupyter {orange}`Book`
+::::{grid} 1 2 2 2
+:::{card} 🚀 Install & Setup
+:link: get-started/install.md
+:footer: Install Jupyter Book »
+
+Install Jupyter Book and create your first project.
 :::
+:::{card} 🌐 Build Your First Website
+:link: build-and-publish/website.md
+:footer: Build a website tutorial »
 
-::::::{grid} 1 2 2 2
-:::::{grid-item}
-{large}`Create computational narratives that are reusable, reproducible, and interactive.`
-
-_Write in Notebooks or Markdown, execute code, cross-reference content, and publish to the web - built for and by researchers, educators, and data scientists._
-
-:::::
-:::::{grid-item}
-```{code-block} bash
-:filename: install
-pip install jupyter-book
-jupyter book start
-```
-
-{button}`Get started → <./get-started.md>` {button}`Upgrade from JB1 → <./resources/upgrade.md>`
-::::::
-
-+++
-
-```{warning}
-With the recent release of Jupyer Book 2, you will explicitly need to add `jupyter-book<2` to your install to keep using the Sphinx-based [Jupyter Book 1](https://jupyterbook.org/v1).
-```
-
-## See It in Action
-
-::::{tab-set}
-:::{tab-item} Reusable
-
-```{figure} media/videos/reusable.mp4
-:class: sd-mb-0
-
-**Reusable Knowledge** - Cross-reference pages, sections, figures, and equations. Link to other MyST sites for a connected reading experience.
-```
-
+Step-by-step tutorial to build and publish a website.
 :::
-:::{tab-item} Reproducible
+:::{card} ✍️ Write Content
+:link: authoring.md
+:footer: Browse authoring guides »
 
-```{figure} media/videos/reproducible.mp4
-:class: sd-mb-0
-
-**Reproducible Results** - Execute Python, R, Julia, and more at build time. Include computational results directly in your documentation.
-```
-
+Learn to write with MyST Markdown, add figures, citations, and math.
 :::
-:::{tab-item} Interactive
+:::{card} 🔧 Build & Publish
+:link: build-and-publish/index.md
+:footer: Browse build guides »
 
-```{figure} media/videos/interactive.mp4
-:class: sd-mb-0
-
-**Interactive Exploration** - Publish websites with live widgets. Connect to JupyterHub, Binder, or run Python in the browser.
-```
-
+Export to PDF, publish to GitHub Pages, and deploy your book.
 :::
 ::::
 
+## Browse documentation by type
 
+Looking for something specific? Browse by documentation type:
 
-+++ {"kind": "justified"}
+**Tutorials** - Step-by-step learning paths:
+- [Build a website](./build-and-publish/website.md) - Create and publish your first site
+- [Execute code](./execution/execution.md) - Run computational notebooks
+- [Create plugins](./plugins/plugins.md) - Extend Jupyter Book with custom directives
 
-## Get started
+**How-To Guides** - Solve specific problems:
+- [Create content](./get-started/create-content.md) - Add pages and structure
+- [Cross-reference](./get-started/cross-reference.md) - Link between sections
+- [Add math equations](./authoring/math.md) - Write LaTeX mathematics
+- [Export to PDF](./get-started/export-pdfs.md) - Generate PDF documents
 
-### What do you want to do
+**Reference** - Technical specifications:
+- [MyST Guide](https://mystmd.org/guide) - Complete MyST reference
+- [Table of contents](./authoring/table-of-contents.md) - TOC structure
 
-:::::{grid} 1 2 3 3
-::::{card} 📘 Get Started
-:link: ./get-started.md
-Build your first book in minutes
-+++
-[Quick start →](./get-started.md)
-::::
-::::{card} 📝 Author Content
-:link: ./authoring.md
-Write with MyST Markdown
-+++
-[Learn authoring →](./authoring.md)
-::::
-::::{card} 🚀 Build & Publish
-:link: ./build-and-publish/index.md
-Deploy to the web
-+++
-[Publish guide →](./build-and-publish/index.md)
-::::
-::::{card} ⚙️ Extend with Plugins
-:link: ./plugins.md
-Customize your workflow
-+++
-[Explore plugins →](./plugins.md)
-::::
-::::{card} 💬 Community
-:link: ./community.md
-Get help and contribute
-+++
-[Join us →](./community.md)
-::::
-::::{card} 📚 Gallery
-:link: ./gallery.md
-Explore existing books and projects
-+++
-[Explore gallery →](./gallery.md)
-::::
-
-:::::
-
-+++ {"kind": "justified"}
-
-### Important Information
-
-::::{grid} 1 1 2 2
-:::{card} Upgrade guide
-:link: ./resources/upgrade.md
-Upgrade from Jupyter Book 1 to 2
-+++
-Includes an FAQ about known limitations and gotchas
-:::
-
-:::{card} Get Help
-:link: ./community/help.md
-Questions or issues?
-+++
-Visit our [FAQ](./resources/faq.md) for common questions, or reach out via [Discord](https://discord.mystmd.org), [Discussions](https://github.com/orgs/jupyter-book/discussions), or [Vote on features](./community/vote.md)
-:::
-
-:::{card} Cite Jupyter Book
-:link: ./cite.md
-Using in research?
-+++
-See our citation guide for proper attribution
-:::
-
-:::{card} Ecosystem
-:link: ./community/ecosystem.md
-Learn about the MyST ecosystem
-+++
-Understand how Jupyter Book fits into the broader MyST ecosystem
-:::
-::::
+**Community** - Get help and contribute:
+- [Get help](https://jupyterbook.org/help) - Discord, discussions, bug reports
+- [FAQ](./resources/faq.md) - Frequently asked questions
+- [Contributing](https://jupyterbook.org/contribute) - How to contribute

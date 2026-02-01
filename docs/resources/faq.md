@@ -13,9 +13,9 @@ Jupyter Book 2 is a complete rewrite built on the [MyST Document Engine](https:/
 - **Architecture**: Built on the MyST Document Engine (JavaScript/TypeScript) instead of Sphinx (Python)
 - **Performance**: Faster builds and better incremental compilation
 - **Features**: Modern web development features, improved cross-referencing, enhanced interactivity
-- **Ecosystem**: Part of the broader [MyST ecosystem](../community/ecosystem.md) with shared tools and standards
+- **Ecosystem**: Part of the broader [MyST ecosystem](https://jupyterbook.org/community/ecosystem) with shared tools and standards
 
-For a detailed comparison, see our [ecosystem documentation](../community/ecosystem.md).
+For a detailed comparison, see our [ecosystem documentation](https://jupyterbook.org/community/ecosystem).
 
 ### Where is the Jupyter Book 1 documentation?
 
@@ -61,7 +61,7 @@ We recognize there is an ongoing need for these tools and will continue working 
 
 Jupyter Book 2 is built on top of the MyST Document Engine. In short: Jupyter Book is an opinionated, book-focused distribution of MyST with a Python-based installation workflow.
 
-For a detailed explanation of the architecture and technical differences, see our [ecosystem documentation](../community/ecosystem.md).
+For a detailed explanation of the architecture and technical differences, see our [ecosystem documentation](https://jupyterbook.org/community/ecosystem).
 
 ### What MyST Markdown features work in Jupyter Book?
 
@@ -131,11 +131,11 @@ Multiple channels available:
 - **Bug reports (Jupyter Book 2)**: Most issues should be reported to the [`mystmd` repository](https://github.com/jupyter-book/mystmd/issues) since Jupyter Book 2 is built on the MyST engine. Use [`jupyter-book` issues](https://github.com/jupyter-book/jupyter-book/issues) only for Jupyter Book-specific functionality (like the Python wrapper or upgrade tooling).
 - **Bug reports (Jupyter Book 1)**: use [`jupyter-book` issues](https://github.com/jupyter-book/jupyter-book/issues), and clarify that you are using Jupyter Book **1**.
 
-See our [help page](../community/help.md) for more resources.
+See our [help page](https://jupyterbook.org/help) for more resources.
 
 ### How can I contribute to Jupyter Book?
 
-We welcome contributions! See our [contributing guide](../contribute.md) and our [community guide](../community.md) for details.
+We welcome contributions! See our [contributing guide](https://jupyterbook.org/contribute) and our [community guide](https://jupyterbook.org/community) for details.
 
 (faq:migration)=
 ## Migrating and troubleshooting upgrades

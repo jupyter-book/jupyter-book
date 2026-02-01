@@ -1,7 +1,7 @@
 # See docs at: https://mystmd.org/guide/frontmatter
 version: 1
 extends:
-  - ./_site/site.yml
+  - https://raw.githubusercontent.com/jupyter-book/jupyterbook.org/refs/heads/main/docs/_site/site.yml
 project:
   # title:
   # description:
@@ -9,24 +9,19 @@ project:
   # authors: []
   references:
     guide: https://mystmd.org/guide
-    compass: https://compass.jupyterbook.org
-    issues: https://jupyter.org/github-data
   abbreviations:
     MyST: Markedly Structured Text
     CLI: Command-Line Interface
     TOC: Table of Contents
   plugins:
     - src/xref.mjs
-    - src/landing-page.mjs
     - src/directives.mjs
     - src/admonition.mjs
-    # The issue tables plugin is what we use for the roadmap and feature voting pages
-    - https://github.com/jupyter-book/myst-plugins/releases/download/github-issue-table@2025-12-07/index.mjs
   github: https://github.com/jupyter-book/jupyter-book
   toc:
     - file: index.md
-    - title: Get Started
-      file: get-started.md
+      title: User Guide
+    - file: get-started.md
       children:
         - file: get-started/install.md
         - file: get-started/init.md
@@ -63,31 +58,12 @@ project:
         - file: plugins/debug.md
         - file: plugins/ast.md
         - file: plugins/dependencies.md
-    - title: Community
-      file: community.md
-      children:
-        - file: community/help.md
-        - file: community/vote.md
-        - file: community/roadmap.md
-        - file: community/team.md
-        - file: community/ecosystem.md
-        - file: community/history.md
-    - title: Contributing
-      file: contribute.md
-      children:
-        - file: contribute/docs.md
-        - file: contribute/code.md
     - title: Resources
       children:
-        - file: cite.md
         - file: resources/faq.md
         - file: resources/upgrade.md
         - file: resources/downgrade.md
         - file: resources/glossary.md
-    - file: gallery.md
 site:
   options:
-    style: media/custom.css
     folders: true
-  parts:
-    footer: _site/footer.md

@@ -53,7 +53,7 @@ Most of the lines in this YAML file are comments, but there are a couple of thin
 
 ## Configuring your project
 
-A `myst.yml` file comprises multiple sections that configure different parts of the MyST Document Engine. Of particular importance is the [`project` field](#def:project) which contains the project metadata. Examples of configuration that we might add to the project frontmatter include a list of `authors`, a `description`/`title`, and a `license`. For detailed information about the possible frontmatter fields, see [the MyST-MD documentation](xref:guide/frontmatter#available-frontmatter-fields).
+A `myst.yml` file comprises multiple sections that configure different parts of the MyST Document Engine. Of particular importance is the [`project` field](#def:project) which contains the project metadata. Examples of configuration that we might add to the project frontmatter include a list of `authors`, a `description`/`title`, and a `license`. For detailed information about the possible frontmatter fields, see [the MyST-MD documentation](xref:guide/frontmatter).
 
 Let's update our `myst.yml` with some information about the project:
 
