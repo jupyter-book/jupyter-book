@@ -2,6 +2,33 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 2.1.2
+
+([Full Changelog](https://github.com/jupyter-book/jupyter-book/compare/v2.1.1...cc93a6372815c53eb404b4b7477156704220b785))
+
+### Maintenance and upkeep improvements
+
+- Bump the actions group across 1 directory with 2 updates [#2571](https://github.com/jupyter-book/jupyter-book/pull/2571) ([@bsipocz](https://github.com/bsipocz))
+- fix: specify `files` in package.json [#2568](https://github.com/jupyter-book/jupyter-book/pull/2568) ([@agoose77](https://github.com/agoose77), [@bsipocz](https://github.com/bsipocz), [@choldgraf](https://github.com/choldgraf))
+- Bump actions/create-github-app-token from 1 to 2 [#2555](https://github.com/jupyter-book/jupyter-book/pull/2555) ([@bsipocz](https://github.com/bsipocz))
+
+### Documentation improvements
+
+- Move content to jupyterbook.org repo [#2575](https://github.com/jupyter-book/jupyter-book/pull/2575) ([@choldgraf](https://github.com/choldgraf))
+- doc: fix the stated math engine to be KaTeX [#2570](https://github.com/jupyter-book/jupyter-book/pull/2570) ([@akhmerov](https://github.com/akhmerov), [@bsipocz](https://github.com/bsipocz), [@rowanc1](https://github.com/rowanc1))
+- Update release instructions [#2562](https://github.com/jupyter-book/jupyter-book/pull/2562) ([@choldgraf](https://github.com/choldgraf), [@agoose77](https://github.com/agoose77), [@bsipocz](https://github.com/bsipocz))
+
+### Contributors to this release
+
+The following people contributed discussions, new ideas, code and documentation contributions, and review.
+See [our definition of contributors](https://github-activity.readthedocs.io/en/latest/use/#how-does-this-tool-define-contributions-in-the-reports).
+
+([GitHub contributors page for this release](https://github.com/jupyter-book/jupyter-book/graphs/contributors?from=2026-01-22&to=2026-02-01&type=c))
+
+@agoose77 ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Aagoose77+updated%3A2026-01-22..2026-02-01&type=Issues)) | @akhmerov ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Aakhmerov+updated%3A2026-01-22..2026-02-01&type=Issues)) | @bsipocz ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Absipocz+updated%3A2026-01-22..2026-02-01&type=Issues)) | @choldgraf ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Acholdgraf+updated%3A2026-01-22..2026-02-01&type=Issues)) | @rowanc1 ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Arowanc1+updated%3A2026-01-22..2026-02-01&type=Issues))
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 2.1.1
 
 ([Full Changelog](https://github.com/jupyter-book/jupyter-book/compare/v2.1.0...c6641134ad9ec769c6a44243d435a0b2d07abd0a))
@@ -48,8 +75,6 @@ See [our definition of contributors](https://github-activity.readthedocs.io/en/l
 ([GitHub contributors page for this release](https://github.com/jupyter-book/jupyter-book/graphs/contributors?from=2025-12-05&to=2026-01-22&type=c))
 
 @afeld ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Aafeld+updated%3A2025-12-05..2026-01-22&type=Issues)) | @agoose77 ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Aagoose77+updated%3A2025-12-05..2026-01-22&type=Issues)) | @bsipocz ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Absipocz+updated%3A2025-12-05..2026-01-22&type=Issues)) | @choldgraf ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Acholdgraf+updated%3A2025-12-05..2026-01-22&type=Issues)) | @emiliom ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Aemiliom+updated%3A2025-12-05..2026-01-22&type=Issues)) | @FreekPols ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3AFreekPols+updated%3A2025-12-05..2026-01-22&type=Issues)) | @rowanc1 ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Arowanc1+updated%3A2025-12-05..2026-01-22&type=Issues)) | @schnellerhase ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Aschnellerhase+updated%3A2025-12-05..2026-01-22&type=Issues)) | @singh-sanju ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Asingh-sanju+updated%3A2025-12-05..2026-01-22&type=Issues)) | @snowch ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Asnowch+updated%3A2025-12-05..2026-01-22&type=Issues))
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 2.1.0
 
