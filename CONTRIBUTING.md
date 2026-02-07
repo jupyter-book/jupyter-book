@@ -8,5 +8,5 @@ Thank you for your interest in contributing to Jupyter Book!
 - See our [Contributing Guide](https://jupyterbook.org/contribute/) for all ways to contribute (code, docs, community)
 
 **Contributing to THIS repository specifically:**
-- [Documentation Strategy Guide](https://jupyterbook.org/contribute/#documentation-contributions) - THIS repo's docs structure, `nox` commands, style
-- [Code Contribution Guide](https://jupyterbook.org/contribute/#code-contributions) - THIS repo's setup, architecture, development workflow
+- [Documentation Strategy Guide](docs/contribute/docs.md) - THIS repo's docs structure, `nox` commands, style
+- [Code Contribution Guide](docs/contribute/code.md) - THIS repo's setup, architecture, development workflow
