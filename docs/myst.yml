@@ -64,6 +64,10 @@ project:
         - file: resources/upgrade.md
         - file: resources/downgrade.md
         - file: resources/glossary.md
+    - title: Contributor Guide
+      children:
+        - file: contribute/code.md
+        - file: contribute/docs.md
 site:
   options:
     folders: true
