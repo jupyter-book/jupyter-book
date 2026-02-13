@@ -2,6 +2,31 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 2.1.3
+
+([Full Changelog](https://github.com/jupyter-book/jupyter-book/compare/v2.1.2...9440c9b3b69838ba9829bca5e5e0dcd7c3237501))
+
+### Maintenance and upkeep improvements
+
+- Add release documentation to our docs and bump mystmd version [#2586](https://github.com/jupyter-book/jupyter-book/pull/2586) ([@choldgraf](https://github.com/choldgraf))
+- Bump actions/setup-node from 6.1.0 to 6.2.0 in /.github/workflows in the actions group [#2577](https://github.com/jupyter-book/jupyter-book/pull/2577) ([@bsipocz](https://github.com/bsipocz))
+
+### Documentation improvements
+
+- Move some repo-specific documentation back here [#2582](https://github.com/jupyter-book/jupyter-book/pull/2582) ([@choldgraf](https://github.com/choldgraf))
+- Fix broken quick links in CONTRIBUTING.md [#2580](https://github.com/jupyter-book/jupyter-book/pull/2580) ([@Varshiniputtabakula](https://github.com/Varshiniputtabakula), [@choldgraf](https://github.com/choldgraf))
+
+### Contributors to this release
+
+The following people contributed discussions, new ideas, code and documentation contributions, and review.
+See [our definition of contributors](https://github-activity.readthedocs.io/en/latest/use/#how-does-this-tool-define-contributions-in-the-reports).
+
+([GitHub contributors page for this release](https://github.com/jupyter-book/jupyter-book/graphs/contributors?from=2026-02-01&to=2026-02-13&type=c))
+
+@bsipocz ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Absipocz+updated%3A2026-02-01..2026-02-13&type=Issues)) | @choldgraf ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Acholdgraf+updated%3A2026-02-01..2026-02-13&type=Issues)) | @Varshiniputtabakula ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3AVarshiniputtabakula+updated%3A2026-02-01..2026-02-13&type=Issues))
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 2.1.2
 
 ([Full Changelog](https://github.com/jupyter-book/jupyter-book/compare/v2.1.1...cc93a6372815c53eb404b4b7477156704220b785))
@@ -26,8 +51,6 @@ See [our definition of contributors](https://github-activity.readthedocs.io/en/l
 ([GitHub contributors page for this release](https://github.com/jupyter-book/jupyter-book/graphs/contributors?from=2026-01-22&to=2026-02-01&type=c))
 
 @agoose77 ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Aagoose77+updated%3A2026-01-22..2026-02-01&type=Issues)) | @akhmerov ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Aakhmerov+updated%3A2026-01-22..2026-02-01&type=Issues)) | @bsipocz ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Absipocz+updated%3A2026-01-22..2026-02-01&type=Issues)) | @choldgraf ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Acholdgraf+updated%3A2026-01-22..2026-02-01&type=Issues)) | @rowanc1 ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Arowanc1+updated%3A2026-01-22..2026-02-01&type=Issues))
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 2.1.1
 
