@@ -1,9 +1,11 @@
-# Making a new release of Jupyter Book
+# Make a new release of Jupyter Book
 
 The extension can be published to `PyPI` and `npm` using the [Jupyter Releaser](https://github.com/jupyter-server/jupyter_releaser).
 
 ## Automated releases with the Jupyter Releaser
 Here is a summary of the steps to cut a new release:
+
+- Double check that we have the latest `mystmd` dependencies by following the instructions below. This is the most common reason to make a new release!
 - In the Actions panel, go to the [Step 1: Prep Release](https://github.com/jupyter-book/jupyter-book/actions/workflows/prep-release.yml) workflow.
   - Click `Run Workflow` -> `Run Workflow` with default values.
 - Go to [the Releases page](https://github.com/jupyter-book/jupyter-book/releases)
