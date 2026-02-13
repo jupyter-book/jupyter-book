@@ -68,6 +68,7 @@ project:
       children:
         - file: contribute/code.md
         - file: contribute/docs.md
+        - file: contribute/release.md
 site:
   options:
     folders: true
