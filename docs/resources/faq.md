@@ -19,7 +19,7 @@ For a detailed comparison, see our [ecosystem documentation](https://jupyterbook
 
 ### Where is the Jupyter Book 1 documentation?
 
-The Jupyter Book 1 documentation is available at [https://jupyterbook.org/v1](https://jupyterbook.org/v1).
+The Jupyter Book 1 documentation is available at https://jupyterbook.org/v1/intro.html.
 
 ### Should I upgrade to Jupyter Book 2 now or wait?
 

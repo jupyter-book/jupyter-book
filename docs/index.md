@@ -5,7 +5,7 @@ title: Jupyter Book User Guide
 Jupyter Book is [a distribution of the MyST Document Engine](https://mystmd.org).
 
 :::{seealso} Looking for the Jupyter Book 1 docs?
-This documentation is for Jupyter Book 2. If you're looking for the Jupyter Book 1 docs, go to [jupyterbook.org/v1](https://jupyterbook.org/v1).
+This documentation is for Jupyter Book 2. If you're looking for the Jupyter Book 1 docs, go to https://jupyterbook.org/v1/intro.html.
 :::
 
 ## See `mystmd.org` for more complete documentation
