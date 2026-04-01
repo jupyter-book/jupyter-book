@@ -1,7 +1,7 @@
 # See docs at: https://mystmd.org/guide/frontmatter
 version: 1
 extends:
-  - https://raw.githubusercontent.com/jupyter-book/jupyterbook.org/refs/heads/main/docs/_site/site.yml
+  - https://github.com/jupyter-book/jupyterbook.org/raw/refs/heads/main/docs/_site/site.yml
 project:
   # title:
   # description:
@@ -17,6 +17,8 @@ project:
     - src/xref.mjs
     - src/directives.mjs
     - src/admonition.mjs
+    # For shared footer
+    - https://github.com/jupyter-book/myst-plugins/releases/download/footer-latest/index.mjs
   github: https://github.com/jupyter-book/jupyter-book
   toc:
     - file: index.md

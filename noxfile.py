@@ -6,10 +6,17 @@ import nox
 nox.options.default_venv_backend = "uv|virtualenv"
 
 
+def _prep_docs(session):
+    """Ensure JS bundle is fresh, then install the package."""
+    # Remove any stale JS bundle so hatch-jupyter-builder rebuilds it
+    session.run("npm", "run", "build", external=True)
+    session.install("-e", ".[docs]")
+
+
 @nox.session(name="docs")
 def docs(session):
     """Build the documentation as static HTML."""
-    session.install("-e", ".[docs]")
+    _prep_docs(session)
     session.chdir("docs")
     session.run("jupyter", "book", "build", "--html", "--execute", *session.posargs)
 
@@ -17,7 +24,7 @@ def docs(session):
 @nox.session(name="docs-live")
 def docs_live(session):
     """Start a live development server for the documentation."""
-    session.install("-e", ".[docs]")
+    _prep_docs(session)
     session.chdir("docs")
     session.run("jupyter", "book", "start", "--execute", *session.posargs)
 
