@@ -1,5 +1,7 @@
 """Nox sessions for Jupyter Book documentation."""
 
+import os
+
 import nox
 
 # Use uv for faster installs
@@ -8,8 +10,10 @@ nox.options.default_venv_backend = "uv|virtualenv"
 
 def _prep_docs(session):
     """Ensure JS bundle is fresh, then install the package."""
-    # Remove any stale JS bundle so hatch-jupyter-builder rebuilds it
-    session.run("npm", "run", "build", external=True)
+    # On Read the Docs the bundle is built during the install step,
+    # but locally a stale .cjs can linger so we rebuild explicitly.
+    if not os.environ.get("READTHEDOCS"):
+        session.run("npm", "run", "build", external=True)
     session.install("-e", ".[docs]")
 
 
