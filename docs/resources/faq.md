@@ -111,7 +111,7 @@ Jupyter Book 2 uses MyST's plugin system:
 
 ### How do I deploy my Jupyter Book?
 
-See our [publishing guide](../get-started/publish.md) for deployment options including:
+See the [publishing reference](../build-and-publish/publish.md) for deployment options including:
 
 - GitHub Pages
 - ReadTheDocs

@@ -23,7 +23,7 @@ project:
   toc:
     - file: index.md
       title: User Guide
-    - file: get-started.md
+    - file: get-started/index.md
       children:
         - file: get-started/install.md
         - file: get-started/init.md
@@ -33,7 +33,7 @@ project:
         - file: get-started/cross-reference.md
         - file: get-started/publish.md
     - title: Author Content
-      file: authoring.md
+      file: authoring/index.md
       children:
         - file: authoring/mystmd.md
         - file: authoring/math.md
@@ -45,16 +45,17 @@ project:
       file: build-and-publish/index.md
       children:
         - file: build-and-publish/website.md
+        - file: build-and-publish/customize.md
         - file: build-and-publish/publish.md
         - file: build-and-publish/export.md
     - title: Execute & Compute
-      file: execution.md
+      file: execution/index.md
       children:
         - file: execution/execution.md
         - file: execution/jupyterlab.md
         - file: execution/generate-myst.md
     - title: Extend with Plugins
-      file: plugins.md
+      file: plugins/index.md
       children:
         - file: plugins/plugins.md
         - file: plugins/directives-and-roles.md

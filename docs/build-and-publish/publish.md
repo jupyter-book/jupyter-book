@@ -3,7 +3,7 @@ title: Publish to the web
 description: Deployment options for Jupyter Book websites.
 ---
 
-Jupyter Book can build static websites that you can host on most modern web platforms.
+Jupyter Book sites can be deployed to a range of hosting platforms - both as static HTML or as MyST-aware applications.
 The [get-started publishing tutorial](../get-started/publish.md) walks through deploying to GitHub Pages.
 This page lists the other supported hosting options and links to the in-depth MyST documentation for each.
 

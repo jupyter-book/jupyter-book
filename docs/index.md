@@ -33,7 +33,7 @@ Install Jupyter Book and create your first project.
 Step-by-step tutorial to build and publish a website.
 :::
 :::{card} ✍️ Write Content
-:link: authoring.md
+:link: authoring/index.md
 :footer: Browse authoring guides »
 
 Learn to write with MyST Markdown, add figures, citations, and math.

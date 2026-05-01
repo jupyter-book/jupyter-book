@@ -9,14 +9,14 @@ description: Learn the basics of how MyST can be used to execute content with Ju
 :::{note} Goals and prerequisites
 **Goals**: This tutorial covers how to take advantage of MyST features and customizability to execute computational content with your Jupyter Book build.
 
-**Prerequisites**: This assumes you've completed [Get Started](../get-started.md) and have Jupyter Book installed locally, as well as a local version of the [MyST quickstart content](https://github.com/jupyter-book/mystmd-quickstart).
+**Prerequisites**: This assumes you've completed [Get Started](../get-started/index.md) and have Jupyter Book installed locally, as well as a local version of the [MyST quickstart content](https://github.com/jupyter-book/mystmd-quickstart).
 :::
 
 ![](#lookout-for-tutorial-actions)
 
 ## Start Jupyter Book 🚀
 
-From [the quick start tutorial](../get-started.md), you should already have created a `myst.yml` configuration file that is required to render your project.
+From [the quick start tutorial](../get-started/index.md), you should already have created a `myst.yml` configuration file that is required to render your project.
 To confirm this, run a Jupyter Book server to serve the quick start content:
 
 🛠 Run `jupyter book start` to serve your quickstart content
