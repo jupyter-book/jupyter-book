@@ -45,6 +45,7 @@ project:
       file: build-and-publish/index.md
       children:
         - file: build-and-publish/website.md
+        - file: build-and-publish/publish.md
         - file: build-and-publish/export.md
     - title: Execute & Compute
       file: execution.md
