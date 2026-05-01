@@ -33,3 +33,10 @@ export function makeGithubCurvenoteOption() {
     )}`
   ).default(false);
 }
+
+export function makeReadTheDocsOption() {
+  return new Option(
+    "--readthedocs",
+    `Creates a ${chalk.yellow(".readthedocs.yaml")} configuration file for deploying to Read the Docs`
+  ).default(false);
+}
