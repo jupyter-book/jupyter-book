@@ -71,7 +71,7 @@ Here's a short overview of the Sphinx extensions that are activated by Jupyter B
 - **[Sphinx Design](https://sphinx-design.readthedocs.io/en/latest/)** - Provide Sphinx directives for UI components that are used throughout the Jupyter Book docs.
 - **[Sphinx Book Theme](https://sphinx-book-theme.readthedocs.io/)** - A Sphinx theme that defines the look and feel of Jupyter Book, and its general layout.
 
-To understand how Jupyter Book configures Sphinx, you should check out [the `config.py` module](https://github.com/executablebooks/jupyter-book/blob/master/jupyter_book/config.py). For example, [here is the line that defines the default Sphinx configuration](https://github.com/executablebooks/jupyter-book/blob/421f6198728b21c94726a10b61776fb4cc097d72/jupyter_book/config.py#L23).
+To understand how Jupyter Book configures Sphinx, you should check out [the `config.py` module](https://github.com/jupyter-book/jupyter-book/blob/v1/jupyter_book/config.py). For example, [here is the line that defines the default Sphinx configuration](https://github.com/executablebooks/jupyter-book/blob/421f6198728b21c94726a10b61776fb4cc097d72/jupyter_book/config.py#L23).
 
 If you'd like to replicate Jupyter Book's functionality in Sphinx, you should create a Sphinx site, and copy over this configuration into your `conf.py` file.
 When you build your Sphinx site, it should behave very similarly to Jupyter Book.
