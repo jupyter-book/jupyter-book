@@ -6,8 +6,12 @@ subject: Quickstart tutorial
 
 :::{important} Objective
 The goal of this tutorial is to publish your Jupyter Book to GitHub Pages so others can read it on the web.
+:::
+
+:::{tip} Not using GitHub?
 For other hosting options (Read the Docs, Netlify, GitLab Pages, Curvenote, custom servers), see the [publishing reference](../build-and-publish/publish.md).
 :::
+
 
 ## GitHub Pages
 
