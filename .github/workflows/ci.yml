@@ -20,10 +20,10 @@ jobs:
       NO_NODE_NODEENV_ARGS: '-o errexit -c "export JB_ALLOW_NODEENV=1; pip install dist/*.whl && jupyter book -v; rm -r $HOME/.local/share/jupyter-book/"'
 
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
 
       # Install Python
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v6.2.0
         with:
           python-version: 3.11
 
@@ -107,9 +107,9 @@ jobs:
           - "3.10"
           - "3.9"
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
       # Install Python
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v6.2.0
         with:
           python-version: ${{ matrix.python-version }}
 
