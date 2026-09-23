@@ -2,6 +2,32 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 2.1.7
+
+([Full Changelog](https://github.com/jupyter-book/jupyter-book/compare/v2.1.6...296709a4f904ad8c8d11aae8f948aa5520ea84e4))
+
+### Maintenance and upkeep improvements
+
+- Bump myst-cli to v1.11.0 [#2674](https://github.com/jupyter-book/jupyter-book/pull/2674) ([@sbonaretti](https://github.com/sbonaretti))
+- Bump actions/setup-python from 6.3.0 to 7.0.0 in /.github/workflows in the actions group [#2663](https://github.com/jupyter-book/jupyter-book/pull/2663) ([@bsipocz](https://github.com/bsipocz))
+- Bump the actions group in /.github/workflows with 3 updates [#2658](https://github.com/jupyter-book/jupyter-book/pull/2658) ([@bsipocz](https://github.com/bsipocz))
+- Bump the actions group in /.github/workflows with 2 updates [#2642](https://github.com/jupyter-book/jupyter-book/pull/2642) ([@bsipocz](https://github.com/bsipocz))
+
+### Documentation improvements
+
+- Add details to RELEASE.md [#2650](https://github.com/jupyter-book/jupyter-book/pull/2650) ([@sbonaretti](https://github.com/sbonaretti), [@choldgraf](https://github.com/choldgraf))
+
+### Contributors to this release
+
+The following people contributed discussions, new ideas, code and documentation contributions, and review.
+See [our definition of contributors](https://github-activity.readthedocs.io/en/latest/use/#how-does-this-tool-define-contributions-in-the-reports).
+
+([GitHub contributors page for this release](https://github.com/jupyter-book/jupyter-book/graphs/contributors?from=2026-07-05&to=2026-09-23&type=c))
+
+@bsipocz ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Absipocz+updated%3A2026-07-05..2026-09-23&type=Issues)) | @choldgraf ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Acholdgraf+updated%3A2026-07-05..2026-09-23&type=Issues)) | @sbonaretti ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Asbonaretti+updated%3A2026-07-05..2026-09-23&type=Issues))
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 2.1.6
 
 ([Full Changelog](https://github.com/jupyter-book/jupyter-book/compare/v2.1.5...9d7752b86f7d7c216871bc709d3670dd3b2ebab0))
@@ -23,8 +49,6 @@ See [our definition of contributors](https://github-activity.readthedocs.io/en/l
 ([GitHub contributors page for this release](https://github.com/jupyter-book/jupyter-book/graphs/contributors?from=2026-05-02&to=2026-07-05&type=c))
 
 @agoose77 ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Aagoose77+updated%3A2026-05-02..2026-07-05&type=Issues)) | @bsipocz ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Absipocz+updated%3A2026-05-02..2026-07-05&type=Issues)) | @choldgraf ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Acholdgraf+updated%3A2026-05-02..2026-07-05&type=Issues)) | @sbonaretti ([activity](https://github.com/search?q=repo%3Ajupyter-book%2Fjupyter-book+involves%3Asbonaretti+updated%3A2026-05-02..2026-07-05&type=Issues))
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 2.1.5
 
