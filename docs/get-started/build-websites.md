@@ -10,7 +10,7 @@ The goal of this tutorial is to explore the ways in which the MyST Document Engi
 
 ## Running `jupyter book start`
 
-Jupyter Book ships with a built-in server that renders your book as a locally-served website. The server can easily be started by running the `jupyter book start` command. Once the server is runnning, Jupyter Book will report the URL at which it can be found (see [](#code:start-server)):
+Jupyter Book ships with a built-in server that renders your book as a locally-served website. The server can easily be started by running the `jupyter book start` command. Once the server is running, Jupyter Book will report the URL at which it can be found (see [](#code:start-server)):
 
 ```{code} shell
 :linenos:
