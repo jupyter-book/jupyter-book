@@ -104,7 +104,8 @@ before-build-python = ["npm install", "npm run clean"]
 
 [tool.codespell]
 # Ref: https://github.com/codespell-project/codespell#using-a-config-file
-skip = '.git,.gitignore,.gitattributes,package-lock.json,*.lock'
+skip = '.git,.git-meta,.gitignore,.gitattributes,.*cache,.npm,node_modules,.venv,.nox,__pycache__,_build,dist,*.svg,*.min.*,package-lock.json,*.lock'
 check-hidden = true
 # ignore-regex = ''
-# ignore-words-list = ''
+# crossreference: MyST AST node type `crossReference` (docs/src/directives.mjs)
+ignore-words-list = 'crossreference'
