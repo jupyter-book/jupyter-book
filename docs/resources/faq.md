@@ -137,6 +137,11 @@ See our [help page](https://jupyterbook.org/help) for more resources.
 
 We welcome contributions! See our [contributing guide](https://jupyterbook.org/contribute) and our [community guide](https://jupyterbook.org/community) for details.
 
+### Where can I find the changelog and release history?
+
+See the [Changelog](./changelog.md) for details on changes in each release.
+
+
 (faq:migration)=
 ## Migrating and troubleshooting upgrades
 

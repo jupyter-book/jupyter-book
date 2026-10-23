@@ -20,25 +20,25 @@ This User Guide steps you through **high-level concepts**, **tutorials for step-
 
 
 ::::{grid} 1 2 2 2
-:::{card} 🚀 Install & Setup
+:::{card} Install & Setup
 :link: get-started/install.md
 :footer: Install Jupyter Book »
 
 Install Jupyter Book and create your first project.
 :::
-:::{card} 🌐 Build Your First Website
+:::{card} Build Your First Website
 :link: build-and-publish/website.md
 :footer: Build a website tutorial »
 
 Step-by-step tutorial to build and publish a website.
 :::
-:::{card} ✍️ Write Content
+:::{card} Write Content
 :link: authoring/index.md
 :footer: Browse authoring guides »
 
 Learn to write with MyST Markdown, add figures, citations, and math.
 :::
-:::{card} 🔧 Build & Publish
+:::{card} Build & Publish
 :link: build-and-publish/index.md
 :footer: Browse build guides »
 
@@ -64,6 +64,7 @@ Looking for something specific? Browse by documentation type:
 **Reference** - Technical specifications:
 - [MyST Guide](https://mystmd.org/guide) - Complete MyST reference
 - [Table of contents](./authoring/table-of-contents.md) - TOC structure
+- [Changelog](./resources/changelog.md) - Release history and changes
 
 **Community** - Get help and contribute:
 - [Get help](https://jupyterbook.org/help) - Discord, discussions, bug reports
