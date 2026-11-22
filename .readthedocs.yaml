@@ -8,5 +8,5 @@ build:
   commands:
     - pip install nox requests
     - mkdir -p $READTHEDOCS_OUTPUT/html/
-    - BASE_URL="/$READTHEDOCS_VERSION" nox -s docs
+    - BASE_URL="/$READTHEDOCS_VERSION" nox -s docs -- --strict --check-links
     - cp -a docs/_build/html/. "$READTHEDOCS_OUTPUT/html/" && rm -r docs/_build
