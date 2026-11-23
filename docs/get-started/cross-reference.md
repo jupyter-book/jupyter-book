@@ -9,7 +9,7 @@ subject: Quickstart tutorial
 The goal of this tutorial is to introduce the concept of cross-references, and explore their uses in creating richer reading and sharing experiences.
 :::
 
-At the heart of Jupyter Book, and the MyST Document Engine that powers it, is the concept of {term}`structured data`. Every Jupyter Book (MyST) website publishes its structured data publically, making it possible for entire communities to publish and share knowledge and resources in a highly connected fashion. For example, here is a rich cross-reference to the <https://mystmd.org> guide: <xref:guide#myst-xref>. By hovering over the previous link with your mouse cursor, you can see a rich-preview of the link's contents, powered by _structured data_.
+At the heart of Jupyter Book, and the MyST Document Engine that powers it, is the concept of {term}`structured data`. Every Jupyter Book (MyST) website publishes its structured data publicly, making it possible for entire communities to publish and share knowledge and resources in a highly connected fashion. For example, here is a rich cross-reference to the <https://mystmd.org> guide: <xref:guide#myst-xref>. By hovering over the previous link with your mouse cursor, you can see a rich-preview of the link's contents, powered by _structured data_.
 
 ## Declaring external websites
 
