@@ -68,6 +68,7 @@ project:
         - file: resources/upgrade.md
         - file: resources/downgrade.md
         - file: resources/glossary.md
+        - file: resources/changelog.md
     - title: Contributor Guide
       children:
         - file: contribute/code.md
