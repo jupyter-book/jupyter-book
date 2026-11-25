@@ -3,8 +3,8 @@ version: 2
 build:
   os: ubuntu-22.04
   tools:
-    python: "3.12"
-    nodejs: "20"
+    python: "3.14"
+    nodejs: "24"
   commands:
     - pip install nox requests
     - mkdir -p $READTHEDOCS_OUTPUT/html/
